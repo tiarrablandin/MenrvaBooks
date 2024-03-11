@@ -159,7 +159,7 @@ create table if not exists user
     tag             varchar(20) not null,
     email           varchar(50) not null,
     username        varchar(50) not null,
-    password        varchar(20) not null,
+    password        varchar(200)not null,
     active          int         not null,
     date_added      date        not null,
     date_updated    date        null,
@@ -267,6 +267,7 @@ Values (3, 'Admin', 'Jonathan', 'Dominguez', '@jondom', 'jonathanadominguez@gmai
 insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
                   subscription_id)
 Values (4, 'Admin', 'William', 'Slaunwhite', '@will', 'williamslaunwhite@gmail.com', 'will', '$2a$12$.aXI64OEVlXoGf8fNHOlhef6SFgQzI4bqn2unNELnfIWTPwJj.zR6', 1, NOW(), null, 1);
+-- Values (4, 'Admin', 'William', 'Slaunwhite', '@will', 'williamslaunwhite@gmail.com', 'will', 'will', 1, NOW(), null, 1);
 
 insert into subscription (id, level, paid, date_added, date_updated)
 values (1, 'Admin', 1, now(), null);

@@ -12,7 +12,10 @@ class UserDetailsServiceImpl(
 ) : UserDetailsService {
 
     override fun loadUserByUsername(username: String): UserDetails? {
-       val user = userRepository.findByUsername(username)
+        val user = userRepository.findByUsername(username)
+        println("*******************************************")
+        println(user)
+        println(user?.password)
 
         return if (user != null) UserDetailsImpl.build(user) else null
     }

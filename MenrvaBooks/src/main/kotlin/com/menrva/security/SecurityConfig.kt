@@ -16,6 +16,8 @@ import org.springframework.security.web.SecurityFilterChain
 @EnableWebSecurity
 class SecurityConfig {
 
+    private lateinit var passwordEncoder: PasswordEncoder
+
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http
