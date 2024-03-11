@@ -21,12 +21,14 @@ class SecurityConfig {
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http
-            .cors { it.disable() }
-            .csrf() { it.disable() }
+            .cors() { it.disable() }
             .authorizeHttpRequests { requests ->
                 requests
-                    .requestMatchers("/", "/home", "/api/test", "/authenticate").permitAll()
+                    .requestMatchers("/", "/home", "/api/test", "api/authors", "/authenticate").permitAll()
                     .anyRequest().authenticated()
+            }
+            .csrf() {
+                it.ignoringRequestMatchers("api/authors", "authenticate", "api/test")
             }
         return http.build()
     }

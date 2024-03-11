@@ -21,6 +21,8 @@ data class User(
     val dateAdded: LocalDateTime,
     @Column(name = "date_updated")
     val dateUpdated: LocalDateTime,
+    @OneToOne(mappedBy = "user")
+    val author: Author?,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
