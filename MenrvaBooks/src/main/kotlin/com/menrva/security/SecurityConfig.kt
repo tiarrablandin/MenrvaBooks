@@ -24,7 +24,7 @@ class SecurityConfig {
             .cors() { it.disable() }
             .authorizeHttpRequests { requests ->
                 requests
-                    .requestMatchers("/", "/home", "/api/test", "api/authors", "/authenticate").permitAll()
+                    .requestMatchers("/", "/home", "/api/test", "api/authors", "api/books", "/authenticate").permitAll()
                     .anyRequest().authenticated()
             }
             .csrf() {
