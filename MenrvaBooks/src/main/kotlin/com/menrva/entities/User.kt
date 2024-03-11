@@ -1,5 +1,6 @@
 package com.menrva.entities
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -21,6 +22,7 @@ data class User(
     val dateAdded: LocalDateTime,
     @Column(name = "date_updated")
     val dateUpdated: LocalDateTime,
+    @JsonBackReference(value = "user")
     @OneToOne(mappedBy = "user")
     val author: Author?,
 ) {
