@@ -9,23 +9,11 @@ plugins {
 	id 'org.jetbrains.kotlin.plugin.jpa' version '1.9.22'
 }
 
-bootWar {
-	enabled = true
-	archiveFileName = "${archivesBaseName}.war"
-	destinationDirectory = file("../")
-}
-
 group = 'com.menrva'
 version = '0.0.1-SNAPSHOT'
 
 java {
 	sourceCompatibility = '17'
-}
-
-ext {
-	set('snakeyaml.version', '2.0')
-	mySqlConnectorVersion = '8.0.28'
-	junit5Version = '5.9.2'
 }
 
 repositories {
@@ -40,10 +28,7 @@ dependencies {
 	implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
 	implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 	implementation 'org.jetbrains.kotlin:kotlin-reflect'
-	implementation 'javax.xml.bind:jaxb-api:2.3.1'
-	implementation 'com.sun.xml.bind:jaxb-core:2.3.0.1'
-	implementation 'com.sun.xml.bind:jaxb-impl:2.3.3'
-	runtimeOnly 'com.mysql:mysql-connector-j:8.2.0'
+	runtimeOnly 'com.mysql:mysql-connector-j'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'

@@ -1,14 +1,15 @@
-package com.menrva.spring
+package com.menrva
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.ComponentScan
 
-@ComponentScan(basePackages = [
-		"com.menrva.spring.controllers",
-		"com.menrva.spring.security"])
 @SpringBootApplication
+@ComponentScan(
+	"com.menrva.controllers",
+	"com.menrva.security",
+	"com.menrva.services",
+)
 class Application
 
 fun main(args: Array<String>) {

@@ -1,6 +1,6 @@
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
 -- Schema menrvadb
@@ -16,7 +16,7 @@ USE `menrvadb`;
 SET SQL_MODE = '';
 DROP USER IF EXISTS menrvadb@localhost;
 SET SQL_MODE =
-        'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+        'ONLY_FULL_GROUP_BY,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 CREATE USER IF NOT EXISTS 'user2'@'localhost' IDENTIFIED BY 'test';
 
 GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON menrvadb.* TO 'user2'@'localhost';
@@ -153,11 +153,12 @@ create table if not exists user
 (
     id              int auto_increment
         primary key,
-    type            varchar(20) not null,
+    role            varchar(20) not null,
     first_name      varchar(20) not null,
     last_name       varchar(20) not null,
     tag             varchar(20) not null,
     email           varchar(50) not null,
+    username        varchar(50) not null,
     password        varchar(20) not null,
     active          int         not null,
     date_added      date        not null,
@@ -250,22 +251,22 @@ CREATE TABLE user_follows_author
 -- INSERTS
 -- -----------------------------------------------------
 
-insert into user (id, type, first_name, last_name, tag, email, password, active, date_added, date_updated,
+insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
                   subscription_id)
-Values (1, 'Admin', 'Tiarra', 'Blandin', '@tiarra', 'tiarra.blandin@gmail.com', 'L3oN1d@S0617#', 1, NOW(), null, 1);
+Values (1, 'Admin', 'Tiarra', 'Blandin', '@tiarra', 'tiarra.blandin@gmail.com', 'tiarra', 'L3oN1d@S0617#', 1, NOW(), null, 1);
 
-insert into user (id, type, first_name, last_name, tag, email, password, active, date_added, date_updated,
+insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
                   subscription_id)
-Values (2, 'Admin', 'Matthew', 'Tilley', '@matt', 'matthew.tilley77@gmail.com', 'Forauir11!!', 1, NOW(), null, 1);
+Values (2, 'Admin', 'Matthew', 'Tilley', '@matt', 'matthew.tilley77@gmail.com', 'matt', 'Forauir11!!', 1, NOW(), null, 1);
 
-insert into user (id, type, first_name, last_name, tag, email, password, active, date_added, date_updated,
+insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
                   subscription_id)
-Values (3, 'Admin', 'Jonathan', 'Dominguez', '@jondom', 'jonathanadominguez@gmail.com', 'Avion@30015', 1, NOW(), null,
+Values (3, 'Admin', 'Jonathan', 'Dominguez', '@jondom', 'jonathanadominguez@gmail.com', 'jon', 'Avion@30015', 1, NOW(), null,
         1);
 
-insert into user (id, type, first_name, last_name, tag, email, password, active, date_added, date_updated,
+insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
                   subscription_id)
-Values (4, 'Admin', 'William', 'Slaunwhite', '@will', 'williamslaunwhite@gmail.com', 'password', 1, NOW(), null, 1);
+Values (4, 'Admin', 'William', 'Slaunwhite', '@will', 'williamslaunwhite@gmail.com', 'will', '$2a$12$.aXI64OEVlXoGf8fNHOlhef6SFgQzI4bqn2unNELnfIWTPwJj.zR6', 1, NOW(), null, 1);
 
 insert into subscription (id, level, paid, date_added, date_updated)
 values (1, 'Admin', 1, now(), null);
@@ -287,7 +288,4 @@ VALUES (5, null, 'S.E. Babin', '', '', now(), null, null);
 
 insert into book (id, cover, title, description, page_count, publication_date, date_added, date_updated, link_id)
 VALUES (1, '', 'The Time of Tears','Carnegie Sanders is a typical 19-year-old. He goes to college, he lives at home and in a dorm, has a crush on a girl he went to high school with, and has no idea what to do with his life. Life is normal. Then hydrogen bombs decimate the globe, and robed beings start wiping out everyone else lucky enough to live in rural America. In his small town in southern Arizona, Carnegie realizes survival is more than chance. Running on instinct, Erin, Santana, and Carnegie find the decimation of their people to be the beginning of change and tragedy never witnessed in history. As the world resets, Carnegie, Erin, and Santana face odds that would consume them, if not for new relationships forged. Creatures from fantastic stories lost in time and translation seek to keep humanity in check as Carnegie seeks a place to call home, a place to be safe. No one is safe as sinister forces work behind the veil of secrecy, and everyone in Carnegie’s new circle will experience turmoil. Lost in the new races of lore calling themselves the Nine, Carnegie is thrust into becoming someone he isn’t ready to be for those who rely on him. Set in the dynamic landscape of the American Southwest, and from deserts to mountains and even under the earth itself, no where is safe. Fighting for survival is just the beginning. Nothing has prepared them for this time. A time of confusion. A time of loss. And a time of tears.',
-         324, '2019-02-26', now(), null,null)
-
-
-
+        324, '2019-02-26', now(), null,null)

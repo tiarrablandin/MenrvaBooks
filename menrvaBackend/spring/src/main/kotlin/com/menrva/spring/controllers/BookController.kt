@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/api/books")
 class BookController {
 //    @RequestMapping("/**", "/", "/home")
