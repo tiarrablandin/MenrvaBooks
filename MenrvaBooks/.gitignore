@@ -1,7 +1,10 @@
 HELP.md
 .gradle
 .gradle/**
-build/
+/build/
+/build/**
+/MenrvaBooks/build/**
+MenrvaBooks/build/**
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
