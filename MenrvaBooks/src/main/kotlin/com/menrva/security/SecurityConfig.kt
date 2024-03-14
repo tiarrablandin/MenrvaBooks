@@ -1,5 +1,6 @@
 package com.menrva.security
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
@@ -11,27 +12,27 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
 @Configuration
 @EnableWebSecurity
 class SecurityConfig {
-
-    private lateinit var passwordEncoder: PasswordEncoder
+    @Autowired
+    private lateinit var jwtRequestFilter: JwtRequestFilter
 
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http
-            .cors() { it.disable() }
-            .authorizeHttpRequests { requests ->
-                requests
-                    .requestMatchers("/api/test", "api/authors", "/authenticate").permitAll()
-                    .anyRequest().authenticated()
-            }
-            .csrf() {
-//                it.ignoringRequestMatchers("api/authors", "api/books", "authenticate", "api/test")
-                it.disable()
-            }
-        return http.build()
+                .cors() { it.disable() }
+                .authorizeHttpRequests { requests ->
+                    requests
+                            .requestMatchers("api/books", "/authenticate", "api/authors", "api/series").permitAll()
+                            .anyRequest().authenticated()
+                }
+                .csrf() {
+                    it.ignoringRequestMatchers("api/authors", "api/books", "api/series", "authenticate")
+                }
+        return http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java).build()
     }
 
     @Bean

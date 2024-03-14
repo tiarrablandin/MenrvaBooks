@@ -13,6 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @PropertySource("classpath:secrets.properties")
 @ComponentScan(
 	"com.menrva.controllers",
+	"com.menrva.repositories",
 	"com.menrva.security",
 	"com.menrva.services",
 )

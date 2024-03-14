@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class AuthorService(
-    private val authorRepo: AuthorRepository
+        private val authorRepo: AuthorRepository
 ) {
     fun index(): List<Author> {
         return authorRepo.findAll()
