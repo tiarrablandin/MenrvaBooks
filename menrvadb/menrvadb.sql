@@ -546,4 +546,3 @@ VALUES (33, 'Parallel worlds', now(), null);
 
 insert into keyword (id, name, date_added, date_updated)
 VALUES (34, 'Realms', now(), null);
-
