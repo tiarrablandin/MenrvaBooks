@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class BookService(
+        private val bookRepo: BookRepository
 ) {
-    private lateinit var bookRepo: BookRepository
     fun index(): List<Book> {
         return bookRepo.findAll()
     }
