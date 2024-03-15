@@ -30,8 +30,8 @@ export function Footer() {
             <div key={key} className="w-full">
               <Typography
                 variant="small"
-                color="blue-gray"
-                className="mb-4 font-bold uppercase opacity-50"
+                style={{ color: '#673C4F' }}
+                className="mb-4 font-bold uppercase"
               >
                 {title}
               </Typography>

@@ -23,7 +23,7 @@ export function CustomNavbar() {
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
+        style={{ color: '#673C4F' }}
         className="flex items-center gap-x-2 p-1 font-medium"
       >
         <svg
@@ -46,7 +46,7 @@ export function CustomNavbar() {
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
+        style={{ color: '#673C4F' }}
         className="flex items-center gap-x-2 p-1 font-medium"
       >
         <svg
@@ -70,7 +70,7 @@ export function CustomNavbar() {
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
+        style={{ color: '#673C4F' }}
         className="flex items-center gap-x-2 p-1 font-medium"
       >
         <svg
@@ -92,7 +92,7 @@ export function CustomNavbar() {
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
+        style={{ color: '#673C4F' }}
         className="flex items-center gap-x-2 p-1 font-medium"
       >
         <svg
