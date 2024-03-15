@@ -1,23 +1,27 @@
-import { useEffect, useState } from "react";
+import { fetchNewReleases } from "@/services/BookService";
+import { useBookState } from "@/store/book/contexts/BookContext";
+import { ADD_BOOKS_TO_NEW_RELEASES } from "@/store/book/types/ActionTypes";
+import { useEffect } from "react";
 import BookCard from "./BookCard";
-import { fetchBooks } from "@/services/bookService";
-import { BookResponse } from "@/data/BookResponse";
 
 interface BookSliderProps {}
 
 const BookSlider: React.FC<BookSliderProps> = ({}) => {
-  const [books, setBooks] = useState<BookResponse[]>([]);
+  const [bookState, bookDispatch] = useBookState();
 
   useEffect(() => {
-    const books = fetchBooks();
+    const books = fetchNewReleases();
     books.then((books) => {
-      setBooks(books);
+      bookDispatch({
+        type: ADD_BOOKS_TO_NEW_RELEASES,
+        payload: { books: books },
+      });
     });
   }, []);
 
   return (
-    <div className="flex flex-row gap-4 w-[95%] justify-start items-end overflow-scroll pb-3 mt-16 md:pb-6">
-      {books.map((book) => {
+    <div className="mt-16 flex w-[95%] flex-row items-end justify-start gap-4 overflow-scroll pb-3 md:pb-6">
+      {bookState.state.newReleases.map((book) => {
         return <BookCard key={book.id} book={book}></BookCard>;
       })}
     </div>
