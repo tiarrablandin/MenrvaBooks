@@ -59,7 +59,7 @@ create table if not exists tag
 (
     id           int auto_increment
         primary key,
-    tag          varchar(50) not null,
+    name          varchar(50) not null,
     date_added   date        not null,
     reviewed     tinyint     not null,
     date_updated date        null
@@ -572,19 +572,19 @@ VALUES (34, 'Realms', now(), 1, null);
 insert into keyword (id, name, date_added, reviewed, date_updated)
 VALUES (35, 'Reverse Harem', now(), 1, null);
 
-insert into tag (id, tag, date_added, reviewed, date_updated)
+insert into tag (id, name, date_added, reviewed, date_updated)
 VALUES (1, 'time travel', now(), 1, null);
 
-insert into tag (id, tag, date_added, reviewed, date_updated)
+insert into tag (id, name, date_added, reviewed, date_updated)
 VALUES (2, 'badass heroine', now(), 1, null);
 
-insert into tag (id, tag, date_added, reviewed, date_updated)
+insert into tag (id, name, date_added, reviewed, date_updated)
 VALUES (3, 'snarky', now(), 1, null);
 
-insert into tag (id, tag, date_added, reviewed, date_updated)
+insert into tag (id, name, date_added, reviewed, date_updated)
 VALUES (4, 'omega verse', now(), 1, null);
 
-insert into tag (id, tag, date_added, reviewed, date_updated)
+insert into tag (id, name, date_added, reviewed, date_updated)
 VALUES (5, 'why choose', now(), 1, null);
 
 insert into comment (id, comment, date_added, reviewed, date_updated, user_id, book_id)
@@ -655,4 +655,22 @@ VALUES (2, 'Dark World Trilogy', now(), 1, null);
 
 insert into series (id, name, date_added, reviewed, date_updated)
 VALUES (3, 'Cocktails in Hell', now(), 1, null);
+
+insert into social_media (id, name, link, date_added, date_updated, author_id)
+VALUES (1, 'Website', 'www.amarahcalderini.com', now(), null, 4);
+
+insert into social_media (id, name, link, date_added, date_updated, author_id)
+VALUES (2, 'Facebook', 'https://www.facebook.com/authoramarahcalderini', now(), null, 4);
+
+insert into social_media (id, name, link, date_added, date_updated, author_id)
+VALUES (3, 'Goodreads', 'https://www.goodreads.com/author/show/22748634.Amarah_Calderini', now(), null, 4);
+
+insert into social_media (id, name, link, date_added, date_updated, author_id)
+VALUES (4, 'Instagram', 'https://www.instagram.com/amarahcalderiniauthor', now(), null, 4);
+
+insert into social_media (id, name, link, date_added, date_updated, author_id)
+VALUES (5, 'TikTok', 'http://tiktok.com/amarahcalderiniauthor', now(), null, 4);
+
+insert into social_media (id, name, link, date_added, date_updated, author_id)
+VALUES (6, 'Amazon', 'https://www.amazon.com/stores/Amarah-Calderini/author/B0B8T8XMRQ?ref=lp_11764651011_1_11&isDramIntegrated=true&shoppingPortalEnabled=true', now(), null, 4);
 
