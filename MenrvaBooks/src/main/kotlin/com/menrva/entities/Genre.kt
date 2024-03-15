@@ -5,22 +5,18 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDate
-import java.time.LocalDateTime
 
 @Entity
-data class Book(
+data class Genre(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
-    val cover: String,
-    val title: String,
-    val description: String,
-    @Column(name = "page_count")
-    val pageCount: Int,
-    @Column(name = "publication_date")
-    val publicationDate: LocalDate,
-    @Column(name = "date_added")
+    val name: String,
+    @CreationTimestamp @Column(name = "date_added")
     val dateAdded: LocalDate,
-    @Column(name = "date_updated")
+    @UpdateTimestamp @Column(name = "date_updated")
     val dateUpdated: LocalDate,
+    val reviewed: Boolean,
 )

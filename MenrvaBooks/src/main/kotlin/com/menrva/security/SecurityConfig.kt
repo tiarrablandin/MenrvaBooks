@@ -23,15 +23,31 @@ class SecurityConfig {
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http
-                .cors() { it.disable() }
-                .authorizeHttpRequests { requests ->
-                    requests
-                            .requestMatchers("api/books/**", "/authenticate", "api/authors/**", "api/series").permitAll()
-                            .anyRequest().authenticated()
-                }
-                .csrf() {
-                    it.ignoringRequestMatchers("api/authors/**", "api/books/**", "api/series", "authenticate")
-                }
+            .cors() { it.disable() }
+            .authorizeHttpRequests { requests ->
+                requests
+                    .requestMatchers(
+                        "api/books/**",
+                        "authenticate",
+                        "api/authors/**",
+                        "api/series/**",
+                        "api/genres/**",
+                        "api/keywords/**",
+                        "api/tags/**"
+                    ).permitAll()
+                    .anyRequest().authenticated()
+            }
+            .csrf() {
+                it.ignoringRequestMatchers(
+                    "api/authors/**",
+                    "api/books/**",
+                    "api/series",
+                    "authenticate",
+                    "api/genres/**",
+                    "api/keywords/**",
+                    "api/tags/**",
+                )
+            }
         return http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java).build()
     }
 
