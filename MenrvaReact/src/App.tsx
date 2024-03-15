@@ -6,7 +6,7 @@ import HomeView from "./views/HomeView";
 const App = () => {
   return (
     <Router>
-      <div className="flex h-full w-screen flex-col items-center justify-center">
+      <div className="flex h-screen w-screen flex-col items-center justify-center bg-[#fff3e0] font-[#673C4F]">
         <CustomNavbar />
         <Routes>
           <Route path="/" element={<HomeView />} />

@@ -16,7 +16,7 @@ const BookSlider: React.FC<BookSliderProps> = ({}) => {
   }, []);
 
   return (
-    <div className="flex w-[250%] justify-center overflow-scroll">
+    <div className="flex flex-row gap-4 w-[95%] justify-start items-end overflow-scroll pb-3 mt-16 md:pb-6">
       {books.map((book) => {
         return <BookCard key={book.id} book={book}></BookCard>;
       })}
