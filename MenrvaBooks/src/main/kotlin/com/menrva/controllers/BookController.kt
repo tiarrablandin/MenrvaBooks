@@ -18,4 +18,9 @@ class BookController(private val bookService: BookService) {
     fun index(): ResponseEntity<List<Book>> {
         return ResponseEntity.ok(bookService.index())
     }
+
+    @GetMapping("books/newReleases")
+    fun newReleases(): ResponseEntity<List<Book>> {
+        return ResponseEntity.ok(bookService.getNewReleases())
+    }
 }

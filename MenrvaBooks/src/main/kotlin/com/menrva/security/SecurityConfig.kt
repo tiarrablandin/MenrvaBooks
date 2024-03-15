@@ -26,11 +26,11 @@ class SecurityConfig {
                 .cors() { it.disable() }
                 .authorizeHttpRequests { requests ->
                     requests
-                            .requestMatchers("api/books", "/authenticate", "api/authors", "api/series").permitAll()
+                            .requestMatchers("api/books/**", "/authenticate", "api/authors/**", "api/series").permitAll()
                             .anyRequest().authenticated()
                 }
                 .csrf() {
-                    it.ignoringRequestMatchers("api/authors", "api/books", "api/series", "authenticate")
+                    it.ignoringRequestMatchers("api/authors/**", "api/books/**", "api/series", "authenticate")
                 }
         return http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java).build()
     }
