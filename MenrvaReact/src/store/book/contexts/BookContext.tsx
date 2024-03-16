@@ -6,6 +6,7 @@ import { bookReducer } from "../reducers/BookReducer";
 export type BookState = {
   books: BookResponse[];
   newReleases: BookResponse[];
+  searchResults: BookResponse[];
 };
 
 interface BookStateProps {
@@ -27,7 +28,8 @@ export const useBookState = () => {
 export const BookStateProvider: React.FC<BookStateProps> = ({ children }) => {
   const [bookState, dispatch] = useReducer<React.Reducer<BookState, BooksActionTypes>> (bookReducer, {
       books: [],
-      newReleases: []
+      newReleases: [],
+      searchResults: [],
   });
 
   return <BookContext.Provider value={[bookState, dispatch]}>{children}</BookContext.Provider>;
