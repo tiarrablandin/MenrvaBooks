@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("api")
 @CrossOrigin("*", "http://localhost")
 class GenreController(private val genreService: GenreService) {
-    @GetMapping("genre")
+    @GetMapping("genres")
     fun index(): ResponseEntity<List<Genre>> {
         return ResponseEntity.ok(genreService.index())
     }

@@ -14,4 +14,6 @@ data class Keyword(
     val dateAdded: LocalDate,
     @UpdateTimestamp @Column(name = "date_updated")
     val dateUpdated: LocalDate,
+    @ManyToMany(mappedBy = "keywords")
+    val books: Set<Book> = HashSet()
 )

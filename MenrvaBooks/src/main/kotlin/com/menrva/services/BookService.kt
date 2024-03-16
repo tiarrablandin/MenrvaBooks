@@ -20,4 +20,9 @@ class BookService(
         releases.removeIf { it.publicationDate.isBefore(LocalDate.now().minusDays(30)) }
         return releases;
     }
+
+    fun search(searchTerm: String): List<Book> {
+        val results: List<Book> = bookRepo.findBySearchTerm(searchTerm)
+        return results
+    }
 }
