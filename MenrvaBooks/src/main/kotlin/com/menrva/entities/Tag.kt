@@ -15,4 +15,6 @@ data class Tag(
     @UpdateTimestamp @Column(name = "date_updated")
     val dateUpdated: LocalDate,
     val reviewed: Boolean,
+    @ManyToMany(mappedBy = "tags")
+    val books: Set<Book> = HashSet()
 )

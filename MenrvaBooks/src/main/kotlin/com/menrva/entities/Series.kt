@@ -6,7 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDate
 
 @Entity
-data class Genre(
+data class Series(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
     val name: String,
@@ -15,6 +15,6 @@ data class Genre(
     @UpdateTimestamp @Column(name = "date_updated")
     val dateUpdated: LocalDate,
     val reviewed: Boolean,
-    @ManyToMany(mappedBy = "genres")
+    @ManyToOne @JoinColumn(name = "series_id")
     val books: Set<Book> = HashSet()
 )
