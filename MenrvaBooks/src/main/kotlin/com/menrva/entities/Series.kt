@@ -15,6 +15,6 @@ data class Series(
     @UpdateTimestamp @Column(name = "date_updated")
     val dateUpdated: LocalDate,
     val reviewed: Boolean,
-    @ManyToOne @JoinColumn(name = "series_id")
+    @OneToMany @JoinColumn(name = "series_id")
     val books: Set<Book> = HashSet()
 )

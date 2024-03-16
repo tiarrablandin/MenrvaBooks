@@ -28,7 +28,7 @@ class BookController(private val bookService: BookService) {
 
     @PostMapping("books/search")
     fun search(@RequestParam searchTerm: String): ResponseEntity<List<Book>> {
-        return ResponseEntity.ok(bookService.search())
+        return ResponseEntity.ok(bookService.search(searchTerm))
     }
 
 }
