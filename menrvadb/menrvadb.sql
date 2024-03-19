@@ -95,10 +95,10 @@ create table if not exists keyword
 (
     id           int auto_increment
         primary key,
-    name         int     not null,
-    date_added   date    not null,
-    reviewed     tinyint not null,
-    date_updated date    null
+    name         varchar(20) not null,
+    date_added   date        not null,
+    reviewed     tinyint     not null,
+    date_updated date        null
 );
 
 create table if not exists link
@@ -263,6 +263,15 @@ CREATE TABLE book_has_tag
     FOREIGN KEY (tag_id) REFERENCES tag (id)
 );
 
+CREATE TABLE genre_has_sub_genre
+(
+    genre_id     INT,
+    sub_genre_id INT,
+    PRIMARY KEY (genre_id, sub_genre_id),
+    FOREIGN KEY (genre_id) REFERENCES genre (id),
+    FOREIGN KEY (sub_genre_id) REFERENCES sub_genre (id)
+);
+
 -- -----------------------------------------------------
 -- INSERTS
 -- -----------------------------------------------------
@@ -384,9 +393,6 @@ insert into genre (id, name, date_added, reviewed, date_updated)
 VALUES (3, 'Non-fiction', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (4, 'Urban-fantasy', now(), 1, '2024-03-15');
-
-insert into genre (id, name, date_added, reviewed, date_updated)
 VALUES (5, 'Science fiction', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
@@ -429,22 +435,13 @@ insert into genre (id, name, date_added, reviewed, date_updated)
 VALUES (18, 'Graphic novel', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (19, 'Magical realism', now(), 1, '2024-03-15');
-
-insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (20, 'Shot story', now(), 1, '2024-03-15');
+VALUES (20, 'Short story', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
 VALUES (21, 'Biography', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
 VALUES (22, 'Classics', now(), 1, '2024-03-15');
-
-insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (23, 'Paranormal romance', now(), 1, '2024-03-15');
-
-insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (24, 'Paranormal', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
 VALUES (25, 'Western fiction', now(), 1, '2024-03-15');
@@ -478,6 +475,21 @@ VALUES (9, 'Action', now(), 1, '2024-03-15');
 
 insert into sub_genre (id, name, date_added, reviewed, date_updated)
 VALUES (10, 'Supernatural', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (11, 'Urban-fantasy', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (12, 'Paranormal romance', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (13, 'Paranormal', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (14, 'Post apocalyptic', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (15, 'Magical realism', now(), 1, '2024-03-15');
 
 insert into keyword (id, name, date_added, reviewed, date_updated)
 VALUES (1, 'Fairy', now(), 1, '2024-03-15');
@@ -599,6 +611,12 @@ VALUES (4, 'omega verse', now(), 1, '2024-03-15');
 insert into tag (id, name, date_added, reviewed, date_updated)
 VALUES (5, 'why choose', now(), 1, '2024-03-15');
 
+insert into tag (id, name, date_added, reviewed, date_updated)
+VALUES (6, 'emotional journey', now(), 1, '2024-03-15');
+
+insert into tag (id, name, date_added, reviewed, date_updated)
+VALUES (7, 'survival', now(), 1, '2024-03-15');
+
 insert into comment (id, comment, date_added, reviewed, date_updated, user_id, book_id)
 VALUES (1, 'Love, love, love this series. Kept me hooked from the first book. Can''t wait for the next!', now(), 1,
         '2024-03-15', 1, 11);
@@ -688,3 +706,551 @@ VALUES (6, 'Amazon',
         'https://www.amazon.com/stores/Amarah-Calderini/author/B0B8T8XMRQ?ref=lp_11764651011_1_11&isDramIntegrated=true&shoppingPortalEnabled=true',
         now(), '2024-03-15', 4);
 
+insert into author_has_book (author_id, book_id)
+VALUES (3, 1);
+
+insert into author_has_book (author_id, book_id)
+VALUES (3, 2);
+
+insert into author_has_book (author_id, book_id)
+VALUES (3, 3);
+
+insert into author_has_book (author_id, book_id)
+VALUES (4, 4);
+
+insert into author_has_book (author_id, book_id)
+VALUES (4, 5);
+
+insert into author_has_book (author_id, book_id)
+VALUES (4, 6);
+
+insert into author_has_book (author_id, book_id)
+VALUES (5, 7);
+
+insert into author_has_book (author_id, book_id)
+VALUES (5, 8);
+
+insert into author_has_book (author_id, book_id)
+VALUES (5, 9);
+
+insert into author_has_book (author_id, book_id)
+VALUES (4, 10);
+
+insert into author_has_book (author_id, book_id)
+VALUES (5, 11);
+
+insert into author_has_series (author_id, series_id)
+VALUES (3, 1);
+
+insert into author_has_series (author_id, series_id)
+VALUES (4, 2);
+
+insert into author_has_series (author_id, series_id)
+VALUES (5, 3);
+
+insert into user_follows_author (author_id, user_id)
+VALUES (1, 2);
+
+insert into user_follows_author (author_id, user_id)
+VALUES (1, 3);
+
+insert into user_follows_author (author_id, user_id)
+VALUES (1, 4);
+
+insert into user_follows_author (author_id, user_id)
+VALUES (1, 5);
+
+insert into series_interactions (series_id, user_id, interested, favorite, in_progress)
+VALUES (3, 1, 0, 1, 1);
+
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (1, 1, 1, 0, 0, 1);
+
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (2, 1, 1, 0, 0, 1);
+
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (3, 1, 1, 0, 0, 1);
+
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (4, 1, 1, 0, 0, 1);
+
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (5, 1, 1, 0, 0, 1);
+
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (6, 1, 1, 0, 0, 1);
+
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (7, 1, 1, 0, 0, 1);
+
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (8, 1, 1, 0, 0, 1);
+
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (9, 1, 1, 0, 0, 1);
+
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (10, 1, 1, 0, 0, 1);
+
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (11, 1, 1, 0, 0, 1);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (1, 1);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (1, 2);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (2, 1);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (2, 2);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (3, 1);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (3, 2);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (3, 20);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (4, 1);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (4, 2);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (4, 9);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (5, 1);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (5, 2);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (5, 9);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (6, 1);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (6, 2);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (6, 9);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (7, 1);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (7, 2);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (8, 1);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (8, 2);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (9, 1);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (9, 2);
+
+insert into book_has_genre (book_id, genre_id)
+values (10, 1);
+
+insert into book_has_genre (book_id, genre_id)
+values (10, 2);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (11, 1);
+
+insert into book_has_genre (book_id, genre_id)
+VALUES (11, 2);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (1, 11);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (1, 14);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (2, 2);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (2, 14);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (3, 2);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (3, 14);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (3, 11);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (4, 1);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (4, 3);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (5, 1);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (5, 3);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (6, 1);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (6, 3);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (7, 10);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (7, 11);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (8, 10);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (8, 11);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (9, 10);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (9, 11);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (10, 10);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (10, 11);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (11, 10);
+
+insert into book_has_sub_genre (book_id, sub_genre_id)
+VALUES (11, 11);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (1, 10);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (1, 14);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (1, 22);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (2, 10);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (2, 14);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (2, 22);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (3, 10);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (3, 14);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (3, 22);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (4, 10);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (4, 30);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (5, 10);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (5, 30);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (6, 10);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (6, 30);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (7, 4);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (7, 5);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (7, 6);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (7, 7);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (7, 8);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (7, 10);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (7, 12);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (7, 14);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (7, 15);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (7, 20);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (7, 34);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (8, 4);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (8, 5);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (8, 6);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (8, 7);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (8, 8);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (8, 10);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (8, 12);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (8, 14);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (8, 15);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (8, 20);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (8, 34);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (9, 4);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (9, 5);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (9, 6);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (9, 7);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (9, 8);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (9, 10);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (9, 12);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (9, 14);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (9, 15);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (9, 20);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (9, 34);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (10, 4);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (10, 5);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (10, 6);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (10, 7);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (10, 8);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (10, 10);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (10,12);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (10, 14);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (10, 15);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (10, 20);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (10, 34);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (11, 4);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (11, 5);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (11, 6);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (11, 7);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (11, 8);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (11, 10);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (11, 12);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (11, 14);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (11, 15);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (11, 20);
+
+insert into book_has_keyword (book_id, keyword_id)
+VALUES (11, 34);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (7, 2);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (7, 3);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (8, 2);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (8, 3);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (9, 2);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (9, 3);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (10, 2);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (10, 3);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (11, 2);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (11, 3);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (1, 6);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (2, 6);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (3, 6);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (4, 7);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (5, 7);
+
+insert into book_has_tag (book_id, tag_id)
+VALUES (6, 7);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (1, 1);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (1, 2);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (2, 1);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (2, 2);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (3, 1);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (3, 2);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (4, 2);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (4, 9);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (5, 2);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (6, 2);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (7, 6);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (9, 5);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (10, 2);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (11, 1);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (12, 9);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (13, 2);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (14, 1);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (15, 1);
