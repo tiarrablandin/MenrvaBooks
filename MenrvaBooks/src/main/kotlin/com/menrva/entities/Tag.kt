@@ -1,5 +1,6 @@
 package com.menrva.entities
 
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
@@ -15,6 +16,7 @@ data class Tag(
     @UpdateTimestamp @Column(name = "date_updated")
     val dateUpdated: LocalDate,
     val reviewed: Boolean,
+    @JsonManagedReference
     @ManyToMany(mappedBy = "tags")
     val books: Set<Book> = HashSet()
 )

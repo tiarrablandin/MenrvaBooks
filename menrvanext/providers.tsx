@@ -1,13 +1,14 @@
 "use client";
 
 export {
-  ThemeProvider,
-  Typography,
   Button,
-  List,
   Card,
   CardBody,
+  Input,
+  List,
   ListItem,
+  ThemeProvider,
+  Typography,
 } from "@material-tailwind/react";
 import { Provider } from "react-redux";
 import { store } from "./app/lib/store/store";

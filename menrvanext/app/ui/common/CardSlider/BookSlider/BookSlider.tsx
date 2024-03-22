@@ -2,10 +2,11 @@
 import { fetchBooks } from "@/app/services/apiService";
 import BookCard from "./BookCard";
 
-interface BookSliderProps {}
+interface BookSliderProps { }
 
-const BookSlider: React.FC<BookSliderProps> = async ({}) => {
+const BookSlider: React.FC<BookSliderProps> = async ({ }) => {
   const books = await fetchBooks();
+  console.log(books.length);
 
   return (
     <div className="mt-16 flex w-[95%] flex-row items-end justify-start gap-4 overflow-scroll pb-3 md:pb-6">

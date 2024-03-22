@@ -1,5 +1,6 @@
 package com.menrva.entities
 
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
@@ -14,6 +15,7 @@ data class Keyword(
     val dateAdded: LocalDate,
     @UpdateTimestamp @Column(name = "date_updated")
     val dateUpdated: LocalDate,
+    @JsonManagedReference
     @ManyToMany(mappedBy = "keywords")
     val books: Set<Book> = HashSet()
 )

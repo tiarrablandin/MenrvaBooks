@@ -19,8 +19,8 @@ const BookCard: React.FC<BookCardProps> = ({book}) => {
         <Image 
         className="h-60 w-full rounded-md object-center shadow-deep-purple-100"
         src={`${book.cover}`} 
-        width={"540"}
-        height={"540"}
+        width={360}
+        height={720}
         alt="" />
       </CardBody>
     </Card>
