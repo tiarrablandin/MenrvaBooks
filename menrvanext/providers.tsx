@@ -6,6 +6,7 @@ export {
   Button,
   List,
   Card,
+  CardBody,
   ListItem,
 } from "@material-tailwind/react";
 import { Provider } from "react-redux";

@@ -2,7 +2,7 @@ import { BookResponse } from "@/app/lib/BookResponse";
 import {
   Card,
   CardBody
-} from "@material-tailwind/react";
+} from "@/providers";
 import Image from "next/image";
 
 interface BookCardProps {
@@ -19,6 +19,8 @@ const BookCard: React.FC<BookCardProps> = ({book}) => {
         <Image 
         className="h-60 w-full rounded-md object-center shadow-deep-purple-100"
         src={`${book.cover}`} 
+        width={"540"}
+        height={"540"}
         alt="" />
       </CardBody>
     </Card>
