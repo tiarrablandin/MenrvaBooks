@@ -1,4 +1,4 @@
-import { BookResponse } from "../lib/BookResponse";
+import { BookResponse } from "../lib/bookResponse";
 
 export async function fetchBooks(): Promise<BookResponse[]> {
   const response = await fetch("http://localhost:8085/api/books");

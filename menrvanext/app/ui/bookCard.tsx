@@ -1,4 +1,4 @@
-import { BookResponse } from "@/app/lib/BookResponse";
+import { BookResponse } from "@/app/lib/bookResponse";
 import {
   Card,
   CardBody

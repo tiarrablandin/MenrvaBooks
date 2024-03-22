@@ -1,7 +1,7 @@
 import { fetchBooks } from "@/app/services/apiService";
-import BookCard from "./BookCard";
 import { Typography } from "@/providers";
 import { Lusitana } from "next/font/google";
+import BookCard from "./bookCard";
 
 interface BookSliderProps { }
 

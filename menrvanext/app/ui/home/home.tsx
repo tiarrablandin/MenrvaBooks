@@ -1,6 +1,6 @@
 import React from 'react'
-import BookSlider from '../common/CardSlider/BookSlider/BookSlider'
-import SearchBar from '../search/SearchBar'
+import BookSlider from '../bookSlider'
+import SearchBar from '../searchBar'
 
 const HomeComponent = () => {
   return (
