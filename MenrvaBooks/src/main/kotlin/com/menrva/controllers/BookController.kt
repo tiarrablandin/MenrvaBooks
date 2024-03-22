@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController
 @CrossOrigin("*", "http://localhost")
 class BookController(private val bookService: BookService) {
 
-
     @GetMapping("books")
     fun index(): ResponseEntity<List<Book>> {
         return ResponseEntity.ok(bookService.index())

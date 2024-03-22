@@ -21,8 +21,8 @@ const SearchBar: React.FC<SearchBarProps> = ({}) => {
   };
 
   return (
-    <div className="items-center gap-x-2 lg:flex">
-      <form onSubmit={handleSubmit}>
+    <div className="items-center gap-x-2 lg:flex p-4">
+      <form onSubmit={handleSubmit} className="flex gap-2">
         <div className="relative flex w-full gap-2 md:w-max">
           <Input
             type="text"
