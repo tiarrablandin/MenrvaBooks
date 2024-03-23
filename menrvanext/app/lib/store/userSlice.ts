@@ -22,6 +22,8 @@ export const login = createAsyncThunk(
         try {
             const { jwt, user } = await authenticate(username, password);
             // Assuming your AuthService returns the JWT directly; adjust as needed
+            console.log("JWT: ", jwt);
+            console.log("USER: ", user);
             return { jwt, user };
         } catch (error) {
             // Handle any errors here
