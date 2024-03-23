@@ -278,18 +278,18 @@ CREATE TABLE genre_has_sub_genre
 
 insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
                   subscription_id)
-Values (1, 'Admin', 'Tiarra', 'Blandin', '@tiarra', 'tiarra.blandin@gmail.com', 'tiarra', 'L3oN1d@S0617#', 1, NOW(),
+Values (1, 'Admin', 'Tiarra', 'Blandin', '@tiarra', 'tiarra.blandin@gmail.com', 'tiarra', '$2b$10$k0LWgoJxJlEFPizIi3OJIu/dgnQqNDD3rsKdhkx/cJ1FwSR5wVZXO', 1, NOW(),
         '2024-03-15', 1);
 
 insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
                   subscription_id)
-Values (2, 'Admin', 'Matthew', 'Tilley', '@matt', 'matthew.tilley77@gmail.com', 'matt', 'Forauir11!!', 1, NOW(),
+Values (2, 'Admin', 'Matthew', 'Tilley', '@matt', 'matthew.tilley77@gmail.com', 'matt', '$2b$10$6P3YaIeyd5FN0KAnk5Wd9u.IopnLe0P5vvXrVeW3OCwVL.7Tkei1m', 1, NOW(),
         '2024-03-15',
         1);
 
 insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
                   subscription_id)
-Values (3, 'Admin', 'Jonathan', 'Dominguez', '@jondom', 'jonathanadominguez@gmail.com', 'jon', 'Avion@30015', 1, NOW(),
+Values (3, 'Admin', 'Jonathan', 'Dominguez', '@jondom', 'jonathanadominguez@gmail.com', 'jon', '$2b$10$RrN6OgEk09x6nvtLPOcT7e6QYRnwBYQl/kz8KhCRELlztMkbN2twq', 1, NOW(),
         '2024-03-15',
         1);
 
