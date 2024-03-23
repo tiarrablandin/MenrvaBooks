@@ -1,8 +1,7 @@
-import { fetchBooks } from "@/app/services/apiService";
 import { Typography } from "@/providers";
 import { Lusitana } from "next/font/google";
+import { BookResponse } from "../lib/models/book";
 import BookCard from "./bookCard";
-import { BookResponse } from "../lib/bookResponse";
 
 interface BookSliderProps {
   callback: () => Promise<BookResponse[]>;
