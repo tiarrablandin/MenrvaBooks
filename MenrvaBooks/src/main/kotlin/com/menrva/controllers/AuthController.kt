@@ -36,7 +36,7 @@ class AuthController(
         if (userDetails != null) {
             val jwt = jwtUtil.generateToken(userDetails)
             println("jwt: $jwt")
-            return ResponseEntity.ok(AuthenticationResponse(jwt))
+            return ResponseEntity.ok(AuthenticationResponse(jwt, userDetails))
         } else {
             throw UserNotFoundException("Unable to authenticate user with username ${authenticationRequest.username}")
         }

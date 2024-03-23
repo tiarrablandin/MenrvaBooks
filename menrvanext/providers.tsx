@@ -14,8 +14,9 @@ export {
   ThemeProvider,
   Typography,
 } from "@material-tailwind/react";
-export{ HomeIcon, UserIcon, ArrowRightEndOnRectangleIcon } from "@heroicons/react/20/solid"
-export{ MagnifyingGlassIcon} from "@heroicons/react/20/solid"
+export { HomeIcon, UserIcon, ArrowRightEndOnRectangleIcon } from "@heroicons/react/20/solid"
+export { MagnifyingGlassIcon, ArrowRightIcon } from "@heroicons/react/20/solid"
+export { AtSymbolIcon, ExclamationCircleIcon, KeyIcon, } from '@heroicons/react/24/outline';
 
 import { Provider } from "react-redux";
 import { store } from "./app/lib/store/store";

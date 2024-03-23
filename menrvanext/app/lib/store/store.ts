@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import bookReducer from './book/bookSlice';
+import bookReducer from './bookSlice';
+import userReducer from './userSlice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
   reducer: {
-    book: bookReducer
+    book: bookReducer,
+    user: userReducer,
   },
 });
 

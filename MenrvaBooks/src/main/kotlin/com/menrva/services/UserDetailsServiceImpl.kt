@@ -10,12 +10,11 @@ import org.springframework.stereotype.Service
 class UserDetailsServiceImpl(
     private val userRepository: UserRepository
 ) : UserDetailsService {
+//    THIS IS AN IMPLEMENTATION OF THE SPRING SECURITY USER DETAILS SERVICE
+//    DOES NOT RETURN FULL USER OBJECTS
 
     override fun loadUserByUsername(username: String): UserDetails? {
         val user = userRepository.findByUsername(username)
-        println("*******************************************")
-        println(user)
-        println(user?.password)
 
         return if (user != null) UserDetailsImpl.build(user) else null
     }

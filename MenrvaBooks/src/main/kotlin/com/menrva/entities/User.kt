@@ -7,23 +7,23 @@ import java.time.LocalDateTime
 
 @Entity
 data class User(
-        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int,
-        @Column(name = "first_name")
+    @Column(name = "first_name")
     val firstName: String,
-        @Column(name = "last_name")
+    @Column(name = "last_name")
     val lastName: String,
-        val tag: String,
-        val username: String,
-        val password: String,
-        val active: Boolean,
-        val role: String,
-        val email: String,
-        @Column(name = "date_added")
+    val tag: String,
+    val username: String,
+    val password: String,
+    val active: Boolean,
+    val role: String,
+    val email: String,
+    @Column(name = "date_added")
     val dateAdded: LocalDate,
-        @Column(name = "date_updated")
+    @Column(name = "date_updated")
     val dateUpdated: LocalDate,
-        @JsonBackReference(value = "user")
+    @JsonBackReference(value = "user")
     @OneToOne(mappedBy = "user")
     val author: Author?,
 ) {
