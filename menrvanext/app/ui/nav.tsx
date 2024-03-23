@@ -124,7 +124,7 @@ export function CustomNavbar() {
         <Typography
           as="a"
           href="#"
-          className="mr-4 cursor-pointer py-1.5 font-medium font-[#673c4f] text-[#673c4f]"
+          className={`mr-4 cursor-pointer py-1.5 font-medium ${inter.className} text-[#673c4f]`}
           variant="h3"
         >
           Menrva Books
