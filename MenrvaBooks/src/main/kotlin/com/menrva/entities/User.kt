@@ -1,14 +1,19 @@
 package com.menrva.entities
 
 import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIdentityInfo
+import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import jakarta.persistence.*
 import java.time.LocalDate
-import java.time.LocalDateTime
 
+@JsonIdentityInfo(
+    generator = ObjectIdGenerators.PropertyGenerator::class,
+    property = "id"
+)
 @Entity
 data class User(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int,
+    val id: Long,
     @Column(name = "first_name")
     val firstName: String,
     @Column(name = "last_name")
@@ -26,6 +31,8 @@ data class User(
     @JsonBackReference(value = "user")
     @OneToOne(mappedBy = "user")
     val author: Author?,
+    @OneToMany(mappedBy = "user")
+    val bookInteractions: Set<BookInteractions> = HashSet(),
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -40,17 +47,18 @@ data class User(
         return email == other.email
     }
 
-    override fun hashCode(): Int {
-        var result = id
-        result = 31 * result + username.hashCode()
-        result = 31 * result + password.hashCode()
-        result = 31 * result + role.hashCode()
-        result = 31 * result + email.hashCode()
-        return result
-    }
 
     override fun toString(): String {
         return "User(id=$id, username='$username', role='$role', email='$email')"
+    }
+
+    override fun hashCode(): Int {
+        var result = id.hashCode()
+        result = 31 * result + username.hashCode()
+        result = 31 * result + password.hashCode()
+        result = 31 * result + active.hashCode()
+        result = 31 * result + role.hashCode()
+        return result
     }
 }
 

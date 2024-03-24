@@ -1,5 +1,6 @@
 package com.menrva.services
 
+import com.menrva.data.BookGenreKeywordSummary
 import com.menrva.entities.Book
 import com.menrva.repositories.BookRepository
 import org.springframework.stereotype.Service
@@ -12,6 +13,10 @@ class BookService(
 ) {
     fun index(): List<Book> {
         return bookRepo.findAll()
+    }
+
+    fun indexWithGenresKeywords(): List<BookGenreKeywordSummary> {
+        return bookRepo.findAllBooksWithGenreKeyword();
     }
 
     fun getNewReleases(): List<Book> {
