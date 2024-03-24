@@ -23,7 +23,7 @@ const inter = Inter({ subsets: ["latin"] });
 export function CustomNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const iconClass = "flex items-center gap-x-2 p-1 text-[#673C4F]";
+  const iconClass = "flex items-center gap-x-3 p-2 px-4 text-[#673C4F]";
 
   React.useEffect(() => {
     window.addEventListener(
@@ -38,25 +38,23 @@ export function CustomNavbar() {
 
   const navList = (
     <ul
-      className={`${inter.className} mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6`}
+      className={`${inter.className} mt-2 mb-4 flex flex-col  lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6`}
     >
       <Typography as="li" variant="small" className={`${iconClass}`}>
         <HomeIcon className="h-5 w-4 text-[#673C4F]" />
-        <Link href="/home" className="flex items-center">
+        <Link href="/home" className="flex items-center mt-1">
           Home
         </Link>
       </Typography>
       <Typography as="li" variant="small" className={`${iconClass}`}>
         <UserIcon className="h-5 w-4 text-[#673C4F]" />
-        <Link href="#" className="flex items-center">
+        <Link href="#" className="flex items-center mt-1">
           Account
         </Link>
       </Typography>
       <Typography as="li" variant="small" className={`${iconClass}`}>
         <ArrowRightEndOnRectangleIcon className="h-5 w-4 text-[#673C4F]" />
-        <Link href="#" className="flex items-center" onClick={handleLoginClick}>
-          Login
-        </Link>
+        <LoginForm />
       </Typography>
     </ul>
   );
@@ -74,7 +72,7 @@ export function CustomNavbar() {
             </Link>
           </Typography>
           <div className="hidden lg:block">{navList}</div>
-          <div className="hidden items-center gap-x-2 lg:flex">
+          <div className="hidden items-center gap-x-2 lg:flex lg:mr-4">
             <div className="relative flex w-full gap-2 md:w-max">
               <Input
                 type="search"
@@ -159,13 +157,6 @@ export function CustomNavbar() {
           </div>
         </Collapse>
       </Navbar>
-      {isLoginModalOpen && (
-        <div className="modal fixed z-10 left-0 top-0 flex items-center w-full h-full overflow-auto bg-black/40">
-          <div className="modal-content m-auto p-5 h-[55%] w-4/5 flex flex-col">
-            <LoginForm  closeForm={handleLoginClick} />
-          </div>
-        </div>
-      )}
     </>
   );
 }

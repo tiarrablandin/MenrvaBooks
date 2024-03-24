@@ -7,12 +7,14 @@ interface UserState {
     user: User | null;
     error: string | null;
     jwt: string | null;
+    loading: boolean;
 }
 
 const initialState: UserState = {
     user: null,
     error: null,
     jwt: null,
+    loading: false,
 };
 
 // Define an async thunk for the login process
@@ -21,12 +23,8 @@ export const login = createAsyncThunk(
     async ({ username, password }: { username: string, password: string }, { rejectWithValue }) => {
         try {
             const { jwt, user } = await authenticate(username, password);
-            // Assuming your AuthService returns the JWT directly; adjust as needed
-            console.log("JWT: ", jwt);
-            console.log("USER: ", user);
             return { jwt, user };
         } catch (error) {
-            // Handle any errors here
             return rejectWithValue('Failed to login');
         }
     }
@@ -51,20 +49,27 @@ export const userSlice = createSlice({
         logoutSuccess: (state) => {
             state.user = null;
             state.jwt = null;
+            state.loading = false;
         },
         // Add any other user-related reducers here
     },
     extraReducers: (builder) => {
         builder
+            .addCase(login.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
             .addCase(login.fulfilled, (state, action: PayloadAction<{ jwt: string, user: User }>) => {
+                state.loading = false;
                 state.jwt = action.payload.jwt;
                 state.user = action.payload.user;
-                // You might want to also fetch the user info here and set state.user
             })
             .addCase(login.rejected, (state, action) => {
+                state.loading = false;
                 state.error = action.payload as string; // Assuming the payload is the error message
             })
             .addCase(logout.fulfilled, (state) => {
+                state.loading = false;
                 state.user = null;
                 state.jwt = null;
                 state.error = null;
@@ -75,12 +80,10 @@ export const userSlice = createSlice({
     },
 });
 
-// Export the reducer and any actions you want to make available
 export const { logoutSuccess } = userSlice.actions;
-
 export default userSlice.reducer;
 
-// Selectors if needed
 export const selectCurrentUser = (state: RootState) => state.user.user;
 export const selectJwt = (state: RootState) => state.user.jwt;
-
+export const selectUserError = (state: RootState) => state.user.error;
+export const selectUserLoading = (state: RootState) => state.user.loading;
