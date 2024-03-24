@@ -1254,3 +1254,14 @@ values (14, 1);
 
 insert into genre_has_sub_genre (genre_id, sub_genre_id)
 values (15, 1);
+
+
+-- INSERTS FROM WILL FOR RECOMMENDATION FEATURE
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike) VALUES (10, 4, 0, 0, 0, 0);
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike) VALUES (5, 4, 1, 0, 1, 0);
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike) VALUES (4, 4, 0, 1, 0, 0);
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike) VALUES (11, 4, 1, 0, 1, 1);
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike) VALUES (9, 4, 1, 0, 0, 1);
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike) VALUES (6, 4, 0, 0, 0, 0);
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike) VALUES (7, 4, 1, 0, 1, 0);
+

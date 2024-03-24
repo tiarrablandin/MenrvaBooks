@@ -1,9 +1,10 @@
 package com.menrva.entities
 
 import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIdentityInfo
+import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import jakarta.persistence.*
 import java.time.LocalDate
-import java.time.LocalDateTime
 
 @Entity
 data class Book(
@@ -22,25 +23,33 @@ data class Book(
     val dateUpdated: LocalDate,
     @JsonBackReference(value = "books")
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable( name = "book_has_genre",
+    @JoinTable(
+        name = "book_has_genre",
         joinColumns = [JoinColumn(name = "book_id")],
-        inverseJoinColumns = [JoinColumn(name = "genre_id")] )
+        inverseJoinColumns = [JoinColumn(name = "genre_id")]
+    )
     val genres: Set<Genre> = HashSet(),
     @JsonBackReference(value = "books")
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable( name = "book_has_keyword",
+    @JoinTable(
+        name = "book_has_keyword",
         joinColumns = [JoinColumn(name = "book_id")],
-        inverseJoinColumns = [JoinColumn(name = "keyword_id")] )
+        inverseJoinColumns = [JoinColumn(name = "keyword_id")]
+    )
     val keywords: Set<Keyword> = HashSet(),
     @JsonBackReference(value = "books")
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable( name = "book_has_tag",
+    @JoinTable(
+        name = "book_has_tag",
         joinColumns = [JoinColumn(name = "book_id")],
-        inverseJoinColumns = [JoinColumn(name = "tag_id")] )
+        inverseJoinColumns = [JoinColumn(name = "tag_id")]
+    )
     val tags: Set<Tag> = HashSet(),
     @JsonBackReference(value = "books")
     @ManyToOne @JoinColumn(name = "series_id")
-    val series: Series?
+    val series: Series?,
+    @OneToMany(mappedBy = "book")
+    val bookInteractions: Set<BookInteractions> = HashSet()
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

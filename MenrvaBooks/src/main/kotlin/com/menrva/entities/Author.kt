@@ -7,17 +7,17 @@ import java.time.LocalDateTime
 
 @Entity
 data class Author(
-        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int,
-        val photo: String,
-        @Column(name = "pen_name")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long,
+    val photo: String,
+    @Column(name = "pen_name")
     val penName: String,
-        val bio: String,
-        val text: String,
-        @Column(name = "date_created")
+    val bio: String,
+    val text: String,
+    @Column(name = "date_created")
     val dateCreated: LocalDate,
-        @Column(name = "date_updated")
+    @Column(name = "date_updated")
     val dateUpdated: LocalDate,
-        @OneToOne @JoinColumn(name = "user_id")
+    @OneToOne @JoinColumn(name = "user_id")
     val user: User,
 )

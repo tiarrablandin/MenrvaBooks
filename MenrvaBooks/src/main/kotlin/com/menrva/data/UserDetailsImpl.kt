@@ -6,7 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
 data class UserDetailsImpl(
-    val id: Int,
+    val id: Long,
     private val username: String,
     private val password: String,
     private val authorities: Collection<GrantedAuthority>,

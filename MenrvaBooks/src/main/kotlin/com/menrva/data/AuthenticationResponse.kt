@@ -1,3 +1,5 @@
 package com.menrva.data
 
-class AuthenticationResponse(val jwt: String)
+import org.springframework.security.core.userdetails.UserDetails
+
+class AuthenticationResponse(val jwt: String, val user: UserDetails)
