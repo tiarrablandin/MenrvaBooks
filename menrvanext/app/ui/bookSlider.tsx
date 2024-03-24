@@ -18,11 +18,11 @@ const BookSlider: React.FC<BookSliderProps> = async ({ callback, title }) => {
       <Typography
         color="white"
         variant="h1"
-        className={`${lusi.className} self-start ml-16 mt-6`}
+        className={`${lusi.className} self-start ml-16 mt-10`}
       >
         {title}
       </Typography>
-      <div className="mt-10 flex w-[95%] flex-row items-end justify-start gap-4 overflow-scroll pb-3 md:pb-6">
+      <div className="mt-6 flex w-[95%] flex-row items-end justify-start gap-4 overflow-scroll pb-3 md:pb-6">
         {books.map((book) => {
           return <BookCard key={book.id} book={book}></BookCard>;
         })}

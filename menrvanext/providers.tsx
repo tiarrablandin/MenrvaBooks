@@ -5,6 +5,7 @@ export {
   Card,
   CardBody,
   Collapse,
+  Dialog,
   IconButton,
   Input,
   List,
