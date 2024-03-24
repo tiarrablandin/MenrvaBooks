@@ -1,6 +1,6 @@
-import { BookResponse } from "@/app/lib/bookResponse";
 import { Card, CardBody } from "@/providers";
 import Image from "next/image";
+import { BookResponse } from "../lib/models/book";
 
 interface BookCardProps {
   book: BookResponse;

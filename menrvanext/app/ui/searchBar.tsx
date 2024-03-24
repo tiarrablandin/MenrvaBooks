@@ -4,9 +4,9 @@ import { fetchSearchResults } from "@/app/services/apiService";
 import { Button, Input } from "@/providers";
 import React, { useState } from "react";
 
-interface SearchBarProps {}
+interface SearchBarProps { }
 
-const SearchBar: React.FC<SearchBarProps> = ({}) => {
+const SearchBar: React.FC<SearchBarProps> = ({ }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +35,7 @@ const SearchBar: React.FC<SearchBarProps> = ({}) => {
             className=" !border-t-blue-gray-300 pl-9 placeholder:text-blue-gray-300 focus:!border-blue-gray-300"
             labelProps={{
               className: "before:content-none after:content-none",
-            }} crossOrigin={undefined}          />
+            }} crossOrigin={undefined} />
           <div className="!absolute left-3 top-[13px]">
             <svg
               width="13"
