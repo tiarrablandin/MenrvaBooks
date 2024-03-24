@@ -39,7 +39,7 @@ export async function authenticate(username: string, password: string): Promise<
     })
     return response.json();
   } catch (error) {
-    console.error("Unable to loging: ", error);
+    console.error("Unable to log in: ", error);
     throw error;
   }
 }
