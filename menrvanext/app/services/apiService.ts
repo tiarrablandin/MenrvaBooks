@@ -22,11 +22,7 @@ export async function fetchSearchResults(searchTerm: string): Promise<BookRespon
 }
 
 export async function fetchRecommendationsForUser(username: string): Promise<BookResponse[]> {
-  const response = await fetch(`${url}/recommendations/forUser?username=${username}`, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-  });
+  const response = await fetch(`${url}/recommendations/forUser?username=${username}`);
   return response.json();
 }
 

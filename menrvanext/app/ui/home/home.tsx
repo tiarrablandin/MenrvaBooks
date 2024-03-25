@@ -1,7 +1,8 @@
 'use client';
 
 import { fetchBooks } from '@/app/services/apiService'
-import BookSlider from '../bookSlider'
+import BookSlider from '../book/bookSlider'
+import BookSkeleton from '../book/bookSkeleton';
 
 const HomeComponent: React.FC = () => {
   return (
