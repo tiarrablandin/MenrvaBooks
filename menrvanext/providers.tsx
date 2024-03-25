@@ -1,6 +1,7 @@
 "use client";
 
 export {
+  Alert,
   Button,
   Card,
   CardBody,
@@ -15,7 +16,7 @@ export {
   ThemeProvider,
   Typography,
 } from "@material-tailwind/react";
-export { MagnifyingGlassIcon, HomeIcon, UserIcon, ArrowRightEndOnRectangleIcon } from "@heroicons/react/20/solid"
+export { MagnifyingGlassIcon, HomeIcon, UserIcon, ArrowRightEndOnRectangleIcon, ArrowLeftStartOnRectangleIcon } from "@heroicons/react/20/solid"
 export { ArrowRightIcon } from "@heroicons/react/24/solid"
 export { AtSymbolIcon, ExclamationCircleIcon, KeyIcon, XMarkIcon } from '@heroicons/react/24/outline';
 

@@ -1,7 +1,9 @@
 "use client";
 
 import {
+  ArrowLeftStartOnRectangleIcon,
   ArrowRightEndOnRectangleIcon,
+  ArrowRightIcon,
   Button,
   Collapse,
   HomeIcon,
@@ -17,12 +19,14 @@ import { Inter } from "next/font/google";
 import Link from "next/link";
 import React, { useState } from "react";
 import LoginForm from "./userPortal/login";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../lib/store/userSlice";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export function CustomNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const currentUser = useSelector(selectCurrentUser);
   const iconClass = "flex items-center gap-x-3 p-2 px-4 text-[#673C4F]";
 
   React.useEffect(() => {
@@ -32,9 +36,6 @@ export function CustomNavbar() {
     );
   }, []);
 
-  const handleLoginClick = () => {
-    setIsLoginModalOpen(!isLoginModalOpen);
-  };
 
   const navList = (
     <ul
@@ -53,8 +54,16 @@ export function CustomNavbar() {
         </Link>
       </Typography>
       <Typography as="li" variant="small" className={`${iconClass}`}>
-        <ArrowRightEndOnRectangleIcon className="h-5 w-4 text-[#673C4F]" />
-        <LoginForm />
+        {currentUser ? (
+          <>
+            <ArrowLeftStartOnRectangleIcon className="h-5 w-4 text-[#673C4F]" />
+            <Typography as={"a"} variant='small' aria-disabled={true} className="flex items-center gap-x-2 mt-1 text-[#673C4F] cursor-pointer">Logout</Typography>
+          </>
+        ) : (
+          <>
+            <ArrowRightEndOnRectangleIcon className="h-5 w-4 text-[#673C4F]" />
+            <LoginForm />
+          </>)}
       </Typography>
     </ul>
   );

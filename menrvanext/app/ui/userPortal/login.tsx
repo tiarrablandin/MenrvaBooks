@@ -2,7 +2,7 @@
 
 import { useAppDispatch } from '@/app/lib/store/store';
 import { login, selectCurrentUser, selectUserError, selectUserLoading } from '@/app/lib/store/userSlice';
-import { ArrowRightIcon, AtSymbolIcon, Button, Dialog, ExclamationCircleIcon, KeyIcon, Typography, XMarkIcon } from '@/providers';
+import { Alert, ArrowRightIcon, AtSymbolIcon, Button, Dialog, ExclamationCircleIcon, KeyIcon, Typography, XMarkIcon } from '@/providers';
 import { Lusitana } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -28,12 +28,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const username = formData.get('username') as string;
-        const password = formData.get('password') as string;
         dispatch(login({ username, password }));
         nav.push("/user");
         handleOpen();
+    }
+
+    if (currentUser) {
+        nav.push("/user");
+        return <Alert color="blue">An info alert for showing message.</Alert>
     }
 
     return (
