@@ -20,4 +20,29 @@ data class Author(
     val dateUpdated: LocalDate,
     @OneToOne @JoinColumn(name = "user_id")
     val user: User,
-)
+) {
+    @Column(name = "reviewed", nullable = false)
+    val reviewed: Byte? = null
+
+    @ManyToMany
+    @JoinTable(
+        name = "author_has_book",
+        joinColumns = [JoinColumn(name = "author_id")],
+        inverseJoinColumns = [JoinColumn(name = "book_id")]
+    )
+    val books: MutableSet<Book> = mutableSetOf()
+
+    @ManyToMany
+    @JoinTable(
+        name = "author_has_series",
+        joinColumns = [JoinColumn(name = "author_id")],
+        inverseJoinColumns = [JoinColumn(name = "series_id")]
+    )
+    val series: MutableSet<Series> = mutableSetOf()
+
+    @OneToMany(mappedBy = "author")
+    val socialMedia: MutableSet<SocialMedia> = mutableSetOf()
+
+    @ManyToMany(mappedBy = "authors")
+    val users: MutableSet<User> = mutableSetOf()
+}

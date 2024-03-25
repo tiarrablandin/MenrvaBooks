@@ -19,4 +19,10 @@ data class Series(
     @JsonManagedReference
     @OneToMany @JoinColumn(name = "series_id")
     val books: Set<Book> = HashSet()
-)
+) {
+    @ManyToMany(mappedBy = "series")
+    val authors: MutableSet<Author> = mutableSetOf()
+
+    @OneToMany(mappedBy = "series")
+    val seriesInteractions: MutableSet<SeriesInteraction> = mutableSetOf()
+}

@@ -19,4 +19,12 @@ data class Genre(
     @JsonManagedReference
     @ManyToMany(mappedBy = "genres")
     val books: Set<Book> = HashSet()
-)
+) {
+    @ManyToMany
+    @JoinTable(
+        name = "genre_has_sub_genre",
+        joinColumns = [JoinColumn(name = "genre_id")],
+        inverseJoinColumns = [JoinColumn(name = "sub_genre_id")]
+    )
+    val subGenres: MutableSet<SubGenre> = mutableSetOf()
+}
