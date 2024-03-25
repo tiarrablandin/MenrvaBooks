@@ -4,7 +4,7 @@ import UserComponent from "@/app/ui/userPortal/user";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "| User",
+  title: "MenrvaBooks | User",
 };
 
 export default async function Page() {

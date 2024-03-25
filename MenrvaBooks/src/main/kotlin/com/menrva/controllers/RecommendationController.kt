@@ -4,13 +4,11 @@ import com.menrva.data.BookDTO
 import com.menrva.entities.Book
 import com.menrva.services.RecommendationService
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/recommendations")
+@CrossOrigin("*", "http://localhost")
 class RecommendationController(private val recommendationService: RecommendationService) {
 
     @GetMapping("/forUser")

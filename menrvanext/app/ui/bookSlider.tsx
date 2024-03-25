@@ -1,17 +1,33 @@
+'use client';
+
 import { Typography } from "@/providers";
 import { Lusitana } from "next/font/google";
 import { BookResponse } from "../lib/models/book";
 import BookCard from "./bookCard";
+import { useEffect, useState } from "react";
 
 interface BookSliderProps {
-  callback: () => Promise<BookResponse[]>;
+  fetchData: () => Promise<BookResponse[]>;
   title: string;
 }
 
 const lusi = Lusitana({ subsets: ["latin"], weight: "400" });
 
-const BookSlider: React.FC<BookSliderProps> = async ({ callback, title }) => {
-  const books = await callback();
+const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title }) => {
+  const [books, setBooks] = useState<BookResponse[]>([]);
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const fetchedBooks = await fetchData();
+        setBooks(fetchedBooks);
+      } catch (error) {
+        console.error("Failed to fetch books: ", error)
+      }
+    };
+
+    fetchBooks();
+  }, [fetchData]);
 
   return (
     <>

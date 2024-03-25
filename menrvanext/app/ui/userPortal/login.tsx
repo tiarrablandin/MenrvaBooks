@@ -6,7 +6,6 @@ import { Alert, ArrowRightIcon, AtSymbolIcon, Button, Dialog, ExclamationCircleI
 import { Lusitana } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useFormStatus } from 'react-dom';
 import { useSelector } from 'react-redux';
 
 const lusitana = Lusitana({ subsets: ["latin"], weight: "400" });
