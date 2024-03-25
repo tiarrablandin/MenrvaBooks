@@ -6,7 +6,6 @@ import { Alert, ArrowRightIcon, AtSymbolIcon, Button, Dialog, ExclamationCircleI
 import { Lusitana } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useFormStatus } from 'react-dom';
 import { useSelector } from 'react-redux';
 
 const lusitana = Lusitana({ subsets: ["latin"], weight: "400" });
@@ -40,7 +39,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
 
     return (
         <>
-            <Typography as={"a"} variant='small' onClick={handleOpen} className="flex items-center gap-x-2 mt-1 text-[#673C4F] cursor-pointer">Login</Typography>
+            <Typography as={"a"} variant='small' onClick={handleOpen} className="flex items-center gap-x-2 mt-1 text-[#673C4F] cursor-pointer font-normal text-base">Login</Typography>
             <Dialog size='xl' open={isLoginModalOpen} handler={handleOpen} className='bg-transparent shadow-none w-full'>
                 <form onSubmit={handleSubmit} className="space-y-3 h-full my-auto">
                     <div className="flex-1 rounded-lg bg-gray-50 px-6 py-8 mx-auto w-1/3 h-full my-auto ">
@@ -119,7 +118,7 @@ function LoginButton() {
 
     return (
         <Button type='submit' className="mt-20 w-full flex flex-row justify-center items-center shadow-md" aria-disabled={isLoading} disabled={isLoading}>
-            <Typography variant='h4' className='mt-1 font-light'>
+            <Typography variant='h4' className='mt-1 font-normal'>
                 {isLoading ? "Logging in..." : "Log In"}
             </Typography>
             <ArrowRightIcon className="ml-auto h-6 w-6 text-gray-50" />

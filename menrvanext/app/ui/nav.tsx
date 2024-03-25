@@ -21,13 +21,14 @@ import React, { useState } from "react";
 import LoginForm from "./userPortal/login";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../lib/store/userSlice";
+import SearchBar from "./searchBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export function CustomNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
   const currentUser = useSelector(selectCurrentUser);
-  const iconClass = "flex items-center gap-x-3 p-2 px-4 text-[#673C4F]";
+  const iconClass = "flex items-center gap-x-3 p-2 px-4 text-[#673C4F] font-normal text-base";
 
   React.useEffect(() => {
     window.addEventListener(
@@ -38,9 +39,7 @@ export function CustomNavbar() {
 
 
   const navList = (
-    <ul
-      className={`${inter.className} mt-2 mb-4 flex flex-col  lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6`}
-    >
+    <ul className={`${inter.className} mt-2 mb-4 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6`}>
       <Typography as="li" variant="small" className={`${iconClass}`}>
         <HomeIcon className="h-5 w-4 text-[#673C4F]" />
         <Link href="/home" className="flex items-center mt-1">
@@ -81,28 +80,7 @@ export function CustomNavbar() {
             </Link>
           </Typography>
           <div className="hidden lg:block">{navList}</div>
-          <div className="hidden items-center gap-x-2 lg:flex lg:mr-4">
-            <div className="relative flex w-full gap-2 md:w-max">
-              <Input
-                type="search"
-                placeholder="Search"
-                containerProps={{
-                  className: "min-w-[288px]",
-                }}
-                className=" !border-[#673c4f] scale-[92%] pl-9 placeholder:text-[#673c4f] focus:!border-[#673c4f/80]"
-                labelProps={{
-                  className: "before:content-none after:content-none",
-                }}
-                crossOrigin={undefined}
-              />
-              <div className="!absolute left-5 top-[10px]">
-                <MagnifyingGlassIcon className="h-5 w-4 text-[#673C4F]" />
-              </div>
-            </div>
-            {/* <Button size="sm" className="rounded-lg scale-y-110 bg-[#673C4F]">
-            Search
-          </Button> */}
-          </div>
+          <SearchBar />
           <IconButton
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"

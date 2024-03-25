@@ -21,6 +21,11 @@ export async function fetchSearchResults(searchTerm: string): Promise<BookRespon
   return response.json();
 }
 
+export async function fetchRecommendationsForUser(username: string): Promise<BookResponse[]> {
+  const response = await fetch(`${url}/recommendations/forUser?username=${username}`);
+  return response.json();
+}
+
 // * AUTHORS
 
 export async function fetchAuthors(searchTerm: string): Promise<BookResponse[]> {
