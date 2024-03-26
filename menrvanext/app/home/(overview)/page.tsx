@@ -1,4 +1,5 @@
 import HomeComponent from "@/app/ui/home/home";
+import SearchBar from "@/app/ui/searchBar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

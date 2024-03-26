@@ -18,7 +18,7 @@ import {
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import React, { useState } from "react";
-import LoginForm from "./userPortal/login";
+import LoginForm from "./userHome/login";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../lib/store/userSlice";
 import SearchBar from "./searchBar";
@@ -28,7 +28,8 @@ const inter = Inter({ subsets: ["latin"] });
 export function CustomNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
   const currentUser = useSelector(selectCurrentUser);
-  const iconClass = "flex items-center gap-x-3 p-2 px-4 text-[#673C4F] font-normal text-base";
+  const iconClass =
+    "flex items-center gap-x-3 p-2 px-4 text-[#673C4F] font-normal text-base";
 
   React.useEffect(() => {
     window.addEventListener(
@@ -37,9 +38,10 @@ export function CustomNavbar() {
     );
   }, []);
 
-
   const navList = (
-    <ul className={`${inter.className} mt-2 mb-4 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6`}>
+    <ul
+      className={`${inter.className} mt-2 mb-4 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6`}
+    >
       <Typography as="li" variant="small" className={`${iconClass}`}>
         <HomeIcon className="h-5 w-4 text-[#673C4F]" />
         <Link href="/home" className="flex items-center mt-1">
@@ -47,22 +49,42 @@ export function CustomNavbar() {
         </Link>
       </Typography>
       <Typography as="li" variant="small" className={`${iconClass}`}>
-        <UserIcon className="h-5 w-4 text-[#673C4F]" />
-        <Link href="#" className="flex items-center mt-1">
-          Account
-        </Link>
+        {currentUser ? (
+          <>
+            <UserIcon className="h-5 w-4 text-[#673C4F]" />
+            <Link href="#" className="flex items-center mt-1">
+              Account
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link href="#" className="flex items-center mt-1">
+              <ArrowRightEndOnRectangleIcon className="h-5 w-4 text-[#673C4F]" />
+              Register
+              {/* <RegisterForm /> */}
+            </Link>
+          </>
+        )}
       </Typography>
       <Typography as="li" variant="small" className={`${iconClass}`}>
         {currentUser ? (
           <>
             <ArrowLeftStartOnRectangleIcon className="h-5 w-4 text-[#673C4F]" />
-            <Typography as={"a"} variant='small' aria-disabled={true} className="flex items-center gap-x-2 mt-1 text-[#673C4F] cursor-pointer">Logout</Typography>
+            <Typography
+              as={"a"}
+              variant="small"
+              aria-disabled={true}
+              className="flex items-center gap-x-2 mt-1 text-[#673C4F] cursor-pointer"
+            >
+              Logout
+            </Typography>
           </>
         ) : (
           <>
             <ArrowRightEndOnRectangleIcon className="h-5 w-4 text-[#673C4F]" />
             <LoginForm />
-          </>)}
+          </>
+        )}
       </Typography>
     </ul>
   );

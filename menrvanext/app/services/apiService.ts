@@ -25,6 +25,12 @@ export async function fetchRecommendationsForUser(username: string): Promise<Boo
   const response = await fetch(`${url}/recommendations/forUser?username=${username}`);
   return response.json();
 }
+//fetchTBR through user for user home
+//fetchUpcomingReleases through user for user home
+//fetchSeriesInProgress through user for user home
+//fetchRecommendationsBasedOffPastReads through user for user home
+//fetchGenres through user for user home- there will be a few of these
+//fetchRead through user for user home
 
 // * AUTHORS
 

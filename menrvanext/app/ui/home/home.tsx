@@ -1,13 +1,19 @@
 'use client';
 
-import { fetchBooks } from '@/app/services/apiService'
+import { fetchBooks, fetchNewReleases } from '@/app/services/apiService'
 import BookSlider from '../book/bookSlider'
 import BookSkeleton from '../book/bookSkeleton';
+import SearchBar from '../searchBar';
+
+// Advanced Search
+// Trending based of of people reading
+// Announcements?
 
 const HomeComponent: React.FC = () => {
   return (
     <div className='w-screen h-full flex flex-col items-center justify-start'>
-      <BookSlider fetchData={fetchBooks} title='All Books' />
+      <SearchBar/>
+      <BookSlider fetchData={fetchNewReleases} title={"New Releases"} />
     </div>
   )
 }
