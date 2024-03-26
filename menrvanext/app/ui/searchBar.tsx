@@ -1,6 +1,6 @@
 'use client';
 
-import { fetchSearchResults } from "@/app/services/apiService";
+import { fetchSearchResults } from "@/app/lib/services/apiService";
 import { Button, Input, MagnifyingGlassIcon } from "@/providers";
 import React, { useState } from "react";
 

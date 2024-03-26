@@ -1,5 +1,5 @@
-import { BookResponse } from "../lib/models/book";
-import { User } from "../lib/models/user";
+import { BookResponse } from "../models/book";
+import { User } from "../models/user";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 const url = baseUrl + "/api";

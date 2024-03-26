@@ -1,6 +1,6 @@
 'use client';
 
-import { fetchBooks, fetchNewReleases, fetchRecommendationsForUser } from "@/app/services/apiService";
+import { fetchBooks, fetchNewReleases, fetchRecommendationsForUser } from "@/app/lib/services/apiService";
 import BookSlider from "../book/bookSlider";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "@/app/lib/store/userSlice";
