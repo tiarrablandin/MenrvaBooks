@@ -3,6 +3,8 @@ import type { Config } from "tailwindcss";
 const withMT = require("@material-tailwind/react/utils/withMT");
 
 const config: Config = withMT({
+  darkMode: 'class', //Enable class based dark mode
+
   content: [
     "./node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
     "./node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
@@ -18,11 +20,11 @@ const config: Config = withMT({
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        "chinese-violet": "#827191",
         "eggplant": "#673C4F",
-        "onyx": "#3D3D3D",
         "pink-lavender": "#E1BEE7",
         "old-lace": "#FFF3E0",
+        "dark:chinese-violet": "#827191",
+        "dark:onyx": "#3d3d3d",
       },
     },
   },

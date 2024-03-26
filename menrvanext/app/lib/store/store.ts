@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import bookReducer from './bookSlice';
 import userReducer from './userSlice';
+import themeReducer from './themeSlice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
   reducer: {
     book: bookReducer,
     user: userReducer,
+    theme: themeReducer,
   },
 });
 

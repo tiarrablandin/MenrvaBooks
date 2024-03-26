@@ -1,14 +1,15 @@
+import ReduxProvider from "@/providers";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import CustomNavbar from "./ui/nav";
 import { Footer } from "./ui/footer";
-import ReduxProvider from "@/providers";
+import CustomNavbar from "./ui/nav";
+import { MenrvaThemeProvider } from "./ui/theme/themeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Menrva Book",
+  title: "Menrva Books",
   description: "",
 };
 
@@ -17,15 +18,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <ReduxProvider>
-        <body className={inter.className}>
-          <CustomNavbar />
-          {children}
-          <Footer />
-        </body>
+        <MenrvaThemeProvider>
+          <body
+            className={`${inter.className}`}>
+            <CustomNavbar />
+            {children}
+            <Footer />
+          </body>
+        </MenrvaThemeProvider>
       </ReduxProvider>
-    </html >
+    </html>
   );
 }
