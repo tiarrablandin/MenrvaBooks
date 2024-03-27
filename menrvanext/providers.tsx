@@ -5,6 +5,7 @@ export {
   Button,
   Card,
   CardBody,
+  Checkbox,
   Collapse,
   Dialog,
   IconButton,
