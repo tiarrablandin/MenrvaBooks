@@ -27,4 +27,7 @@ data class Genre(
         inverseJoinColumns = [JoinColumn(name = "sub_genre_id")]
     )
     val subGenres: MutableSet<SubGenre> = mutableSetOf()
+
+    @ManyToMany(mappedBy = "genres")
+    open var users: MutableSet<User> = mutableSetOf()
 }

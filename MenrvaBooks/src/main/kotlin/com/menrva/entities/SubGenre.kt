@@ -33,4 +33,7 @@ data class SubGenre(
 ) {
     @ManyToMany(mappedBy = "subGenres")
     val genres: MutableSet<Genre> = mutableSetOf()
+
+    @ManyToMany(mappedBy = "subGenres")
+    open var users: MutableSet<User> = mutableSetOf()
 }

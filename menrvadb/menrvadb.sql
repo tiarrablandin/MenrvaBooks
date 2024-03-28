@@ -270,24 +270,54 @@ CREATE TABLE genre_has_sub_genre
     FOREIGN KEY (sub_genre_id) REFERENCES sub_genre (id)
 );
 
+CREATE TABLE user_has_genre
+(
+    user_id  INT,
+    genre_id INT,
+    PRIMARY KEY (user_id, genre_id),
+    FOREIGN KEY (user_id) REFERENCES user (id),
+    FOREIGN KEY (genre_id) REFERENCES genre (id)
+);
+
+CREATE TABLE user_has_sub_genre
+(
+    user_id      INT,
+    sub_genre_id INT,
+    PRIMARY KEY (user_id, sub_genre_id),
+    FOREIGN KEY (user_id) REFERENCES user (id),
+    FOREIGN KEY (sub_genre_id) REFERENCES sub_genre (id)
+);
+
+CREATE TABLE user_has_keyword
+(
+    user_id    INT,
+    keyword_id INT,
+    PRIMARY KEY (user_id, keyword_id),
+    FOREIGN KEY (user_id) REFERENCES user (id),
+    FOREIGN KEY (keyword_id) REFERENCES keyword (id)
+);
+
 -- -----------------------------------------------------
 -- INSERTS
 -- -----------------------------------------------------
 
 insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
                   subscription_id)
-Values (1, 'Admin', 'Tiarra', 'Blandin', '@tiarra', 'tiarra.blandin@gmail.com', 'tiarra', '$2b$10$k0LWgoJxJlEFPizIi3OJIu/dgnQqNDD3rsKdhkx/cJ1FwSR5wVZXO', 1, NOW(),
+Values (1, 'Admin', 'Tiarra', 'Blandin', '@tiarra', 'tiarra.blandin@gmail.com', 'tiarra',
+        '$2b$10$k0LWgoJxJlEFPizIi3OJIu/dgnQqNDD3rsKdhkx/cJ1FwSR5wVZXO', 1, NOW(),
         '2024-03-15', 1);
 
 insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
                   subscription_id)
-Values (2, 'Admin', 'Matthew', 'Tilley', '@matt', 'matthew.tilley77@gmail.com', 'matt', '$2b$10$6P3YaIeyd5FN0KAnk5Wd9u.IopnLe0P5vvXrVeW3OCwVL.7Tkei1m', 1, NOW(),
+Values (2, 'Admin', 'Matthew', 'Tilley', '@matt', 'matthew.tilley77@gmail.com', 'matt',
+        '$2b$10$6P3YaIeyd5FN0KAnk5Wd9u.IopnLe0P5vvXrVeW3OCwVL.7Tkei1m', 1, NOW(),
         '2024-03-15',
         1);
 
 insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
                   subscription_id)
-Values (3, 'Admin', 'Jonathan', 'Dominguez', '@jondom', 'jonathanadominguez@gmail.com', 'jon', '$2b$10$RrN6OgEk09x6nvtLPOcT7e6QYRnwBYQl/kz8KhCRELlztMkbN2twq', 1, NOW(),
+Values (3, 'Admin', 'Jonathan', 'Dominguez', '@jondom', 'jonathanadominguez@gmail.com', 'jon',
+        '$2b$10$RrN6OgEk09x6nvtLPOcT7e6QYRnwBYQl/kz8KhCRELlztMkbN2twq', 1, NOW(),
         '2024-03-15',
         1);
 
@@ -301,7 +331,7 @@ insert into subscription (id, level, paid, date_added, date_updated)
 values (1, 'Admin', 1, now(), '2024-03-15');
 
 insert into author (id, photo, pen_name, bio, text, date_created, reviewed, date_updated, user_id)
-VALUES (1, null, 'J.T. Elliott', 'Hello, I write books.', 'Announcements', now(), 1, '2024-03-15', 1);
+VALUES (1, null, 'Tiarra Refosco', 'Hello, I write books.', 'Announcements', now(), 1, '2024-03-15', 1);
 
 insert into author (id, photo, pen_name, bio, text, date_created, reviewed, date_updated, user_id)
 VALUES (2, null, 'Matthew Blackmore', 'Hello, I write books.', 'Announcements', now(), 1, '2024-03-15', 2);
@@ -1104,7 +1134,7 @@ insert into book_has_keyword (book_id, keyword_id)
 VALUES (10, 10);
 
 insert into book_has_keyword (book_id, keyword_id)
-VALUES (10,12);
+VALUES (10, 12);
 
 insert into book_has_keyword (book_id, keyword_id)
 VALUES (10, 14);
@@ -1253,13 +1283,158 @@ values (14, 1);
 insert into genre_has_sub_genre (genre_id, sub_genre_id)
 values (15, 1);
 
+insert into user_has_genre (user_id, genre_id)
+VALUES (1, 1);
+
+insert into user_has_genre (user_id, genre_id)
+VALUES (1, 2);
+
+insert into user_has_genre (user_id, genre_id)
+VALUES (1, 9);
+
+insert into user_has_genre (user_id, genre_id)
+VALUES (1, 13);
+
+insert into user_has_genre (user_id, genre_id)
+VALUES (1, 14);
+
+insert into user_has_genre (user_id, genre_id)
+VALUES (1, 18);
+
+insert into user_has_sub_genre (user_id, sub_genre_id)
+VALUES (1, 1);
+
+insert into user_has_sub_genre (user_id, sub_genre_id)
+VALUES (1, 2);
+
+insert into user_has_sub_genre (user_id, sub_genre_id)
+VALUES (1, 3);
+
+insert into user_has_sub_genre (user_id, sub_genre_id)
+VALUES (1, 5);
+
+insert into user_has_sub_genre (user_id, sub_genre_id)
+VALUES (1, 9);
+
+insert into user_has_sub_genre (user_id, sub_genre_id)
+VALUES (1, 10);
+
+insert into user_has_sub_genre (user_id, sub_genre_id)
+VALUES (1, 11);
+
+insert into user_has_sub_genre (user_id, sub_genre_id)
+VALUES (1, 12);
+
+insert into user_has_sub_genre (user_id, sub_genre_id)
+VALUES (1, 14);
+
+insert into user_has_sub_genre (user_id, sub_genre_id)
+VALUES (1, 15);
+
+insert into user_has_sub_genre (user_id, sub_genre_id)
+VALUES (1, 13);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 1);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 2);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 3);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 4);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 5);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 6);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 7);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 8);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 9);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 10);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 11);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 12);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 13);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 14);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 15);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 18);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 19);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 20);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 21);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 22);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 24);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 25);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 26);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 27);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 29);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 30);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 33);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 34);
+
+insert into user_has_keyword (user_id, keyword_id)
+VALUES (1, 35);
+
 
 -- INSERTS FROM WILL FOR RECOMMENDATION FEATURE
-insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike) VALUES (10, 4, 0, 0, 0, 0);
-insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike) VALUES (5, 4, 1, 0, 1, 0);
-insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike) VALUES (4, 4, 0, 1, 0, 0);
-insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike) VALUES (11, 4, 1, 0, 1, 1);
-insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike) VALUES (9, 4, 1, 0, 0, 1);
-insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike) VALUES (6, 4, 0, 0, 0, 0);
-insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike) VALUES (7, 4, 1, 0, 1, 0);
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (10, 4, 0, 0, 0, 0);
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (5, 4, 1, 0, 1, 0);
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (4, 4, 0, 1, 0, 0);
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (11, 4, 1, 0, 1, 1);
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (9, 4, 1, 0, 0, 1);
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (6, 4, 0, 0, 0, 0);
+insert into book_interactions (book_id, user_id, has_read, interested, favorite, like_dislike)
+VALUES (7, 4, 1, 0, 1, 0);
 
