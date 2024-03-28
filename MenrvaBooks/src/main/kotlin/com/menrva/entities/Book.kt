@@ -4,23 +4,26 @@ import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonIdentityInfo
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import jakarta.persistence.*
+import org.springframework.data.elasticsearch.annotations.Document
 import java.time.LocalDate
 
 @Entity
+@Document(indexName = "books")
 data class Book(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @org.springframework.data.annotation.Id
     val id: Long,
-    val cover: String,
-    val title: String,
-    val description: String,
+    val cover: String?,
+    val title: String?,
+    val description: String?,
     @Column(name = "page_count")
-    val pageCount: Int,
+    val pageCount: Int?,
     @Column(name = "publication_date")
-    val publicationDate: LocalDate,
+    val publicationDate: LocalDate?,
     @Column(name = "date_added")
-    val dateAdded: LocalDate,
+    val dateAdded: LocalDate?,
     @Column(name = "date_updated")
-    val dateUpdated: LocalDate,
+    val dateUpdated: LocalDate?,
     @JsonBackReference(value = "books")
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

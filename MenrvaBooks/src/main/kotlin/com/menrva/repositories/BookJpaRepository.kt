@@ -1,7 +1,6 @@
 package com.menrva.repositories
 
 import com.menrva.data.BookGenreKeywordSummary
-import com.menrva.entities.Author
 import com.menrva.entities.Book
 import com.menrva.entities.Genre
 import com.menrva.entities.Keyword
@@ -11,7 +10,7 @@ import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
 @Repository
-interface BookRepository : JpaRepository<Book, Int> {
+interface BookJpaRepository : JpaRepository<Book, Long> {
     fun findByTitle(title: String): List<Book>
 
     @Query(

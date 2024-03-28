@@ -27,27 +27,29 @@ class SecurityConfig {
             .authorizeHttpRequests { requests ->
                 requests
                     .requestMatchers(
-                        "api/books/**",
                         "authenticate",
                         "api/authors/**",
-                        "api/series/**",
+                        "api/books/**",
                         "api/genres/**",
                         "api/keywords/**",
-                        "api/tags/**",
                         "api/recommendations/**",
+                        "api/search/**",
+                        "api/series/**",
+                        "api/tags/**",
                     ).permitAll()
                     .anyRequest().authenticated()
             }
             .csrf() {
                 it.ignoringRequestMatchers(
+                    "authenticate",
                     "api/authors/**",
                     "api/books/**",
-                    "api/series",
-                    "authenticate",
                     "api/genres/**",
                     "api/keywords/**",
-                    "api/tags/**",
                     "api/recommendations/**",
+                    "api/search/**",
+                    "api/series/**",
+                    "api/tags/**",
                 )
             }
         return http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java).build()
