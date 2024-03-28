@@ -12,8 +12,8 @@ data class BookDTO(
 ) {
     constructor(book: Book) : this(
         id = book.id,
-        title = book.title,
-        cover = book.cover,
+        title = book.title.toString(),
+        cover = book.cover.toString(),
         genres = book.genres.map { GenreDTO(it) }.toSet(),
         keywords = book.keywords.map { KeywordDTO(it) }.toSet(),
         series = book.series?.let { SeriesDTO(it) } // Convert Series entity to DTO

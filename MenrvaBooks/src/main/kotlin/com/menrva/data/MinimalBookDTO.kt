@@ -9,7 +9,7 @@ data class MinimalBookDTO(
 ) {
     constructor(book: Book) : this(
         id = book.id,
-        title = book.title,
+        title = book.title.toString(),
     )
 
 }

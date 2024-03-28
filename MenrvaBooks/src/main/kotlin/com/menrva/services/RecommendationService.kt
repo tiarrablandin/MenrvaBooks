@@ -1,17 +1,16 @@
 package com.menrva.services
 
 import com.menrva.data.BookDTO
-import com.menrva.entities.Book
 import com.menrva.exceptions.UserNotFoundException
 import com.menrva.repositories.BookInteractionsRepository
-import com.menrva.repositories.BookRepository
+import com.menrva.repositories.BookJpaRepository
 import com.menrva.repositories.UserRepository
 import org.springframework.stereotype.Service
 
 @Service
 class RecommendationService(
     private val userRepo: UserRepository,
-    private val bookRepo: BookRepository,
+    private val bookRepo: BookJpaRepository,
     private val bookInteractionsRepo: BookInteractionsRepository,
 ) {
     fun getRecommendationsForUser(username: String): List<BookDTO> {
