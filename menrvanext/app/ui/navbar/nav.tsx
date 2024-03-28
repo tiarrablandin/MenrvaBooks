@@ -3,8 +3,6 @@
 import {
   ArrowLeftStartOnRectangleIcon,
   ArrowRightEndOnRectangleIcon,
-  ArrowRightIcon,
-  Button,
   Collapse,
   HomeIcon,
   IconButton,
@@ -13,15 +11,16 @@ import {
   Navbar,
   Typography,
   UserIcon,
-  XMarkIcon,
 } from "@/providers";
 import { Inter } from "next/font/google";
 import Link from "next/link";
-import React, { useState } from "react";
-import LoginForm from "./userHome/login";
+import React from "react";
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../lib/store/userSlice";
-import SearchBar from "./searchBar";
+import { selectCurrentUser } from "../../lib/store/userSlice";
+import SearchBar from "../searchBar";
+import LoginForm from "./login";
+import ThemeToggle from "../theme/themeToggle";
+import RegisterForm from "./register";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -52,17 +51,19 @@ export function CustomNavbar() {
         {currentUser ? (
           <>
             <UserIcon className="h-5 w-4 text-[#673C4F]" />
-            <Link href="#" className="flex items-center mt-1">
+            <Typography
+              as={"a"}
+              variant="small"
+              aria-disabled={true}
+              className="flex items-center gap-x-2 mt-1 text-[#673C4F] cursor-pointer"
+            >
               Account
-            </Link>
+            </Typography>
           </>
         ) : (
           <>
-            <Link href="#" className="flex items-center mt-1">
-              <ArrowRightEndOnRectangleIcon className="h-5 w-4 text-[#673C4F]" />
-              Register
-              {/* <RegisterForm /> */}
-            </Link>
+            <UserIcon className="h-5 w-4 text-[#673C4F]" />
+            <RegisterForm />
           </>
         )}
       </Typography>
@@ -103,6 +104,7 @@ export function CustomNavbar() {
           </Typography>
           <div className="hidden lg:block">{navList}</div>
           <SearchBar />
+          <ThemeToggle />
           <IconButton
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"

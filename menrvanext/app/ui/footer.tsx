@@ -5,14 +5,17 @@ const SITEMAP = [
   {
     title: "Company",
     links: ["About Us", "Jobs", "Our Team"],
+    routes: ["home", "home", "home"]
   },
   {
     title: "Resources",
     links: ["Blog", "FAQ", "Contact Us"],
+    routes: ["home", "home", "contact"]
   },
   {
     title: "Legal",
     links: ["Terms of Use", "Privacy", "Legal Notices"],
+    routes: ["home", "home", "home"]
   },
 ];
 
@@ -20,10 +23,10 @@ const currentYear = new Date().getFullYear();
 
 export function Footer() {
   return (
-    <footer className="stick bottom-0 w-full bg-[#e1bee7]">
+    <footer className="stick bottom-0 w-full bg-pink-lavender dark:bg-dark:chinese-violet">
       <div className="mx-auto w-full max-w-7xl px-8 h-full flex flex-col justify-between items-center">
         <div className="mx-auto w-full flex flex-row justify-end">
-          {SITEMAP.map(({ title, links }, key) => (
+          {SITEMAP.map(({ title, links, routes }, key) => (
             <div key={key} className="w-full text-center">
               <Typography
                 variant="small"
@@ -41,7 +44,7 @@ export function Footer() {
                     className="font-normal"
                   >
                     <Link
-                      href="#"
+                      href={routes[key]}
                       className="inline-block pt-1 pr-2 transition-transform hover:scale-105"
                     >
                       {link}
@@ -52,16 +55,16 @@ export function Footer() {
             </div>
           ))}
         </div>
-        <div className="flex w-full flex-col items-center justify-center border-t border-blue-gray-50 py-4 md:flex-row md:justify-between mt-2">
+        <div className="flex w-full flex-col items-center justify-center border-t border-eggplant py-4 md:flex-row md:justify-between mt-2">
           <Typography
             variant="small"
-            className="mb-2 text-center font-normal text-blue-gray-900 md:mb-0"
+            className="mb-2 text-center font-normal text-eggplant md:mb-0"
           >
             &copy; {currentYear}{" "}
             <a href="https://material-tailwind.com/">Menrva Books</a>. All
             Rights Reserved.
           </Typography>
-          <div className="flex gap-4 text-blue-gray-900 sm:justify-center">
+          <div className="flex gap-4 text-eggplant sm:justify-center">
             <Typography
               as="a"
               href="#"
