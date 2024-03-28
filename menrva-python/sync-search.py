@@ -1,31 +1,43 @@
 import mysql.connector
 from elasticsearch import Elasticsearch
 
-# db_config = {
-#     'host': 'localhost',
-#     'user': 'user2',
-#     'password': 'test',
-#     'database': 'menrvadb',
-#     'port': 3306
-# }
-# conn = mysql.connector.connect(**db_config)
-# cursor = conn.cursor()
+db_config = {
+    'host': 'localhost',
+    'user': 'user2',
+    'password': 'test',
+    'database': 'menrvadb',
+    'port': 3306
+}
+conn = mysql.connector.connect(**db_config)
+cursor = conn.cursor()
 
 es = Elasticsearch("http://3.133.142.200:9200")
 
 
-query = {
-    "query": {
-        "match": {
-            "title": "dark"
-        }
+query = "SELECT * FROM book"
+cursor.execute(query)
+books = cursor.fetchall()
+
+
+for book in books:
+    id, cover, title, description, page_count, publication_date, date_added, reviewed, date_updated, series_id = book
+    document = {
+        "id": id,
+        "cover": cover,
+        "title": title,
+        "description": description,
+        "page_count": page_count,
+        "publication_date": publication_date,
+        "date_added": date_added,
+        "reviewed": bool(reviewed),
+        "date_updated": date_updated,
+        "series_id": series_id
     }
-}
+    response = es.index(index="books", id=id, document=document)
+    print(response['result'])
 
-response = es.search(index="books", body=query)
-for hit in response['hits']['hits']:
-    print(hit['_source'])
 
+conn.close()
 
 
 # Example with a JOIN

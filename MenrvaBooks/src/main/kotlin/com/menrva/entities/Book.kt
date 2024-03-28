@@ -1,10 +1,10 @@
 package com.menrva.entities
 
 import com.fasterxml.jackson.annotation.JsonBackReference
-import com.fasterxml.jackson.annotation.JsonIdentityInfo
-import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import jakarta.persistence.*
 import org.springframework.data.elasticsearch.annotations.Document
+import org.springframework.data.elasticsearch.annotations.Field
+import org.springframework.data.elasticsearch.annotations.FieldType
 import java.time.LocalDate
 
 @Entity
@@ -13,17 +13,24 @@ data class Book(
     @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @org.springframework.data.annotation.Id
     val id: Long,
-    val cover: String?,
-    val title: String?,
-    val description: String?,
+    val cover: String,
+    val title: String,
+    val description: String,
     @Column(name = "page_count")
-    val pageCount: Int?,
+    @Field(type = FieldType.Integer, name = "page_count")
+    val pageCount: Int,
     @Column(name = "publication_date")
-    val publicationDate: LocalDate?,
+    @Field(type = FieldType.Date, name = "publication_date", format = [], pattern = ["uuuu-MM-dd"])
+    val publicationDate: LocalDate,
     @Column(name = "date_added")
+    @Field(type = FieldType.Date, name = "date_added", format = [], pattern = ["uuuu-MM-dd"])
     val dateAdded: LocalDate?,
     @Column(name = "date_updated")
+    @Field(type = FieldType.Date, name = "date_updated", format = [], pattern = ["uuuu-MM-dd"])
     val dateUpdated: LocalDate?,
+    @Column(name = "reviewed", nullable = false)
+    @Field(type = FieldType.Boolean)
+    val reviewed: Boolean,
     @JsonBackReference(value = "books")
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
