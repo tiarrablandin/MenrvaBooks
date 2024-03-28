@@ -11,7 +11,7 @@ db_config = {
 conn = mysql.connector.connect(**db_config)
 cursor = conn.cursor()
 
-es = Elasticsearch("http://3.133.142.200:9200")
+es = Elasticsearch("http://3.147.13.127:9200")
 
 
 query = "SELECT * FROM book"
