@@ -3,8 +3,6 @@
 import {
   ArrowLeftStartOnRectangleIcon,
   ArrowRightEndOnRectangleIcon,
-  ArrowRightIcon,
-  Button,
   Collapse,
   HomeIcon,
   IconButton,
@@ -13,22 +11,24 @@ import {
   Navbar,
   Typography,
   UserIcon,
-  XMarkIcon,
 } from "@/providers";
 import { Inter } from "next/font/google";
 import Link from "next/link";
-import React, { useState } from "react";
-import LoginForm from "./userPortal/login";
+import React from "react";
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../lib/store/userSlice";
-import SearchBar from "./searchBar";
+import { selectCurrentUser } from "../../lib/store/userSlice";
+import SearchBar from "../searchBar";
+import LoginForm from "./login";
+import ThemeToggle from "../theme/themeToggle";
+import RegisterForm from "./register";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export function CustomNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
   const currentUser = useSelector(selectCurrentUser);
-  const iconClass = "flex items-center gap-x-3 p-2 px-4 text-[#673C4F] font-normal text-base";
+  const iconClass =
+    "flex items-center gap-x-3 p-2 px-4 text-[#673C4F] font-normal text-base";
 
   React.useEffect(() => {
     window.addEventListener(
@@ -37,9 +37,10 @@ export function CustomNavbar() {
     );
   }, []);
 
-
   const navList = (
-    <ul className={`${inter.className} mt-2 mb-4 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6`}>
+    <ul
+      className={`${inter.className} mt-2 mb-4 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6`}
+    >
       <Typography as="li" variant="small" className={`${iconClass}`}>
         <HomeIcon className="h-5 w-4 text-[#673C4F]" />
         <Link href="/home" className="flex items-center mt-1">
@@ -47,29 +48,51 @@ export function CustomNavbar() {
         </Link>
       </Typography>
       <Typography as="li" variant="small" className={`${iconClass}`}>
-        <UserIcon className="h-5 w-4 text-[#673C4F]" />
-        <Link href="#" className="flex items-center mt-1">
-          Account
-        </Link>
+        {currentUser ? (
+          <>
+            <UserIcon className="h-5 w-4 text-[#673C4F]" />
+            <Typography
+              as={"a"}
+              variant="small"
+              aria-disabled={true}
+              className="flex items-center gap-x-2 mt-1 text-[#673C4F] cursor-pointer"
+            >
+              Account
+            </Typography>
+          </>
+        ) : (
+          <>
+            <UserIcon className="h-5 w-4 text-[#673C4F]" />
+            <RegisterForm />
+          </>
+        )}
       </Typography>
       <Typography as="li" variant="small" className={`${iconClass}`}>
         {currentUser ? (
           <>
             <ArrowLeftStartOnRectangleIcon className="h-5 w-4 text-[#673C4F]" />
-            <Typography as={"a"} variant='small' aria-disabled={true} className="flex items-center gap-x-2 mt-1 text-[#673C4F] cursor-pointer">Logout</Typography>
+            <Typography
+              as={"a"}
+              variant="small"
+              aria-disabled={true}
+              className="flex items-center gap-x-2 mt-1 text-[#673C4F] cursor-pointer"
+            >
+              Logout
+            </Typography>
           </>
         ) : (
           <>
             <ArrowRightEndOnRectangleIcon className="h-5 w-4 text-[#673C4F]" />
             <LoginForm />
-          </>)}
+          </>
+        )}
       </Typography>
     </ul>
   );
 
   return (
     <>
-      <Navbar className="sticky min-w-full rounded-none border-none px-4 py-2 lg:px-8 lg:py-3 bg-[#e1bee7] shadow-md shadow-purple-100">
+      <Navbar className="sticky min-w-full rounded-none border-none px-4 py-2 lg:px-8 lg:py-3 bg-[#e1bee7] bg-dark:chinese-violet">
         <div className="container mx-auto flex flex-wrap items-center justify-between text-[#673c4f]">
           <Typography
             className={`mr-4 cursor-pointer py-1.5 font-medium ${inter.className}`}
@@ -81,6 +104,7 @@ export function CustomNavbar() {
           </Typography>
           <div className="hidden lg:block">{navList}</div>
           <SearchBar />
+          <ThemeToggle />
           <IconButton
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"

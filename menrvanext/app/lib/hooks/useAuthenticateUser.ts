@@ -1,4 +1,4 @@
-import { authenticate } from "@/app/services/apiService";
+import { authenticate } from "@/app/lib/services/apiService";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { login } from "../store/userSlice";

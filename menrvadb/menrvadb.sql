@@ -248,8 +248,6 @@ CREATE TABLE user_follows_author
 (
     author_id INT,
     user_id   INT,
-    follow    int not null default 0,
-    PRIMARY KEY (author_id, user_id),
     FOREIGN KEY (author_id) REFERENCES author (id),
     FOREIGN KEY (user_id) REFERENCES user (id)
 );

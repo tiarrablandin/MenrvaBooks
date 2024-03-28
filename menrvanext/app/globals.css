@@ -14,7 +14,6 @@
     /* --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 61, 61, 61; */
     --background-rgb: 61, 61, 61;
-
   }
 }
 
@@ -26,7 +25,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
-    background: rgb(var(--background-rgb));
+  background: rgb(var(--background-rgb));
 }
 
 @layer utilities {

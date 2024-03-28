@@ -61,6 +61,20 @@ data class Book(
     @OneToMany(mappedBy = "book")
     val bookInteractions: Set<BookInteractions> = HashSet()
 ) {
+    @Column(name = "reviewed", nullable = false)
+    val reviewed: Byte? = null
+
+    @ManyToMany(mappedBy = "books")
+    val authors: MutableSet<Author> = mutableSetOf()
+
+    @ManyToMany(mappedBy = "books")
+    val subGenres: MutableSet<SubGenre> = mutableSetOf()
+
+    @OneToMany(mappedBy = "book")
+    val comments: MutableSet<Comment> = mutableSetOf()
+
+    @OneToMany(mappedBy = "book")
+    val links: MutableSet<Link> = mutableSetOf()
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

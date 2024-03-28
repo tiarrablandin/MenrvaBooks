@@ -34,6 +34,23 @@ data class User(
     @OneToMany(mappedBy = "user")
     val bookInteractions: Set<BookInteractions> = HashSet(),
 ) {
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "subscription_id", nullable = true)
+    val subscription: Subscription? = null
+
+    @OneToMany(mappedBy = "user")
+    val comments: MutableSet<Comment> = mutableSetOf()
+
+    @OneToMany(mappedBy = "user")
+    val seriesInteractions: MutableSet<SeriesInteraction> = mutableSetOf()
+
+    @ManyToMany
+    @JoinTable(
+        name = "user_follows_author",
+        joinColumns = [JoinColumn(name = "user_id")],
+        inverseJoinColumns = [JoinColumn(name = "author_id")]
+    )
+    val authors: MutableSet<Author> = mutableSetOf()
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
