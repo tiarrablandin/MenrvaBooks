@@ -18,4 +18,10 @@ data class Keyword(
     @JsonManagedReference
     @ManyToMany(mappedBy = "keywords")
     val books: Set<Book> = HashSet()
-)
+) {
+    @Column(name = "reviewed", nullable = false)
+    open var reviewed: Byte? = null
+
+    @ManyToMany(mappedBy = "keywords")
+    open var users: MutableSet<User> = mutableSetOf()
+}

@@ -18,8 +18,6 @@ data class Author(
     val dateCreated: LocalDate,
     @Column(name = "date_updated")
     val dateUpdated: LocalDate,
-    @OneToOne @JoinColumn(name = "user_id")
-    val user: User,
 ) {
     @Column(name = "reviewed", nullable = false)
     val reviewed: Byte? = null
@@ -45,4 +43,8 @@ data class Author(
 
     @ManyToMany(mappedBy = "authors")
     val users: MutableSet<User> = mutableSetOf()
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    val user: User? = null
 }

@@ -24,7 +24,7 @@ export default function RootLayout({
       <ReduxProvider>
         <MenrvaThemeProvider>
           <body
-            className={`${inter.className}`}>
+            className={`${inter.className} min-h-screen`}>
             <CustomNavbar />
             {children}
             <Footer />

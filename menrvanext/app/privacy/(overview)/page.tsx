@@ -1,4 +1,4 @@
-import HomeComponent from "@/app/ui/home/home";
+import Privacy from "@/app/ui/privacy";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <main className="">
-      <HomeComponent/>
+      <Privacy/>
     </main>
   );
 }

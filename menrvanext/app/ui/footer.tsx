@@ -4,18 +4,13 @@ import Link from "next/link";
 const SITEMAP = [
   {
     title: "Company",
-    links: ["About Us", "Jobs", "Our Team"],
-    routes: ["home", "home", "home"]
+    links: ["About Us", "Join Our Team", "Terms of Use", 'Privacy'],
+    routes: ["about", "careers", "terms", "privacy"]
   },
   {
     title: "Resources",
     links: ["Blog", "FAQ", "Contact Us"],
-    routes: ["home", "home", "contact"]
-  },
-  {
-    title: "Legal",
-    links: ["Terms of Use", "Privacy", "Legal Notices"],
-    routes: ["home", "home", "home"]
+    routes: ["blog", "faq", "contact"]
   },
 ];
 
@@ -23,7 +18,7 @@ const currentYear = new Date().getFullYear();
 
 export function Footer() {
   return (
-    <footer className="stick bottom-0 w-full bg-pink-lavender dark:bg-dark:chinese-violet">
+    <footer className="absolute bottom-0 w-full bg-pink-lavender dark:bg-dark:chinese-violet">
       <div className="mx-auto w-full max-w-7xl px-8 h-full flex flex-col justify-between items-center">
         <div className="mx-auto w-full flex flex-row justify-end">
           {SITEMAP.map(({ title, links, routes }, key) => (

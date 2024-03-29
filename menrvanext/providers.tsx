@@ -1,10 +1,15 @@
 "use client";
 
 export {
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
   Alert,
   Button,
   Card,
   CardBody,
+  CardHeader,
+  CardFooter,
   Checkbox,
   Collapse,
   Dialog,
@@ -15,11 +20,12 @@ export {
   MobileNav,
   Navbar,
   ThemeProvider,
+  Tooltip,
   Typography,
 } from "@material-tailwind/react";
 export { MagnifyingGlassIcon, HomeIcon, UserIcon, ArrowRightEndOnRectangleIcon, ArrowLeftStartOnRectangleIcon } from "@heroicons/react/20/solid"
-export { ArrowRightIcon } from "@heroicons/react/24/solid"
-export { AtSymbolIcon, ExclamationCircleIcon, KeyIcon, XMarkIcon } from '@heroicons/react/24/outline';
+export { ArrowRightIcon, ChevronDownIcon } from "@heroicons/react/24/solid"
+export { AtSymbolIcon, ExclamationCircleIcon, KeyIcon, XMarkIcon, } from '@heroicons/react/24/outline';
 
 import { Provider } from "react-redux";
 import { store } from "./app/lib/store/store";
