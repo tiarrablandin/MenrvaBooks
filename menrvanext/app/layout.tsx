@@ -2,7 +2,7 @@ import ReduxProvider from "@/providers";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Footer } from "./ui/footer";
+import { Footer } from "./ui/footer/footer";
 import CustomNavbar from "./ui/navbar/nav";
 import { MenrvaThemeProvider } from "./ui/theme/themeProvider";
 
