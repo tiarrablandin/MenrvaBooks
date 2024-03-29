@@ -18,17 +18,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
       <ReduxProvider>
         <MenrvaThemeProvider>
-          <body
-            className={`${inter.className} min-h-screen`}>
+          <body className={`${inter.className} w-screen min-h-[calc(100vh-295px)]`}>
             <CustomNavbar />
             {children}
-            <Footer />
           </body>
+          <Footer />
         </MenrvaThemeProvider>
       </ReduxProvider>
     </html>

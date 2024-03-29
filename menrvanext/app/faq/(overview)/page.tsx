@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   return (
-    <main className="">
+    <main className="min-h-[72vh]">
       <FAQ/>
     </main>
   );

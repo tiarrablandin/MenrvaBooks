@@ -20,6 +20,12 @@ export {
   MobileNav,
   Navbar,
   ThemeProvider,
+  Timeline,
+  TimelineItem,
+  TimelineConnector,
+  TimelineHeader,
+  TimelineIcon,
+  TimelineBody,
   Tooltip,
   Typography,
 } from "@material-tailwind/react";

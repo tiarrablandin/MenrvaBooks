@@ -1,3 +1,4 @@
+import News from "@/app/ui/news";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,7 +7,8 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   return (
-    <main className="">
+    <main className="min-h-[50vh] bg-green-500">
+      <News/>
     </main>
   );
 }
