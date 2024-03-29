@@ -2,7 +2,7 @@ import ReduxProvider from "@/providers";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Footer } from "./ui/footer/footer";
+import { Footer } from "./ui/footer";
 import CustomNavbar from "./ui/navbar/nav";
 import { MenrvaThemeProvider } from "./ui/theme/themeProvider";
 
@@ -24,7 +24,7 @@ export default function RootLayout({
       <ReduxProvider>
         <MenrvaThemeProvider>
           <body
-            className={`${inter.className}`}>
+            className={`${inter.className} min-h-screen`}>
             <CustomNavbar />
             {children}
             <Footer />

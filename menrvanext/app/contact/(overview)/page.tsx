@@ -1,4 +1,4 @@
-import ContactForm from "@/app/ui/footer/contactForm";
+import ContactForm from "@/app/ui/contactForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   return (
-    <main className="min-h-screen">
+    <main className="">
       <ContactForm/>
     </main>
   );
