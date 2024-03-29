@@ -7,7 +7,7 @@ interface AboutCardProps {}
 const aboutCard: React.FC<AboutCardProps> = ({}) => {
   return (
     <div>
-      <div className="flex justify-center items-start pt-10 min-h-screen">
+      <div className="flex justify-center items-start py-10">
         <Card className="w-full max-w-[68rem] flex-row">
           <CardHeader
             shadow={false}
