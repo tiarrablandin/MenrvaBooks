@@ -5,6 +5,8 @@ export {
   Button,
   Card,
   CardBody,
+  CardHeader,
+  CardFooter,
   Checkbox,
   Collapse,
   Dialog,
@@ -15,6 +17,7 @@ export {
   MobileNav,
   Navbar,
   ThemeProvider,
+  Tooltip,
   Typography,
 } from "@material-tailwind/react";
 export { MagnifyingGlassIcon, HomeIcon, UserIcon, ArrowRightEndOnRectangleIcon, ArrowLeftStartOnRectangleIcon } from "@heroicons/react/20/solid"
