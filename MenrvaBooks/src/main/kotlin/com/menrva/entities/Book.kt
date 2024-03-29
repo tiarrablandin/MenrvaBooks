@@ -61,8 +61,6 @@ data class Book(
     @OneToMany(mappedBy = "book")
     val bookInteractions: Set<BookInteractions> = HashSet()
 ) {
-    @Column(name = "reviewed", nullable = false)
-    val reviewed: Byte? = null
 
     @ManyToMany(mappedBy = "books")
     val authors: MutableSet<Author> = mutableSetOf()

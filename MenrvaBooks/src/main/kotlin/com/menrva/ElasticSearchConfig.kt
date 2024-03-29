@@ -13,8 +13,8 @@ class ElasticSearchConfig(
 
     override fun clientConfiguration(): ClientConfiguration {
         return ClientConfiguration.builder()
-            .connectedTo("3.133.142.200:9200")
-            .withSocketTimeout(20000)
+            .connectedTo("3.137.26.103:9200")
+            .withSocketTimeout(30000)
             .build()
     }
 }
