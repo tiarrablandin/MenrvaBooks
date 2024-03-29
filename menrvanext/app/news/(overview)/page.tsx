@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   return (
-    <main className="min-h-[50vh] bg-green-500">
+    <main className="w-screen min-h-[calc(100vh-295px)] bg-old-lace bg-dark:onyx">
       <News/>
     </main>
   );

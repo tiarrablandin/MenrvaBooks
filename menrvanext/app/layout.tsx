@@ -22,11 +22,11 @@ export default function RootLayout({
     <html lang="en">
       <ReduxProvider>
         <MenrvaThemeProvider>
-          <body className={`${inter.className} w-screen min-h-[calc(100vh-295px)]`}>
+          <body className={`${inter.className}`}>
             <CustomNavbar />
             {children}
-          </body>
           <Footer />
+          </body>
         </MenrvaThemeProvider>
       </ReduxProvider>
     </html>

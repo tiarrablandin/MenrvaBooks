@@ -6,6 +6,7 @@ import {
   TimelineIcon,
   TimelineBody,
   Typography,
+  eggplant,
 } from "@/providers";
 import React from "react";
 
@@ -13,20 +14,19 @@ interface NewsProps {}
 
 const news: React.FC<NewsProps> = ({}) => {
   return (
-    <div className="flex justify-center h-[100vh] bg-old-lace">
-      <Timeline className="bg-blue-500 w-4/5">
+    <div className="flex justify-center bg-old-lace">
+      <Timeline className="w-4/5 my-20 bg-old-lace bg-dark:onyx">
         <TimelineItem>
-          <TimelineConnector />
-          <TimelineHeader className="h-3">
-            <TimelineIcon />
-            <Typography variant="h6" color="blue-gray" className="leading-none">
+          <TimelineConnector className=""/>
+          <TimelineHeader className="h-3 text-eggplant">
+            <TimelineIcon className="bg-eggplant"/>
+            <Typography variant="h6" className="leading-none w-4/5">
               Timeline Title Here.
             </Typography>
           </TimelineHeader>
           <TimelineBody className="pb-8">
             <Typography
               variant="small"
-              color="gary"
               className="font-normal text-gray-600"
             >
               The key to more success is to have a lot of pillows. Put it this
@@ -39,15 +39,14 @@ const news: React.FC<NewsProps> = ({}) => {
         <TimelineItem>
           <TimelineConnector />
           <TimelineHeader className="h-3">
-            <TimelineIcon />
-            <Typography variant="h6" color="blue-gray" className="leading-none">
+            <TimelineIcon className="bg-eggplant"/>
+            <Typography variant="h6" className="leading-none text-eggplant">
               Timeline Title Here.
             </Typography>
           </TimelineHeader>
           <TimelineBody className="pb-8">
             <Typography
               variant="small"
-              color="gary"
               className="font-normal text-gray-600"
             >
               The key to more success is to have a lot of pillows. Put it this
@@ -59,15 +58,14 @@ const news: React.FC<NewsProps> = ({}) => {
         </TimelineItem>
         <TimelineItem>
           <TimelineHeader className="h-3">
-            <TimelineIcon />
-            <Typography variant="h6" color="blue-gray" className="leading-none">
+            <TimelineIcon className="bg-eggplant"/>
+            <Typography variant="h6" className="leading-none text-eggplant">
               Timeline Title Here.
             </Typography>
           </TimelineHeader>
           <TimelineBody>
             <Typography
               variant="small"
-              color="gary"
               className="font-normal text-gray-600"
             >
               The key to more success is to have a lot of pillows. Put it this

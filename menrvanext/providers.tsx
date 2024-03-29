@@ -33,6 +33,8 @@ export { MagnifyingGlassIcon, HomeIcon, UserIcon, ArrowRightEndOnRectangleIcon, 
 export { ArrowRightIcon, ChevronDownIcon } from "@heroicons/react/24/solid"
 export { AtSymbolIcon, ExclamationCircleIcon, KeyIcon, XMarkIcon, } from '@heroicons/react/24/outline';
 
+export const eggplant = "#673C4F";
+
 import { Provider } from "react-redux";
 import { store } from "./app/lib/store/store";
 
