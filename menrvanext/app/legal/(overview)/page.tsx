@@ -1,5 +1,5 @@
-import AboutCard from "@/app/ui/about/aboutCard";
-import TeamCard from "@/app/ui/about/teamCard";
+import Privacy from "@/app/ui/legal/privacy";
+import Terms from "@/app/ui/legal/terms";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <main className="w-screen min-h-[calc(100vh-295px)] bg-old-lace bg-dark:onyx">
-      <AboutCard/>
-      <TeamCard/>
+      <Privacy/>
+      <Terms/>
     </main>
   );
 }

@@ -1,4 +1,3 @@
-import Privacy from "@/app/ui/privacy";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,8 +6,7 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   return (
-    <main className="">
-      <Privacy/>
+    <main className="w-screen min-h-[calc(100vh-295px)] bg-old-lace bg-dark:onyx">
     </main>
   );
 }
