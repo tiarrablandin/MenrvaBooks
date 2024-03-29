@@ -4,13 +4,13 @@ import Link from "next/link";
 const SITEMAP = [
   {
     title: "Company",
-    links: ["About Us", "Join Our Team", "Terms of Use", 'Privacy'],
-    routes: ["about", "careers", "terms", "privacy"]
+    links: ["About Us", "Join Our Team", "Newsroom", "Legal & Privacy"],
+    routes: ["about", "careers", "news", "legal"]
   },
   {
-    title: "Resources",
-    links: ["Blog", "FAQ", "Contact Us"],
-    routes: ["blog", "faq", "contact"]
+    title: "Help & Support",
+    links: ["Contact Us", "FAQ", "Pricing"],
+    routes: ["contact", "faq", "subscriptions"]
   },
 ];
 
