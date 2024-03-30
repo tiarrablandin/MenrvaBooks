@@ -103,7 +103,7 @@ export function CustomNavbar() {
             </Link>
           </Typography>
           <div className="hidden lg:block">{navList}</div>
-          <SearchBar />
+          {/* <SearchBar /> */}
           <ThemeToggle />
           <IconButton
             variant="text"

@@ -15,7 +15,7 @@ const accordionBodies=[
 
   return (
       <div className="flex flex-col items-center pt-10 max-w-2/3">
-        <Typography variant="h3" className="pb-6">
+        <Typography variant="h3" className="pb-6 text-eggplant">
           Questions? We might have answered them already!
         </Typography>
 

@@ -37,9 +37,8 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title }) => {
   return (
     <>
       <Typography
-        color="white"
         variant="h1"
-        className={`${lusi.className} self-start ml-16 mt-10`}
+        className={`${lusi.className} self-start ml-16 mt-10 text-eggplant`}
       >
         {title}
       </Typography>
