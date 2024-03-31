@@ -18,11 +18,11 @@ const currentYear = new Date().getFullYear();
 
 export function Footer() {
   return (
-    <footer className="absolute bottom-0 w-full bg-pink-lavender dark:bg-dark:chinese-violet">
-      <div className="mx-auto w-full max-w-7xl px-8 h-full flex flex-col justify-between items-center">
-        <div className="mx-auto w-full flex flex-row justify-end">
+    <footer className="w-full bg-pink-lavender dark:bg-chinese-violet">
+      <div className="w-full max-w-7xl px-8 h-full">
+        <div className="w-2/3 flex flex-row justify-start">
           {SITEMAP.map(({ title, links, routes }, key) => (
-            <div key={key} className="w-full text-center">
+            <div key={key} className="w-3/5 text-start">
               <Typography
                 variant="small"
                 style={{ color: '#673C4F' }}

@@ -14,9 +14,8 @@ const accordionBodies=[
 ]
 
   return (
-    <div>
-      <div className="flex flex-col items-center min-h-screen pt-10 max-w-2/3">
-        <Typography variant="h3" className="pb-6">
+      <div className="flex flex-col items-center pt-10 max-w-2/3">
+        <Typography variant="h3" className="pb-6 text-eggplant">
           Questions? We might have answered them already!
         </Typography>
 
@@ -26,7 +25,6 @@ const accordionBodies=[
           body={accordionBodies[0]}/>
         </Card>
       </div>
-    </div>
   );
 };
 

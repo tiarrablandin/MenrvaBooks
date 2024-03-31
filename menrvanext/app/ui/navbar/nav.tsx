@@ -92,7 +92,7 @@ export function CustomNavbar() {
 
   return (
     <>
-      <Navbar className="sticky min-w-full rounded-none border-none px-4 py-2 lg:px-8 lg:py-3 bg-[#e1bee7] bg-dark:chinese-violet">
+      <Navbar className="min-w-full rounded-none border-none px-4 py-2 lg:px-8 lg:py-3 bg-[#e1bee7] bg-dark:chinese-violet">
         <div className="container mx-auto flex flex-wrap items-center justify-between text-[#673c4f]">
           <Typography
             className={`mr-4 cursor-pointer py-1.5 font-medium ${inter.className}`}
@@ -103,7 +103,7 @@ export function CustomNavbar() {
             </Link>
           </Typography>
           <div className="hidden lg:block">{navList}</div>
-          <SearchBar />
+          {/* <SearchBar /> */}
           <ThemeToggle />
           <IconButton
             variant="text"

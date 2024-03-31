@@ -7,7 +7,7 @@ const contactForm: React.FC<ContactFormProps> = ({}) => {
   return (
       <div className="flex justify-center items-center max-h-screen h-[70vh]">
         <Card
-          className="flex items-center p-10 bg-pink-lavender dark:bg-dark:chinese-violet bg-opacity-80"
+          className="flex items-center p-10 bg-opacity-80"
           shadow={false}
         >
           <Typography variant="h4" className="text-eggplant">
@@ -55,7 +55,7 @@ const contactForm: React.FC<ContactFormProps> = ({}) => {
                 crossOrigin={undefined}
               />
             </div>
-            <Button className="mt-6" fullWidth>
+            <Button className="mt-6 bg-eggplant" fullWidth>
               submit
             </Button>
           </form>
