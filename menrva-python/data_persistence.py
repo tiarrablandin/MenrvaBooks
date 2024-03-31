@@ -13,16 +13,19 @@ es = Elasticsearch("http://3.137.26.103:9200")
 
 
 def insert_books_into_database(books=[]):
-    print(f"BOOKS INSIDE INSERT BOOKS INTO DATABASE: {books}")
     with mysql.connector.connect(**db_config) as conn:
         with conn.cursor() as cursor:
             for book in books:
+                print(f"BOOK INSIDE INSERT BOOKS INTO DATABASE: {books}")
                 title = book.get('title', 'Unknown Title')
-                authors = ', '.join(book.get('creator', ['Unknown Author']))  # Join multiple authors
+                # authors = ', '.join(book.get('creator', ['Unknown Author']))  # Join multiple authors
                 cover = book.get('cover', '')
                 description = book.get('description', 'No description available.')
-                page_count = book.get('pageCount', 0)
-                publication_date = book.get('publicationDate', '1900-01-01')
+                page_count = book.get('page_count')
+                publication_date = book.get('publication_date', '1900')
+                # Check if the publication_date is just a year and format it
+                if publication_date.isdigit() and len(publication_date) == 4:
+                    publication_date = f"{publication_date}-01-01"  # Defaulting to January 1st
                 date_added = datetime.now().strftime('%Y-%m-%d')
                 reviewed = 0
                 date_updated = date_added  # Using the same date as added for simplicity
@@ -30,7 +33,7 @@ def insert_books_into_database(books=[]):
                 # author = ', '.join(book['creator']) if isinstance(book.get('creator'), list) else book.get('creator', 'No author available')
 
                 insert_query = """
-                INSERT INTO book (cover, title, description, page_count, publication_date, date_added, reviewed, date_updated, series_id)
+                INSERT IGNORE INTO book (cover, title, description, page_count, publication_date, date_added, reviewed, date_updated, series_id)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                 """
                 book_data = (cover, title, description, page_count, publication_date, date_added, reviewed, date_updated, series_id)
