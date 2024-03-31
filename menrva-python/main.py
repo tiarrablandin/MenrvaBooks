@@ -13,11 +13,13 @@ def process_books_by_genre(genre):
             work_id = fetch_work_id_for_title(title)
             if work_id:
                 editions = fetch_editions_for_work_id(work_id)
-                print(f"******************************************************** EDITIONS: {editions} *****************************************************************")
+                print(f"******************************************************** EDITIONS: {len(editions)} *****************************************************************")
                 recent_editions = filter_recent_editions(editions)
+                print(f"******************************************************** RECENT EDITIONS: {recent_editions} *****************************************************************")
                 if recent_editions:
                     selected_edition = recent_editions[0]
-                    insert_books_into_database([selected_edition])
+                print(f"******************************************************** SELECTED EDITION: {selected_edition} *****************************************************************")
+                    # insert_books_into_database([selected_edition])
 
 if __name__ == "__main__":
     process_books_by_genre("Fantasy")

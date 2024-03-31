@@ -17,7 +17,10 @@ def fetch_popular_books_from_ol_by_genre(genre):
     url = f'https://openlibrary.org/search.json?subject={genre}&limit=5'
     response = requests.get(url)
     if response.status_code == 200:
-        books = response.json()['docs']
+        results = response.json()['docs']
+        for result in results:
+            cover_id = result.get('cover_i')
+            cover_url = f'http://covers.openlibrary.org/b/id/{cover_id}-L.jpg' if cover_id else ''
         print(f"BOOKS INSIDE FETCH POPULAR BOOKS FROM OPEN LIBRARY: {books}")
         return books
     else:
