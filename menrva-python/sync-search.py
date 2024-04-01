@@ -11,7 +11,10 @@ db_config = {
 conn = mysql.connector.connect(**db_config)
 cursor = conn.cursor()
 
-es = Elasticsearch("http://3.147.13.127:9200")
+es = Elasticsearch(
+    [{"host": "3.137.26.103", "port": 9200, "scheme": "https"}],
+    request_timeout=120,
+)
 
 
 query = "SELECT * FROM book"
@@ -20,6 +23,7 @@ books = cursor.fetchall()
 
 
 for book in books:
+    print(book)
     id, cover, title, description, page_count, publication_date, date_added, reviewed, date_updated, series_id = book
     document = {
         "id": id,

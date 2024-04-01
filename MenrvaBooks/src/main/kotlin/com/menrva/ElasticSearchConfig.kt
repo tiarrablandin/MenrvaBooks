@@ -14,6 +14,8 @@ class ElasticSearchConfig(
     override fun clientConfiguration(): ClientConfiguration {
         return ClientConfiguration.builder()
             .connectedTo("3.137.26.103:9200")
+            .usingSsl()
+            .withBasicAuth("elastic", "elastic")
             .withSocketTimeout(40000)
             .build()
     }

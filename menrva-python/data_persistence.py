@@ -9,7 +9,7 @@ db_config = {
     'database': 'menrvadb',
     'port': 3306
 }
-es = Elasticsearch("http://3.137.26.103:9200")
+# es = Elasticsearch("http://3.137.26.103:9200")
 
 
 def insert_books_into_database(books=[]):
@@ -66,5 +66,5 @@ def insert_books_into_elasticsearch(books=[]):
             "date_updated": date_updated,
             "series_id": series_id
         }
-    response = es.index(index="books", id=id, document=document)
-    print(response['result'])
+    # response = es.index(index="books", id=id, document=document)
+    # print(response['result'])

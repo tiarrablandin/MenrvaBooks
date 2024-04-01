@@ -6,6 +6,11 @@ const nextConfig = {
             hostname: "i.imgur.com",
             pathname: "/**",
             port: ""
+        }, {
+            protocol: "http",
+            hostname: "covers.openlibrary.org",
+            pathname: "/**",
+            port: ""
         }]
     }
 };

@@ -24,4 +24,4 @@ def process_popular_books_by_genre(genre):
         insert_books_into_database([book_object])
 
 if __name__ == "__main__":
-    process_popular_books_by_genre("Fantasy")
+    process_popular_books_by_genre("Fiction")
