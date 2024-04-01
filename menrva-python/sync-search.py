@@ -12,7 +12,7 @@ conn = mysql.connector.connect(**db_config)
 cursor = conn.cursor()
 
 es = Elasticsearch(
-    [{"host": "3.137.26.103", "port": 9200, "scheme": "http"}],
+    [{"host": "3.137.26.103", "port": 9200, "scheme": "https"}],
     request_timeout=120,
 )
 
