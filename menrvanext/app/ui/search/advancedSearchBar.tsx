@@ -1,16 +1,33 @@
 'use client';
 
+import { fetchSuggestions, setSearchTerm } from "@/app/lib/store/searchSlice";
+import { RootState, useAppDispatch } from "@/app/lib/store/store";
 import { Button, Input, Typography } from '@/providers';
+import { debounce } from "lodash";
 import { Lusitana } from 'next/font/google';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useSelector } from "react-redux";
 
 const lusi = Lusitana({ subsets: ["latin"], weight: "400" });
 
 const AdvancedSearchBar = () => {
-    const [searchTerm, setSearchTerm] = useState("");
+    const dispatch = useAppDispatch();
+    const { searchTerm, suggestions } = useSelector((state: RootState) => state.search);
+    const [inputValue, setInputValue] = useState("");
+
+    const debouncedSetSearchTerm = debounce((value) => {
+        dispatch(setSearchTerm(value));
+    }, 300)
+
+    useEffect(() => {
+        if (searchTerm && searchTerm.length > 2) {
+            dispatch(fetchSuggestions(searchTerm))
+        }
+    }, [searchTerm, dispatch]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(event.target.value);
+        setInputValue(event.target.value); // Update inputValue which is local component state
+        debouncedSetSearchTerm(event.target.value);
         // Debounce this call if implementing autocomplete or instant search
     };
 
@@ -30,12 +47,12 @@ const AdvancedSearchBar = () => {
                 placeholder="Search for books, authors, genres..."
                 label="Search"
                 // * for no label:
-                // * labelProps={{
-                // *     className: "before:content-none after:content-none content-none",
-                // * }}
-                // * containerProps={{
-                // *     className: "min-w-0"
-                // * }}
+                // labelProps={{
+                //     className: "before:content-none after:content-none content-none",
+                // }}
+                // containerProps={{
+                //     className: "min-w-0"
+                // }}
                 onChange={handleInputChange}
             />
             <Button

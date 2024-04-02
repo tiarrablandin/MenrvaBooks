@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import bookReducer from './bookSlice';
 import userReducer from './userSlice';
 import themeReducer from './themeSlice';
+import searchReducer from './searchSlice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
     book: bookReducer,
     user: userReducer,
     theme: themeReducer,
+    search: searchReducer
   },
 });
 
