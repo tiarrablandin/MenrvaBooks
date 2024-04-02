@@ -17,7 +17,7 @@ export async function fetchNewReleases(): Promise<BookResponse[]> {
 }
 
 export async function fetchSearchResults(searchTerm: string): Promise<BookResponse[]> {
-  const response = await fetch(`${url}/books/search/${searchTerm}`);
+  const response = await fetch(`${url}/search/books?title=${searchTerm}`);
   return response.json();
 }
 
