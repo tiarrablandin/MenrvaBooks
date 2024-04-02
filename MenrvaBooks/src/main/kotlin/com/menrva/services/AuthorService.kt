@@ -1,9 +1,11 @@
 package com.menrva.services
 
+import com.menrva.data.AuthorUpdateDTO
 import com.menrva.entities.Author
 import com.menrva.repositories.AuthorRepository
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class AuthorService(
@@ -18,16 +20,17 @@ class AuthorService(
     fun create(author: Author): Author = authorRepo.save(author)
 
     @Transactional
-    fun update(id: Long, updatedAuthor: Author): Author? {
+    fun update(id: Long, authorUpdateDTO: AuthorUpdateDTO): Author? {
         val author: Author = authorRepo.findById(id).orElse(null) ?: return null
-        author.apply {
-            photo = updatedAuthor.photo
-            penName = updatedAuthor.penName
-            bio = updatedAuthor.bio
-            text = updatedAuthor.text
+
+        val updatedAuthor= author.copy(
+            photo = authorUpdateDTO.photo ?: author.photo,
+            penName = authorUpdateDTO.penName ?: author.penName,
+            bio = authorUpdateDTO.bio ?: author.bio,
+            text = authorUpdateDTO.text ?: author.text,
             // Do not update `dateCreated`; it's set automatically
-        }
-        return authorRepo.save(author)
+        )
+        return authorRepo.save(updatedAuthor)
     }
 
     @Transactional

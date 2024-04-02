@@ -17,15 +17,15 @@ data class User(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
     @Column(name = "first_name")
-    var firstName: String,
+    val firstName: String,
     @Column(name = "last_name")
-    var lastName: String,
-    var tag: String,
-    var username: String,
-    var password: String,
-    var active: Boolean,
-    var role: String,
-    var email: String,
+    val lastName: String,
+    val tag: String,
+    val username: String,
+    val password: String,
+    val active: Boolean,
+    val role: String,
+    val email: String,
     @Column(name = "date_added")
     @CreationTimestamp
     val dateAdded: LocalDate,
