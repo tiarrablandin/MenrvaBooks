@@ -17,7 +17,7 @@ import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../lib/store/userSlice";
-import SearchBar from "../searchBar";
+import SearchBar from "../search/searchBar";
 import LoginForm from "./login";
 import ThemeToggle from "../theme/themeToggle";
 import RegisterForm from "./register";
