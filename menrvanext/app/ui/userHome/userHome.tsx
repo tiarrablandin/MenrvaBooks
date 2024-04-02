@@ -4,7 +4,7 @@ import { fetchBooks, fetchNewReleases, fetchRecommendationsForUser } from "@/app
 import BookSlider from "../book/bookSlider";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "@/app/lib/store/userSlice";
-import SearchBar from "../searchBar";
+import SearchBar from "../search/searchBar";
 
 const UserComponent = () => {
   const user = useSelector(selectCurrentUser);
