@@ -12,6 +12,7 @@ data class UserDTO(
     val active: Boolean,
     val role: String,
     val email: String,
+    val password: String,
 ) {
     constructor(user: User) : this(
         id = user.id,
@@ -21,6 +22,7 @@ data class UserDTO(
         username = user.username,
         active = user.active,
         role = user.role,
-        email = user.email
+        email = user.email,
+        password = user.password
     )
 }

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonIdentityInfo
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import jakarta.persistence.*
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDate
 
 @JsonIdentityInfo(
@@ -25,8 +27,10 @@ data class User(
     val role: String,
     val email: String,
     @Column(name = "date_added")
+    @CreationTimestamp
     val dateAdded: LocalDate,
     @Column(name = "date_updated")
+    @UpdateTimestamp
     val dateUpdated: LocalDate,
     @JsonBackReference(value = "user")
     @OneToMany(mappedBy = "user")
