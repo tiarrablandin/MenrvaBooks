@@ -7,7 +7,9 @@ import java.io.Serializable
 
 @Embeddable
 data class BookInteractionId(
+    @Column(name = "user_id", nullable = false)
     val userId: Int,
+    @Column(name = "book_id", nullable = false)
     val bookId: Int
 ) : Serializable
 
@@ -19,6 +21,7 @@ data class BookInteractionId(
 @Table(name = "book_interactions")
 data class BookInteractions(
     @EmbeddedId
+    @Id
     val id: BookInteractionId,
     @ManyToOne @JoinColumn(name = "book_id") @MapsId("bookId")
     val book: Book,

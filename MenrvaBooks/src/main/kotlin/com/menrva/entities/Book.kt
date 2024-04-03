@@ -1,6 +1,7 @@
 package com.menrva.entities
 
 import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import org.springframework.data.elasticsearch.annotations.Document
 import org.springframework.data.elasticsearch.annotations.Field
@@ -39,7 +40,8 @@ data class Book(
         inverseJoinColumns = [JoinColumn(name = "genre_id")]
     )
     val genres: Set<Genre> = HashSet(),
-    @JsonBackReference(value = "books")
+//    @JsonBackReference(value = "books")
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "book_has_keyword",
@@ -47,7 +49,8 @@ data class Book(
         inverseJoinColumns = [JoinColumn(name = "keyword_id")]
     )
     val keywords: Set<Keyword> = HashSet(),
-    @JsonBackReference(value = "books")
+    @JsonIgnore
+//    @JsonBackReference(value = "books")
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "book_has_tag",
@@ -55,24 +58,26 @@ data class Book(
         inverseJoinColumns = [JoinColumn(name = "tag_id")]
     )
     val tags: Set<Tag> = HashSet(),
-    @JsonBackReference(value = "books")
+    @JsonIgnore
+//    @JsonBackReference(value = "books")
     @ManyToOne @JoinColumn(name = "series_id")
     val series: Series?,
     @OneToMany(mappedBy = "book")
-    val bookInteractions: Set<BookInteractions> = HashSet()
-) {
+    val bookInteractions: Set<BookInteractions> = HashSet(),
+    @ManyToMany(mappedBy = "books")
+    val authors: MutableSet<Author> = mutableSetOf(),
 
     @ManyToMany(mappedBy = "books")
-    val authors: MutableSet<Author> = mutableSetOf()
-
-    @ManyToMany(mappedBy = "books")
-    val subGenres: MutableSet<SubGenre> = mutableSetOf()
+    val subGenres: MutableSet<SubGenre> = mutableSetOf(),
 
     @OneToMany(mappedBy = "book")
-    val comments: MutableSet<Comment> = mutableSetOf()
+    val comments: MutableSet<Comment> = mutableSetOf(),
 
     @OneToMany(mappedBy = "book")
     val links: MutableSet<Link> = mutableSetOf()
+) {
+
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
