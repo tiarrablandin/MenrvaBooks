@@ -8,9 +8,9 @@ import java.io.Serializable
 @Embeddable
 data class BookInteractionId(
     @Column(name = "user_id", nullable = false)
-    val userId: Int,
+    val userId: Int? = null,
     @Column(name = "book_id", nullable = false)
-    val bookId: Int
+    val bookId: Int? = null,
 ) : Serializable
 
 @JsonIdentityInfo(
@@ -21,12 +21,11 @@ data class BookInteractionId(
 @Table(name = "book_interactions")
 data class BookInteractions(
     @EmbeddedId
-    @Id
     val id: BookInteractionId,
     @ManyToOne @JoinColumn(name = "book_id") @MapsId("bookId")
-    val book: Book,
+    val book: Book? = null,
     @ManyToOne @JoinColumn(name = "user_id") @MapsId("userId")
-    val user: User,
+    val user: User? = null,
     @Column(name = "has_read")
     val hasRead: Boolean = false,
     @Column(name = "interested")
