@@ -37,7 +37,7 @@ export {
   Tooltip,
   Typography,
 } from "@material-tailwind/react";
-export { MagnifyingGlassIcon, HomeIcon, UserIcon, ArrowRightEndOnRectangleIcon, ArrowLeftStartOnRectangleIcon } from "@heroicons/react/20/solid"
+export { MagnifyingGlassIcon, HomeIcon, UserIcon, ArrowRightEndOnRectangleIcon, ArrowLeftStartOnRectangleIcon, CheckCircleIcon } from "@heroicons/react/20/solid"
 export { ArrowRightIcon, ChevronDownIcon } from "@heroicons/react/24/solid"
 export { AtSymbolIcon, ExclamationCircleIcon, KeyIcon, XMarkIcon, } from '@heroicons/react/24/outline';
 
