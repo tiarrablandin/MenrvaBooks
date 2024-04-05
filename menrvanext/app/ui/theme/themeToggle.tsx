@@ -17,16 +17,13 @@ const ThemeToggle = () => {
   };
 
   return (
-    <div className="flex items-center justify-stretch w-28 ">
-      {/* Sun Icon */}
-      <SunIcon className={`h-6 w-6 ${theme === 'dark' ? 'text-gray-400' : 'text-yellow-500'}`} />
-
-      {/* Material Tailwind Switch */}
+    <div className="flex items-center justify-between w-28 ml-auto -mr-48 lg:mr-0">
+      <SunIcon className={`h-8 w-8 ${theme === 'dark' ? 'text-gray-400' : 'text-yellow-500'}`} />
       <Switch
         color="blue"
         checked={theme === 'dark'}
         onChange={handleToggleTheme}
-        className="w-8"
+        className="w-10"
         containerProps={{
           className: "mr-3"
         }}
@@ -35,9 +32,7 @@ const ThemeToggle = () => {
         }}
         ripple={false}
       />
-
-      {/* Moon Icon */}
-      <MoonIcon className={`h-6 w-6 ${theme === 'dark' ? 'text-indigo-500' : 'text-gray-400'}`} />
+      <MoonIcon className={`h-7 w-7 ${theme === 'dark' ? 'text-indigo-500' : 'text-gray-400'}`} />
     </div>
   );
 };

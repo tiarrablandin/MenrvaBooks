@@ -3,16 +3,19 @@
 import { RootState } from "@/app/lib/store/store";
 import { useSelector } from 'react-redux';
 import SuggestionCard from './suggestionCard';
+import { List, ListItem } from "@/providers";
 
 const SuggestionCards = () => {
   const { suggestions } = useSelector((state: RootState) => state.search);
 
   return (
-    <div className="suggestions-container w-[72.5%] ml-3" >
-      {suggestions.map((book) => (
-        <SuggestionCard key={book.id} book={book} />
+    <List className="-mt-1 rounded w-[72.5%] mr-auto ml-1 flex flex-col p-0 py-1">
+      {suggestions.map((book, key) => (
+        <ListItem key={key} className="p-1 hover:bg-eggplant/60 -my-1">
+          <SuggestionCard key={book.id} book={book} />
+        </ListItem>
       ))}
-    </div>
+    </List>
   );
 };
 
