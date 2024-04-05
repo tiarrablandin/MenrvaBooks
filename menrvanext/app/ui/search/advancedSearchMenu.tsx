@@ -15,12 +15,11 @@ const AdvancedSearchMenu = () => {
             <Menu open={isMenuOpen} handler={setIsMenuOpen}>
                 <MenuHandler>
                     <Button
-                        className='w-[45%] h-12 flex items-center justify-center'
-                        color="light-blue"
+                        className='w-[45%] h-12 flex items-center justify-center bg-transparent'
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         ripple={true}
                     >
-                        <Typography className={`${lusi.className} normal-case text-nowrap tracking-wider flex items-center ml-2`} variant='lead' as='p'>
+                        <Typography className={`${lusi.className} normal-case text-nowrap tracking-wider flex items-center ml-2 underline underline-offset-4`} variant='lead' as='p'>
                             Advanced Search
                             <ChevronDownIcon
                                 strokeWidth={2.5}

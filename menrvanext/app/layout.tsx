@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <ReduxProvider>
         <MenrvaThemeProvider>
-          <body className={`${inter.className}`}>
+          <body className={`${inter.className} bg-old-lace dark:bg-onyx`}>
             <CustomNavbar />
             {children}
           <Footer />
