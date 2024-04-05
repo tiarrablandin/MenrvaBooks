@@ -41,13 +41,13 @@ export function CustomNavbar() {
     <ul
       className={`${inter.className} mt-2 mb-4 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6`}
     >
-      <Typography as="li" variant="small" className={`${iconClass}`}>
+      <Typography as="li" variant="small" className={`${iconClass} transition-transform hover:scale-105`}>
         <HomeIcon className="h-5 w-4 text-[#673C4F]" />
         <Link href="/home" className="flex items-center mt-1">
           Home
         </Link>
       </Typography>
-      <Typography as="li" variant="small" className={`${iconClass}`}>
+      <Typography as="li" variant="small" className={`${iconClass} transition-transform hover:scale-105`}>
         {currentUser ? (
           <>
             <UserIcon className="h-5 w-4 text-[#673C4F]" />
@@ -67,7 +67,7 @@ export function CustomNavbar() {
           </>
         )}
       </Typography>
-      <Typography as="li" variant="small" className={`${iconClass}`}>
+      <Typography as="li" variant="small" className={`${iconClass} transition-transform hover:scale-105`}>
         {currentUser ? (
           <>
             <ArrowLeftStartOnRectangleIcon className="h-5 w-4 text-[#673C4F]" />
@@ -92,12 +92,11 @@ export function CustomNavbar() {
 
   return (
     <>
-      <Navbar className="min-w-full rounded-none border-none px-4 py-2 lg:px-8 lg:py-3 bg-[#e1bee7] bg-dark:chinese-violet">
+      <Navbar className="min-w-full rounded-none border-none px-4 py-2 lg:px-8 lg:py-3 bg-pink-lavender dark:bg-chinese-violet">
         <div className="container mx-auto flex flex-wrap items-center justify-between text-[#673c4f]">
           <Typography
             className={`mr-4 cursor-pointer py-1.5 font-medium ${inter.className}`}
             variant="h3"
-            color="eggplant"
           >
             <Link href="/home" className="flex items-center">
               Menrva Books

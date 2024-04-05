@@ -18,7 +18,7 @@ const HomeComponent: React.FC = () => {
     return fetchBooks()
   }
   return (
-    <div className='w-screen h-full flex flex-col items-center dark:bg-eggplant' >
+    <div className='w-screen h-full flex flex-col items-center dark:bg-onyx' >
       <AdvancedSearchComponent/>
       <BookSlider 
       fetchData={fetchNewReleasesSlider} 

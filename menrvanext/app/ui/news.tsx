@@ -14,8 +14,8 @@ interface NewsProps {}
 
 const news: React.FC<NewsProps> = ({}) => {
   return (
-    <div className="flex justify-center bg-old-lace">
-      <Timeline className="w-4/5 my-20 bg-old-lace bg-dark:onyx">
+    <div className="flex justify-center">
+      <Timeline className="w-4/5 my-20">
         <TimelineItem>
           <TimelineConnector className=""/>
           <TimelineHeader className="h-3 text-eggplant">
