@@ -97,6 +97,7 @@ export function CustomNavbar() {
           <Typography
             className={`mr-4 cursor-pointer py-1.5 font-medium ${inter.className}`}
             variant="h3"
+            color="eggplant"
           >
             <Link href="/home" className="flex items-center">
               Menrva Books

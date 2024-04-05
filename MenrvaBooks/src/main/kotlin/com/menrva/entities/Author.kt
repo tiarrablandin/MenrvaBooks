@@ -29,7 +29,7 @@ data class Author(
         inverseJoinColumns = [JoinColumn(name = "book_id")]
     )
     val books: MutableSet<Book> = mutableSetOf(),
-
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "author_has_series",
