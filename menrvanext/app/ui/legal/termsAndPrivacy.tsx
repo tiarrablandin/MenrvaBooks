@@ -3,29 +3,47 @@ import Terms from "./terms";
 import Privacy from "./privacy";
 import { Tabs, TabsHeader, TabsBody, Tab, TabPanel } from "@/providers";
 
+const data = [
+  {
+    label: "Terms of Use",
+    value: "terms",
+  },
+  {
+    label: "Privacy Policy",
+    value: "privacy",
+  },
+];
+
 interface TermsAndPrivacyProps {}
 
 const termsAndPrivacy: React.FC<TermsAndPrivacyProps> = ({}) => {
   return (
     <div>
-      <Tabs value="html">
-        <TabsHeader>
+      <Tabs value="terms" className="py-8">
+        <TabsHeader className="flex justify-center bg-transparent">
           {data.map(({ label, value }) => (
-            <Tab key={value} value={value}>
+            <Tab key={value} value={value} className="w-1/5">
               {label}
             </Tab>
           ))}
         </TabsHeader>
         <TabsBody>
-          {data.map(({ value, desc }) => (
+          {data.map(({ value }) => (
             <TabPanel key={value} value={value}>
-              {desc}
+              {value === "terms" && (
+                <div className="flex justify-center gap-8">
+                  <Terms/>
+                </div>
+              )}
+              {value === "privacy" && (
+                <div className="flex justify-center pt-8 gap-8">
+                  <Privacy/>
+                </div>
+              )}
             </TabPanel>
           ))}
         </TabsBody>
       </Tabs>
-      <Terms />
-      <Privacy />
     </div>
   );
 };

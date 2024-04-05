@@ -6,7 +6,7 @@ interface PrivacyProps {}
 const Privacy: React.FC<PrivacyProps> = ({}) => {
   return (
     <div className="flex items-center flex-col">
-      <Card className="flex items-center w-[90%] my-10">
+      <Card className="flex items-center w-[90%] my-4">
         <Typography variant="h3" className="flex justify-center pt-10">
           Privacy Policy
         </Typography>
