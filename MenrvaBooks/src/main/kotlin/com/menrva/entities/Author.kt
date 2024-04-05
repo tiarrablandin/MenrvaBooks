@@ -41,6 +41,7 @@ data class Author(
     @OneToMany(mappedBy = "author")
     val socialMedia: MutableSet<SocialMedia> = mutableSetOf(),
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "authors")
     val users: MutableSet<User> = mutableSetOf(),
 

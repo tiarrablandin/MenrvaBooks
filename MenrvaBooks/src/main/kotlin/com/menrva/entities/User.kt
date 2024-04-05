@@ -2,6 +2,7 @@ package com.menrva.entities
 
 import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonIdentityInfo
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
@@ -38,13 +39,13 @@ data class User(
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "subscription_id", nullable = true)
     val subscription: Subscription? = null,
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     val comments: MutableSet<Comment> = mutableSetOf(),
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     val seriesInteractions: MutableSet<SeriesInteraction> = mutableSetOf(),
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     val author: MutableSet<Author> = mutableSetOf(),
 
