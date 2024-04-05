@@ -10,21 +10,21 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.web.filter.OncePerRequestFilter
 
 class AuthTokenFilter(
-    private val jwtUtil: JwtUtil?, private val userDetailsService: UserDetailsServiceImpl?,
 ) : OncePerRequestFilter() {
-
+    private lateinit var jwtUtil: JwtUtil
+    private lateinit var userDetailsService: UserDetailsServiceImpl
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
         filterChain: FilterChain,
     ) {
         val jwt = parseJwt(request)
-        val username = jwtUtil?.extractUsername(jwt)
+        val username = jwtUtil.extractUsername(jwt)
         val userDetails = userDetailsService?.loadUserByUsername(username!!)
         println("*******************************************************")
         println(userDetails)
-        if (jwt != null && jwtUtil != null && jwtUtil.validateToken(jwt, userDetails!!)) {
-            val authentication = UsernamePasswordAuthenticationToken(userDetails, null, userDetails?.authorities)
+        if (jwt != null && jwtUtil.validateToken(jwt, userDetails!!)) {
+            val authentication = UsernamePasswordAuthenticationToken(userDetails, null, userDetails.authorities)
             authentication.details = WebAuthenticationDetailsSource().buildDetails(request)
             SecurityContextHolder.getContext().authentication = authentication
         }

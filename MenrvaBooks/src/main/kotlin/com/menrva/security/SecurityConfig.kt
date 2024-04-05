@@ -36,6 +36,7 @@ class SecurityConfig {
                         "api/search/**",
                         "api/series/**",
                         "api/tags/**",
+                        "register",
                     ).permitAll()
                     .anyRequest().authenticated()
             }
@@ -50,6 +51,7 @@ class SecurityConfig {
                     "api/search/**",
                     "api/series/**",
                     "api/tags/**",
+                    "register",
                 )
             }
         return http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java).build()
