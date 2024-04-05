@@ -1,6 +1,7 @@
 package com.menrva.services
 
 import com.menrva.data.UserDetailsImpl
+import com.menrva.entities.Subscription
 import com.menrva.entities.User
 import com.menrva.repositories.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
@@ -12,8 +13,8 @@ import org.springframework.stereotype.Service
 @Service
 class UserDetailsServiceImpl(
     private val userRepository: UserRepository,
+    private val passwordEncoder: PasswordEncoder,
 ) : UserDetailsService {
-    private lateinit var passwordEncoder: PasswordEncoder
 //    THIS IS AN IMPLEMENTATION OF THE SPRING SECURITY USER DETAILS SERVICE
 //    DOES NOT RETURN FULL USER OBJECTS
 
@@ -34,12 +35,15 @@ class UserDetailsServiceImpl(
     fun existsByUsername(username: String): Boolean = userRepository.existsByUsername(username)
 
     fun save(user: User): User {
+        println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ IN SERVICE 1")
         // Ensure you encode the password if not already done before calling this method
         val newPassword = passwordEncoder.encode(user.password)
-        val updatedUserDTO = user.copy(password = newPassword)
+        println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ IN SERVICE 2 $newPassword")
+        val updatedUser = user.copy(password = newPassword, subscription = Subscription(1))
+        println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ IN SERVICE 3 $updatedUser")
 
 
-        return userRepository.save(updatedUserDTO)
+        return userRepository.save(updatedUser)
     }
 
 }

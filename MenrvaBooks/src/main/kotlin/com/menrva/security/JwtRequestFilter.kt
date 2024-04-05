@@ -1,5 +1,6 @@
 package com.menrva.security
 
+import com.menrva.services.UserDetailsServiceImpl
 import jakarta.servlet.FilterChain
 import jakarta.servlet.ServletException
 import jakarta.servlet.http.HttpServletRequest
@@ -15,9 +16,11 @@ import java.io.IOException
 
 @Component
 class JwtRequestFilter(
-        private val jwtUtil: JwtUtil,
-        private val userService: UserDetailsService,
+//        private val jwtUtil: JwtUtil,
+//        private val userService: UserDetailsService,
 ) : OncePerRequestFilter() {
+    private lateinit var jwtUtil: JwtUtil
+    private lateinit var userDetailsService: UserDetailsServiceImpl
 
     @Throws(ServletException::class, IOException::class)
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, chain: FilterChain) {
@@ -31,8 +34,8 @@ class JwtRequestFilter(
             }
         }
         if (username != null && SecurityContextHolder.getContext().authentication == null) {
-            val userDetails = userService.loadUserByUsername(username)
-            if (jwtUtil.validateToken(jwt, userDetails!!)) {
+            val userDetails = userDetailsService.loadUserByUsername(username)
+            if (jwtUtil.validateToken(jwt, userDetails)) {
                 val usernamePasswordAuthenticationToken = UsernamePasswordAuthenticationToken(userDetails, null, userDetails.authorities)
                 usernamePasswordAuthenticationToken.details = WebAuthenticationDetailsSource().buildDetails(request)
                 SecurityContextHolder.getContext().authentication = usernamePasswordAuthenticationToken

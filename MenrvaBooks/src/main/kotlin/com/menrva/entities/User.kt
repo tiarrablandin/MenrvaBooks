@@ -8,10 +8,10 @@ import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDate
 
-@JsonIdentityInfo(
-    generator = ObjectIdGenerators.PropertyGenerator::class,
-    property = "id"
-)
+//@JsonIdentityInfo(
+//    generator = ObjectIdGenerators.PropertyGenerator::class,
+//    property = "id"
+//)
 @Entity
 data class User(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,7 +62,7 @@ data class User(
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "genre_id")]
     )
-    open var genres: MutableSet<Genre> = mutableSetOf(),
+    val genres: MutableSet<Genre> = mutableSetOf(),
 
     @ManyToMany
     @JoinTable(
@@ -70,7 +70,7 @@ data class User(
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "keyword_id")]
     )
-    open var keywords: MutableSet<Keyword> = mutableSetOf(),
+    val keywords: MutableSet<Keyword> = mutableSetOf(),
 
     @ManyToMany
     @JoinTable(
@@ -78,7 +78,7 @@ data class User(
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "sub_genre_id")]
     )
-    open var subGenres: MutableSet<SubGenre> = mutableSetOf(),
+    val subGenres: MutableSet<SubGenre> = mutableSetOf(),
 ) {
 
     override fun equals(other: Any?): Boolean {
