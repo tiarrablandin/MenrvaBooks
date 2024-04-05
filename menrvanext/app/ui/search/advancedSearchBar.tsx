@@ -27,7 +27,7 @@ const AdvancedSearchBar = () => {
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value); // Update inputValue which is local component state
-        if (event.target.value === "") { dispatch(fetchSuggestions(""))}
+        if (event.target.value === "") { dispatch(fetchSuggestions("")) }
         debouncedSetSearchTerm(event.target.value);
         // Debounce this call if implementing autocomplete or instant search
     };
@@ -41,7 +41,7 @@ const AdvancedSearchBar = () => {
     return (
         <form onSubmit={handleSubmit} className='flex flex-row w-full gap-3 m-2 justify-between'>
             <Input
-                className={`${lusi.className} w-4/5`}
+                className={`${lusi.className} w-4/5 !border-2`}
                 type="text"
                 size="lg"
                 placeholder="Search for books, authors, genres..."
@@ -50,9 +50,9 @@ const AdvancedSearchBar = () => {
                 // labelProps={{
                 //     className: "before:content-none after:content-none content-none",
                 // }}
-                // containerProps={{
-                //     className: "min-w-0"
-                // }}
+                containerProps={{
+                    className: "min-w-0 "
+                }}
                 onChange={handleInputChange}
             />
             <Button
