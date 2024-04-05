@@ -1,17 +1,16 @@
 'use client'
 
-import React from 'react';
 import { RootState } from "@/app/lib/store/store";
 import { useSelector } from 'react-redux';
-import BookCard from '../book/bookCard';
+import SuggestionCard from './suggestionCard';
 
 const SuggestionCards = () => {
   const { suggestions } = useSelector((state: RootState) => state.search);
 
   return (
-    <div className="suggestions-container" >
+    <div className="suggestions-container w-[72.5%] ml-3" >
       {suggestions.map((book) => (
-        <BookCard key={book.id} book={book} /> // Render each suggestion as a BookCard
+        <SuggestionCard key={book.id} book={book} />
       ))}
     </div>
   );

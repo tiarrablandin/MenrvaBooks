@@ -22,6 +22,7 @@ export {
   MenuHandler,
   MobileNav,
   Navbar,
+  Switch,
   Tabs,
   TabsHeader,
   TabsBody,
