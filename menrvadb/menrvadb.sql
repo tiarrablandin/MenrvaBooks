@@ -47,6 +47,7 @@ create table if not exists book
     description      longtext     not null,
     page_count       int          not null,
     publication_date date         not null,
+    isbn             int          null,
     date_added       date         not null,
     reviewed         tinyint      not null default 0,
     rejected         tinyint      not null default 0,
@@ -344,67 +345,78 @@ VALUES (4, null, 'Amarah Calderini', '', '', now(), 1, '2024-03-15', null);
 insert into author (id, photo, pen_name, bio, text, date_created, reviewed, date_updated, user_id)
 VALUES (5, null, 'S.E. Babin', '', '', now(), 1, '2024-03-15', null);
 
-insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected, date_updated,
+insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected,
+                  date_updated,
                   series_id)
 VALUES (1, 'https://i.imgur.com/12J19sh.jpg', 'The Time of Tears',
         'Carnegie Sanders is a typical 19-year-old. He goes to college, he lives at home and in a dorm, has a crush on a girl he went to high school with, and has no idea what to do with his life. Life is normal. Then hydrogen bombs decimate the globe, and robed beings start wiping out everyone else lucky enough to live in rural America. In his small town in southern Arizona, Carnegie realizes survival is more than chance. Running on instinct, Erin, Santana, and Carnegie find the decimation of their people to be the beginning of change and tragedy never witnessed in history. As the world resets, Carnegie, Erin, and Santana face odds that would consume them, if not for new relationships forged. Creatures from fantastic stories lost in time and translation seek to keep humanity in check as Carnegie seeks a place to call home, a place to be safe. No one is safe as sinister forces work behind the veil of secrecy, and everyone in Carnegie’s new circle will experience turmoil. Lost in the new races of lore calling themselves the Nine, Carnegie is thrust into becoming someone he isn’t ready to be for those who rely on him. Set in the dynamic landscape of the American Southwest, and from deserts to mountains and even under the earth itself, no where is safe. Fighting for survival is just the beginning. Nothing has prepared them for this time. A time of confusion. A time of loss. And a time of tears.',
         324, '2019-02-26', now(), 1, 0, '2024-03-15', 1);
 
-insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected, date_updated,
+insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected,
+                  date_updated,
                   series_id)
 VALUES (2, 'https://i.imgur.com/RMSohKY.jpg', 'The Fall of the Nine',
         'Set along the Colorado Rockies, The Fall of the Nine continues the struggle of Carnegie, Erin, and Santana as they continue their fight in a post-apocalyptic world. On the mend after their encounter, Carnegie and his friends start their journey from the outskirts of Denver and discover that the true evil is just awakening. As tensions escalate, Carnegie makes a choice that he will pay for in blood. Entering the post-bomb city, the Gnomes and other species of the Nine that have taken the Human world for their own continue to show the surviving humans that the Old World is gone, and it will never be the same again. With the arrival of the rulers of each race, Cheradyn’s identity is threatened and she must face demons of her own past to become the Faerie the New World needs her to be. As the world continues to reset, the Princess learns that she must protect the ones who have been there for her. Moving in the shadows, Nicholas contends with the darkness inside him and the greater evil comes to the foreground, inciting other dark beings to the anarchic tendencies they have always hoped would be unleashed. Somewhere in Texas, a young businessman fights the post-apocalyptic southwest, his companions, and a mysterious power inside him that threatens to tear him apart. Darkness is on the move as ancient secrets are revealed, but hope still finds a small place in the creeping void. Hope, however, is in short supply for the Nine. The true evil is revealed. He has planned this for centuries. The Nine are not prepared.',
         428, '2019-07-03', now(), 1, '2024-03-15', 1);
 
-insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected, date_updated,
+insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected,
+                  date_updated,
                   series_id)
 VALUES (3, 'https://i.imgur.com/8AuJTCq.jpg', 'Tales of the Nine',
         'From Arizona to Massachusetts, to the Caribbean and deep under the earth in prisons so dark, only evil can grow, the world of the Nine is revealed. In seventeen short stories we explore some of the origin stories through first-hand accounts as mysteries are both solved and revealed. With many characters, new and known, the Nine and their true threat, their cataclysm from a lost history, is offered in a different medium. The Time of Tears: Tales of the Nine deepens the lore through time: past, present, and future, preparing our heroes for the last battle for survival all of them must face. Questions are answered. The cataclysm is unleashed in The Tales of the Nine.',
         148, '2019-08-17', now(), 1, 0, '2024-03-15', 1);
 
-insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected, date_updated,
+insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected,
+                  date_updated,
                   series_id)
 values (4, 'https://i.imgur.com/jBrsMog.jpg', 'Tide of Darkness (Dark World Trilogy Book 1)',
         'They say the land flourished once, ripe with wealth and blessed by nature, but those are only stories. There is no light now—there is only the Darkness. Mirren has grown up hearing tales of the Dark World from the safety of Similis, a utopian society with no poverty, no violence and no choices. Rumors of the horrors that writhe in the darkness keep anyone from venturing further than the Boundary, but when a mysterious illness befalls her brother, Mirren is desperate to save him—desperate enough to cross into the wild land to find the cure he needs to survive. Raised beyond the Boundary, Shaw has only ever known violence. With no laws to inhibit the cruel reign of warlords and a curse that keeps the land on the edge of starvation, he understands the only way to survive is by being more ruthless than everyone else. When he finds a panicked woman escaping Similis, he realizes he’s been granted a rare gift of fate: a way to get back what was stolen from him. Infuriatingly enchanting and not at all what he expected, Mirren challenges Shaw at every turn. But the pair soon discover their greatest fight may not lie with each other. A prophecy has been unearthed, and if it speaks the truth, one of them may be the key to breaking the curse. But light is a dangerous thing to wield in a land ruled by the dark. Together, they must decide if love and freedom are worth the cost. Tide of Darkness is a New Adult fantasy romance and is intended to be enjoyed by mature audiences. It contains mature themes, sexual content, violence, gore and references to abuse. For a full list of trigger warnings, please visit the author''s social media or website.',
         495, '2022-08-30', now(), 1, 0, '2024-03-15', 2);
 
-insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected, date_updated,
+insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected,
+                  date_updated,
                   series_id)
 values (5, 'https://i.imgur.com/DXoYn3a.jpg', 'Flame of Shadow (Dark World Trilogy Book 2)',
         'All Mirren ever wanted was to save her brother, though now that she’s seen the horror and beauty of the Dark World, Similis feels more suffocating than ever. Her heart broken and her power now stifled, she vows to live an ordinary life, but when the Boundary is breached and the lights that have shone for a thousand years begin to flicker, she knows must protect her home from the growing threat of the Praeceptor. Even if it means leaving behind the brother she sacrificed everything for. Because the warlord has brought destruction to their gates, and if Mirren doesn’t decipher the remainder of the Dead Prophecy, both Ferusa and Similis will fall to the Darkness. And it isn’t just the Praeceptor who seeks to stop her. Leading his father’s reign of terror is the newly returned heir. Soulless, cruel, and set on vengeance, Shaw will stop at nothing to get what he wants—including destroying the woman he once loved. To thwart Shaw and save Ferusa, Mirren will have to find the depths of her power and push herself to the edge of her humanity. She must decide once and for all, where the line between dark and light lies. Because the Darkness demands souls, and it is coming for hers. Flame of Shadow is the second book in the Dark World Trilogy and is a dark fantasy romance intended for audiences 18+ as it contains graphic violence and sexual content. For a full list of trigger warnings, please see the author''s social media.',
         498, '2022-12-06', now(), 1, 0, '2024-03-15', 2);
 
-insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected, date_updated,
+insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected,
+                  date_updated,
                   series_id)
 values (6, 'https://i.imgur.com/byF0ZAf.jpg', 'Wave of Light (Dark World Trilogy Book 3)',
         'The Darkness changes all those it touches... Mirren has learned from her time in Ferusa that light cannot exist without the dark, nor beauty without pain. She has bled and fought, given everything she has to protect those she loves, and still, the Darkness demands more. With the return of nature magic and the rise of an ancient evil, the Dead Prophecy is the only way to restore balance to the land--but Mirren fears the price may be too high to pay. In the thrilling conclusion to the epic fantasy trilogy, loyalties will be tested... Souls will be shattered... And sacrifices will be made, as the Darkness rises for its final calling. Wave of Light is a new adult fantasy intended to be enjoyed by mature audiences. It contains mature themes, sexual content, violence, gore and references to abuse. For a full list of trigger warnings, please visit the author''s website.',
         583, '2023-11-14', now(), 1, 0, '2024-03-15', 2);
 
-insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected, date_updated,
+insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected,
+                  date_updated,
                   series_id)
 values (7, 'https://i.imgur.com/olTZZRa.jpg', 'A Twist of Demon (Cocktails in Hell Book 1)',
         'Want longer hair, whiter teeth, a smaller nose? Violet has a potion for that. Want to hex an enemy, make someone fall in love with you, or curse someone? Well…that will cost you. By day, Violet is a supposed charlatan running a potion shop in New Orleans and catering to drunk tourists who want to take a walk on the wild side. By night, she’s a Potion Master, a rare, magical being whose shop straddles the portal to Earth and Hell, slinging potions to magical beasts who only come out at night. She’s also the protector of both, a neutral being who carefully navigates the Accords between oblivious humans and the creatures who wouldn’t mind snacking on them. Unfortunately for both sides, Violet is terrible at her job. After the last Potion Master dies a horrible death and she’s pulled out of anonymity by a handsome and super annoying demon, Violet’s shop transforms and she’s thrust into unwanted instafame. And not the good kind, either. Suddenly, everyone either wants to date her, or they want to kill her. And, honestly? Violet isn’t sure which one is easier anymore.',
         186, '2023-04-06', now(), 1, 0, '2024-03-15', 3);
 
-insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected, date_updated,
+insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected,
+                  date_updated,
                   series_id)
 values (8, 'https://i.imgur.com/YlbhAYq.jpg', 'A Shake of Succubus (Cocktails in Hell Book 2)',
         'Violet is the newest Potionsmaster, Guardian of the Hell Gates, and Lucifer has his eye on her… With her life a weird mess right now, Violet has no one to turn to. Az is still in hiding, and she’s never been able to trust Max. Lucifer has offered a shoulder, but Violet knows better than to trust the original Serpent and her brand spanking new employer. Doesn’t she? As the hunt for the creature who escaped the boundaries continues, more Potionsmasters meet their ends. But when someone she definitely shouldn''t trust offers her a cryptic clue, Violet has to decide if her life is worth the truth. Can she endanger everyone she loves and the entire world to save her own hide? Or will she make the ultimate sacrifice and take her secret to the grave?',
         210, '2023-07-26', now(), 1, 0, '2024-03-15', 3);
 
-insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected, date_updated,
+insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected,
+                  date_updated,
                   series_id)
 values (9, 'https://i.imgur.com/2sN0YIR.jpg', 'A Stir of Fairies (Cocktails in Hell Book 3)',
         'Violet''s secret is out. Now comes the fun part… It''s time to train. With Violet''s identity revealed to her closest allies, the time has come for her to embrace who she is. But who is she anyway? Witch? Angel? Demon? None of the above? Meanwhile, Daddy Dearest is busy gathering a powerful force to stage a coup in Heaven, while Violet and the crew have to harness her powers and teach her to use them before he succeeds. Between slinging drinks for Hell''s finest, training for a potential world-ending war, and trying to figure out why the new brooding bar guest keeps giving her funny looks, Violet has her hands full. And then came the dragons... Unfortunately, Violet ain''t seen nothing yet.',
         203, '2023-10-10', now(), 1, 0, '2024-03-15', 3);
 
-insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected, date_updated,
+insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected,
+                  date_updated,
                   series_id)
 values (10, 'https://i.imgur.com/SuPhH2m.jpg', 'A Dash of Vampire (Cocktails in Hell Book 4)',
         'What happens when you accidentally kidnap a Fae King, invite a demented vampire queen to bunk with you, and enlist both to plot revenge against the dragons? Violet doesn''t know yet, but she''s about to find out. Her little jaunt to the fae lands ended with Violet carrying more luggage out than she brought in. Now, with a ticked off Unseelie King brooding and tied up in the corner, she has to figure out how to smooth relations while also deciphering Michael''s newest plans. Toss in a sullen traitor, an emotional fairy, and a human(ish?) law enforcement officer sniffing around, and Violet''s juggling more balls than she knows what to do with. As if that''s not bad enough, Violet receives one final visitor to her bar the night before she visits the dragons, and this one is a real doozy… Welcome to Swan''s, where the creatures are weird, the drinks are potent, and the antics are completely unhinged.',
         219, '2023-12-19', now(), 1, 0, '2024-03-15', 3);
 
-insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected, date_updated,
+insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected,
+                  date_updated,
                   series_id)
 values (11, 'https://i.imgur.com/Qdz9MBc.jpg', 'A Touch of Angel (Cocktails in Hell Book 5)',
         'When an accidental meeting results in an unlikely alliance, Violet discovers earth-shattering secrets… Sounds like a Tuesday to her. Lucifer''s efforts to secure the angel''s cooperation are proving unsuccessful until a chance meeting ends with an invitation to attend a forum. There''s only one caveat. Violet''s presence is required, and she must offer a demonstration of her powers. Lucifer is against it. Clara wants to destroy them all. Dave is…Dave. And the enigmatic ruler of the dragons doesn''t care about any of it. He''s chosen to pursue Violet with a single-minded focus. But whether he wants her for her or her powers remains unknown. Violet has to decide soon whether she''s ready to face the world and claim her heritage. But what she doesn''t realize is her heritage isn''t straightforward at all, and the choice she has to make could bring the entire world to its knees.',

@@ -1,5 +1,4 @@
-import Privacy from "@/app/ui/legal/privacy";
-import Terms from "@/app/ui/legal/terms";
+import TermsAndPrivacy from "@/app/ui/legal/termsAndPrivacy";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,8 +8,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <main className="w-screen min-h-[calc(100vh-295px)] bg-old-lace bg-dark:onyx">
-      <Privacy/>
-      <Terms/>
+      <TermsAndPrivacy/>
     </main>
   );
 }
