@@ -11,7 +11,7 @@ const SuggestionCards = () => {
   return (
     <List className="-mt-1 rounded w-[72.5%] mr-auto ml-1 flex flex-col p-0 py-1">
       {suggestions.map((book, key) => (
-        <ListItem key={key} className="p-1 hover:bg-eggplant/60 -my-1">
+        <ListItem key={key} className="p-1 hover:bg-eggplant/60 -my-1 dark:hover:bg-pink-lavender/80">
           <SuggestionCard key={book.id} book={book} />
         </ListItem>
       ))}

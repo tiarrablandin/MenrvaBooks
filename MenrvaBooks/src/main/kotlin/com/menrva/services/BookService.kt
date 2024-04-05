@@ -21,7 +21,7 @@ class BookService(
     fun getNewReleases(): List<Book> {
         val releases: MutableList<Book> = bookRepo.findAll()
         releases.sortBy { it.publicationDate }
-        releases.removeIf { it.publicationDate!!.isBefore(LocalDate.now().minusDays(30)) }
+        releases.removeIf { it.publicationDate.isBefore(LocalDate.now().minusDays(90)) }
         return releases;
     }
 
