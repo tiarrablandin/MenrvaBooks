@@ -26,7 +26,7 @@ export function Footer() {
               <Typography
                 variant="small"
                 style={{ color: '#673C4F' }}
-                className="py-2 font-bold uppercase"
+                className="py-2 pt-4 font-bold uppercase"
               >
                 {title}
               </Typography>

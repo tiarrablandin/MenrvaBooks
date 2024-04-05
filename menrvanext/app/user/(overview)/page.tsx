@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   return (
-    <main className="w-screen min-h-[calc(100vh-295px)] bg-old-lace bg-dark:onyx">
+    <main className="w-screen min-h-[calc(100vh-295px)]">
       <UserComponent />
     </main>
   );

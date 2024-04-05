@@ -2,7 +2,7 @@
 
 import { fetchSuggestions, setSearchTerm } from "@/app/lib/store/searchSlice";
 import { RootState, useAppDispatch } from "@/app/lib/store/store";
-import { Button, Input, Typography } from '@/providers';
+import { Button, eggplant, Input, Typography } from '@/providers';
 import { debounce } from "lodash";
 import { Lusitana } from 'next/font/google';
 import React, { useEffect, useState } from 'react';
@@ -42,7 +42,6 @@ const AdvancedSearchBar = () => {
             <Input
                 className={`${lusi.className} w-4/5`}
                 type="text"
-                color="light-blue"
                 size="lg"
                 placeholder="Search for books, authors, genres..."
                 label="Search"
@@ -57,10 +56,9 @@ const AdvancedSearchBar = () => {
             />
             <Button
                 type="submit"
-                color="light-blue"
-                className='h-11 flex items-center'
+                className='h-11 flex items-center bg-eggplant'
             >
-                <Typography className={`${lusi.className} normal-case text-xl tracking-wider`} type='lead'>
+                <Typography className={`${lusi.className} normal-case text-xl tracking-wider bg-eggplant`} type='lead'>
                     Search
                 </Typography>
             </Button>

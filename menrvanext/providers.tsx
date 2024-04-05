@@ -38,7 +38,7 @@ export {
   Typography,
 } from "@material-tailwind/react";
 export { MagnifyingGlassIcon, HomeIcon, UserIcon, ArrowRightEndOnRectangleIcon, ArrowLeftStartOnRectangleIcon, CheckCircleIcon } from "@heroicons/react/20/solid"
-export { ArrowRightIcon, ChevronDownIcon } from "@heroicons/react/24/solid"
+export { ArrowRightIcon, ChevronDownIcon, SunIcon, MoonIcon } from "@heroicons/react/24/solid"
 export { AtSymbolIcon, ExclamationCircleIcon, KeyIcon, XMarkIcon, } from '@heroicons/react/24/outline';
 
 export const eggplant = "#673C4F";
