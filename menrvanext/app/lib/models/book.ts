@@ -1,3 +1,5 @@
+import { Author } from "./author";
+
 export interface BookResponse{
   id: number;
   cover: string;
@@ -7,4 +9,5 @@ export interface BookResponse{
   publicationDate: Date;
   dateAdded: Date;
   dateUpdated: Date;
+  author: Author | null;
 }

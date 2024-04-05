@@ -62,6 +62,7 @@ data class Book(
 //    @JsonBackReference(value = "books")
     @ManyToOne @JoinColumn(name = "series_id")
     val series: Series?,
+    @JsonIgnore
     @OneToMany(mappedBy = "book")
     val bookInteractions: Set<BookInteractions> = HashSet(),
     @ManyToMany(mappedBy = "books")

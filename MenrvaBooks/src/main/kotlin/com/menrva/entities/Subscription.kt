@@ -1,5 +1,6 @@
 package com.menrva.entities
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import java.time.LocalDate
 
@@ -23,6 +24,7 @@ data class Subscription(
     @Column(name = "date_updated")
     val dateUpdated: LocalDate? = null,
 
+    @JsonIgnore
     @OneToMany(mappedBy = "subscription")
     val users: MutableSet<User> = mutableSetOf()
 )

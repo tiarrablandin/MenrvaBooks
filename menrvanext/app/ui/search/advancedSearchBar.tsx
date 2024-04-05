@@ -27,6 +27,7 @@ const AdvancedSearchBar = () => {
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value); // Update inputValue which is local component state
+        if (event.target.value === "") { dispatch(fetchSuggestions(""))}
         debouncedSetSearchTerm(event.target.value);
         // Debounce this call if implementing autocomplete or instant search
     };
