@@ -41,7 +41,7 @@ const AdvancedSearchBar = () => {
     return (
         <form onSubmit={handleSubmit} className='flex flex-row w-full gap-3 m-2 justify-between'>
             <Input
-                className={`${lusi.className} w-4/5 border-eggplant placeholder-shown:border-2 placeholder-shown:border-eggplant placeholder-shown:border-t-eggplant placeholder-shown:border-t-2`}
+                className={`${lusi.className} w-4/5`}
                 type="text"
                 size="lg"
                 placeholder="Search for books, authors, genres..."
@@ -49,12 +49,13 @@ const AdvancedSearchBar = () => {
                 // * for no label:
                 labelProps={{
                     // className: "before:content-none after:content-none content-none",
-                    className: "before:border-l-2 before:border-t-2 focus:before:!content-none after:!mt-[6px] before:!mt-[6px] ",
+                    // className: "before:border-l-2 before:border-t-2 focus:before:!content-none after:!mt-[6px] before:!mt-[6px] ",
                 }}
                 containerProps={{
                     className: "min-w-0 "
                 }}
                 onChange={handleInputChange}
+                color="gray"
             />
             <Button
                 type="submit"
