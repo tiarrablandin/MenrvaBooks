@@ -4,11 +4,11 @@ export const darkTheme = {
             base: {
                 tab: {
                     initial: {
-                        color: "text-white"
+                        color: "text-old-lace"
                     }
                 },
                 indicator: {
-                    bg: "bg-black",
+                    bg: "bg-chinese-violet",
                 },
             }
         }

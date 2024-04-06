@@ -18,21 +18,21 @@ const ThemeToggle = () => {
 
   return (
     <div className="flex items-center justify-between w-28 ml-auto -mr-48 lg:mr-0">
-      <SunIcon className={`h-8 w-8 ${theme === 'dark' ? 'text-gray-400' : 'text-yellow-500'}`} />
+      <SunIcon className={`h-9 w-9 mr-2 ${theme === 'dark' ? 'text-gray-400' : 'text-yellow-500'}`} />
       <Switch
         color="blue"
         checked={theme === 'dark'}
         onChange={handleToggleTheme}
-        className="w-10"
+        className="w-10 bg-old-lace dark:bg-eggplant"
         containerProps={{
           className: "mr-3"
         }}
         circleProps={{
-          className: "before:hidden left-0.5 border-none",
+          className: "before:hidden  border-none bg-eggplant dark:bg-old-lace dark:left-1 ",
         }}
         ripple={false}
       />
-      <MoonIcon className={`h-7 w-7 ${theme === 'dark' ? 'text-indigo-500' : 'text-gray-400'}`} />
+      <MoonIcon className={`h-8 w-8 ml-1 ${theme === 'dark' ? 'text-indigo-500' : 'text-gray-400'}`} />
     </div>
   );
 };
