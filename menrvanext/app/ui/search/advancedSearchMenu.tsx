@@ -22,13 +22,13 @@ const AdvancedSearchMenu = () => {
                                 }`}
                         />
                         <ChevronDownIcon
-                                strokeWidth={2.5}
-                                className={`block h-4 w-4 mx-2 transition-transform lg:hidden ${isMenuOpen ? "rotate-180" : ""
-                                    }`}
-                            />
+                            strokeWidth={2.5}
+                            className={`block h-4 w-4 mx-2 transition-transform lg:hidden ${isMenuOpen ? "rotate-180" : ""
+                                }`}
+                        />
                     </Typography>
                 </MenuHandler>
-                <MenuList>
+                <MenuList className="bg-eggplant border-2 border-pink-lavender">
                     <SearchTabs />
                 </MenuList>
             </Menu>

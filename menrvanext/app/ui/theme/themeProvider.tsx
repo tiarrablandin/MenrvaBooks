@@ -1,7 +1,8 @@
 "use client";
 
 import { useAppSelector } from "@/app/lib/store/store";
-import { ReactNode, useEffect } from "react";
+import { ThemeProvider as MTThemeProvider } from "@material-tailwind/react";
+import { ReactElement, ReactNode, useEffect } from "react";
 
 interface MenrvaThemeProviderProps {
   children: ReactNode;
@@ -10,12 +11,27 @@ interface MenrvaThemeProviderProps {
 export function MenrvaThemeProvider({ children }: MenrvaThemeProviderProps) {
   const theme = useAppSelector((state) => state.theme.theme);
 
+  const customMTTheme = {
+    tab: {
+      styles: {
+        base: {
+          tab: {
+            initial: {
+              color: "text-white"
+            }
+          },
+          indicator: {
+            bg: "bg-eggplant",
+          },
+
+        }
+      }
+    }
+  };
+
   useEffect(() => {
-    console.log(`Before ${theme}`);
     document.body.classList.toggle("dark", theme === "dark");
-    console.log(`After ${theme}`);
-    // This ensures the class is correctly applied when the theme changes
   }, [theme]);
 
-  return <>{children}</>; // Ensure children are rendered
+  return <MTThemeProvider value={customMTTheme}>{children as ReactElement}</MTThemeProvider>; // Ensure children are rendered
 }

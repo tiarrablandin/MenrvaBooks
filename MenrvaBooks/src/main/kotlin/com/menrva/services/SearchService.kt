@@ -10,6 +10,6 @@ class SearchService(
 ) {
 
     fun getSearchResultsByTitle(title: String): List<Book> {
-        return bookSearchRepository.findByTitle(title)
+        return bookSearchRepository.findByTitleMatching(title)
     }
 }
