@@ -1,7 +1,6 @@
-import { fetchBooks, fetchNewReleases } from '@/app/lib/services/apiService';
-import BookSlider from '../book/bookSlider';
-import SearchBar from '../search/searchBar';
-import AdvancedSearchComponent from '../search/advancedSearch';
+import { fetchBooks, fetchNewReleases } from "@/app/lib/services/apiService";
+import BookSlider from "../book/bookSlider";
+import AdvancedSearchComponent from "../search/advancedSearch";
 
 // Advanced Search
 // Trending based off of people reading
@@ -9,25 +8,21 @@ import AdvancedSearchComponent from '../search/advancedSearch';
 
 const HomeComponent: React.FC = () => {
   async function fetchNewReleasesSlider() {
-    "use server"
-    return fetchNewReleases()
+    "use server";
+    return fetchNewReleases();
   }
 
   async function fetchAllBooksSlider() {
-    "use server"
-    return fetchBooks()
+    "use server";
+    return fetchBooks();
   }
   return (
-    <div className='w-screen h-full flex flex-col items-center dark:bg-onyx' >
-      <AdvancedSearchComponent/>
-      <BookSlider 
-      fetchData={fetchNewReleasesSlider} 
-      title={"New Releases"} />
-      <BookSlider 
-      fetchData={fetchAllBooksSlider} 
-      title={"All Books"} />
+    <div className="w-screen h-full flex flex-col items-center dark:bg-onyx">
+      <AdvancedSearchComponent />
+      <BookSlider fetchData={fetchNewReleasesSlider} title={"New Releases"} />
+      <BookSlider fetchData={fetchAllBooksSlider} title={"All Books"} />
     </div>
-  )
-}
+  );
+};
 
 export default HomeComponent;

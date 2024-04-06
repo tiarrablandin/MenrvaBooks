@@ -1,3 +1,7 @@
+import { Advent_Pro } from "next/font/google";
+
+const advent = Advent_Pro({weight: "500", subsets: ["latin"]});
+
 export const lightTheme = {
     tab: {
         styles: {
@@ -15,7 +19,7 @@ export const lightTheme = {
     },
     typography: {
         defaultProps: {
-            className: "text-eggplant"
+            className: `text-eggplant ${advent.className}`
         }
     }
 };

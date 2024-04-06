@@ -3,12 +3,9 @@
 import { useAppDispatch } from '@/app/lib/store/store';
 import { login, selectCurrentUser, selectUserError, selectUserLoading } from '@/app/lib/store/userSlice';
 import { Alert, ArrowRightIcon, AtSymbolIcon, Button, Dialog, ExclamationCircleIcon, KeyIcon, Typography, XMarkIcon } from '@/providers';
-import { Lusitana } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
-const lusitana = Lusitana({ subsets: ["latin"], weight: "400" });
 
 interface RegisterFormProps { }
 
@@ -47,7 +44,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ }) => {
                 <form onSubmit={handleSubmit} className="space-y-3 h-full my-auto">
                     <div className="flex-1 rounded-lg bg-gray-50 px-6 py-8 mx-auto w-1/3 h-full my-auto ">
                         <XMarkIcon className="w-5 h-5 cursor-pointer text-black inline-block -mt-8 -ml-2 mb-2" onClick={handleOpen} />
-                        <h1 className={`${lusitana.className} mb-3 text-center text-3xl text-gray-900`}>
+                        <h1 className={`mb-3 text-center text-3xl text-gray-900`}>
                             Register for an account.
                         </h1>
                         <div className="w-full text-gray-900 mt-7">
