@@ -22,6 +22,7 @@ data class Author(
     @Column(name = "reviewed", nullable = false)
     val reviewed: Byte? = null,
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "author_has_book",

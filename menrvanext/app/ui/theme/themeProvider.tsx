@@ -3,6 +3,8 @@
 import { useAppSelector } from "@/app/lib/store/store";
 import { ThemeProvider as MTThemeProvider } from "@material-tailwind/react";
 import { ReactElement, ReactNode, useEffect } from "react";
+import { lightTheme } from "./lightTheme";
+import { darkTheme } from "./darkTheme";
 
 interface MenrvaThemeProviderProps {
   children: ReactNode;
@@ -11,27 +13,14 @@ interface MenrvaThemeProviderProps {
 export function MenrvaThemeProvider({ children }: MenrvaThemeProviderProps) {
   const theme = useAppSelector((state) => state.theme.theme);
 
-  const customMTTheme = {
-    tab: {
-      styles: {
-        base: {
-          tab: {
-            initial: {
-              color: "text-white"
-            }
-          },
-          indicator: {
-            bg: "bg-eggplant",
-          },
 
-        }
-      }
-    }
-  };
 
   useEffect(() => {
     document.body.classList.toggle("dark", theme === "dark");
   }, [theme]);
+  
+  const selectedTheme = theme === "dark" ? darkTheme : lightTheme;
 
-  return <MTThemeProvider value={customMTTheme}>{children as ReactElement}</MTThemeProvider>; // Ensure children are rendered
+  // ******************* IGNORE THIS ERROR!!!!!!!!!!!!!!
+  return <MTThemeProvider value={selectedTheme}>{children as ReactElement}</MTThemeProvider>;
 }

@@ -32,6 +32,7 @@ data class SubGenre(
     )
     val books: MutableSet<Book> = mutableSetOf(),
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "subGenres")
     val genres: MutableSet<Genre> = mutableSetOf(),
 

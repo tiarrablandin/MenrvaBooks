@@ -1,5 +1,6 @@
 package com.menrva.entities
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import java.io.Serializable
 import java.util.*
@@ -15,10 +16,12 @@ import java.util.*
 data class BookInteractions(
     @EmbeddedId
     val id: BookInteractionsId? = null,
+    @JsonIgnore
     @MapsId("bookId")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
     val book: Book,
+    @JsonIgnore
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

@@ -1,5 +1,6 @@
 package com.menrva.entities
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
@@ -18,11 +19,11 @@ data class Series(
     val reviewed: Boolean,
     @JsonManagedReference
     @OneToMany @JoinColumn(name = "series_id")
-    val books: Set<Book> = HashSet()
-) {
+    val books: Set<Book> = HashSet(),
+    @JsonIgnore
     @ManyToMany(mappedBy = "series")
-    val authors: MutableSet<Author> = mutableSetOf()
-
+    val authors: MutableSet<Author> = mutableSetOf(),
+    @JsonIgnore
     @OneToMany(mappedBy = "series")
     val seriesInteractions: MutableSet<SeriesInteraction> = mutableSetOf()
-}
+)

@@ -1,5 +1,5 @@
-from book_fetcher import  fetch_full_books_by_work_id, fetch_popular_books_from_ol_by_genre
-from book_processor import fetch_editions_for_work_id, filter_recent_editions
+from book.book_fetcher import fetch_full_books_by_work_id, fetch_popular_books_from_ol_by_genre
+from author.author_fetcher import fetch_author_from_ol_by_book_title
 from data_persistence import insert_books_into_database
 
 
@@ -8,8 +8,6 @@ def process_popular_books_by_genre(genre):
 
     for book in books:
         full_book = fetch_full_books_by_work_id(book.get('work_id'))
-        print(f"FULL BOOK INSIDE MAIN: {full_book}")
-        print(f"BOOK INSIDE MAIN: {book}")
         if full_book is None: continue
         book_object = {
             'cover': full_book.get('cover'),
@@ -21,7 +19,11 @@ def process_popular_books_by_genre(genre):
             # get series info
         }
 
-        insert_books_into_database([book_object])
+        # insert_books_into_database([book_object])
+
+def process_author_by_book_title(book_title):
+    author = fetch_author_from_ol_by_book_title(book_title)
+    print(f"AUTHOR INSIDE MAIN: {author}")
 
 if __name__ == "__main__":
-    process_popular_books_by_genre("Fiction")
+    process_author_by_book_title("Lord of the Rings")

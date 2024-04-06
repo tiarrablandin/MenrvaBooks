@@ -49,6 +49,7 @@ data class User(
     @OneToMany(mappedBy = "user")
     val author: MutableSet<Author> = mutableSetOf(),
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "user_follows_author",
@@ -57,6 +58,7 @@ data class User(
     )
     val authors: MutableSet<Author> = mutableSetOf(),
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "user_has_genre",
@@ -65,6 +67,7 @@ data class User(
     )
     val genres: MutableSet<Genre> = mutableSetOf(),
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "user_has_keyword",
@@ -73,6 +76,7 @@ data class User(
     )
     val keywords: MutableSet<Keyword> = mutableSetOf(),
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "user_has_sub_genre",
