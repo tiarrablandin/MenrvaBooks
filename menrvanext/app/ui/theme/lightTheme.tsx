@@ -1,6 +1,6 @@
-import { Bubbler_One } from "next/font/google";
+import { Advent_Pro } from "next/font/google";
 
-const bubbler = Bubbler_One({weight: "400", subsets: ["latin"]});
+const advent = Advent_Pro({weight: "500", subsets: ["latin"]});
 
 export const lightTheme = {
     tab: {
@@ -19,7 +19,7 @@ export const lightTheme = {
     },
     typography: {
         defaultProps: {
-            className: `text-eggplant ${bubbler.className}`
+            className: `text-eggplant ${advent.className}`
         }
     }
 };

@@ -1,12 +1,12 @@
 import ReduxProvider from "@/providers";
 import type { Metadata } from "next";
-import { Bubbler_One, Inter } from "next/font/google";
+import { Advent_Pro,} from "next/font/google";
 import "./globals.css";
 import { Footer } from "./ui/footer";
 import CustomNavbar from "./ui/navbar/nav";
 import { MenrvaThemeProvider } from "./ui/theme/themeProvider";
 
-const bubbler = Bubbler_One({weight: "400", subsets: ["latin"]});
+const advent = Advent_Pro({weight: ["400","600"], subsets: ["latin"]});
 
 export const metadata: Metadata = {
   title: "Menrva Books",
@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <ReduxProvider>
         <MenrvaThemeProvider>
-          <body className={`${bubbler.className} bubbler-one-regular bg-old-lace dark:bg-onyx`}>
+          <body className={`${advent.className} bg-old-lace dark:bg-onyx`}>
             <CustomNavbar />
             {children}
           <Footer />

@@ -14,11 +14,6 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        "sans": ["Bubbler One", "sans-serif"],
-        "serif": ["Bubbler One", "sans-serif"],
-        "body": ["Bubbler One", "sans-serif"],
-      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
