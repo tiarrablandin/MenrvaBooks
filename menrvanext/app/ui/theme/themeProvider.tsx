@@ -1,7 +1,10 @@
 "use client";
 
 import { useAppSelector } from "@/app/lib/store/store";
-import { ReactNode, useEffect } from "react";
+import { ThemeProvider as MTThemeProvider } from "@material-tailwind/react";
+import { ReactElement, ReactNode, useEffect } from "react";
+import { lightTheme } from "./lightTheme";
+import { darkTheme } from "./darkTheme";
 
 interface MenrvaThemeProviderProps {
   children: ReactNode;
@@ -10,12 +13,14 @@ interface MenrvaThemeProviderProps {
 export function MenrvaThemeProvider({ children }: MenrvaThemeProviderProps) {
   const theme = useAppSelector((state) => state.theme.theme);
 
-  useEffect(() => {
-    console.log(`Before ${theme}`);
-    document.body.classList.toggle("dark", theme === "dark");
-    console.log(`After ${theme}`);
-    // This ensures the class is correctly applied when the theme changes
-  }, [theme]);
 
-  return <>{children}</>; // Ensure children are rendered
+
+  useEffect(() => {
+    document.body.classList.toggle("dark", theme === "dark");
+  }, [theme]);
+  
+  const selectedTheme = theme === "dark" ? darkTheme : lightTheme;
+
+  // ******************* IGNORE THIS ERROR!!!!!!!!!!!!!!
+  return <MTThemeProvider value={selectedTheme}>{children as ReactElement}</MTThemeProvider>;
 }

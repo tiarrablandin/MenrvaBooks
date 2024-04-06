@@ -62,17 +62,22 @@ data class Book(
 //    @JsonBackReference(value = "books")
     @ManyToOne @JoinColumn(name = "series_id")
     val series: Series?,
+    @JsonIgnore
     @OneToMany(mappedBy = "book")
     val bookInteractions: Set<BookInteractions> = HashSet(),
+    @JsonIgnore
     @ManyToMany(mappedBy = "books")
     val authors: MutableSet<Author> = mutableSetOf(),
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "books")
     val subGenres: MutableSet<SubGenre> = mutableSetOf(),
 
+    @JsonIgnore
     @OneToMany(mappedBy = "book")
     val comments: MutableSet<Comment> = mutableSetOf(),
 
+    @JsonIgnore
     @OneToMany(mappedBy = "book")
     val links: MutableSet<Link> = mutableSetOf()
 ) {

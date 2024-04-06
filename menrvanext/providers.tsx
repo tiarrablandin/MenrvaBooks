@@ -22,6 +22,7 @@ export {
   MenuHandler,
   MobileNav,
   Navbar,
+  Switch,
   Tabs,
   TabsHeader,
   TabsBody,
@@ -37,9 +38,9 @@ export {
   Tooltip,
   Typography,
 } from "@material-tailwind/react";
-export { MagnifyingGlassIcon, HomeIcon, UserIcon, ArrowRightEndOnRectangleIcon, ArrowLeftStartOnRectangleIcon, CheckCircleIcon } from "@heroicons/react/20/solid"
-export { ArrowRightIcon, ChevronDownIcon } from "@heroicons/react/24/solid"
-export { AtSymbolIcon, ExclamationCircleIcon, KeyIcon, XMarkIcon, } from '@heroicons/react/24/outline';
+export { ArrowRightEndOnRectangleIcon, ArrowLeftStartOnRectangleIcon, CheckCircleIcon, MagnifyingGlassIcon, HomeIcon, UserIcon } from "@heroicons/react/20/solid"
+export { ArrowRightIcon, ChevronDownIcon, MoonIcon, SunIcon } from "@heroicons/react/24/solid"
+export { AtSymbolIcon, Bars3Icon, ExclamationCircleIcon, KeyIcon, XMarkIcon, } from '@heroicons/react/24/outline';
 
 export const eggplant = "#673C4F";
 
@@ -53,5 +54,3 @@ export default function ReduxProvider({
 }) {
   return <Provider store={store}>{children}</Provider>;
 }
-
-

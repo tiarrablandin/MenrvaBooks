@@ -1,5 +1,6 @@
 package com.menrva.entities
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
@@ -16,18 +17,20 @@ data class Genre(
     @UpdateTimestamp @Column(name = "date_updated")
     val dateUpdated: LocalDate,
     val reviewed: Boolean,
+    @JsonIgnore
     @JsonManagedReference
     @ManyToMany(mappedBy = "genres")
-    val books: Set<Book> = HashSet()
-) {
+    val books: Set<Book> = HashSet(),
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "genre_has_sub_genre",
         joinColumns = [JoinColumn(name = "genre_id")],
         inverseJoinColumns = [JoinColumn(name = "sub_genre_id")]
     )
-    val subGenres: MutableSet<SubGenre> = mutableSetOf()
-
+    val subGenres: MutableSet<SubGenre> = mutableSetOf(),
+    @JsonIgnore
     @ManyToMany(mappedBy = "genres")
-    open var users: MutableSet<User> = mutableSetOf()
+    val users: MutableSet<User> = mutableSetOf()
+) {
 }

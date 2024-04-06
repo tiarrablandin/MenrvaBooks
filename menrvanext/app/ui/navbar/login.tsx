@@ -39,10 +39,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
 
     return (
         <>
-            <Typography as={"a"} variant='small' onClick={handleOpen} className="flex items-center gap-x-2 mt-1 text-[#673C4F] cursor-pointer font-normal text-base">Login</Typography>
+            <Typography as={"a"} variant='small' onClick={handleOpen} className="flex items-center gap-x-2 mt-1 text-[#673C4F] cursor-pointer font-normal text-base w-min hover:scale-105">Login</Typography>
             <Dialog size='xl' open={isLoginModalOpen} handler={handleOpen} className='bg-transparent shadow-none w-full'>
                 <form onSubmit={handleSubmit} className="space-y-3 h-full my-auto">
-                    <div className="flex-1 rounded-lg bg-gray-50 px-6 py-8 mx-auto w-1/3 h-full my-auto ">
+                    <div className="flex-1 rounded-lg bg-gray-50 px-6 py-8 mx-auto w-3/4 h-full my-auto md:w-3/5">
                         <XMarkIcon className="w-5 h-5 cursor-pointer text-black inline-block -mt-8 -ml-2 mb-2" onClick={handleOpen} />
                         <h1 className={`${lusitana.className} mb-3 text-center text-3xl text-gray-900`}>
                             Please log in to continue

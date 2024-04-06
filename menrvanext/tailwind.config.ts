@@ -1,8 +1,8 @@
 import type { Config } from "tailwindcss";
 
-const withMT = require("@material-tailwind/react/utils/withMT");
+import withMT from "@material-tailwind/react/utils/withMT";
 
-const config: Config = withMT({
+const config: Config = {
   darkMode: 'class', //Enable class based dark mode
 
   content: [
@@ -23,11 +23,12 @@ const config: Config = withMT({
         "eggplant": "#673C4F",
         "pink-lavender": "#E1BEE7",
         "old-lace": "#FFF3E0",
-        "dark:chinese-violet": "#827191",
-        "dark:onyx": "#3d3d3d",
+        "chinese-violet": "#827191",
+        "onyx": "#3d3d3d",
       },
     },
   },
   plugins: [],
-});
-export default config;
+};
+const withMaterialTailwind = withMT(config)
+export default withMaterialTailwind;

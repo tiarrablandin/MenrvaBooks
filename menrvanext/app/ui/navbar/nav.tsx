@@ -3,6 +3,7 @@
 import {
   ArrowLeftStartOnRectangleIcon,
   ArrowRightEndOnRectangleIcon,
+  Bars3Icon,
   Collapse,
   HomeIcon,
   IconButton,
@@ -11,15 +12,15 @@ import {
   Navbar,
   Typography,
   UserIcon,
+  XMarkIcon,
 } from "@/providers";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../lib/store/userSlice";
-import SearchBar from "../search/searchBar";
-import LoginForm from "./login";
 import ThemeToggle from "../theme/themeToggle";
+import LoginForm from "./login";
 import RegisterForm from "./register";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -41,24 +42,19 @@ export function CustomNavbar() {
     <ul
       className={`${inter.className} mt-2 mb-4 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6`}
     >
-      <Typography as="li" variant="small" className={`${iconClass}`}>
+      <Typography as="li" variant="small" className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}>
         <HomeIcon className="h-5 w-4 text-[#673C4F]" />
         <Link href="/home" className="flex items-center mt-1">
           Home
         </Link>
       </Typography>
-      <Typography as="li" variant="small" className={`${iconClass}`}>
+      <Typography as="li" variant="small" className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}>
         {currentUser ? (
           <>
             <UserIcon className="h-5 w-4 text-[#673C4F]" />
-            <Typography
-              as={"a"}
-              variant="small"
-              aria-disabled={true}
-              className="flex items-center gap-x-2 mt-1 text-[#673C4F] cursor-pointer"
-            >
+            <Link href="/account" className="flex items-center" >
               Account
-            </Typography>
+            </Link>
           </>
         ) : (
           <>
@@ -67,18 +63,13 @@ export function CustomNavbar() {
           </>
         )}
       </Typography>
-      <Typography as="li" variant="small" className={`${iconClass}`}>
+      <Typography as="li" variant="small" className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}>
         {currentUser ? (
           <>
             <ArrowLeftStartOnRectangleIcon className="h-5 w-4 text-[#673C4F]" />
-            <Typography
-              as={"a"}
-              variant="small"
-              aria-disabled={true}
-              className="flex items-center gap-x-2 mt-1 text-[#673C4F] cursor-pointer"
-            >
+            <Link href="/logout" className="flex items-center" >
               Logout
-            </Typography>
+            </Link>
           </>
         ) : (
           <>
@@ -92,10 +83,10 @@ export function CustomNavbar() {
 
   return (
     <>
-      <Navbar className="min-w-full rounded-none border-none px-4 py-2 lg:px-8 lg:py-3 bg-[#e1bee7] bg-dark:chinese-violet">
-        <div className="container mx-auto flex flex-wrap items-center justify-between text-[#673c4f]">
+      <Navbar className="min-w-full rounded-none border-none px-4 py-2 lg:px-8 lg:py-3 bg-pink-lavender dark:bg-chinese-violet">
+        <div className="container mx-auto flex flex-wrap items-center justify-between ">
           <Typography
-            className={`mr-4 cursor-pointer py-1.5 font-medium ${inter.className}`}
+            className={`mr-4 cursor-pointer py-1.5 font-medium ${inter.className} text-eggplant dark:text-old-lace`}
             variant="h3"
           >
             <Link href="/home" className="flex items-center">
@@ -107,39 +98,14 @@ export function CustomNavbar() {
           <ThemeToggle />
           <IconButton
             variant="text"
-            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+            className="ml-auto h-6 w-6 text-inherit text-eggplant dark:text-old-lace hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
             ripple={false}
             onClick={() => setOpenNav(!openNav)}
           >
             {openNav ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                className="h-6 w-6"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              <XMarkIcon className="h-6 w-6 ml-auto lg:hidden"/>
             ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
+              <Bars3Icon className="h-6 w-6 ml-auto lg:hidden"/>
             )}
           </IconButton>
         </div>

@@ -1,5 +1,6 @@
 package com.menrva.entities
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import java.time.LocalDate
 
@@ -23,6 +24,7 @@ data class SocialMedia (
     @Column(name = "date_updated")
     val dateUpdated: LocalDate? = null,
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "author_id", nullable = false)
     val author: Author? = null,
