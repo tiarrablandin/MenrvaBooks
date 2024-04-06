@@ -2,6 +2,7 @@ import { Tab, TabPanel, Tabs, TabsBody, TabsHeader } from '@/providers';
 import React, { Ref } from 'react';
 
 const SearchTabs = React.forwardRef(({}, ref: Ref<HTMLDivElement>) => {
+
     const tabsData = [
         { label: "Book", value: "book", desc: "Search for books" },
         { label: "Author", value: "author", desc: "Search for authors" },
@@ -9,8 +10,8 @@ const SearchTabs = React.forwardRef(({}, ref: Ref<HTMLDivElement>) => {
     ];
 
     return (
-        <Tabs id="advanced-search-tabs" value="book" className="min-w-96 h-48 w-[30rem]" ref={ref}>
-            <TabsHeader >
+        <Tabs id="advanced-search-tabs" value="book" className="min-w-96 h-48 w-[30rem] " ref={ref}>
+            <TabsHeader className='bg-gray-300'>
                 {tabsData.map(({ label, value }) => (
                     <Tab key={value} value={value}>{label}</Tab>
                 ))}
