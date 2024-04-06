@@ -6,8 +6,8 @@ def fetch_author_from_ol_by_book_title(book_title):
     response = requests.get(url)
     if response.status_code == 200:
         book = response.json()['docs'][0]
-        print(f"AUTHOR NAME: {book.get("author_name")}")
-        url = f'https://openlibrary.org/search/authors.json?q={book.get('author_name')}'
+        print(f"AUTHOR NAME: {book.get("author_name")[0]}")
+        url = f'https://openlibrary.org/search/authors.json?q={book.get('author_name')[0]}'
         response = requests.get(url)
         if response.status_code == 200:
             author = response.json()['docs'][0]

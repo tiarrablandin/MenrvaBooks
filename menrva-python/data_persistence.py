@@ -51,10 +51,13 @@ def insert_books_into_database(books=[]):
 def insert_author_into_database(author_name):
     with mysql.connector.connect(**db_config) as conn:
         with conn.cursor() as cursor:
+            date_created = datetime.now().strftime('%Y-%m-%d')
+
+
             insert_query = """
-            INSERT IGNORE INTO author (pen_name) VALUES (%s)
+            INSERT IGNORE INTO author (pen_name, date_created, reviewed) VALUES (%s, %s, %s)
             """
-            cursor.execute(insert_query, (author_name,))
+            cursor.execute(insert_query, (author_name, date_created, 0))
             conn.commit()
 
             author_id = cursor.lastrowid
