@@ -86,7 +86,7 @@ export function CustomNavbar() {
       <Navbar className="min-w-full rounded-none border-none px-4 py-2 lg:px-8 lg:py-3 bg-pink-lavender dark:bg-chinese-violet">
         <div className="container mx-auto flex flex-wrap items-center justify-between ">
           <Typography
-            className={`mr-4 cursor-pointer py-1.5 font-medium ${inter.className}`}
+            className={`mr-4 cursor-pointer py-1.5 font-medium ${inter.className} text-eggplant dark:text-old-lace`}
             variant="h3"
           >
             <Link href="/home" className="flex items-center">
@@ -98,7 +98,7 @@ export function CustomNavbar() {
           <ThemeToggle />
           <IconButton
             variant="text"
-            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+            className="ml-auto h-6 w-6 text-inherit text-eggplant dark:text-old-lace hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
             ripple={false}
             onClick={() => setOpenNav(!openNav)}
           >
