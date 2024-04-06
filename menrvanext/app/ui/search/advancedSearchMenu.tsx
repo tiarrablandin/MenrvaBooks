@@ -1,11 +1,8 @@
 'use client';
 
 import { ChevronDownIcon, Menu, MenuHandler, MenuList, Typography } from '@/providers';
-import { Lusitana } from 'next/font/google';
 import React, { useState } from 'react';
 import SearchTabs from "./searchTabs";
-
-const lusi = Lusitana({ subsets: ["latin"], weight: "400" });
 
 const AdvancedSearchMenu = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +11,7 @@ const AdvancedSearchMenu = () => {
         <React.Fragment>
             <Menu open={isMenuOpen} handler={setIsMenuOpen}>
                 <MenuHandler>
-                    <Typography as="button" className={`${lusi.className} normal-case text-nowrap tracking-wider flex items-center ml-2 underline underline-offset-4 text-eggplant dark:text-old-lace`} variant='lead' >
+                    <Typography as="button" className={`normal-case text-nowrap tracking-wider flex items-center ml-2 underline underline-offset-4 text-eggplant dark:text-old-lace`} variant='lead' >
                         Advanced Search
                         <ChevronDownIcon
                             strokeWidth={2.5}

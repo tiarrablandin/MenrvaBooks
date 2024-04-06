@@ -1,3 +1,7 @@
+import { Bubbler_One } from "next/font/google";
+
+const bubbler = Bubbler_One({weight: "400", subsets: ["latin"]});
+
 export const lightTheme = {
     tab: {
         styles: {
@@ -15,7 +19,7 @@ export const lightTheme = {
     },
     typography: {
         defaultProps: {
-            className: "text-eggplant"
+            className: `text-eggplant ${bubbler.className}`
         }
     }
 };

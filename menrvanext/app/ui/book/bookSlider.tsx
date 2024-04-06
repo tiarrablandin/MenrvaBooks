@@ -1,7 +1,7 @@
 'use client';
 
 import { Typography } from "@/providers";
-import { Lusitana } from "next/font/google";
+import { Laila } from "next/font/google";
 import { BookResponse } from "../../lib/models/book";
 import BookCard from "./bookCard";
 import { useEffect, useState } from "react";
@@ -12,7 +12,7 @@ interface BookSliderProps {
   title: string;
 }
 
-const lusi = Lusitana({ subsets: ["latin"], weight: "400" });
+const laila = Laila({ subsets: ["latin"], weight: "500" });
 
 const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title }) => {
   const [books, setBooks] = useState<BookResponse[]>([]);
@@ -38,7 +38,7 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title }) => {
     <>
       <Typography
         variant="h1"
-        className={`${lusi.className} self-start ml-16 mt-10 text-eggplant dark:text-old-lace/95`}
+        className={`${laila.className} self-start ml-16 mt-10 text-eggplant dark:text-old-lace/95`}
       >
         {title}
       </Typography>
