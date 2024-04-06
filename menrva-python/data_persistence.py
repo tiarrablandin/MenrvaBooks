@@ -48,6 +48,24 @@ def insert_books_into_database(books=[]):
                 print(f"BOOK ID: {book_id}")
 
 
+def insert_author_into_database(author_name):
+    with mysql.connector.connect(**db_config) as conn:
+        with conn.cursor() as cursor:
+            insert_query = """
+            INSERT IGNORE INTO author (pen_name) VALUES (%s)
+            """
+            cursor.execute(insert_query, (author_name,))
+            conn.commit()
+
+            author_id = cursor.lastrowid
+            print(f"Author ID: {author_id}")
+            return author_id
+
+
+
+
+
+
 #   CONSTRUCT ELASTICSEARCH DOCUMENT
 def insert_books_into_elasticsearch(books=[]):
     print(f"BOOKS INSIDE INSERT BOOKS INTO ELASTICSEARCH: {books}")

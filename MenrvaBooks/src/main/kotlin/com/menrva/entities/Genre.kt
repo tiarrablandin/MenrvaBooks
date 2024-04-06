@@ -21,6 +21,7 @@ data class Genre(
     @JsonManagedReference
     @ManyToMany(mappedBy = "genres")
     val books: Set<Book> = HashSet(),
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "genre_has_sub_genre",

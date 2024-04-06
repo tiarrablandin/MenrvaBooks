@@ -1,6 +1,6 @@
 import requests
 
-from book_helper import get_cover_url_by_cover_id, parse_publication_date
+from book.book_helper import get_cover_url_by_cover_id, parse_publication_date
 
 
 def fetch_books_from_ia_by_genre(genre, languageCode="eng", rows=5):
