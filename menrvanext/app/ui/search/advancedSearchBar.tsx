@@ -52,7 +52,7 @@ const AdvancedSearchBar = () => {
                 type="submit"
                 className='h-11 flex items-center bg-eggplant'
             >
-                <Typography className={`${lusi.className} normal-case text-xl tracking-wider bg-eggplant`} type='lead'>
+                <Typography className={`${lusi.className} normal-case text-xl tracking-wider bg-eggplant text-gray-100 lg:text-2xl`} type='lead'>
                     Search
                 </Typography>
             </Button>
