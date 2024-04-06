@@ -38,15 +38,23 @@ const AdvancedSearchBar = () => {
     return (
         <form onSubmit={handleSubmit} className='flex flex-row w-full gap-3 m-2 justify-between'>
             <Input
-                className={`${lusi.className} w-4/5`}
+                // * THIS WORKS FOR CHANGING INPUT BORDER COLOR
+                className={`${lusi.className} w-4/5 border-l-eggplant border-r-eggplant border-b-eggplant border-l-2 border-r-2 border-b-2`}
+                labelProps={{
+                    className: "before:border-t-2 before:border-t-eggplant before:border-l-2 before:border-l-eggplant  after:border-t-2 after:border-t-eggplant after:border-r-2 after:border-r-eggplant",
+                }}
+                // * for no label
+                // className={`${lusi.className} w-4/5 !border-[#673c4f] scale-[92%] placeholder:text-[#673c4f] focus:!border-[#673c4f/80]`}
+                // containerProps={{
+                //     className: "min-w-[288px]",
+                // }}
                 type="text"
                 size="lg"
                 placeholder="Search for books, authors, genres..."
                 label="Search"
                 onChange={handleInputChange}
-
-                // * DON'T USE CUSTOM COLORS RIGHT NOW FOR INPUTS
-                color="gray"
+            // * DON'T USE CUSTOM COLORS RIGHT NOW FOR INPUTS
+            // color="gray"
             />
             <Button
                 type="submit"

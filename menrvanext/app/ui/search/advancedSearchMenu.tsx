@@ -1,9 +1,9 @@
 'use client';
 
-import { Button, ChevronDownIcon, Menu, MenuHandler, MenuList, Typography } from '@/providers';
+import { ChevronDownIcon, Menu, MenuHandler, MenuList, Typography } from '@/providers';
+import { Lusitana } from 'next/font/google';
 import React, { useState } from 'react';
 import SearchTabs from "./searchTabs";
-import { Lusitana } from 'next/font/google';
 
 const lusi = Lusitana({ subsets: ["latin"], weight: "400" });
 
@@ -28,7 +28,7 @@ const AdvancedSearchMenu = () => {
                         />
                     </Typography>
                 </MenuHandler>
-                <MenuList className="bg-eggplant border-2 border-pink-lavender">
+                <MenuList className="bg-old-lace border-2 border-pink-lavender">
                     <SearchTabs />
                 </MenuList>
             </Menu>

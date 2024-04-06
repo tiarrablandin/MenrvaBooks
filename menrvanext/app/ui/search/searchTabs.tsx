@@ -11,7 +11,7 @@ const SearchTabs = React.forwardRef(({}, ref: Ref<HTMLDivElement>) => {
 
     return (
         <Tabs id="advanced-search-tabs" value="book" className="min-w-96 h-48 w-[30rem] " ref={ref}>
-            <TabsHeader className='bg-gray-300'>
+            <TabsHeader className='bg-eggplant'>
                 {tabsData.map(({ label, value }) => (
                     <Tab key={value} value={value}>{label}</Tab>
                 ))}
