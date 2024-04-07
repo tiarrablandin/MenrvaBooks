@@ -6,7 +6,7 @@ interface TermsProps {}
 const Terms: React.FC<TermsProps> = ({}) => {
   return (
     <div className="flex items-center flex-col">
-      <Card className="flex items-center w-[90%] my-10">
+      <Card className="flex items-center w-[90%] my-10  bg-pink-lavender/80 dark:bg-chinese-violet">
         <Typography variant="h3" className="flex justify-center pt-10">
           Terms of Use
         </Typography>

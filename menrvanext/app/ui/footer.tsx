@@ -18,15 +18,14 @@ const currentYear = new Date().getFullYear();
 
 export function Footer() {
   return (
-    <footer className="w-full bg-pink-lavender dark:bg-chinese-violet">
+    <footer className="w-full bg-pink-lavender/80 dark:bg-chinese-violet">
       <div className="w-full max-w-7xl px-8 h-full">
         <div className="w-2/3 flex flex-row justify-start">
           {SITEMAP.map(({ title, links, routes }, key) => (
             <div key={key} className="w-3/5 text-start">
               <Typography
-                variant="small"
-                style={{ color: '#673C4F' }}
-                className="py-2 pt-4 font-bold uppercase"
+                variant="h5"
+                className="py-2 pt-4 font-bold text-lg uppercase"
               >
                 {title}
               </Typography>
@@ -35,7 +34,6 @@ export function Footer() {
                   <Typography
                     key={key}
                     as="li"
-                    color="blue-gray"
                     className="font-normal"
                   >
                     <Link
@@ -53,13 +51,12 @@ export function Footer() {
         <div className="flex w-full flex-col items-center justify-center border-t border-eggplant py-4 md:flex-row md:justify-between mt-2">
           <Typography
             variant="small"
-            className="mb-2 text-center font-normal text-eggplant md:mb-0"
+            className="mb-2 text-center font-normal md:mb-0"
           >
             &copy; {currentYear}{" "}
-            <a href="https://material-tailwind.com/">Menrva Books</a>. All
-            Rights Reserved.
+            <a href="https://material-tailwind.com/">Menrva Books</a>. All Rights Reserved.
           </Typography>
-          <div className="flex gap-4 text-eggplant sm:justify-center">
+          <div className="flex gap-4 sm:justify-center">
             <Typography
               as="a"
               href="#"

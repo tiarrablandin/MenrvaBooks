@@ -5,6 +5,7 @@ import {
   AccordionBody,
   AccordionHeader,
   ChevronDownIcon,
+  Typography,
 } from "@/providers";
 import React, { useState } from "react";
 
@@ -34,16 +35,16 @@ const CustomAccordion: React.FC<AccordionProps> = ({id, header, body}) => {
   const handleOpen = (value: number) => setOpen(open === value ? 0 : value);
 
   return (
-    <div className="px-8">
-        <Accordion open={open === id} icon={<Icon id={id} open={open} />}>
-          <AccordionHeader onClick={() => handleOpen(id)}>
+        <Accordion open={open === id} icon={<Icon id={id} open={open} />} className=" rounded-lg bg-transparent">
+          <AccordionHeader onClick={() => handleOpen(id)} className="rounded-lg !border border-eggplant dark:border-old-lace bg-pink-lavender/80 dark:bg-chinese-violet">
+            <Typography as="h3" variant="h5" className="mx-4">
             {header}
+            </Typography>
           </AccordionHeader>
-          <AccordionBody>
+          <AccordionBody className="rounded-lg !border border-eggplant dark:border-old-lace bg-pink-lavender/80 dark:bg-chinese-violet text-eggplant px-4">
             {body}
           </AccordionBody>
         </Accordion>
-    </div>
   );
 };
 

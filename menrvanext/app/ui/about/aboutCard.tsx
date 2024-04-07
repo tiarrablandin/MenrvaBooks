@@ -8,7 +8,7 @@ const aboutCard: React.FC<AboutCardProps> = ({}) => {
   return (
     <div>
       <div className="flex justify-center items-start py-10">
-        <Card className="w-full max-w-[68rem] flex-row">
+        <Card className="w-full max-w-[68rem] flex-row bg-pink-lavender/80 dark:bg-chinese-violet tracking-wide">
           <CardHeader
             shadow={false}
             floated={false}
@@ -21,20 +21,20 @@ const aboutCard: React.FC<AboutCardProps> = ({}) => {
             />
           </CardHeader>
           <CardBody>
-            <Typography variant="h4" color="blue-gray" className="mb-2">
+            <Typography variant="h4" className="mb-2">
               About Menrva Books
             </Typography>
-            <Typography variant="h6" color="gray" className="mb-8 font-normal">
+            <Typography variant="h6" className="mb-8 tracking-wide font-normal">
               Welcome to Menrva Books, your ultimate destination for book lovers
               and creators everywhere.
             </Typography>
-            <Typography color="gray" className="mb-8 font-normal">
+            <Typography className="mb-8 font-normal">
               Born out of a passion for literature and a desire to create a
               vibrant community of readers, Menrva Books is poised to
               revolutionize the way you discover, share, and discuss your
               favorite books.
             </Typography>
-            <Typography color="gray" className="mb-8 font-normal">
+            <Typography className="mb-8 font-normal">
               At Menrva, we believe that reading is more than just a solitary
               activity—it's a shared experience that connects people across the
               globe. Whether you're an avid reader looking for your next
@@ -46,7 +46,7 @@ const aboutCard: React.FC<AboutCardProps> = ({}) => {
               our vibrant community forums. Keep track of your reading progress,
               and share your thoughts and reviews with fellow readers.
             </Typography>
-            <Typography color="gray" className="mb-8 font-normal">
+            <Typography className="mb-8 font-normal">
               But Menrva Books is more than just a platform—it's a celebration
               of the written word and the diverse voices that enrich our
               literary landscape. Join us on a journey of exploration and

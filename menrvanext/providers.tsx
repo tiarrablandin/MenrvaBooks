@@ -28,6 +28,7 @@ export {
   TabsBody,
   Tab,
   TabPanel,
+  Textarea,
   ThemeProvider,
   Timeline,
   TimelineItem,

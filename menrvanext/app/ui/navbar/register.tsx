@@ -39,7 +39,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ }) => {
 
     return (
         <>
-            <Typography as={"a"} variant='small' onClick={handleOpen} className="flex items-center gap-x-2 mt-1 text-[#673C4F] cursor-pointer font-normal text-base w-min hover:scale-105">Register</Typography>
+            <Typography as={"a"} variant='small' onClick={handleOpen} className="flex items-center gap-x-2 mt-1 cursor-pointer font-normal text-xl w-min hover:scale-105">Register</Typography>
             <Dialog size='xl' open={isRegisterModalOpen} handler={handleOpen} className='bg-transparent shadow-none w-full'>
                 <form onSubmit={handleSubmit} className="space-y-3 h-full my-auto">
                     <div className="flex-1 rounded-lg bg-gray-50 px-6 py-8 mx-auto w-1/3 h-full my-auto ">
