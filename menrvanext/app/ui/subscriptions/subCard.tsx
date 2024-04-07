@@ -18,7 +18,7 @@ interface SubCardProps {
 const subCard: React.FC<SubCardProps> = ({ header, price, info }) => {
   return (
     <div>
-      <Card color="white" variant="gradient" className="flex justify-between w-72 max-w-[20rem] p-8">
+      <Card variant="gradient" className="flex justify-between w-72 max-w-[20rem] p-8 bg-pink-lavender/70 dark:bg-chinese-violet">
         <CardHeader
           floated={false}
           shadow={false}

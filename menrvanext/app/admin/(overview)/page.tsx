@@ -1,14 +1,14 @@
-import UserComponent from "@/app/ui/userHome/userHome";
+import AdminPortal from "@/app/ui/adminPortal/adminPortal";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "MenrvaBooks | User",
+  title: "MenrvaBooks",
 };
 
 export default async function Page() {
   return (
     <main className="w-screen min-h-[calc(100vh-295px)]">
-      <UserComponent />
+      <AdminPortal/>
     </main>
   );
 }

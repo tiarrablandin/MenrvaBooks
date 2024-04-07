@@ -18,16 +18,16 @@ const news: React.FC<NewsProps> = ({}) => {
       <Timeline className="w-4/5 my-20">
         <TimelineItem>
           <TimelineConnector className=""/>
-          <TimelineHeader className="h-3 text-eggplant">
+          <TimelineHeader className="h-3">
             <TimelineIcon className="bg-eggplant"/>
-            <Typography variant="h6" className="leading-none w-4/5">
+            <Typography variant="h5" className="leading-none w-4/5">
               Timeline Title Here.
             </Typography>
           </TimelineHeader>
           <TimelineBody className="pb-8">
             <Typography
               variant="small"
-              className="font-normal text-gray-600"
+              className="font-normal"
             >
               The key to more success is to have a lot of pillows. Put it this
               way, it took me twenty five years to get these plants, twenty five
@@ -40,14 +40,14 @@ const news: React.FC<NewsProps> = ({}) => {
           <TimelineConnector />
           <TimelineHeader className="h-3">
             <TimelineIcon className="bg-eggplant"/>
-            <Typography variant="h6" className="leading-none text-eggplant">
+            <Typography variant="h5" className="leading-none">
               Timeline Title Here.
             </Typography>
           </TimelineHeader>
           <TimelineBody className="pb-8">
             <Typography
               variant="small"
-              className="font-normal text-gray-600"
+              className="font-normal"
             >
               The key to more success is to have a lot of pillows. Put it this
               way, it took me twenty five years to get these plants, twenty five
@@ -59,14 +59,14 @@ const news: React.FC<NewsProps> = ({}) => {
         <TimelineItem>
           <TimelineHeader className="h-3">
             <TimelineIcon className="bg-eggplant"/>
-            <Typography variant="h6" className="leading-none text-eggplant">
+            <Typography variant="h5" className="leading-none">
               Timeline Title Here.
             </Typography>
           </TimelineHeader>
           <TimelineBody>
             <Typography
               variant="small"
-              className="font-normal text-gray-600"
+              className="font-normal"
             >
               The key to more success is to have a lot of pillows. Put it this
               way, it took me twenty five years to get these plants, twenty five
