@@ -27,7 +27,7 @@ create table if not exists author
     id           int auto_increment
         primary key,
     photo        varchar(100) null,
-    pen_name     varchar(20)  not null,
+    pen_name     varchar(100) not null UNIQUE,
     bio          longtext     null,
     text         longtext     null,
     date_created date         not null,
@@ -167,7 +167,7 @@ create table if not exists user
     last_name       varchar(20)  not null,
     tag             varchar(20)  not null,
     email           varchar(50)  not null,
-    username        varchar(50)  not null,
+    username        varchar(50)  not null UNIQUE,
     password        varchar(200) not null,
     active          int          not null,
     date_added      date         not null,

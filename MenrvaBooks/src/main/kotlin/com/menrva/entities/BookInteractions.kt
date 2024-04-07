@@ -1,16 +1,18 @@
 package com.menrva.entities
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import jakarta.persistence.*
 import java.io.Serializable
 import java.util.*
 
 
 
-//@JsonIdentityInfo(
-//    generator = ObjectIdGenerators.PropertyGenerator::class,
-//    property = "id"
-//)
+@JsonIdentityInfo(
+    generator = ObjectIdGenerators.PropertyGenerator::class,
+    property = "id"
+)
 @Entity
 @Table(name = "book_interactions")
 data class BookInteractions(

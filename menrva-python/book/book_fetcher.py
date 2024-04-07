@@ -17,7 +17,7 @@ def fetch_books_from_ia_by_genre(genre, languageCode="eng", rows=5):
 def fetch_popular_books_from_ol_by_genre(genre):
     books = []
     url = f'https://openlibrary.org/search.json?subject={genre}&limit=250'
-    response = requests.get(url)
+    response = requests.get(url, timeout=30)
     if response.status_code == 200:
         results = response.json()['docs']
         for result in results:

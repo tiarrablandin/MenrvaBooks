@@ -17,7 +17,10 @@ class AuthorService(
     fun findById(id: Long): Optional<Author> = authorRepo.findById(id)
 
     @Transactional
-    fun create(author: Author): Author = authorRepo.save(author)
+    fun create(author: Author): Author {
+        if (authorRepo.existsByPenName(author.penName)) return author
+        return authorRepo.save(author)
+    }
 
     @Transactional
     fun update(id: Long, authorUpdateDTO: AuthorUpdateDTO): Author? {
