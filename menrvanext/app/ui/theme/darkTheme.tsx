@@ -12,7 +12,7 @@ export const darkTheme = {
                     }
                 },
                 indicator: {
-                    bg: "bg-chinese-violet",
+                    bg: "bg-eggplant",
                 },
             }
         }

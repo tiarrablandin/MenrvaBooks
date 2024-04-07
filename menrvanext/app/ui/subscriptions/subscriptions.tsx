@@ -22,9 +22,9 @@ const Subscriptions = () => {
   return (
     <div className="">
       <Tabs value="readers" className="py-8" >
-        <TabsHeader className="flex justify-center bg-transparent">
+        <TabsHeader className="flex justify-center bg-eggplant w-80 mx-auto">
           {data.map(({ label, value }) => (
-            <Tab key={value} value={value} className="w-1/5">
+            <Tab key={value} value={value} className="">
               {label}
             </Tab>
           ))}
@@ -42,7 +42,7 @@ const Subscriptions = () => {
               )}
               {value === "authors" && (
                 <div className="flex justify-center pt-8 gap-8">
-                  <SubCard header={"Word Wizard"} price={1.99} info={["Customizable author landing page", "Blog"]} />
+                  <SubCard header={"Wordsmith"} price={1.99} info={["Customizable author landing page", "Blog"]} />
                   {/* <SubCard header={"Literary Luminary"} price={3.99} info={["WORD WIZARD PLUS:", ""]} /> */}
                 </div>
               )}
