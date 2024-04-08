@@ -27,10 +27,10 @@ class AuthorService(
         val author: Author = authorRepo.findById(id).orElse(null) ?: return null
 
         val updatedAuthor= author.copy(
-            photo = authorUpdateDTO.photo ?: author.photo,
-            penName = authorUpdateDTO.penName ?: author.penName,
-            bio = authorUpdateDTO.bio ?: author.bio,
-            text = authorUpdateDTO.text ?: author.text,
+            photo = authorUpdateDTO.photo,
+            penName = authorUpdateDTO.penName,
+            bio = authorUpdateDTO.bio,
+            text = authorUpdateDTO.text,
             // Do not update `dateCreated`; it's set automatically
         )
         return authorRepo.save(updatedAuthor)
