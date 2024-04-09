@@ -1,8 +1,8 @@
 package com.menrva.controllers
 
-import com.menrva.data.AuthenticationRequest
-import com.menrva.data.AuthenticationResponse
-import com.menrva.data.RegistrationResponse
+import com.menrva.data.user.AuthenticationRequest
+import com.menrva.data.user.AuthenticationResponse
+import com.menrva.data.user.RegistrationResponse
 import com.menrva.entities.User
 import com.menrva.security.JwtUtil
 import com.menrva.services.UserDetailsServiceImpl

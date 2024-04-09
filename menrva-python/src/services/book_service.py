@@ -1,7 +1,12 @@
 import requests
 
-from book.book_helper import get_cover_url_by_cover_id, parse_publication_date
+from utils.helpers import parse_publication_date
 
+
+
+'''
+FETCH BOOK INFO
+'''
 
 def fetch_books_from_ia_by_genre(genre, languageCode="eng", rows=5):
     books = []
@@ -17,7 +22,7 @@ def fetch_books_from_ia_by_genre(genre, languageCode="eng", rows=5):
 def fetch_popular_books_from_ol_by_genre(genre):
     books = []
     url = f'https://openlibrary.org/search.json?subject={genre}&limit=250'
-    response = requests.get(url)
+    response = requests.get(url, timeout=30)
     if response.status_code == 200:
         results = response.json()['docs']
         for result in results:
@@ -76,3 +81,33 @@ def fetch_full_books_by_work_id(work_id):
                 if cover_url and publish_date and description and page_count:
                     return book  # Returns the first edition that meets all criteria
     return None  # Return None if no suitable edition is found
+
+def fetch_editions_for_work_id(work_id):
+    url = f"https://openlibrary.org/{work_id}/editions.json"
+    response = requests.get(url)
+    if response.status_code == 200:
+        editions = response.json()['entries']
+        print(f"EDITIONS INSIDE FETCH EDITIONS FOR WORK ID: {editions}")
+        return editions
+    else:
+        print(f"Failed to fetch editions, status code: {response.status_code}")
+        return []
+
+
+
+
+'''
+FETCH COVER INFO
+'''
+
+def get_cover_url_by_cover_id(cover_id, size="L"):
+    return f"https://covers.openlibrary.org/b/id/{cover_id}-{size}.jpg"
+
+def get_cover_url_by_ol_id(ol_id, size="L"):
+    return f"https://covers.openlibrary.org/b/olid/{ol_id}-{size}.jpg"
+
+def get_cover_url_by_isbn(isbn, size="L"):
+    return f"https://covers.openlibrary.org/b/isbn/{isbn}-{size}.jpg"
+
+def get_goodreads_cover_url_by_isbn(goodreads_id, size="L"):
+    return f"https://covers.openlibrary.org/b/goodreads/{goodreads_id}-{size}.jpg"

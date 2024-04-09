@@ -1,16 +1,10 @@
 package com.menrva.controllers
 
-import com.menrva.data.BookDTO
-import com.menrva.data.BookGenreKeywordSummary
-import com.menrva.entities.Book
+import com.menrva.data.book.BookDTO
+import com.menrva.data.book.BookSummary
 import com.menrva.services.BookService
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("api")
@@ -23,7 +17,7 @@ class BookController(private val bookService: BookService) {
     }
 
     @GetMapping("books/genres-keywords")
-    fun allWithGenreKeyword(): ResponseEntity<List<BookGenreKeywordSummary>> {
+    fun allWithGenreKeyword(): ResponseEntity<List<BookSummary>> {
         return ResponseEntity.ok(bookService.indexWithGenresKeywords())
     }
 

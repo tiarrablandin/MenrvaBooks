@@ -1,6 +1,6 @@
 package com.menrva.repositories
 
-import com.menrva.data.BookGenreKeywordSummary
+import com.menrva.data.book.BookSummary
 import com.menrva.entities.Book
 import com.menrva.entities.Genre
 import com.menrva.entities.Keyword
@@ -28,9 +28,10 @@ interface BookJpaRepository : JpaRepository<Book, Long> {
     fun findBySearchTerm(@Param("searchTerm") searchTerm: String): List<Book>
 
     @Query("SELECT b FROM Book b")
-    fun findAllBooksWithGenreKeyword(): List<BookGenreKeywordSummary>
+    fun findAllBooksWithGenreKeyword(): List<BookSummary>
 
-    //    fun findByTitleWithGenresKeywords(title: String): List<BookGenreKeywordSummary>
+//    fun findByTitleWithGenresKeywords(title: String): List<BookGenreKeywordSummary>
+
     @Query(
         "SELECT DISTINCT b FROM Book b " +
                 "JOIN b.genres g " +

@@ -1,4 +1,4 @@
-package com.menrva.data
+package com.menrva.data.book
 
 import com.menrva.entities.Book
 import com.menrva.entities.Series

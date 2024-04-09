@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface AuthorRepository : JpaRepository<Author, Long> {
     fun findByPenName(penName: String): Author?
+    fun existsByPenName(penName: String): Boolean
 }

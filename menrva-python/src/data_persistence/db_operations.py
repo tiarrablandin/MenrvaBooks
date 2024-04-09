@@ -51,38 +51,15 @@ def insert_books_into_database(books=[]):
 def insert_author_into_database(author_name):
     with mysql.connector.connect(**db_config) as conn:
         with conn.cursor() as cursor:
+            date_created = datetime.now().strftime('%Y-%m-%d')
+
+
             insert_query = """
-            INSERT IGNORE INTO author (pen_name) VALUES (%s)
+            INSERT IGNORE INTO author (pen_name, date_created, reviewed) VALUES (%s, %s, %s)
             """
-            cursor.execute(insert_query, (author_name,))
+            cursor.execute(insert_query, (author_name, date_created, 0))
             conn.commit()
 
             author_id = cursor.lastrowid
             print(f"Author ID: {author_id}")
             return author_id
-
-
-
-
-
-
-#   CONSTRUCT ELASTICSEARCH DOCUMENT
-def insert_books_into_elasticsearch(books=[]):
-    print(f"BOOKS INSIDE INSERT BOOKS INTO ELASTICSEARCH: {books}")
-    
-    for book in books:
-        id, cover, title, description, page_count, publication_date, date_added, reviewed, date_updated, series_id = book
-        document = {
-            "id": id,
-            "cover": cover,
-            "title": title,
-            "description": description,
-            "page_count": page_count,
-            "publication_date": publication_date,
-            "date_added": date_added,
-            "reviewed": bool(reviewed),
-            "date_updated": date_updated,
-            "series_id": series_id
-        }
-    # response = es.index(index="books", id=id, document=document)
-    # print(response['result'])

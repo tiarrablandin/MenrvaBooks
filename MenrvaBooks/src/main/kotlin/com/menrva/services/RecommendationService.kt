@@ -1,6 +1,6 @@
 package com.menrva.services
 
-import com.menrva.data.BookDTO
+import com.menrva.data.book.BookDTO
 import com.menrva.exceptions.UserNotFoundException
 import com.menrva.repositories.BookInteractionsRepository
 import com.menrva.repositories.BookJpaRepository

@@ -1,6 +1,6 @@
 package com.menrva.services
 
-import com.menrva.data.UserDTO
+import com.menrva.data.user.UserDTO
 import com.menrva.entities.User
 import com.menrva.repositories.UserRepository
 import org.springframework.stereotype.Service
@@ -20,15 +20,15 @@ class UserService(private val userRepository: UserRepository) {
     @Transactional
     fun update(id: Long, userDTO: UserDTO): User? {
         val user: User = userRepository.findById(id).orElse(null) ?: return null
-        val updatedUser= user.copy(
-            firstName = userDTO.firstName ?: user.firstName,
-            lastName = userDTO.lastName ?: user.lastName,
-            tag = userDTO.tag ?:user.tag,
-            username = userDTO.username ?: user.username,
-            password = userDTO.password ?: user.password,
-            active = userDTO.active ?: user.active,
-            role = userDTO.role ?: user.role,
-            email = userDTO.email ?: user.email,
+        val updatedUser = user.copy(
+            firstName = userDTO.firstName,
+            lastName = userDTO.lastName,
+            tag = userDTO.tag,
+            username = userDTO.username,
+            password = userDTO.password,
+            active = userDTO.active,
+            role = userDTO.role,
+            email = userDTO.email,
             // Do not update creation timestamp as it's auto-generated
         )
         return userRepository.save(updatedUser)
