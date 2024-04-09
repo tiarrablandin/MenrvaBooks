@@ -1,7 +1,6 @@
 package com.menrva.controllers
 
-import com.menrva.data.BookDTO
-import com.menrva.entities.Book
+import com.menrva.data.book.BookDTO
 import com.menrva.services.RecommendationService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

@@ -1,5 +1,8 @@
-package com.menrva.data
+package com.menrva.data.book
 
+import com.menrva.data.GenreDTO
+import com.menrva.data.KeywordDTO
+import com.menrva.data.SeriesDTO
 import com.menrva.entities.Book
 
 data class BookDTO(

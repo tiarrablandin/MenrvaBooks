@@ -1,4 +1,4 @@
-package com.menrva.data
+package com.menrva.data.user
 
 import com.menrva.entities.Series
 import com.menrva.entities.User

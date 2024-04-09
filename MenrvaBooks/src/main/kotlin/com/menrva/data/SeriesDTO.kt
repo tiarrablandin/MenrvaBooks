@@ -1,6 +1,6 @@
 package com.menrva.data
 
-import com.menrva.entities.Genre
+import com.menrva.data.book.MinimalBookDTO
 import com.menrva.entities.Series
 
 data class SeriesDTO(

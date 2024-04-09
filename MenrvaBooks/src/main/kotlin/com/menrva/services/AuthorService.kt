@@ -1,6 +1,6 @@
 package com.menrva.services
 
-import com.menrva.data.AuthorUpdateDTO
+import com.menrva.data.author.AuthorUpdateDTO
 import com.menrva.entities.Author
 import com.menrva.repositories.AuthorRepository
 import jakarta.transaction.Transactional

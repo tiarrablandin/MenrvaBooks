@@ -1,6 +1,6 @@
 package com.menrva.services
 
-import com.menrva.data.UserDetailsImpl
+import com.menrva.data.user.UserDetailsImpl
 import com.menrva.entities.Subscription
 import com.menrva.entities.User
 import com.menrva.repositories.UserRepository

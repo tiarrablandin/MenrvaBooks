@@ -1,4 +1,4 @@
-package com.menrva.data
+package com.menrva.data.author
 
 data class AuthorUpdateDTO(
     val photo: String,
