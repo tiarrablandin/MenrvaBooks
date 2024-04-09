@@ -1,4 +1,3 @@
-from elasticsearch import Elasticsearch
 from datetime import datetime
 import mysql.connector
 
@@ -9,8 +8,6 @@ db_config = {
     'database': 'menrvadb',
     'port': 3306
 }
-# es = Elasticsearch("http://3.137.26.103:9200")
-
 
 def insert_books_into_database(books=[]):
     with mysql.connector.connect(**db_config) as conn:

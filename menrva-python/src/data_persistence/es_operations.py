@@ -1,8 +1,23 @@
+import ssl
 from elasticsearch import Elasticsearch
+
+from src.services.backend.book_service import fetch_book_summaries
+
+cert_path = "../MenrvaBooks/es-cert.pem"
+
+# Create a default SSL context
+context = ssl.create_default_context(capath=cert_path)
+context.check_hostname = False
+context.verify_mode = ssl.CERT_NONE
+
+context.load_verify_locations(cert_path)
 
 es = Elasticsearch(
     [{"host": "3.137.26.103", "port": 9200, "scheme": "https"}],
+    ssl_context=context,
     request_timeout=120,
+    basic_auth=('elastic', 'elastic'),
+    verify_certs=False
 )
 
 
@@ -11,42 +26,42 @@ def insert_books_into_elasticsearch(books=[]):
     print(f"BOOKS INSIDE INSERT BOOKS INTO ELASTICSEARCH: {books}")
     
     for book in books:
-        id, cover, title, description, page_count, publication_date, date_added, reviewed, date_updated, series_id = book
+        print(f"************* BOOK ${book}")
+        series = {'id': book.series.id, 'name': book.series.name} if book.series else None
+
+        # Convert each 'Keyword' and 'Author' object in the lists to dictionaries
+        keywords = [{'id': keyword.id, 'name': keyword.name} for keyword in book.keywords]
+        authors = [
+            {
+                "id": author.id,
+                'penName': author.penName,
+                'bio': author.bio,
+                'photo': author.photo,
+                # Assuming 'user' is a dictionary and doesn't need conversion
+                'user': author.user
+            } for author in book.authors
+        ]
+
         document = {
-            "id": id,
-            "cover": cover,
-            "title": title,
-            "description": description,
-            "page_count": page_count,
-            "publication_date": publication_date,
-            "date_added": date_added,
-            "reviewed": bool(reviewed),
-            "date_updated": date_updated,
-            "series_id": series_id
+            "id": book.id,
+            "cover": book.cover,
+            "title": book.title,
+            # "description": book.description,
+            # "page_count": page_count,
+            # "publication_date": publication_date,
+            # "date_added": date_added,
+            # "reviewed": bool(reviewed),
+            # "date_updated": date_updated,
+            "series": series,
+            "keywords": keywords,
+            "authors": authors,
         }
-    # response = es.index(index="books", id=id, document=document)
-    # print(response['result'])
-    
+        response = es.index(index="books", id=book.id, document=document)
+        print(f"Indexed book {book.id}: {response['result']}") 
 
 def sync_es_with_db():
-    books = []
-    for book in books:
-        print(book)
-        id, cover, title, description, page_count, publication_date, date_added, reviewed, date_updated, series_id = book
-        document = {
-            "id": id,
-            "cover": cover,
-            "title": title,
-            "description": description,
-            "page_count": page_count,
-            "publication_date": publication_date,
-            "date_added": date_added,
-            "reviewed": bool(reviewed),
-            "date_updated": date_updated,
-            "series_id": series_id
-        }
-        response = es.index(index="books", id=id, document=document)
-        print(response['result'])
+    books = fetch_book_summaries()
+    insert_books_into_elasticsearch(books)
 
 
 

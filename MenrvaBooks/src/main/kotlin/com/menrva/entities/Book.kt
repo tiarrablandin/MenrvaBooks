@@ -16,13 +16,13 @@ data class Book(
     val id: Long,
     val cover: String,
     val title: String,
-    val description: String,
+    val description: String?,
     @Column(name = "page_count")
     @Field(type = FieldType.Integer, name = "page_count")
-    val pageCount: Int,
+    val pageCount: Int?,
     @Column(name = "publication_date")
     @Field(type = FieldType.Date, name = "publication_date", format = [], pattern = ["uuuu-MM-dd"])
-    val publicationDate: LocalDate,
+    val publicationDate: LocalDate?,
     @Column(name = "date_added")
     @Field(type = FieldType.Date, name = "date_added", format = [], pattern = ["uuuu-MM-dd"])
     val dateAdded: LocalDate?,
@@ -31,7 +31,7 @@ data class Book(
     val dateUpdated: LocalDate?,
     @Column(name = "reviewed", nullable = false)
     @Field(type = FieldType.Boolean)
-    val reviewed: Boolean,
+    val reviewed: Boolean?,
     @JsonBackReference(value = "books")
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

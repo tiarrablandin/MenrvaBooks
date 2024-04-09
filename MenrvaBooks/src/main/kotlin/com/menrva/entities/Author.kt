@@ -14,11 +14,11 @@ data class Author(
     @Column(name = "pen_name")
     val penName: String,
     val bio: String,
-    val text: String,
+    val text: String?,
     @Column(name = "date_created")
-    val dateCreated: LocalDate,
+    val dateCreated: LocalDate?,
     @Column(name = "date_updated")
-    val dateUpdated: LocalDate,
+    val dateUpdated: LocalDate?,
     @Column(name = "reviewed", nullable = false)
     val reviewed: Byte? = null,
 

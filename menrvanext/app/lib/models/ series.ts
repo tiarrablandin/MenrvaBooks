@@ -1,0 +1,3 @@
+interface Series {
+    name: string
+}

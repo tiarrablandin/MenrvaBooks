@@ -13,10 +13,10 @@ data class Genre(
     val id: Long,
     val name: String,
     @CreationTimestamp @Column(name = "date_added")
-    val dateAdded: LocalDate,
+    val dateAdded: LocalDate?,
     @UpdateTimestamp @Column(name = "date_updated")
-    val dateUpdated: LocalDate,
-    val reviewed: Boolean,
+    val dateUpdated: LocalDate?,
+    val reviewed: Boolean?,
     @JsonIgnore
     @JsonManagedReference
     @ManyToMany(mappedBy = "genres")

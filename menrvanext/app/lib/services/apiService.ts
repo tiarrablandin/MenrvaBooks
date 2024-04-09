@@ -7,7 +7,7 @@ const url = baseUrl + "/api";
 // * BOOKS
 
 export async function fetchBooks(): Promise<BookResponse[]> {
-  const response = await fetch(`${url}/books`);
+  const response = await fetch(`${url}/books/summary`);
   return response.json();
 }
 

@@ -13,9 +13,9 @@ data class Keyword(
     val id: Long,
     val name: String,
     @CreationTimestamp @Column(name = "date_added")
-    val dateAdded: LocalDate,
+    val dateAdded: LocalDate?,
     @UpdateTimestamp @Column(name = "date_updated")
-    val dateUpdated: LocalDate,
+    val dateUpdated: LocalDate?,
 //    @JsonManagedReference
     @JsonIgnore
     @ManyToMany(mappedBy = "keywords")

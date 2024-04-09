@@ -1,23 +1,11 @@
 import requests
 
-from utils.helpers import parse_publication_date
-
+from src.utils.helpers import parse_publication_date
 
 
 '''
 FETCH BOOK INFO
 '''
-
-def fetch_books_from_ia_by_genre(genre, languageCode="eng", rows=5):
-    books = []
-    url = f"https://archive.org/advancedsearch.php?q=collection:(inlibrary) AND subject:({genre}) AND mediatype:(texts)&fl[]=identifier,title,creator,date,language,subject&sort[]=downloads desc&rows={rows}&output=json"
-    response = requests.get(url)
-    if response.status_code == 200:
-        books = response.json()['response']['docs']
-        print(f"BOOKS INSIDE FETCH FROM IA: {books}")
-        return books
-    else:
-        print(f"Failed to fetch data from Internet Archive, status code: {response.status_code}")
 
 def fetch_popular_books_from_ol_by_genre(genre):
     books = []
@@ -36,7 +24,6 @@ def fetch_popular_books_from_ol_by_genre(genre):
                 'work_id': result.get('key').split('/')[-1]
             }
             books.append(book)
-        print(f"BOOKS INSIDE FETCH POPULAR BOOKS FROM OPEN LIBRARY: {books}")
         return books
     else:
         print(f"Failed to fetch data from Open Library, status code: {response.status_code}")
@@ -46,10 +33,7 @@ def fetch_work_id_for_title(title):
     response = requests.get(url)
     if response.status_code == 200:
         results = response.json()['docs']
-        print(f"RESULTS INSIDE FETCH WORK ID FOR TITLE: {results}")
-
         selected_work = results[0] if results else None
-        print(f"SELECTED WORK INSIDE FETCH WORK ID FOR TITLE: {selected_work}")
 
         return selected_work['key'] if selected_work else None
     else:
@@ -77,7 +61,6 @@ def fetch_full_books_by_work_id(work_id):
                     'page_count': page_count,
                     'publication_date': parse_publication_date(publish_date),
                 }
-                print(f"******************************* BOOK: {book}")
                 if cover_url and publish_date and description and page_count:
                     return book  # Returns the first edition that meets all criteria
     return None  # Return None if no suitable edition is found
@@ -87,14 +70,10 @@ def fetch_editions_for_work_id(work_id):
     response = requests.get(url)
     if response.status_code == 200:
         editions = response.json()['entries']
-        print(f"EDITIONS INSIDE FETCH EDITIONS FOR WORK ID: {editions}")
         return editions
     else:
         print(f"Failed to fetch editions, status code: {response.status_code}")
         return []
-
-
-
 
 '''
 FETCH COVER INFO

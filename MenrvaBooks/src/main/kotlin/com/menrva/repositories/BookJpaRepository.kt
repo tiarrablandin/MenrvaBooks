@@ -25,10 +25,10 @@ interface BookJpaRepository : JpaRepository<Book, Long> {
                 "lower(s.name) like lower(concat('%', :searchTerm, '%')) OR " +
                 "lower(t.name) like lower(concat('%', :searchTerm, '%')) "
     )
-    fun findBySearchTerm(@Param("searchTerm") searchTerm: String): List<Book>
+    fun findBySearchTerm(@Param("searchTerm") searchTerm: String): List<BookSummary>
 
     @Query("SELECT b FROM Book b")
-    fun findAllBooksWithGenreKeyword(): List<BookSummary>
+    fun findAllBooksAsSummaries(): List<BookSummary>
 
 //    fun findByTitleWithGenresKeywords(title: String): List<BookGenreKeywordSummary>
 
