@@ -5,6 +5,7 @@ export {
   AccordionHeader,
   AccordionBody,
   Alert,
+  Avatar,
   Button,
   Card,
   CardBody,
