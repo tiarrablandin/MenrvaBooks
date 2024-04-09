@@ -14,4 +14,4 @@ def fetch_author_from_ol_by_book_title(book_title):
             print(f"AUTHOR INFO IN FETCH: {author}")
             return author
     else:
-        print(f"Failed to fetch data from Internet Archive, status code: {response.status_code}")
+        print(f"Failed to fetch data from Open Library, status code: {response.status_code}")

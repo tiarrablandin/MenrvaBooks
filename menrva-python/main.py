@@ -1,6 +1,6 @@
 from book.book_fetcher import fetch_full_books_by_work_id, fetch_popular_books_from_ol_by_genre
 from author.author_fetcher import fetch_author_from_ol_by_book_title
-from data_persistence import insert_author_into_database, insert_books_into_database
+from src.data_persistence.db_operations import insert_author_into_database, insert_books_into_database
 
 
 def process_popular_books_by_genre(genre):

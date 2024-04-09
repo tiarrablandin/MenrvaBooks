@@ -1,16 +1,23 @@
-import requests
+import re
 from datetime import datetime
 
-def fetch_editions_for_work_id(work_id):
-    url = f"https://openlibrary.org/{work_id}/editions.json"
-    response = requests.get(url)
-    if response.status_code == 200:
-        editions = response.json()['entries']
-        print(f"EDITIONS INSIDE FETCH EDITIONS FOR WORK ID: {editions}")
-        return editions
-    else:
-        print(f"Failed to fetch editions, status code: {response.status_code}")
-        return []
+def clean_date_string(date_str):
+    # Remove any characters that are not digits or date separators (- or /)
+    return re.sub(r"[^\d\-/]", "", date_str)
+
+def parse_publication_date(date_str):
+    # First, clean the date string to remove unexpected characters
+    cleaned_date_str = clean_date_string(date_str)
+    
+    # Try parsing the cleaned_date_str in various formats
+    for fmt in ("%Y-%m-%d", "%Y-%m", "%Y"):
+        try:
+            # If parsing succeeds, return the date in 'YYYY-MM-DD' format
+            return datetime.strptime(cleaned_date_str, fmt).strftime("%Y-%m-%d")
+        except ValueError:
+            continue  # Try the next format
+    
+    return "1900-01-01"  # Default date if parsing fails
 
 def filter_recent_editions(editions, years=25, language_code='eng'):
     recent_editions = []
@@ -28,5 +35,4 @@ def filter_recent_editions(editions, years=25, language_code='eng'):
         except ValueError:
             continue
 
-    print(f"RECENT EDITIONS INSIDE FILTER RECENT EDITIONS: {editions[0]}")
     return recent_editions
