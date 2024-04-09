@@ -15,18 +15,18 @@ class BookService(
     }
 
     fun indexWithGenresKeywords(): List<BookSummary> {
-        return bookRepo.findAllBooksWithGenreKeyword();
+        return bookRepo.findAllBooksAsSummaries();
     }
 
     fun getNewReleases(): List<Book> {
         val releases: MutableList<Book> = bookRepo.findAll()
         releases.sortBy { it.publicationDate }
-        releases.removeIf { it.publicationDate.isBefore(LocalDate.now().minusDays(90)) }
+        releases.removeIf { it.publicationDate!!.isBefore(LocalDate.now().minusDays(90)) }
         return releases;
     }
 
-    fun search(searchTerm: String): List<Book> {
-        val results: List<Book> = bookRepo.findBySearchTerm(searchTerm)
+    fun search(searchTerm: String): List<BookSummary> {
+        val results: List<BookSummary> = bookRepo.findBySearchTerm(searchTerm)
         return results
     }
 }

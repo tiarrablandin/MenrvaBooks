@@ -21,12 +21,12 @@ data class User(
     val firstName: String,
     @Column(name = "last_name")
     val lastName: String,
-    val tag: String,
+    val tag: String?,
     val username: String,
-    val password: String,
-    val active: Boolean,
-    val role: String,
-    val email: String,
+    val password: String?,
+    val active: Boolean?,
+    val role: String?,
+    val email: String?,
     @Column(name = "date_added")
     @CreationTimestamp
     val dateAdded: LocalDate?,

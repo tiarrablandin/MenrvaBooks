@@ -33,7 +33,7 @@ data class UserDetailsImpl(
             return UserDetailsImpl(
                 id = user.id,
                 username = user.username,
-                password = user.password,
+                password = user.password!!,
                 authorities = mutableListOf(authorities)
             )
         }

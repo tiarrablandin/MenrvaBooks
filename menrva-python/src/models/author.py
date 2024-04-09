@@ -1,8 +1,16 @@
 from dataclasses import dataclass
+from typing import Optional
+
+@dataclass
+class User:
+    username: str
+    firstName: str
+    lastName: str
 
 @dataclass
 class Author:
-    name: str
-    bio: str = ''  # Optional field with a default value
-    photo_url: str = ''  # Optional field with a default value
-    # Add more fields as needed
+    id: int
+    user: Optional[User]
+    penName: str
+    bio: str = ''
+    photo: str = ''

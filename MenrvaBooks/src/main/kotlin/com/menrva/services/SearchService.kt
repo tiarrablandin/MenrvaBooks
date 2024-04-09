@@ -1,5 +1,6 @@
 package com.menrva.services
 
+import com.menrva.data.book.BookSummary
 import com.menrva.entities.Book
 import com.menrva.repositories.elasticsearch.BookSearchRepository
 import org.springframework.stereotype.Service
@@ -10,6 +11,8 @@ class SearchService(
 ) {
 
     fun getSearchResultsByTitle(title: String): List<Book> {
-        return bookSearchRepository.findByTitleMatching(title)
+        val books = bookSearchRepository.findByTitleMatching(title)
+        print("IN SERVICE: $books")
+        return books
     }
 }

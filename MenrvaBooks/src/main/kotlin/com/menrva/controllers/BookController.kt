@@ -16,7 +16,7 @@ class BookController(private val bookService: BookService) {
         return ResponseEntity.ok(bookService.index().map { BookDTO(it) })
     }
 
-    @GetMapping("books/genres-keywords")
+    @GetMapping("books/summary")
     fun allWithGenreKeyword(): ResponseEntity<List<BookSummary>> {
         return ResponseEntity.ok(bookService.indexWithGenresKeywords())
     }
@@ -27,8 +27,8 @@ class BookController(private val bookService: BookService) {
     }
 
     @PostMapping("books/search")
-    fun search(@RequestParam searchTerm: String): ResponseEntity<List<BookDTO>> {
-        return ResponseEntity.ok(bookService.search(searchTerm).map { BookDTO(it) })
+    fun search(@RequestParam searchTerm: String): ResponseEntity<List<BookSummary>> {
+        return ResponseEntity.ok(bookService.search(searchTerm))
     }
 
 }

@@ -10,7 +10,7 @@ data class Comment (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    val id: Int? = null,
+    val id: Int,
 
     @Lob
     @Column(name = "comment", nullable = false)

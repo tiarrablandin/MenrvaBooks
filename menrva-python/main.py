@@ -1,6 +1,7 @@
-from book.book_fetcher import fetch_full_books_by_work_id, fetch_popular_books_from_ol_by_genre
-from author.author_fetcher import fetch_author_from_ol_by_book_title
-from src.data_persistence.db_operations import insert_author_into_database, insert_books_into_database
+from src.data_persistence.db_operations import insert_author_into_database
+from src.data_persistence.es_operations import sync_es_with_db
+from src.services.author_service import fetch_author_from_ol_by_book_title
+from src.services.third_party.openlibrary_service import fetch_full_books_by_work_id, fetch_popular_books_from_ol_by_genre
 
 
 def process_popular_books_by_genre(genre):
@@ -29,5 +30,6 @@ def process_author_by_book_title(book_title):
     print(f"AUTHOR INSIDE MAIN: {author}")
 
 if __name__ == "__main__":
-    process_popular_books_by_genre("Fantasy")
+    # process_popular_books_by_genre("Fantasy")
     # process_author_by_book_title("Lord of the Rings")
+    sync_es_with_db()

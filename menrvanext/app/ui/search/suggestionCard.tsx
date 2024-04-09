@@ -11,7 +11,7 @@ const SuggestionCard: React.FC<{ book: BookResponse }> = ({ book }) => {
             />
             <div className="flex flex-col">
                 <span className="text-sm font-medium text-gray-900">{book.title}</span>
-                <span className="text-xs text-gray-600">{book.author?.penName || 'Unknown Author'}</span>
+                {book.authors ? <span className="text-xs text-gray-600">{book.authors[0]?.penName || 'Unknown Author'}</span> : <></>}
             </div>
         </div>
     );

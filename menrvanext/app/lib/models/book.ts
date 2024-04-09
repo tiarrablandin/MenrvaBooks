@@ -9,5 +9,6 @@ export interface BookResponse{
   publicationDate: Date;
   dateAdded: Date;
   dateUpdated: Date;
-  author: Author | null;
+  authors: Author[];
+  series: Series;
 }
