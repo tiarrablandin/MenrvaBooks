@@ -16,6 +16,7 @@ const HomeComponent: React.FC = () => {
     "use server";
     return fetchBooks();
   }
+  
   return (
     <div className="w-screen h-full flex flex-col items-center">
       <AdvancedSearchComponent />

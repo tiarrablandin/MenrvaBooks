@@ -5,6 +5,7 @@ import com.menrva.entities.Book
 import com.menrva.repositories.BookJpaRepository
 import org.springframework.stereotype.Service
 import java.time.LocalDate
+import java.util.*
 
 @Service
 class BookService(
@@ -12,6 +13,10 @@ class BookService(
 ) {
     fun index(): List<Book> {
         return bookRepo.findAll()
+    }
+
+    fun findById(id: Long): BookSummary {
+        return bookRepo.findBookById(id)
     }
 
     fun indexWithGenresKeywords(): List<BookSummary> {
