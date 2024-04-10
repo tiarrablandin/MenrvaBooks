@@ -6,6 +6,11 @@ const url = baseUrl + "/api";
 
 // * BOOKS
 
+export async function fetchBookById(id: number): Promise<BookResponse> {
+  const response = await fetch(`${url}/books/${id}`);
+  return response.json();
+}
+
 export async function fetchBooks(): Promise<BookResponse[]> {
   const response = await fetch(`${url}/books/summary`);
   return response.json();

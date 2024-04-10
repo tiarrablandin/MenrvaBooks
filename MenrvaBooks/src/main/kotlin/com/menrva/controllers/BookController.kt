@@ -16,6 +16,12 @@ class BookController(private val bookService: BookService) {
         return ResponseEntity.ok(bookService.index().map { BookDTO(it) })
     }
 
+    @GetMapping("books/{id}")
+    fun findById(@PathVariable id: Long): ResponseEntity<Any> {
+        val book = bookService.findById(id)
+        return ResponseEntity.ok(book)
+    }
+
     @GetMapping("books/summary")
     fun allWithGenreKeyword(): ResponseEntity<List<BookSummary>> {
         return ResponseEntity.ok(bookService.indexWithGenresKeywords())

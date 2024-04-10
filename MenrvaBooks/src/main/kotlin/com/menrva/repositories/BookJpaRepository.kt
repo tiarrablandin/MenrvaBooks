@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository
 @Repository
 interface BookJpaRepository : JpaRepository<Book, Long> {
     fun findByTitle(title: String): List<Book>
+    @Query("SELECT b FROM Book b where b.id = :id")
+    fun findBookById(id: Long): BookSummary
 
     @Query(
         "SELECT DISTINCT b FROM Book b " +
