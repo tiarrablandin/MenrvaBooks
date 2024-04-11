@@ -1,5 +1,6 @@
 package com.menrva.repositories.elasticsearch
 
+import com.menrva.data.book.BookDTO
 import com.menrva.data.book.BookSummary
 import com.menrva.entities.Book
 import org.springframework.data.elasticsearch.annotations.Query

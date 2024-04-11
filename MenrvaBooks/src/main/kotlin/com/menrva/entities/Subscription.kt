@@ -6,25 +6,25 @@ import java.time.LocalDate
 
 @Entity
 @Table(name = "subscription")
-data class Subscription(
+class Subscription(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    val id: Int? = null,
+    var id: Int? = null,
 
     @Column(name = "level", nullable = false, length = 20)
-    val level: String? = null,
+    var level: String? = null,
 
     @Column(name = "paid", nullable = false)
-    val paid: Int? = null,
+    var paid: Int? = null,
 
     @Column(name = "date_added", nullable = false)
-    val dateAdded: LocalDate? = null,
+    var dateAdded: LocalDate? = null,
 
     @Column(name = "date_updated")
-    val dateUpdated: LocalDate? = null,
+    var dateUpdated: LocalDate? = null,
 
     @JsonIgnore
     @OneToMany(mappedBy = "subscription")
-    val users: MutableSet<User> = mutableSetOf()
+    var users: MutableSet<User> = mutableSetOf()
 )

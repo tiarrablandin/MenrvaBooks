@@ -19,6 +19,10 @@ class BookService(
         return bookRepo.findBookById(id)
     }
 
+    fun findAllById(ids: List<Long>): List<BookSummary> {
+        return bookRepo.findSummariesByIds(ids)
+    }
+
     fun indexWithGenresKeywords(): List<BookSummary> {
         return bookRepo.findAllBooksAsSummaries();
     }

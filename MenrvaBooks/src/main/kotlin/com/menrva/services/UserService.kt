@@ -20,7 +20,7 @@ class UserService(private val userRepository: UserRepository) {
     @Transactional
     fun update(id: Long, userDTO: UserDTO): User? {
         val user: User = userRepository.findById(id).orElse(null) ?: return null
-        val updatedUser = user.copy(
+        val updatedUser = User(
             firstName = userDTO.firstName,
             lastName = userDTO.lastName,
             tag = userDTO.tag,

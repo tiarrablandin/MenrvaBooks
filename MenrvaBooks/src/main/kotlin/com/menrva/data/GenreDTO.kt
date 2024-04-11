@@ -7,7 +7,7 @@ data class GenreDTO(
     val name: String,
 ) {
     constructor(genre: Genre) : this(
-        id = genre.id,
-        name = genre.name,
+        id = genre.id!!,
+        name = genre.name!!,
     )
 }

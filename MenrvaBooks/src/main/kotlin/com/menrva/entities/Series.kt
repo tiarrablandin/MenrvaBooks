@@ -8,22 +8,22 @@ import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDate
 
 @Entity
-data class Series(
+class Series(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
-    val name: String,
+    var id: Long? = null,
+    var name: String? = null,
     @CreationTimestamp @Column(name = "date_added")
-    val dateAdded: LocalDate?,
+    var dateAdded: LocalDate? = null,
     @UpdateTimestamp @Column(name = "date_updated")
-    val dateUpdated: LocalDate?,
-    val reviewed: Boolean?,
+    var dateUpdated: LocalDate? = null,
+    var reviewed: Boolean? = null,
     @JsonManagedReference
     @OneToMany @JoinColumn(name = "series_id")
-    val books: Set<Book> = HashSet(),
+    var books: Set<Book> = HashSet(),
     @JsonIgnore
     @ManyToMany(mappedBy = "series")
-    val authors: MutableSet<Author> = mutableSetOf(),
+    var authors: MutableSet<Author> = mutableSetOf(),
     @JsonIgnore
     @OneToMany(mappedBy = "series")
-    val seriesInteractions: MutableSet<SeriesInteraction> = mutableSetOf()
+    var seriesInteractions: MutableSet<SeriesInteraction> = mutableSetOf()
 )

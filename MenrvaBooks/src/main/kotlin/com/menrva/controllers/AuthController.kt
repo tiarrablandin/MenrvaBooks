@@ -40,8 +40,9 @@ class AuthController(
 
     @PostMapping("/register")
     fun registerUser(@RequestBody newUser: User): ResponseEntity<RegistrationResponse> {
+        val username = newUser.username ?: ""
         // Check if user already exists to prevent duplicates
-        if (userDetailsService.existsByUsername(newUser.username)) {
+        if (userDetailsService.existsByUsername(username)) {
             throw Exception ("Error: Username is already taken!")
         }
 
@@ -49,9 +50,9 @@ class AuthController(
             println("################### IN TRY")
             val savedUser = userDetailsService.save(newUser)
             println("*************** SAVED USER $savedUser")
-            val userDetails = userDetailsService.loadUserByUsername(savedUser.username)
+            val userDetails = userDetailsService.loadUserByUsername(username)
             println("*************** USER DETAILS $userDetails")
-            val existingUser = userDetailsService.loadFullUserByUsername(savedUser.username)
+            val existingUser = userDetailsService.loadFullUserByUsername(username)
             println("*************** EXISTING USER $existingUser")
             val jwt = jwtUtil.generateToken(userDetails)
             return ResponseEntity.ok(RegistrationResponse(jwt, existingUser))

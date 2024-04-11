@@ -31,8 +31,8 @@ data class UserDetailsImpl(
             val authorities: GrantedAuthority = SimpleGrantedAuthority(user.role)
 
             return UserDetailsImpl(
-                id = user.id,
-                username = user.username,
+                id = user.id!!,
+                username = user.username!!,
                 password = user.password!!,
                 authorities = mutableListOf(authorities)
             )

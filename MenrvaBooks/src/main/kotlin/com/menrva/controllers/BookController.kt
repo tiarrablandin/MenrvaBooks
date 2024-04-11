@@ -3,26 +3,28 @@ package com.menrva.controllers
 import com.menrva.data.book.BookDTO
 import com.menrva.data.book.BookSummary
 import com.menrva.services.BookService
+import com.sun.security.auth.UserPrincipal
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/books")
 @CrossOrigin("*", "http://localhost")
 class BookController(private val bookService: BookService) {
 
     @GetMapping("books")
-    fun index(): ResponseEntity<List<BookDTO>> {
+    fun index(): ResponseEntity<List<BookDTO?>> {
         return ResponseEntity.ok(bookService.index().map { BookDTO(it) })
     }
 
-    @GetMapping("books/{id}")
+    @GetMapping("{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<Any> {
         val book = bookService.findById(id)
         return ResponseEntity.ok(book)
     }
 
-    @GetMapping("books/summary")
+    @GetMapping("summary")
     fun allWithGenreKeyword(): ResponseEntity<List<BookSummary>> {
         return ResponseEntity.ok(bookService.indexWithGenresKeywords())
     }
@@ -32,9 +34,14 @@ class BookController(private val bookService: BookService) {
         return ResponseEntity.ok(bookService.getNewReleases().map { BookDTO(it) })
     }
 
-    @PostMapping("books/search")
+    @PostMapping("search")
     fun search(@RequestParam searchTerm: String): ResponseEntity<List<BookSummary>> {
         return ResponseEntity.ok(bookService.search(searchTerm))
+    }
+
+    @PostMapping("{bookId}/react")
+    fun toggleLikeDislike(@PathVariable bookId: Long, @AuthenticationPrincipal user: UserPrincipal, @RequestParam("status") status: Int) {
+
     }
 
 }

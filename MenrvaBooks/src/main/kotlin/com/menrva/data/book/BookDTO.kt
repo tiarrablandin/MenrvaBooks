@@ -7,7 +7,7 @@ import com.menrva.data.author.AuthorDTO
 import com.menrva.entities.Book
 
 data class BookDTO(
-    val id: Long,
+    val id: Long?,
     val title: String,
     val cover: String,
     val genres: Set<GenreDTO>,

@@ -6,28 +6,28 @@ import java.time.LocalDate
 
 @Entity
 @Table(name = "link")
-data class Link(
+class Link(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    val id: Int? = null,
+    var id: Int? = null,
 
     @Column(name = "name", nullable = false, length = 20)
-    val name: String? = null,
+    var name: String? = null,
 
     @Column(name = "link", nullable = false, length = 100)
-    val link: String? = null,
+    var link: String? = null,
 
     @Column(name = "date_added", nullable = false)
-    val dateAdded: LocalDate? = null,
+    var dateAdded: LocalDate? = null,
 
     @Column(name = "reviewed", nullable = false)
-    val reviewed: Byte? = null,
+    var reviewed: Byte? = null,
 
     @Column(name = "date_updated")
-    val dateUpdated: LocalDate? = null,
+    var dateUpdated: LocalDate? = null,
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "book_id", nullable = false)
-    val book: Book? = null
+    var book: Book? = null
 )

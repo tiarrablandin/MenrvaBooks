@@ -6,15 +6,15 @@ from src.services.backend.book_service import fetch_book_summaries
 cert_path = "../MenrvaBooks/es-cert.pem"
 
 # Create a default SSL context
-context = ssl.create_default_context(capath=cert_path)
-context.check_hostname = False
-context.verify_mode = ssl.CERT_NONE
+# context = ssl.create_default_context(capath=cert_path)
+# context.check_hostname = False
+# context.verify_mode = ssl.CERT_NONE
 
-context.load_verify_locations(cert_path)
+# context.load_verify_locations(cert_path)
 
 es = Elasticsearch(
     [{"host": "3.137.26.103", "port": 9200, "scheme": "https"}],
-    ssl_context=context,
+    # ssl_context=context,
     request_timeout=120,
     basic_auth=('elastic', 'elastic'),
     verify_certs=False
@@ -29,7 +29,6 @@ def insert_books_into_elasticsearch(books=[]):
         print(f"************* BOOK ${book}")
         series = {'id': book.series.id, 'name': book.series.name} if book.series else None
 
-        # Convert each 'Keyword' and 'Author' object in the lists to dictionaries
         keywords = [{'id': keyword.id, 'name': keyword.name} for keyword in book.keywords]
         authors = [
             {
@@ -37,7 +36,6 @@ def insert_books_into_elasticsearch(books=[]):
                 'penName': author.penName,
                 'bio': author.bio,
                 'photo': author.photo,
-                # Assuming 'user' is a dictionary and doesn't need conversion
                 'user': author.user
             } for author in book.authors
         ]

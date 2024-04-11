@@ -6,22 +6,22 @@ import java.time.LocalDate
 
 @Entity
 @Table(name = "sub_genre")
-data class SubGenre(
+class SubGenre(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    val id: Int,
+    var id: Long? = null,
 
     @Column(name = "name", nullable = false, length = 20)
-    val name: String,
+    var name: String? = null,
 
     @Column(name = "date_added", nullable = false)
-    val dateAdded: LocalDate,
+    var dateAdded: LocalDate? = null,
 
     @Column(name = "reviewed", nullable = false)
-    val reviewed: Byte,
+    var reviewed: Byte? = null,
 
     @Column(name = "date_updated")
-    val dateUpdated: LocalDate? = null,
+    var dateUpdated: LocalDate? = null,
 
     @JsonIgnore
     @ManyToMany
@@ -30,13 +30,13 @@ data class SubGenre(
         joinColumns = [JoinColumn(name = "sub_genre_id")],
         inverseJoinColumns = [JoinColumn(name = "book_id")]
     )
-    val books: MutableSet<Book> = mutableSetOf(),
+    var books: MutableSet<Book> = mutableSetOf(),
 
     @JsonIgnore
     @ManyToMany(mappedBy = "subGenres")
-    val genres: MutableSet<Genre> = mutableSetOf(),
+    var genres: MutableSet<Genre> = mutableSetOf(),
 
     @JsonIgnore
     @ManyToMany(mappedBy = "subGenres")
-    val users: MutableSet<User> = mutableSetOf()
+    var users: MutableSet<User> = mutableSetOf()
 )

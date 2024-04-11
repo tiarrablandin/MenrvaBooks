@@ -18,7 +18,7 @@ class AuthorService(
 
     @Transactional
     fun create(author: Author): Author {
-        if (authorRepo.existsByPenName(author.penName)) return author
+        if (authorRepo.existsByPenName(author.penName!!)) return author
         return authorRepo.save(author)
     }
 
@@ -26,7 +26,8 @@ class AuthorService(
     fun update(id: Long, authorUpdateDTO: AuthorUpdateDTO): Author? {
         val author: Author = authorRepo.findById(id).orElse(null) ?: return null
 
-        val updatedAuthor= author.copy(
+        val updatedAuthor = Author(
+            id = authorUpdateDTO.id,
             photo = authorUpdateDTO.photo,
             penName = authorUpdateDTO.penName,
             bio = authorUpdateDTO.bio,
