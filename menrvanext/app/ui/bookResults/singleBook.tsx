@@ -7,11 +7,12 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import BookSlider from "../book/bookSlider";
+import AdvancedSearchComponent from "../search/advancedSearch";
 
 const SingleBook: React.FC = ({}) => {
-  const searchParams = useParams()
-  const id = searchParams.id
-  const numericId = id ? parseInt(id as string, 10) : null
+  const searchParams = useParams();
+  const id = searchParams.id;
+  const numericId = id ? parseInt(id as string, 10) : null;
   const [book, setBook] = useState<BookResponse | null>(null);
 
   useEffect(() => {
@@ -28,6 +29,9 @@ const SingleBook: React.FC = ({}) => {
 
   return (
     <>
+      <div className="flex justify-center">
+        <AdvancedSearchComponent />
+      </div>
       <div className="flex m-8 gap-8">
         {book?.cover ? (
           <Image src={`${book?.cover}`} width={360} height={720} alt="" className="rounded-md" />

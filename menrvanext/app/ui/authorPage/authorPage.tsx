@@ -2,6 +2,7 @@ import { fetchBooks } from "@/app/lib/services/apiService";
 import BookSlider from "../book/bookSlider";
 import AnnouncementsCard from "./announcementsCard";
 import AuthorCard from "./authorCard";
+import AdvancedSearchComponent from "../search/advancedSearch";
 
 interface AuthorPageProps {}
 
@@ -14,6 +15,7 @@ const AuthorPage: React.FC<AuthorPageProps> = ({}) => {
   return (
     <div>
       <div className="flex justify-center flex-wrap gap-8 my-8">
+        <AdvancedSearchComponent />
         <AuthorCard />
         <AnnouncementsCard />
       </div>

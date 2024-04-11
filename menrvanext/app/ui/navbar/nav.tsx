@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../lib/store/userSlice";
 import ThemeToggle from "../theme/themeToggle";
 import LoginForm from "./login";
-import RegisterForm from "./register";
+import RegisterForm from "../subscriptions/register";
 
 export function CustomNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
@@ -58,7 +58,9 @@ export function CustomNavbar() {
         ) : (
           <>
             <UserIcon className="h-5 w-5" />
-            <RegisterForm />
+            <Link href="/subscriptions" className="flex items-center">
+              Register
+            </Link>
           </>
         )}
       </Typography>
