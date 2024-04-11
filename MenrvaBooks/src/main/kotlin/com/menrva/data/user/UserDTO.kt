@@ -4,11 +4,11 @@ import com.menrva.entities.Series
 import com.menrva.entities.User
 
 data class UserDTO(
-    val id: Long,
-    val firstName: String,
-    val lastName: String,
+    val id: Long?,
+    val firstName: String?,
+    val lastName: String?,
     val tag: String?,
-    val username: String,
+    val username: String?,
     val active: Boolean?,
     val role: String?,
     val email: String?,

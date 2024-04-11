@@ -36,6 +36,7 @@ class SecurityConfig {
                         "api/search/**",
                         "api/series/**",
                         "api/tags/**",
+                        "api/users/**",
                         "register",
                     ).permitAll()
                     .anyRequest().authenticated()
@@ -51,6 +52,7 @@ class SecurityConfig {
                     "api/search/**",
                     "api/series/**",
                     "api/tags/**",
+                    "api/users/**",
                     "register",
                 )
             }

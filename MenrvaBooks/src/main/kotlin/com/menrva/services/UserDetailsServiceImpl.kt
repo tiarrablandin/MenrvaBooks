@@ -39,7 +39,7 @@ class UserDetailsServiceImpl(
         // Ensure you encode the password if not already done before calling this method
         val newPassword = passwordEncoder.encode(user.password)
         println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ IN SERVICE 2 $newPassword")
-        val updatedUser = user.copy(password = newPassword, subscription = Subscription(1))
+        val updatedUser = User(password = newPassword, subscription = Subscription(1))
         println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ IN SERVICE 3 $updatedUser")
 
 

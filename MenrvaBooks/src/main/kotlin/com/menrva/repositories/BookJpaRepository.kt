@@ -16,7 +16,7 @@ interface BookJpaRepository : JpaRepository<Book, Long> {
     fun findBookById(id: Long): BookSummary
 
     @Query("SELECT b FROM Book b WHERE b.id IN :ids")
-    fun findSummariesByIds(@Param("ids") ids: List<Long>): List<BookSummary>
+    fun findSummariesByIds(@Param("ids") ids: List<Long?>): List<BookSummary>
 
     @Query(
         "SELECT DISTINCT b FROM Book b " +

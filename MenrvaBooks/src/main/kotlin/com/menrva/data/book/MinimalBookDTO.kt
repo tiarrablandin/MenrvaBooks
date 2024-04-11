@@ -4,7 +4,7 @@ import com.menrva.entities.Book
 import com.menrva.entities.Series
 
 data class MinimalBookDTO(
-    val id: Long,
+    val id: Long?,
     val title: String
 ) {
     constructor(book: Book) : this(
