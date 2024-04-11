@@ -8,6 +8,7 @@ import {
   CheckCircleIcon,
 } from "@/providers";
 import React from "react";
+import RegisterForm from "./register";
 
 interface SubCardProps {
   header: string;
@@ -49,15 +50,17 @@ const subCard: React.FC<SubCardProps> = ({ header, price, info }) => {
             ))}
           </ul>
         </CardBody>
-        <CardFooter className="mt-12 p-0">
-          <Button
+        <CardFooter className="flex justify-center mt-12 p-0">
+          <RegisterForm/>
+          {/* <Button
+          href="/register"
             size="lg"
             className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100 bg-eggplant"
             ripple={false}
             fullWidth={true}
           >
             Subscribe
-          </Button>
+          </Button> */}
         </CardFooter>
       </Card>
     </div>
