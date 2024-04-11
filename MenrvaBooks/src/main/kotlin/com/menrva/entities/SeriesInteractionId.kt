@@ -7,11 +7,11 @@ import java.io.Serializable
 import java.util.*
 
 @Embeddable
-data class SeriesInteractionId(
+class SeriesInteractionId(
     @Column(name = "series_id", nullable = false)
-    val seriesId: Int? = null,
+    var seriesId: Int? = null,
     @Column(name = "user_id", nullable = false)
-    val userId: Int? = null
+    var userId: Int? = null
 ) : Serializable {
 
     override fun hashCode(): Int = Objects.hash(seriesId, userId)

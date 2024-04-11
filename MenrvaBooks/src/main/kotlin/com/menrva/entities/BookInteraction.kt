@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import jakarta.persistence.*
-import java.io.Serializable
 import java.util.*
-
 
 
 @JsonIdentityInfo(
@@ -15,25 +13,33 @@ import java.util.*
 )
 @Entity
 @Table(name = "book_interactions")
-data class BookInteractions(
+class BookInteraction(
     @EmbeddedId
-    val id: BookInteractionsId? = null,
+    var id: BookInteractionId,
     @JsonIgnore
     @MapsId("bookId")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
-    val book: Book,
+    var book: Book,
     @JsonIgnore
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    val user: User,
+    var user: User,
     @Column(name = "has_read")
-    val hasRead: Boolean = false,
-    @Column(name = "interested")
-    val interested: Boolean = false,
-    @Column(name = "favorite")
-    val favorite: Boolean = false,
+    var hasRead: Boolean = false,
+    var interested: Boolean = false,
+    var favorite: Boolean = false,
     @Column(name = "like_dislike")
-    val likeDislike: Int = 0,
-)
+    var likeDislike: Int = 0,
+) {
+    constructor(id: BookInteractionId, likeDislike: Int) : this(
+        id = id,
+        book = Book(), // You need to provide a default Book instance, consider fetching from DB if necessary
+        user = User(), // Same for User, you need a default or actual instance
+        hasRead = false,
+        interested = false,
+        favorite = false,
+        likeDislike = likeDislike
+    )
+}

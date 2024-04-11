@@ -10,25 +10,24 @@ import java.time.LocalDate
 
 @Entity
 @Document(indexName = "books")
-data class Book(
+class Book(
     @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @org.springframework.data.annotation.Id
-    val id: Long,
-    val cover: String,
+    var id: Long? = null,
+    var cover: String? = null,
     @Field(type = FieldType.Text, index = true)
-    val title: String,
-    val description: String?,
+    var title: String? = null,
+    var description: String? = null,
     @Column(name = "page_count")
-    val pageCount: Int?,
+    var pageCount: Int? = null,
     @Column(name = "publication_date")
-    val publicationDate: LocalDate?,
+    var publicationDate: LocalDate? = null,
     @Column(name = "date_added")
-    val dateAdded: LocalDate?,
+    var dateAdded: LocalDate? = null,
     @Column(name = "date_updated")
-    val dateUpdated: LocalDate?,
+    var dateUpdated: LocalDate? = null,
     @Column(name = "reviewed", nullable = false)
-    @Field(type = FieldType.Boolean)
-    val reviewed: Boolean?,
+    var reviewed: Boolean? = null,
     @JsonBackReference(value = "books")
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -36,7 +35,7 @@ data class Book(
         joinColumns = [JoinColumn(name = "book_id")],
         inverseJoinColumns = [JoinColumn(name = "genre_id")]
     )
-    val genres: Set<Genre> = HashSet(),
+    var genres: Set<Genre> = HashSet(),
 //    @JsonBackReference(value = "books")
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
@@ -45,7 +44,7 @@ data class Book(
         joinColumns = [JoinColumn(name = "book_id")],
         inverseJoinColumns = [JoinColumn(name = "keyword_id")]
     )
-    val keywords: Set<Keyword> = HashSet(),
+    var keywords: Set<Keyword> = HashSet(),
     @JsonIgnore
 //    @JsonBackReference(value = "books")
     @ManyToMany(fetch = FetchType.LAZY)
@@ -54,29 +53,27 @@ data class Book(
         joinColumns = [JoinColumn(name = "book_id")],
         inverseJoinColumns = [JoinColumn(name = "tag_id")]
     )
-    val tags: Set<Tag> = HashSet(),
+    var tags: Set<Tag> = HashSet(),
     @JsonIgnore
 //    @JsonBackReference(value = "books")
     @ManyToOne @JoinColumn(name = "series_id")
-    val series: Series?,
+    var series: Series? = null,
     @JsonIgnore
     @OneToMany(mappedBy = "book")
-    val bookInteractions: Set<BookInteractions> = HashSet(),
+    var bookInteractions: Set<BookInteraction> = HashSet(),
     @JsonIgnore
     @ManyToMany(mappedBy = "books")
-    val authors: MutableSet<Author> = mutableSetOf(),
+    var authors: MutableSet<Author> = mutableSetOf(),
     @JsonIgnore
     @ManyToMany(mappedBy = "books")
-    val subGenres: MutableSet<SubGenre> = mutableSetOf(),
+    var subGenres: MutableSet<SubGenre> = mutableSetOf(),
     @JsonIgnore
     @OneToMany(mappedBy = "book")
-    val comments: MutableSet<Comment> = mutableSetOf(),
+    var comments: MutableSet<Comment> = mutableSetOf(),
     @JsonIgnore
     @OneToMany(mappedBy = "book")
-    val links: MutableSet<Link> = mutableSetOf()
+    var links: MutableSet<Link> = mutableSetOf()
 ) {
-
-
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

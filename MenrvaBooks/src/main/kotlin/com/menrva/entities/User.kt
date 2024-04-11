@@ -9,45 +9,45 @@ import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDate
 
-//@JsonIdentityInfo(
-//    generator = ObjectIdGenerators.PropertyGenerator::class,
-//    property = "id"
-//)
+@JsonIdentityInfo(
+    generator = ObjectIdGenerators.PropertyGenerator::class,
+    property = "id"
+)
 @Entity
-data class User(
+class User(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    var id: Long? = null,
     @Column(name = "first_name")
-    val firstName: String,
+    var firstName: String? = null,
     @Column(name = "last_name")
-    val lastName: String,
-    val tag: String?,
-    val username: String,
-    val password: String?,
-    val active: Boolean?,
-    val role: String?,
-    val email: String?,
+    var lastName: String? = null,
+    var tag: String? = null,
+    var username: String? = null,
+    var password: String? = null,
+    var active: Boolean? = null,
+    var role: String? = null,
+    var email: String? = null,
     @Column(name = "date_added")
     @CreationTimestamp
-    val dateAdded: LocalDate?,
+    var dateAdded: LocalDate? = null,
     @Column(name = "date_updated")
     @UpdateTimestamp
-    val dateUpdated: LocalDate?,
+    var dateUpdated: LocalDate? = null,
     @JsonBackReference(value = "user")
     @OneToMany(mappedBy = "user")
-    val bookInteractions: Set<BookInteractions> = HashSet(),
+    var bookInteractions: Set<BookInteraction> = HashSet(),
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "subscription_id", nullable = true)
-    val subscription: Subscription? = null,
+    var subscription: Subscription? = null,
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    val comments: MutableSet<Comment> = mutableSetOf(),
+    var comments: MutableSet<Comment> = mutableSetOf(),
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    val seriesInteractions: MutableSet<SeriesInteraction> = mutableSetOf(),
+    var seriesInteractions: MutableSet<SeriesInteraction> = mutableSetOf(),
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    val author: MutableSet<Author> = mutableSetOf(),
+    var author: MutableSet<Author> = mutableSetOf(),
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -55,7 +55,7 @@ data class User(
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "author_id")]
     )
-    val authors: MutableSet<Author> = mutableSetOf(),
+    var authors: MutableSet<Author> = mutableSetOf(),
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -63,7 +63,7 @@ data class User(
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "genre_id")]
     )
-    val genres: MutableSet<Genre> = mutableSetOf(),
+    var genres: MutableSet<Genre> = mutableSetOf(),
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -71,7 +71,7 @@ data class User(
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "keyword_id")]
     )
-    val keywords: MutableSet<Keyword> = mutableSetOf(),
+    var keywords: MutableSet<Keyword> = mutableSetOf(),
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -79,7 +79,7 @@ data class User(
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "sub_genre_id")]
     )
-    val subGenres: MutableSet<SubGenre> = mutableSetOf(),
+    var subGenres: MutableSet<SubGenre> = mutableSetOf(),
 ) {
 
     override fun equals(other: Any?): Boolean {

@@ -8,21 +8,21 @@ import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDate
 
 @Entity
-data class Keyword(
+class Keyword(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
-    val name: String,
+    var id: Long? = null,
+    var name: String? = null,
     @CreationTimestamp @Column(name = "date_added")
-    val dateAdded: LocalDate?,
+    var dateAdded: LocalDate? = null,
     @UpdateTimestamp @Column(name = "date_updated")
-    val dateUpdated: LocalDate?,
+    var dateUpdated: LocalDate? = null,
 //    @JsonManagedReference
     @JsonIgnore
     @ManyToMany(mappedBy = "keywords")
-    val books: Set<Book> = HashSet(),
+    var books: Set<Book> = HashSet(),
     @Column(name = "reviewed", nullable = false)
-    val reviewed: Byte? = null,
+    var reviewed: Byte? = null,
     @JsonIgnore
     @ManyToMany(mappedBy = "keywords")
-    val users: MutableSet<User> = mutableSetOf()
+    var users: MutableSet<User> = mutableSetOf()
 )

@@ -6,32 +6,32 @@ import java.time.LocalDate
 
 @Entity
 @Table(name = "comment")
-data class Comment (
+class Comment (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    val id: Int,
+    var id: Int? = null,
 
     @Lob
     @Column(name = "comment", nullable = false)
-    val comment: String? = null,
+    var comment: String? = null,
 
     @Column(name = "date_added", nullable = false)
-    val dateAdded: LocalDate? = null,
+    var dateAdded: LocalDate? = null,
 
     @Column(name = "reviewed", nullable = false)
-    val reviewed: Byte? = null,
+    var reviewed: Byte? = null,
 
     @Column(name = "date_updated")
-    val dateUpdated: LocalDate? = null,
+    var dateUpdated: LocalDate? = null,
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    val user: User? = null,
+    var user: User? = null,
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "book_id", nullable = false)
-    val book: Book? = null
+    var book: Book? = null
 )

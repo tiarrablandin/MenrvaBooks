@@ -4,26 +4,26 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "series_interactions")
-data class SeriesInteraction (
+class SeriesInteraction (
     @EmbeddedId
-    val id: SeriesInteractionId? = null,
+    var id: SeriesInteractionId? = null,
 
     @MapsId("seriesId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "series_id", nullable = false)
-    val series: Series? = null,
+    var series: Series? = null,
 
     @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    val user: User? = null,
+    var user: User? = null,
 
     @Column(name = "interested", nullable = false)
-    val interested: Int? = null,
+    var interested: Int? = null,
 
     @Column(name = "favorite", nullable = false)
-    val favorite: Int? = null,
+    var favorite: Int? = null,
 
     @Column(name = "in_progress", nullable = false)
-    val inProgress: Int? = null
+    var inProgress: Int? = null
 )
