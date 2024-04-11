@@ -15,19 +15,16 @@ data class Book(
     @org.springframework.data.annotation.Id
     val id: Long,
     val cover: String,
+    @Field(type = FieldType.Text, index = true)
     val title: String,
     val description: String?,
     @Column(name = "page_count")
-    @Field(type = FieldType.Integer, name = "page_count")
     val pageCount: Int?,
     @Column(name = "publication_date")
-    @Field(type = FieldType.Date, name = "publication_date", format = [], pattern = ["uuuu-MM-dd"])
     val publicationDate: LocalDate?,
     @Column(name = "date_added")
-    @Field(type = FieldType.Date, name = "date_added", format = [], pattern = ["uuuu-MM-dd"])
     val dateAdded: LocalDate?,
     @Column(name = "date_updated")
-    @Field(type = FieldType.Date, name = "date_updated", format = [], pattern = ["uuuu-MM-dd"])
     val dateUpdated: LocalDate?,
     @Column(name = "reviewed", nullable = false)
     @Field(type = FieldType.Boolean)
@@ -80,6 +77,7 @@ data class Book(
 ) {
 
 
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -97,5 +95,10 @@ data class Book(
         result = 31 * result + title.hashCode()
         return result
     }
+
+    override fun toString(): String {
+        return "Book(id=$id, title='$title')"
+    }
+
 }
 
