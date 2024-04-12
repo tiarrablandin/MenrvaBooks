@@ -5,12 +5,24 @@ import { fetchBooks } from "@/app/lib/services/apiService";
 import { Card, Checkbox, Typography } from "@/providers";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import Pagination from "../pagination";
 
 const TABLE_HEAD = ["Title", "Author", "Date Added", "Reviewed", "Edit"];
 
-const SearchTable: React.FC = () => {
-  const [showUnreviewedOnly, setShowUnreviewedOnly] = useState(false);
+interface SearchTableProps {
+  showUnreviewedOnly: boolean
+}
+
+const SearchTable: React.FC<SearchTableProps> = ({ showUnreviewedOnly }) => {
   const [books, setBooks] = useState<BookResponse[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = books.filter(book => !showUnreviewedOnly || !book.reviewed).slice(indexOfFirstItem, indexOfLastItem);
+  const totalItems = books.filter(book => !showUnreviewedOnly || !book.reviewed).length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
 
   const toggleReviewed = async (bookId: number) => {
     try {
@@ -39,16 +51,7 @@ const SearchTable: React.FC = () => {
 
   return (
     <>
-      <div className="w-[90%] flex justify-end mt-8">
-        <Checkbox
-          type="checkbox"
-          checked={showUnreviewedOnly}
-          onChange={e => setShowUnreviewedOnly(e.target.checked)}
-          label="Show unreviewed books only"
-          className="before:h-8 before:w-8"
-        />
-      </div>
-      <Card className="h-full w-[95%] my-2 mx-auto overflow-scroll">
+      <Card className="h-full w-full my-4 mx-auto overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>
             <tr>
@@ -62,7 +65,7 @@ const SearchTable: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {books.filter(book => !showUnreviewedOnly || !book.reviewed).map(({ title, id, authors, dateAdded, reviewed }, index) => (
+            {currentItems.map(({ title, id, authors, dateAdded, reviewed }, index) => (
               <tr key={index} className="even:bg-blue-gray-50/50">
                 <td className="p-4">
                   <Link href={`book/${id}`}>
@@ -106,6 +109,7 @@ const SearchTable: React.FC = () => {
           </tbody>
         </table>
       </Card>
+      <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />
     </>
   );
 };
