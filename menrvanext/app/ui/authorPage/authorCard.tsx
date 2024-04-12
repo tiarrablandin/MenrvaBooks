@@ -1,7 +1,25 @@
-import React from 'react'
-import { Avatar, Card, CardBody, CardHeader, Typography } from "@/providers";
+"use client"
 
-const authorCard = () => {
+import React, { useEffect, useState } from 'react'
+import { Avatar, Card, CardBody, CardHeader, Typography } from "@/providers";
+import { fetchAuthorById } from '@/app/lib/services/apiService';
+import { useParams } from 'next/navigation';
+import { Author } from '@/app/lib/models/author';
+
+const AuthorCard: React.FC = ({}) => {
+  const searchParams = useParams();
+  const id = searchParams?.id;
+  const numericId = id ? parseInt(id as string, 10) : null;
+  const [author, setAuthor] = useState<Author | null>(null);
+
+  useEffect(() => {
+    async function fetchAuthor() {
+      const fetchedAuthor = await fetchAuthorById(numericId!!);
+      setAuthor(fetchedAuthor);
+    }
+    fetchAuthor();
+  }, [numericId]);
+
   return (
     <div>
       <Card className="h-72 w-full max-w-[40rem] px-4 bg-pink-lavender/70 dark:bg-chinese-violet">
@@ -19,8 +37,8 @@ const authorCard = () => {
           />
           <div className="flex w-full flex-col gap-0.5">
             <div className="flex items-center justify-between">
-              <Typography variant="h5" color="blue-gray">
-                Tania Andrew
+              <Typography variant="h5">
+                {author?.penName}
               </Typography>
               <div className="5 flex items-center gap-0"></div>
             </div>
@@ -39,4 +57,4 @@ const authorCard = () => {
   )
 }
 
-export default authorCard
+export default AuthorCard
