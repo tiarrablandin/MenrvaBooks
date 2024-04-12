@@ -4,7 +4,9 @@ import com.menrva.data.book.BookSummary
 import com.menrva.entities.Book
 import com.menrva.entities.Genre
 import com.menrva.entities.Keyword
+import jakarta.transaction.Transactional
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
@@ -17,6 +19,11 @@ interface BookJpaRepository : JpaRepository<Book, Long> {
 
     @Query("SELECT b FROM Book b WHERE b.id IN :ids")
     fun findSummariesByIds(@Param("ids") ids: List<Long?>): List<BookSummary>
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Book b SET b.reviewed = :reviewed WHERE b.id = :id")
+    fun updateReviewedStatus(id: Long, reviewed: Boolean): Int
 
     @Query(
         "SELECT DISTINCT b FROM Book b " +

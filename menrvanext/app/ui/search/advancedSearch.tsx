@@ -7,7 +7,7 @@ const AdvancedSearchComponent = () => {
         <div className="advanced-search-container flex flex-col items-start w-1/2">
             <AdvancedSearchBar />
             <SuggestionCards />
-            <div className="menu-container w-3/4 flex justify-center mt-2 ">
+            <div className="menu-container w-3/4 flex justify-end mt-2 ml-2">
                 <AdvancedSearchMenu />
             </div>
         </div>

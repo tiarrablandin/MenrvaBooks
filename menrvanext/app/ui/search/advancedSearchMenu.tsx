@@ -3,7 +3,6 @@
 import { ChevronDownIcon, Menu, MenuHandler, MenuList, Typography } from '@/providers';
 import React, { useState } from 'react';
 import SearchTabs from "./searchTabs";
-import { Advent_Pro } from 'next/font/google';
 
 const AdvancedSearchMenu = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
