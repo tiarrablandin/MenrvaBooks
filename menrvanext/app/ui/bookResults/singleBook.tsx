@@ -8,10 +8,11 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import BookSlider from "../book/bookSlider";
 import AdvancedSearchComponent from "../search/advancedSearch";
+import Link from "next/link";
 
 const SingleBook: React.FC = ({}) => {
   const searchParams = useParams();
-  const id = searchParams.id;
+  const id = searchParams?.id;
   const numericId = id ? parseInt(id as string, 10) : null;
   const [book, setBook] = useState<BookResponse | null>(null);
 
@@ -21,7 +22,7 @@ const SingleBook: React.FC = ({}) => {
       setBook(fetchedBook);
     }
     fetchBook();
-  }, [id]);
+  }, [numericId]);
 
   async function fetchAllBooksSlider() {
     return fetchBooks();
@@ -43,9 +44,11 @@ const SingleBook: React.FC = ({}) => {
             {book ? book.title : "Loading..."}
           </Typography>
           {(book?.authors || []).map((author) => (
-            <Typography key={author.id} variant="lead" className="">
-              {author.penName}
-            </Typography>
+              <Link href={`../author/${author.id}`} key={author.id}>
+                <Typography variant="small" className="hover:underline underline-offset-2">
+                  {author.penName}
+                </Typography>
+              </Link>
           ))}
           <Typography className="mt-6">{book ? book.description : "Loading..."}</Typography>
           <div className="flex gap-12 mt-8">

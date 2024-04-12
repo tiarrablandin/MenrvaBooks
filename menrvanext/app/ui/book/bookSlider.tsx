@@ -46,7 +46,7 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title }) => {
               .fill(0)
               .map((_, index) => <BookSkeleton key={index} />)
           : books.map((book) => (
-              <Link href={`book/${book.id}`} key={book.id}>
+              <Link href={`../book/${book.id}`} key={book.id}>
                 <BookCard book={book} />
               </Link>
             ))}

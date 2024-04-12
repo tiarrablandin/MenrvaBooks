@@ -1,3 +1,4 @@
+import { Author } from "../models/author";
 import { BookResponse } from "../models/book";
 import { User } from "../models/user";
 
@@ -39,8 +40,13 @@ export async function fetchRecommendationsForUser(username: string): Promise<Boo
 
 // * AUTHORS
 
-export async function fetchAuthors(searchTerm: string): Promise<BookResponse[]> {
+export async function fetchAuthors(searchTerm: string): Promise<Author[]> {
   const response = await fetch(`${url}/authors/search/${searchTerm}`);
+  return response.json();
+}
+
+export async function fetchAuthorById(id: number): Promise<Author> {
+  const response = await fetch(`${url}/authors/${id}`);
   return response.json();
 }
 

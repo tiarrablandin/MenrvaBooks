@@ -10,6 +10,8 @@ interface BookSummary {
     fun getDescription(): String?
     fun getPageCount(): Int?
     fun getPublicationDate(): LocalDate?
+    fun getDateAdded(): LocalDate?
+    fun getReviewed(): Boolean?
     fun getGenres(): Set<Genre>?
     fun getKeywords(): Set<Keyword>?
     fun getAuthors(): Set<Author>?
