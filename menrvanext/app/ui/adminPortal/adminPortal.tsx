@@ -1,8 +1,11 @@
 import React from 'react'
+import SearchTable from './searchTable'
 
 const adminPortal = () => {
   return (
-    <div>adminPortal</div>
+    <div>
+      <SearchTable/>
+    </div>
   )
 }
 

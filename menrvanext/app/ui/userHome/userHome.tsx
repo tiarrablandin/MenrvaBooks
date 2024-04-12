@@ -1,10 +1,15 @@
-'use client';
+"use client";
 
-import { fetchBooks, fetchLikedBooksForUser, fetchNewReleases, fetchRecommendationsForUser } from "@/app/lib/services/apiService";
-import BookSlider from "../book/bookSlider";
-import { useSelector } from "react-redux";
+import {
+  fetchBooks,
+  fetchLikedBooksForUser,
+  fetchNewReleases,
+  fetchRecommendationsForUser,
+} from "@/app/lib/services/apiService";
 import { selectCurrentUser } from "@/app/lib/store/userSlice";
-import SearchBar from "../search/searchBar";
+import { useSelector } from "react-redux";
+import BookSlider from "../book/bookSlider";
+import AdvancedSearchComponent from "../search/advancedSearch";
 import { useEffect } from "react";
 
 const UserComponent = () => {
@@ -21,7 +26,7 @@ const UserComponent = () => {
   return (
     <div className="w-screen h-full flex flex-col items-center justify-start">
       <div className="w-[97%] flex flex-col items-center">
-        <SearchBar />
+        <AdvancedSearchComponent />
         <BookSlider fetchData={fetchNewReleases} title={"TBR"} />
         <BookSlider fetchData={fetchBooks} title={"Upcoming Releases for You"} />
         <BookSlider fetchData={fetchBooks} title={"Series in Progress"} />
