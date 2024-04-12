@@ -42,7 +42,7 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title }) => {
       </Typography>
       <div className="mt-6 flex w-[95%] items-end justify-start gap-4 overflow-scroll pb-3 md:pb-6">
         {isLoading
-          ? Array(10) // Assuming you want 5 skeletons
+          ? Array(10)
               .fill(0)
               .map((_, index) => <BookSkeleton key={index} />)
           : books.map((book) => (

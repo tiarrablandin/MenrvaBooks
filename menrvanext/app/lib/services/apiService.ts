@@ -31,6 +31,14 @@ export async function fetchRecommendationsForUser(username: string): Promise<Boo
   const response = await fetch(`${url}/recommendations/forUser?username=${username}`);
   return response.json();
 }
+
+export async function fetchLikedBooksForUser(username: string) {
+  const response = await fetch(`${url}/users/${username}/liked-books`);
+  const interactions = response.json()
+  console.log(interactions)
+  // return interactions;
+}
+
 //fetchTBR through user for user home
 //fetchUpcomingReleases through user for user home
 //fetchSeriesInProgress through user for user home

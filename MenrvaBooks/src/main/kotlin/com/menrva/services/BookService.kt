@@ -9,7 +9,7 @@ import java.util.*
 
 @Service
 class BookService(
-        private val bookRepo: BookJpaRepository
+    private val bookRepo: BookJpaRepository
 ) {
     fun index(): List<Book> {
         return bookRepo.findAll()
@@ -17,6 +17,13 @@ class BookService(
 
     fun findById(id: Long): BookSummary {
         return bookRepo.findBookById(id)
+    }
+
+    fun toggleReviewed(id: Long): Book {
+        val book = bookRepo.findById(id).orElseThrow { RuntimeException("Book not found") }
+        val newReviewedStatus = book.reviewed?.not() ?: true
+        book.reviewed = newReviewedStatus
+        return bookRepo.save(book)
     }
 
     fun findAllById(ids: List<Long>): List<BookSummary> {
