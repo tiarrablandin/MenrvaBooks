@@ -50,7 +50,7 @@ const Pagination: React.FC<PaginationProps> = ({ onPageChange, totalPages, curre
     };
 
     return (
-        <div className="flex items-center gap-4 mx-auto w-min mt-4 mb-6">
+        <div className="flex items-center gap-4 mx-auto w-min">
             <Button
                 variant="text"
                 className="flex items-center gap-2 rounded-full"
