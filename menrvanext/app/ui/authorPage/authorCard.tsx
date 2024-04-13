@@ -22,7 +22,7 @@ const AuthorCard: React.FC = ({}) => {
 
   return (
     <div>
-      <Card className="h-72 w-full max-w-[40rem] px-4 bg-pink-lavender/70 dark:bg-chinese-violet">
+      <Card className="h-72 w-full min-w-[40rem] max-w-[40rem] px-4 bg-pink-lavender/70 dark:bg-chinese-violet">
         <CardHeader
           color="transparent"
           floated={false}
@@ -42,14 +42,12 @@ const AuthorCard: React.FC = ({}) => {
               </Typography>
               <div className="5 flex items-center gap-0"></div>
             </div>
-            <Typography color="blue-gray">Frontend Lead @ Google</Typography>
+            {/* <Typography color="blue-gray">Frontend Lead @ Google</Typography> */}
           </div>
         </CardHeader>
         <CardBody className="mb-6 p-0">
           <Typography>
-            &quot;I found solution to all my design needs from Creative Tim. I use them as a
-            freelancer in my hobby projects for fun! And its really affordable, very humble guys
-            !!!&quot;
+          {author?.bio}
           </Typography>
         </CardBody>
       </Card>

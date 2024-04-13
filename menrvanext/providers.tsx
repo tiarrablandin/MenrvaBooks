@@ -12,6 +12,7 @@ export {
   CardHeader,
   CardFooter,
   Checkbox,
+  Chip,
   Collapse,
   Dialog,
   IconButton,
@@ -40,9 +41,9 @@ export {
   Tooltip,
   Typography,
 } from "@material-tailwind/react";
-export { ArrowRightEndOnRectangleIcon, ArrowLeftStartOnRectangleIcon, CheckCircleIcon, MagnifyingGlassIcon, HomeIcon, UserIcon } from "@heroicons/react/20/solid"
-export { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, MoonIcon, SunIcon } from "@heroicons/react/24/solid"
-export { AtSymbolIcon, Bars3Icon, ExclamationCircleIcon, KeyIcon, XMarkIcon, EnvelopeIcon, UserCircleIcon} from '@heroicons/react/24/outline';
+export { ArrowRightEndOnRectangleIcon, ArrowLeftStartOnRectangleIcon, CheckCircleIcon, HomeIcon, UserIcon } from "@heroicons/react/20/solid"
+export { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, MagnifyingGlassIcon, MoonIcon, PencilIcon, SunIcon } from "@heroicons/react/24/solid"
+export { AtSymbolIcon, Bars3Icon, ChevronLeftIcon, ChevronRightIcon, EnvelopeIcon, ExclamationCircleIcon, KeyIcon, UserCircleIcon, XMarkIcon} from '@heroicons/react/24/outline';
 
 export const eggplant = "#673C4F";
 

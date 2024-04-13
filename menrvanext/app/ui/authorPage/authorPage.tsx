@@ -14,13 +14,15 @@ const AuthorPage: React.FC<AuthorPageProps> = ({}) => {
 
   return (
     <div>
-      <div className="flex justify-center flex-wrap gap-8 my-8">
+      <div className="flex justify-center">
         <AdvancedSearchComponent />
+      </div>
+      <div className="flex justify-center flex-wrap gap-8 my-8">
         <AuthorCard />
         <AnnouncementsCard />
       </div>
       <div className="w-screen h-full flex flex-col items-center">
-        <BookSlider fetchData={fetchAllBooksSlider} title={"Upcoming Releases"} />
+        <BookSlider fetchData={fetchAllBooksSlider} title={"New Releases"} />
         <BookSlider fetchData={fetchAllBooksSlider} title={"Series Name"} />
         <BookSlider fetchData={fetchAllBooksSlider} title={"Stand Alone"} />
       </div>

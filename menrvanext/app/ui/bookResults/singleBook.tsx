@@ -62,7 +62,8 @@ const SingleBook: React.FC = ({}) => {
         </Card>
       </div>
       <div className="w-screen h-full flex flex-col items-center">
-        <BookSlider fetchData={fetchAllBooksSlider} title={"All Books"} />
+        <BookSlider fetchData={fetchAllBooksSlider} title={"Books in Series"} />
+        <BookSlider fetchData={fetchAllBooksSlider} title={"Similar Books"} />
       </div>
       {/* COMMENTS GO HERE */}
     </>

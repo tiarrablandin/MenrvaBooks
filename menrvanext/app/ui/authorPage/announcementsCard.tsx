@@ -4,7 +4,7 @@ import React from 'react'
 const announcementsCard = () => {
   return (
     <div>
-      <Card className="h-72 w-96 bg-pink-lavender/70 dark:bg-chinese-violet">
+      <Card className="h-72 max-w-[25rem] bg-pink-lavender/70 dark:bg-chinese-violet">
       <CardBody>
         <Typography variant="h5" className="mb-2">
           Announcements!
