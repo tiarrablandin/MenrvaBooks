@@ -1,6 +1,5 @@
-import { Button, Typography } from "@/providers";
+import { Typography } from "@/providers";
 import Link from "next/link";
-import Image from "next/image";
 
 const SITEMAP = [
   {
