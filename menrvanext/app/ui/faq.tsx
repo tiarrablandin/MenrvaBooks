@@ -15,11 +15,11 @@ const accordionBodies=[
 
   return (
       <div className="flex flex-col items-center pt-10 max-w-2/3">
-        <Typography variant="h3" className="pb-6">
-          Questions? We might have answered them already!
+        <Typography variant="h2" className="pb-6">
+          Frequently asked questions
         </Typography>
 
-        <Card className="w-[90%] bg-transparent">
+        <Card className="w-[80%] bg-transparent shadow-none">
           <CustomAccordion id={1} 
           header={accordionHeaders[0]} 
           body={accordionBodies[0]}/>
