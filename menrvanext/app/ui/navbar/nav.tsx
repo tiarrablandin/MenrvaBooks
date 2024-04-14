@@ -66,7 +66,6 @@ function ProfileMenu() {
       <MenuHandler>
         <Button
           variant="text"
-          color="blue-gray"
           className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
         >
           <Avatar variant="circular" size="sm" alt="tania andrew" src="/image/avatar1.jpg" />
@@ -147,7 +146,7 @@ export function NavbarWithSearch() {
   }, []);
 
   return (
-    <Navbar shadow={false} fullWidth className="bg-pink-lavender dark:bg-chinese-violet">
+    <Navbar shadow={false} fullWidth className="border-none bg-pink-lavender dark:bg-chinese-violet">
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/home">
           <Image
