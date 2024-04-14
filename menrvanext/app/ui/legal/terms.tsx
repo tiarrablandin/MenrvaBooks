@@ -6,11 +6,11 @@ interface TermsProps {}
 const Terms: React.FC<TermsProps> = ({}) => {
   return (
     <div className="flex items-center flex-col">
-      <Card className="flex items-center w-[90%] my-10  bg-pink-lavender/80 dark:bg-chinese-violet">
-        <Typography variant="h3" className="flex justify-center pt-10">
+      <Card className="flex items-center w-[90%] shadow-none bg-transparent">
+        <Typography variant="h3" className="flex justify-center pt-8">
           Terms of Use
         </Typography>
-        <Typography variant="h6" className="w-4/5 text-start pt-10">
+        <Typography variant="h6" className="w-4/5 text-start pt-8">
           1. Introduction
         </Typography>
         <Typography className="flex text-start w-4/5 max-w-2/3">
