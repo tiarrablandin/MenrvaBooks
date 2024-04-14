@@ -70,8 +70,8 @@ const members = [
 
 export function Team() {
   return (
-    <section className="container mx-auto py-10 px-8 lg:py-28">
-      <div className="mb-10 text-center lg:mb-20">
+    <section className="container mx-auto py-8 px-8 lg:py-10">
+      <div className="mb-8 text-center lg:mb-10">
         <Typography variant="h2" className="mb-4 text-3xl lg:text-5xl">
           The Executive Team
         </Typography>
