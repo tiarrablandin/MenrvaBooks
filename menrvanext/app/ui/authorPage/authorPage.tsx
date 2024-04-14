@@ -14,9 +14,6 @@ const AuthorPage: React.FC<AuthorPageProps> = ({}) => {
 
   return (
     <div>
-      <div className="flex justify-center">
-        <AdvancedSearchComponent />
-      </div>
       <div className="flex justify-center flex-wrap gap-8 my-8">
         <AuthorCard />
         <AnnouncementsCard />

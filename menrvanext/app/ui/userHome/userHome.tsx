@@ -26,7 +26,6 @@ const UserComponent = () => {
   return (
     <div className="w-screen h-full flex flex-col items-center justify-start">
       <div className="w-[97%] flex flex-col items-center">
-        <AdvancedSearchComponent />
         <BookSlider fetchData={fetchNewReleases} title={"TBR"} />
         <BookSlider fetchData={fetchBooks} title={"Upcoming Releases for You"} />
         <BookSlider fetchData={fetchBooks} title={"Series in Progress"} />

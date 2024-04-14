@@ -1,127 +1,198 @@
 "use client";
 
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 import {
-  ArrowLeftStartOnRectangleIcon,
-  ArrowRightEndOnRectangleIcon,
-  Bars3Icon,
+  Navbar,
   Collapse,
-  HomeIcon,
+  Typography,
+  Button,
   IconButton,
   Input,
-  MagnifyingGlassIcon,
-  Navbar,
-  Typography,
-  UserIcon,
+  Avatar,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Bars3Icon,
+  ChevronDownIcon,
   XMarkIcon,
+  UserCircleIcon,
+  Cog6ToothIcon,
+  InboxArrowDownIcon,
+  LifebuoyIcon,
+  Squares2X2Icon,
+  BellIcon,
+  HomeIcon,
+  ArrowLeftStartOnRectangleIcon,
+  UserIcon,
+  ArrowRightEndOnRectangleIcon,
 } from "@/providers";
-import Link from "next/link";
-import React from "react";
+import AdvancedSearchBar from "../search/advancedSearchBar";
+import LoginForm from "./login";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../lib/store/userSlice";
 import ThemeToggle from "../theme/themeToggle";
-import LoginForm from "./login";
-import RegisterForm from "../subscriptions/register";
 
-export function CustomNavbar() {
-  const [openNav, setOpenNav] = React.useState(false);
+// profile menu component
+const profileMenuItems = [
+  {
+    label: "Home",
+    icon: HomeIcon,
+    route: "/userHome",
+  },
+  {
+    label: "My Profile",
+    icon: UserCircleIcon,
+    route: "/userAccount",
+  },
+  {
+    label: "Logout",
+    icon: ArrowLeftStartOnRectangleIcon,
+    route: "/logout",
+  },
+];
+
+function ProfileMenu() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const currentUser = useSelector(selectCurrentUser);
   const iconClass = "flex items-center gap-x-3 p-2 px-4 font-normal text-base";
 
-  React.useEffect(() => {
-    window.addEventListener("resize", () => window.innerWidth >= 960 && setOpenNav(false));
-  }, []);
-
-  const navList = (
-    <ul className={`mt-2 mb-4 flex flex-col lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6`}>
-      <Typography
-        as="li"
-        variant="small"
-        className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer text-xl`}
-      >
-        <HomeIcon className="h-5 w-5" />
-        <Link href="/home" className="flex items-center mt-1">
-          Home
-        </Link>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer text-xl`}
-      >
-        {currentUser ? (
-          <>
-            <UserIcon className="h-6 w-6" />
-            <Link href="/account" className="flex items-center">
-              Account
-            </Link>
-          </>
-        ) : (
-          <>
-            <UserIcon className="h-5 w-5" />
-            <Link href="/subscriptions" className="flex items-center">
-              Register
-            </Link>
-          </>
-        )}
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer text-xl`}
-      >
-        {currentUser ? (
-          <>
-            <ArrowLeftStartOnRectangleIcon className="h-5 w-5" />
-            <Link href="/logout" className="flex items-center">
-              Logout
-            </Link>
-          </>
-        ) : (
-          <>
-            <ArrowRightEndOnRectangleIcon className="h-5 w-5" />
-            <LoginForm />
-          </>
-        )}
-      </Typography>
-    </ul>
-  );
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <>
-      <Navbar className="min-w-full rounded-none border-none px-4 py-2 lg:px-8 lg:py-3 bg-pink-lavender dark:bg-chinese-violet">
-        <div className="container mx-auto flex flex-wrap items-center justify-between ">
-          <Typography className={`mr-4 cursor-pointer py-1.5 font-medium`} variant="h3">
+    <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
+      <MenuHandler>
+        <Button
+          variant="text"
+          color="blue-gray"
+          className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
+        >
+          <Avatar variant="circular" size="sm" alt="tania andrew" src="/image/avatar1.jpg" />
+          <ChevronDownIcon
+            strokeWidth={2.5}
+            className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""}`}
+          />
+        </Button>
+      </MenuHandler>
+      <MenuList className="p-1 bg-pink-lavender dark:bg-chinese-violet">
+        <MenuItem key="" onClick={closeMenu} className="">
+          <Typography
+            as="li"
+            variant="small"
+            className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
+          >
+            <HomeIcon className="h-4 w-4" />
             <Link href="/home" className="flex items-center">
-              Menrva Books
+              Home
             </Link>
           </Typography>
-          <div className="hidden lg:block">{navList}</div>
-          {/* <SearchBar /> */}
-          <ThemeToggle />
-          <IconButton
-            variant="text"
-            className="ml-auto h-6 w-6 text-inherit text-eggplant dark:text-old-lace hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-            ripple={false}
-            onClick={() => setOpenNav(!openNav)}
+        </MenuItem>
+        <MenuItem key="" onClick={closeMenu} className="">
+          <Typography
+            as="li"
+            variant="small"
+            className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
           >
-            {openNav ? (
-              <XMarkIcon className="h-6 w-6 ml-auto lg:hidden" />
+            {currentUser ? (
+              <>
+                <UserIcon className="h-4 w-4" />
+                <Link href="/account" className="flex items-center">
+                  My Profile
+                </Link>
+              </>
             ) : (
-              <Bars3Icon className="h-6 w-6 ml-auto lg:hidden" />
+              <>
+                <UserIcon className="h-4 w-4" />
+                <Link href="/subscriptions" className="flex items-center">
+                  Register
+                </Link>
+              </>
             )}
-          </IconButton>
-        </div>
-        <Collapse open={openNav}>
-          <div className="container mx-auto">
-            {navList}
-            <div className="flex flex-col gap-x-2 sm:flex-row sm:items-center">
-              <div className="relative w-full gap-2 md:w-max"></div>
-            </div>
-          </div>
-        </Collapse>
-      </Navbar>
-    </>
+          </Typography>
+        </MenuItem>
+        <MenuItem key="" onClick={closeMenu} className="">
+          <Typography
+            as="li"
+            variant="small"
+            className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
+          >
+            {currentUser ? (
+              <>
+                <ArrowLeftStartOnRectangleIcon className="h-4 w-4" />
+                <Link href="/logout" className="flex items-center">
+                  Logout
+                </Link>
+              </>
+            ) : (
+              <>
+                <ArrowRightEndOnRectangleIcon className="h-4 w-4" />
+                <LoginForm />
+              </>
+            )}
+          </Typography>
+        </MenuItem>
+      </MenuList>
+    </Menu>
   );
 }
 
-export default CustomNavbar;
+export function NavbarWithSearch() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen((cur) => !cur);
+
+  React.useEffect(() => {
+    window.addEventListener("resize", () => window.innerWidth >= 960 && setOpen(false));
+  }, []);
+
+  return (
+    <Navbar shadow={false} fullWidth className="bg-pink-lavender dark:bg-chinese-violet">
+      <div className="container mx-auto flex items-center justify-between">
+        <Link href="/home">
+          <Image
+            className="object-center w-[4rem] h-[4rem]"
+            src="https://i.imgur.com/RGGXm1T.png"
+            width={340}
+            height={680}
+            alt=""
+          />
+        </Link>
+        <div className="lg:flex hidden items-center gap-2">
+          <AdvancedSearchBar />
+          <IconButton variant="text">
+            <BellIcon className="h-5 w-5 text-eggplant" />
+          </IconButton>
+          <ProfileMenu />
+        </div>
+        <IconButton
+          size="sm"
+          variant="text"
+          color="gray"
+          onClick={handleOpen}
+          className="ml-auto inline-block lg:hidden"
+        >
+          {open ? (
+            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+          ) : (
+            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+          )}
+        </IconButton>
+      </div>
+      <ThemeToggle />
+      <Collapse open={open}>
+        <div className="flex flex-wrap items-center gap-2">
+          <IconButton variant="text">
+            <BellIcon className="h-5 w-5 text-eggplant" />
+          </IconButton>
+          <ProfileMenu />
+          <div className="flex flex-col gap-4 mt-4"></div>
+          <AdvancedSearchBar />
+          <ThemeToggle />
+        </div>
+      </Collapse>
+    </Navbar>
+  );
+}
+
+export default NavbarWithSearch;

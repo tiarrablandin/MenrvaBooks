@@ -89,7 +89,7 @@ const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
             checked={showUnreviewedOnly}
             onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
             label="Reviewed"
-            className="before:h-8 before:w-8"
+            className="before:h-8 before:w-8 checked:bg-eggplant"
           />
         </CardHeader>
         <CardBody className="overflow-scroll !p-0">

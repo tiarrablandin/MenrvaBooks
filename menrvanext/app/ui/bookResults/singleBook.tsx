@@ -30,9 +30,6 @@ const SingleBook: React.FC = ({}) => {
 
   return (
     <>
-      <div className="flex justify-center">
-        <AdvancedSearchComponent />
-      </div>
       <div className="flex m-8 gap-8">
         {book?.cover ? (
           <Image src={`${book?.cover}`} width={360} height={720} alt="" className="rounded-md" />
