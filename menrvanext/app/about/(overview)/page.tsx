@@ -1,5 +1,5 @@
 import AboutCard from "@/app/ui/about/aboutCard";
-import TeamCard from "@/app/ui/about/teamCard";
+import Team from "@/app/ui/about/team";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export default async function Page() {
   return (
     <main className="w-screen min-h-[calc(100vh-295px)]">
       <AboutCard/>
-      <TeamCard/>
+      <Team/>
     </main>
   );
 }
