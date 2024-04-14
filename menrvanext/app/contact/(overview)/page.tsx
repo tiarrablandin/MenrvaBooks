@@ -1,4 +1,4 @@
-import ContactForm from "@/app/ui/contactForm";
+import Contact from "@/app/ui/contact";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <main className="w-screen min-h-[calc(100vh-295px)]">
-      <ContactForm/>
+      <Contact/>
     </main>
   );
 }
