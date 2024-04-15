@@ -1,5 +1,6 @@
-import AdminPortal from "@/app/ui/adminPortal/adminPortal";
 import { Metadata } from "next";
+import RootLayout from "@/app/layout";
+import AdminPortal from "@/app/ui/adminPortal/adminPortal";
 
 export const metadata: Metadata = {
   title: "MenrvaBooks",
@@ -8,7 +9,9 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <main className="w-screen min-h-[calc(100vh-295px)]">
-      <AdminPortal/>
+      <RootLayout hideNavbar={true}>
+        <AdminPortal />
+      </RootLayout>
     </main>
   );
 }
