@@ -4,11 +4,11 @@ import { BookResponse } from "@/app/lib/models/book";
 import { fetchBookById, fetchBooks } from "@/app/lib/services/apiService";
 import { Card, Typography } from "@/providers";
 import Image from "next/image";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import BookSlider from "../book/bookSlider";
-import AdvancedSearchComponent from "../search/advancedSearch";
-import Link from "next/link";
+import BookSlider from "./bookSlider";
+import BookComments from "./bookComments";
 
 const SingleBook: React.FC = ({}) => {
   const searchParams = useParams();
@@ -62,7 +62,7 @@ const SingleBook: React.FC = ({}) => {
         <BookSlider fetchData={fetchAllBooksSlider} title={"Books in Series"} />
         <BookSlider fetchData={fetchAllBooksSlider} title={"Similar Books"} />
       </div>
-      {/* COMMENTS GO HERE */}
+     <BookComments/>
     </>
   );
 };
