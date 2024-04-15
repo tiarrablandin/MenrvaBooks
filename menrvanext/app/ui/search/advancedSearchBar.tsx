@@ -33,9 +33,9 @@ const AdvancedSearchBar = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className='flex flex-row w-full gap-3 m-2 justify-between'>
+        <form onSubmit={handleSubmit} className='flex gap-3 container'>
             <Input
-                className={`w-4/5 focus:!border-l-eggplant focus:!border-r-eggplant focus:!border-b-eggplant focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
+                className={`focus:!border-l-eggplant focus:!border-r-eggplant focus:!border-b-eggplant focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
                 labelProps={{
                     className: "peer-focus:before:!border-t-eggplant peer-focus:before:!border-t-2 peer-focus:before:!border-l-eggplant peer-focus:before:!border-l-2 peer-focus:after:!border-t-eggplant peer-focus:after:!border-t-2 peer-focus:after:!border-r-eggplant peer-focus:after:!border-r-2 peer-focus:before:mt-[6px] peer-focus:after:mt-[6px]",
                 }}
