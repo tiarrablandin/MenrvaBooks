@@ -1,5 +1,6 @@
 import { fetchBooks, fetchNewReleases } from "@/app/lib/services/apiService";
 import BookSlider from "../book/bookSlider";
+import Banner from "./banner";
 
 // Advanced Search
 // Trending based off of people reading
@@ -18,6 +19,7 @@ const HomeComponent: React.FC = () => {
   
   return (
     <div className="w-screen h-full flex flex-col items-center">
+      <Banner/>
       {/* temporarily commenting out new releases */}
       {/* <BookSlider fetchData={fetchNewReleasesSlider} title={"New Releases"} /> */}
       <BookSlider fetchData={fetchAllBooksSlider} title={"All Books"} />
