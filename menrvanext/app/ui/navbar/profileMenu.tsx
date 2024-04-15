@@ -1,10 +1,8 @@
 import { selectCurrentUser } from "@/app/lib/store/userSlice";
-import { ChevronDownIcon, HomeIcon, UserIcon, ArrowLeftStartOnRectangleIcon, ArrowRightEndOnRectangleIcon } from "@/providers";
-import { Menu, MenuHandler, Button, Avatar, MenuList, MenuItem, Typography } from "@/providers";
+import { ArrowLeftStartOnRectangleIcon, ArrowRightEndOnRectangleIcon, Avatar, Button, ChevronDownIcon, HomeIcon, Menu, MenuHandler, MenuItem, MenuList, Typography, UserIcon } from "@/providers";
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import LoginForm from "./login";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const ProfileMenu = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -66,28 +64,32 @@ const ProfileMenu = () => {
                     </Typography>
                 </MenuItem>
                 <MenuItem key="3" onClick={closeMenu} className="">
-                    <Typography
-                        as="li"
-                        variant="small"
-                        className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
-                    >
-                        {currentUser ? (
-                            <>
+                    {currentUser ? (
+                        <Link href="/logout" className="flex items-center">
+                            <Typography
+                                as="li"
+                                variant="small"
+                                className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
+                            >
                                 <ArrowLeftStartOnRectangleIcon className="h-4 w-4" />
-                                <Link href="/logout" className="flex items-center">
-                                    Logout
-                                </Link>
-                            </>
-                        ) : (
-                            <>
+                                Logout
+                            </ Typography>
+                        </Link>
+                    ) : (
+                        <Link href="/login" className="flex items-center" >
+                            <Typography
+                                as="li"
+                                variant="small"
+                                className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
+                            >
                                 <ArrowRightEndOnRectangleIcon className="h-4 w-4" />
-                                <LoginForm />
-                            </>
-                        )}
-                    </Typography>
+                                Login
+                            </Typography>
+                        </Link>
+                    )}
                 </MenuItem>
             </MenuList>
-        </Menu>
+        </Menu >
     );
 }
 

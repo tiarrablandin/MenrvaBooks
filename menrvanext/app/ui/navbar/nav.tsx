@@ -11,11 +11,10 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import AdvancedSearchComponent from "../search/advancedSearch";
 import AdvancedSearchBar from "../search/advancedSearchBar";
 import ThemeToggle from "../theme/themeToggle";
 import ProfileMenu from "./profileMenu";
-import SuggestionCards from "../search/suggestionCards";
-import AdvancedSearchComponent from "../search/advancedSearch";
 
 export function NavbarWithSearch() {
   const [open, setOpen] = React.useState(false);
@@ -67,7 +66,6 @@ export function NavbarWithSearch() {
             <BellIcon className="h-5 w-5 text-eggplant" />
           </IconButton>
           <ProfileMenu />
-          <div className="flex flex-col gap-4 mt-4"></div>
           <AdvancedSearchBar />
           <ThemeToggle />
         </div>
