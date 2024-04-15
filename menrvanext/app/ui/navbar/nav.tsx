@@ -37,7 +37,7 @@ export function NavbarWithSearch() {
           />
         </Link>
         <div className="lg:flex hidden justify-end items-center gap-8 container">
-          <div className="w-3/4 py-3 bg-gray-200 h-16 flex flex-col items-center">
+          <div className="w-3/4 py-3 h-16 flex flex-col items-center">
             <AdvancedSearchComponent />
           </div>
           <IconButton variant="text" className="w-8 h-8 -mr-12">
