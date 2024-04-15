@@ -1,9 +1,14 @@
+import React, { Ref, forwardRef } from 'react';
 import { Tab, TabPanel, Tabs, TabsBody, TabsHeader } from '@/providers';
-import React, { Ref } from 'react';
 
-const SearchTabs = React.forwardRef(({}, ref: Ref<HTMLDivElement>) => {
+interface TabData {
+    label: string;
+    value: string;
+    desc: string;
+}
 
-    const tabsData = [
+const SearchTabs = forwardRef<HTMLDivElement, {}>((props, ref) => {
+    const tabsData: TabData[] = [
         { label: "Book", value: "book", desc: "Search for books" },
         { label: "Author", value: "author", desc: "Search for authors" },
         { label: "Genre", value: "genre", desc: "Search by genre" },
@@ -16,13 +21,12 @@ const SearchTabs = React.forwardRef(({}, ref: Ref<HTMLDivElement>) => {
                     <Tab key={value} value={value}>{label}</Tab>
                 ))}
             </TabsHeader>
-            <TabsBody >
+            <TabsBody>
                 {tabsData.map(({ value, desc }) => (
                     <TabPanel key={value} value={value} className='text-eggplant dark:text-old-lace'>
                         {value === "book" && (
                             <p>Book Filters</p>
                         )}
-                        {/* Placeholder content for Author and Genre tabs */}
                         {value !== "book" && <div>{desc} - Coming soon...</div>}
                     </TabPanel>
                 ))}
@@ -30,5 +34,7 @@ const SearchTabs = React.forwardRef(({}, ref: Ref<HTMLDivElement>) => {
         </Tabs>
     );
 });
+
+SearchTabs.displayName = "SearchTabs";
 
 export default SearchTabs;

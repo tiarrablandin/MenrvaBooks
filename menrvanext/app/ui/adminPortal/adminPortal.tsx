@@ -6,7 +6,7 @@ import Sidebar from './sidebar'
 const adminPortal = () => {
   return (
     <div className="w-full h-full">
-      <Sidebar/>
+      {/* <Sidebar/> */}
       <AdminTabs />
       {/* <SearchTable/> */}
     </div>

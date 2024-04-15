@@ -25,19 +25,19 @@ export function NavbarWithSearch() {
   }, []);
 
   return (
-    <Navbar shadow={false} fullWidth className="border-none bg-pink-lavender dark:bg-chinese-violet p-3">
+    <Navbar shadow={false} fullWidth className="border-none bg-pink-lavender dark:bg-chinese-violet p-0.5">
       <div className="w-full mx-auto flex h-[5rem] items-center">
         <Link href="/home">
           <Image
-            className="object-center w-[6rem] h-[6rem] mx-2"
+            className="object-center w-[5rem] h-[5.5rem] mx-2"
             src="https://i.imgur.com/RGGXm1T.png"
-            width={96}
-            height={96}
+            width={92}
+            height={92}
             alt="logo"
           />
         </Link>
         <div className="lg:flex hidden justify-end items-center gap-8 container">
-          <div className="w-3/4 py-3 bg-gray-200 h-16 flex flex-col items-center">
+          <div className="w-3/4 py-3 h-16 flex flex-col items-center">
             <AdvancedSearchComponent />
           </div>
           <IconButton variant="text" className="w-8 h-8 -mr-12">

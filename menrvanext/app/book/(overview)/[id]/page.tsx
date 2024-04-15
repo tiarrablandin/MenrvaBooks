@@ -1,6 +1,5 @@
 import SingleBook from "@/app/ui/bookResults/singleBook";
 import { Metadata } from "next";
-import { useRouter } from "next/router";
 
 export const metadata: Metadata = {
   title: "MenrvaBooks",

@@ -54,7 +54,7 @@ const sidebar = () => {
               </a>
             </li>
 
-            <li className="hover:bg-pink-lavender/40">
+            {/* <li className="hover:bg-pink-lavender/40">
               <a href="." className="h-16 px-6 flex justify-center items-center w-full">
                 <BellIconOutline />
                 <svg
@@ -73,7 +73,7 @@ const sidebar = () => {
                   <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                 </svg>
               </a>
-            </li>
+            </li> */}
           </ul>
 
           <div className="mt-auto h-16 flex items-center w-full hover:bg-pink-lavender/40">
