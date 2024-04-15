@@ -17,7 +17,7 @@ const ThemeToggle = () => {
   };
 
   return (
-    <div className="flex items-center justify-between w-28 ml-auto -mr-48 lg:mr-0">
+    <div className="flex items-center w-28  lg:mr-2">
       <SunIcon className={`h-9 w-9 mr-2 ${theme === 'dark' ? 'text-gray-400' : 'text-yellow-500'}`} />
       <Switch
         color="blue"

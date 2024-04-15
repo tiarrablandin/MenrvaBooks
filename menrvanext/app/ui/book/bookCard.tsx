@@ -10,7 +10,7 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
   return (
     <Card
       shadow={false}
-      className="relative min-w-[8rem] max-w-[10rem] min-h-[10rem] max-h-[12rem] items-end justify-center overflow-hidden rounded-lg"
+      className="relative min-w-[8rem] max-w-[10rem] min-h-[10rem] max-h-[12rem] overflow-hidden rounded-lg"
     >
       <CardBody className="relative w-full h-full py-14 p-0">
         <Image
@@ -18,7 +18,7 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
           src={`${book.cover}`}
           width={340}
           height={680}
-          alt=""
+          alt="book cover"
         />
       </CardBody>
     </Card>

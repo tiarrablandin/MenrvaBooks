@@ -1,6 +1,5 @@
 import { fetchBooks, fetchNewReleases } from "@/app/lib/services/apiService";
 import BookSlider from "../book/bookSlider";
-import AdvancedSearchComponent from "../search/advancedSearch";
 
 // Advanced Search
 // Trending based off of people reading

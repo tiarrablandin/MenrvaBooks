@@ -40,7 +40,7 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title }) => {
       <Typography variant="h2" className={`${neue.className} self-start ml-8 mt-6`}>
         {title}
       </Typography>
-      <div className="flex w-[95%] items-end justify-start gap-4 overflow-scroll pb-3 md:pb-6">
+      <div className="flex w-[95%] items-end justify-start gap-4 overflow-scroll pb-3 md:pb-6 -z-10">
         {isLoading
           ? Array(10)
               .fill(0)
