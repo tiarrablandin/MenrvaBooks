@@ -7,12 +7,10 @@ import {
   Collapse,
   HomeIcon,
   IconButton,
-  Input,
-  MagnifyingGlassIcon,
   Navbar,
   Typography,
   UserIcon,
-  XMarkIcon,
+  XMarkIcon
 } from "@/providers";
 import Link from "next/link";
 import React from "react";
@@ -20,7 +18,6 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../lib/store/userSlice";
 import ThemeToggle from "../theme/themeToggle";
 import LoginForm from "./login";
-import RegisterForm from "../subscriptions/register";
 
 export function CustomNavbar() {
   const [openNav, setOpenNav] = React.useState(false);

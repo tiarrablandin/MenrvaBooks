@@ -1,141 +1,21 @@
 "use client";
 
-import React from "react";
+import {
+  Bars3Icon,
+  BellIcon,
+  Collapse,
+  IconButton,
+  Navbar,
+  XMarkIcon
+} from "@/providers";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Navbar,
-  Collapse,
-  Typography,
-  Button,
-  IconButton,
-  Input,
-  Avatar,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Bars3Icon,
-  ChevronDownIcon,
-  XMarkIcon,
-  UserCircleIcon,
-  Cog6ToothIcon,
-  InboxArrowDownIcon,
-  LifebuoyIcon,
-  Squares2X2Icon,
-  BellIcon,
-  HomeIcon,
-  ArrowLeftStartOnRectangleIcon,
-  UserIcon,
-  ArrowRightEndOnRectangleIcon,
-} from "@/providers";
+import React from "react";
 import AdvancedSearchBar from "../search/advancedSearchBar";
-import LoginForm from "./login";
-import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../../lib/store/userSlice";
 import ThemeToggle from "../theme/themeToggle";
-
-// profile menu component
-const profileMenuItems = [
-  {
-    label: "Home",
-    icon: HomeIcon,
-    route: "/userHome",
-  },
-  {
-    label: "My Profile",
-    icon: UserCircleIcon,
-    route: "/userAccount",
-  },
-  {
-    label: "Logout",
-    icon: ArrowLeftStartOnRectangleIcon,
-    route: "/logout",
-  },
-];
-
-function ProfileMenu() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const currentUser = useSelector(selectCurrentUser);
-  const iconClass = "flex items-center gap-x-3 p-2 px-4 font-normal text-base";
-
-  const closeMenu = () => setIsMenuOpen(false);
-
-  return (
-    <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
-      <MenuHandler>
-        <Button
-          variant="text"
-          className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
-        >
-          <Avatar variant="circular" size="sm" alt="tania andrew" src="/image/avatar1.jpg" />
-          <ChevronDownIcon
-            strokeWidth={2.5}
-            className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""}`}
-          />
-        </Button>
-      </MenuHandler>
-      <MenuList className="p-1 bg-pink-lavender dark:bg-chinese-violet">
-        <MenuItem key="" onClick={closeMenu} className="">
-          <Typography
-            as="li"
-            variant="small"
-            className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
-          >
-            <HomeIcon className="h-4 w-4" />
-            <Link href="/home" className="flex items-center">
-              Home
-            </Link>
-          </Typography>
-        </MenuItem>
-        <MenuItem key="" onClick={closeMenu} className="">
-          <Typography
-            as="li"
-            variant="small"
-            className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
-          >
-            {currentUser ? (
-              <>
-                <UserIcon className="h-4 w-4" />
-                <Link href="/account" className="flex items-center">
-                  My Profile
-                </Link>
-              </>
-            ) : (
-              <>
-                <UserIcon className="h-4 w-4" />
-                <Link href="/subscriptions" className="flex items-center">
-                  Register
-                </Link>
-              </>
-            )}
-          </Typography>
-        </MenuItem>
-        <MenuItem key="" onClick={closeMenu} className="">
-          <Typography
-            as="li"
-            variant="small"
-            className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
-          >
-            {currentUser ? (
-              <>
-                <ArrowLeftStartOnRectangleIcon className="h-4 w-4" />
-                <Link href="/logout" className="flex items-center">
-                  Logout
-                </Link>
-              </>
-            ) : (
-              <>
-                <ArrowRightEndOnRectangleIcon className="h-4 w-4" />
-                <LoginForm />
-              </>
-            )}
-          </Typography>
-        </MenuItem>
-      </MenuList>
-    </Menu>
-  );
-}
+import ProfileMenu from "./profileMenu";
+import SuggestionCards from "../search/suggestionCards";
+import AdvancedSearchComponent from "../search/advancedSearch";
 
 export function NavbarWithSearch() {
   const [open, setOpen] = React.useState(false);
@@ -146,20 +26,22 @@ export function NavbarWithSearch() {
   }, []);
 
   return (
-    <Navbar shadow={false} fullWidth className="border-none bg-pink-lavender dark:bg-chinese-violet">
-      <div className="container mx-auto flex items-center justify-between">
+    <Navbar shadow={false} fullWidth className="border-none bg-pink-lavender dark:bg-chinese-violet p-3">
+      <div className="w-full mx-auto flex h-[5rem] items-center">
         <Link href="/home">
           <Image
-            className="object-center w-[4rem] h-[4rem]"
+            className="object-center w-[6rem] h-[6rem] mx-2"
             src="https://i.imgur.com/RGGXm1T.png"
-            width={340}
-            height={680}
-            alt=""
+            width={96}
+            height={96}
+            alt="logo"
           />
         </Link>
-        <div className="lg:flex hidden items-center gap-2">
-          <AdvancedSearchBar />
-          <IconButton variant="text">
+        <div className="lg:flex hidden justify-end items-center gap-8 container">
+          <div className="w-3/4 py-3 bg-gray-200 h-16 flex flex-col items-center">
+            <AdvancedSearchComponent />
+          </div>
+          <IconButton variant="text" className="w-8 h-8 -mr-12">
             <BellIcon className="h-5 w-5 text-eggplant" />
           </IconButton>
           <ProfileMenu />
@@ -177,9 +59,9 @@ export function NavbarWithSearch() {
             <Bars3Icon className="h-6 w-6" strokeWidth={2} />
           )}
         </IconButton>
+        <ThemeToggle />
       </div>
-      <ThemeToggle />
-      <Collapse open={open}>
+      <Collapse open={open} className="hidden">
         <div className="flex flex-wrap items-center gap-2">
           <IconButton variant="text">
             <BellIcon className="h-5 w-5 text-eggplant" />
