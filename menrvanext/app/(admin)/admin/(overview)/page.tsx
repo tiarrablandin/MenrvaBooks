@@ -8,10 +8,8 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   return (
-    <RootLayout hideNavbar={true}>
-      <main className="w-screen min-h-[calc(100vh-295px)]">
-        <AdminPortal />
-      </main>
-    </RootLayout>
+    <main className="w-screen min-h-[calc(100vh-295px)]">
+      <AdminPortal />
+    </main>
   );
 }
