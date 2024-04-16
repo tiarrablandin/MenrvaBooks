@@ -7,8 +7,8 @@ const tabHeaders = ["Book", "Author", "Series", "Genre", "Subgenre", "Keywords",
 const AdminTabs = forwardRef<HTMLDivElement>((props, ref) => {
 
     return (
-        <Tabs id="advanced-search-tabs" value="Book" className="min-w-96 h-full w-[95%] mx-auto mt-3" ref={ref}>
-            <TabsHeader className='bg-eggplant w-[90%]'>
+        <Tabs id="advanced-search-tabs" value="Book" className="min-w-96 h-full w-[95%] mx-auto mt-5" ref={ref}>
+            <TabsHeader className='bg-eggplant w-[90%] ml-auto mr-4 -mb-1'>
                 {tabHeaders.map((tabHeader) => (
                     <Tab key={tabHeader} value={tabHeader}>{tabHeader}</Tab>
                 ))}

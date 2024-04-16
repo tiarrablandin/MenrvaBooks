@@ -66,8 +66,8 @@ const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
   }, []);
 
   return (
-    <section className="m-10">
-      <Card className="h-full w-full">
+    <>
+      <Card className="h-full w-[calc(100%-64px)] my-4 overflow-scroll ml-auto">
         <CardHeader
           floated={false}
           shadow={false}
@@ -135,7 +135,7 @@ const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
                                 {/* maybe add the genres, sub-genres, and keywords here?
                               </Typography> */}
                   </td>
-                  <td className="border-b border-gray-300">
+                  <td className="border-b border-gray-300 text-start mr-2">
                     {authors[0] ? (
                       <Link href={`author/${authors[0].id}`}>
                         <Typography variant="small" className="hover:underline underline-offset-2">
@@ -146,19 +146,19 @@ const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
                       ""
                     )}
                   </td>
-                  <td className="border-b border-gray-300">
+                  <td className="border-b border-gray-300 text-center pr-2">
                     <Typography variant="small" className="!font-normal">
                       {dateAdded ? dateAdded.toString() : ""}
                     </Typography>
                   </td>
-                  <td className="p-4 border-b border-gray-300">
+                  <td className="mx-auto text-center pr-2 border-b border-gray-300">
                     <Checkbox
                       onChange={() => toggleReviewed(id)}
                       checked={reviewed}
                       className="checked:bg-eggplant before:h-8 before:w-8"
                     />
                   </td>
-                  <td className="text-right pr-4 border-b border-gray-300">
+                  <td className="text-center mx-auto pr-2 border-b border-gray-300">
                     <Tooltip content="Edit User">
                       <IconButton variant="text">
                         <PencilIcon className="w-4 h-4 text-gray-400" />
@@ -178,7 +178,7 @@ const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
           />
         </CardFooter>
       </Card>
-    </section>
+    </>
   );
 };
 

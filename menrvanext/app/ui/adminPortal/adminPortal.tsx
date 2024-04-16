@@ -3,7 +3,7 @@ import Sidebar from './sidebar'
 
 const adminPortal = () => {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full flex">
       <Sidebar/>
       <AdminTabs />
     </div>
