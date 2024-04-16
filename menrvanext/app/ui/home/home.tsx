@@ -20,7 +20,7 @@ const HomeComponent: React.FC = () => {
   }
   
   return (
-    <div className="w-screen h-full flex flex-col items-center">
+    <div className="w-screen h-full flex flex-col items-center -z-10">
       <Banner/>
       <AdvancedSearchMenu/>
       {/* temporarily commenting out new releases */}

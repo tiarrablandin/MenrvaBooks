@@ -67,7 +67,7 @@ const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
 
   return (
     <>
-      <Card className="h-full w-[calc(100%-64px)] my-4 overflow-scroll ml-auto">
+      <Card className="h-full w-[calc(100%-64px)] my-4 overflow-scroll mx-auto">
         <CardHeader
           floated={false}
           shadow={false}

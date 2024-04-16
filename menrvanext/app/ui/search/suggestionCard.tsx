@@ -7,7 +7,7 @@ const SuggestionCard: React.FC<{ book: BookResponse }> = ({ book }) => {
             <img
                 src={book.cover}
                 alt={book.title}
-                className="h-12 w-auto object-cover rounded-md" // Setting the height to ~50px as requested
+                className="h-12 w-auto object-cover rounded-md"
             />
             <div className="flex flex-col">
                 <span className="text-sm font-medium text-gray-900">{book.title}</span>

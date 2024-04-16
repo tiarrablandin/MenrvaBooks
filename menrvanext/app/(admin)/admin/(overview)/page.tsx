@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   return (
-    <main className="w-screen min-h-[calc(100vh-295px)]">
+    <main className="w-screen min-h-[calc(100vh-295px)] h-full">
       <AdminPortal />
     </main>
   );

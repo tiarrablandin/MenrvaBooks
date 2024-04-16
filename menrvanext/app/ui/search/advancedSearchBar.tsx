@@ -45,14 +45,6 @@ const AdvancedSearchBar = () => {
                 label="Search"
                 onChange={handleInputChange}
             />
-            <Button
-                type="submit"
-                className='h-11 flex items-center bg-eggplant'
-            >
-                <Typography className={`normal-case text-xl tracking-wider text-old-lace lg:text-2xl`} type='lead'>
-                    Search
-                </Typography>
-            </Button>
         </form>
     )
 }

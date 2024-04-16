@@ -12,12 +12,12 @@ import Link from "next/link";
 const sidebar = () => {
   return (
     // <div className="h-[calc(100vh-240px)] w-16 fixed inline-block ">
-    <div className="h-screen w-16 fixed inline-block ">
+    <div className="h-screen w-16 inline-block ">
       {/* container */}
       <aside className="flex flex-col items-center bg-pink-lavender/70 text shadow h-full">
         {/* Side Nav Bar */}
         <Link href="/home">
-          <div className="h-16 flex justify-center w-full mt-1">
+          <div className="h-16 flex justify-center w-full">
             {/* Logo Section */}
             <Image
               className="h-16 w-14"

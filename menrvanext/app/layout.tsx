@@ -27,11 +27,10 @@ export default function RootLayout({
         <ReduxProvider>
           <MenrvaThemeProvider>
             <div
-              className={`${advent.className} bg-old-lace dark:bg-onyx text-eggplant dark:text-old-lace`}
+              className={`${advent.className} bg-old-lace dark:bg-onyx text-eggplant dark:text-old-lace -z-10`}
             >
               {auth}
               {children}
-              <Footer />
             </div>
           </MenrvaThemeProvider>
         </ReduxProvider>

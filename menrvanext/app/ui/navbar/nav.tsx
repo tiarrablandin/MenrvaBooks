@@ -25,7 +25,7 @@ export function NavbarWithSearch() {
   }, []);
 
   return (
-    <Navbar shadow={false} fullWidth className="border-none bg-pink-lavender dark:bg-chinese-violet p-0.5">
+    <Navbar shadow={false} fullWidth className="border-none bg-pink-lavender dark:bg-chinese-violet p-0.5 pr-2">
       <div className="w-full mx-auto flex h-[5rem] items-center">
         <Link href="/home">
           <Image
