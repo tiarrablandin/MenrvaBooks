@@ -1,6 +1,5 @@
-import { Metadata } from "next";
-import RootLayout from "@/app/layout";
 import AdminPortal from "@/app/ui/adminPortal/adminPortal";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "MenrvaBooks",

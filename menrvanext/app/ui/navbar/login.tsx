@@ -37,8 +37,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
 
     return (
         <>
-            <form onSubmit={handleSubmit} className="space-y-2 h-full my-auto">
-                <div className="flex-1 rounded-lg bg-gray-50 px-6 py-8 mx-auto w-3/4 h-full my-auto md:w-3/5">
+            <form onSubmit={handleSubmit} className="space-y-2 container m-0">
+                <div className="flex-1 rounded-lg bg-gray-50 px-6 py-8 mx-auto h-full my-auto">
                     <XMarkIcon className="w-5 h-5 cursor-pointer text-black inline-block -mt-8 -ml-2 mb-2" onClick={handleClose} />
                     <h1 className={`mb-3 text-center text-3xl text-gray-900`}>
                         Please log in to continue
