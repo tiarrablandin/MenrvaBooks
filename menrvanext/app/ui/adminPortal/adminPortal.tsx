@@ -9,9 +9,9 @@ const adminPortal = () => {
         <Sidebar />
         <AdminTabs />
       </div>
-      <div className='flex flex-col'>
+      {/* <div className='flex flex-col'>
         <Footer />
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { Dialog } from "@/providers"
 import LoginForm from "../../ui/navbar/login"

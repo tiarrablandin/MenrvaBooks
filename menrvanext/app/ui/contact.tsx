@@ -96,7 +96,7 @@ export function Contact() {
                     (
                       <Typography className="font-normal text-base -mt-6">
                         You agree to our{" "}
-                        <a href="#" className="font-medium hover:text-gray-900">
+                        <a href="#" className="font-medium hover:text-gray-900 hover:underline underline-offset-2">
                           Privacy Policy
                         </a>
                         .
@@ -107,7 +107,7 @@ export function Contact() {
                     className: "-ml-2.5 -mt-6",
                   }}
                 />
-                <Button size="lg" className="mt-4 bg-eggplant text-old-lace" fullWidth>
+                <Button type="submit" size="lg" className="mt-4 bg-eggplant text-old-lace" fullWidth>
                   send message
                 </Button>
               </form>
