@@ -1,6 +1,5 @@
-import { Card, CardHeader, CardBody, CardFooter, Typography, Tooltip } from "@/providers";
+import { Card, CardBody, CardHeader, Typography } from "@/providers";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
 interface TeamCardProps {}
