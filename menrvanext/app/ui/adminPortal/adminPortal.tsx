@@ -1,14 +1,16 @@
-import React from 'react'
-import SearchTable from './searchTable'
+import { Footer } from '../footer'
 import AdminTabs from './adminTabs'
 import Sidebar from './sidebar'
 
 const adminPortal = () => {
   return (
-    <div className="w-full h-full">
-      <Sidebar/>
-      <AdminTabs />
-      {/* <SearchTable/> */}
+    <div className="w-full h-screen flex flex-col">
+      <div className='flex h-full'>
+        <AdminTabs />
+      </div>
+      {/* <div className='flex flex-col'>
+        <Footer />
+      </div> */}
     </div>
   )
 }

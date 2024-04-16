@@ -2,7 +2,7 @@
 
 import { clearSuggestions, fetchSuggestions, setSearchTerm } from "@/app/lib/store/searchSlice";
 import { RootState, useAppDispatch } from "@/app/lib/store/store";
-import { Button, Input, Typography } from '@/providers';
+import { Input } from '@/providers';
 import { debounce } from "lodash";
 import React, { useEffect } from 'react';
 import { useSelector } from "react-redux";
@@ -45,14 +45,6 @@ const AdvancedSearchBar = () => {
                 label="Search"
                 onChange={handleInputChange}
             />
-            <Button
-                type="submit"
-                className='h-11 flex items-center bg-eggplant'
-            >
-                <Typography className={`normal-case text-xl tracking-wider text-old-lace lg:text-2xl`} type='lead'>
-                    Search
-                </Typography>
-            </Button>
         </form>
     )
 }

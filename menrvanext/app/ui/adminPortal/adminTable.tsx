@@ -13,21 +13,21 @@ import {
   Input,
   MagnifyingGlassIcon,
   PencilIcon,
+  Switch,
   Tooltip,
   Typography,
 } from "@/providers";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Pagination from "../pagination";
 
 const TABLE_HEAD = ["Cover", "Title", "Author", "Date Added", "Reviewed", "Edit"];
 
 interface AdminTableProps {
-  showUnreviewed: boolean;
 }
 
-const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
+const AdminTable: React.FC<AdminTableProps> = ({ }) => {
   const [books, setBooks] = useState<BookResponse[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -66,12 +66,12 @@ const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
   }, []);
 
   return (
-    <section className="m-10">
-      <Card className="h-full w-full">
+    <>
+      <Card className="h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll">
         <CardHeader
           floated={false}
           shadow={false}
-          className="rounded-none flex flex-wrap gap-4 justify-between mb-4 p-2"
+          className="rounded-none flex flex-wrap justify-around gap-2 mb-4 p-2"
         >
           <div>
             <Typography variant="h5">Books List</Typography>
@@ -83,12 +83,16 @@ const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
             <div className="w-full md:w-72">
               <Input label="Search" icon={<MagnifyingGlassIcon className="h-5 w-5" />} />
             </div>
-            <Button className="md:max-w-fit w-full bg-eggplant">add book</Button>
+            <Link href="/admin/addBook">
+              <Button className="md:max-w-fit w-full bg-eggplant">
+                add book
+              </Button>
+            </Link>
           </div>
-          <Checkbox
+          <Switch
             checked={showUnreviewedOnly}
             onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
-            label="Reviewed"
+            label="Hide Reviewed"
             className="before:h-8 before:w-8 checked:bg-eggplant"
           />
         </CardHeader>
@@ -135,7 +139,7 @@ const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
                                 {/* maybe add the genres, sub-genres, and keywords here?
                               </Typography> */}
                   </td>
-                  <td className="border-b border-gray-300">
+                  <td className="border-b border-gray-300 text-start mr-2">
                     {authors[0] ? (
                       <Link href={`author/${authors[0].id}`}>
                         <Typography variant="small" className="hover:underline underline-offset-2">
@@ -146,19 +150,19 @@ const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
                       ""
                     )}
                   </td>
-                  <td className="border-b border-gray-300">
+                  <td className="border-b border-gray-300 text-center pr-2">
                     <Typography variant="small" className="!font-normal">
                       {dateAdded ? dateAdded.toString() : ""}
                     </Typography>
                   </td>
-                  <td className="p-4 border-b border-gray-300">
+                  <td className="mx-auto text-center pr-2 border-b border-gray-300">
                     <Checkbox
                       onChange={() => toggleReviewed(id)}
                       checked={reviewed}
                       className="checked:bg-eggplant before:h-8 before:w-8"
                     />
                   </td>
-                  <td className="text-right pr-4 border-b border-gray-300">
+                  <td className="text-center mx-auto pr-2 border-b border-gray-300">
                     <Tooltip content="Edit User">
                       <IconButton variant="text">
                         <PencilIcon className="w-4 h-4 text-gray-400" />
@@ -178,7 +182,7 @@ const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
           />
         </CardFooter>
       </Card>
-    </section>
+    </>
   );
 };
 

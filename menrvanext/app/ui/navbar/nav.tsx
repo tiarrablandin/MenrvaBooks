@@ -25,14 +25,14 @@ export function NavbarWithSearch() {
   }, []);
 
   return (
-    <Navbar shadow={false} fullWidth className="border-none bg-pink-lavender dark:bg-chinese-violet p-3">
+    <Navbar shadow={false} fullWidth className="border-none bg-pink-lavender dark:bg-chinese-violet p-0.5 pr-2">
       <div className="w-full mx-auto flex h-[5rem] items-center">
         <Link href="/home">
           <Image
-            className="object-center w-[6rem] h-[6rem] mx-2"
+            className="object-center w-[5rem] h-[5.5rem] mx-2"
             src="https://i.imgur.com/RGGXm1T.png"
-            width={96}
-            height={96}
+            width={92}
+            height={92}
             alt="logo"
           />
         </Link>

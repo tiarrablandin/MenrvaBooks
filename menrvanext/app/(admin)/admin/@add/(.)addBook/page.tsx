@@ -1,7 +1,7 @@
 'use client';
 
+import LoginForm from "@/app/ui/navbar/login";
 import { Dialog } from "@/providers"
-import LoginForm from "../../ui/navbar/login"
 import { useRouter } from "next/navigation";
 
 const LoginModal = () => {

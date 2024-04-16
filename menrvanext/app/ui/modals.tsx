@@ -12,9 +12,9 @@ import {
   Option,
   Textarea,
 } from "@material-tailwind/react";
-import { TrashIcon } from "@heroicons/react/24/solid";
+import { ArrowUpTrayIcon, TrashIcon } from "@heroicons/react/24/solid";
 
-function ImageCard() {
+function ImageCard1() {
   return (
     <>
       <div className="relative rounded-lg lg:h-40 md:h-36 h-24 w-full bg-[url('https://www.material-tailwind.com/image/dark-image.png')] bg-cover bg-center bg-no-repeat">
@@ -71,9 +71,9 @@ export function Modal5() {
             Edit product features and save it.
           </Typography>
           <div className="flex gap-4 mt-6">
-            <ImageCard />
-            <ImageCard />
-            <ImageCard />
+            <ImageCard1 />
+            <ImageCard1 />
+            <ImageCard1 />
           </div>
           <div className="flex items-center flex-col md:flex-row gap-4 mt-6">
             <div className="w-full">
@@ -196,21 +196,6 @@ export function Modal5() {
     </section>
   );
 }
-
-export default Modal5;
-
-import React from "react";
-import {
-  Button,
-  Dialog,
-  DialogHeader,
-  DialogBody,
-  IconButton,
-  Typography,
-  DialogFooter,
-} from "@material-tailwind/react";
-import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
-import { TrashIcon } from "@heroicons/react/24/solid";
 
 interface MembersProps {
   img: string;
@@ -347,5 +332,3 @@ export function Modal4() {
     </section>
   );
 }
-
-export default Modal4;
