@@ -57,6 +57,7 @@ export {
   BellIcon,
   ChevronDownIcon,
   Cog6ToothIcon,
+  HeartIcon,
   InboxArrowDownIcon,
   LifebuoyIcon,
   MagnifyingGlassIcon,

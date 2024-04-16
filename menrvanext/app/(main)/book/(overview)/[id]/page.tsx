@@ -1,4 +1,4 @@
-import SingleBook from "@/app/ui/bookResults/singleBook";
+import SingleBook from "@/app/ui/book/singleBook";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
