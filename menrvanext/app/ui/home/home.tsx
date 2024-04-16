@@ -18,7 +18,7 @@ const HomeComponent: React.FC = () => {
   }
   
   return (
-    <div className="w-screen h-full flex flex-col items-center -z-10">
+    <div className="w-screen h-full flex flex-col items-center">
       <Banner/>
       {/* temporarily commenting out new releases */}
       {/* <BookSlider fetchData={fetchNewReleasesSlider} title={"New Releases"} /> */}

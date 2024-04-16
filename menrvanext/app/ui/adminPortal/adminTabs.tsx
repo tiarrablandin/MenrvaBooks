@@ -15,7 +15,7 @@ const AdminTabs = forwardRef<HTMLDivElement>((props, ref) => {
             <TabsBody className='w-full'>
                 {tabHeaders.map((header) => (
                     <TabPanel key={header} value={header} className='text-eggplant dark:text-old-lace p-0 mb-6'>
-                        <AdminTable showUnreviewed={false} />
+                        <AdminTable />
                     </TabPanel>
                 ))}
             </TabsBody>

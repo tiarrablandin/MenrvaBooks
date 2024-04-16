@@ -11,8 +11,7 @@ import Link from "next/link";
 
 const sidebar = () => {
   return (
-    // <div className="h-[calc(100vh-240px)] w-16 fixed inline-block ">
-    <div className="h-screen w-16 inline-block ">
+    <div className="h-screen w-16 inline-flex fixed">
       {/* container */}
       <aside className="flex flex-col items-center bg-pink-lavender/70 text shadow h-full">
         {/* Side Nav Bar */}
@@ -38,25 +37,25 @@ const sidebar = () => {
           </li>
 
           <li className="hover:bg-pink-lavender/40 h-1/4 flex justify-center items-center w-full">
-            <Link href=".">
+            <Link href="/admin/books">
               <BookOpenIcon className="h-7 w-7 mx-auto" />
             </Link>
           </li>
 
           <li className="hover:bg-pink-lavender/40 h-1/4 flex justify-center items-center w-full">
-            <Link href="." >
+            <Link href="/admin/users" >
               <UserCircleIcon className="h-7 w-7 mx-auto" />
             </Link>
           </li>
 
           <li className="hover:bg-pink-lavender/40 h-1/4 flex justify-center items-center w-full">
-            <Link href="." >
+            <Link href="/admin/settings" >
               <Cog6ToothIconOutline className="h-7 w-7 mx-auto" />
             </Link>
           </li>
 
           <li className="hover:bg-pink-lavender/40 h-1/4 flex justify-center items-center w-full">
-            <Link href="." >
+            <Link href="/admin/notifications" >
               <BellIconOutline className="h-7 w-7 mx-auto" />
             </Link>
           </li>

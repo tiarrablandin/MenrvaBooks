@@ -25,10 +25,9 @@ import Pagination from "../pagination";
 const TABLE_HEAD = ["Cover", "Title", "Author", "Date Added", "Reviewed", "Edit"];
 
 interface AdminTableProps {
-  showUnreviewed: boolean;
 }
 
-const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
+const AdminTable: React.FC<AdminTableProps> = ({ }) => {
   const [books, setBooks] = useState<BookResponse[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -68,7 +67,7 @@ const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
 
   return (
     <>
-      <Card className="h-full w-[calc(100%-64px)] my-4 overflow-scroll mx-auto">
+      <Card className="h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll">
         <CardHeader
           floated={false}
           shadow={false}
@@ -84,7 +83,11 @@ const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
             <div className="w-full md:w-72">
               <Input label="Search" icon={<MagnifyingGlassIcon className="h-5 w-5" />} />
             </div>
-            <Button className="md:max-w-fit w-full bg-eggplant">add book</Button>
+            <Link href="/admin/addBook">
+              <Button className="md:max-w-fit w-full bg-eggplant">
+                add book
+              </Button>
+            </Link>
           </div>
           <Switch
             checked={showUnreviewedOnly}
