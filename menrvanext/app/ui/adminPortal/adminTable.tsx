@@ -13,11 +13,12 @@ import {
   Input,
   MagnifyingGlassIcon,
   PencilIcon,
+  Switch,
   Tooltip,
   Typography,
 } from "@/providers";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Pagination from "../pagination";
 
@@ -71,7 +72,7 @@ const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
         <CardHeader
           floated={false}
           shadow={false}
-          className="rounded-none flex flex-wrap gap-4 justify-between mb-4 p-2"
+          className="rounded-none flex flex-wrap justify-around gap-2 mb-4 p-2"
         >
           <div>
             <Typography variant="h5">Books List</Typography>
@@ -85,10 +86,10 @@ const AdminTable: React.FC<AdminTableProps> = ({ showUnreviewed }) => {
             </div>
             <Button className="md:max-w-fit w-full bg-eggplant">add book</Button>
           </div>
-          <Checkbox
+          <Switch
             checked={showUnreviewedOnly}
             onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
-            label="Reviewed"
+            label="Hide Reviewed"
             className="before:h-8 before:w-8 checked:bg-eggplant"
           />
         </CardHeader>

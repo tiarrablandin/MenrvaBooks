@@ -80,7 +80,7 @@ export function Team() {
           engaged by providing meaningful information.
         </Typography>
       </div>
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
         {members.map((props, key) => (
           <TeamCard key={key} {...props} />
         ))}

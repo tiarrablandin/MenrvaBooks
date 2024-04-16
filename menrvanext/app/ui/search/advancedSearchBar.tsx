@@ -2,7 +2,7 @@
 
 import { clearSuggestions, fetchSuggestions, setSearchTerm } from "@/app/lib/store/searchSlice";
 import { RootState, useAppDispatch } from "@/app/lib/store/store";
-import { Button, Input, Typography } from '@/providers';
+import { Input } from '@/providers';
 import { debounce } from "lodash";
 import React, { useEffect } from 'react';
 import { useSelector } from "react-redux";
