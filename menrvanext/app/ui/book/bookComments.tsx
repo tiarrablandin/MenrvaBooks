@@ -1,5 +1,5 @@
-import { Button, Card, CardBody, HeartIcon, Input, Typography } from '@/providers';
-import React from 'react'
+import { Button, Card, CardBody, HeartIcon, Input, Typography } from "@/providers";
+import React from "react";
 
 interface ContentCardPropsType {
   img: string;
@@ -10,18 +10,10 @@ interface ContentCardPropsType {
 
 function ContentCard({ img, name, desc, hours }: ContentCardPropsType) {
   return (
-    <Card
-      color="transparent"
-      shadow={false}
-      className="grid items-center gap-6 "
-    >
+    <Card color="transparent" shadow={false} className="grid items-center gap-6 ">
       <CardBody className="flex gap-5 p-0 ">
         <div className=" !m-0 h-full  max-h-[40px]  w-full max-w-[40px] ">
-          <img
-            src={img}
-            alt="img"
-            className="h-full w-full rounded object-cover object-center"
-          />
+          <img src={img} alt="img" className="h-full w-full rounded object-cover object-center" />
         </div>
         <div>
           <div className="mb-3 flex items-center gap-1">
@@ -31,37 +23,21 @@ function ContentCard({ img, name, desc, hours }: ContentCardPropsType) {
             >
               {name}
             </Typography>
-            <Typography
-              variant="small"
-              className="font-bold !text-gray-700"
-            >
+            <Typography variant="small" className="font-bold !text-gray-700">
               {hours}
             </Typography>
-          </div>
-          <Typography className="mb-4 w-full font-normal !text-gray-500">
-            {desc}
-          </Typography>
-          <div className="flex !w-full justify-end">
-            <div className="flex items-center gap-2">
-              {/* <Button
-                size="sm"
-                color="gray"
-                variant="text"
-                className="flex shrink-0 items-center gap-1"
-              >
-                <ArrowUturnLeftIcon className="h-4 w-4" />
-                Reply
-              </Button> */}
               <Button
                 size="sm"
                 color="red"
                 variant="text"
-                className="flex shrink-0 items-center gap-1"
+                className="flex shrink-0 gap-1"
               >
                 <HeartIcon className="h-4 w-4" />
                 243
               </Button>
-            </div>
+          </div>
+          <Typography className="mb-4 w-full font-normal !text-gray-500">{desc}</Typography>
+          <div className="flex !w-full justify-end">
           </div>
         </div>
       </CardBody>
@@ -80,24 +56,18 @@ export function NewComment() {
             className="h-full w-full rounded object-cover object-center"
           />
         </div>
-        <Typography
-          variant="small"
-          className=" flex items-center gap-2 font-bold !text-gray-900"
-        >
+        <Typography variant="small" className=" flex items-center gap-2 font-bold !text-gray-900">
           Tina Andrew
         </Typography>
       </div>
       <div className="mt-4 h-full flex-col pl-14">
-        <Typography className=" mb-2 flex items-center gap-2 !text-base font-normal !text-blue-gray-500">
-          Your Comment
-        </Typography>
         <Typography className=" flex items-center gap-2 !text-sm font-normal !text-blue-gray-500">
-          Constructive feedback is possible while being nice...
+          Constructive feedback is possible while also being nice...
         </Typography>
         <form action="#" className="flex flex-col items-end">
           <Input variant="static" />
-          <Button color="gray" className="mt-4" size="md">
-            button
+          <Button className="mt-4 bg-eggplant text-old-lace" size="sm">
+            submit
           </Button>
         </form>
       </div>
@@ -120,44 +90,25 @@ const contents = [
   },
 ];
 
-
 const bookComments = () => {
   return (
     <div>
-     <section className="mx-auto flex w-full max-w-2xl flex-col px-5 pb-20 pt-10">
-      <Typography variant="h4" className=" md:text-center" color="blue-gray">
-        3 Comments
-      </Typography>
-      <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-1">
-        {contents.map(({ name, img, desc, hours }) => (
-          <ContentCard
-            key={name}
-            name={name}
-            desc={desc}
-            img={img}
-            hours={hours}
-          />
-        ))}
-        <div className="md:pl-14">
-          <ContentCard
-            desc="nice to have you on the platform! There will be a lot of great stuff coming soon. We will keep you posted for the latest news.Don't forget, You're awesome!"
-            img="https://www.material-tailwind.com/img/avatar1.jpg"
-            name="Tina Andrew "
-            hours=" · 2 hours ago"
-          />
+      <section className="mx-auto flex w-full max-w-2xl flex-col px-5 pb-20 pt-10">
+        <Typography variant="h4" className="my-6 md:my-8 md:text-center">
+          Have something to say about this book?
+        </Typography>
+        <NewComment />
+        <Typography variant="h4" className="my-8 md:text-center">
+          What other readers are saying about this book...
+        </Typography>
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-1">
+          {contents.map(({ name, img, desc, hours }) => (
+            <ContentCard key={name} name={name} desc={desc} img={img} hours={hours} />
+          ))}
         </div>
-      </div>
-      <Typography
-        variant="h4"
-        className="my-6 md:my-14 md:text-center"
-        color="blue-gray"
-      >
-        Post Your Comment
-      </Typography>
-      <NewComment />
-    </section> 
+      </section>
     </div>
-  )
-}
+  );
+};
 
-export default bookComments
+export default bookComments;

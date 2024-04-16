@@ -1,4 +1,4 @@
-import UserComponent from "@/app/ui/userHome/userHome";
+import UserComponent from "@/app/ui/user/userHome";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

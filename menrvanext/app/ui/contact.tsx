@@ -1,18 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
 import {
-  EnvelopeIcon,
-  Typography,
-  Input,
-  Textarea,
-  TicketIcon,
-  Checkbox,
   Button,
   Card,
   CardBody,
-  PhoneIcon,
+  Checkbox,
+  Input,
+  Textarea,
+  Typography
 } from "@/providers";
+import React, { useState } from "react";
 
 export function Contact() {
   const [firstName, setFirstName] = useState("");
@@ -96,7 +93,7 @@ export function Contact() {
                     (
                       <Typography className="font-normal text-base -mt-6">
                         You agree to our{" "}
-                        <a href="#" className="font-medium hover:text-gray-900 hover:underline underline-offset-2">
+                        <a href="/legal" className="font-medium hover:text-gray-900 hover:underline underline-offset-2">
                           Privacy Policy
                         </a>
                         .
