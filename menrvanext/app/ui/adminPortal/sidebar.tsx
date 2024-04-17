@@ -3,7 +3,9 @@ import {
   BellIconOutline,
   BookOpenIcon,
   Cog6ToothIconOutline,
+  HistoryEduOutlined,
   HomeIconOutline,
+  SparklesIcon,
   UserCircleIcon
 } from "@/providers";
 import Image from "next/image";
@@ -43,8 +45,20 @@ const sidebar = () => {
           </li>
 
           <li className="hover:bg-pink-lavender/40 h-1/4 flex justify-center items-center w-full">
+            <Link href="/admin/authors">
+              <HistoryEduOutlined className="h-7 w-7 mx-auto" />
+            </Link>
+          </li>
+
+          <li className="hover:bg-pink-lavender/40 h-1/4 flex justify-center items-center w-full">
             <Link href="/admin/users" >
               <UserCircleIcon className="h-7 w-7 mx-auto" />
+            </Link>
+          </li>
+
+          <li className="hover:bg-pink-lavender/40 h-1/4 flex justify-center items-center w-full">
+            <Link href="/admin/other" >
+              <SparklesIcon className="h-7 w-7 mx-auto" />
             </Link>
           </li>
 

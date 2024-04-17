@@ -1,5 +1,7 @@
 "use client";
 
+import { HistoryEduOutlined } from "@mui/icons-material";
+
 export {
   Accordion,
   AccordionHeader,
@@ -80,9 +82,14 @@ export {
   ExclamationCircleIcon,
   HomeIcon as HomeIconOutline,
   KeyIcon,
+  SparklesIcon,
   UserCircleIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+
+export{
+  HistoryEduOutlined,
+};
 
 export const eggplant = "#673C4F";
 
