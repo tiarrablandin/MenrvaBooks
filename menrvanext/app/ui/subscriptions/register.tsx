@@ -54,7 +54,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({}) => {
     <>
       <Button
         type="submit"
-        className="mt-20 w-full flex flex-row justify-center items-center shadow-md bg-eggplant"
+        className="w-full flex flex-row justify-center items-center shadow-md bg-eggplant"
         aria-disabled={isLoading}
         disabled={isLoading}
       >
