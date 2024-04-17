@@ -94,7 +94,7 @@ const teamCard: React.FC<TeamCardProps> = () => {
               </Typography>
             </a>
             <Typography className="font-medium" textGradient>
-              Lead Developer
+              Technical Lead
             </Typography>
           </CardBody>
         </Card>

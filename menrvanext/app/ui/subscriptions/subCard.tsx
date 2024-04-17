@@ -12,36 +12,34 @@ import RegisterForm from "./register";
 
 interface SubCardProps {
   header: string;
-  price: number;
+  price: string;
   info: string[];
 }
 
 const subCard: React.FC<SubCardProps> = ({ header, price, info }) => {
   return (
     <div>
-      <Card variant="gradient" className="flex justify-between w-72 max-w-[20rem] p-8 bg-pink-lavender/70 dark:bg-chinese-violet">
+      <Card variant="gradient" className="flex justify-between h-[30rem] w-72 max-w-[20rem] p-6 bg-pink-lavender/50 dark:bg-chinese-violet/50">
         <CardHeader
           floated={false}
           shadow={false}
           color="transparent"
-          className="m-0 mb-8 rounded-none border-b border-white/10 pb-8 text-center"
+          className="m-0 mb-4 rounded-none border-b border-white/10 pb-4 text-center"
         >
           <Typography variant="small" className="font-normal uppercase">
             {header}
           </Typography>
           <Typography
-            variant="h1"
-            className="mt-6 flex justify-center gap-1 text-7xl font-normal text-eggplant"
+            variant="h2"
+            className="mt-4 flex justify-center gap-1 font-normal text-eggplant"
           >
-            <span className="mt-2 text-4xl">$</span>
-            {`${price} `}
-            <span className="self-end text-4xl">/mo</span>
+            {` ${price}`}
           </Typography>
         </CardHeader>
         <CardBody className="p-0">
-          <ul className="flex flex-col gap-4">
+          <ul className="flex flex-col gap-2">
             {info.map((data, key) => (
-              <li key={key} className="flex items-center gap-4">
+              <li key={key} className="flex items-center gap-2">
                 <span className="rounded-full p-1">
                   <CheckCircleIcon className="h-5 w-5" />
                 </span>
@@ -50,7 +48,7 @@ const subCard: React.FC<SubCardProps> = ({ header, price, info }) => {
             ))}
           </ul>
         </CardBody>
-        <CardFooter className="flex justify-center mt-12 p-0">
+        <CardFooter className="flex justify-center mt-6 p-0">
           <RegisterForm/>
           {/* <Button
           href="/register"

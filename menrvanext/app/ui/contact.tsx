@@ -40,7 +40,7 @@ export function Contact() {
     <section className="grid px-8 py-10 max-h-screen h-[70vh]">
       <div className="container mx-auto my-auto items-center place-items-center grid gap-y-10 gap-x-28 grid-cols-1 lg:grid-cols-2">
         <div className="w-full lg:max-w-lg">
-          <Card shadow={true} className="bg-pink-lavender/30 dark:bg-chinese-violet/50 lg:p-6">
+          <Card shadow={true} className="bg-pink-lavender/50 dark:bg-chinese-violet/50 lg:p-6">
             <CardBody>
               <Typography variant="h4" className="mb-6">
                 Contact us

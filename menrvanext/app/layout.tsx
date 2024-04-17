@@ -20,15 +20,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body
+        className={`${advent.className} bg-old-lace dark:bg-onyx text-eggplant dark:text-old-lace`}
+      >
         <ReduxProvider>
           <MenrvaThemeProvider>
-            <div
-              className={`${advent.className} bg-old-lace dark:bg-onyx text-eggplant dark:text-old-lace`}
-            >
               <div>{auth}</div>
               <div>{children}</div>
-            </div>
           </MenrvaThemeProvider>
         </ReduxProvider>
       </body>
