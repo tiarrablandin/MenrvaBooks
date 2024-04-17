@@ -1,6 +1,6 @@
 "use client";
 
-import { HistoryEduOutlined } from "@mui/icons-material";
+import { HistoryEduOutlined, ThumbDown, ThumbDownAltOutlined, ThumbUp, ThumbUpAltOutlined } from "@mui/icons-material";
 
 export {
   Accordion,
@@ -89,6 +89,10 @@ export {
 
 export{
   HistoryEduOutlined,
+  ThumbDown,
+  ThumbDownAltOutlined,
+  ThumbUp,
+  ThumbUpAltOutlined,
 };
 
 export const eggplant = "#673C4F";
