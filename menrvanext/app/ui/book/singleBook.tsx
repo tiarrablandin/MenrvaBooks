@@ -2,7 +2,14 @@
 
 import { BookResponse } from "@/app/lib/models/book";
 import { fetchBookById, fetchBooks } from "@/app/lib/services/apiService";
-import { Card, Typography } from "@/providers";
+import {
+  Card,
+  ThumbDown,
+  ThumbDownAltOutlined,
+  ThumbUp,
+  ThumbUpAltOutlined,
+  Typography,
+} from "@/providers";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -41,20 +48,32 @@ const SingleBook: React.FC = ({}) => {
             {book ? book.title : "Loading..."}
           </Typography>
           {(book?.authors || []).map((author) => (
-              <Link href={`../author/${author.id}`} key={author.id}>
-                <Typography variant="small" className="hover:underline underline-offset-2">
-                  {author.penName}
-                </Typography>
-              </Link>
+            <Link href={`../author/${author.id}`} key={author.id}>
+              <Typography variant="small" className="hover:underline underline-offset-2">
+                {author.penName}
+              </Typography>
+            </Link>
           ))}
+          <div className="flex mt-2 gap-4">
+            <ThumbUp />
+            <ThumbUpAltOutlined />
+            <ThumbDown />
+            <ThumbDownAltOutlined />
+          </div>
           <Typography className="mt-6">{book ? book.description : "Loading..."}</Typography>
-          <div className="flex gap-12 mt-8">
-            <Typography variant="h2" className="">
-              {book ? `Page Count : ${book.pageCount}` : "Loading..."}
-            </Typography>
-            <Typography variant="h2" className="">
-              {book?.publicationDate ? book.publicationDate.toString() : ""}
-            </Typography>
+          <div className="flex justify-center gap-12 mt-8">
+            <div className="text-center">
+              <Typography>Page Count:</Typography>
+              <Typography variant="h6" className="">
+                {book ? ` ${book.pageCount}` : "Loading..."}
+              </Typography>
+            </div>
+            <div className="text-center">
+              <Typography>Publication Date:</Typography>
+              <Typography variant="h6" className="">
+                {book?.publicationDate ? book.publicationDate.toString() : ""}
+              </Typography>
+            </div>
           </div>
         </Card>
       </div>
@@ -62,7 +81,7 @@ const SingleBook: React.FC = ({}) => {
         <BookSlider fetchData={fetchAllBooksSlider} title={"Books in Series"} />
         <BookSlider fetchData={fetchAllBooksSlider} title={"Similar Books"} />
       </div>
-     <BookComments/>
+      <BookComments />
     </>
   );
 };
