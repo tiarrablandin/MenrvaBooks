@@ -46,7 +46,7 @@ const AuthorTable: React.FC = () => {
     }
   };
 
-  const head = "authors List";
+  const head = "Authors List";
   const headDesc = "See information about all authors";
   const addAuthor = (
     <Link href="/admin/addBook">
@@ -54,14 +54,16 @@ const AuthorTable: React.FC = () => {
     </Link>
   );
   const reviewedItems = (
-    <Typography>
       <Switch
         checked={showUnreviewedOnly}
         onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
-        label="Reviewed"
+        label={
+          <Typography variant="h1" className="text-md">
+            Reviewed
+          </Typography>
+        }
         className="before:h-8 before:w-8 checked:bg-eggplant"
       />
-    </Typography>
   );
   const tableHeaders = ["User", "Pen Name", "Date Added", "Reviewed", "Edit"];
 
