@@ -55,14 +55,16 @@ const BookTable: React.FC = () => {
     </Link>
   );
   const reviewedItems = (
-    <Typography>
       <Switch
         checked={showUnreviewedOnly}
         onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
-        label="Reviewed"
+        label={
+          <Typography variant="lead">
+            Reviewed
+          </Typography>
+        }
         className="before:h-8 before:w-8 checked:bg-eggplant"
       />
-    </Typography>
   );
   const tableHeaders = ["Cover", "Title", "Author", "Date Added", "Reviewed", "Edit"];
 
