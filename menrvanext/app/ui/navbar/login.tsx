@@ -26,9 +26,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
         router.push("/user");
     }
 
-    const handleClose = () => {
-        router.back();
-    }
+    const handleClose = () => { router.back(); }
 
     if (currentUser) {
         router.push("/user");

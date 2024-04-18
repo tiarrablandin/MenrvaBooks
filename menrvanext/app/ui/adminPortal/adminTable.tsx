@@ -24,15 +24,7 @@ import Pagination from "../pagination";
 
 const TABLE_HEAD = ["Cover", "Title", "Author", "Date Added", "Reviewed", "Edit"];
 
-interface AdminTableProps {
-  cover: string;
-  title: string;
-  author: string;
-  dateAdded: Date;
-  reviewed: boolean;
-}
-
-const AdminTable: React.FC<AdminTableProps> = ({ }) => {
+const AdminTable: React.FC = ({ }) => {
   const [books, setBooks] = useState<BookResponse[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);

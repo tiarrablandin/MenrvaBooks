@@ -17,6 +17,9 @@ export {
   Chip,
   Collapse,
   Dialog,
+  DialogBody,
+  DialogFooter,
+  DialogHeader,
   IconButton,
   Input,
   List,
@@ -47,8 +50,8 @@ export {
   Typography,
 } from "@material-tailwind/react";
 export {
-  ArrowRightEndOnRectangleIcon,
   ArrowLeftStartOnRectangleIcon,
+  ArrowRightEndOnRectangleIcon,
   CheckCircleIcon,
   HomeIcon,
   UserIcon,
@@ -56,6 +59,7 @@ export {
 export {
   ArrowLeftIcon,
   ArrowRightIcon,
+  ArrowUpTrayIcon,
   BellIcon,
   ChevronDownIcon,
   Cog6ToothIcon,
@@ -69,6 +73,7 @@ export {
   SunIcon,
   Squares2X2Icon,
   TicketIcon,
+  TrashIcon,
 } from "@heroicons/react/24/solid";
 export {
   AtSymbolIcon,
