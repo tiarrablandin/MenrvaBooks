@@ -63,7 +63,7 @@ const members = [
   {
     img: `https://www.material-tailwind.com/img/avatar4.jpg`,
     name: "William Slaunwhite",
-    title: "Lead Developer",
+    title: "Technical Lead",
     linkedin: "https://linkedin.com/in/willslaunwhite",
   },
 ];

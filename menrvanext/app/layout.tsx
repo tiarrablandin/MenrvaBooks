@@ -4,8 +4,6 @@ import { Advent_Pro } from "next/font/google";
 import "./globals.css";
 import { MenrvaThemeProvider } from "./ui/theme/themeProvider";
 
-const advent = Advent_Pro({ weight: ["400", "600"], subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title: "Menrva Books",
   description: "",
@@ -21,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${advent.className} bg-old-lace dark:bg-onyx text-eggplant dark:text-old-lace`}
+        className={`bg-old-lace dark:bg-onyx`}
       >
         <ReduxProvider>
           <MenrvaThemeProvider>

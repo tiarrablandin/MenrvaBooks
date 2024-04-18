@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { fetchBooks } from "@/app/lib/services/apiService";
 import Link from "next/link";
 import Image from "next/image";
-import { Typography } from "@/providers";
+import { Button, Checkbox, IconButton, PencilIcon, Switch, Tooltip, Typography } from "@/providers";
 import Pagination from "../pagination";
 
 const BookTable: React.FC = () => {
@@ -49,12 +49,26 @@ const BookTable: React.FC = () => {
 
   const head = "Books List";
   const headDesc = "See information about all books";
-  // const add = ;
-  // const reviewedItems = [];
+  const addBook = (
+    <Link href="/admin/addBook">
+      <Button className="md:max-w-fit w-full bg-eggplant">add book</Button>
+    </Link>
+  );
+  const reviewedItems = (
+    <Typography>
+      <Switch
+        checked={showUnreviewedOnly}
+        onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
+        label="Reviewed"
+        className="before:h-8 before:w-8 checked:bg-eggplant"
+      />
+    </Typography>
+  );
   const tableHeaders = ["Cover", "Title", "Author", "Date Added", "Reviewed", "Edit"];
+
   const renderBookRow = (book: BookResponse, index: number) => (
     <tr key={index}>
-      <td>
+      <td className="pl-4 border-b border-gray-300">
         <Link href={`../book/${book.id}`}>
           <Image
             className="rounded-md object-center h-[6rem] w-[4rem]"
@@ -65,13 +79,17 @@ const BookTable: React.FC = () => {
           />
         </Link>
       </td>
-      <td>
-        <Link href={`../book/${book.id}`} className="hover:underline">{book.title}</Link>
+      <td className="border-b border-gray-300">
+        <Link href={`../book/${book.id}`}>
+          <Typography variant="lead" className="hover:underline underline-offset-2">
+            {book.title}
+          </Typography>
+        </Link>
       </td>
-      <td>
+      <td className="border-b border-gray-300">
         {book.authors[0] ? (
           <Link href={`../author/${book.authors[0].id}`}>
-            <Typography variant="small" className="hover:underline underline-offset-2">
+            <Typography variant="lead" className="hover:underline underline-offset-2">
               {book.authors[0].penName}
             </Typography>
           </Link>
@@ -79,11 +97,27 @@ const BookTable: React.FC = () => {
           ""
         )}
       </td>
-      <td>{book.dateAdded.toString()}</td>
+      <td className="border-b border-gray-300">
+        <Typography variant="lead">{book.dateAdded.toString()}</Typography>
+      </td>
+      <td className="mx-auto text-center pr-2 border-b border-gray-300">
+        <Checkbox
+          onChange={() => toggleReviewed(book.id)}
+          checked={book.reviewed}
+          className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
+        />
+      </td>
+      <td className="text-center mx-auto pr-2 border-b border-gray-300">
+        <Tooltip content="Edit User">
+          <IconButton variant="text">
+            <PencilIcon className="w-4 h-4 text-eggplant" />
+          </IconButton>
+        </Tooltip>
+      </td>
     </tr>
   );
   const pagination = () => (
-    <Pagination totalPages={totalItems} currentPage={currentPage} onPageChange={setCurrentPage} />
+    <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />
   );
   const paginationComponent = pagination();
 
@@ -92,10 +126,10 @@ const BookTable: React.FC = () => {
       <AdminTable2
         head={head}
         headDesc={headDesc}
-        // add={}
-        // reviewedItems={toggleReviewed}
+        add={addBook}
+        reviewedItems={reviewedItems}
         tableHeaders={tableHeaders}
-        data={books}
+        data={currentItems}
         renderRow={renderBookRow}
         pagination={paginationComponent}
       />

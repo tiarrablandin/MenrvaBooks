@@ -8,5 +8,6 @@ export interface Author {
     text: string;
     dateAdded: Date;
     dateUpdated: Date;
+    reviewed: boolean;
     user: User | null;
 }
