@@ -1,5 +1,7 @@
 package com.menrva.controllers
 
+import com.menrva.data.author.AuthorDTO
+import com.menrva.data.book.BookDTO
 import com.menrva.entities.Author
 import com.menrva.services.AuthorService
 import org.springframework.http.ResponseEntity
@@ -22,6 +24,12 @@ class AuthorController(
     fun findById(@PathVariable id: Long): ResponseEntity<Optional<Author>> {
         val author = authorService.findById(id)
         return ResponseEntity.ok(authorService.findById(id))
+    }
+
+    @PostMapping("/{id}/toggle-reviewed")
+    fun toggleAuthorReviewed(@PathVariable id: Long): ResponseEntity<AuthorDTO> {
+        val updatedAuthor = authorService.toggleReviewed(id)
+        return ResponseEntity.ok(AuthorDTO(updatedAuthor))
     }
 
     @PostMapping("")

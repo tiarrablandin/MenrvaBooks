@@ -13,8 +13,8 @@ import Pagination from "../pagination";
 interface AdminTableProps {
   head: string;
   headDesc: string;
-  // add: string;
-  // reviewedItems: string[];
+  add: JSX.Element;
+  reviewedItems: JSX.Element;
   tableHeaders: string[];
   data: any[];
   renderRow: (item: any, index: number) => JSX.Element;
@@ -24,8 +24,8 @@ interface AdminTableProps {
 const AdminTable: React.FC<AdminTableProps> = ({
   head,
   headDesc,
-  // add,
-  // reviewedItems,
+  add,
+  reviewedItems,
   tableHeaders,
   data,
   renderRow,
@@ -37,11 +37,13 @@ const AdminTable: React.FC<AdminTableProps> = ({
         <CardHeader
           floated={false}
           shadow={false}
-          className="rounded-none flex flex-wrap justify-around gap-2 mb-4 p-2"
+          className="rounded-none flex flex-wrap justify-between gap-2 mb-4 p-2"
         >
-          <div>
-            <Typography variant="h5">{head}</Typography>
-            <Typography variant="small" className="">
+          <div className="">
+            <Typography variant="h1" className="text-3xl">
+              {head}
+            </Typography>
+            <Typography variant="h1" className="text-md">
               {headDesc}
             </Typography>
           </div>
@@ -49,16 +51,9 @@ const AdminTable: React.FC<AdminTableProps> = ({
             <div className="w-full md:w-72">
               <Input label="Search" icon={<MagnifyingGlassIcon className="h-5 w-5" />} />
             </div>
-            {/* <Link href="/admin/addBook">
-              <Button className="md:max-w-fit w-full bg-eggplant">add book</Button>
-            </Link> */}
+            {add}
+            {reviewedItems}
           </div>
-          {/* <Switch
-            checked={showUnreviewedOnly}
-            onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
-            label="Hide Reviewed"
-            className="before:h-8 before:w-8 checked:bg-eggplant"
-          /> */}
         </CardHeader>
         <CardBody className="overflow-scroll !p-0">
           <table className="w-full min-w-max table-auto text-left">
@@ -67,9 +62,11 @@ const AdminTable: React.FC<AdminTableProps> = ({
                 {tableHeaders.map((tableHeaders, index) => (
                   <th
                     key={index}
-                    className="px-6 py-3 text-left text-xs font-lg uppercase tracking-wider"
+                    className="px-6 py-3 text-left text-md font-lg uppercase tracking-wider"
                   >
-                    {tableHeaders}
+                    <Typography variant="h5" className="text-xl">
+                      {tableHeaders}
+                    </Typography>
                   </th>
                 ))}
               </tr>
