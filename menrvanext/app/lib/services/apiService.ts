@@ -48,8 +48,8 @@ export async function fetchLikedBooksForUser(username: string) {
 
 // * AUTHORS
 
-export async function fetchAuthors(searchTerm: string): Promise<Author[]> {
-  const response = await fetch(`${url}/authors/search/${searchTerm}`);
+export async function fetchAuthors(): Promise<Author[]> {
+  const response = await fetch(`${url}/authors`);
   return response.json();
 }
 

@@ -16,11 +16,11 @@ class Author(
     var bio: String? = null,
     var text: String? = null,
     @Column(name = "date_created")
-    var dateCreated: LocalDate? = null,
+    var dateAdded: LocalDate? = null,
     @Column(name = "date_updated")
     var dateUpdated: LocalDate? = null,
     @Column(name = "reviewed", nullable = false)
-    var reviewed: Byte? = null,
+    var reviewed: Boolean? = null,
 
     @JsonIgnore
     @ManyToMany

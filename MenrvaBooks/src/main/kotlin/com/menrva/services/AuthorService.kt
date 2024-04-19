@@ -1,7 +1,9 @@
 package com.menrva.services
 
+import com.menrva.data.author.AuthorSummary
 import com.menrva.data.author.AuthorUpdateDTO
 import com.menrva.entities.Author
+import com.menrva.entities.Book
 import com.menrva.repositories.AuthorRepository
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
@@ -11,14 +13,21 @@ import java.util.*
 class AuthorService(
         private val authorRepo: AuthorRepository
 ) {
-    fun index(): List<Author> {
-        return authorRepo.findAll()
+    fun index(): List<AuthorSummary> {
+        return authorRepo.findAllAuthorsAsSummaries()
     }
     fun findById(id: Long): Optional<Author> = authorRepo.findById(id)
 
     @Transactional
     fun create(author: Author): Author {
         if (authorRepo.existsByPenName(author.penName!!)) return author
+        return authorRepo.save(author)
+    }
+
+    fun toggleReviewed(id: Long): Author {
+        val author = authorRepo.findById(id).orElseThrow { RuntimeException("Author not found") }
+        val newReviewedStatus = author.reviewed?.not() ?: true
+        author.reviewed = newReviewedStatus
         return authorRepo.save(author)
     }
 

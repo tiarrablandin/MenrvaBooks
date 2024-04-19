@@ -1,6 +1,6 @@
 import { Advent_Pro } from "next/font/google";
 
-const advent = Advent_Pro({weight: "500", subsets: ["latin"]});
+const advent = Advent_Pro({weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], subsets: ["latin"]});
 
 export const darkTheme = {
     tab: {

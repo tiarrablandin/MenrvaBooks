@@ -25,6 +25,11 @@ import Pagination from "../pagination";
 const TABLE_HEAD = ["Cover", "Title", "Author", "Date Added", "Reviewed", "Edit"];
 
 interface AdminTableProps {
+  cover: string;
+  title: string;
+  author: string;
+  dateAdded: Date;
+  reviewed: boolean;
 }
 
 const AdminTable: React.FC<AdminTableProps> = ({ }) => {

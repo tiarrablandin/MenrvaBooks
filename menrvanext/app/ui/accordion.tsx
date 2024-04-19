@@ -4,8 +4,7 @@ import {
   Accordion,
   AccordionBody,
   AccordionHeader,
-  ChevronDownIcon,
-  Typography,
+  Typography
 } from "@/providers";
 import React, { useState } from "react";
 
@@ -13,10 +12,6 @@ interface AccordionProps {
   id: number;
   header: string;
   body: string;
-}
-interface IconProps {
-  id: number;
-  open: number;
 }
 
 const CustomAccordion: React.FC<AccordionProps> = ({ id, header, body }) => {
