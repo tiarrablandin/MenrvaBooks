@@ -1,95 +1,115 @@
 "use client";
 
-import { Author } from "@/app/lib/models/author";
-import { fetchAuthors } from "@/app/lib/services/apiService";
+import { User } from "@/app/lib/models/user";
 import { Button, Checkbox, IconButton, PencilIcon, Switch, Tooltip, Typography } from "@/providers";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Pagination from "../pagination";
 import AdminTable2 from "./adminTable2";
 
-const AuthorTable: React.FC = () => {
-  const [authors, setAuthors] = useState<Author[]>([]);
+const UserTable: React.FC = () => {
+  const [users, setUsers] = useState<User[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const [showUnreviewedOnly, setShowUnreviewedOnly] = useState(false);
-  const currentItems = authors
-    .filter((author) => !showUnreviewedOnly || !author.reviewed)
+  const [showActiveOnly, setShowActiveOnly] = useState(false);
+  const currentItems = users
+    .filter((user) => !showActiveOnly || !user.active)
     .slice(indexOfFirstItem, indexOfLastItem);
-  const totalItems = authors.filter((author) => !showUnreviewedOnly || !author.reviewed).length;
+  const totalItems = users.filter((user) => !showActiveOnly || !user.active).length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   useEffect(() => {
-    async function fetchAllAuthors() {
-      const authors = await fetchAuthors();
-      console.log(authors);
-      setAuthors(authors);
-      return authors;
+    async function fetchAllUsers() {
+      const users = await fetchUsers();
+      console.log(users);
+      setUser(users);
+      return users;
     }
-    fetchAllAuthors();
+    fetchAllUsers();
   }, []);
 
-  const toggleReviewed = async (authorId: number) => {
+  const toggleReviewed = async (userId: number) => {
     try {
-      const response = await fetch(`http://localhost:8085/api/authors/${authorId}/toggle-reviewed`, {
+      const response = await fetch(`http://localhost:8085/api/users/${userId}/toggle-reviewed`, {
         method: "POST",
       });
       if (!response.ok) {
         throw new Error("Failed to toggle reviewed status");
       }
-      const updatedAuthor = await response.json();
-      setAuthors(authors.map((author) => (author.id === updatedAuthor.id ? updatedAuthor : author)));
+      const updatedUser = await response.json();
+      setUsers(users.map((user) => (user.id === updatedUser.id ? updatedUser : user)));
     } catch (error) {
       console.error("Error toggling reviewed status: ", error);
     }
   };
 
-  const head = "Authors List";
-  const headDesc = "See information about all authors";
-  const addAuthor = (
-    <Link href="/admin/addBook">
-      <Button className="md:max-w-fit w-full bg-eggplant">add author</Button>
+  const head = "User List";
+  const headDesc = "See information about all users";
+  const addUser = (
+    <Link href="/admin/addUser">
+      <Button className="md:max-w-fit w-full bg-eggplant">add user</Button>
     </Link>
   );
   const reviewedItems = (
       <Switch
-        checked={showUnreviewedOnly}
-        onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
+        checked={showActiveOnly}
+        onChange={(e) => setShowActiveOnly(e.target.checked)}
         label={
           <Typography variant="h1" className="text-md">
-            Reviewed
+            Active
           </Typography>
         }
         className="before:h-8 before:w-8 checked:bg-eggplant"
       />
   );
-  const tableHeaders = ["User", "Pen Name", "Date Added", "Reviewed", "Edit"];
+  const tableHeaders = ["Role", "First Name", "Last Name", "Tag", "Email", "Active", "Date Added", "Edit"];
 
-  const renderAuthorRow = (author: Author, index: number) => (
+  const renderUserRow = (user: User, index: number) => (
     <tr key={index}>
       <td className="border-b border-gray-300">
-        <Link href={`../author/${author.id}`}>
+        <Link href={`../user/${user.id}`}>
           <Typography variant="lead" className="pl-6 hover:underline underline-offset-2">
-          {author.user ? author.user.tag : 'Anonymous'}
+          {user.role}
           </Typography>
         </Link>
       </td>
       <td className="border-b border-gray-300">
-        <Link href={`../author/${author.id}`}>
+        <Link href={`../user/${user.id}`}>
           <Typography variant="lead" className="hover:underline underline-offset-2">
-            {author.penName ? author.penName : "any"}
+            {user.firstName}
           </Typography>
         </Link>
       </td>
       <td className="border-b border-gray-300">
-        {author.dateAdded ? <Typography variant="lead">{author.dateAdded.toString()}</Typography> : <></>}
+        <Link href={`../user/${user.id}`}>
+          <Typography variant="lead" className="hover:underline underline-offset-2">
+            {user.lastName}
+          </Typography>
+        </Link>
+      </td>
+      <td className="border-b border-gray-300">
+        <Link href={`../user/${user.id}`}>
+          <Typography variant="lead" className="hover:underline underline-offset-2">
+            {user.tag}
+          </Typography>
+        </Link>
+      </td>
+      <td className="border-b border-gray-300">
+        <Link href={`../user/${user.id}`}>
+          <Typography variant="lead" className="hover:underline underline-offset-2">
+            {user.email}
+          </Typography>
+        </Link>
+      </td>
+      <td className="border-b border-gray-300">
+        {user.dateAdded ? <Typography variant="lead">{user.dateAdded.toString()}</Typography> : <></>}
       </td>
       <td className="mx-auto text-center pr-2 border-b border-gray-300">
         <Checkbox
-          onChange={() => toggleReviewed(author.id)}
-          checked={author.reviewed}
+          onChange={() => toggleReviewed(user.id)}
+          checked={user.active}
           className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
         />
       </td>
@@ -112,15 +132,15 @@ const AuthorTable: React.FC = () => {
       <AdminTable2
         head={head}
         headDesc={headDesc}
-        add={addAuthor}
+        add={addUser}
         reviewedItems={reviewedItems}
         tableHeaders={tableHeaders}
         data={currentItems}
-        renderRow={renderAuthorRow}
+        renderRow={renderUserRow}
         pagination={paginationComponent}
       />
     </div>
   );
 };
 
-export default AuthorTable;
+export default UserTable;

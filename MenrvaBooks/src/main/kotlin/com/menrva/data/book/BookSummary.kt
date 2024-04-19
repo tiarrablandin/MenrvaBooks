@@ -46,10 +46,4 @@ interface BookSummary {
         fun getUser(): User
     }
 
-    interface User {
-        fun getId(): Long
-        fun getFirstName(): String
-        fun getLastName(): String
-        fun getUsername(): String
-    }
 }

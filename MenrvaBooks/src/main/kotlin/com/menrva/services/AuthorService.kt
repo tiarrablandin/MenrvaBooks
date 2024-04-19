@@ -1,5 +1,6 @@
 package com.menrva.services
 
+import com.menrva.data.author.AuthorSummary
 import com.menrva.data.author.AuthorUpdateDTO
 import com.menrva.entities.Author
 import com.menrva.entities.Book
@@ -12,8 +13,8 @@ import java.util.*
 class AuthorService(
         private val authorRepo: AuthorRepository
 ) {
-    fun index(): List<Author> {
-        return authorRepo.findAll()
+    fun index(): List<AuthorSummary> {
+        return authorRepo.findAllAuthorsAsSummaries()
     }
     fun findById(id: Long): Optional<Author> = authorRepo.findById(id)
 
