@@ -1,5 +1,6 @@
 package com.menrva.services
 
+import com.menrva.data.book.BookDTO
 import com.menrva.data.book.BookSummary
 import com.menrva.entities.Book
 import com.menrva.repositories.BookJpaRepository
@@ -45,4 +46,27 @@ class BookService(
         val results: List<BookSummary> = bookRepo.findBySearchTerm(searchTerm)
         return results
     }
+
+
+    fun createBook(bookDto: BookDTO): Book {
+        val book = Book(
+            title = bookDto.title,
+            description = bookDto.description,
+            pageCount = bookDto.pageCount,
+            publicationDate = bookDto.publicationDate,
+            cover = bookDto.cover,
+        )
+        return bookRepo.save(book)
+    }
+
+    fun updateBook(id: Long, bookDto: BookDTO): Book {
+        val book = bookRepo.findById(id).orElseThrow { RuntimeException("Book not found") }
+        book.title = bookDto.title
+        book.description = bookDto.description
+        book.pageCount = bookDto.pageCount
+        book.publicationDate = bookDto.publicationDate
+        book.cover = bookDto.cover
+        return bookRepo.save(book)
+    }
+
 }

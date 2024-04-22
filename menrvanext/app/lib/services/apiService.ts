@@ -36,7 +36,11 @@ export async function fetchLikedBooksForUser(username: string) {
   const response = await fetch(`${url}/users/${username}/liked-books`);
   const interactions = response.json()
   console.log(interactions)
-  // return interactions;
+  return interactions;
+}
+
+export async function addBook(book: BookResponse) {
+  const response = await fetch(`${url}/books`)
 }
 
 //fetchTBR through user for user home

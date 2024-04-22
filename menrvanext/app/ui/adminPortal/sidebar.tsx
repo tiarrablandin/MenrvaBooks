@@ -30,7 +30,7 @@ const sidebar = () => {
           </div>
         </Link>
 
-        <ul className="text-eggplant w-full h-72 flex justify-between items-center flex-col mt-1">
+        <ul className="text-eggplant w-full h-96 flex justify-between items-center flex-col mt-1">
           {/* Items Section */}
           <li className="hover:bg-pink-lavender/40 h-1/4 flex justify-center items-center w-full">
             <Link href="/admin">

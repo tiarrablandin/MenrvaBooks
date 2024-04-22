@@ -9,18 +9,19 @@ import com.menrva.entities.Book
 import java.time.LocalDate
 
 data class BookDTO(
-    val id: Long,
+    val id: Long?,
     val title: String,
     val cover: String,
-    val reviewed: Boolean,
+    val reviewed: Boolean? = false,
     val description: String,
-    val dateAdded: LocalDate,
-    val pageCount: Int,
-    val genres: Set<GenreDTO>,
-    val keywords: Set<KeywordDTO>,
-    val tags: Set<TagDTO>,
+    val dateAdded: LocalDate?,
+    val publicationDate: LocalDate?,
+    val pageCount: Int?,
+    val genres: Set<GenreDTO>?,
+    val keywords: Set<KeywordDTO>?,
+    val tags: Set<TagDTO>?,
     val series: SeriesDTO?,
-    val authors: Set<AuthorDTO>
+    val authors: Set<AuthorDTO>?
 ) {
     constructor(book: Book) : this(
         id = book.id ?: 0L,
@@ -29,6 +30,7 @@ data class BookDTO(
         reviewed = book.reviewed ?: false,
         description = book.description.toString(),
         dateAdded = book.dateAdded ?: LocalDate.now(),
+        publicationDate = book.publicationDate ?: LocalDate.now(),
         pageCount = book.pageCount ?: 0,
         keywords = book.keywords.map { KeywordDTO(it) }.toSet(),
         genres = book.genres.map { GenreDTO(it) }.toSet(),

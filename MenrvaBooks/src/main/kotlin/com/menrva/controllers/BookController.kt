@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin("*", "http://localhost")
 class BookController(private val bookService: BookService) {
 
-    @GetMapping("books")
+    @GetMapping("")
     fun index(): ResponseEntity<List<BookDTO?>> {
         return ResponseEntity.ok(bookService.index().map { BookDTO(it) })
     }
@@ -35,7 +35,7 @@ class BookController(private val bookService: BookService) {
         return ResponseEntity.ok(bookService.indexWithGenresKeywords())
     }
 
-    @GetMapping("books/newReleases")
+    @GetMapping("newReleases")
     fun newReleases(): ResponseEntity<List<BookDTO>> {
         return ResponseEntity.ok(bookService.getNewReleases().map { BookDTO(it) })
     }
@@ -48,6 +48,18 @@ class BookController(private val bookService: BookService) {
     @PostMapping("{bookId}/react")
     fun toggleLikeDislike(@PathVariable bookId: Long, @AuthenticationPrincipal user: UserPrincipal, @RequestParam("status") status: Int) {
 
+    }
+
+    @PostMapping("")
+    fun createBook(@RequestBody bookDto: BookDTO): ResponseEntity<BookDTO> {
+        val book = bookService.createBook(bookDto)
+        return ResponseEntity.ok(BookDTO(book))
+    }
+
+    @PutMapping("{id}")
+    fun updateBook(@PathVariable id: Long, @RequestBody bookDto: BookDTO): ResponseEntity<BookDTO> {
+        val book = bookService.updateBook(id, bookDto)
+        return ResponseEntity.ok(BookDTO(book))
     }
 
 }
