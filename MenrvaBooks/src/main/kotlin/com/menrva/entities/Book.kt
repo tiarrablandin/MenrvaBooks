@@ -3,6 +3,8 @@ package com.menrva.entities
 import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import org.springframework.data.elasticsearch.annotations.Document
 import org.springframework.data.elasticsearch.annotations.Field
 import org.springframework.data.elasticsearch.annotations.FieldType
@@ -22,12 +24,14 @@ class Book(
     var pageCount: Int? = null,
     @Column(name = "publication_date")
     var publicationDate: LocalDate? = null,
+    @CreationTimestamp
     @Column(name = "date_added")
     var dateAdded: LocalDate? = null,
+    @UpdateTimestamp
     @Column(name = "date_updated")
     var dateUpdated: LocalDate? = null,
     @Column(name = "reviewed", nullable = false)
-    var reviewed: Boolean? = null,
+    var reviewed: Boolean? = false,
     @JsonBackReference(value = "books")
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

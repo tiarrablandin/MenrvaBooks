@@ -55,16 +55,16 @@ const BookTable: React.FC = () => {
     </Link>
   );
   const reviewedItems = (
-      <Switch
-        checked={showUnreviewedOnly}
-        onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
-        label={
-          <Typography variant="lead">
-            Reviewed
-          </Typography>
-        }
-        className="before:h-8 before:w-8 checked:bg-eggplant"
-      />
+    <Switch
+      checked={showUnreviewedOnly}
+      onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
+      label={
+        <Typography variant="lead">
+          Reviewed
+        </Typography>
+      }
+      className="before:h-8 before:w-8 checked:bg-eggplant"
+    />
   );
   const tableHeaders = ["Cover", "Title", "Author", "Date Added", "Reviewed", "Edit"];
 
@@ -110,10 +110,12 @@ const BookTable: React.FC = () => {
         />
       </td>
       <td className="text-center mx-auto pr-2 border-b border-gray-300">
-        <Tooltip content="Edit User">
-          <IconButton variant="text">
-            <PencilIcon className="w-4 h-4 text-eggplant" />
-          </IconButton>
+        <Tooltip content="Edit Book">
+          <Link href={`/admin/books/${book.id}`}>
+            <IconButton variant="text">
+              <PencilIcon className="w-4 h-4 text-eggplant" />
+            </IconButton>
+          </Link>
         </Tooltip>
       </td>
     </tr>

@@ -1,6 +1,4 @@
-import { Footer } from '../footer'
 import AdminTabs from './adminTabs'
-import Sidebar from './sidebar'
 
 const adminPortal = () => {
   return (

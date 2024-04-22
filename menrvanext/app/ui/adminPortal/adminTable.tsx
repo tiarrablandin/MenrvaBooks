@@ -160,7 +160,7 @@ const AdminTable: React.FC = ({ }) => {
                     />
                   </td>
                   <td className="text-center mx-auto pr-2 border-b border-gray-300">
-                    <Tooltip content="Edit User">
+                    <Tooltip content="Edit Book">
                       <IconButton variant="text">
                         <PencilIcon className="w-4 h-4 text-gray-400" />
                       </IconButton>
