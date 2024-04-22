@@ -35,7 +35,7 @@ const UpdateBook: React.FC = () => {
             cover: formData.get('cover') as string,
         };
 
-        const response = await fetch('http://localhost:8085/api/books', {
+        const response = await fetch(`http://localhost:8085/api/books/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
