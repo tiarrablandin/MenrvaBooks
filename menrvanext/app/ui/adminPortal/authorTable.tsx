@@ -6,7 +6,7 @@ import { Button, Checkbox, IconButton, PencilIcon, Switch, Tooltip, Typography }
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Pagination from "../pagination";
-import AdminTable2 from "./adminTable2";
+import AdminTable2 from "./adminTable";
 
 const AuthorTable: React.FC = () => {
   const [authors, setAuthors] = useState<Author[]>([]);

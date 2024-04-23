@@ -1,4 +1,4 @@
-import AdminTable from "@/app/ui/adminPortal/adminTable";
+import AdminTable from "@/app/ui/adminPortal/oldAdminTable";
 
 export default async function Page() {
     return (

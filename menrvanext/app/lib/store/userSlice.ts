@@ -5,15 +5,15 @@ import { authenticate } from '@/app/lib/services/apiService';
 
 interface UserState {
     user: User | null;
-    error: string | null;
     jwt: string | null;
+    error: string | null;
     loading: boolean;
 }
 
 const initialState: UserState = {
     user: null,
-    error: null,
     jwt: null,
+    error: null,
     loading: false,
 };
 

@@ -1,6 +1,6 @@
 import { Tab, TabPanel, Tabs, TabsBody, TabsHeader } from '@/providers';
 import { forwardRef } from 'react';
-import AdminTable from './adminTable';
+import AdminTable from './oldAdminTable';
 
 const tabHeaders = ["Book", "Author", "Series", "Genre", "Subgenre", "Keywords", "Tags"];
 
