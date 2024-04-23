@@ -2,6 +2,7 @@ package com.menrva.data.user
 
 import com.menrva.entities.Series
 import com.menrva.entities.User
+import java.time.LocalDate
 
 data class UserDTO(
     val id: Long?,
@@ -10,6 +11,7 @@ data class UserDTO(
     val tag: String?,
     val username: String?,
     val active: Boolean?,
+    val dateAdded: LocalDate?,
     val role: String?,
     val email: String?,
     val password: String?,
@@ -21,6 +23,7 @@ data class UserDTO(
         tag = user.tag,
         username = user.username,
         active = user.active,
+        dateAdded = user.dateAdded ?: LocalDate.now(),
         role = user.role,
         email = user.email,
         password = user.password

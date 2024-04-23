@@ -21,7 +21,7 @@ class Keyword(
     @ManyToMany(mappedBy = "keywords")
     var books: Set<Book> = HashSet(),
     @Column(name = "reviewed", nullable = false)
-    var reviewed: Byte? = null,
+    var reviewed: Boolean? = null,
     @JsonIgnore
     @ManyToMany(mappedBy = "keywords")
     var users: MutableSet<User> = mutableSetOf()

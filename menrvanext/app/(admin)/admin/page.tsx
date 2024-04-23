@@ -1,4 +1,4 @@
-import AdminTable from "@/app/ui/adminPortal/adminTable";
+import AdminTable from "@/app/ui/adminPortal/oldAdminTable";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

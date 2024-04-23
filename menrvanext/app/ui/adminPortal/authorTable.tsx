@@ -6,7 +6,7 @@ import { Button, Checkbox, IconButton, PencilIcon, Switch, Tooltip, Typography }
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Pagination from "../pagination";
-import AdminTable2 from "./adminTable2";
+import AdminTable2 from "./table/adminTable";
 
 const AuthorTable: React.FC = () => {
   const [authors, setAuthors] = useState<Author[]>([]);
@@ -54,16 +54,16 @@ const AuthorTable: React.FC = () => {
     </Link>
   );
   const reviewedItems = (
-      <Switch
-        checked={showUnreviewedOnly}
-        onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
-        label={
-          <Typography variant="h1" className="text-md">
-            Reviewed
-          </Typography>
-        }
-        className="before:h-8 before:w-8 checked:bg-eggplant"
-      />
+    <Switch
+      checked={showUnreviewedOnly}
+      onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
+      label={
+        <Typography variant="h1" className="text-md">
+          Reviewed
+        </Typography>
+      }
+      className="before:h-8 before:w-8 checked:bg-eggplant"
+    />
   );
   const tableHeaders = ["User", "Pen Name", "Date Added", "Reviewed", "Edit"];
 
@@ -71,8 +71,8 @@ const AuthorTable: React.FC = () => {
     <tr key={index}>
       <td className="border-b border-gray-300">
         <Link href={`../author/${author.id}`}>
-          <Typography variant="lead" className="pl-6 hover:underline underline-offset-2">
-          {author.user ? author.user.tag : 'Anonymous'}
+          <Typography variant="lead" className="hover:underline underline-offset-2">
+            {author.user ? author.user.tag : 'Anonymous'}
           </Typography>
         </Link>
       </td>
@@ -102,10 +102,6 @@ const AuthorTable: React.FC = () => {
       </td>
     </tr>
   );
-  const pagination = () => (
-    <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />
-  );
-  const paginationComponent = pagination();
 
   return (
     <div>
@@ -113,11 +109,12 @@ const AuthorTable: React.FC = () => {
         head={head}
         headDesc={headDesc}
         add={addAuthor}
-        reviewedItems={reviewedItems}
+        reviewedToggle={reviewedItems}
         tableHeaders={tableHeaders}
         data={currentItems}
         renderRow={renderAuthorRow}
-        pagination={paginationComponent}
+        pagination={<Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />}
+        reviewedCallback={toggleReviewed}
       />
     </div>
   );

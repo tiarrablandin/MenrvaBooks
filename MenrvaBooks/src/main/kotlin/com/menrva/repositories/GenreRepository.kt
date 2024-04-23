@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
 @Repository
-interface GenreRepository : JpaRepository<Genre, Int> {
+interface GenreRepository : JpaRepository<Genre, Long> {
     fun findByName(name: String): List<Genre>
 }

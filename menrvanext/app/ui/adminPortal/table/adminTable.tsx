@@ -7,37 +7,40 @@ import {
   MagnifyingGlassIcon,
   Typography,
 } from "@/providers";
-import React, { useState } from "react";
-import Pagination from "../pagination";
+import React from "react";
 
 interface AdminTableProps {
   head: string;
   headDesc: string;
   add: JSX.Element;
-  reviewedItems: JSX.Element;
+  reviewedToggle: JSX.Element;
+  reviewedCallback?: (bookId: number) => void
   tableHeaders: string[];
   data: any[];
-  renderRow: (item: any, index: number) => JSX.Element;
+  renderRow: (item: any, index: number, toggleReviewed?: (bookId: number) => void) => JSX.Element;
   pagination: JSX.Element;
+  variant?: 'small' | 'normal';
 }
 
 const AdminTable: React.FC<AdminTableProps> = ({
   head,
   headDesc,
   add,
-  reviewedItems,
+  reviewedToggle,
   tableHeaders,
   data,
   renderRow,
   pagination,
+  reviewedCallback,
+  variant,
 }) => {
   return (
     <>
-      <Card className="h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll">
+      <Card className={variant === 'small' ? "h-[50vh] w-[calc(60%-2rem)] mx-auto my-4 overflow-scroll" : "h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll"}>
         <CardHeader
           floated={false}
           shadow={false}
-          className="rounded-none flex flex-wrap justify-between gap-2 mb-4 p-2"
+          className="rounded-none flex flex-nowrap justify-between gap-2 mb-4 p-2"
         >
           <div className="">
             <Typography variant="h1" className="text-3xl">
@@ -52,7 +55,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
               <Input label="Search" icon={<MagnifyingGlassIcon className="h-5 w-5" />} />
             </div>
             {add}
-            {reviewedItems}
+            {reviewedCallback && reviewedToggle}
           </div>
         </CardHeader>
         <CardBody className="overflow-scroll !p-0">
@@ -71,7 +74,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
                 ))}
               </tr>
             </thead>
-            <tbody className="">{data.map((item, index) => renderRow(item, index))}</tbody>
+            <tbody className="">{data.map((item, index) => renderRow(item, index, reviewedCallback))}</tbody>
           </table>
         </CardBody>
         <CardFooter className="flex justify-between items-center">{pagination}</CardFooter>
