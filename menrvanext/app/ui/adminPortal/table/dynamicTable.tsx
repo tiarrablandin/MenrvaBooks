@@ -8,6 +8,7 @@ import AdminTable from "./adminTable";
 import { tableConfig } from "./tableConfig";
 import { useBooks } from "@/app/lib/hooks/useBooks";
 import { useAuthors } from "@/app/lib/hooks/useAuthors";
+import { useUsers } from "@/app/lib/hooks/useUsers";
 
 interface DynamicTableProps<T> {
     entityType: string;
@@ -64,7 +65,7 @@ export default DynamicTable;
 interface EntityData<T> {
     data: T[];  // need to use a more specific type or generics
     fetchData: () => void;
-    toggleReviewed: (id: number) => void;
+    toggleReviewed?: (id: number) => void;
     loading: boolean;
     error: string | null;
 }
@@ -76,6 +77,8 @@ function useEntityHook<T>(entityType: string): EntityData<T> {
             return useBooks() as EntityData<T>;
         case 'authors':
             return useAuthors() as EntityData<T>;
+        case 'users':
+            return useUsers() as EntityData<T>;
         // add cases for other entity types
         default:
             throw new Error('Unsupported entity type');

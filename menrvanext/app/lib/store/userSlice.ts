@@ -5,6 +5,7 @@ import { authenticate } from '@/app/lib/services/apiService';
 
 interface UserState {
     user: User | null;
+    allUsers: User[];
     jwt: string | null;
     error: string | null;
     loading: boolean;
@@ -12,6 +13,7 @@ interface UserState {
 
 const initialState: UserState = {
     user: null,
+    allUsers: [],
     jwt: null,
     error: null,
     loading: false,
@@ -39,7 +41,23 @@ export const logout = createAsyncThunk(
         } catch (error) {
             return rejectWithValue("Failed to logout");
         }
-    });
+    }
+);
+
+export const fetchUsersThunk = createAsyncThunk(
+    'user/fetchUsers',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await fetch('http://localhost:8085/api/users');
+            if (!response.ok) {
+                throw new Error("Failed to fetch users.")
+            }
+            return await response.json();
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+)
 
 // Create a user slice with reducers and extraReducers for handling async thunks
 export const userSlice = createSlice({
@@ -55,6 +73,9 @@ export const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            .addCase(fetchUsersThunk.fulfilled, (state, action) => {
+                state.allUsers = action.payload;
+            })
             .addCase(login.pending, (state) => {
                 state.loading = true;
                 state.error = null;

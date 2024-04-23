@@ -15,10 +15,10 @@ interface AdminTableProps {
   headDesc: string;
   add: JSX.Element;
   reviewedToggle: JSX.Element;
-  reviewedCallback: (bookId: number) => void
+  reviewedCallback?: (bookId: number) => void
   tableHeaders: string[];
   data: any[];
-  renderRow: (item: any, index: number, toggleReviewed: (bookId: number) => void) => JSX.Element;
+  renderRow: (item: any, index: number, toggleReviewed?: (bookId: number) => void) => JSX.Element;
   pagination: JSX.Element;
 }
 
@@ -55,7 +55,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
               <Input label="Search" icon={<MagnifyingGlassIcon className="h-5 w-5" />} />
             </div>
             {add}
-            {reviewedToggle}
+            {reviewedCallback && reviewedToggle}
           </div>
         </CardHeader>
         <CardBody className="overflow-scroll !p-0">

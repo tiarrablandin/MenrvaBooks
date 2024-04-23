@@ -36,7 +36,7 @@ export const fetchAuthorsThunk = createAsyncThunk(
         try {
             const response = await fetch('http://localhost:8085/api/authors');
             if (!response.ok) {
-                throw new Error("Failed to fetch books.")
+                throw new Error("Failed to fetch authors.")
             }
             return await response.json();
         } catch (error: any) {
