@@ -10,7 +10,7 @@ data class AuthorDTO(
     val id: Long?,
     val photo: String?,
     val penName: String?,
-    val reviewed: Boolean? = false,
+    val reviewed: Boolean?,
     val dateAdded: LocalDate?,
     val bio: String?,
     val user: UserDTO?,

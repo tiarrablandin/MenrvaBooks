@@ -18,9 +18,7 @@ class SearchController(private val searchService: SearchService) {
 
     @GetMapping("/books")
     fun searchBooksByTitle(@RequestParam title: String): ResponseEntity<List<BookSummary>> {
-        print("IN CONTROLLER 1")
         val searchResults = searchService.getSearchResultsByTitle(title)
-        print("IN CONTROLLER: $searchResults")
         return ResponseEntity.ok(searchResults)
     }
 }

@@ -1,4 +1,3 @@
-import { useBooks } from "@/app/lib/hooks/useBooks";
 import {
   Card,
   CardBody,
@@ -20,6 +19,7 @@ interface AdminTableProps {
   data: any[];
   renderRow: (item: any, index: number, toggleReviewed?: (bookId: number) => void) => JSX.Element;
   pagination: JSX.Element;
+  variant?: 'small' | 'normal';
 }
 
 const AdminTable: React.FC<AdminTableProps> = ({
@@ -31,16 +31,16 @@ const AdminTable: React.FC<AdminTableProps> = ({
   data,
   renderRow,
   pagination,
-  reviewedCallback
+  reviewedCallback,
+  variant,
 }) => {
-
   return (
     <>
-      <Card className="h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll">
+      <Card className={variant === 'small' ? "h-[50vh] w-[calc(60%-2rem)] mx-auto my-4 overflow-scroll" : "h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll"}>
         <CardHeader
           floated={false}
           shadow={false}
-          className="rounded-none flex flex-wrap justify-between gap-2 mb-4 p-2"
+          className="rounded-none flex flex-nowrap justify-between gap-2 mb-4 p-2"
         >
           <div className="">
             <Typography variant="h1" className="text-3xl">

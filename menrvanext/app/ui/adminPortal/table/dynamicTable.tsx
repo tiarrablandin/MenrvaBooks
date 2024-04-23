@@ -12,10 +12,11 @@ import { useUsers } from "@/app/lib/hooks/useUsers";
 
 interface DynamicTableProps<T> {
     entityType: string;
+    variant?: 'small' | 'normal';
     componentProps?: T;
 }
 
-const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType }) => {
+const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, _setItemsPerPage] = useState(10);
     const [showUnreviewedOnly, setShowUnreviewedOnly] = useState(false);
@@ -55,6 +56,7 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType }) => {
             renderRow={tableConfig[entityType].renderRow} // Assuming renderRow is also defined in config
             pagination={<Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />}
             reviewedCallback={toggleReviewed}
+            variant={variant}
         />
     );
 };

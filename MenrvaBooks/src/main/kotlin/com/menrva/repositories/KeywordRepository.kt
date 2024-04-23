@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
 @Repository
-interface KeywordRepository : JpaRepository<Keyword, Int> {
+interface KeywordRepository : JpaRepository<Keyword, Long> {
     fun findByName(name: String): List<Keyword>
 }
