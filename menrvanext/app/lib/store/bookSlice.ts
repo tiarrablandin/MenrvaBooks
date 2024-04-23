@@ -69,12 +69,12 @@ export const bookSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchBooksThunk.fulfilled, (state, action) => {
-                state.allBooks = action.payload; // Directly set the fetched books
+                state.allBooks = action.payload;
             })
             .addCase(toggleBookReviewed.fulfilled, (state, action) => {
                 const index = state.allBooks.findIndex(book => book.id === action.payload.id);
                 if (index !== -1) {
-                    state.allBooks[index] = action.payload; // Update the specific book
+                    state.allBooks[index] = action.payload;
                 }
             });
     }

@@ -3,20 +3,22 @@
 import { Button, Switch, Typography } from "@/providers";
 import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
-import Pagination from "../pagination";
+import Pagination from "../../pagination";
 import AdminTable from "./adminTable";
 import { tableConfig } from "./tableConfig";
 import { useBooks } from "@/app/lib/hooks/useBooks";
+import { useAuthors } from "@/app/lib/hooks/useAuthors";
 
-interface DynamicTableProps {
-    entityType: string
+interface DynamicTableProps<T> {
+    entityType: string;
+    componentProps?: T;
 }
 
-const DynamicTable: React.FC<DynamicTableProps> = ({ entityType }) => {
+const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, _setItemsPerPage] = useState(10);
     const [showUnreviewedOnly, setShowUnreviewedOnly] = useState(false);
-    const { data, fetchData, toggleReviewed } = useEntityHook(entityType);
+    const { data, fetchData, toggleReviewed, loading, error } = useEntityHook<any>(entityType);
 
     const currentItems = useMemo(() =>
         data.filter((item: any) => !showUnreviewedOnly || !item.reviewed)
@@ -38,7 +40,7 @@ const DynamicTable: React.FC<DynamicTableProps> = ({ entityType }) => {
         <AdminTable
             head={tableConfig[entityType].pageTitle}
             headDesc={tableConfig[entityType].description}
-            add={<Link href={tableConfig[entityType].addLink}><Button>Add New {entityType}</Button></Link>}
+            add={<Link href={tableConfig[entityType].addLink}><Button>Add {entityType.slice(0, -1)}</Button></Link>}
             reviewedToggle={
                 <Switch
                     checked={showUnreviewedOnly}
@@ -59,22 +61,21 @@ const DynamicTable: React.FC<DynamicTableProps> = ({ entityType }) => {
 export default DynamicTable;
 
 
-interface EntityHookReturnType {
-    data: any[];  // Consider using a more specific type or generics if applicable
+interface EntityData<T> {
+    data: T[];  // need to use a more specific type or generics
     fetchData: () => void;
     toggleReviewed: (id: number) => void;
     loading: boolean;
     error: string | null;
 }
 
-// Assuming useEntityHook is a function that returns the correct hook based on entityType
-function useEntityHook(entityType: string): EntityHookReturnType {
+// useEntityHook is a function that returns the correct hook based on entityType
+function useEntityHook<T>(entityType: string): EntityData<T> {
     switch (entityType) {
         case 'books':
-            return useBooks() as EntityHookReturnType;
+            return useBooks() as EntityData<T>;
         case 'authors':
-            return useBooks() as EntityHookReturnType;
-        // return useAuthors();
+            return useAuthors() as EntityData<T>;
         // add cases for other entity types
         default:
             throw new Error('Unsupported entity type');

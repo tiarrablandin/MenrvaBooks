@@ -1,4 +1,4 @@
-import { renderBookRow } from "./tableRows"
+import { renderAuthorRow, renderBookRow } from "./tableRows"
 
 interface TableConfigProps {
     apiEndpoint: string
@@ -18,16 +18,16 @@ export const tableConfig: ConfigDictionary = {
         apiEndpoint: '/api/books',
         columns: ['Cover', 'Title', 'Author', 'Date Added', 'Reviewed', 'Edit'],
         pageTitle: 'Books List',
-        description: 'Manage all books in the database',
+        description: 'Manage all books',
         addLink: '/admin/addBook',
         renderRow: renderBookRow
     },
     authors: {
         apiEndpoint: '/api/authors',
-        columns: ['Photo', 'Name', 'Books', 'Date Added', 'Edit'],
+        columns: ['Tag', 'Name', 'Date Added', 'Reviewed', 'Edit'],
         pageTitle: 'Authors List',
         description: 'Manage all authors',
         addLink: '/admin/addAuthor',
-        renderRow: renderBookRow
+        renderRow: renderAuthorRow
     },
 };

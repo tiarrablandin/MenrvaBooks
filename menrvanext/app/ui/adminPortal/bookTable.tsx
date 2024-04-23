@@ -6,8 +6,8 @@ import { Button, Switch, Typography } from "@/providers";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Pagination from "../pagination";
-import AdminTable2 from "./adminTable";
-import { renderBookRow } from "./tableRows";
+import AdminTable2 from "./table/adminTable";
+import { renderBookRow } from "./table/tableRows";
 import { useBooks } from "@/app/lib/hooks/useBooks";
 
 const BookTable: React.FC = () => {

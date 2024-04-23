@@ -3,14 +3,16 @@ import bookReducer from './bookSlice';
 import userReducer from './userSlice';
 import themeReducer from './themeSlice';
 import searchReducer from './searchSlice';
+import authorReducer from './authorSlice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
   reducer: {
+    author: authorReducer,
     book: bookReducer,
-    user: userReducer,
+    search: searchReducer,
     theme: themeReducer,
-    search: searchReducer
+    user: userReducer,
   },
 });
 
