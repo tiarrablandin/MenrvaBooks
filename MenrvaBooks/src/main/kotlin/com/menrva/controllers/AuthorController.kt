@@ -1,6 +1,7 @@
 package com.menrva.controllers
 
 import com.menrva.data.author.AuthorDTO
+import com.menrva.data.author.AuthorSummary
 import com.menrva.data.book.BookDTO
 import com.menrva.entities.Author
 import com.menrva.services.AuthorService
@@ -16,7 +17,7 @@ class AuthorController(
 ) {
 
     @GetMapping("")
-    fun index(): ResponseEntity<List<Author>> {
+    fun index(): ResponseEntity<List<AuthorSummary>> {
         return ResponseEntity.ok(authorService.index())
     }
 
