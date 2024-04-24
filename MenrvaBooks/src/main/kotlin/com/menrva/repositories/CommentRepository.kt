@@ -5,6 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface CommentRepository : JpaRepository<Comment, Int>{
-    fun findCommentById(id: Int): Comment?
+interface CommentRepository : JpaRepository<Comment, Long>{
 }

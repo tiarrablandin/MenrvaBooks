@@ -1,4 +1,4 @@
-interface Series {
+interface Keyword {
     id: number;
     name: string;
     reviewed: boolean;

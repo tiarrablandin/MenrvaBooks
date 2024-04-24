@@ -1,4 +1,4 @@
-interface Series {
+interface Genre {
     id: number;
     name: string;
     reviewed: boolean;

@@ -1,4 +1,4 @@
-interface Series {
+interface Tag {
     id: number;
     name: string;
     reviewed: boolean;

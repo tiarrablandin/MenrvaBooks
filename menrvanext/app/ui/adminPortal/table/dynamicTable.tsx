@@ -9,6 +9,11 @@ import { tableConfig } from "./tableConfig";
 import { useBooks } from "@/app/lib/hooks/useBooks";
 import { useAuthors } from "@/app/lib/hooks/useAuthors";
 import { useUsers } from "@/app/lib/hooks/useUsers";
+import { useGenres } from "@/app/lib/hooks/useGenres";
+import { useTags } from "@/app/lib/hooks/useTags";
+import { useKeywords } from "@/app/lib/hooks/useKeywords";
+import { useSeries } from "@/app/lib/hooks/useSeries";
+import { useComments } from "@/app/lib/hooks/useComments";
 
 interface DynamicTableProps<T> {
     entityType: string;
@@ -42,7 +47,7 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
         <AdminTable
             head={tableConfig[entityType].pageTitle}
             headDesc={tableConfig[entityType].description}
-            add={<Link href={tableConfig[entityType].addLink}><Button>Add {entityType.slice(0, -1)}</Button></Link>}
+            add={<Link href={tableConfig[entityType].addLink}><Button className="whitespace-nowrap">Add {entityType.slice(0, -1)}</Button></Link>}
             reviewedToggle={
                 <Switch
                     checked={showUnreviewedOnly}
@@ -81,6 +86,16 @@ function useEntityHook<T>(entityType: string): EntityData<T> {
             return useAuthors() as EntityData<T>;
         case 'users':
             return useUsers() as EntityData<T>;
+        case 'genres':
+            return useGenres() as EntityData<T>;
+        case 'tags':
+            return useTags() as EntityData<T>;
+        case 'keywords':
+            return useKeywords() as EntityData<T>;
+        case 'series':
+            return useSeries() as EntityData<T>;
+        case 'comments':
+            return useComments() as EntityData<T>;
         // add cases for other entity types
         default:
             throw new Error('Unsupported entity type');

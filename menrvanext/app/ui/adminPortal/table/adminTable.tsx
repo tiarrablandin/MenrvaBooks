@@ -36,13 +36,13 @@ const AdminTable: React.FC<AdminTableProps> = ({
 }) => {
   return (
     <>
-      <Card className={variant === 'small' ? "h-[50vh] w-[calc(60%-2rem)] mx-auto my-4 overflow-scroll" : "h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll"}>
+      <Card className={variant === 'small' ? "h-[50vh] w-[45%] mx-auto my-4 overflow-scroll" : "h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll"}>
         <CardHeader
           floated={false}
           shadow={false}
-          className="rounded-none flex flex-nowrap justify-between gap-2 mb-4 p-2"
+          className={`h-[55%] rounded-none flex flex-nowrap justify-between gap-2 p-2 overflow-x-scroll no-scrollbar ${variant === 'small' ? 'flex-col' : ''}`}
         >
-          <div className="">
+          <div className={`${variant === 'small' ? 'flex items-center gap-4' : ''}`}>
             <Typography variant="h1" className="text-3xl">
               {head}
             </Typography>
@@ -50,22 +50,24 @@ const AdminTable: React.FC<AdminTableProps> = ({
               {headDesc}
             </Typography>
           </div>
-          <div className="flex flex-wrap items-center w-full shrink-0 gap-4 md:w-max">
-            <div className="w-full md:w-72">
+          <div className="flex flex-nowrap items-center w-full shrink-0 gap-4 md:w-max">
+            <div className="w-3/5 lg:w-72">
               <Input label="Search" icon={<MagnifyingGlassIcon className="h-5 w-5" />} />
             </div>
-            {add}
-            {reviewedCallback && reviewedToggle}
+            <div className="flex flex-col gap-2">
+              {add}
+              {reviewedCallback && reviewedToggle}
+            </div>
           </div>
         </CardHeader>
-        <CardBody className="overflow-scroll !p-0">
-          <table className="w-full min-w-max table-auto text-left">
+        <CardBody className="overflow-scroll w-full !p-0 mt-6 h-full">
+          <table className="w-4/5 table-auto">
             <thead>
               <tr>
                 {tableHeaders.map((tableHeaders, index) => (
                   <th
                     key={index}
-                    className="px-6 py-3 text-left text-md font-lg uppercase tracking-wider"
+                    className="px-4 py-3 text-center text-md font-lg uppercase tracking-wider text-nowrap"
                   >
                     <Typography variant="h5" className="text-xl">
                       {tableHeaders}
@@ -77,7 +79,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
             <tbody className="">{data.map((item, index) => renderRow(item, index, reviewedCallback))}</tbody>
           </table>
         </CardBody>
-        <CardFooter className="flex justify-between items-center">{pagination}</CardFooter>
+        <CardFooter className={`flex justify-between items-center ${variant === 'small' ? '' : ''}`}>{pagination}</CardFooter>
       </Card>
     </>
   );

@@ -6,8 +6,8 @@ import { fetchUsersThunk } from "../store/userSlice";
 export function useUsers() {
     const dispatch = useAppDispatch();
     const users = useSelector((state: RootState) => state.user.allUsers);
-    const loading = useSelector((state: RootState) => state.book.loading);
-    const error = useSelector((state: RootState) => state.book.error);
+    const loading = useSelector((state: RootState) => state.user.loading);
+    const error = useSelector((state: RootState) => state.user.error);
 
     const fetchUsers = useCallback(() => {
         dispatch(fetchUsersThunk());

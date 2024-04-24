@@ -10,7 +10,7 @@ class Comment (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    var id: Int? = null,
+    var id: Long? = null,
 
     @Lob
     @Column(name = "comment", nullable = false)
