@@ -1,6 +1,6 @@
-interface Series {
+export interface Comment {
     id: number;
-    name: string;
+    comment: string;
     reviewed: boolean;
     dateAdded: Date;
     dateUpdated: Date;
