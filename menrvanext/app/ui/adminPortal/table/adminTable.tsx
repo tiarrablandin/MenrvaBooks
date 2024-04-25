@@ -61,7 +61,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
           </div>
         </CardHeader>
         <CardBody className="overflow-scroll w-full !p-0 mt-6 h-full">
-          <table className="w-4/5 table-auto">
+          <table className="w-full table-auto">
             <thead>
               <tr>
                 {tableHeaders.map((tableHeaders, index) => (

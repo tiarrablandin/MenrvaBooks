@@ -4,7 +4,7 @@ const BookSkeleton = () => {
     return (
         <Card
             shadow={false}
-            className="relative h-40 lg:h-48 min-w-32 lg:w-36 overflow-hidden rounded-lg"
+            className="relative h-48 min-w-32 lg:w-36 overflow-hidden rounded-lg"
         >
             <CardBody className="relative w-full h-full p-3 mx-auto flex justify-center">
                 <div className="animate-pulse flex space-x-4 w-full">

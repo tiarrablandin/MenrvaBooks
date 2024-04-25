@@ -2,7 +2,7 @@ import { Author } from "@/app/lib/models/author";
 import { Comment } from "@/app/lib/models/comment";
 import { BookResponse } from "@/app/lib/models/book";
 import { User } from "@/app/lib/models/user";
-import { Checkbox, IconButton, PencilIcon, Tooltip, Typography } from "@/providers";
+import { Button, Checkbox, IconButton, PencilIcon, Tooltip, Typography } from "@/providers";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -54,7 +54,7 @@ export const renderBookRow = (book: BookResponse, index: number, toggleReviewed?
             </td>
             <td className="text-center mx-auto pr-2 border-b border-gray-300">
                 <Tooltip content="Edit Book">
-                    <Link href={`/admin/books/${book.id}`}>
+                    <Link href={`/admin/updateBook/${book.id}`}>
                         <IconButton variant="text">
                             <PencilIcon className="w-4 h-4 text-eggplant" />
                         </IconButton>

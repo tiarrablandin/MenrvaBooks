@@ -23,8 +23,8 @@ export default function RootLayout({
       >
         <ReduxProvider>
           <MenrvaThemeProvider>
-              <div>{auth}</div>
-              <div>{children}</div>
+            {auth}
+            {children}
           </MenrvaThemeProvider>
         </ReduxProvider>
       </body>

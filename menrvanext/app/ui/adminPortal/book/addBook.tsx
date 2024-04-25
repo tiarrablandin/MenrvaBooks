@@ -41,8 +41,8 @@ const AddBook: React.FC = () => {
     };
 
     return (
-        <section className="grid place-items-center h-screen">
-            <Dialog size='xl' open={true} handler={handleClose} >
+        <>
+            <Dialog open={true} handler={() => router.back()}>
                 <form onSubmit={handleSubmit}>
                     <DialogHeader className="justify-between pb-0">
                         <Typography color="blue-gray" className="mb-1 font-bold text-2xl">
@@ -166,7 +166,7 @@ const AddBook: React.FC = () => {
                     </DialogFooter>
                 </form>
             </Dialog>
-        </section>
+        </>
     );
 }
 
