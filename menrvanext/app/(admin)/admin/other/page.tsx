@@ -7,10 +7,6 @@ export default async function Page() {
                 <DynamicTable entityType="genres" variant='small' />
                 <DynamicTable entityType="keywords" variant='small' />
                 <DynamicTable entityType="tags" variant='small' />
-                <DynamicTable entityType="series" variant='small' />
-                <div className="col-span-2">
-                    <DynamicTable entityType="comments" variant='small' />
-                </div>
             </div>
         </main>
     );

@@ -42,7 +42,7 @@ export function Contact() {
         <div className="w-full lg:max-w-lg">
           <Card shadow={true} className="bg-pink-lavender/50 dark:bg-chinese-violet/50 lg:p-6">
             <CardBody>
-              <Typography variant="h4" className="mb-6">
+              <Typography variant="h4" className="text-2xl mb-6">
                 Contact us
               </Typography>
               <form action="#" className="flex flex-col gap-6" onSubmit={handleSubmit}>
@@ -104,7 +104,7 @@ export function Contact() {
                     className: "-ml-2.5 -mt-6",
                   }}
                 />
-                <Button type="submit" size="lg" className="mt-4 bg-eggplant text-old-lace" fullWidth>
+                <Button type="submit" size="lg" className="font-normal mt-4 bg-eggplant text-old-lace" fullWidth>
                   send message
                 </Button>
               </form>
