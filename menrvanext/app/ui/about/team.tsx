@@ -1,4 +1,4 @@
-import { Card, CardBody, Avatar, IconButton, Typography } from "@/providers";
+import { Card, CardBody, Avatar, IconButton, Typography, FontAwesomeIcon, faLinkedin } from "@/providers";
 import Link from "next/link";
 
 interface TeamCardPropsType {
@@ -32,7 +32,7 @@ function TeamCard({ img, name, title, linkedin }: TeamCardPropsType) {
         <div className="flex items-center justify-center gap-1.5">
           <Link href={linkedin}>
             <IconButton variant="text">
-              <i className="fa-brands fa-linkedin text-lg" />
+            <FontAwesomeIcon icon={faLinkedin} className="text-eggplant h-5 w-5"/>
             </IconButton>
           </Link>
         </div>

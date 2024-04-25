@@ -21,7 +21,11 @@ const CustomAccordion: React.FC<AccordionProps> = ({ id, header, body }) => {
   return (
     <div className="">
         <Accordion key={id} open={open === id + 1} onClick={() => handleOpen(id + 1)}>
-          <AccordionHeader className="font-normal text-left text-eggplant">{header}</AccordionHeader>
+          <AccordionHeader className="font-normal text-left text-eggplant">
+          <Typography variant="h2" className="text-xl font-semibold">
+            {header}
+            </Typography>
+          </AccordionHeader>
           <AccordionBody>
             <Typography className="font-normal">
               {body}

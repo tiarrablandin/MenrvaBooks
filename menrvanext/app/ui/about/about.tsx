@@ -1,4 +1,6 @@
 import { Typography, Button } from "@/providers";
+import { FontAwesomeIcon } from "@/providers";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 export function About() {
   return (

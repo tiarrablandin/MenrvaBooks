@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { fetchBooksThunk, toggleBookReviewed } from "../store/bookSlice";
+import { fetchBooksThunk, toggleBookLiked, toggleBookReviewed } from "../store/bookSlice";
 import { RootState, useAppDispatch } from "../store/store";
 import { useCallback } from "react";
 
@@ -17,11 +17,16 @@ export function useBooks() {
         dispatch(toggleBookReviewed({ bookId }));
     };
 
+    const toggleLiked = (bookId: number, status: number) => {
+        dispatch(toggleBookLiked({ bookId, status }));
+    };
+
     return {
         data: books,
         loading,
         error,
         fetchData: fetchBooks,
-        toggleReviewed
+        toggleReviewed,
+        toggleLiked
     };
 }

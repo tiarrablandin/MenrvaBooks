@@ -15,6 +15,8 @@ class UserService(private val userRepository: UserRepository) {
 
     fun findById(id: Long): Optional<User> = userRepository.findById(id)
 
+    fun findByUsername(username: String): User? = userRepository.findByUsername(username)
+
     @Transactional
     fun create(user: User): User = userRepository.save(user)
 

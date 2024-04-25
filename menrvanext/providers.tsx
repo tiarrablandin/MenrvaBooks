@@ -1,5 +1,8 @@
 "use client";
 
+export { FontAwesomeIcon,  } from '@fortawesome/react-fontawesome'
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+export { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { HistoryEduOutlined, ThumbDown, ThumbDownAltOutlined, ThumbUp, ThumbUpAltOutlined } from "@mui/icons-material";
 
 export {
