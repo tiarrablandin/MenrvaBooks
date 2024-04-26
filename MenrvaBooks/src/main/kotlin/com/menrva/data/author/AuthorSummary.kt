@@ -15,7 +15,6 @@ interface AuthorSummary {
         fun getFirstName(): String?
         fun getLastName(): String?
         fun getTag(): String?
-        fun getUsername(): String?
     }
 
 }

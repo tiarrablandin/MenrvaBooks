@@ -1,5 +1,4 @@
 import AdvancedSearchBar from './advancedSearchBar';
-import AdvancedSearchMenu from './advancedSearchMenu';
 import SuggestionCards from './suggestionCards';
 
 const AdvancedSearchComponent = () => {

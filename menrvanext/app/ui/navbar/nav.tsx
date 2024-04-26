@@ -15,10 +15,12 @@ import AdvancedSearchComponent from "../search/advancedSearch";
 import AdvancedSearchBar from "../search/advancedSearchBar";
 import ThemeToggle from "../theme/themeToggle";
 import ProfileMenu from "./profileMenu";
+import { useAuth } from "@/app/lib/hooks/useAuth";
 
 export function NavbarWithSearch() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
+  const { user } = useAuth();
 
   React.useEffect(() => {
     window.addEventListener("resize", () => window.innerWidth >= 960 && setOpen(false));
