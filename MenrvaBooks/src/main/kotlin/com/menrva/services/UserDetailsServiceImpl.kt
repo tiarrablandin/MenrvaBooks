@@ -18,16 +18,17 @@ class UserDetailsServiceImpl(
 //    THIS IS AN IMPLEMENTATION OF THE SPRING SECURITY USER DETAILS SERVICE
 //    DOES NOT RETURN FULL USER OBJECTS
 
-    override fun loadUserByUsername(tag: String): UserDetails {
-        println("Loading user by tag: $tag")
-        val user = userRepository.findByTag(tag) ?: throw UsernameNotFoundException("User Not Found with tag: $tag")
-        println("User loaded: $user")
+    override fun loadUserByUsername(identifier: String): UserDetails {
+        val user: User = userRepository.findByTag(identifier)  // Use a simple method for testing
+            ?: userRepository.findByEmail(identifier)
+            ?: throw UsernameNotFoundException("User not found with identifier: $identifier")
         return UserDetailsImpl.build(user)
     }
 
-    fun loadFullUserByTag(tag: String): User {
-        val user: User = userRepository.findByTag(tag)
-            ?: throw UsernameNotFoundException("User Not Found with tag: $tag")
+    fun loadFullUserByTag(identifier: String): User {
+        val user: User = userRepository.findByTag(identifier)  // Use a simple method for testing
+            ?: userRepository.findByEmail(identifier)
+            ?: throw UsernameNotFoundException("User not found with identifier: $identifier")
 
         return user
     }

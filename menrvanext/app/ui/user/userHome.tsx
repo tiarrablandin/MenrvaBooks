@@ -17,6 +17,7 @@ const UserComponent = () => {
   const wrappedFetchLikedBooksForUser = () => fetchLikedBooksForUser(user!!.tag);
 
   useEffect(() => {
+    console.log(user);
     if (user) {
       wrappedFetchLikedBooksForUser();
     }

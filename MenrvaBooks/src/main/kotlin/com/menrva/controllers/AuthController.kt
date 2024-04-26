@@ -25,25 +25,27 @@ class AuthController(
 
     @PostMapping("/authenticate")
     fun createAuthenticationToken(@RequestBody authenticationRequest: AuthenticationRequest): ResponseEntity<AuthenticationResponse> {
-        val processedTag = "@${authenticationRequest.tag}"
-        println("Attempting to authenticate with tag: $processedTag")
+        val input = authenticationRequest.identifier.trim()
+
+        // Determine if the input is an email or tag based on the presence of '@' and absence of whitespace
+        val isEmail = input.contains("@") && !input.contains(" ")
+
+        val processedInput = if (isEmail) input else "@$input"  // Prepend '@' only if it's a tag
+
 
         try {
-            val authenticationToken = UsernamePasswordAuthenticationToken(processedTag, authenticationRequest.password)
-            println("Token created with tag: $processedTag, attempting to authenticate...")
+            val authenticationToken =
+                UsernamePasswordAuthenticationToken(processedInput, authenticationRequest.password)
             val authentication = authenticationManager.authenticate(authenticationToken)
-            println("Authentication successful for tag: $processedTag")
+            println("Authentication successful for identifier: $processedInput")
         } catch (e: AuthenticationException) {
-            println("Authentication failed for tag: $processedTag with error: ${e.message}")
+            println("Authentication failed for identifier: $processedInput with error: ${e.message}")
             throw Exception("Incorrect tag or password.", e)
         }
 
-        println("Loading user details for tag: $processedTag")
-        val userDetails = userDetailsService.loadUserByUsername(processedTag)
-        val user = userDetailsService.loadFullUserByTag(processedTag)
-        println("User details loaded, generating JWT...")
+        val userDetails = userDetailsService.loadUserByUsername(processedInput)
+        val user = userDetailsService.loadFullUserByTag(processedInput)
         val jwt = jwtUtil.generateToken(userDetails)
-        println("JWT generated: $jwt for user: $processedTag")
 
         return ResponseEntity.ok(AuthenticationResponse(jwt, user))
     }
@@ -57,13 +59,9 @@ class AuthController(
         }
 
         try {
-            println("################### IN TRY")
             val savedUser = userDetailsService.save(newUser)
-            println("*************** SAVED USER $savedUser")
             val userDetails = userDetailsService.loadUserByUsername(tag)
-            println("*************** USER DETAILS $userDetails")
             val existingUser = userDetailsService.loadFullUserByTag(tag)
-            println("*************** EXISTING USER $existingUser")
             val jwt = jwtUtil.generateToken(userDetails)
             return ResponseEntity.ok(RegistrationResponse(jwt, existingUser))
         } catch (e: Exception) {
