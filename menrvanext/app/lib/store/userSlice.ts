@@ -22,9 +22,11 @@ const initialState: UserState = {
 // Define an async thunk for the login process
 export const login = createAsyncThunk(
     'user/login',
-    async ({ tag, password }: { tag: string, password: string }, { rejectWithValue }) => {
+    async ({ identifier, password }: { identifier: string, password: string }, { rejectWithValue }) => {
         try {
-            const { jwt, user } = await authenticate(tag, password);
+            const { jwt, user } = await authenticate(identifier, password);
+            sessionStorage.setItem('token', jwt);
+            sessionStorage.setItem('userDetails', JSON.stringify(user));
             return { jwt, user };
         } catch (error) {
             return rejectWithValue('Failed to login');
@@ -69,6 +71,12 @@ export const userSlice = createSlice({
             state.jwt = null;
             state.loading = false;
         },
+        setToken: (state, action: PayloadAction<string>) => {
+            state.jwt = action.payload;
+        },
+        setUserDetails: (state, action: PayloadAction<User>) => {
+            state.user = action.payload;
+        },
         // Add any other user-related reducers here
     },
     extraReducers: (builder) => {
@@ -101,7 +109,7 @@ export const userSlice = createSlice({
     },
 });
 
-export const { logoutSuccess } = userSlice.actions;
+export const { logoutSuccess, setToken, setUserDetails } = userSlice.actions;
 export default userSlice.reducer;
 
 export const selectCurrentUser = (state: RootState) => state.user.user;

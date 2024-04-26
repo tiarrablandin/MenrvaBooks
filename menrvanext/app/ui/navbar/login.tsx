@@ -1,5 +1,6 @@
 'use client';
 
+import { useAuth } from '@/app/lib/hooks/useAuth';
 import { useAppDispatch } from '@/app/lib/store/store';
 import { login, selectCurrentUser, selectUserError, selectUserLoading } from '@/app/lib/store/userSlice';
 import { Alert, ArrowRightIcon, AtSymbolIcon, Button, Dialog, ExclamationCircleIcon, KeyIcon, Typography, XMarkIcon } from '@/providers';
@@ -13,17 +14,15 @@ interface LoginFormProps {
 
 const LoginForm: React.FC<LoginFormProps> = ({ }) => {
     const router = useRouter();
-    const dispatch = useAppDispatch();
-    const currentUser = useSelector(selectCurrentUser);
-    const errorMessage = useSelector(selectUserError);
+    const { user, error, login }= useAuth();
 
-    const [tag, setTag] = useState("");
+    const [identifier, setIdentifier] = useState("");
     const [password, setPassword] = useState("");
     const [isOpen, setIsOpen] = useState(true);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        dispatch(login({ tag, password }));
+        login(identifier, password);
         setIsOpen(false);
         router.push("/user");
     }
@@ -58,10 +57,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
                                     className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-md outline-2 placeholder:text-gray-500"
                                     id="tag"
                                     type="tag"
-                                    value={tag}
+                                    value={identifier}
                                     name="tag"
-                                    placeholder="Enter your tag"
-                                    onChange={(e) => setTag(e.target.value)}
+                                    placeholder="Enter your tag or email"
+                                    onChange={(e) => setIdentifier(e.target.value)}
                                     required
                                 />
                                 <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -98,10 +97,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
                             aria-live="polite"
                             aria-atomic="true"
                         >
-                            {errorMessage && (
+                            {error&& (
                                 <>
                                     <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
-                                    <p className="text-sm text-red-500">{errorMessage}</p>
+                                    <p className="text-sm text-red-500">{error}</p>
                                 </>
                             )}
                         </div>

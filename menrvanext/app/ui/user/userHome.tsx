@@ -10,9 +10,10 @@ import { selectCurrentUser } from "@/app/lib/store/userSlice";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import BookSlider from "../book/bookSlider";
+import { useAuth } from "@/app/lib/hooks/useAuth";
 
 const UserComponent = () => {
-  const user = useSelector(selectCurrentUser);
+  const { user } = useAuth();
   const wrappedFetchRecommendationsForUser = () => fetchRecommendationsForUser(user!!.tag);
   const wrappedFetchLikedBooksForUser = () => fetchLikedBooksForUser(user!!.tag);
 

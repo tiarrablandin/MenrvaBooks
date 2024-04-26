@@ -1,15 +1,19 @@
-import { selectCurrentUser } from "@/app/lib/store/userSlice";
+import { useAuth } from "@/app/lib/hooks/useAuth";
 import { ArrowLeftStartOnRectangleIcon, ArrowRightEndOnRectangleIcon, Avatar, Button, ChevronDownIcon, HomeIcon, Menu, MenuHandler, MenuItem, MenuList, Typography, UserIcon } from "@/providers";
 import Link from "next/link";
 import React from "react";
-import { useSelector } from "react-redux";
 
 const ProfileMenu = () => {
+    const { user, logout } = useAuth();
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-    const currentUser = useSelector(selectCurrentUser);
     const iconClass = "flex items-center gap-x-3 p-2 px-4 font-normal text-base";
 
     const closeMenu = () => setIsMenuOpen(false);
+
+    const handleLogout = () => {
+        logout();
+        setIsMenuOpen(false);
+    }
 
     return (
         <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -46,7 +50,7 @@ const ProfileMenu = () => {
                         variant="small"
                         className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
                     >
-                        {currentUser ? (
+                        {user ? (
                             <>
                                 <UserIcon className="h-4 w-4" />
                                 <Link href="/account" className="flex items-center">
@@ -64,8 +68,8 @@ const ProfileMenu = () => {
                     </Typography>
                 </MenuItem>
                 <MenuItem key="3" onClick={closeMenu} className="">
-                    {currentUser ? (
-                        <Link href="/logout" className="flex items-center">
+                    {user ? (
+                        <Link onClick={handleLogout} href="/home" className="flex items-center">
                             <Typography
                                 as="li"
                                 variant="small"

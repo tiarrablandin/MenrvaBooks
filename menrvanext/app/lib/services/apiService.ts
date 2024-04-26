@@ -62,14 +62,14 @@ export async function fetchAuthorById(id: number): Promise<Author> {
   return response.json();
 }
 
-export async function authenticate(tag: string, password: string): Promise<{ jwt: string, user: User }> {
+export async function authenticate(identifier: string, password: string): Promise<{ jwt: string, user: User }> {
   try {
     const response = await fetch(`${baseUrl}/authenticate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ tag, password }),
+      body: JSON.stringify({ identifier, password }),
     })
     return response.json();
   } catch (error) {
