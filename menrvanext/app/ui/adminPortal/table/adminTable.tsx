@@ -36,7 +36,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
 }) => {
   return (
     <>
-      <Card className={variant === 'small' ? "h-[50vh] w-11/12 mx-auto my-4 overflow-scroll" : "h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll"}>
+      <Card className={variant === 'small' ? "h-[50vh] w-[95%] mx-auto my-4 overflow-scroll" : "h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll"}>
         <CardHeader
           floated={false}
           shadow={false}
@@ -60,7 +60,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
             </div>
           </div>
         </CardHeader>
-        <CardBody className="overflow-scroll w-full !p-0 mt-6 h-full">
+        <CardBody className="overflow-scroll w-full !p-0 mt-6 h-full text-center">
           <table className="w-full table-auto">
             <thead>
               <tr>
