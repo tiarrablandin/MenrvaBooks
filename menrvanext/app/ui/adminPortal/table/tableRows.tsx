@@ -2,7 +2,7 @@ import { Author } from "@/app/lib/models/author";
 import { Comment } from "@/app/lib/models/comment";
 import { BookResponse } from "@/app/lib/models/book";
 import { User } from "@/app/lib/models/user";
-import { Checkbox, IconButton, PencilIcon, Tooltip, Typography } from "@/providers";
+import { Button, Checkbox, IconButton, PencilIcon, Tooltip, Typography } from "@/providers";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -54,7 +54,7 @@ export const renderBookRow = (book: BookResponse, index: number, toggleReviewed?
             </td>
             <td className="text-center mx-auto pr-2 border-b border-gray-300">
                 <Tooltip content="Edit Book">
-                    <Link href={`/admin/books/${book.id}`}>
+                    <Link href={`/admin/updateBook/${book.id}`}>
                         <IconButton variant="text">
                             <PencilIcon className="w-4 h-4 text-eggplant" />
                         </IconButton>
@@ -68,7 +68,7 @@ export const renderBookRow = (book: BookResponse, index: number, toggleReviewed?
 
 export const renderAuthorRow = (author: Author, index: number, toggleReviewed?: (authorId: number) => void) => (
     <tr key={index}>
-        <td className="border-b border-gray-300 whitespace-nowrap w-min pl-5">
+        <td className="border-b border-gray-300 whitespace-nowrap w-min">
             <Link href={`../author/${author.id}`} className="inline-block">
                 <Typography variant="lead" className="hover:underline underline-offset-2">
                     {author.user ? author.user.tag : 'Anonymous'}
@@ -82,10 +82,10 @@ export const renderAuthorRow = (author: Author, index: number, toggleReviewed?: 
                 </Typography>
             </Link>
         </td>
-        <td className="pl-7 border-b border-gray-300">
+        <td className="border-b border-gray-300">
             {author.dateAdded ? <Typography variant="lead">{author.dateAdded.toString()}</Typography> : <></>}
         </td>
-        <td className="mx-auto pl-9 border-b border-gray-300 ">
+        <td className="mx-auto border-b border-gray-300 ">
             {
                 toggleReviewed &&
                 <Checkbox
@@ -95,7 +95,7 @@ export const renderAuthorRow = (author: Author, index: number, toggleReviewed?: 
                 />
             }
         </td>
-        <td className=" mx-auto pl-5 border-b border-gray-300">
+        <td className="mx-auto border-b border-gray-300">
             <Tooltip content="Edit Author">
                 <IconButton variant="text">
                     <PencilIcon className="w-4 h-4 text-eggplant" />
@@ -107,14 +107,14 @@ export const renderAuthorRow = (author: Author, index: number, toggleReviewed?: 
 
 export const renderUserRow = (user: User, index: number) => (
     <tr key={index} className="text-center">
-        <td className="border-b border-gray-300 whitespace-nowrap w-min pl-2">
+        <td className="border-b border-gray-300 whitespace-nowrap w-min">
             <Link href={`../user/${user.id}`} className="inline-block">
-                <Typography variant="lead" className="hover:underline underline-offset-2 pr-2">
+                <Typography variant="lead" className="hover:underline underline-offset-2">
                     {user.tag}
                 </Typography>
             </Link>
         </td>
-        <td className="border-b border-gray-300 whitespace-nowrap pl-2">
+        <td className="border-b border-gray-300 whitespace-nowrap">
             <Link href={`../user/${user.id}`} className="inline-block">
                 <Typography variant="lead" className="hover:underline underline-offset-2 w-min">
                     {`${user.firstName} ${user.lastName}`}
@@ -136,17 +136,22 @@ export const renderUserRow = (user: User, index: number) => (
 
 export const renderGenreRow = (genre: Genre, index: number, toggleReviewed?: (genreId: number) => void) => (
     <tr key={index} className="text-center">
-        <td className="border-b border-gray-300 whitespace-nowrap w-min pl-2">
+        <td className="border-b border-gray-300 whitespace-nowrap w-min">
             <Link href={`../genre/${genre.id}`} className="inline-block">
-                <Typography variant="lead" className="hover:underline underline-offset-2 pr-2">
+                <Typography variant="lead" className="hover:underline underline-offset-2">
                     {genre.name}
                 </Typography>
             </Link>
         </td>
         {/* <td className="border-b border-gray-300">
             {genre.dateAdded ? <Typography variant="lead">{genre.dateAdded.toString()}</Typography> : <></>}
+<<<<<<< HEAD
         </td> */}
         {/* <td className="mx-auto pl-9 border-b border-gray-300 ">
+=======
+        </td>
+        <td className="mx-auto border-b border-gray-300 ">
+>>>>>>> origin
             {
                 toggleReviewed &&
                 <Checkbox
@@ -168,17 +173,22 @@ export const renderGenreRow = (genre: Genre, index: number, toggleReviewed?: (ge
 
 export const renderKeywordRow = (keyword: Keyword, index: number, toggleReviewed?: (keywordId: number) => void) => (
     <tr key={index} className="text-center">
-        <td className="border-b border-gray-300 whitespace-nowrap w-min pl-2">
+        <td className="border-b border-gray-300 whitespace-nowrap w-min">
             <Link href={`../genre/${keyword.id}`} className="inline-block">
-                <Typography variant="lead" className="hover:underline underline-offset-2 pr-2">
+                <Typography variant="lead" className="hover:underline underline-offset-2">
                     {keyword.name}
                 </Typography>
             </Link>
         </td>
         {/* <td className="border-b border-gray-300">
             {keyword.dateAdded ? <Typography variant="lead">{keyword.dateAdded.toString()}</Typography> : <></>}
+<<<<<<< HEAD
         </td> */}
         {/* <td className="mx-auto pl-9 border-b border-gray-300 ">
+=======
+        </td>
+        <td className="mx-auto border-b border-gray-300 ">
+>>>>>>> origin
             {
                 toggleReviewed &&
                 <Checkbox
@@ -200,17 +210,22 @@ export const renderKeywordRow = (keyword: Keyword, index: number, toggleReviewed
 
 export const renderTagRow = (tag: Tag, index: number, toggleReviewed?: (tagId: number) => void) => (
     <tr key={index} className="text-center">
-        <td className="border-b border-gray-300 whitespace-nowrap w-min pl-2">
+        <td className="border-b border-gray-300 whitespace-nowrap w-min">
             <Link href={`../genre/${tag.id}`} className="inline-block">
-                <Typography variant="lead" className="hover:underline underline-offset-2 pr-2">
+                <Typography variant="lead" className="hover:underline underline-offset-2">
                     {tag.name}
                 </Typography>
             </Link>
         </td>
         {/* <td className="border-b border-gray-300">
             {tag.dateAdded ? <Typography variant="lead">{tag.dateAdded.toString()}</Typography> : <></>}
+<<<<<<< HEAD
         </td> */}
         {/* <td className="mx-auto pl-9 border-b border-gray-300 ">
+=======
+        </td>
+        <td className="mx-auto border-b border-gray-300 ">
+>>>>>>> origin
             {
                 toggleReviewed &&
                 <Checkbox
@@ -232,9 +247,9 @@ export const renderTagRow = (tag: Tag, index: number, toggleReviewed?: (tagId: n
 
 export const renderSeriesRow = (series: Series, index: number, toggleReviewed?: (seriesId: number) => void) => (
     <tr key={index} className="text-center">
-        <td className="border-b border-gray-300 whitespace-nowrap w-min pl-2">
+        <td className="border-b border-gray-300 whitespace-nowrap w-min">
             <Link href={`../genre/${series.id}`} className="inline-block">
-                <Typography variant="lead" className="hover:underline underline-offset-2 pr-2">
+                <Typography variant="lead" className="hover:underline underline-offset-2">
                     {series.name}
                 </Typography>
             </Link>
@@ -249,7 +264,7 @@ export const renderSeriesRow = (series: Series, index: number, toggleReviewed?: 
         <td className="border-b border-gray-300">
             {series.dateAdded ? <Typography variant="lead">{series.dateAdded.toString()}</Typography> : <></>}
         </td>
-        <td className="mx-auto pl-9 border-b border-gray-300 ">
+        <td className="mx-auto border-b border-gray-300 ">
             {
                 toggleReviewed &&
                 <Checkbox
@@ -271,9 +286,9 @@ export const renderSeriesRow = (series: Series, index: number, toggleReviewed?: 
 
 export const renderCommentRow = (comment: Comment, index: number, toggleReviewed?: (commentId: number) => void) => (
     <tr key={index} className="text-center">
-        <td className="border-b border-gray-300 whitespace-nowrap w-min pl-2">
+        <td className="border-b border-gray-300 whitespace-nowrap w-min">
             <Link href={`../genre/${comment.id}`} className="inline-block">
-                <Typography variant="lead" className="hover:underline underline-offset-2 pr-2">
+                <Typography variant="lead" className="hover:underline underline-offset-2">
                     {comment.comment}
                 </Typography>
             </Link>
@@ -284,7 +299,7 @@ export const renderCommentRow = (comment: Comment, index: number, toggleReviewed
         <td className="border-b border-gray-300">
             {comment.dateAdded ? <Typography variant="lead">{comment.dateAdded.toString()}</Typography> : <></>}
         </td>
-        {/* <td className="mx-auto pl-9 border-b border-gray-300 ">
+        <td className="mx-auto border-b border-gray-300 ">
             {
                 toggleReviewed &&
                 <Checkbox
@@ -293,7 +308,7 @@ export const renderCommentRow = (comment: Comment, index: number, toggleReviewed
                     className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
                 />
             }
-        </td> */}
+        </td>
         <td className="border-b border-gray-300">
             <Tooltip content="Edit Comment">
                 <IconButton variant="text">

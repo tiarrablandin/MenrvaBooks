@@ -17,7 +17,7 @@ class JwtUtil {
     private lateinit var jwtSecret: String
     private val jwtExpirationMs: Int = 86400000
     private val logger = LoggerFactory.getLogger(JwtUtil::class.java)
-    fun extractUsername(token: String?): String {
+    fun extractTag(token: String?): String {
         return extractClaim(token) { obj: Claims -> obj.subject }
     }
 
@@ -50,7 +50,7 @@ class JwtUtil {
     }
 
     fun validateToken(token: String?, userDetails: UserDetails): Boolean {
-        val username = extractUsername(token)
+        val username = extractTag(token)
         return username == userDetails.username && !isTokenExpired(token)
     }
 }

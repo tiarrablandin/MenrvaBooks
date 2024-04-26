@@ -13,8 +13,8 @@ class RecommendationService(
     private val bookRepo: BookJpaRepository,
     private val bookInteractionRepo: BookInteractionRepository,
 ) {
-    fun getRecommendationsForUser(username: String): List<BookDTO> {
-        val user = userRepo.findByUsername(username) ?: throw UserNotFoundException()
+    fun getRecommendationsForUser(tag: String): List<BookDTO> {
+        val user = userRepo.findByTag(tag) ?: throw UserNotFoundException()
         val interactions = bookInteractionRepo.findByUserId(user.id!!)
         val preferredGenres = interactions.flatMap { it.book.genres }.groupBy { it }.maxBy { it.value.size }
         val preferredKeywords = interactions.flatMap { it.book.keywords }.groupBy { it }.maxBy { it.value.size }

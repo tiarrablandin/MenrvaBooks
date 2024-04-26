@@ -5,7 +5,6 @@ export interface User {
     lastName: string;
     tag: string;
     email: string;
-    username: string;
     password: string;
     active: boolean;
     dateAdded: Date;

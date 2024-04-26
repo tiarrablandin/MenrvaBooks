@@ -6,6 +6,7 @@ import com.menrva.data.user.RegistrationResponse
 import com.menrva.entities.User
 import com.menrva.security.JwtUtil
 import com.menrva.services.UserDetailsServiceImpl
+import org.apache.http.auth.AuthenticationException
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -24,36 +25,43 @@ class AuthController(
 
     @PostMapping("/authenticate")
     fun createAuthenticationToken(@RequestBody authenticationRequest: AuthenticationRequest): ResponseEntity<AuthenticationResponse> {
-        runCatching {
-            authenticationManager.authenticate(
-                UsernamePasswordAuthenticationToken(authenticationRequest.username, authenticationRequest.password)
-            )
-        }.getOrElse {
-            throw Exception("Incorrect username or password.")
+        val input = authenticationRequest.identifier.trim()
+
+        // Determine if the input is an email or tag based on the presence of '@' and absence of whitespace
+        val isEmail = input.contains("@") && !input.contains(" ")
+
+        val processedInput = if (isEmail) input else "@$input"  // Prepend '@' only if it's a tag
+
+
+        try {
+            val authenticationToken =
+                UsernamePasswordAuthenticationToken(processedInput, authenticationRequest.password)
+            val authentication = authenticationManager.authenticate(authenticationToken)
+            println("Authentication successful for identifier: $processedInput")
+        } catch (e: AuthenticationException) {
+            println("Authentication failed for identifier: $processedInput with error: ${e.message}")
+            throw Exception("Incorrect tag or password.", e)
         }
 
-        val userDetails = userDetailsService.loadUserByUsername(authenticationRequest.username)
-        val user = userDetailsService.loadFullUserByUsername(authenticationRequest.username)
+        val userDetails = userDetailsService.loadUserByUsername(processedInput)
+        val user = userDetailsService.loadFullUserByTag(processedInput)
         val jwt = jwtUtil.generateToken(userDetails)
+
         return ResponseEntity.ok(AuthenticationResponse(jwt, user))
     }
 
     @PostMapping("/register")
     fun registerUser(@RequestBody newUser: User): ResponseEntity<RegistrationResponse> {
-        val username = newUser.username ?: ""
+        val tag = newUser.tag ?: ""
         // Check if user already exists to prevent duplicates
-        if (userDetailsService.existsByUsername(username)) {
-            throw Exception ("Error: Username is already taken!")
+        if (userDetailsService.existsByTag(tag)) {
+            throw Exception("Error: Username is already taken!")
         }
 
         try {
-            println("################### IN TRY")
             val savedUser = userDetailsService.save(newUser)
-            println("*************** SAVED USER $savedUser")
-            val userDetails = userDetailsService.loadUserByUsername(username)
-            println("*************** USER DETAILS $userDetails")
-            val existingUser = userDetailsService.loadFullUserByUsername(username)
-            println("*************** EXISTING USER $existingUser")
+            val userDetails = userDetailsService.loadUserByUsername(tag)
+            val existingUser = userDetailsService.loadFullUserByTag(tag)
             val jwt = jwtUtil.generateToken(userDetails)
             return ResponseEntity.ok(RegistrationResponse(jwt, existingUser))
         } catch (e: Exception) {

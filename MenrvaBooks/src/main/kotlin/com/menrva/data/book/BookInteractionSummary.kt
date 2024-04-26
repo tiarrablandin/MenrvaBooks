@@ -16,7 +16,7 @@ interface BookInteractionSummary {
     }
 
     interface User {
-        fun getUsername(): String?
+        fun getTag(): String?
         fun getFirstName(): String?
         fun getLastName(): String?
     }

@@ -19,11 +19,11 @@ class AuthTokenFilter(
         filterChain: FilterChain,
     ) {
         val jwt = parseJwt(request)
-        val username = jwtUtil.extractUsername(jwt)
-        val userDetails = userDetailsService?.loadUserByUsername(username!!)
+        val tag = jwtUtil.extractTag(jwt)
+        val userDetails = userDetailsService.loadUserByUsername(tag)
         println("*******************************************************")
         println(userDetails)
-        if (jwt != null && jwtUtil.validateToken(jwt, userDetails!!)) {
+        if (jwt != null && jwtUtil.validateToken(jwt, userDetails)) {
             val authentication = UsernamePasswordAuthenticationToken(userDetails, null, userDetails.authorities)
             authentication.details = WebAuthenticationDetailsSource().buildDetails(request)
             SecurityContextHolder.getContext().authentication = authentication

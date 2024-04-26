@@ -7,17 +7,18 @@ import {
   fetchRecommendationsForUser,
 } from "@/app/lib/services/apiService";
 import { selectCurrentUser } from "@/app/lib/store/userSlice";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import BookSlider from "../book/bookSlider";
-import AdvancedSearchComponent from "../search/advancedSearch";
-import { useEffect } from "react";
+import { useAuth } from "@/app/lib/hooks/useAuth";
 
 const UserComponent = () => {
-  const user = useSelector(selectCurrentUser);
-  const wrappedFetchRecommendationsForUser = () => fetchRecommendationsForUser(user!!.username);
-  const wrappedFetchLikedBooksForUser = () => fetchLikedBooksForUser(user!!.username);
+  const { user } = useAuth();
+  const wrappedFetchRecommendationsForUser = () => fetchRecommendationsForUser(user!!.tag);
+  const wrappedFetchLikedBooksForUser = () => fetchLikedBooksForUser(user!!.tag);
 
   useEffect(() => {
+    console.log(user);
     if (user) {
       wrappedFetchLikedBooksForUser();
     }
