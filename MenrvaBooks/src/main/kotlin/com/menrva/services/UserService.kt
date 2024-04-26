@@ -25,7 +25,6 @@ class UserService(private val userRepository: UserRepository) {
             firstName = userDTO.firstName,
             lastName = userDTO.lastName,
             tag = userDTO.tag,
-            username = userDTO.username,
             password = userDTO.password,
             active = userDTO.active,
             role = userDTO.role,

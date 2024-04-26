@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*
 class RecommendationController(private val recommendationService: RecommendationService) {
 
     @GetMapping("/forUser")
-    fun getRecommendations(@RequestParam("username") username: String): ResponseEntity<List<BookDTO>> {
-        val recommendedBooks = recommendationService.getRecommendationsForUser(username)
+    fun getRecommendations(@RequestParam("tag") tag: String): ResponseEntity<List<BookDTO>> {
+        val recommendedBooks = recommendationService.getRecommendationsForUser(tag)
         return ResponseEntity.ok(recommendedBooks)
     }
 }

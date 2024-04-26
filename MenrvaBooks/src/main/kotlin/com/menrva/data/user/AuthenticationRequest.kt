@@ -1,6 +1,6 @@
 package com.menrva.data.user
 
 data class AuthenticationRequest (
-    val username: String,
+    val tag: String,
     val password: String
 )

@@ -27,13 +27,13 @@ export async function fetchSearchResults(searchTerm: string): Promise<BookRespon
   return response.json();
 }
 
-export async function fetchRecommendationsForUser(username: string): Promise<BookResponse[]> {
-  const response = await fetch(`${url}/recommendations/forUser?username=${username}`);
+export async function fetchRecommendationsForUser(tag: string): Promise<BookResponse[]> {
+  const response = await fetch(`${url}/recommendations/forUser?tag=${tag}`);
   return response.json();
 }
 
-export async function fetchLikedBooksForUser(username: string) {
-  const response = await fetch(`${url}/users/${username}/liked-books`);
+export async function fetchLikedBooksForUser(tag: string) {
+  const response = await fetch(`${url}/users/${tag}/liked-books`);
   const interactions = response.json()
   console.log(interactions)
   return interactions;
@@ -62,14 +62,14 @@ export async function fetchAuthorById(id: number): Promise<Author> {
   return response.json();
 }
 
-export async function authenticate(username: string, password: string): Promise<{ jwt: string, user: User }> {
+export async function authenticate(tag: string, password: string): Promise<{ jwt: string, user: User }> {
   try {
     const response = await fetch(`${baseUrl}/authenticate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ tag, password }),
     })
     return response.json();
   } catch (error) {

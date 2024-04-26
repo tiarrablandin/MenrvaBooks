@@ -22,9 +22,9 @@ const initialState: UserState = {
 // Define an async thunk for the login process
 export const login = createAsyncThunk(
     'user/login',
-    async ({ username, password }: { username: string, password: string }, { rejectWithValue }) => {
+    async ({ tag, password }: { tag: string, password: string }, { rejectWithValue }) => {
         try {
-            const { jwt, user } = await authenticate(username, password);
+            const { jwt, user } = await authenticate(tag, password);
             return { jwt, user };
         } catch (error) {
             return rejectWithValue('Failed to login');

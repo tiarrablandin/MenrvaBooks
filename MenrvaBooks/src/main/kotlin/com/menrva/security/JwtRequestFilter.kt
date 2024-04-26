@@ -16,25 +16,25 @@ import java.io.IOException
 
 @Component
 class JwtRequestFilter(
-//        private val jwtUtil: JwtUtil,
+        private val jwtUtil: JwtUtil,
 //        private val userService: UserDetailsService,
 ) : OncePerRequestFilter() {
-    private lateinit var jwtUtil: JwtUtil
+//    private lateinit var jwtUtil: JwtUtil
     private lateinit var userDetailsService: UserDetailsServiceImpl
 
     @Throws(ServletException::class, IOException::class)
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, chain: FilterChain) {
         val authorizationHeader = request.getHeader("Authorization")
-        var username: String? = null
+        var tag: String? = null
         var jwt: String? = null
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7)
             if (jwt.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray().size == 3) {
-                username = jwtUtil.extractUsername(jwt)
+                tag = jwtUtil.extractTag(jwt)
             }
         }
-        if (username != null && SecurityContextHolder.getContext().authentication == null) {
-            val userDetails = userDetailsService.loadUserByUsername(username)
+        if (tag != null && SecurityContextHolder.getContext().authentication == null) {
+            val userDetails = userDetailsService.loadUserByUsername(tag)
             if (jwtUtil.validateToken(jwt, userDetails)) {
                 val usernamePasswordAuthenticationToken = UsernamePasswordAuthenticationToken(userDetails, null, userDetails.authorities)
                 usernamePasswordAuthenticationToken.details = WebAuthenticationDetailsSource().buildDetails(request)

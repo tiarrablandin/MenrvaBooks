@@ -165,9 +165,8 @@ create table if not exists user
     role            varchar(20)  not null,
     first_name      varchar(20)  not null,
     last_name       varchar(20)  not null,
-    tag             varchar(20)  not null,
+    tag             varchar(200)  not null UNIQUE,
     email           varchar(50)  not null,
-    username        varchar(50)  not null UNIQUE,
     password        varchar(200) not null,
     active          int          not null,
     date_added      date         not null,
@@ -305,27 +304,26 @@ CREATE TABLE user_has_keyword
 
 insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
                   subscription_id)
-Values (1, 'Admin', 'Tiarra', 'Blandin', '@tiarra', 'tiarra.blandin@gmail.com', 'tiarra',
+Values (1, 'Admin', 'Tiarra', 'Blandin', '@tiarra', 'tiarra.blandin@gmail.com',
         '$2b$10$k0LWgoJxJlEFPizIi3OJIu/dgnQqNDD3rsKdhkx/cJ1FwSR5wVZXO', 1, NOW(),
         '2024-03-15', 1);
 
 insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
                   subscription_id)
-Values (2, 'Admin', 'Matthew', 'Tilley', '@matt', 'matthew.tilley77@gmail.com', 'matt',
+Values (2, 'Admin', 'Matthew', 'Tilley', '@matt', 'matthew.tilley77@gmail.com',
         '$2b$10$6P3YaIeyd5FN0KAnk5Wd9u.IopnLe0P5vvXrVeW3OCwVL.7Tkei1m', 1, NOW(),
         '2024-03-15', 1);
 
 insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
                   subscription_id)
-Values (3, 'Admin', 'Jonathan', 'Dominguez', '@jondom', 'jonathanadominguez@gmail.com', 'jon',
+Values (3, 'Admin', 'Jonathan', 'Dominguez', '@jondom', 'jonathanadominguez@gmail.com',
         '$2b$10$RrN6OgEk09x6nvtLPOcT7e6QYRnwBYQl/kz8KhCRELlztMkbN2twq', 1, NOW(),
         '2024-03-15', 1);
 
 insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
                   subscription_id)
-Values (4, 'Admin', 'William', 'Slaunwhite', '@will', 'williamslaunwhite@gmail.com', 'will',
+Values (4, 'Admin', 'William', 'Slaunwhite', '@will', 'williamslaunwhite@gmail.com',
         '$2a$12$.aXI64OEVlXoGf8fNHOlhef6SFgQzI4bqn2unNELnfIWTPwJj.zR6', 1, NOW(), '2024-03-15', 1);
--- Values (4, 'Admin', 'William', 'Slaunwhite', '@will', 'williamslaunwhite@gmail.com', 'will', 'will', 1, NOW(), null, 1);
 
 insert into subscription (id, level, paid, date_added, date_updated)
 values (1, 'Admin', 1, now(), '2024-03-15');

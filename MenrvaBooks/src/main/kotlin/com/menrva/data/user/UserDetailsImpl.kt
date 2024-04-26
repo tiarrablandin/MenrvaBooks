@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails
 
 data class UserDetailsImpl(
     val id: Long,
-    private val username: String,
+    private val tag: String,
     private val password: String,
     private val authorities: Collection<GrantedAuthority>,
 ) : UserDetails {
@@ -16,7 +16,7 @@ data class UserDetailsImpl(
 
     override fun getPassword(): String = password
 
-    override fun getUsername(): String = username
+    override fun getUsername(): String = tag
 
     override fun isAccountNonExpired(): Boolean = true
 
@@ -32,7 +32,7 @@ data class UserDetailsImpl(
 
             return UserDetailsImpl(
                 id = user.id!!,
-                username = user.username!!,
+                tag = user.tag!!,
                 password = user.password!!,
                 authorities = mutableListOf(authorities)
             )

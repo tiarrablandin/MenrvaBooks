@@ -22,7 +22,6 @@ class User(
     @Column(name = "last_name")
     var lastName: String? = null,
     var tag: String? = null,
-    var username: String? = null,
     var password: String? = null,
     var active: Boolean? = null,
     var role: String? = null,
@@ -89,7 +88,7 @@ class User(
         other as User
 
         if (id != other.id) return false
-        if (username != other.username) return false
+        if (tag != other.tag) return false
         if (password != other.password) return false
         if (role != other.role) return false
         return email == other.email
@@ -97,12 +96,12 @@ class User(
 
 
     override fun toString(): String {
-        return "User(id=$id, username='$username', role='$role', email='$email')"
+        return "User(id=$id, tag='$tag', role='$role', email='$email')"
     }
 
     override fun hashCode(): Int {
         var result = id.hashCode()
-        result = 31 * result + username.hashCode()
+        result = 31 * result + tag.hashCode()
         result = 31 * result + password.hashCode()
         result = 31 * result + active.hashCode()
         result = 31 * result + role.hashCode()

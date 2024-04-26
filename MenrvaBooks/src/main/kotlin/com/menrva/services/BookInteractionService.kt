@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service
 @Service
 class BookInteractionService(private val bookInteractionRepository: BookInteractionRepository) {
 
-    fun findLikedBooksByUsername(username: String): List<BookInteractionSummary> {
-        return bookInteractionRepository.findLikedBooksByUserSummary(username)
+    fun findLikedBooksByTag(tag: String): List<BookInteractionSummary> {
+        return bookInteractionRepository.findLikedBooksByUserSummary(tag)
     }
 
-    fun findReadBooksByUsername(username: String): List<BookInteractionSummary> {
-        return bookInteractionRepository.findReadBooksByUsername(username)
+    fun findReadBooksByTag(tag: String): List<BookInteractionSummary> {
+        return bookInteractionRepository.findReadBooksByTag(tag)
     }
 
     fun toggleLikeDislike(bookId: Long, userId: Long, status: Int): BookInteraction {

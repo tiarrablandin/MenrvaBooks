@@ -17,21 +17,21 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
     const currentUser = useSelector(selectCurrentUser);
     const errorMessage = useSelector(selectUserError);
 
-    const [username, setUsername] = useState("");
+    const [tag, setTag] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        dispatch(login({ username, password }));
+        dispatch(login({ tag, password }));
         router.push("/user");
     }
 
     const handleClose = () => { router.back(); }
 
-    if (currentUser) {
-        router.push("/user");
-        return <Alert color="blue">An info alert for showing message.</Alert>
-    }
+    // if (currentUser) {
+    //     router.push("/user");
+    //     return <Alert color="blue">An info alert for showing message.</Alert>
+    // }
 
     return (
         <>
@@ -45,50 +45,48 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
                         <div>
                             <label
                                 className="mb-3 mt-5 block text-sm font-medium"
-                                htmlFor="username"
+                                htmlFor="tag"
                             >
                                 <Typography className={`mb-3 text-xl font-medium`}>
-                                    Username
+                                    Tag
                                 </Typography>
                             </label>
                             <div className="relative">
-                                <Typography className={`mb-3 text-lg font-medium`}>
-                                    <input
-                                        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-md outline-2 placeholder:text-gray-500"
-                                        id="username"
-                                        type="username"
-                                        value={username}
-                                        name="username"
-                                        placeholder="Enter your username"
-                                        onChange={(e) => setUsername(e.target.value)}
-                                        required
-                                    />
-                                </Typography>
+                                <input
+                                    className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-md outline-2 placeholder:text-gray-500"
+                                    id="tag"
+                                    type="tag"
+                                    value={tag}
+                                    name="tag"
+                                    placeholder="Enter your tag"
+                                    onChange={(e) => setTag(e.target.value)}
+                                    required
+                                />
                                 <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
                             </div>
                         </div>
                         <div className="mt-8">
-                            <Typography className={`mb-3 text-lg font-medium text-eggplant`}>
-                                <label
-                                    className="mb-3 mt-5 block text-xl"
-                                    htmlFor="password"
-                                >
+                            <label
+                                className="mb-3 mt-5 block text-xl"
+                                htmlFor="password"
+                            >
+                                <Typography className={`mb-3 text-lg font-medium text-eggplant`}>
                                     Password
-                                </label>
-                                <div className="relative">
-                                    <input
-                                        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-md outline-2 placeholder:text-gray-500"
-                                        id="password"
-                                        type="password"
-                                        name="password"
-                                        placeholder="Enter password"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        required
-                                    />
-                                    <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
-                                </div>
-                            </Typography>
+                                </Typography>
+                            </label>
+                            <div className="relative">
+                                <input
+                                    className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-md outline-2 placeholder:text-gray-500"
+                                    id="password"
+                                    type="password"
+                                    name="password"
+                                    placeholder="Enter password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                                <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                            </div>
                         </div>
                     </div>
                     <LoginButton />
@@ -107,7 +105,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
                         </div>
                     </div>
                 </div>
-            </form>
+            </form >
         </>
     );
 }
