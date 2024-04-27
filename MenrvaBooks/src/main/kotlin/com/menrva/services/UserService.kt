@@ -4,6 +4,7 @@ import com.menrva.data.user.UserDTO
 import com.menrva.entities.Book
 import com.menrva.entities.User
 import com.menrva.repositories.UserRepository
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
@@ -14,6 +15,14 @@ class UserService(private val userRepository: UserRepository) {
     fun index(): List<User> = userRepository.findAll()
 
     fun findById(id: Long): Optional<User> = userRepository.findById(id)
+
+    fun loadFullUserByIdentifier(identifier: String): User {
+        val user: User = userRepository.findByTag(identifier)  // Use a simple method for testing
+            ?: userRepository.findByEmail(identifier)
+            ?: throw UsernameNotFoundException("User not found with identifier: $identifier")
+
+        return user
+    }
 
     @Transactional
     fun create(user: User): User = userRepository.save(user)

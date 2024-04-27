@@ -24,8 +24,8 @@ class BookInteractionService(private val bookInteractionRepository: BookInteract
         }
 
         interaction.likeDislike = when (status) {
-            1, -1 -> status // Like or Dislike
-            else -> 0 // Neutral or reset
+            1, -1 -> status
+            else -> 0
         }
 
         return bookInteractionRepository.save(interaction)

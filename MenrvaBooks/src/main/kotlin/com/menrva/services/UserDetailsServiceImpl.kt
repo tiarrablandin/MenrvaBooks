@@ -25,7 +25,7 @@ class UserDetailsServiceImpl(
         return UserDetailsImpl.build(user)
     }
 
-    fun loadFullUserByTag(identifier: String): User {
+    fun loadFullUserByIdentifier(identifier: String): User {
         val user: User = userRepository.findByTag(identifier)  // Use a simple method for testing
             ?: userRepository.findByEmail(identifier)
             ?: throw UsernameNotFoundException("User not found with identifier: $identifier")
