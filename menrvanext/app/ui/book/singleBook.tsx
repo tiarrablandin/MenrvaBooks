@@ -16,12 +16,14 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import BookSlider from "./bookSlider";
 import BookComments from "./bookComments";
+import { useBooks } from "@/app/lib/hooks/useBooks";
 
 const SingleBook: React.FC = ({}) => {
   const searchParams = useParams();
   const id = searchParams?.id;
   const numericId = id ? parseInt(id as string, 10) : null;
   const [book, setBook] = useState<BookResponse | null>(null);
+  const { toggleLiked } = useBooks();
 
   useEffect(() => {
     async function fetchBook() {
@@ -55,7 +57,7 @@ const SingleBook: React.FC = ({}) => {
             </Link>
           ))}
           <div className="flex mt-2 gap-4">
-            <ThumbUp />
+            <ThumbUp onClick={() => toggleLiked(book!!.id, 1)} />
             <ThumbUpAltOutlined />
             <ThumbDown />
             <ThumbDownAltOutlined />

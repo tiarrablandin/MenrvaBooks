@@ -40,7 +40,7 @@ export const tableConfig: ConfigDictionary = {
     },
     genres: {
         apiEndpoint: '/api/genres',
-        columns: ['Name', 'Date Added', 'Reviewed', 'Edit'],
+        columns: ['Name', 'Edit'],
         pageTitle: 'Genres List',
         description: 'Manage all genres',
         addLink: '/admin/addGenre',
@@ -48,7 +48,7 @@ export const tableConfig: ConfigDictionary = {
     },
     series: {
         apiEndpoint: '/api/series',
-        columns: ['Name', 'Date Added', 'Reviewed', 'Edit'],
+        columns: ['Name', 'Author', 'Date Added', 'Reviewed', 'Edit'],
         pageTitle: 'Series List',
         description: 'Manage all series',
         addLink: '/admin/addSeries',
@@ -56,7 +56,7 @@ export const tableConfig: ConfigDictionary = {
     },
     keywords: {
         apiEndpoint: '/api/keywords',
-        columns: ['Name', 'Date Added', 'Reviewed', 'Edit'],
+        columns: ['Name', 'Edit'],
         pageTitle: 'Keyword List',
         description: 'Manage all keywords',
         addLink: '/admin/addKeyword',
@@ -64,7 +64,7 @@ export const tableConfig: ConfigDictionary = {
     },
     tags: {
         apiEndpoint: '/api/tags',
-        columns: ['Name', 'Date Added', 'Reviewed', 'Edit'],
+        columns: ['Name', 'Edit'],
         pageTitle: 'Tag List',
         description: 'Manage all tag',
         addLink: '/admin/addTag',
@@ -72,7 +72,7 @@ export const tableConfig: ConfigDictionary = {
     },
     comments: {
         apiEndpoint: '/api/comments',
-        columns: ['Name', 'Date Added', 'Reviewed', 'Edit'],
+        columns: ['Name', 'User', 'Date Added', 'Delete'],
         pageTitle: 'Comments List',
         description: 'Manage all comments',
         addLink: '/admin/addComments',

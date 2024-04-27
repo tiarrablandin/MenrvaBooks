@@ -26,12 +26,12 @@ const subCard: React.FC<SubCardProps> = ({ header, price, info }) => {
           color="transparent"
           className="m-0 mb-4 rounded-none border-b border-white/10 pb-4 text-center"
         >
-          <Typography variant="small" className="font-normal uppercase">
+          <Typography variant="h4" className="font-normal uppercase text-xl">
             {header}
           </Typography>
           <Typography
-            variant="h2"
-            className="mt-4 flex justify-center gap-1 font-normal text-eggplant"
+            variant="h3"
+            className="text-xl mt-4 flex justify-center gap-1 font-normal text-eggplant"
           >
             {` ${price}`}
           </Typography>

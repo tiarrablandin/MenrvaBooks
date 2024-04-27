@@ -143,10 +143,15 @@ export const renderGenreRow = (genre: Genre, index: number, toggleReviewed?: (ge
                 </Typography>
             </Link>
         </td>
-        <td className="border-b border-gray-300">
+        {/* <td className="border-b border-gray-300">
             {genre.dateAdded ? <Typography variant="lead">{genre.dateAdded.toString()}</Typography> : <></>}
+<<<<<<< HEAD
+        </td> */}
+        {/* <td className="mx-auto pl-9 border-b border-gray-300 ">
+=======
         </td>
         <td className="mx-auto border-b border-gray-300 ">
+>>>>>>> origin
             {
                 toggleReviewed &&
                 <Checkbox
@@ -155,7 +160,7 @@ export const renderGenreRow = (genre: Genre, index: number, toggleReviewed?: (ge
                     className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
                 />
             }
-        </td>
+        </td> */}
         <td className="border-b border-gray-300">
             <Tooltip content="Edit Genre">
                 <IconButton variant="text">
@@ -175,10 +180,15 @@ export const renderKeywordRow = (keyword: Keyword, index: number, toggleReviewed
                 </Typography>
             </Link>
         </td>
-        <td className="border-b border-gray-300">
+        {/* <td className="border-b border-gray-300">
             {keyword.dateAdded ? <Typography variant="lead">{keyword.dateAdded.toString()}</Typography> : <></>}
+<<<<<<< HEAD
+        </td> */}
+        {/* <td className="mx-auto pl-9 border-b border-gray-300 ">
+=======
         </td>
         <td className="mx-auto border-b border-gray-300 ">
+>>>>>>> origin
             {
                 toggleReviewed &&
                 <Checkbox
@@ -187,7 +197,7 @@ export const renderKeywordRow = (keyword: Keyword, index: number, toggleReviewed
                     className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
                 />
             }
-        </td>
+        </td> */}
         <td className="border-b border-gray-300">
             <Tooltip content="Edit Keyword">
                 <IconButton variant="text">
@@ -207,10 +217,15 @@ export const renderTagRow = (tag: Tag, index: number, toggleReviewed?: (tagId: n
                 </Typography>
             </Link>
         </td>
-        <td className="border-b border-gray-300">
+        {/* <td className="border-b border-gray-300">
             {tag.dateAdded ? <Typography variant="lead">{tag.dateAdded.toString()}</Typography> : <></>}
+<<<<<<< HEAD
+        </td> */}
+        {/* <td className="mx-auto pl-9 border-b border-gray-300 ">
+=======
         </td>
         <td className="mx-auto border-b border-gray-300 ">
+>>>>>>> origin
             {
                 toggleReviewed &&
                 <Checkbox
@@ -219,7 +234,7 @@ export const renderTagRow = (tag: Tag, index: number, toggleReviewed?: (tagId: n
                     className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
                 />
             }
-        </td>
+        </td> */}
         <td className="border-b border-gray-300">
             <Tooltip content="Edit Tag">
                 <IconButton variant="text">
@@ -236,6 +251,13 @@ export const renderSeriesRow = (series: Series, index: number, toggleReviewed?: 
             <Link href={`../genre/${series.id}`} className="inline-block">
                 <Typography variant="lead" className="hover:underline underline-offset-2">
                     {series.name}
+                </Typography>
+            </Link>
+        </td>
+        <td className="border-b border-gray-300 whitespace-nowrap w-min pl-2">
+            <Link href={`../genre/${series.id}`} className="inline-block">
+                <Typography variant="lead" className="hover:underline underline-offset-2 pr-2">
+                    {series.author}
                 </Typography>
             </Link>
         </td>
@@ -270,6 +292,9 @@ export const renderCommentRow = (comment: Comment, index: number, toggleReviewed
                     {comment.comment}
                 </Typography>
             </Link>
+        </td>
+        <td className="border-b border-gray-300">
+            {comment.user ? <Typography variant="lead">{comment.dateAdded.toString()}</Typography> : <></>}
         </td>
         <td className="border-b border-gray-300">
             {comment.dateAdded ? <Typography variant="lead">{comment.dateAdded.toString()}</Typography> : <></>}
