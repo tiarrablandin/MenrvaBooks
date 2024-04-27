@@ -15,7 +15,7 @@ const sidebar = () => {
   return (
     <div className="h-screen w-16 inline-flex fixed">
       {/* container */}
-      <aside className="flex flex-col items-center bg-pink-lavender/70 text shadow h-full">
+      <aside className="flex flex-col items-center bg-pink-lavender/50 text shadow h-full">
         {/* Side Nav Bar */}
         <Link href="/home">
           <div className="h-16 flex justify-center w-full">

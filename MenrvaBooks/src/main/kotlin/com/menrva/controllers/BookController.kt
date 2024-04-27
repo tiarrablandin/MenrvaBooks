@@ -36,7 +36,7 @@ class BookController(private val bookService: BookService,
 
     @PostMapping("{bookId}/react")
     fun toggleLikeDislike(@PathVariable bookId: Long, @AuthenticationPrincipal userPrincipal: UserPrincipal, @RequestParam("status") status: Int): ResponseEntity<Any> {
-        val user = userService.findByUsername(userPrincipal.name)
+        val user = userService.findByTag(userPrincipal.name)
         return ResponseEntity.ok(bookInteractionService.toggleLikeDislike(bookId, user!!.id!!, status))
     }
 

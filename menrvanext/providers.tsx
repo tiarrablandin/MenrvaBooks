@@ -1,9 +1,14 @@
 "use client";
 
-export { FontAwesomeIcon,  } from '@fortawesome/react-fontawesome'
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-export { faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { HistoryEduOutlined, ThumbDown, ThumbDownAltOutlined, ThumbUp, ThumbUpAltOutlined } from "@mui/icons-material";
+export { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+export { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import {
+  HistoryEduOutlined,
+  ThumbDown,
+  ThumbDownAltOutlined,
+  ThumbUp,
+  ThumbUpAltOutlined,
+} from "@mui/icons-material";
 
 export {
   Accordion,
@@ -27,6 +32,8 @@ export {
   Input,
   List,
   ListItem,
+  ListItemPrefix,
+  ListItemSuffix,
   Menu,
   MenuItem,
   MenuList,
@@ -53,30 +60,31 @@ export {
   Typography,
 } from "@material-tailwind/react";
 export {
-  ArrowLeftStartOnRectangleIcon,
-  ArrowRightEndOnRectangleIcon,
-  CheckCircleIcon,
-  HomeIcon,
-  UserIcon,
-} from "@heroicons/react/20/solid";
-export {
   ArrowLeftIcon,
+  ArrowLeftStartOnRectangleIcon,
   ArrowRightIcon,
+  ArrowRightEndOnRectangleIcon,
   ArrowUpTrayIcon,
   BellIcon,
+  CheckCircleIcon,
   ChevronDownIcon,
   Cog6ToothIcon,
+  CreditCardIcon,
   HeartIcon,
+  HomeIcon,
   InboxArrowDownIcon,
+  KeyIcon,
   LifebuoyIcon,
   MagnifyingGlassIcon,
   MoonIcon,
   PencilIcon,
   PhoneIcon,
+  ShieldCheckIcon,
   SunIcon,
   Squares2X2Icon,
   TicketIcon,
   TrashIcon,
+  UserIcon,
 } from "@heroicons/react/24/solid";
 export {
   AtSymbolIcon,
@@ -86,22 +94,18 @@ export {
   ChevronLeftIcon,
   ChevronRightIcon,
   Cog6ToothIcon as Cog6ToothIconOutline,
+  CreditCardIcon as CreditCardIconOutline,
   EnvelopeIcon,
   ExclamationCircleIcon,
   HomeIcon as HomeIconOutline,
-  KeyIcon,
+  KeyIcon as KeyIconOutline,
+  ShieldCheckIcon as ShieldCheckIconOutline,
   SparklesIcon,
   UserCircleIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 
-export{
-  HistoryEduOutlined,
-  ThumbDown,
-  ThumbDownAltOutlined,
-  ThumbUp,
-  ThumbUpAltOutlined,
-};
+export { HistoryEduOutlined, ThumbDown, ThumbDownAltOutlined, ThumbUp, ThumbUpAltOutlined };
 
 export const eggplant = "#673C4F";
 
