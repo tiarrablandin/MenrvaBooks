@@ -1,3 +1,4 @@
+import Password from "@/app/ui/adminPortal/settings/password";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,8 +7,8 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   return (
-    <main className="min-h-[calc(100vh-295px)] w-[calc(100%-4rem)] mr-1 ml-auto">
-      ADMIN COMPONENT PLACEHOLDER
+    <main className="">
+      <Password/>
     </main>
   );
 }

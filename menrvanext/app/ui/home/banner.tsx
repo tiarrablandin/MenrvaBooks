@@ -11,8 +11,10 @@ export function Banner() {
         <Typography variant="h6" color="blue-gray" className="text-md">
           COMING SOON! | Forums! Soon there will be a forum community to discuss books with like-minded individuals!
         </Typography>
-          <Link href="/news" className="hover:scale-105 underline">
+          <Link href="/news">
+            <Typography variant="h6" className="text-eggplant hover:scale-105 underline">
             Learn More
+            </Typography>
           </Link>
       </div>
     </section>

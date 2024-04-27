@@ -1,7 +1,6 @@
 package com.menrva.services
 
 import com.menrva.data.user.UserDTO
-import com.menrva.entities.Book
 import com.menrva.entities.User
 import com.menrva.repositories.UserRepository
 import org.springframework.security.core.userdetails.UsernameNotFoundException
@@ -23,6 +22,7 @@ class UserService(private val userRepository: UserRepository) {
 
         return user
     }
+    fun findByTag(username: String): User? = userRepository.findByTag(username)
 
     @Transactional
     fun create(user: User): User = userRepository.save(user)

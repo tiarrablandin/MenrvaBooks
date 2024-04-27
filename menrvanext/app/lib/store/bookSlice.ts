@@ -33,6 +33,23 @@ export const toggleBookReviewed = createAsyncThunk(
     }
 );
 
+export const toggleBookLiked = createAsyncThunk(
+    'books/toggleLiked',
+    async ({ bookId, status }: { bookId: number, status: number }, { rejectWithValue }) => {
+        try {
+            const response = await fetch(`http://localhost:8085/api/books/${bookId}/react?status=${status}`, {
+                method: "POST",
+            });
+            if (!response.ok) {
+                throw new Error("Failed to toggle liked status");
+            }
+            return await response.json();
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 export const fetchBooksThunk = createAsyncThunk(
     'books/fetchBooks',
     async (_, { rejectWithValue }) => {
