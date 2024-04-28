@@ -8,6 +8,7 @@ export function useBooks() {
     const books = useSelector((state: RootState) => state.book.allBooks);
     const loading = useSelector((state: RootState) => state.book.loading);
     const error = useSelector((state: RootState) => state.book.error);
+    const token = useSelector((state: RootState) => state.user.jwt);
 
     const fetchBooks = useCallback(() => {
         dispatch(fetchBooksThunk());
@@ -18,7 +19,7 @@ export function useBooks() {
     };
 
     const toggleLiked = (bookId: number, status: number) => {
-        dispatch(toggleBookLiked({ bookId, status }));
+        dispatch(toggleBookLiked({ bookId, status, token }));
     };
 
     return {

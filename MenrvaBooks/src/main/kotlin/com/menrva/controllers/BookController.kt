@@ -2,7 +2,6 @@ package com.menrva.controllers
 
 import com.menrva.data.book.BookDTO
 import com.menrva.data.book.BookSummary
-
 import com.menrva.entities.BookInteraction
 import com.menrva.services.BookInteractionService
 import com.menrva.services.BookService
@@ -10,7 +9,9 @@ import com.menrva.services.UserService
 import com.sun.security.auth.UserPrincipal
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.*
+import java.security.Principal
 
 @RestController
 @RequestMapping("api/books")
@@ -56,10 +57,13 @@ class BookController(
     @PostMapping("{bookId}/react")
     fun toggleLikeDislike(
         @PathVariable bookId: Long,
-        @AuthenticationPrincipal userPrincipal: UserPrincipal,
+        @AuthenticationPrincipal principal: Principal,
         @RequestParam("status") status: Int
     ): ResponseEntity<BookInteraction> {
-        val user = userService.loadFullUserByIdentifier(userPrincipal.name)
+//        val userPrincipal = SecurityContextHolder.getContext().authentication
+        println("************ $principal")
+        val user = userService.loadFullUserByIdentifier(principal.name)
+        println("########### $user")
         return ResponseEntity.ok(bookInteractionService.toggleLikeDislike(bookId, user.id!!, status))
     }
 

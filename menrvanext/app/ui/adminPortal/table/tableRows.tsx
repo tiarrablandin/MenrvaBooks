@@ -145,13 +145,8 @@ export const renderGenreRow = (genre: Genre, index: number, toggleReviewed?: (ge
         </td>
         {/* <td className="border-b border-gray-300">
             {genre.dateAdded ? <Typography variant="lead">{genre.dateAdded.toString()}</Typography> : <></>}
-<<<<<<< HEAD
-        </td> */}
-        {/* <td className="mx-auto pl-9 border-b border-gray-300 ">
-=======
         </td>
         <td className="mx-auto border-b border-gray-300 ">
->>>>>>> origin
             {
                 toggleReviewed &&
                 <Checkbox
@@ -182,13 +177,8 @@ export const renderKeywordRow = (keyword: Keyword, index: number, toggleReviewed
         </td>
         {/* <td className="border-b border-gray-300">
             {keyword.dateAdded ? <Typography variant="lead">{keyword.dateAdded.toString()}</Typography> : <></>}
-<<<<<<< HEAD
-        </td> */}
-        {/* <td className="mx-auto pl-9 border-b border-gray-300 ">
-=======
         </td>
         <td className="mx-auto border-b border-gray-300 ">
->>>>>>> origin
             {
                 toggleReviewed &&
                 <Checkbox
@@ -219,13 +209,8 @@ export const renderTagRow = (tag: Tag, index: number, toggleReviewed?: (tagId: n
         </td>
         {/* <td className="border-b border-gray-300">
             {tag.dateAdded ? <Typography variant="lead">{tag.dateAdded.toString()}</Typography> : <></>}
-<<<<<<< HEAD
-        </td> */}
-        {/* <td className="mx-auto pl-9 border-b border-gray-300 ">
-=======
         </td>
         <td className="mx-auto border-b border-gray-300 ">
->>>>>>> origin
             {
                 toggleReviewed &&
                 <Checkbox

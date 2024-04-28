@@ -1,5 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { BookResponse } from "../models/book";
+import { useAuth } from "../hooks/useAuth";
 
 export interface BookState {
     allBooks: BookResponse[],
@@ -35,15 +36,23 @@ export const toggleBookReviewed = createAsyncThunk(
 
 export const toggleBookLiked = createAsyncThunk(
     'books/toggleLiked',
-    async ({ bookId, status }: { bookId: number, status: number }, { rejectWithValue }) => {
+    async ({ bookId, status, token }: { bookId: number, status: number, token: string | null }, { rejectWithValue }) => {
         try {
+            console.log('in toggleBookLiked ' + token)
             const response = await fetch(`http://localhost:8085/api/books/${bookId}/react?status=${status}`, {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
             });
+            console.log('in toggleBookLiked 3')
             if (!response.ok) {
                 throw new Error("Failed to toggle liked status");
             }
-            return await response.json();
+            const resp = await response.json();
+            console.log(resp)
+            return resp;
         } catch (error: any) {
             return rejectWithValue(error.message);
         }

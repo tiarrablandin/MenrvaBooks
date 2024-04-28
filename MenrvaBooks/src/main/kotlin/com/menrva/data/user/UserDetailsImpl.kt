@@ -4,13 +4,14 @@ import com.menrva.entities.User
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
+import java.security.Principal
 
 data class UserDetailsImpl(
     val id: Long,
     private val tag: String,
     private val password: String,
     private val authorities: Collection<GrantedAuthority>,
-) : UserDetails {
+) : UserDetails, Principal {
 
     override fun getAuthorities(): Collection<GrantedAuthority> = authorities
 
@@ -38,4 +39,6 @@ data class UserDetailsImpl(
             )
         }
     }
+
+    override fun getName(): String = tag
 }

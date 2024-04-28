@@ -18,7 +18,7 @@ import BookSlider from "./bookSlider";
 import BookComments from "./bookComments";
 import { useBooks } from "@/app/lib/hooks/useBooks";
 
-const SingleBook: React.FC = ({}) => {
+const SingleBook: React.FC = ({ }) => {
   const searchParams = useParams();
   const id = searchParams?.id;
   const numericId = id ? parseInt(id as string, 10) : null;
@@ -32,6 +32,11 @@ const SingleBook: React.FC = ({}) => {
     }
     fetchBook();
   }, [numericId]);
+
+  const wrappedToggleLike = () => {
+    console.log('liking...');
+    return toggleLiked(book!!.id, 1);
+  }
 
   async function fetchAllBooksSlider() {
     return fetchBooks();
@@ -57,6 +62,9 @@ const SingleBook: React.FC = ({}) => {
             </Link>
           ))}
           <div className="flex mt-2 gap-4">
+            <Typography onClick={wrappedToggleLike}>
+              Like
+            </Typography>
             <ThumbUp onClick={() => toggleLiked(book!!.id, 1)} />
             <ThumbUpAltOutlined />
             <ThumbDown />
