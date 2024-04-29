@@ -27,12 +27,6 @@ class BookController(
         return ResponseEntity.ok(bookService.index().map { BookDTO(it) })
     }
 
-    @PostMapping("/{id}/toggle-reviewed")
-    fun toggleBookReviewed(@PathVariable id: Long): ResponseEntity<BookDTO> {
-        val updatedBook = bookService.toggleReviewed(id)
-        return ResponseEntity.ok(BookDTO(updatedBook))
-    }
-
     @GetMapping("{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<Any> {
         val book = bookService.findById(id)
@@ -52,19 +46,6 @@ class BookController(
     @PostMapping("search")
     fun search(@RequestParam searchTerm: String): ResponseEntity<List<BookSummary>> {
         return ResponseEntity.ok(bookService.search(searchTerm))
-    }
-
-    @PostMapping("{bookId}/react")
-    fun toggleLikeDislike(
-        @PathVariable bookId: Long,
-        @AuthenticationPrincipal principal: Principal,
-        @RequestParam("status") status: Int
-    ): ResponseEntity<BookInteraction> {
-//        val userPrincipal = SecurityContextHolder.getContext().authentication
-        println("************ $principal")
-        val user = userService.loadFullUserByIdentifier(principal.name)
-        println("########### $user")
-        return ResponseEntity.ok(bookInteractionService.toggleLikeDislike(bookId, user.id!!, status))
     }
 
     @PostMapping("")

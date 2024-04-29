@@ -46,4 +46,12 @@ interface BookSummary {
         fun getUser(): User
     }
 
+    interface User {
+        fun getTag(): String
+        fun getEmail(): String
+        fun getFirstName(): String
+        fun getLastName(): String
+        fun getActive(): Boolean
+    }
+
 }

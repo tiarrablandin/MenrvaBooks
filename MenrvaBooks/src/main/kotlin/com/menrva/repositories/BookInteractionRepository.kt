@@ -15,6 +15,9 @@ interface BookInteractionRepository : JpaRepository<BookInteraction, BookInterac
     fun findByUserId(userId: Long): List<BookInteraction>
     fun findByBookId(bookId: Long): List<BookInteraction>
 
+    @Query("SELECT bi FROM BookInteraction bi WHERE bi.user.tag = :tag AND bi.book.id = :bookId")
+    fun findByBookIdAndUserTag(@Param("bookId") bookId: Long, @Param("tag") tag: String): BookInteractionSummary?
+
     @Query("SELECT bi FROM BookInteraction bi WHERE bi.user.tag = :tag AND bi.likeDislike > 0")
     fun findLikedBooksByUserSummary(@Param("tag") tag: String): List<BookInteractionSummary>
 

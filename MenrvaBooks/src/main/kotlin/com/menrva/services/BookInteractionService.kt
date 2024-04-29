@@ -13,7 +13,7 @@ class BookInteractionService(
     private val bookInteractionRepository: BookInteractionRepository,
     private val bookRepository: BookJpaRepository,
     private val userRepository: UserRepository
-    ) {
+) {
 
     fun findLikedBooksByTag(tag: String): List<BookInteractionSummary> {
         return bookInteractionRepository.findLikedBooksByUserSummary(tag)
@@ -43,5 +43,11 @@ class BookInteractionService(
         }
 
         return bookInteractionRepository.save(interaction)
+    }
+
+    fun findInteractionByBookAndUser(bookId: Long, tag: String): BookInteractionSummary? {
+        val interaction = bookInteractionRepository.findByBookIdAndUserTag(bookId, tag)
+        println("************* $interaction")
+        return interaction
     }
 }
