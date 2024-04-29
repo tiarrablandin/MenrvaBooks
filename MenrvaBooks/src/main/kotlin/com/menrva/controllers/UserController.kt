@@ -4,6 +4,7 @@ import com.menrva.data.book.BookDTO
 import com.menrva.data.book.BookInteractionSummary
 import com.menrva.data.book.BookSummary
 import com.menrva.data.user.UserDTO
+import com.menrva.entities.User
 import com.menrva.services.BookInteractionService
 import com.menrva.services.UserService
 import org.springframework.http.ResponseEntity
@@ -25,6 +26,11 @@ class UserController(
     @GetMapping("{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<Any> {
         return ResponseEntity.ok(userService.findById(id))
+    }
+
+    @PostMapping("{id}/active")
+    fun toggleActive(@PathVariable id: Long): ResponseEntity<UserDTO> {
+        return ResponseEntity.ok(UserDTO(userService.toggleActive(id)))
     }
 
     @GetMapping("/{tag}/liked-books")

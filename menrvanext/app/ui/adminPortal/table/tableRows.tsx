@@ -5,6 +5,7 @@ import { User } from "@/app/lib/models/user";
 import { Button, Checkbox, IconButton, PencilIcon, Tooltip, Typography } from "@/providers";
 import Image from "next/image";
 import Link from "next/link";
+import { Series } from "@/app/lib/models/ series";
 
 
 export const renderBookRow = (book: BookResponse, index: number, toggleReviewed?: (bookId: number) => void) => {
@@ -105,7 +106,7 @@ export const renderAuthorRow = (author: Author, index: number, toggleReviewed?: 
     </tr>
 );
 
-export const renderUserRow = (user: User, index: number) => (
+export const renderUserRow = (user: User, index: number, toggleActive?: (id: number) => void) => (
     <tr key={index} className="text-center">
         <td className="border-b border-gray-300 whitespace-nowrap w-min">
             <Link href={`../user/${user.id}`} className="inline-block">
@@ -124,6 +125,16 @@ export const renderUserRow = (user: User, index: number) => (
         <td className="border-b border-gray-300">
             {user.dateAdded ? <Typography variant="lead">{user.dateAdded.toString()}</Typography> : <></>}
         </td>
+        <td className="border-b border-gray-300 ">
+            {
+                toggleActive &&
+                <Checkbox
+                    onChange={() => toggleActive(user.id)}
+                    checked={user.active}
+                    className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
+                />
+            }
+        </td>
         <td className="border-b border-gray-300">
             <Tooltip content="Edit User">
                 <IconButton variant="text">
@@ -134,7 +145,7 @@ export const renderUserRow = (user: User, index: number) => (
     </tr>
 );
 
-export const renderGenreRow = (genre: Genre, index: number, toggleReviewed?: (genreId: number) => void) => (
+export const renderGenreRow = (genre: Genre, index: number) => (
     <tr key={index} className="text-center">
         <td className="border-b border-gray-300 whitespace-nowrap w-min">
             <Link href={`../genre/${genre.id}`} className="inline-block">
@@ -145,13 +156,8 @@ export const renderGenreRow = (genre: Genre, index: number, toggleReviewed?: (ge
         </td>
         {/* <td className="border-b border-gray-300">
             {genre.dateAdded ? <Typography variant="lead">{genre.dateAdded.toString()}</Typography> : <></>}
-<<<<<<< HEAD
-        </td> */}
-        {/* <td className="mx-auto pl-9 border-b border-gray-300 ">
-=======
         </td>
         <td className="mx-auto border-b border-gray-300 ">
->>>>>>> origin
             {
                 toggleReviewed &&
                 <Checkbox
@@ -182,13 +188,8 @@ export const renderKeywordRow = (keyword: Keyword, index: number, toggleReviewed
         </td>
         {/* <td className="border-b border-gray-300">
             {keyword.dateAdded ? <Typography variant="lead">{keyword.dateAdded.toString()}</Typography> : <></>}
-<<<<<<< HEAD
-        </td> */}
-        {/* <td className="mx-auto pl-9 border-b border-gray-300 ">
-=======
         </td>
         <td className="mx-auto border-b border-gray-300 ">
->>>>>>> origin
             {
                 toggleReviewed &&
                 <Checkbox
@@ -219,13 +220,8 @@ export const renderTagRow = (tag: Tag, index: number, toggleReviewed?: (tagId: n
         </td>
         {/* <td className="border-b border-gray-300">
             {tag.dateAdded ? <Typography variant="lead">{tag.dateAdded.toString()}</Typography> : <></>}
-<<<<<<< HEAD
-        </td> */}
-        {/* <td className="mx-auto pl-9 border-b border-gray-300 ">
-=======
         </td>
         <td className="mx-auto border-b border-gray-300 ">
->>>>>>> origin
             {
                 toggleReviewed &&
                 <Checkbox
@@ -257,7 +253,7 @@ export const renderSeriesRow = (series: Series, index: number, toggleReviewed?: 
         <td className="border-b border-gray-300 whitespace-nowrap w-min pl-2">
             <Link href={`../genre/${series.id}`} className="inline-block">
                 <Typography variant="lead" className="hover:underline underline-offset-2 pr-2">
-                    {series.author}
+                    {series.authors[0].penName}
                 </Typography>
             </Link>
         </td>
@@ -294,7 +290,7 @@ export const renderCommentRow = (comment: Comment, index: number, toggleReviewed
             </Link>
         </td>
         <td className="border-b border-gray-300">
-            {comment.user ? <Typography variant="lead">{comment.dateAdded.toString()}</Typography> : <></>}
+            {comment.user ? <Typography variant="lead">{comment.user.tag}</Typography> : <></>}
         </td>
         <td className="border-b border-gray-300">
             {comment.dateAdded ? <Typography variant="lead">{comment.dateAdded.toString()}</Typography> : <></>}

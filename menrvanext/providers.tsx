@@ -2,7 +2,8 @@
 
 export { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export { faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import {
+
+export {
   HistoryEduOutlined,
   ThumbDown,
   ThumbDownAltOutlined,
@@ -104,8 +105,6 @@ export {
   UserCircleIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-
-export { HistoryEduOutlined, ThumbDown, ThumbDownAltOutlined, ThumbUp, ThumbUpAltOutlined };
 
 export const eggplant = "#673C4F";
 

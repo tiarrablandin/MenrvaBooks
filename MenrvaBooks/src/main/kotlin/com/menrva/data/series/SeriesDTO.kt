@@ -1,4 +1,4 @@
-package com.menrva.data
+package com.menrva.data.series
 
 import com.menrva.data.book.MinimalBookDTO
 import com.menrva.entities.Series

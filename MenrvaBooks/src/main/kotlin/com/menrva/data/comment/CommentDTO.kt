@@ -1,4 +1,4 @@
-package com.menrva.data
+package com.menrva.data.comment
 
 import com.menrva.entities.Comment
 import java.time.LocalDate

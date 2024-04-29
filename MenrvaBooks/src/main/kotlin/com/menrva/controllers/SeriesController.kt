@@ -1,7 +1,7 @@
 package com.menrva.controllers
 
-import com.menrva.data.SeriesDTO
-import com.menrva.data.TagDTO
+import com.menrva.data.series.SeriesDTO
+import com.menrva.data.series.SeriesSummary
 import com.menrva.services.SeriesService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin("*", "http://localhost")
 class SeriesController (private val seriesService: SeriesService) {
     @GetMapping("")
-    fun index(): ResponseEntity<List<SeriesDTO>> {
-        return ResponseEntity.ok(seriesService.index().map { SeriesDTO(it) })
+    fun index(): ResponseEntity<List<SeriesSummary>> {
+        return ResponseEntity.ok(seriesService.index())
     }
 
     @GetMapping("{id}")

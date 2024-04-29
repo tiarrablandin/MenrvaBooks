@@ -1,9 +1,10 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BookResponse } from "../models/book";
 
 export interface BookState {
     allBooks: BookResponse[],
     newReleases: BookResponse[],
+    likedBooks: number[],
     error: string | null;
     loading: boolean;
 }
@@ -11,6 +12,7 @@ export interface BookState {
 const initialState: BookState = {
     allBooks: [],
     newReleases: [],
+    likedBooks: [],
     error: null,
     loading: false,
 }
@@ -35,20 +37,44 @@ export const toggleBookReviewed = createAsyncThunk(
 
 export const toggleBookLiked = createAsyncThunk(
     'books/toggleLiked',
-    async ({ bookId, status }: { bookId: number, status: number }, { rejectWithValue }) => {
+    async ({ bookId, status, token }: { bookId: number, status: number, token: string | null }, { rejectWithValue }) => {
         try {
             const response = await fetch(`http://localhost:8085/api/books/${bookId}/react?status=${status}`, {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
             });
             if (!response.ok) {
                 throw new Error("Failed to toggle liked status");
             }
-            return await response.json();
+            const data = await response.json();
+            console.log(data);
+            return { bookId, liked: status === 1};
         } catch (error: any) {
             return rejectWithValue(error.message);
         }
     }
 );
+
+export const fetchLikedStatus = createAsyncThunk(
+    'books/fetchLikedStatus',
+    async ({ bookId, token }: { bookId: number, token: string | null }, { rejectWithValue }) => {
+        try {
+            const response = await fetch(`http://localhost:8085/api/books/${bookId}/interaction`, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+            const data = await response.json();
+            console.log(data);
+            return { bookId, liked: data.likeDislike === 1 };
+        } catch (error: any) {
+            return rejectWithValue('Failed to fetch liked status: ' + error.message);
+        }
+    }
+)
 
 export const fetchBooksThunk = createAsyncThunk(
     'books/fetchBooks',
@@ -93,7 +119,16 @@ export const bookSlice = createSlice({
                 if (index !== -1) {
                     state.allBooks[index] = action.payload;
                 }
-            });
+            })
+            .addCase(fetchLikedStatus.fulfilled, (state, action) => {
+                const { bookId, liked } = action.payload;
+                console.log(action.payload);
+                if (liked === true) state.likedBooks.concat(bookId);
+            })
+            .addCase(toggleBookLiked.fulfilled, (state, action) => {
+                const { bookId, liked } = action.payload;
+                if (liked === true) state.likedBooks.concat(bookId);
+            })
     }
 });
 

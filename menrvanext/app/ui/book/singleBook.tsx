@@ -1,37 +1,70 @@
 "use client";
 
+import { useAuth } from "@/app/lib/hooks/useAuth";
+import { useBooks } from "@/app/lib/hooks/useBooks";
 import { BookResponse } from "@/app/lib/models/book";
-import { fetchBookById, fetchBooks } from "@/app/lib/services/apiService";
+import { fetchBooks } from "@/app/lib/services/apiService";
 import {
   Card,
   ThumbDown,
   ThumbDownAltOutlined,
   ThumbUp,
   ThumbUpAltOutlined,
-  Typography,
+  Typography
 } from "@/providers";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import BookSlider from "./bookSlider";
 import BookComments from "./bookComments";
-import { useBooks } from "@/app/lib/hooks/useBooks";
+import BookSlider from "./bookSlider";
 
-const SingleBook: React.FC = ({}) => {
+const SingleBook: React.FC = ({ }) => {
   const searchParams = useParams();
   const id = searchParams?.id;
-  const numericId = id ? parseInt(id as string, 10) : null;
+  const numericId = id ? parseInt(id as string, 10) : 0;
   const [book, setBook] = useState<BookResponse | null>(null);
-  const { toggleLiked } = useBooks();
+  const [liked, setLiked] = useState(false);
+  const [disliked, setDisliked] = useState(false);
+  const { toggleLiked, fetchLikedStatus, likedBooks } = useBooks();
+  const { token } = useAuth();
 
   useEffect(() => {
-    async function fetchBook() {
-      const fetchedBook = await fetchBookById(numericId!!);
-      setBook(fetchedBook);
+    const fetchBook = async () => {
+      const bookResponse = await fetch(`http://localhost:8085/api/books/${numericId}`);
+      const bookData = await bookResponse.json();
+      setBook(bookData);
     }
-    fetchBook();
-  }, [numericId]);
+    const fetchLikeStatus = async () => {
+      try {
+        const interactionResponse = await fetch(`http://localhost:8085/api/books/${numericId}/interaction`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          }
+        });
+
+        if (interactionResponse.ok) {
+          const interactionData = await interactionResponse.json();
+          setLiked(interactionData.likeDislike === 1);
+        }
+      } catch (error) {
+        console.error('Failed to fetch book or interaction status:', error);
+      }
+    };
+
+    if (numericId) {
+      if (token) {
+        fetchLikeStatus();
+      }
+      fetchBook();
+    }
+  }, [numericId, token]);
+
+  const handleToggleLike = () => {
+    console.log('Toggling like status...');
+    toggleLiked(numericId, liked ? 0 : 1);
+    setLiked(!liked);
+  }
 
   async function fetchAllBooksSlider() {
     return fetchBooks();
@@ -57,10 +90,8 @@ const SingleBook: React.FC = ({}) => {
             </Link>
           ))}
           <div className="flex mt-2 gap-4">
-            <ThumbUp onClick={() => toggleLiked(book!!.id, 1)} />
-            <ThumbUpAltOutlined />
-            <ThumbDown />
-            <ThumbDownAltOutlined />
+            <ThumbUp onClick={handleToggleLike} style={{ color: liked === true ? "blue" : "gray"}} />
+            <ThumbDown onClick={handleToggleLike} style={{ color: disliked === true ? "blue" : "gray"}} />
           </div>
           <Typography className="mt-6">{book ? book.description : "Loading..."}</Typography>
           <div className="flex justify-center gap-12 mt-8">

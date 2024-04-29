@@ -3,6 +3,7 @@ package com.menrva.security
 import com.menrva.repositories.UserRepository
 import com.menrva.services.UserDetailsServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
@@ -17,17 +18,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.CorsConfigurationSource
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
 @Configuration
 @EnableWebSecurity
 class SecurityConfig {
     @Autowired
-    private lateinit var jwtRequestFilter: JwtRequestFilter
+    private lateinit var applicationContext: ApplicationContext
 
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
+        val jwtRequestFilter: JwtRequestFilter = applicationContext.getBean(JwtRequestFilter::class.java)
         http
-            .cors() { it.disable() }
+            .cors() { it.configurationSource(corsConfigurationSource()) }
             .authorizeHttpRequests { requests ->
                 requests
                     .requestMatchers(
@@ -46,27 +51,27 @@ class SecurityConfig {
                     ).permitAll()
                     .anyRequest().authenticated()
             }
-            .csrf() {
-                it.ignoringRequestMatchers(
-                    "authenticate",
-                    "api/authors/**",
-                    "api/books/**",
-                    "api/comments/**",
-                    "api/genres/**",
-                    "api/keywords/**",
-                    "api/recommendations/**",
-                    "api/search/**",
-                    "api/series/**",
-                    "api/tags/**",
-                    "api/users/**",
-                    "register",
-                )
-            }
-        return http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java).build()
+            .csrf() { it.disable() }
+            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java)
+        return http.build()
     }
 
     @Bean
-    fun daoAuthenticationProvider(userDetailsService: UserDetailsService, passwordEncoder: PasswordEncoder): DaoAuthenticationProvider {
+    fun corsConfigurationSource(): CorsConfigurationSource {
+        val configuration = CorsConfiguration()
+        configuration.allowedOrigins = listOf("http://localhost:3000") // Adjust this to match your front-end URL
+        configuration.allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
+        configuration.allowedHeaders = listOf("*")
+        configuration.allowCredentials = true
+        val source = UrlBasedCorsConfigurationSource()
+        source.registerCorsConfiguration("/**", configuration)
+        return source    }
+
+    @Bean
+    fun daoAuthenticationProvider(
+        userDetailsService: UserDetailsService,
+        passwordEncoder: PasswordEncoder
+    ): DaoAuthenticationProvider {
         val provider = DaoAuthenticationProvider()
         provider.setUserDetailsService(userDetailsService)
         provider.setPasswordEncoder(passwordEncoder)

@@ -1,3 +1,4 @@
+import { Series } from "./ series";
 import { Author } from "./author";
 
 export interface BookResponse {

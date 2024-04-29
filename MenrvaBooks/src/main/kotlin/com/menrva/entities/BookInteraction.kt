@@ -33,10 +33,10 @@ class BookInteraction(
     @Column(name = "like_dislike")
     var likeDislike: Int = 0,
 ) {
-    constructor(id: BookInteractionId, likeDislike: Int) : this(
+    constructor(id: BookInteractionId, book: Book, user: User, likeDislike: Int) : this(
         id = id,
-        book = Book(), // You need to provide a default Book instance, consider fetching from DB if necessary
-        user = User(), // Same for User, you need a default or actual instance
+        book = book, // You need to provide a default Book instance, consider fetching from DB if necessary
+        user = user, // Same for User, you need a default or actual instance
         hasRead = false,
         interested = false,
         favorite = false,

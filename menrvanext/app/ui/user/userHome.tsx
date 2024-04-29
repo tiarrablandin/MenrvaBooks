@@ -1,28 +1,28 @@
 "use client";
 
+import { useAuth } from "@/app/lib/hooks/useAuth";
 import {
   fetchBooks,
   fetchLikedBooksForUser,
   fetchNewReleases,
   fetchRecommendationsForUser,
 } from "@/app/lib/services/apiService";
-import { selectCurrentUser } from "@/app/lib/store/userSlice";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 import BookSlider from "../book/bookSlider";
-import { useAuth } from "@/app/lib/hooks/useAuth";
 
 const UserComponent = () => {
-  const { user } = useAuth();
+  const { user, token } = useAuth();
   const wrappedFetchRecommendationsForUser = () => fetchRecommendationsForUser(user!!.tag);
   const wrappedFetchLikedBooksForUser = () => fetchLikedBooksForUser(user!!.tag);
 
   useEffect(() => {
     console.log(user);
+    console.log(token);
     if (user) {
       wrappedFetchLikedBooksForUser();
+      wrappedFetchRecommendationsForUser();
     }
-  }, [])
+  }, [user, token])
 
   return (
     <div className="w-screen h-full flex flex-col items-center justify-start">

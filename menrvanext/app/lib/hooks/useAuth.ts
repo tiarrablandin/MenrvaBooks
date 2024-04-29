@@ -15,7 +15,7 @@ export function useAuth() {
         const userDetails = sessionStorage.getItem('userDetails');
 
         if (sessionToken && !token) {
-            dispatch(setToken(sessionToken)); // need to write fetchTokenThunk or equivalent
+            dispatch(setToken(sessionToken));
         }
         if (userDetails && !user) {
             dispatch(setUserDetails(JSON.parse(userDetails)));

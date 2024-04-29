@@ -15,9 +15,10 @@ interface AdminTableProps {
   add: JSX.Element;
   reviewedToggle: JSX.Element;
   reviewedCallback?: (bookId: number) => void
+  activeCallback?: (id: number) => void
   tableHeaders: string[];
   data: any[];
-  renderRow: (item: any, index: number, toggleReviewed?: (bookId: number) => void) => JSX.Element;
+  renderRow: (item: any, index: number, toggleReviewed?: (bookId: number) => void, toggleActive?: (id: number) => void) => JSX.Element;
   pagination: JSX.Element;
   variant?: 'small' | 'normal';
 }
@@ -32,6 +33,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
   renderRow,
   pagination,
   reviewedCallback,
+  activeCallback,
   variant,
 }) => {
   return (
@@ -76,7 +78,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
                 ))}
               </tr>
             </thead>
-            <tbody className="">{data.map((item, index) => renderRow(item, index, reviewedCallback))}</tbody>
+            <tbody className="">{data.map((item, index) => renderRow(item, index, reviewedCallback, activeCallback))}</tbody>
           </table>
         </CardBody>
         <CardFooter className={`flex justify-between items-center ${variant === 'small' ? '' : ''}`}>{pagination}</CardFooter>

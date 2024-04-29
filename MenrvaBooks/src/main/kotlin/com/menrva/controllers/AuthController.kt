@@ -44,7 +44,7 @@ class AuthController(
         }
 
         val userDetails = userDetailsService.loadUserByUsername(processedInput)
-        val user = userDetailsService.loadFullUserByTag(processedInput)
+        val user = userDetailsService.loadFullUserByIdentifier(processedInput)
         val jwt = jwtUtil.generateToken(userDetails)
 
         return ResponseEntity.ok(AuthenticationResponse(jwt, user))
@@ -61,7 +61,7 @@ class AuthController(
         try {
             val savedUser = userDetailsService.save(newUser)
             val userDetails = userDetailsService.loadUserByUsername(tag)
-            val existingUser = userDetailsService.loadFullUserByTag(tag)
+            val existingUser = userDetailsService.loadFullUserByIdentifier(tag)
             val jwt = jwtUtil.generateToken(userDetails)
             return ResponseEntity.ok(RegistrationResponse(jwt, existingUser))
         } catch (e: Exception) {
