@@ -1,20 +1,20 @@
 package com.menrva.services
 
+import com.menrva.data.series.SeriesSummary
 import com.menrva.entities.Series
 import com.menrva.repositories.SeriesRepository
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
 class SeriesService(
     private val seriesRepo: SeriesRepository
 ) {
-    fun index(): List<Series> {
-        return seriesRepo.findAll()
+    fun index(): List<SeriesSummary> {
+        return seriesRepo.index()
     }
 
-    fun findById(id: Long): Optional<Series> {
-        return seriesRepo.findById(id)
+    fun findById(id: Long): SeriesSummary {
+        return seriesRepo.findSeriesById(id)
     }
 
     fun toggleReviewed(id: Long): Series {

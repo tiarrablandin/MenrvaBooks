@@ -46,6 +46,28 @@ export const logout = createAsyncThunk(
     }
 );
 
+export const toggleUserActive = createAsyncThunk(
+    'user/toggleLiked',
+    async ({ userId, token }: { userId: number, token: string | null }, { rejectWithValue }) => {
+        try {
+            const response = await fetch(`http://localhost:8085/api/users/${userId}/active`, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+            if (!response.ok) {
+                throw new Error("Failed to toggle liked status");
+            }
+            const data = await response.json();
+            console.log(data);
+            return data;
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 export const fetchUsersThunk = createAsyncThunk(
     'user/fetchUsers',
     async (_, { rejectWithValue }) => {

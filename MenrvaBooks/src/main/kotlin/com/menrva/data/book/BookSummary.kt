@@ -4,14 +4,14 @@ import com.menrva.entities.User
 import java.time.LocalDate
 
 interface BookSummary {
-    fun getId(): Long?
-    fun getTitle(): String?
+    fun getId(): Long
+    fun getTitle(): String
     fun getCover(): String?
     fun getDescription(): String?
     fun getPageCount(): Int?
     fun getPublicationDate(): LocalDate?
-    fun getDateAdded(): LocalDate?
-    fun getReviewed(): Boolean?
+    fun getDateAdded(): LocalDate
+    fun getReviewed(): Boolean
     fun getGenres(): Set<Genre>?
     fun getKeywords(): Set<Keyword>?
     fun getAuthors(): Set<Author>?

@@ -6,7 +6,7 @@ interface TableConfigProps {
     pageTitle: string
     description: string
     addLink: string
-    renderRow: (item: any, index: number, toggleReviewed?: (bookId: number) => void | undefined) => JSX.Element
+    renderRow: (item: any, index: number, toggleReviewed?: (bookId: number) => void | undefined, toggleActive?: (id: number) => void | undefined) => JSX.Element
 }
 
 type ConfigDictionary = {
@@ -32,7 +32,7 @@ export const tableConfig: ConfigDictionary = {
     },
     users: {
         apiEndpoint: '/api/users',
-        columns: ['Tag', 'Name', 'Date Added', 'Edit'],
+        columns: ['Tag', 'Name', 'Date Added', 'Active', 'Edit'],
         pageTitle: 'Users List',
         description: 'Manage all users',
         addLink: '/admin/addUser',

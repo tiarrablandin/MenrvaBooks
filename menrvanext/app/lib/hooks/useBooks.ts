@@ -15,9 +15,9 @@ export function useBooks() {
         dispatch(fetchBooksThunk());
     }, [dispatch]);
 
-    const toggleReviewed = (bookId: number) => {
+    const toggleReviewed = useCallback((bookId: number) => {
         dispatch(toggleBookReviewed({ bookId }));
-    };
+    }, [dispatch]);
 
     const toggleLiked = useCallback((bookId: number, status: number) => {
         dispatch(toggleBookLiked({ bookId, status, token }));

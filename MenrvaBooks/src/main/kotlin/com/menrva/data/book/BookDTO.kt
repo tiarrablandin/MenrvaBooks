@@ -2,7 +2,7 @@ package com.menrva.data.book
 
 import com.menrva.data.GenreDTO
 import com.menrva.data.KeywordDTO
-import com.menrva.data.SeriesDTO
+import com.menrva.data.series.SeriesDTO
 import com.menrva.data.TagDTO
 import com.menrva.data.author.AuthorDTO
 import com.menrva.entities.Book

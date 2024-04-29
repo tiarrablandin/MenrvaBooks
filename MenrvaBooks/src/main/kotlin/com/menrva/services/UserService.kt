@@ -22,7 +22,17 @@ class UserService(private val userRepository: UserRepository) {
 
         return user
     }
+
     fun findByTag(username: String): User? = userRepository.findByTag(username)
+
+    fun toggleActive(id: Long): User {
+        val user = userRepository.findById(id).orElseThrow{
+            throw RuntimeException("User not found with id: $id")
+        }
+
+        user.active = !user.active!!
+        return userRepository.save(user)
+    }
 
     @Transactional
     fun create(user: User): User = userRepository.save(user)

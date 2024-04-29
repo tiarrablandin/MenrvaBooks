@@ -6,7 +6,9 @@ import { BookResponse } from "@/app/lib/models/book";
 import { fetchBooks } from "@/app/lib/services/apiService";
 import {
   Card,
+  ThumbDown,
   ThumbDownAltOutlined,
+  ThumbUp,
   ThumbUpAltOutlined,
   Typography
 } from "@/providers";
@@ -28,12 +30,13 @@ const SingleBook: React.FC = ({ }) => {
   const { token } = useAuth();
 
   useEffect(() => {
-    const fetchBookAndLikeStatus = async () => {
+    const fetchBook = async () => {
+      const bookResponse = await fetch(`http://localhost:8085/api/books/${numericId}`);
+      const bookData = await bookResponse.json();
+      setBook(bookData);
+    }
+    const fetchLikeStatus = async () => {
       try {
-        const bookResponse = await fetch(`http://localhost:8085/api/books/${numericId}`);
-        const bookData = await bookResponse.json();
-        setBook(bookData);
-
         const interactionResponse = await fetch(`http://localhost:8085/api/books/${numericId}/interaction`, {
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -49,8 +52,11 @@ const SingleBook: React.FC = ({ }) => {
       }
     };
 
-    if (numericId && token) {
-      fetchBookAndLikeStatus();
+    if (numericId) {
+      if (token) {
+        fetchLikeStatus();
+      }
+      fetchBook();
     }
   }, [numericId, token]);
 
@@ -84,8 +90,8 @@ const SingleBook: React.FC = ({ }) => {
             </Link>
           ))}
           <div className="flex mt-2 gap-4">
-            <ThumbUpAltOutlined onClick={handleToggleLike} className={liked ? "text-blue-500" : ""} />
-            <ThumbDownAltOutlined />
+            <ThumbUp onClick={handleToggleLike} style={{ color: liked === true ? "blue" : "gray"}} />
+            <ThumbDown onClick={handleToggleLike} style={{ color: disliked === true ? "blue" : "gray"}} />
           </div>
           <Typography className="mt-6">{book ? book.description : "Loading..."}</Typography>
           <div className="flex justify-center gap-12 mt-8">
