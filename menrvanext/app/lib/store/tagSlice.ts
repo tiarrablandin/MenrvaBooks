@@ -42,6 +42,25 @@ export const fetchTagsThunk = createAsyncThunk(
             return rejectWithValue(error.message);
         }
     }
+);
+
+export const updateTagThunk = createAsyncThunk(
+    'tags/updateTag',
+    async ({ id, tagName }: { id: number, tagName: string }, { rejectWithValue }) => {
+        try {
+            const response = await fetch(`http://localhost:8085/api/tags/${id}`, {
+                method: "PUT",
+                headers: { 'Content-Type': 'application/json' },
+                body: tagName,
+            });
+            if (!response.ok) {
+                throw new Error("Failed to update genre.")
+            }
+            return await response.json();
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
 )
 
 export const tagSlice = createSlice({
@@ -68,7 +87,14 @@ export const tagSlice = createSlice({
                 if (index !== -1) {
                     state.allTags[index] = action.payload;
                 }
-            });
+            })
+            .addCase(updateTagThunk.fulfilled, (state, action) => {
+                const index = state.allTags.findIndex(tag => tag.id === action.payload.id);
+                if (index !== -1) {
+                    state.allTags[index] = action.payload;
+                }
+            })
+
     }
 });
 

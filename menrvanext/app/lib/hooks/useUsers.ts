@@ -24,6 +24,6 @@ export function useUsers() {
         loading,
         error,
         fetchData: fetchUsers,
-        toggleActive,
+        toggleActive: toggleActive,
     };
 }

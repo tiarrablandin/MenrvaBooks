@@ -1,4 +1,5 @@
-import { Series } from "./ series";
+import { Series } from "./series";
+import { Comment } from "./comment";
 import { Author } from "./author";
 
 export interface BookResponse {
@@ -14,6 +15,7 @@ export interface BookResponse {
   reviewed: boolean;
   authors: Author[];
   series: Series;
+  comments: Comment[];
 }
 
 export interface AddBookRequest {

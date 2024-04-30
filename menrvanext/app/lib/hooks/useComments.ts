@@ -17,12 +17,11 @@ export function useComments() {
         dispatch(toggleCommentReviewed({ commentId }));
     };
 
-
     return {
         data: comments,
         fetchData: fetchComments,
         loading,
         error,
-        toggleReviewed
+        toggleReviewed,
     };
 }

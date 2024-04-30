@@ -47,7 +47,7 @@ export const logout = createAsyncThunk(
 );
 
 export const toggleUserActive = createAsyncThunk(
-    'user/toggleLiked',
+    'user/toggleActive',
     async ({ userId, token }: { userId: number, token: string | null }, { rejectWithValue }) => {
         try {
             const response = await fetch(`http://localhost:8085/api/users/${userId}/active`, {
@@ -105,6 +105,12 @@ export const userSlice = createSlice({
         builder
             .addCase(fetchUsersThunk.fulfilled, (state, action) => {
                 state.allUsers = action.payload;
+            })
+            .addCase(toggleUserActive.fulfilled, (state, action) => {
+                const index = state.allUsers.findIndex(user => user.id === action.payload.id);
+                if (index !== -1) {
+                    state.allUsers[index] = action.payload;
+                }
             })
             .addCase(login.pending, (state) => {
                 state.loading = true;

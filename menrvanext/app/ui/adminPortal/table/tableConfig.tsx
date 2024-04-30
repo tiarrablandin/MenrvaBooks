@@ -20,7 +20,7 @@ export const tableConfig: ConfigDictionary = {
         pageTitle: 'Books List',
         description: 'Manage all books',
         addLink: '/admin/addBook',
-        renderRow: renderBookRow
+        renderRow: renderBookRow,
     },
     authors: {
         apiEndpoint: '/api/authors',
@@ -72,7 +72,7 @@ export const tableConfig: ConfigDictionary = {
     },
     comments: {
         apiEndpoint: '/api/comments',
-        columns: ['Name', 'User', 'Date Added', 'Delete'],
+        columns: ['Book', 'Comment', 'User', 'Date Added', 'Delete'],
         pageTitle: 'Comments List',
         description: 'Manage all comments',
         addLink: '/admin/addComments',

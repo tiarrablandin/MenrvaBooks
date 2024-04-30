@@ -80,6 +80,7 @@ export {
   MoonIcon,
   PencilIcon,
   PhoneIcon,
+  PlusIcon,
   ShieldCheckIcon,
   SunIcon,
   Squares2X2Icon,

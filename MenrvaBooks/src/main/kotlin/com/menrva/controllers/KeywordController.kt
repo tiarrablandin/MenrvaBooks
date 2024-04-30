@@ -23,6 +23,12 @@ class KeywordController(private val keywordService: KeywordService) {
         return ResponseEntity.ok(keywordService.findById(id))
     }
 
+    @PutMapping("{id}")
+    fun updateKeyword(@PathVariable id: Long, @RequestBody keywordName: String): ResponseEntity<KeywordDTO> {
+        val keyword = keywordService.updateKeywordName(id, keywordName)
+        return ResponseEntity.ok(KeywordDTO(keyword))
+    }
+
     @PostMapping("/{id}/toggle-reviewed")
     fun toggleKeywordReviewed(@PathVariable id: Long): ResponseEntity<KeywordDTO> {
         val updatedKeyword = keywordService.toggleReviewed(id)

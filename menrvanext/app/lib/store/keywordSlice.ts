@@ -44,6 +44,25 @@ export const fetchKeywordsThunk = createAsyncThunk(
     }
 )
 
+export const updateKeywordThunk = createAsyncThunk(
+    'keywords/updateKeyword',
+    async ({ id, keywordName }: { id: number, keywordName: string }, { rejectWithValue }) => {
+        try {
+            const response = await fetch(`http://localhost:8085/api/keywords/${id}`, {
+                method: "PUT",
+                headers: { 'Content-Type': 'application/json' },
+                body: keywordName,
+            });
+            if (!response.ok) {
+                throw new Error("Failed to update genre.")
+            }
+            return await response.json();
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+)
+
 export const keywordSlice = createSlice({
     name: "keyword",
     initialState: initialState,
@@ -68,7 +87,13 @@ export const keywordSlice = createSlice({
                 if (index !== -1) {
                     state.allKeywords[index] = action.payload;
                 }
-            });
+            })
+            .addCase(updateKeywordThunk.fulfilled, (state, action) => {
+                const index = state.allKeywords.findIndex(keyword => keyword.id === action.payload.id);
+                if (index !== -1) {
+                    state.allKeywords[index] = action.payload;
+                }
+            })
     }
 });
 

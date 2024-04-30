@@ -19,6 +19,7 @@ interface BookSummary {
     fun getComments(): Set<Comment>?
 
     interface Genre {
+        fun getId(): Long
         fun getName(): String
     }
 
@@ -47,6 +48,7 @@ interface BookSummary {
     }
 
     interface User {
+        fun getId(): Long
         fun getTag(): String
         fun getEmail(): String
         fun getFirstName(): String

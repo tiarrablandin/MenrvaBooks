@@ -56,7 +56,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
             <div className="w-3/5 lg:w-72">
               <Input label="Search" icon={<MagnifyingGlassIcon className="h-5 w-5" />} />
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex gap-5 items-center">
               {add}
               {reviewedCallback && reviewedToggle}
             </div>
@@ -81,7 +81,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
             <tbody className="">{data.map((item, index) => renderRow(item, index, reviewedCallback, activeCallback))}</tbody>
           </table>
         </CardBody>
-        <CardFooter className={`flex justify-between items-center ${variant === 'small' ? '' : ''}`}>{pagination}</CardFooter>
+        <CardFooter className={`flex justify-between items-center ${variant === 'small' ? 'scale-[85%]' : ''}`}>{pagination}</CardFooter>
       </Card>
     </>
   );

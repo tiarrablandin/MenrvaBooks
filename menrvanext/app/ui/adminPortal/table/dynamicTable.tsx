@@ -9,7 +9,7 @@ import { useKeywords } from "@/app/lib/hooks/useKeywords";
 import { useSeries } from "@/app/lib/hooks/useSeries";
 import { useTags } from "@/app/lib/hooks/useTags";
 import { useUsers } from "@/app/lib/hooks/useUsers";
-import { Button, Switch, Typography } from "@/providers";
+import { Button, PlusIcon, Switch, Typography } from "@/providers";
 import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
 import Pagination from "../../pagination";
@@ -41,7 +41,6 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
 
 
     useEffect(() => {
-        console.log(toggleActive)
         fetchData();
     }, [fetchData, entityType]);
 
@@ -49,7 +48,7 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
         <AdminTable
             head={tableConfig[entityType].pageTitle}
             headDesc={tableConfig[entityType].description}
-            add={<Link href={tableConfig[entityType].addLink}><Button className="whitespace-nowrap">Add {entityType.slice(0, -1)}</Button></Link>}
+            add={<Link href={tableConfig[entityType].addLink} className="w-min"><PlusIcon className="w-5 h-5 bg-clip-text" /></Link>}
             reviewedToggle={
                 <Switch
                     checked={showUnreviewedOnly}
@@ -76,7 +75,7 @@ interface EntityData<T> {
     data: T[];
     fetchData: () => void;
     toggleReviewed?: (id: number) => void;
-    toggleActive: (id: number) => void;
+    toggleActive?: (id: number) => void;
     loading: boolean;
     error: string | null;
     toggleLiked?: (bookId: number, status: number) => void;
@@ -103,7 +102,6 @@ function useEntityHook<T>(entityType: string): EntityData<T> {
             return useSeries() as EntityData<T>;
         case 'comments':
             return useComments() as EntityData<T>;
-        // add cases for other entity types
         default:
             throw new Error('Unsupported entity type');
     }
