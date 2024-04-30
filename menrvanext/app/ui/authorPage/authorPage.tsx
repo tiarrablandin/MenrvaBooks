@@ -19,7 +19,6 @@ const AuthorPage: React.FC<AuthorPageProps> = ({}) => {
         <AnnouncementsCard />
       </div>
       <div className="w-screen h-full flex flex-col items-center">
-        <BookSlider fetchData={fetchAllBooksSlider} title={"New Releases"} />
         <BookSlider fetchData={fetchAllBooksSlider} title={"Series Name"} />
         <BookSlider fetchData={fetchAllBooksSlider} title={"Stand Alone"} />
       </div>

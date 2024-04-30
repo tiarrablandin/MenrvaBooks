@@ -7,7 +7,9 @@ import { fetchBooks } from "@/app/lib/services/apiService";
 import {
   Card,
   ThumbDown,
+  ThumbDownAltOutlined,
   ThumbUp,
+  ThumbUpAltOutlined,
   Typography
 } from "@/providers";
 import Image from "next/image";
@@ -89,8 +91,8 @@ const SingleBook: React.FC = ({ }) => {
             </Link>
           ))}
           <div className="flex mt-2 gap-4">
-            <ThumbUp onClick={handleToggleLike} style={{ color: liked === true ? "blue" : "gray"}} />
-            <ThumbDown onClick={handleToggleLike} style={{ color: disliked === true ? "blue" : "gray"}} />
+            <ThumbUpAltOutlined onClick={handleToggleLike} style={{ color: liked === true ? "blue" : "gray"}} />
+            <ThumbDownAltOutlined onClick={handleToggleLike} style={{ color: disliked === true ? "blue" : "gray"}} />
           </div>
           <Typography className="mt-6">{book ? book.description : "Loading..."}</Typography>
           <div className="flex justify-center gap-12 mt-8">
