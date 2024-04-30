@@ -1,3 +1,5 @@
+'use client';
+
 import {
   ArrowRightEndOnRectangleIcon,
   BellIconOutline,
@@ -10,8 +12,13 @@ import {
 } from "@/providers";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const sidebar = () => {
+  const pathname = usePathname();
+
+  const isActive = (path: string) => pathname === path;
+
   return (
     <div className="h-screen w-16 inline-flex fixed">
       {/* container */}
@@ -31,48 +38,21 @@ const sidebar = () => {
         </Link>
 
         <ul className="text-eggplant w-full h-96 flex justify-between items-center flex-col mt-1">
-          {/* Items Section */}
-          <li className="hover:bg-pink-lavender/40 h-1/4 flex justify-center items-center w-full">
-            <Link href="/admin">
-              <HomeIconOutline className="h-7 w-7 mx-auto" />
-            </Link>
-          </li>
-
-          <li className="hover:bg-pink-lavender/40 h-1/4 flex justify-center items-center w-full">
-            <Link href="/admin/books">
-              <BookOpenIcon className="h-7 w-7 mx-auto" />
-            </Link>
-          </li>
-
-          <li className="hover:bg-pink-lavender/40 h-1/4 flex justify-center items-center w-full">
-            <Link href="/admin/authors">
-              <HistoryEduOutlined className="h-7 w-7 mx-auto" />
-            </Link>
-          </li>
-
-          <li className="hover:bg-pink-lavender/40 h-1/4 flex justify-center items-center w-full">
-            <Link href="/admin/users" >
-              <UserCircleIcon className="h-7 w-7 mx-auto" />
-            </Link>
-          </li>
-
-          <li className="hover:bg-pink-lavender/40 h-1/4 flex justify-center items-center w-full">
-            <Link href="/admin/other" >
-              <SparklesIcon className="h-7 w-7 mx-auto" />
-            </Link>
-          </li>
-
-          <li className="hover:bg-pink-lavender/40 h-1/4 flex justify-center items-center w-full">
-            <Link href="/admin/settings" >
-              <Cog6ToothIconOutline className="h-7 w-7 mx-auto" />
-            </Link>
-          </li>
-
-          <li className="hover:bg-pink-lavender/40 h-1/4 flex justify-center items-center w-full">
-            <Link href="/admin/notifications" >
-              <BellIconOutline className="h-7 w-7 mx-auto" />
-            </Link>
-          </li>
+          {[
+            { href: "/admin", icon: HomeIconOutline },
+            { href: "/admin/books", icon: BookOpenIcon },
+            { href: "/admin/authors", icon: HistoryEduOutlined },
+            { href: "/admin/users", icon: UserCircleIcon },
+            { href: "/admin/other", icon: SparklesIcon },
+            { href: "/admin/settings", icon: Cog6ToothIconOutline },
+            { href: "/admin/notifications", icon: BellIconOutline }
+          ].map(({ href, icon: Icon }) => (
+            <li key={href} className={`h-1/4 flex justify-center items-center w-full ${isActive(href) ? 'bg-pink-lavender' : 'hover:bg-pink-lavender/40'}`}>
+              <Link href={href}>
+                <Icon className="h-7 w-7 mx-auto" />
+              </Link>
+            </li>
+          ))}
         </ul>
 
         <div className="mt-auto h-16 flex items-center justify-center w-full hover:bg-pink-lavender/40">

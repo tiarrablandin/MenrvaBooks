@@ -14,6 +14,8 @@ interface CommentRepository : JpaRepository<Comment, Long>{
     fun index(): List<CommentSummary>
     @Query("SELECT c FROM Comment c WHERE c.user.tag = :tag")
     fun findByTag(@Param("tag") tag: String): List<CommentSummary>
+    @Query("SELECT c FROM Comment c WHERE c.book.id = :id")
+    fun findByBookId(@Param("id") id: Long): List<CommentSummary>
     @Query("SELECT c FROM Comment c WHERE c.id = :id")
     fun findCommentById(@Param("id") id: Long): CommentSummary
 }

@@ -31,6 +31,7 @@ const SingleBook: React.FC = ({ }) => {
     const fetchBook = async () => {
       const bookResponse = await fetch(`http://localhost:8085/api/books/${numericId}`);
       const bookData = await bookResponse.json();
+      console.log(bookData.comments)
       setBook(bookData);
     }
     const fetchLikeStatus = async () => {
@@ -112,7 +113,7 @@ const SingleBook: React.FC = ({ }) => {
         <BookSlider fetchData={fetchAllBooksSlider} title={"Books in Series"} />
         <BookSlider fetchData={fetchAllBooksSlider} title={"Similar Books"} />
       </div>
-      <BookComments bookId={book?.id!!}/>
+      <BookComments bookId={book?.id!!} comments={book?.comments}/>
     </>
   );
 };

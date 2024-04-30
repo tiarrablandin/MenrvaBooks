@@ -25,6 +25,10 @@ class CommentService(
         return commentRepo.findCommentById(id)
     }
 
+    fun findByBookId(id: Long): List<CommentSummary> {
+        return commentRepo.findByBookId(id)
+    }
+
     fun create(commentDTO: CreateCommentDTO, identifier: String, bookId: Long): Comment {
         val user: User = userRepo.findByTag(identifier)  // Use a simple method for testing
             ?: userRepo.findByEmail(identifier)

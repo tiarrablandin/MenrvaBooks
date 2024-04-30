@@ -28,9 +28,8 @@ class BookController(
     }
 
     @GetMapping("{id}")
-    fun findById(@PathVariable id: Long): ResponseEntity<Any> {
-        val book = bookService.findById(id)
-        return ResponseEntity.ok(book)
+    fun findById(@PathVariable id: Long): ResponseEntity<BookSummary> {
+        return ResponseEntity.ok(bookService.findById(id))
     }
 
     @GetMapping("summary")

@@ -7,7 +7,7 @@ import { User } from "@/app/lib/models/user";
 import { Button, Checkbox, IconButton, Input, PencilIcon, Tooltip, Typography, XMarkIcon } from "@/providers";
 import Image from "next/image";
 import Link from "next/link";
-import { Series } from "@/app/lib/models/ series";
+import { Series } from "@/app/lib/models/series";
 import { useState } from "react";
 import { updateGenreThunk } from "@/app/lib/store/genreSlice";
 import { useAppDispatch } from "@/app/lib/store/store";
@@ -80,7 +80,7 @@ export const renderAuthorRow = (author: Author, index: number, toggleReviewed?: 
         <td className="border-b border-gray-300 whitespace-nowrap w-min">
             <Link href={`../author/${author.id}`} className="inline-block">
                 <Typography variant="lead" className="hover:underline underline-offset-2">
-                    {author.user ? author.user.tag : 'Anonymous'}
+                    {author.user ? author.user.tag : 'n/a'}
                 </Typography>
             </Link>
         </td>
@@ -367,11 +367,13 @@ export const renderCommentRow = (comment: Comment, index: number, toggleReviewed
     return (
         <tr key={index} className="text-center">
             <td className="border-b border-gray-300 h-8 max-w-36 whitespace-nowrap overflow-ellipsis">
-                <Link href={`/book/${comment.book.id}`}>
-                    <Typography variant="lead" className="pl-6 hover:underline underline-offset-2 w-full text-ellipsis line-clamp-2">
-                        {comment.book.title}
-                    </Typography>
-                </Link>
+                <Tooltip content={comment.book.title} placement="top">
+                    <Link href={`/book/${comment.book.id}`}>
+                        <Typography variant="lead" className="pl-6 hover:underline underline-offset-2 w-full text-ellipsis line-clamp-2">
+                            {comment.book.title}
+                        </Typography>
+                    </Link>
+                </Tooltip>
             </td>
             <td className="border-b border-gray-300 h-8 max-w-48 whitespace-nowrap overflow-ellipsis">
                 <Tooltip content={comment.comment} placement="top">
@@ -401,7 +403,7 @@ export const renderCommentRow = (comment: Comment, index: number, toggleReviewed
             <td className="border-b border-gray-300">
                 <Tooltip content="Edit Comment">
                     <IconButton variant="text">
-                        <XMarkIcon className="w-6 h-6 text-eggplant" onClick={handleDelete}/>
+                        <XMarkIcon className="w-6 h-6 text-eggplant" onClick={handleDelete} />
                     </IconButton>
                 </Tooltip>
             </td>

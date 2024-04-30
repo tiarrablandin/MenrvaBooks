@@ -13,10 +13,10 @@ import java.security.Principal
 @RestController
 @RequestMapping("api/comments")
 @CrossOrigin("*", "http://localhost")
-class CommentController (
+class CommentController(
     private val commentService: CommentService,
     private val userService: UserService,
-    ) {
+) {
 
     @GetMapping("")
     fun index(): ResponseEntity<List<CommentSummary>> {
@@ -27,13 +27,22 @@ class CommentController (
     fun findById(@PathVariable id: Long): ResponseEntity<CommentSummary> {
         return ResponseEntity.ok(commentService.findById(id))
     }
+
+    @GetMapping("book/{id}")
+    fun findByBookId(@PathVariable id: Long): ResponseEntity<List<CommentSummary>> {
+        return ResponseEntity.ok(commentService.findByBookId(id))
+    }
+
     @DeleteMapping("{id}")
     fun deleteById(@PathVariable id: Long): ResponseEntity<Boolean> {
         return ResponseEntity.ok(commentService.deleteById(id))
     }
 
     @PostMapping("")
-    fun create(@RequestBody comment: CreateCommentDTO, @AuthenticationPrincipal principal: Principal): ResponseEntity<CommentDTO> {
+    fun create(
+        @RequestBody comment: CreateCommentDTO,
+        @AuthenticationPrincipal principal: Principal
+    ): ResponseEntity<CommentDTO> {
         return ResponseEntity.ok(CommentDTO(commentService.create(comment, principal.name, comment.bookId)))
     }
 

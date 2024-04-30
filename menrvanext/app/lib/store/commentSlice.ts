@@ -44,6 +44,21 @@ export const fetchCommentsThunk = createAsyncThunk(
     }
 );
 
+export const fetchCommentsForBook = createAsyncThunk(
+    'comments/fetchCommentsForBook',
+    async ({ bookId }: { bookId: number}, { rejectWithValue }) => {
+        try {
+            const response = await fetch(`http://localhost:8085/api/comments/book/${bookId}`);
+            if (!response.ok) {
+                throw new Error("Failed to fetch authors.")
+            }
+            return await response.json();
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 export const deleteCommentThunk = createAsyncThunk(
     'comments/deleteComment',
     async ({ commentId }: { commentId: number }, { rejectWithValue }) => {
