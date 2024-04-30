@@ -45,10 +45,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({}) => {
     handleOpen();
   };
 
-  if (currentUser) {
-    nav.push("/home");
-    return <Alert color="blue">An info alert for showing message.</Alert>;
-  }
+  // if (currentUser) {
+  //   nav.push("/home");
+  //   return <Alert color="blue">An info alert for showing message.</Alert>;
+  // }
 
   return (
     <>

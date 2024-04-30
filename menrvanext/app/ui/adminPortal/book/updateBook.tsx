@@ -83,7 +83,7 @@ const UpdateBook: React.FC = () => {
                                     }}
                                     type="text"
                                     size="lg"
-                                    placeholder={`${book?.title}`}
+                                    value={`${book?.title}`}
                                     label="Title"
                                     name="title"
                                 />
@@ -96,7 +96,7 @@ const UpdateBook: React.FC = () => {
                                     }}
                                     type="text"
                                     size="lg"
-                                    placeholder={`${book?.cover}`}
+                                    value={`${book?.cover}`}
                                     label="Cover URL"
                                     name="cover"
                                 />
@@ -111,7 +111,7 @@ const UpdateBook: React.FC = () => {
                                     }}
                                     type="number"
                                     size="lg"
-                                    placeholder={`${book?.pageCount}`}
+                                    value={`${book?.pageCount}`}
                                     label="Page Count"
                                     name="pageCount"
                                 />
@@ -125,7 +125,7 @@ const UpdateBook: React.FC = () => {
                                     type="number"
                                     size="lg"
                                     name="isbn"
-                                    placeholder={`${book?.isbn}`}
+                                    value={`${book?.isbn}`}
                                     label="ISBN"
                                 />
                             </div>
@@ -134,7 +134,7 @@ const UpdateBook: React.FC = () => {
                             <div className="w-full">
                                 <Input
                                     label="Publication Date"
-                                    placeholder={`${book?.publicationDate}`}
+                                    value={`${book?.publicationDate}`}
                                     type="date"
                                     labelProps={{
                                         className: "peer-focus:before:!border-t-eggplant peer-focus:before:!border-t-2 peer-focus:before:!border-l-eggplant peer-focus:before:!border-l-2 peer-focus:after:!border-t-eggplant peer-focus:after:!border-t-2 peer-focus:after:!border-r-eggplant peer-focus:after:!border-r-2 peer-focus:before:mt-[6px] peer-focus:after:mt-[6px]",
@@ -150,6 +150,7 @@ const UpdateBook: React.FC = () => {
                                 placeholder=""
                                 label="Description"
                                 name="description"
+                                value={`${book?.description}`}
                                 labelProps={{
                                     className: "peer-focus:before:!border-t-eggplant peer-focus:before:!border-t-2 peer-focus:before:!border-l-eggplant peer-focus:before:!border-l-2 peer-focus:after:!border-t-eggplant peer-focus:after:!border-t-2 peer-focus:after:!border-r-eggplant peer-focus:after:!border-r-2 peer-focus:before:mt-[6px] peer-focus:after:mt-[6px]",
                                 }}
