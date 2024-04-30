@@ -16,6 +16,8 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import BookComments from "./bookComments";
 import BookSlider from "./bookSlider";
+import { useAppDispatch } from "@/app/lib/store/store";
+import { toggleBookLiked } from "@/app/lib/store/bookSlice";
 
 const SingleBook: React.FC = ({ }) => {
   const searchParams = useParams();
@@ -26,6 +28,7 @@ const SingleBook: React.FC = ({ }) => {
   const [disliked, setDisliked] = useState(false);
   const { toggleLiked, fetchLikedStatus, likedBooks } = useBooks();
   const { token } = useAuth();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -61,7 +64,9 @@ const SingleBook: React.FC = ({ }) => {
 
   const handleToggleLike = () => {
     console.log('Toggling like status...');
-    toggleLiked(numericId, liked ? 0 : 1);
+    console.log(token);
+    dispatch(toggleBookLiked({ bookId: numericId, status: liked ? 0 : 1, token  }))
+    // toggleLiked(numericId, liked ? 0 : 1);
     setLiked(!liked);
   }
 
