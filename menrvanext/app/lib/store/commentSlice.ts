@@ -1,4 +1,4 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice, isRejectedWithValue } from "@reduxjs/toolkit";
 import { Comment } from "../models/comment";
 
 export interface CommentState {
@@ -41,6 +41,47 @@ export const fetchCommentsThunk = createAsyncThunk(
         } catch (error: any) {
             return rejectWithValue(error.message);
         }
+    }
+);
+
+export const deleteCommentThunk = createAsyncThunk(
+    'comments/deleteComment',
+    async ({ commentId }: { commentId: number }, { rejectWithValue }) => {
+        try {
+            const response = await fetch(`http://localhost:8085/api/comments/${commentId}`, {
+                method: "DELETE"
+            })
+            if (!response.ok) {
+                throw new Error("Failed to fetch authors.")
+            }
+            return await response.json();
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+export const createCommentThunk = createAsyncThunk(
+    'comments/createComment',
+    async ({ comment, bookId }: { comment: string, bookId: number }, { rejectWithValue }) => {
+        const token = sessionStorage.getItem('token')
+        try {
+            const response = await fetch(`http://localhost:8085/api/comments`, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ comment, bookId })
+            })
+            if (!response.ok) {
+                throw new Error("Failed to fetch authors.")
+            }
+            return await response.json();
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+
     }
 )
 

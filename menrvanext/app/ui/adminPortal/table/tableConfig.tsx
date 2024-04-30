@@ -72,7 +72,7 @@ export const tableConfig: ConfigDictionary = {
     },
     comments: {
         apiEndpoint: '/api/comments',
-        columns: ['Name', 'User', 'Date Added', 'Delete'],
+        columns: ['Book', 'Comment', 'User', 'Date Added', 'Delete'],
         pageTitle: 'Comments List',
         description: 'Manage all comments',
         addLink: '/admin/addComments',

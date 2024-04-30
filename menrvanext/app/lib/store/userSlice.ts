@@ -52,9 +52,9 @@ export const toggleUserActive = createAsyncThunk(
         try {
             const response = await fetch(`http://localhost:8085/api/users/${userId}/active`, {
                 method: "POST",
-                // headers: {
-                //     "Authorization": `Bearer ${token}`
-                // }
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
             });
             if (!response.ok) {
                 throw new Error("Failed to toggle liked status");

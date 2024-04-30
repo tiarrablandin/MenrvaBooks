@@ -1,3 +1,4 @@
+import { BookResponse } from "./book";
 import { User } from "./user";
 
 export interface Comment {
@@ -7,4 +8,5 @@ export interface Comment {
     dateAdded: Date;
     dateUpdated: Date;
     user: User;
+    book: BookResponse;
 }

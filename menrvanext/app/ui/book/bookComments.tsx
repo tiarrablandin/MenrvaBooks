@@ -1,5 +1,9 @@
+'use client';
+
+import { createCommentThunk } from "@/app/lib/store/commentSlice";
+import { useAppDispatch } from "@/app/lib/store/store";
 import { Button, Card, CardBody, HeartIcon, Input, Typography } from "@/providers";
-import React from "react";
+import React, { useState } from "react";
 
 interface ContentCardPropsType {
   img: string;
@@ -26,15 +30,15 @@ function ContentCard({ img, name, desc, hours }: ContentCardPropsType) {
             <Typography variant="small" className="font-bold !text-gray-700">
               {hours}
             </Typography>
-              <Button
-                size="sm"
-                color="red"
-                variant="text"
-                className="flex shrink-0 gap-1"
-              >
-                <HeartIcon className="h-4 w-4" />
-                243
-              </Button>
+            <Button
+              size="sm"
+              color="red"
+              variant="text"
+              className="flex shrink-0 gap-1"
+            >
+              <HeartIcon className="h-4 w-4" />
+              243
+            </Button>
           </div>
           <Typography className="mb-4 w-full font-normal !text-gray-500">{desc}</Typography>
           <div className="flex !w-full justify-end">
@@ -45,7 +49,14 @@ function ContentCard({ img, name, desc, hours }: ContentCardPropsType) {
   );
 }
 
-export function NewComment() {
+export function NewComment({ bookId }: { bookId: number }) {
+  const dispatch = useAppDispatch();
+  const [comment, setComment] = useState("");
+
+  const handleSubmit = () => {
+    dispatch(createCommentThunk({ comment, bookId }))
+  }
+
   return (
     <div>
       <div className="flex !items-center gap-4">
@@ -64,8 +75,8 @@ export function NewComment() {
         <Typography className=" flex items-center gap-2 !text-sm font-normal !text-blue-gray-500">
           Constructive feedback is possible while also being nice...
         </Typography>
-        <form action="#" className="flex flex-col items-end">
-          <Input variant="static" />
+        <form action={handleSubmit} className="flex flex-col items-end">
+          <Input variant="static" value={comment} onChange={(e) => setComment(e.target.value)} />
           <Button className="mt-4 bg-eggplant text-old-lace" size="sm">
             submit
           </Button>
@@ -90,14 +101,14 @@ const contents = [
   },
 ];
 
-const bookComments = () => {
+const bookComments = ({ bookId }: { bookId: number }) => {
   return (
     <div>
       <section className="mx-auto flex w-full max-w-2xl flex-col px-5 pb-20 pt-10">
         <Typography variant="h4" className="my-6 md:my-8 md:text-center">
           Have something to say about this book?
         </Typography>
-        <NewComment />
+        <NewComment bookId={bookId} />
         <Typography variant="h4" className="my-8 md:text-center">
           What other readers are saying about this book...
         </Typography>

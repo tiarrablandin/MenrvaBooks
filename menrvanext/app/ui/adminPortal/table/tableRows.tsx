@@ -4,7 +4,7 @@ import { Author } from "@/app/lib/models/author";
 import { Comment } from "@/app/lib/models/comment";
 import { BookResponse } from "@/app/lib/models/book";
 import { User } from "@/app/lib/models/user";
-import { Button, Checkbox, IconButton, Input, PencilIcon, Tooltip, Typography } from "@/providers";
+import { Button, Checkbox, IconButton, Input, PencilIcon, Tooltip, Typography, XMarkIcon } from "@/providers";
 import Image from "next/image";
 import Link from "next/link";
 import { Series } from "@/app/lib/models/ series";
@@ -13,6 +13,7 @@ import { updateGenreThunk } from "@/app/lib/store/genreSlice";
 import { useAppDispatch } from "@/app/lib/store/store";
 import { updateKeywordThunk } from "@/app/lib/store/keywordSlice";
 import { updateTagThunk } from "@/app/lib/store/tagSlice";
+import { deleteCommentThunk } from "@/app/lib/store/commentSlice";
 
 
 export const renderBookRow = (book: BookResponse, index: number, toggleReviewed?: (bookId: number) => void) => {
@@ -279,7 +280,7 @@ export const renderTagRow = (tag: Tag, index: number) => {
     const handleChange = (event: any) => {
         setName(event.target.value);
     };
-    
+
     return (
         <tr key={index} className="text-center">
             <td className="border-b border-gray-300 whitespace-nowrap w-min">
@@ -357,37 +358,53 @@ export const renderSeriesRow = (series: Series, index: number, toggleReviewed?: 
     </tr>
 );
 
-export const renderCommentRow = (comment: Comment, index: number, toggleReviewed?: (commentId: number) => void) => (
-    <tr key={index} className="text-center">
-        <td className="border-b border-gray-300 whitespace-nowrap w-min">
-            <Link href={`../comment/${comment.id}`} className="inline-block">
-                <Typography variant="lead" className="hover:underline underline-offset-2">
-                    {comment.comment}
-                </Typography>
-            </Link>
-        </td>
-        <td className="border-b border-gray-300">
-            {comment.user ? <Typography variant="lead">{comment.user.tag}</Typography> : <></>}
-        </td>
-        <td className="border-b border-gray-300">
-            {comment.dateAdded ? <Typography variant="lead">{comment.dateAdded.toString()}</Typography> : <></>}
-        </td>
-        <td className="mx-auto border-b border-gray-300 ">
-            {
-                toggleReviewed &&
-                <Checkbox
-                    onChange={() => toggleReviewed(comment.id)}
-                    checked={comment.reviewed}
-                    className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
-                />
-            }
-        </td>
-        <td className="border-b border-gray-300">
-            <Tooltip content="Edit Comment">
-                <IconButton variant="text">
-                    <PencilIcon className="w-4 h-4 text-eggplant" />
-                </IconButton>
-            </Tooltip>
-        </td>
-    </tr>
-);
+export const renderCommentRow = (comment: Comment, index: number, toggleReviewed?: (commentId: number) => void) => {
+    const dispatch = useAppDispatch();
+    const handleDelete = () => {
+        dispatch(deleteCommentThunk({ commentId: comment.id }));
+    }
+
+    return (
+        <tr key={index} className="text-center">
+            <td className="border-b border-gray-300 h-8 max-w-36 whitespace-nowrap overflow-ellipsis">
+                <Link href={`/book/${comment.book.id}`}>
+                    <Typography variant="lead" className="pl-6 hover:underline underline-offset-2 w-full text-ellipsis line-clamp-2">
+                        {comment.book.title}
+                    </Typography>
+                </Link>
+            </td>
+            <td className="border-b border-gray-300 h-8 max-w-48 whitespace-nowrap overflow-ellipsis">
+                <Tooltip content={comment.comment} placement="top">
+                    <Link href={`../comment/${comment.id}`} className="inline-block w-full">
+                        <Typography variant="lead" className="pl-6 hover:underline underline-offset-2 w-full text-ellipsis line-clamp-2">
+                            {comment.comment}
+                        </Typography>
+                    </Link>
+                </Tooltip>
+            </td>
+            <td className="border-b border-gray-300">
+                {comment.user ? <Typography variant="lead">{comment.user.tag}</Typography> : <></>}
+            </td>
+            <td className="border-b border-gray-300">
+                {comment.dateAdded ? <Typography variant="lead">{comment.dateAdded.toString()}</Typography> : <></>}
+            </td>
+            {/* <td className="mx-auto border-b border-gray-300 ">
+                {
+                    toggleReviewed &&
+                    <Checkbox
+                        onChange={() => toggleReviewed(comment.id)}
+                        checked={comment.reviewed}
+                        className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
+                    />
+                }
+            </td> */}
+            <td className="border-b border-gray-300">
+                <Tooltip content="Edit Comment">
+                    <IconButton variant="text">
+                        <XMarkIcon className="w-6 h-6 text-eggplant" onClick={handleDelete}/>
+                    </IconButton>
+                </Tooltip>
+            </td>
+        </tr>
+    );
+};

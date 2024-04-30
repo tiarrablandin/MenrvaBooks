@@ -7,9 +7,7 @@ import { fetchBooks } from "@/app/lib/services/apiService";
 import {
   Card,
   ThumbDown,
-  ThumbDownAltOutlined,
   ThumbUp,
-  ThumbUpAltOutlined,
   Typography
 } from "@/providers";
 import Image from "next/image";
@@ -114,7 +112,7 @@ const SingleBook: React.FC = ({ }) => {
         <BookSlider fetchData={fetchAllBooksSlider} title={"Books in Series"} />
         <BookSlider fetchData={fetchAllBooksSlider} title={"Similar Books"} />
       </div>
-      <BookComments />
+      <BookComments bookId={book?.id!!}/>
     </>
   );
 };
