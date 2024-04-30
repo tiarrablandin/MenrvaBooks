@@ -106,7 +106,7 @@ export const renderAuthorRow = (author: Author, index: number, toggleReviewed?: 
     </tr>
 );
 
-export const renderUserRow = (user: User, index: number, toggleActive?: (id: number) => void) => (
+export const renderUserRow = (user: User, index: number, toggleReviewed?: (id: number) => void, toggleActive?: (id: number) => void) => (
     <tr key={index} className="text-center">
         <td className="border-b border-gray-300 whitespace-nowrap w-min">
             <Link href={`../user/${user.id}`} className="inline-block">
