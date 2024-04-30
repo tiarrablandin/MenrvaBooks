@@ -18,8 +18,14 @@ class GenreService(
         return genreRepo.findById(id)
     }
 
+    fun updateGenreName(id: Long, genreName: String): Genre {
+        val genre = genreRepo.findById(id).orElseThrow { RuntimeException("Genre not found") }
+        genre.name = genreName
+        return genreRepo.save(genre)
+    }
+
     fun toggleReviewed(id: Long): Genre {
-        val genre = genreRepo.findById(id).orElseThrow { RuntimeException("Book not found") }
+        val genre = genreRepo.findById(id).orElseThrow { RuntimeException("Genre not found") }
         val newReviewedStatus = genre.reviewed?.not() ?: true
         genre.reviewed = newReviewedStatus
         return genreRepo.save(genre)

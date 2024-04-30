@@ -8,14 +8,21 @@ import java.util.*
 
 @Service
 class TagService(
-        private val tagRepo: TagRepository
+    private val tagRepo: TagRepository
 ) {
+
     fun index(): List<Tag> {
         return tagRepo.findAll()
     }
 
     fun findById(id: Long): Optional<Tag> {
         return tagRepo.findById(id)
+    }
+
+    fun updateTagName(id: Long, tagName: String): Tag {
+        val tag = tagRepo.findById(id).orElseThrow { RuntimeException("Keyword not found") }
+        tag.name = tagName
+        return tagRepo.save(tag)
     }
 
     fun toggleReviewed(id: Long): Tag {

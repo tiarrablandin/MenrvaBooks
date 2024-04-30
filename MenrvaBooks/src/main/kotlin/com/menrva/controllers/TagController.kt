@@ -25,6 +25,12 @@ class TagController(private val tagService: TagService) {
         return ResponseEntity.ok(tagService.findById(id))
     }
 
+    @PutMapping("{id}")
+    fun updateKeyword(@PathVariable id: Long, @RequestBody tagName: String): ResponseEntity<TagDTO> {
+        val tag = tagService.updateTagName(id, tagName)
+        return ResponseEntity.ok(TagDTO(tag))
+    }
+
     @PostMapping("/{id}/toggle-reviewed")
     fun toggleTagReviewed(@PathVariable id: Long): ResponseEntity<TagDTO> {
         val updatedTag = tagService.toggleReviewed(id)

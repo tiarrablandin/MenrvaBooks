@@ -1,11 +1,18 @@
+'use client';
+
 import { Author } from "@/app/lib/models/author";
 import { Comment } from "@/app/lib/models/comment";
 import { BookResponse } from "@/app/lib/models/book";
 import { User } from "@/app/lib/models/user";
-import { Button, Checkbox, IconButton, PencilIcon, Tooltip, Typography } from "@/providers";
+import { Button, Checkbox, IconButton, Input, PencilIcon, Tooltip, Typography } from "@/providers";
 import Image from "next/image";
 import Link from "next/link";
 import { Series } from "@/app/lib/models/ series";
+import { useState } from "react";
+import { updateGenreThunk } from "@/app/lib/store/genreSlice";
+import { useAppDispatch } from "@/app/lib/store/store";
+import { updateKeywordThunk } from "@/app/lib/store/keywordSlice";
+import { updateTagThunk } from "@/app/lib/store/tagSlice";
 
 
 export const renderBookRow = (book: BookResponse, index: number, toggleReviewed?: (bookId: number) => void) => {
@@ -145,113 +152,183 @@ export const renderUserRow = (user: User, index: number, toggleReviewed?: (id: n
     </tr>
 );
 
-export const renderGenreRow = (genre: Genre, index: number) => (
-    <tr key={index} className="text-center">
-        <td className="border-b border-gray-300 whitespace-nowrap w-min">
-            <Link href={`../genre/${genre.id}`} className="inline-block">
-                <Typography variant="lead" className="hover:underline underline-offset-2">
-                    {genre.name}
-                </Typography>
-            </Link>
-        </td>
-        {/* <td className="border-b border-gray-300">
-            {genre.dateAdded ? <Typography variant="lead">{genre.dateAdded.toString()}</Typography> : <></>}
-        </td>
-        <td className="mx-auto border-b border-gray-300 ">
-            {
-                toggleReviewed &&
-                <Checkbox
-                    onChange={() => toggleReviewed(genre.id)}
-                    checked={genre.reviewed}
-                    className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
-                />
-            }
-        </td> */}
-        <td className="border-b border-gray-300">
-            <Tooltip content="Edit Genre">
-                <IconButton variant="text">
-                    <PencilIcon className="w-4 h-4 text-eggplant" />
-                </IconButton>
-            </Tooltip>
-        </td>
-    </tr>
-);
+export const renderGenreRow = (genre: Genre, index: number) => {
+    const GenreRow = () => {
+        const [isEditing, setIsEditing] = useState(false);
+        const [name, setName] = useState(genre.name);
+        const dispatch = useAppDispatch();
 
-export const renderKeywordRow = (keyword: Keyword, index: number, toggleReviewed?: (keywordId: number) => void) => (
-    <tr key={index} className="text-center">
-        <td className="border-b border-gray-300 whitespace-nowrap w-min">
-            <Link href={`../genre/${keyword.id}`} className="inline-block">
-                <Typography variant="lead" className="hover:underline underline-offset-2">
-                    {keyword.name}
-                </Typography>
-            </Link>
-        </td>
-        {/* <td className="border-b border-gray-300">
-            {keyword.dateAdded ? <Typography variant="lead">{keyword.dateAdded.toString()}</Typography> : <></>}
-        </td>
-        <td className="mx-auto border-b border-gray-300 ">
-            {
-                toggleReviewed &&
-                <Checkbox
-                    onChange={() => toggleReviewed(keyword.id)}
-                    checked={keyword.reviewed}
-                    className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
-                />
-            }
-        </td> */}
-        <td className="border-b border-gray-300">
-            <Tooltip content="Edit Keyword">
-                <IconButton variant="text">
-                    <PencilIcon className="w-4 h-4 text-eggplant" />
-                </IconButton>
-            </Tooltip>
-        </td>
-    </tr>
-);
+        const handleSubmit = () => {
+            dispatch(updateGenreThunk({ id: genre.id, genreName: name }));
+            setIsEditing(false);
+        };
 
-export const renderTagRow = (tag: Tag, index: number, toggleReviewed?: (tagId: number) => void) => (
-    <tr key={index} className="text-center">
-        <td className="border-b border-gray-300 whitespace-nowrap w-min">
-            <Link href={`../genre/${tag.id}`} className="inline-block">
-                <Typography variant="lead" className="hover:underline underline-offset-2">
-                    {tag.name}
-                </Typography>
-            </Link>
-        </td>
-        {/* <td className="border-b border-gray-300">
-            {tag.dateAdded ? <Typography variant="lead">{tag.dateAdded.toString()}</Typography> : <></>}
-        </td>
-        <td className="mx-auto border-b border-gray-300 ">
-            {
-                toggleReviewed &&
-                <Checkbox
-                    onChange={() => toggleReviewed(tag.id)}
-                    checked={tag.reviewed}
-                    className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
-                />
-            }
-        </td> */}
-        <td className="border-b border-gray-300">
-            <Tooltip content="Edit Tag">
-                <IconButton variant="text">
-                    <PencilIcon className="w-4 h-4 text-eggplant" />
-                </IconButton>
-            </Tooltip>
-        </td>
-    </tr>
-);
+        const handleChange = (event: any) => {
+            setName(event.target.value);
+        };
+
+        return (
+            <tr key={index} className="text-center">
+                <td className="border-b border-gray-300 whitespace-nowrap w-min">
+                    {isEditing ? (
+                        <div className="w-16 mr-auto ml-16">
+                            <form
+                                onSubmit={handleSubmit}
+                            >
+                                <Input
+                                    className={`pr-8 text-center focus:!border-l-eggplant focus:!border-r-eggplant focus:!border-b-eggplant focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
+                                    labelProps={{
+                                        className: "peer-focus:before:!border-t-eggplant peer-focus:before:!border-t-2 peer-focus:before:!border-l-eggplant peer-focus:before:!border-l-2 peer-focus:after:!border-t-eggplant peer-focus:after:!border-t-2 peer-focus:after:!border-r-eggplant peer-focus:after:!border-r-2 peer-focus:before:mt-[6px] peer-focus:after:mt-[6px]",
+                                    }}
+                                    size="md"
+                                    label="Name"
+                                    name="name"
+                                    type="text"
+                                    value={name}
+                                    onChange={handleChange}
+                                    autoFocus
+                                />
+                            </form>
+                        </div>
+                    ) : (
+                        <Typography variant="lead" className="hover:underline underline-offset-2">
+                            {genre.name}
+                        </Typography>
+                    )}
+                </td>
+                <td className="border-b border-gray-300">
+                    <Tooltip content="Edit Genre">
+                        <IconButton variant="text" onClick={() => setIsEditing(!isEditing)} >
+                            <PencilIcon className="w-4 h-4 text-eggplant" />
+                        </IconButton>
+                    </Tooltip>
+                </td>
+            </tr >
+        );
+    }
+
+    return <GenreRow key={index} />
+};
+
+export const renderKeywordRow = (keyword: Keyword, index: number) => {
+    const KeywordRow = () => {
+        const [isEditing, setIsEditing] = useState(false);
+        const [name, setName] = useState(keyword.name);
+        const dispatch = useAppDispatch();
+
+        const handleSubmit = () => {
+            dispatch(updateKeywordThunk({ id: keyword.id, keywordName: name }));
+            setIsEditing(false);
+        };
+
+        const handleChange = (event: any) => {
+            setName(event.target.value);
+        };
+
+        return (
+            <tr key={index} className="text-center">
+                <td className="border-b border-gray-300 whitespace-nowrap w-min">
+                    {isEditing ? (
+                        <div className="w-16 mr-auto ml-16">
+                            <form onSubmit={handleSubmit}>
+                                <Input
+                                    className={`pr-8 text-center focus:!border-l-eggplant focus:!border-r-eggplant focus:!border-b-eggplant focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
+                                    labelProps={{
+                                        className: "peer-focus:before:!border-t-eggplant peer-focus:before:!border-t-2 peer-focus:before:!border-l-eggplant peer-focus:before:!border-l-2 peer-focus:after:!border-t-eggplant peer-focus:after:!border-t-2 peer-focus:after:!border-r-eggplant peer-focus:after:!border-r-2 peer-focus:before:mt-[6px] peer-focus:after:mt-[6px]",
+                                    }}
+                                    size="md"
+                                    label="Name"
+                                    name="name"
+                                    type="text"
+                                    value={name}
+                                    onChange={handleChange}
+                                    autoFocus
+                                />
+                            </form>
+                        </div>
+                    ) : (
+                        <Typography variant="lead" className="hover:underline underline-offset-2">
+                            {keyword.name}
+                        </Typography>
+                    )}
+                </td>
+                <td className="border-b border-gray-300">
+                    <Tooltip content="Edit Keyword">
+                        <IconButton variant="text" onClick={() => setIsEditing(!isEditing)} >
+                            <PencilIcon className="w-4 h-4 text-eggplant" />
+                        </IconButton>
+                    </Tooltip>
+                </td>
+            </tr>
+        )
+    }
+
+    return <KeywordRow key={index} />
+};
+
+export const renderTagRow = (tag: Tag, index: number) => {
+    const [isEditing, setIsEditing] = useState(false);
+    const [name, setName] = useState(tag.name);
+    const dispatch = useAppDispatch();
+
+    const handleSubmit = () => {
+        dispatch(updateTagThunk({ id: tag.id, tagName: name }));
+        setIsEditing(false);
+    };
+
+    const handleChange = (event: any) => {
+        setName(event.target.value);
+    };
+    
+    return (
+        <tr key={index} className="text-center">
+            <td className="border-b border-gray-300 whitespace-nowrap w-min">
+                {isEditing ? (
+                    <div className="w-16 mr-auto ml-16">
+                        <form onSubmit={handleSubmit}>
+                            <Input
+                                className={`pr-8 text-center focus:!border-l-eggplant focus:!border-r-eggplant focus:!border-b-eggplant focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
+                                labelProps={{
+                                    className: "peer-focus:before:!border-t-eggplant peer-focus:before:!border-t-2 peer-focus:before:!border-l-eggplant peer-focus:before:!border-l-2 peer-focus:after:!border-t-eggplant peer-focus:after:!border-t-2 peer-focus:after:!border-r-eggplant peer-focus:after:!border-r-2 peer-focus:before:mt-[6px] peer-focus:after:mt-[6px]",
+                                }}
+                                size="md"
+                                label="Name"
+                                name="name"
+                                type="text"
+                                value={name}
+                                onChange={handleChange}
+                                autoFocus
+                            />
+                        </form>
+                    </div>
+                ) : (
+                    <Typography variant="lead" className="hover:underline underline-offset-2">
+                        {tag.name}
+                    </Typography>
+                )}
+            </td>
+            <td className="border-b border-gray-300">
+                <Tooltip content="Edit Tag">
+                    <IconButton variant="text" onClick={() => setIsEditing(!isEditing)} >
+                        <PencilIcon className="w-4 h-4 text-eggplant" />
+                    </IconButton>
+                </Tooltip>
+            </td>
+        </tr>
+    );
+};
 
 export const renderSeriesRow = (series: Series, index: number, toggleReviewed?: (seriesId: number) => void) => (
     <tr key={index} className="text-center">
         <td className="border-b border-gray-300 whitespace-nowrap w-min">
-            <Link href={`../genre/${series.id}`} className="inline-block">
+            <Link href={`../series/${series.id}`} className="inline-block">
                 <Typography variant="lead" className="hover:underline underline-offset-2">
                     {series.name}
                 </Typography>
             </Link>
         </td>
         <td className="border-b border-gray-300 whitespace-nowrap w-min pl-2">
-            <Link href={`../genre/${series.id}`} className="inline-block">
+            <Link href={`../series/${series.id}`} className="inline-block">
                 <Typography variant="lead" className="hover:underline underline-offset-2 pr-2">
                     {series.authors[0].penName}
                 </Typography>
@@ -283,7 +360,7 @@ export const renderSeriesRow = (series: Series, index: number, toggleReviewed?: 
 export const renderCommentRow = (comment: Comment, index: number, toggleReviewed?: (commentId: number) => void) => (
     <tr key={index} className="text-center">
         <td className="border-b border-gray-300 whitespace-nowrap w-min">
-            <Link href={`../genre/${comment.id}`} className="inline-block">
+            <Link href={`../comment/${comment.id}`} className="inline-block">
                 <Typography variant="lead" className="hover:underline underline-offset-2">
                     {comment.comment}
                 </Typography>

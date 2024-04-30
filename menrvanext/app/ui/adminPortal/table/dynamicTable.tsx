@@ -41,7 +41,6 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
 
 
     useEffect(() => {
-        console.log(toggleActive)
         fetchData();
     }, [fetchData, entityType]);
 

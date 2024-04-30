@@ -81,7 +81,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
             <tbody className="">{data.map((item, index) => renderRow(item, index, reviewedCallback, activeCallback))}</tbody>
           </table>
         </CardBody>
-        <CardFooter className={`flex justify-between items-center ${variant === 'small' ? '' : ''}`}>{pagination}</CardFooter>
+        <CardFooter className={`flex justify-between items-center ${variant === 'small' ? 'scale-[85%]' : ''}`}>{pagination}</CardFooter>
       </Card>
     </>
   );

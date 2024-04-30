@@ -19,6 +19,12 @@ class GenreController(private val genreService: GenreService) {
         return ResponseEntity.ok(genreService.findById(id))
     }
 
+    @PutMapping("{id}")
+    fun updateGenre(@PathVariable id: Long, @RequestBody genreName: String): ResponseEntity<GenreDTO> {
+        val genre = genreService.updateGenreName(id, genreName)
+        return ResponseEntity.ok(GenreDTO(genre))
+    }
+
     @PostMapping("/{id}/toggle-reviewed")
     fun toggleGenreReviewed(@PathVariable id: Long): ResponseEntity<GenreDTO> {
         val updatedGenre = genreService.toggleReviewed(id)

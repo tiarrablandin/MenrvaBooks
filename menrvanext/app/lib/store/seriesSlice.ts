@@ -1,4 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { Series } from "../models/ series";
 
 export interface SeriesState {
     allSeries: Series[],

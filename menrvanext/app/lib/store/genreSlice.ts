@@ -4,12 +4,14 @@ export interface GenreState {
     allGenres: Genre[],
     error: string | null;
     loading: boolean;
+    editing: boolean;
 }
 
 const initialState: GenreState = {
     allGenres: [],
     error: null,
     loading: false,
+    editing: false,
 }
 
 export const toggleGenreReviewed = createAsyncThunk(
@@ -42,6 +44,25 @@ export const fetchGenresThunk = createAsyncThunk(
             return rejectWithValue(error.message);
         }
     }
+);
+
+export const updateGenreThunk = createAsyncThunk(
+    'genres/updateGenre',
+    async ({ id, genreName }: { id: number, genreName: string }, { rejectWithValue }) => {
+        try {
+            const response = await fetch(`http://localhost:8085/api/genres/${id}`, {
+                method: "PUT",
+                headers: { 'Content-Type': 'application/json' },
+                body: genreName,
+            });
+            if (!response.ok) {
+                throw new Error("Failed to update genre.")
+            }
+            return await response.json();
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
 )
 
 export const genreSlice = createSlice({
@@ -62,6 +83,12 @@ export const genreSlice = createSlice({
         builder
             .addCase(fetchGenresThunk.fulfilled, (state, action) => {
                 state.allGenres = action.payload;
+            })
+            .addCase(updateGenreThunk.fulfilled, (state, action) => {
+                const index = state.allGenres.findIndex(genre => genre.id === action.payload.id);
+                if (index !== -1) {
+                    state.allGenres[index] = action.payload;
+                }
             })
             .addCase(toggleGenreReviewed.fulfilled, (state, action) => {
                 const index = state.allGenres.findIndex(genre => genre.id === action.payload.id);
