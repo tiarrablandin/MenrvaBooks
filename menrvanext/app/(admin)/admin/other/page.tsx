@@ -1,14 +1,33 @@
 import DynamicTable from "@/app/ui/adminPortal/table/dynamicTable";
+import { Tab, TabPanel, Tabs, TabsBody, TabsHeader } from "@/providers";
 
 export default async function Page() {
     return (
         <main className="min-h-[calc(100vh-295px)] w-[calc(100%-4rem)] mr-1 ml-auto">
-            <div className="grid grid-cols-2 w-full">
-                <DynamicTable entityType="genres" variant='small' />
-                <DynamicTable entityType="keywords" variant='small' />
-                <DynamicTable entityType="subgenres" variant='small' />
-                <DynamicTable entityType="tags" variant='small' />
-            </div>
+            <Tabs value="genres" className="py-8">
+                <TabsHeader className="flex justify-center bg-eggplant w-80 mx-auto">
+                    <Tab value="genres" className="">
+                        Genres/Subgenres
+                    </Tab>
+                    <Tab value="terms" className="">
+                        Terms
+                    </Tab>
+                </TabsHeader>
+                <TabsBody>
+                    <TabPanel value="genres">
+                        <div className="flex flex-col justify-center gap-2">
+                            <DynamicTable entityType="genres" variant='small' />
+                            <DynamicTable entityType="subgenres" variant='small' />
+                        </div>
+                    </TabPanel>
+                    <TabPanel value="terms">
+                        <div className="flex flex-col justify-center gap-2">
+                            <DynamicTable entityType="keywords" variant='small' />
+                            <DynamicTable entityType="tags" variant='small' />
+                        </div>
+                    </TabPanel>
+                </TabsBody>
+            </Tabs>
         </main>
     );
 }
