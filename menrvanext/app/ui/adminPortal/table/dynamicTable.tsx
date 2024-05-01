@@ -7,9 +7,10 @@ import { useComments } from "@/app/lib/hooks/useComments";
 import { useGenres } from "@/app/lib/hooks/useGenres";
 import { useKeywords } from "@/app/lib/hooks/useKeywords";
 import { useSeries } from "@/app/lib/hooks/useSeries";
+import { useSubgenres } from "@/app/lib/hooks/useSubgenres";
 import { useTags } from "@/app/lib/hooks/useTags";
 import { useUsers } from "@/app/lib/hooks/useUsers";
-import { Button, IconButton, PlusIcon, Switch, Tooltip, Typography } from "@/providers";
+import { IconButton, PlusIcon, Switch, Tooltip, Typography } from "@/providers";
 import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
 import Pagination from "../../pagination";
@@ -94,8 +95,13 @@ interface EntityData<T> {
   loading: boolean;
   error: string | null;
   toggleLiked?: (bookId: number, status: number) => void;
-  fetchLikedStatus?: (bookId: number) => void;
+  fetchBookInteractions?: (bookId: number) => void;
   likedBooks?: number[];
+  fetchBookDetails: (bookId: number) => void;
+  currentBook?: T;
+  toggleFavorite?: (id: number) => void;
+  toggleInterested?: (id: number) => void;
+  toggleHasRead?: (id: number) => void;
 }
 
 // useEntityHook is a function that returns the correct hook based on entityType
@@ -117,6 +123,8 @@ function useEntityHook<T>(entityType: string): EntityData<T> {
       return useSeries() as EntityData<T>;
     case "comments":
       return useComments() as EntityData<T>;
+    case "subgenres":
+      return useSubgenres() as EntityData<T>;
     default:
       throw new Error("Unsupported entity type");
   }

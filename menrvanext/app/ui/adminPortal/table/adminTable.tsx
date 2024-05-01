@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Card,
   CardBody,
@@ -7,7 +9,9 @@ import {
   MagnifyingGlassIcon,
   Typography,
 } from "@/providers";
-import React from "react";
+import React, { useMemo, useState } from "react";
+
+type NoReviewed = "genres" | "subgenres" | "keywords" | "tags" | "users" | "comments";
 
 interface AdminTableProps {
   head: string;
@@ -36,29 +40,52 @@ const AdminTable: React.FC<AdminTableProps> = ({
   activeCallback,
   variant,
 }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const normalizedHead = head.toLowerCase().replace(/ list$/, "");
+  const showReviewedToggle: boolean = !["genres", "subgenres", "keywords", "tags", "users", "comments"].includes(normalizedHead as NoReviewed);
+
+  const handleSearchChange = (event: any) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
+  const filteredData = useMemo(() => {
+    if (!searchTerm) return data;
+    return data.filter((item) => {
+      return Object.values(item).some(value =>
+        String(value).toLowerCase().includes(searchTerm)
+      );
+    });
+  }, [data, searchTerm]);
+
   return (
     <>
       <Card className={variant === 'small' ? "h-[50vh] w-[95%] mx-auto my-4 overflow-scroll" : "h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll"}>
         <CardHeader
           floated={false}
           shadow={false}
-          className={`h-[55%] rounded-none flex flex-nowrap justify-between gap-2 p-2 overflow-x-scroll no-scrollbar ${variant === 'small' ? 'flex-col' : ''}`}
+          className={`h-1/6 rounded-none flex flex-nowrap justify-between gap-2 p-2 text-nowrap overflow-x-scroll no-scrollbar ${variant === 'small' ? 'flex-col h-1/4' : ''}`}
         >
-          <div className={`${variant === 'small' ? 'flex items-center gap-4' : ''}`}>
-            <Typography variant="h1" className="text-3xl">
-              {head}
-            </Typography>
-            <Typography variant="h1" className="text-md">
-              {headDesc}
-            </Typography>
-          </div>
-          <div className="flex flex-nowrap items-center w-full shrink-0 gap-4 md:w-max">
-            <div className="w-3/5 lg:w-72">
-              <Input label="Search" icon={<MagnifyingGlassIcon className="h-5 w-5" />} />
+          <div className='flex items-center justify-between gap-4 w-full'>
+            <div className="flex flex-col">
+              <Typography variant="h1" className="text-3xl">
+                {head}
+              </Typography>
+              <Typography variant="h1" className="text-md">
+                {headDesc}
+              </Typography>
             </div>
-            <div className="flex gap-5 items-center">
+            <div className="w-1/2 lg:w-48">
+              <Input
+                label="Search"
+                icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+                value={searchTerm}
+                onChange={handleSearchChange}
+              />
+            </div>
+            <div className="flex gap-5 items-center mr-2">
               {add}
-              {reviewedCallback && reviewedToggle}
+              {showReviewedToggle && reviewedCallback && reviewedToggle}
             </div>
           </div>
         </CardHeader>
@@ -78,7 +105,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
                 ))}
               </tr>
             </thead>
-            <tbody className="">{data.map((item, index) => renderRow(item, index, reviewedCallback, activeCallback))}</tbody>
+            <tbody className="">{filteredData.map((item, index) => renderRow(item, index, reviewedCallback, activeCallback))}</tbody>
           </table>
         </CardBody>
         <CardFooter className={`flex justify-between items-center ${variant === 'small' ? 'scale-[85%]' : ''}`}>{pagination}</CardFooter>

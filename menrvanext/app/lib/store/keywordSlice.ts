@@ -1,4 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { Keyword } from "../models/keyword";
 
 export interface KeywordState {
     allKeywords: Keyword[],

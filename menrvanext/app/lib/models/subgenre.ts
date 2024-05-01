@@ -1,4 +1,4 @@
-export interface Genre {
+export interface Subgenre {
     id: number;
     name: string;
     reviewed: boolean;

@@ -23,9 +23,63 @@ class BookInteractionService(
         return bookInteractionRepository.findReadBooksByTag(tag)
     }
 
+    fun toggleInterested(bookId: Long, userId: Long): BookInteraction {
+        val bookInteractionId = BookInteractionId(userId, bookId)
+        val interaction = bookInteractionRepository.findById(bookInteractionId).map { existingInteraction ->
+            existingInteraction.interested = !existingInteraction.interested!!
+            existingInteraction
+        }.orElseGet {
+            val existingBook = bookRepository.findById(bookId).orElseThrow {
+                RuntimeException("Book not found with id: $bookId")
+            }
+            val existingUser = userRepository.findById(userId).orElseThrow {
+                RuntimeException("User not found with id: $userId")
+            }
+            BookInteraction(bookInteractionId, existingBook, existingUser, hasRead = true)
+        }
+
+        return bookInteractionRepository.save(interaction)
+    }
+
+    fun toggleHasRead(bookId: Long, userId: Long): BookInteraction {
+        val bookInteractionId = BookInteractionId(userId, bookId)
+        val interaction = bookInteractionRepository.findById(bookInteractionId).map { existingInteraction ->
+            existingInteraction.hasRead = !existingInteraction.hasRead!!
+            existingInteraction
+        }.orElseGet {
+            val existingBook = bookRepository.findById(bookId).orElseThrow {
+                RuntimeException("Book not found with id: $bookId")
+            }
+            val existingUser = userRepository.findById(userId).orElseThrow {
+                RuntimeException("User not found with id: $userId")
+            }
+            BookInteraction(bookInteractionId, existingBook, existingUser, hasRead = true)
+        }
+
+        return bookInteractionRepository.save(interaction)
+    }
+
+    fun toggleFavorite(bookId: Long, userId: Long): BookInteraction {
+        val bookInteractionId = BookInteractionId(userId, bookId)
+        val interaction = bookInteractionRepository.findById(bookInteractionId).map { existingInteraction ->
+            // If the interaction exists, toggle the favorite status
+            existingInteraction.favorite = !existingInteraction.favorite!!
+            existingInteraction
+        }.orElseGet {
+            val existingBook = bookRepository.findById(bookId).orElseThrow {
+                RuntimeException("Book not found with id: $bookId")
+            }
+            val existingUser = userRepository.findById(userId).orElseThrow {
+                RuntimeException("User not found with id: $userId")
+            }
+            BookInteraction(bookInteractionId, existingBook, existingUser, favorite = true)
+        }
+
+        return bookInteractionRepository.save(interaction)
+    }
+
     fun toggleLikeDislike(bookId: Long, userId: Long, status: Int): BookInteraction {
         val bookInteractionId = BookInteractionId(userId, bookId)
-        println("********** $bookInteractionId")
         val interaction = bookInteractionRepository.findById(bookInteractionId).orElseGet {
             val existingBook = bookRepository.findById(bookId).orElseThrow {
                 RuntimeException("Book not found with id: $bookId")
@@ -33,9 +87,8 @@ class BookInteractionService(
             val existingUser = userRepository.findById(userId).orElseThrow {
                 RuntimeException("User not found with id: $userId")
             }
-            BookInteraction(bookInteractionId, existingBook, existingUser, status)
+            BookInteraction(bookInteractionId, existingBook, existingUser, likeDislike = status)
         }
-        println("########## $interaction")
 
         interaction.likeDislike = when (status) {
             1, -1 -> status

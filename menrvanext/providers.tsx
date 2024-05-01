@@ -1,72 +1,41 @@
 "use client";
 
-export { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+export { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export {
   HistoryEduOutlined,
   ThumbDown,
   ThumbDownAltOutlined,
   ThumbUp,
-  ThumbUpAltOutlined,
+  ThumbUpAltOutlined
 } from "@mui/icons-material";
 
 export {
-  Accordion,
-  AccordionHeader,
-  AccordionBody,
-  Alert,
-  Avatar,
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  CardFooter,
-  Checkbox,
-  Chip,
-  Collapse,
-  Dialog,
-  DialogBody,
-  DialogFooter,
-  DialogHeader,
-  IconButton,
-  Input,
-  List,
-  ListItem,
-  ListItemPrefix,
-  ListItemSuffix,
-  Menu,
-  MenuItem,
-  MenuList,
-  MenuHandler,
-  MobileNav,
-  Navbar,
-  Option,
-  Select,
-  Switch,
-  Tabs,
-  TabsHeader,
-  TabsBody,
-  Tab,
-  TabPanel,
-  Textarea,
-  ThemeProvider,
-  Timeline,
-  TimelineItem,
-  TimelineConnector,
-  TimelineHeader,
-  TimelineIcon,
-  TimelineBody,
-  Tooltip,
-  Typography,
-} from "@material-tailwind/react";
+  AtSymbolIcon,
+  Bars3Icon,
+  BellIcon as BellIconOutline,
+  BookOpenIcon,
+  BookmarkIcon as BookmarkIconOutline,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  Cog6ToothIcon as Cog6ToothIconOutline,
+  CreditCardIcon as CreditCardIconOutline,
+  EnvelopeIcon,
+  ExclamationCircleIcon,
+  HomeIcon as HomeIconOutline,
+  KeyIcon as KeyIconOutline,
+  ShieldCheckIcon as ShieldCheckIconOutline,
+  SparklesIcon,
+  StarIcon,
+  UserCircleIcon,
+  XMarkIcon
+} from "@heroicons/react/24/outline";
 export {
   ArrowLeftIcon,
-  ArrowLeftStartOnRectangleIcon,
-  ArrowRightIcon,
-  ArrowRightEndOnRectangleIcon,
-  ArrowUpTrayIcon,
+  ArrowLeftStartOnRectangleIcon, ArrowRightEndOnRectangleIcon, ArrowRightIcon, ArrowUpTrayIcon,
   BellIcon,
+  BookmarkIcon,
   CheckCircleIcon,
   ChevronDownIcon,
   Cog6ToothIcon,
@@ -81,31 +50,41 @@ export {
   PencilIcon,
   PhoneIcon,
   PlusIcon,
-  ShieldCheckIcon,
-  SunIcon,
-  Squares2X2Icon,
-  TicketIcon,
+  ShieldCheckIcon, Squares2X2Icon, SunIcon, TicketIcon,
   TrashIcon,
-  UserIcon,
+  UserIcon
 } from "@heroicons/react/24/solid";
 export {
-  AtSymbolIcon,
-  Bars3Icon,
-  BellIcon as BellIconOutline,
-  BookOpenIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  Cog6ToothIcon as Cog6ToothIconOutline,
-  CreditCardIcon as CreditCardIconOutline,
-  EnvelopeIcon,
-  ExclamationCircleIcon,
-  HomeIcon as HomeIconOutline,
-  KeyIcon as KeyIconOutline,
-  ShieldCheckIcon as ShieldCheckIconOutline,
-  SparklesIcon,
-  UserCircleIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+  Accordion, AccordionBody, AccordionHeader, Alert,
+  Avatar,
+  Button,
+  Card,
+  CardBody, CardFooter, CardHeader, Checkbox,
+  Chip,
+  Collapse,
+  Dialog,
+  DialogBody,
+  DialogFooter,
+  DialogHeader,
+  IconButton,
+  Input,
+  List,
+  ListItem,
+  ListItemPrefix,
+  ListItemSuffix,
+  Menu, MenuHandler, MenuItem,
+  MenuList, MobileNav,
+  Navbar,
+  Option,
+  Select,
+  Switch, Tab,
+  TabPanel, Tabs, TabsBody, TabsHeader, Textarea,
+  ThemeProvider,
+  Timeline, TimelineBody, TimelineConnector,
+  TimelineHeader,
+  TimelineIcon, TimelineItem, Tooltip,
+  Typography
+} from "@material-tailwind/react";
 
 export const eggplant = "#673C4F";
 
@@ -113,5 +92,5 @@ import { Provider } from "react-redux";
 import { store } from "./app/lib/store/store";
 
 export default function ReduxProvider({ children }: { children: React.ReactNode }) {
-  return <Provider store={store}>{children}</Provider>;
+  return <Provider store={store}> {children} </Provider>;
 }

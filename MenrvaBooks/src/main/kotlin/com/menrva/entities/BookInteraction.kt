@@ -27,19 +27,19 @@ class BookInteraction(
     @JoinColumn(name = "user_id")
     var user: User,
     @Column(name = "has_read")
-    var hasRead: Boolean = false,
-    var interested: Boolean = false,
-    var favorite: Boolean = false,
+    var hasRead: Boolean? = false,
+    var interested: Boolean? = false,
+    var favorite: Boolean? = false,
     @Column(name = "like_dislike")
-    var likeDislike: Int = 0,
+    var likeDislike: Int? = 0,
 ) {
-    constructor(id: BookInteractionId, book: Book, user: User, likeDislike: Int) : this(
-        id = id,
-        book = book, // You need to provide a default Book instance, consider fetching from DB if necessary
-        user = user, // Same for User, you need a default or actual instance
-        hasRead = false,
-        interested = false,
-        favorite = false,
-        likeDislike = likeDislike
-    )
+//    constructor(id: BookInteractionId, book: Book, user: User, likeDislike: Int?, ) : this(
+//        id = id,
+//        book = book, // You need to provide a default Book instance, consider fetching from DB if necessary
+//        user = user, // Same for User, you need a default or actual instance
+//        hasRead = false,
+//        interested = false,
+//        favorite = false,
+//        likeDislike = likeDislike ?: this.likeDislike
+//    )
 }

@@ -2,10 +2,13 @@
 
 import { useAuth } from "@/app/lib/hooks/useAuth";
 import { useBooks } from "@/app/lib/hooks/useBooks";
-import { BookResponse } from "@/app/lib/models/book";
 import { fetchBooks } from "@/app/lib/services/apiService";
+import { RootState } from "@/app/lib/store/store";
 import {
+  BookOpenIcon,
+  BookmarkIconOutline,
   Card,
+  StarIcon,
   ThumbDown,
   ThumbDownAltOutlined,
   ThumbUp,
@@ -15,57 +18,37 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import BookComments from "./bookComments";
 import BookSlider from "./bookSlider";
 
 const SingleBook: React.FC = ({ }) => {
+  const iconClass = "w-6 h-6 cursor-pointer"
   const searchParams = useParams();
   const id = searchParams?.id;
   const numericId = id ? parseInt(id as string, 10) : 0;
-  const [book, setBook] = useState<BookResponse | null>(null);
-  const [liked, setLiked] = useState(false);
-  const [disliked, setDisliked] = useState(false);
-  const { toggleLiked, fetchLikedStatus, likedBooks } = useBooks();
+  const book = useSelector((state: RootState) => state.book.currentBook);
+  const { liked, disliked, favorite, hasRead, interested } = useSelector((state: RootState) => state.book.interactions);
+  const { toggleLiked, fetchBookDetails, fetchBookInteractions, toggleFavorite, toggleHasRead, toggleInterested } = useBooks();
   const { token } = useAuth();
 
   useEffect(() => {
-    const fetchBook = async () => {
-      const bookResponse = await fetch(`http://localhost:8085/api/books/${numericId}`);
-      const bookData = await bookResponse.json();
-      console.log(bookData.comments)
-      setBook(bookData);
-    }
-    const fetchLikeStatus = async () => {
-      try {
-        const interactionResponse = await fetch(`http://localhost:8085/api/books/${numericId}/interaction`, {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          }
-        });
-
-        if (interactionResponse.ok) {
-          const interactionData = await interactionResponse.json();
-          setLiked(interactionData.likeDislike === 1);
-        }
-      } catch (error) {
-        console.error('Failed to fetch book or interaction status:', error);
-      }
-    };
-
-    if (numericId) {
-      if (token) {
-        fetchLikeStatus();
-      }
-      fetchBook();
+    if (numericId && token) {
+      fetchBookDetails(numericId);
+      fetchBookInteractions(numericId);
     }
   }, [numericId, token]);
 
-  const handleToggleLike = () => {
-    console.log('Toggling like status...');
-    toggleLiked(numericId, liked ? 0 : 1);
-    setLiked(!liked);
-  }
+  const handleToggleLike = () => { toggleLiked(numericId, liked ? 0 : 1); }
+
+  const handleToggleDislike = () => { toggleLiked(numericId, disliked ? 0 : -1); }
+
+  const handleToggleInterested = () => { toggleInterested(numericId); }
+
+  const handleToggleFavorite = () => { toggleFavorite(numericId); }
+
+  const handleToggleHasRead = () => { toggleHasRead(numericId); }
 
   async function fetchAllBooksSlider() {
     return fetchBooks();
@@ -91,8 +74,31 @@ const SingleBook: React.FC = ({ }) => {
             </Link>
           ))}
           <div className="flex mt-2 gap-4">
-            <ThumbUpAltOutlined onClick={handleToggleLike} style={{ color: liked === true ? "blue" : "gray"}} />
-            <ThumbDownAltOutlined onClick={handleToggleLike} style={{ color: disliked === true ? "blue" : "gray"}} />
+            {liked ?
+              <ThumbUp onClick={handleToggleLike} style={{ color: "blue" }} className="cursor-pointer" />
+              :
+              <ThumbUpAltOutlined onClick={handleToggleLike} style={{ color: "gray" }} className="cursor-pointer" />
+            }
+            {disliked ?
+              <ThumbDown onClick={handleToggleDislike} style={{ color: "red" }} className="cursor-pointer" />
+              :
+              <ThumbDownAltOutlined onClick={handleToggleDislike} style={{ color: "gray" }} className="cursor-pointer" />
+            }
+            {interested ?
+              <BookmarkIconOutline onClick={handleToggleInterested} style={{ color: "blue" }} className={iconClass} />
+              :
+              <BookmarkIconOutline onClick={handleToggleInterested} style={{ color: "gray" }} className={iconClass} />
+            }
+            {hasRead ?
+              <BookOpenIcon onClick={handleToggleHasRead} style={{ color: "blue" }} className={iconClass} />
+              :
+              <BookOpenIcon onClick={handleToggleHasRead} style={{ color: "gray" }} className={iconClass} />
+            }
+            {favorite ?
+              <StarIcon onClick={handleToggleFavorite} style={{ color: "blue" }} className={iconClass} />
+              :
+              <StarIcon onClick={handleToggleFavorite} style={{ color: "gray" }} className={iconClass} />
+            }
           </div>
           <Typography className="mt-6">{book ? book.description : "Loading..."}</Typography>
           <div className="flex justify-center gap-12 mt-8">
@@ -115,7 +121,7 @@ const SingleBook: React.FC = ({ }) => {
         <BookSlider fetchData={fetchAllBooksSlider} title={"Books in Series"} />
         <BookSlider fetchData={fetchAllBooksSlider} title={"Similar Books"} />
       </div>
-      <BookComments bookId={book?.id!!} comments={book?.comments}/>
+      <BookComments bookId={book?.id!!} comments={book?.comments} />
     </>
   );
 };

@@ -1,5 +1,6 @@
 package com.menrva.controllers
 
+import com.menrva.data.BookInteractionDTO
 import com.menrva.data.book.BookDTO
 import com.menrva.data.book.BookInteractionSummary
 import com.menrva.entities.BookInteraction
@@ -32,6 +33,27 @@ class InteractionsController(
     fun toggleBookReviewed(@PathVariable id: Long): ResponseEntity<BookDTO> {
         val updatedBook = bookService.toggleReviewed(id)
         return ResponseEntity.ok(BookDTO(updatedBook))
+    }
+
+    @PostMapping("/{id}/favorite")
+    fun toggleBookFavorite(@PathVariable id: Long, @AuthenticationPrincipal principal: Principal): ResponseEntity<BookInteractionDTO> {
+        val user = userService.loadFullUserByIdentifier(principal.name)
+        val updatedInteraction = bookInteractionService.toggleFavorite(id, user.id!!)
+        return ResponseEntity.ok(BookInteractionDTO(updatedInteraction))
+    }
+
+    @PostMapping("/{id}/hasRead")
+    fun toggleHasRead(@PathVariable id: Long, @AuthenticationPrincipal principal: Principal): ResponseEntity<BookInteractionDTO> {
+        val user = userService.loadFullUserByIdentifier(principal.name)
+        val updatedInteraction = bookInteractionService.toggleHasRead(id, user.id!!)
+        return ResponseEntity.ok(BookInteractionDTO(updatedInteraction))
+    }
+
+    @PostMapping("/{id}/interested")
+    fun toggleInterested(@PathVariable id: Long, @AuthenticationPrincipal principal: Principal): ResponseEntity<BookInteractionDTO> {
+        val user = userService.loadFullUserByIdentifier(principal.name)
+        val updatedInteraction = bookInteractionService.toggleInterested(id, user.id!!)
+        return ResponseEntity.ok(BookInteractionDTO(updatedInteraction))
     }
 
     @PostMapping("{bookId}/react")
