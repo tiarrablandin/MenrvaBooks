@@ -1,6 +1,5 @@
 import ReduxProvider from "@/providers";
 import type { Metadata } from "next";
-import { Advent_Pro } from "next/font/google";
 import "./globals.css";
 import { MenrvaThemeProvider } from "./ui/theme/themeProvider";
 

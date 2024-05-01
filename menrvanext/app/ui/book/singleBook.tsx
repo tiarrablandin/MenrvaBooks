@@ -36,7 +36,6 @@ const SingleBook: React.FC = ({ }) => {
     const fetchBook = async () => {
       const bookResponse = await fetch(`http://localhost:8085/api/books/${numericId}`);
       const bookData = await bookResponse.json();
-      console.log(bookData.comments)
       setBook(bookData);
     }
     const fetchLikeStatus = async () => {
@@ -102,14 +101,14 @@ const SingleBook: React.FC = ({ }) => {
           ))}
           <div className="flex mt-2 gap-4">
             {liked ?
-              <ThumbUp onClick={handleToggleLike} style={{ color: "blue" }} />
+              <ThumbUp onClick={handleToggleLike} style={{ color: "blue" }} className="cursor-pointer" />
               :
-              <ThumbUpAltOutlined onClick={handleToggleLike} style={{ color: "gray" }} />
+              <ThumbUpAltOutlined onClick={handleToggleLike} style={{ color: "gray" }} className="cursor-pointer" />
             }
             {disliked ?
-              <ThumbDown onClick={handleToggleDislike} style={{ color: "red" }} />
+              <ThumbDown onClick={handleToggleDislike} style={{ color: "red" }} className="cursor-pointer" />
               :
-              <ThumbDownAltOutlined onClick={handleToggleDislike} style={{ color: "gray" }} />
+              <ThumbDownAltOutlined onClick={handleToggleDislike} style={{ color: "gray" }} className="cursor-pointer" />
             }
           </div>
           <Typography className="mt-6">{book ? book.description : "Loading..."}</Typography>

@@ -118,13 +118,16 @@ export const bookSlice = createSlice({
                 }
             })
             .addCase(fetchLikedStatus.fulfilled, (state, action) => {
-                const { bookId, liked } = action.payload;
+                const { bookId, liked, disliked } = action.payload;
                 console.log(action.payload);
-                if (liked === true) state.likedBooks.concat(bookId);
+                if (liked === true) state.likedBooks[bookId] = 1;
+                else if (disliked === true) state.likedBooks[bookId] = -1;
             })
             .addCase(toggleBookLiked.fulfilled, (state, action) => {
-                const { bookId, liked } = action.payload;
-                if (liked === true) state.likedBooks.concat(bookId);
+                const { bookId, liked, disliked } = action.payload;
+                console.log(action.payload);
+                if (liked === true) state.likedBooks[bookId] = 1;
+                else if (disliked === true) state.likedBooks[bookId] = -1;
             })
     }
 });

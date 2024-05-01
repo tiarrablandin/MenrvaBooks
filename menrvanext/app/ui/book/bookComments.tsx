@@ -62,7 +62,7 @@ export function NewComment({ bookId }: { bookId: number }) {
     <div>
       <div className="flex !items-center gap-4">
         <Typography variant="small" className=" flex items-center gap-2 font-bold !text-gray-900">
-          {user?.tag}
+          {user ? user.tag : ""}
         </Typography>
       </div>
       <div className="mt-4 h-full flex-col pl-14">
@@ -91,11 +91,12 @@ const bookComments = ({ bookId, comments }: { bookId: number, comments?: Comment
         <Typography variant="h4" className="my-8 md:text-center">
           What other readers are saying about this book...
         </Typography>
-        {comments ? <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-1">
-          {comments.map((comment, index) => (
-            <ContentCard key={index} content={comment.comment} date={comment.dateAdded} tag={comment.user.tag} />
-          ))}
-        </div> : <></>}
+        {comments ?
+          <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-1">
+            {comments.map((comment, index) => (
+              <ContentCard key={index} content={comment.comment} date={comment.dateAdded} tag={comment.user.tag} />
+            ))}
+          </div> : <></>}
       </section>
     </div>
   );

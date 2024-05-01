@@ -16,8 +16,9 @@ import { usePathname } from "next/navigation";
 
 const sidebar = () => {
   const pathname = usePathname();
-
+  
   const isActive = (path: string) => pathname === path;
+
 
   return (
     <div className="h-screen w-16 inline-flex fixed">

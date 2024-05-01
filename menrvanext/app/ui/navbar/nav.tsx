@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuth } from "@/app/lib/hooks/useAuth";
 import {
   Bars3Icon,
   BellIcon,
@@ -15,7 +16,6 @@ import AdvancedSearchComponent from "../search/advancedSearch";
 import AdvancedSearchBar from "../search/advancedSearchBar";
 import ThemeToggle from "../theme/themeToggle";
 import ProfileMenu from "./profileMenu";
-import { useAuth } from "@/app/lib/hooks/useAuth";
 
 export function NavbarWithSearch() {
   const [open, setOpen] = React.useState(false);
@@ -23,6 +23,7 @@ export function NavbarWithSearch() {
   const { user } = useAuth();
 
   React.useEffect(() => {
+    // useRestoreSession();
     window.addEventListener("resize", () => window.innerWidth >= 960 && setOpen(false));
   }, []);
 

@@ -12,9 +12,9 @@ interface UserState {
 }
 
 const initialState: UserState = {
-    user: null,
+    user: JSON.parse(sessionStorage.getItem('userDetails') || 'null'),
     allUsers: [],
-    jwt: null,
+    jwt: sessionStorage.getItem('token'),
     error: null,
     loading: false,
 };
@@ -99,7 +99,6 @@ export const userSlice = createSlice({
         setUserDetails: (state, action: PayloadAction<User>) => {
             state.user = action.payload;
         },
-        // Add any other user-related reducers here
     },
     extraReducers: (builder) => {
         builder

@@ -1,7 +1,8 @@
+import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { fetchBooksThunk, fetchLikedStatus, toggleBookLiked, toggleBookReviewed } from "../store/bookSlice";
 import { RootState, useAppDispatch } from "../store/store";
-import { useCallback } from "react";
+import { selectJwt } from "../store/userSlice";
 
 export function useBooks() {
     const dispatch = useAppDispatch();
@@ -9,6 +10,7 @@ export function useBooks() {
     const likedBooks = useSelector((state: RootState) => state.book.likedBooks);
     const loading = useSelector((state: RootState) => state.book.loading);
     const error = useSelector((state: RootState) => state.book.error);
+    // const altToken = useSelector(selectJwt);
     const token = useSelector((state: RootState) => state.user.jwt);
 
     const fetchBooks = useCallback(() => {
@@ -20,10 +22,12 @@ export function useBooks() {
     }, [dispatch]);
 
     const toggleLiked = useCallback((bookId: number, status: number) => {
+        console.log(token);
         dispatch(toggleBookLiked({ bookId, status, token }));
     }, [dispatch]);
 
     const bookLikedStatus = useCallback((bookId: number) => {
+        console.log(token);
         dispatch(fetchLikedStatus({ bookId, token }))
     }, [dispatch]);
 
