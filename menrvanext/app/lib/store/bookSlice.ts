@@ -49,8 +49,7 @@ export const toggleBookLiked = createAsyncThunk(
                 throw new Error("Failed to toggle liked status");
             }
             const data = await response.json();
-            console.log(data);
-            return { bookId, liked: status === 1};
+            return { bookId, liked: data.likeDislike === 1, disliked: data.likeDislike === -1 };
         } catch (error: any) {
             return rejectWithValue(error.message);
         }
@@ -67,8 +66,7 @@ export const fetchLikedStatus = createAsyncThunk(
                 }
             });
             const data = await response.json();
-            console.log(data);
-            return { bookId, liked: data.likeDislike === 1 };
+            return { bookId, liked: data.likeDislike === 1, disliked: data.likeDislike === -1 };
         } catch (error: any) {
             return rejectWithValue('Failed to fetch liked status: ' + error.message);
         }

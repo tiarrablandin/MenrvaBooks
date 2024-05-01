@@ -24,9 +24,7 @@ export function useBooks() {
     }, [dispatch]);
 
     const bookLikedStatus = useCallback((bookId: number) => {
-        console.log(likedBooks);
         dispatch(fetchLikedStatus({ bookId, token }))
-        console.log(likedBooks);
     }, [dispatch]);
 
     return {

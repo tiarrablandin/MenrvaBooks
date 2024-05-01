@@ -50,9 +50,10 @@ const SingleBook: React.FC = ({ }) => {
         if (interactionResponse.ok) {
           const interactionData = await interactionResponse.json();
           setLiked(interactionData.likeDislike === 1);
+          setDisliked(interactionData.likeDislike === -1);
         }
       } catch (error) {
-        console.error('Failed to fetch book or interaction status:', error);
+        console.error('Failed to fetch like status:', error);
       }
     };
 
@@ -65,11 +66,15 @@ const SingleBook: React.FC = ({ }) => {
   }, [numericId, token]);
 
   const handleToggleLike = () => {
-    console.log('Toggling like status...');
-    console.log(token);
-    dispatch(toggleBookLiked({ bookId: numericId, status: liked ? 0 : 1, token  }))
-    // toggleLiked(numericId, liked ? 0 : 1);
+    toggleLiked(numericId, liked ? 0 : 1);
     setLiked(!liked);
+    if (disliked) setDisliked(false);
+  }
+
+  const handleToggleDislike = () => {
+    toggleLiked(numericId, disliked ? 0 : -1);
+    setDisliked(!disliked);
+    if (liked) setLiked(false);
   }
 
   async function fetchAllBooksSlider() {
@@ -96,8 +101,16 @@ const SingleBook: React.FC = ({ }) => {
             </Link>
           ))}
           <div className="flex mt-2 gap-4">
-            <ThumbUpAltOutlined onClick={handleToggleLike} style={{ color: liked === true ? "blue" : "gray"}} />
-            <ThumbDownAltOutlined onClick={handleToggleLike} style={{ color: disliked === true ? "blue" : "gray"}} />
+            {liked ?
+              <ThumbUp onClick={handleToggleLike} style={{ color: "blue" }} />
+              :
+              <ThumbUpAltOutlined onClick={handleToggleLike} style={{ color: "gray" }} />
+            }
+            {disliked ?
+              <ThumbDown onClick={handleToggleDislike} style={{ color: "red" }} />
+              :
+              <ThumbDownAltOutlined onClick={handleToggleDislike} style={{ color: "gray" }} />
+            }
           </div>
           <Typography className="mt-6">{book ? book.description : "Loading..."}</Typography>
           <div className="flex justify-center gap-12 mt-8">
@@ -120,7 +133,7 @@ const SingleBook: React.FC = ({ }) => {
         <BookSlider fetchData={fetchAllBooksSlider} title={"Books in Series"} />
         <BookSlider fetchData={fetchAllBooksSlider} title={"Similar Books"} />
       </div>
-      <BookComments bookId={book?.id!!} comments={book?.comments}/>
+      <BookComments bookId={book?.id!!} comments={book?.comments} />
     </>
   );
 };
