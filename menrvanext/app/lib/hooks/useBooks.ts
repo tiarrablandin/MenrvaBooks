@@ -1,34 +1,52 @@
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
-import { fetchBooksThunk, fetchLikedStatus, toggleBookLiked, toggleBookReviewed } from "../store/bookSlice";
+import { fetchBookDetailsThunk, fetchBooksThunk, fetchInteractions, toggleBookFavorite, toggleBookHasRead, toggleBookInterested, toggleBookLiked, toggleBookReviewed } from "../store/bookSlice";
 import { RootState, useAppDispatch } from "../store/store";
-import { selectJwt } from "../store/userSlice";
 
 export function useBooks() {
     const dispatch = useAppDispatch();
     const books = useSelector((state: RootState) => state.book.allBooks);
+    const currentBook = useSelector((state: RootState) => state.book.currentBook);
     const likedBooks = useSelector((state: RootState) => state.book.likedBooks);
     const loading = useSelector((state: RootState) => state.book.loading);
     const error = useSelector((state: RootState) => state.book.error);
-    // const altToken = useSelector(selectJwt);
     const token = useSelector((state: RootState) => state.user.jwt);
 
     const fetchBooks = useCallback(() => {
         dispatch(fetchBooksThunk());
     }, [dispatch]);
 
+    const fetchBookDetails = useCallback((bookId: number) => {
+        dispatch(fetchBookDetailsThunk({ bookId }));
+    }, [dispatch])
+
     const toggleReviewed = useCallback((bookId: number) => {
         dispatch(toggleBookReviewed({ bookId }));
     }, [dispatch]);
 
+
+
+
+    const toggleInterested = useCallback((bookId: number) => {
+        dispatch(toggleBookInterested({ bookId }));
+    }, [dispatch]);
+
+    const toggleFavorite = useCallback((bookId: number) => {
+        dispatch(toggleBookFavorite({ bookId }));
+    }, [dispatch]);
+
+    const toggleHasRead = useCallback((bookId: number) => {
+        dispatch(toggleBookHasRead({ bookId }));
+    }, [dispatch]);
+
+
+
     const toggleLiked = useCallback((bookId: number, status: number) => {
-        console.log(token);
         dispatch(toggleBookLiked({ bookId, status, token }));
     }, [dispatch]);
 
-    const bookLikedStatus = useCallback((bookId: number) => {
-        console.log(token);
-        dispatch(fetchLikedStatus({ bookId, token }))
+    const fetchBookInteractions = useCallback((bookId: number) => {
+        dispatch(fetchInteractions({ bookId, token }))
     }, [dispatch]);
 
     return {
@@ -38,7 +56,12 @@ export function useBooks() {
         fetchData: fetchBooks,
         toggleReviewed,
         toggleLiked,
-        fetchLikedStatus: bookLikedStatus,
+        fetchBookInteractions,
         likedBooks,
+        fetchBookDetails,
+        currentBook,
+        toggleInterested,
+        toggleFavorite,
+        toggleHasRead,
     };
 }

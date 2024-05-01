@@ -16,6 +16,7 @@ export {
   Bars3Icon,
   BellIcon as BellIconOutline,
   BookOpenIcon,
+  BookmarkIcon as BookmarkIconOutline,
   ChevronLeftIcon,
   ChevronRightIcon,
   Cog6ToothIcon as Cog6ToothIconOutline,
@@ -26,6 +27,7 @@ export {
   KeyIcon as KeyIconOutline,
   ShieldCheckIcon as ShieldCheckIconOutline,
   SparklesIcon,
+  StarIcon,
   UserCircleIcon,
   XMarkIcon
 } from "@heroicons/react/24/outline";
@@ -33,6 +35,7 @@ export {
   ArrowLeftIcon,
   ArrowLeftStartOnRectangleIcon, ArrowRightEndOnRectangleIcon, ArrowRightIcon, ArrowUpTrayIcon,
   BellIcon,
+  BookmarkIcon,
   CheckCircleIcon,
   ChevronDownIcon,
   Cog6ToothIcon,
@@ -87,11 +90,7 @@ export const eggplant = "#673C4F";
 
 import { Provider } from "react-redux";
 import { store } from "./app/lib/store/store";
-import SessionRestorer from "./app/lib/hooks/SessionRestorer";
 
 export default function ReduxProvider({ children }: { children: React.ReactNode }) {
-  return <Provider store={store}>
-    <SessionRestorer />
-    {children}
-  </Provider>;
+  return <Provider store={store}> {children} </Provider>;
 }

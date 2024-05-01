@@ -95,8 +95,13 @@ interface EntityData<T> {
   loading: boolean;
   error: string | null;
   toggleLiked?: (bookId: number, status: number) => void;
-  fetchLikedStatus?: (bookId: number) => void;
+  fetchBookInteractions?: (bookId: number) => void;
   likedBooks?: number[];
+  fetchBookDetails: (bookId: number) => void;
+  currentBook?: T;
+  toggleFavorite?: (id: number) => void;
+  toggleInterested?: (id: number) => void;
+  toggleHasRead?: (id: number) => void;
 }
 
 // useEntityHook is a function that returns the correct hook based on entityType
