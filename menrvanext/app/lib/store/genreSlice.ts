@@ -1,4 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { Genre } from "../models/genre";
 
 export interface GenreState {
     allGenres: Genre[],

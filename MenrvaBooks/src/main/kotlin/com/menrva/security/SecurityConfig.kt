@@ -45,6 +45,7 @@ class SecurityConfig {
                         "api/recommendations/**",
                         "api/search/**",
                         "api/series/**",
+                        "api/subgenres/**",
                         "api/tags/**",
                         "api/users/**",
                         "register",

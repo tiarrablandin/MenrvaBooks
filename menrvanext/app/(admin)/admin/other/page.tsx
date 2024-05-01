@@ -6,6 +6,7 @@ export default async function Page() {
             <div className="grid grid-cols-2 w-full">
                 <DynamicTable entityType="genres" variant='small' />
                 <DynamicTable entityType="keywords" variant='small' />
+                <DynamicTable entityType="subgenres" variant='small' />
                 <DynamicTable entityType="tags" variant='small' />
             </div>
         </main>

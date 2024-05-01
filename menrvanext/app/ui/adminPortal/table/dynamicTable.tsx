@@ -7,9 +7,10 @@ import { useComments } from "@/app/lib/hooks/useComments";
 import { useGenres } from "@/app/lib/hooks/useGenres";
 import { useKeywords } from "@/app/lib/hooks/useKeywords";
 import { useSeries } from "@/app/lib/hooks/useSeries";
+import { useSubgenres } from "@/app/lib/hooks/useSubgenres";
 import { useTags } from "@/app/lib/hooks/useTags";
 import { useUsers } from "@/app/lib/hooks/useUsers";
-import { Button, IconButton, PlusIcon, Switch, Tooltip, Typography } from "@/providers";
+import { IconButton, PlusIcon, Switch, Tooltip, Typography } from "@/providers";
 import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
 import Pagination from "../../pagination";
@@ -117,6 +118,8 @@ function useEntityHook<T>(entityType: string): EntityData<T> {
       return useSeries() as EntityData<T>;
     case "comments":
       return useComments() as EntityData<T>;
+    case "subgenres":
+      return useSubgenres() as EntityData<T>;
     default:
       throw new Error("Unsupported entity type");
   }

@@ -1,4 +1,4 @@
-interface Keyword {
+export interface Keyword {
     id: number;
     name: string;
     reviewed: boolean;

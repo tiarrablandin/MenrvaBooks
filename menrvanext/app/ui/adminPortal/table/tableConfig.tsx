@@ -1,4 +1,4 @@
-import { renderAuthorRow, renderBookRow, renderCommentRow, renderGenreRow, renderKeywordRow, renderSeriesRow, renderTagRow, renderUserRow } from "./tableRows"
+import { renderAuthorRow, renderBookRow, renderCommentRow, renderGenreRow, renderKeywordRow, renderSeriesRow, renderSubgenreRow, renderTagRow, renderUserRow } from "./tableRows"
 
 interface TableConfigProps {
     apiEndpoint: string
@@ -77,5 +77,13 @@ export const tableConfig: ConfigDictionary = {
         description: 'Manage all comments',
         addLink: '/admin/addComments',
         renderRow: renderCommentRow
+    },
+    subgenres: {
+        apiEndpoint: '/api/subgenres',
+        columns: ['Name', 'Edit'],
+        pageTitle: 'Subgenres List',
+        description: 'Manage all subgenres',
+        addLink: '/admin/addSubgenre',
+        renderRow: renderSubgenreRow
     },
 };

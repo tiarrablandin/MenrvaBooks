@@ -5,6 +5,7 @@ import themeReducer from './themeSlice';
 import searchReducer from './searchSlice';
 import authorReducer from './authorSlice';
 import genreReducer from './genreSlice';
+import subgenreReducer from './subgenreSlice';
 import commentReducer from './commentSlice';
 import seriesReducer from './seriesSlice';
 import keywordReducer from './keywordSlice';
@@ -15,14 +16,15 @@ export const store = configureStore({
   reducer: {
     author: authorReducer,
     book: bookReducer,
+    comment: commentReducer,
+    genre: genreReducer,
+    keyword: keywordReducer,
     search: searchReducer,
+    series: seriesReducer,
+    subgenre: subgenreReducer,
+    tag: tagReducer,
     theme: themeReducer,
     user: userReducer,
-    genre: genreReducer,
-    comment: commentReducer,
-    series: seriesReducer,
-    keyword: keywordReducer,
-    tag: tagReducer,
   },
 });
 

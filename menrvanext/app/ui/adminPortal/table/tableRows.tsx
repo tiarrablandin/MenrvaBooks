@@ -23,6 +23,10 @@ import { useAppDispatch } from "@/app/lib/store/store";
 import { updateKeywordThunk } from "@/app/lib/store/keywordSlice";
 import { updateTagThunk } from "@/app/lib/store/tagSlice";
 import { deleteCommentThunk } from "@/app/lib/store/commentSlice";
+import { Genre } from "@/app/lib/models/genre";
+import { Keyword } from "@/app/lib/models/keyword";
+import { Subgenre } from "@/app/lib/models/subgenre";
+import { updateSubgenreThunk } from "@/app/lib/store/subgenreSlice";
 
 export const renderBookRow = (
 	book: BookResponse,
@@ -445,16 +449,6 @@ export const renderCommentRow = (
 						<></>
 					)}
 				</td>
-				{/* <td className="mx-auto border-b border-gray-300 ">
-                {
-                    toggleReviewed &&
-                    <Checkbox
-                        onChange={() => toggleReviewed(comment.id)}
-                        checked={comment.reviewed}
-                        className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
-                    />
-                }
-            </td> */}
 				<td className="border-b border-gray-300">
 					<Tooltip content="Edit Comment">
 						<IconButton variant="text" className="rounded-full">
@@ -466,4 +460,65 @@ export const renderCommentRow = (
 		);
 	};
 	return <CommentRow key={index} />;
+};
+
+export const renderSubgenreRow = (subgenre: Subgenre, index: number) => {
+	const GenreRow = () => {
+		const [isEditing, setIsEditing] = useState(false);
+		const [name, setName] = useState(subgenre.name);
+		const dispatch = useAppDispatch();
+
+		const handleSubmit = () => {
+			dispatch(updateSubgenreThunk({ id: subgenre.id, subgenreName: name }));
+			setIsEditing(false);
+		};
+
+		const handleChange = (event: any) => {
+			setName(event.target.value);
+		};
+
+		return (
+			<tr key={index} className="text-center">
+				<td className="border-b border-gray-300 whitespace-nowrap w-min">
+					{isEditing ? (
+						<div className="w-16 mr-auto ml-16">
+							<form onSubmit={handleSubmit}>
+								<Input
+									className={`pr-8 text-center focus:!border-l-eggplant focus:!border-r-eggplant focus:!border-b-eggplant focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
+									labelProps={{
+										className:
+											"peer-focus:before:!border-t-eggplant peer-focus:before:!border-t-2 peer-focus:before:!border-l-eggplant peer-focus:before:!border-l-2 peer-focus:after:!border-t-eggplant peer-focus:after:!border-t-2 peer-focus:after:!border-r-eggplant peer-focus:after:!border-r-2 peer-focus:before:mt-[6px] peer-focus:after:mt-[6px]",
+									}}
+									size="md"
+									label="Name"
+									name="name"
+									type="text"
+									value={name}
+									onChange={handleChange}
+									autoFocus
+								/>
+							</form>
+						</div>
+					) : (
+						<Typography variant="lead" className="">
+							{subgenre.name}
+						</Typography>
+					)}
+				</td>
+				<td className="border-b border-gray-300">
+					<Tooltip content="Edit Subgenre">
+						<IconButton
+							variant="text"
+							className="rounded-full"
+							onClick={() => setIsEditing(!isEditing)}
+						>
+							<PencilIcon className="w-4 h-4 text-eggplant" />
+						</IconButton>
+					</Tooltip>
+				</td>
+			</tr>
+		);
+	};
+
+	return <GenreRow key={index} />;
 };
