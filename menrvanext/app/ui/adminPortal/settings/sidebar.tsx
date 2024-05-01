@@ -27,7 +27,7 @@ const Settings = () => {
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />
             </ListItemPrefix>
-            <Link href="/profile">
+            <Link href="./settings/profile">
               <Typography variant="h6">Profile</Typography>
             </Link>
           </ListItem>
@@ -35,7 +35,7 @@ const Settings = () => {
             <ListItemPrefix>
               <KeyIconOutline className="h-5 w-5" />
             </ListItemPrefix>
-            <Link href="/password">
+            <Link href="./settings/password">
             <Typography variant="h6">Password</Typography>
             </Link>
           </ListItem>
@@ -43,7 +43,7 @@ const Settings = () => {
             <ListItemPrefix>
               <BellIconOutline className="h-5 w-5" />
             </ListItemPrefix>
-            <Link href="/notifications">
+            <Link href="./settings/notifications">
             <Typography variant="h6">Notifications</Typography>
             </Link>
           </ListItem>
@@ -51,7 +51,7 @@ const Settings = () => {
             <ListItemPrefix>
               <ShieldCheckIconOutline className="h-5 w-5" />
             </ListItemPrefix>
-            <Link href="/security">
+            <Link href="./settings/security">
             <Typography variant="h6">Security</Typography>
             </Link>
           </ListItem>
@@ -59,7 +59,7 @@ const Settings = () => {
             <ListItemPrefix>
               <CreditCardIconOutline className="h-5 w-5" />
             </ListItemPrefix>
-            <Link href="/payments">
+            <Link href="./settings/payments">
             <Typography variant="h6">Payments</Typography>
             </Link>
           </ListItem>
