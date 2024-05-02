@@ -80,7 +80,7 @@ const SingleBook: React.FC = ({ }) => {
               <ThumbUpAltOutlined onClick={handleToggleLike} style={{ color: "gray" }} className="cursor-pointer" />
             }
             {disliked ?
-              <ThumbDown onClick={handleToggleDislike} style={{ color: "red" }} className="cursor-pointer" />
+              <ThumbDown onClick={handleToggleDislike} style={{ color: "blue" }} className="cursor-pointer" />
               :
               <ThumbDownAltOutlined onClick={handleToggleDislike} style={{ color: "gray" }} className="cursor-pointer" />
             }
