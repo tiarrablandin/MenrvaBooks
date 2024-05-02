@@ -24,7 +24,7 @@ export const tableConfig: ConfigDictionary = {
     },
     authors: {
         apiEndpoint: '/api/authors',
-        columns: ['Tag', 'Name', 'Date Added', 'Reviewed', 'Edit'],
+        columns: ['Tag', 'Pen Name', 'Date Added', 'Reviewed', 'Edit'],
         pageTitle: 'Authors List',
         description: 'Manage all authors',
         addLink: '/admin/addAuthor',
@@ -66,7 +66,7 @@ export const tableConfig: ConfigDictionary = {
         apiEndpoint: '/api/tags',
         columns: ['Name', 'Edit'],
         pageTitle: 'Tag List',
-        description: 'Manage all tag',
+        description: 'Manage all tags',
         addLink: '/admin/addTag',
         renderRow: renderTagRow
     },
@@ -81,8 +81,8 @@ export const tableConfig: ConfigDictionary = {
     subgenres: {
         apiEndpoint: '/api/subgenres',
         columns: ['Name', 'Edit'],
-        pageTitle: 'Subgenres List',
-        description: 'Manage all subgenres',
+        pageTitle: 'Sub-genres List',
+        description: 'Manage all sub-genres',
         addLink: '/admin/addSubgenre',
         renderRow: renderSubgenreRow
     },

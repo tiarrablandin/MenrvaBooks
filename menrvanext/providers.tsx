@@ -40,6 +40,8 @@ export {
   ChevronDownIcon,
   Cog6ToothIcon,
   CreditCardIcon,
+  EyeIcon,
+  EyeSlashIcon,
   HeartIcon,
   HomeIcon,
   InboxArrowDownIcon,

@@ -7,10 +7,10 @@ export default async function Page() {
             <Tabs value="genres" className="py-8">
                 <TabsHeader className="flex justify-center bg-eggplant w-80 mx-auto">
                     <Tab value="genres" className="">
-                        Genres/Subgenres
+                        Genres
                     </Tab>
-                    <Tab value="terms" className="">
-                        Terms
+                    <Tab value="keywords" className="">
+                        Keywords
                     </Tab>
                 </TabsHeader>
                 <TabsBody>
@@ -20,7 +20,7 @@ export default async function Page() {
                             <DynamicTable entityType="subgenres" variant='small' />
                         </div>
                     </TabPanel>
-                    <TabPanel value="terms">
+                    <TabPanel value="keywords">
                         <div className="flex justify-center gap-2">
                             <DynamicTable entityType="keywords" variant='small' />
                             <DynamicTable entityType="tags" variant='small' />

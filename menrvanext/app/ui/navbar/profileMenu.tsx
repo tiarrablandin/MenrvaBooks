@@ -87,6 +87,20 @@ const ProfileMenu = () => {
           </Typography>
         </MenuItem>
         <MenuItem key="3" onClick={closeMenu} className="">
+          {user && user.role === 'admin' && (
+            <Link onClick={handleLogout} href="/admin" className="flex items-center">
+              <Typography
+                as="li"
+                variant="small"
+                className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
+              >
+                <ArrowLeftStartOnRectangleIcon className="h-4 w-4" />
+                Admin
+              </Typography>
+            </Link>
+          )}
+        </MenuItem>
+        <MenuItem key="4" onClick={closeMenu} className="">
           {user ? (
             <Link onClick={handleLogout} href="/home" className="flex items-center">
               <Typography
