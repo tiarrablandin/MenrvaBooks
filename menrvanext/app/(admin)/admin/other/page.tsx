@@ -15,13 +15,13 @@ export default async function Page() {
                 </TabsHeader>
                 <TabsBody>
                     <TabPanel value="genres">
-                        <div className="flex flex-col justify-center gap-2">
+                        <div className="flex justify-center gap-2">
                             <DynamicTable entityType="genres" variant='small' />
                             <DynamicTable entityType="subgenres" variant='small' />
                         </div>
                     </TabPanel>
                     <TabPanel value="terms">
-                        <div className="flex flex-col justify-center gap-2">
+                        <div className="flex justify-center gap-2">
                             <DynamicTable entityType="keywords" variant='small' />
                             <DynamicTable entityType="tags" variant='small' />
                         </div>

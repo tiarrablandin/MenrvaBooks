@@ -43,7 +43,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
   const [searchTerm, setSearchTerm] = useState('');
 
   const normalizedHead = head.toLowerCase().replace(/ list$/, "");
-  const showReviewedToggle: boolean = !["genres", "subgenres", "keywords", "tags", "users", "comments"].includes(normalizedHead as NoReviewed);
+  const showReviewedToggle: boolean = !["genres", "subgenres", "keyword", "tag", "users", "comments"].includes(normalizedHead as NoReviewed);
 
   const handleSearchChange = (event: any) => {
     setSearchTerm(event.target.value.toLowerCase());
@@ -60,11 +60,11 @@ const AdminTable: React.FC<AdminTableProps> = ({
 
   return (
     <>
-      <Card className={variant === 'small' ? "h-[50vh] w-[95%] mx-auto my-4 overflow-scroll" : "h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll"}>
+      <Card className={variant === 'small' ? "h-[85vh] w-[95%] mx-auto my-4 overflow-scroll" : "h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll"}>
         <CardHeader
           floated={false}
           shadow={false}
-          className={`h-1/6 rounded-none flex flex-nowrap justify-between gap-2 p-2 text-nowrap overflow-x-scroll no-scrollbar ${variant === 'small' ? 'flex-col h-1/4' : ''}`}
+          className={`h-1/6 rounded-none flex flex-nowrap justify-between gap-2 p-2 text-nowrap overflow-x-scroll no-scrollbar ${variant === 'small' ? 'flex-col' : ''}`}
         >
           <div className='flex items-center justify-between gap-4 w-full'>
             <div className="flex flex-col">
