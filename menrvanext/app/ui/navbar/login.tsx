@@ -2,7 +2,9 @@
 
 import login from '@/app/actions/login';
 import { useAuth } from '@/app/lib/hooks/useAuth';
-import { selectUserLoading } from '@/app/lib/store/userSlice';
+import { User } from '@/app/lib/models/user';
+import { useAppDispatch } from '@/app/lib/store/store';
+import { selectUserLoading, setUserDetails } from '@/app/lib/store/userSlice';
 import { ArrowRightIcon, AtSymbolIcon, Button, Dialog, ExclamationCircleIcon, KeyIcon, Typography, XMarkIcon } from '@/providers';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -15,6 +17,7 @@ interface LoginFormProps {
 
 const LoginForm: React.FC<LoginFormProps> = ({ }) => {
     const router = useRouter();
+    const dispatch = useAppDispatch();
     const { user, error, loginUser } = useAuth();
 
     const [isOpen, setIsOpen] = useState(true);
@@ -24,10 +27,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
         const formData = new FormData(event.currentTarget);
         const identifier = formData.get('identifier') as string;
         const password = formData.get('password') as string;
-        // loginUser({ identifier, password });
-        // login.bind(null, formData.get('identifier') as string, formData.get('password') as string);
         const user  = await login(identifier, password);
         console.log(`IN LOGIN UI COMPONENT: ${user}`);
+        dispatch(setUserDetails(JSON.parse(JSON.stringify(user))));
         setIsOpen(false);
         router.push("/user");
     }
