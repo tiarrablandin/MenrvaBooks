@@ -91,7 +91,7 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, token, book, interactions, 
             {/* {interactions?.likeDislike === -1 ?
               <ThumbDown onClick={handleToggleDislike} style={{ color: "red" }} className="cursor-pointer" />
               :
-              <ThumbDownAltOutlined onClick={handleToggleDislike} style={{ color: "gray" }} className="cursor-pointer" />
+              <ThumbUpAltOutlined onClick={handleToggleLike} style={{ color: "gray" }} className="cursor-pointer" />
             }
             {interactions?.interested ?
               <BookmarkIconOutline onClick={handleToggleInterested} style={{ color: "blue" }} className={iconClass} />
