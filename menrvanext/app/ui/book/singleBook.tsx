@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/app/lib/hooks/useAuth";
 import { useBooks } from "@/app/lib/hooks/useBooks";
-import { fetchBooks } from "@/app/lib/services/apiService";
+import { fetchBookById, fetchBookInteractionsById, fetchBooks } from "@/app/lib/services/apiService";
 import { RootState } from "@/app/lib/store/store";
 import {
   BookOpenIcon,
@@ -22,33 +22,48 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import BookComments from "./bookComments";
 import BookSlider from "./bookSlider";
+import { BookInteraction } from "@/app/lib/models/bookInteraction";
+import { BookResponse } from "@/app/lib/models/book";
 
-const SingleBook: React.FC = ({ }) => {
+interface SingleBookProps {
+  bookDetails: BookResponse;
+  bookInteractions: BookInteraction[];
+}
+
+export const preload = (id: number, token: string | undefined) => {
+  console.log("Preloading data for book", id);
+  void fetchBookById(id);
+  if (token) {
+    void fetchBookInteractionsById(id, token);
+  }
+}
+
+const SingleBook: React.FC<{ id: number }> = ({ id }) => {
   const iconClass = "w-6 h-6 cursor-pointer"
-  const searchParams = useParams();
-  const id = searchParams?.id;
-  const numericId = id ? parseInt(id as string, 10) : 0;
   const book = useSelector((state: RootState) => state.book.currentBook);
+  const interactions = useSelector((state: RootState) => state.book.interactions);
+  console.log(book);
+  console.log(interactions);
   const { liked, disliked, favorite, hasRead, interested } = useSelector((state: RootState) => state.book.interactions);
   const { toggleLiked, fetchBookDetails, fetchBookInteractions, toggleFavorite, toggleHasRead, toggleInterested } = useBooks();
   const { token } = useAuth();
 
   useEffect(() => {
-    if (numericId && token) {
-      fetchBookDetails(numericId);
-      fetchBookInteractions(numericId);
+    if (id && token) {
+      fetchBookDetails(id);
+      fetchBookInteractions(id);
     }
-  }, [numericId, token]);
+  }, [id, token]);
 
-  const handleToggleLike = () => { toggleLiked(numericId, liked ? 0 : 1); }
+  const handleToggleLike = () => { toggleLiked(id, liked ? 0 : 1); }
 
-  const handleToggleDislike = () => { toggleLiked(numericId, disliked ? 0 : -1); }
+  const handleToggleDislike = () => { toggleLiked(id, disliked ? 0 : -1); }
 
-  const handleToggleInterested = () => { toggleInterested(numericId); }
+  const handleToggleInterested = () => { toggleInterested(id); }
 
-  const handleToggleFavorite = () => { toggleFavorite(numericId); }
+  const handleToggleFavorite = () => { toggleFavorite(id); }
 
-  const handleToggleHasRead = () => { toggleHasRead(numericId); }
+  const handleToggleHasRead = () => { toggleHasRead(id); }
 
   async function fetchAllBooksSlider() {
     return fetchBooks();

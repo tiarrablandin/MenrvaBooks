@@ -23,6 +23,11 @@ class UserController(
         return ResponseEntity.ok(userService.index().map { UserDTO(it) })
     }
 
+    @GetMapping("{tag}")
+    fun findByTag(@PathVariable tag: String): ResponseEntity<User> {
+        return ResponseEntity.ok(userService.findByTag(tag))
+    }
+
     @GetMapping("{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<Any> {
         return ResponseEntity.ok(userService.findById(id))

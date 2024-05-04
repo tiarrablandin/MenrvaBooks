@@ -1,5 +1,8 @@
+'use server'
+
 import { Author } from "../models/author";
 import { BookResponse } from "../models/book";
+import { BookInteraction } from "../models/bookInteraction";
 import { User } from "../models/user";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -9,6 +12,15 @@ const url = baseUrl + "/api";
 
 export async function fetchBookById(id: number): Promise<BookResponse> {
   const response = await fetch(`${url}/books/${id}`);
+  return response.json();
+}
+
+export async function fetchBookInteractionsById(id: number, token: string): Promise<BookInteraction> {
+  const response = await fetch(`${url}/books/${id}/interaction`, {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  });
   return response.json();
 }
 
@@ -59,6 +71,19 @@ export async function fetchAuthors(): Promise<Author[]> {
 
 export async function fetchAuthorById(id: number): Promise<Author> {
   const response = await fetch(`${url}/authors/${id}`);
+  return response.json();
+}
+
+
+// * USERS
+
+export async function fetchUserById(id: number): Promise<User> {
+  const response = await fetch(`${url}/users/${id}`);
+  return response.json();
+}
+
+export async function fetchUserByTag(tag: string): Promise<User> {
+  const response = await fetch(`${url}/users/${tag}`);
   return response.json();
 }
 
