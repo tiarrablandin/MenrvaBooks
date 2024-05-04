@@ -24,6 +24,7 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title }) => {
       setIsLoading(true);
       try {
         const fetchedBooks = await fetchData();
+        console.log(fetchedBooks);
         setBooks(fetchedBooks);
       } catch (error) {
         console.error("Failed to fetch books: ", error);
@@ -31,7 +32,7 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title }) => {
         setIsLoading(false);
       }
     };
-
+    // if (!books) fetchBooks();
     fetchBooks();
   }, [fetchData]);
 
@@ -43,13 +44,13 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title }) => {
       <div className="flex w-[95%] items-end justify-start gap-4 overflow-scroll pb-3 md:pb-6">
         {isLoading
           ? Array(10)
-              .fill(0)
-              .map((_, index) => <BookSkeleton key={index} />)
+            .fill(0)
+            .map((_, index) => <BookSkeleton key={index} />)
           : books.map((book) => (
-              <Link href={`../book/${book.id}`} key={book.id}>
-                <BookCard book={book} />
-              </Link>
-            ))}
+            <Link href={`../book/${book.id}`} key={book.id}>
+              <BookCard book={book} />
+            </Link>
+          ))}
       </div>
     </>
   );

@@ -1,7 +1,8 @@
 import { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../store/store";
-import { login as loginUser, logout as logoutUser, setToken, setUserDetails } from "../store/userSlice";
+import { logout as logoutUser, setToken, setUserDetails } from "../store/userSlice";
+import login from "@/app/actions/login";
 
 export function useAuth() {
     const dispatch = useAppDispatch();
@@ -10,20 +11,28 @@ export function useAuth() {
     const loading = useSelector((state: RootState) => state.user.loading);
     const error = useSelector((state: RootState) => state.user.error);
 
-    useEffect(() => {
-        const sessionToken = sessionStorage.getItem('token');
-        const userDetails = sessionStorage.getItem('userDetails');
+    // useEffect(() => {
+    //     const fetchUserData = async () => {
+    //         const response = await fetch('/api/validateToken');
+    //         if (response.ok) {
+    //             const data = await response.json();
+    //             console.log(data);
+    //             sessionStorage.setItem('token', data.token);
+    //             sessionStorage.setItem('userDetails', data.user);
+    //             dispatch(setToken(data.token));
+    //             dispatch(setUserDetails(JSON.parse(data.user)));
+    //         } else {
+    //             console.error('Failed to fetch user data');
+    //         }
+    //     }
 
-        if (sessionToken && !token) {
-            dispatch(setToken(sessionToken));
-        }
-        if (userDetails && !user) {
-            dispatch(setUserDetails(JSON.parse(userDetails)));
-        }
-    }, [dispatch, token]);
+    //     fetchUserData();
+    // }, [dispatch]);
 
-    const login = useCallback(async (identifier: string, password: string) => {
-        dispatch(loginUser({ identifier, password }));
+    const loginUser = useCallback(async (identifier: string, password: string) => {
+        console.log('in loginUser');
+        
+        // dispatch(loginUser({ identifier, password }));
     }, [dispatch]);
 
     const logout = useCallback(() => {
@@ -32,5 +41,5 @@ export function useAuth() {
         dispatch(logoutUser())
     }, [dispatch]);
 
-    return { user, token, loading, error, login, logout };
+    return { user, token, loading, error, loginUser: login, logout };
 }

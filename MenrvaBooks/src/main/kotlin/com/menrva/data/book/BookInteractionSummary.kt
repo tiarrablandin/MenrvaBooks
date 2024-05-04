@@ -13,6 +13,7 @@ interface BookInteractionSummary {
     fun getUser(): User
 
     interface Book {
+        fun getId(): Long?
         fun getTitle(): String?
         fun getCover(): String?
         fun getDescription(): String?
@@ -24,6 +25,7 @@ interface BookInteractionSummary {
     }
 
     interface User {
+        fun getId(): Long?
         fun getTag(): String?
         fun getEmail(): String?
         fun getFirstName(): String?
@@ -36,6 +38,7 @@ interface BookInteractionSummary {
         fun getPenName(): String
         fun getBio(): String
         fun getPhoto(): String
+        fun getUser(): User
     }
 
     interface Series {

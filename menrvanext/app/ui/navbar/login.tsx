@@ -1,9 +1,10 @@
 'use client';
 
+import login from '@/app/actions/login';
 import { useAuth } from '@/app/lib/hooks/useAuth';
 import { useAppDispatch } from '@/app/lib/store/store';
-import { login, selectCurrentUser, selectUserError, selectUserLoading } from '@/app/lib/store/userSlice';
-import { Alert, ArrowRightIcon, AtSymbolIcon, Button, Dialog, ExclamationCircleIcon, KeyIcon, Typography, XMarkIcon } from '@/providers';
+import { selectUserLoading, setUserDetails } from '@/app/lib/store/userSlice';
+import { ArrowRightIcon, AtSymbolIcon, Button, Dialog, ExclamationCircleIcon, KeyIcon, Typography, XMarkIcon } from '@/providers';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -12,17 +13,21 @@ import { useSelector } from 'react-redux';
 interface LoginFormProps {
 }
 
+
 const LoginForm: React.FC<LoginFormProps> = ({ }) => {
     const router = useRouter();
-    const { user, error, login }= useAuth();
+    const dispatch = useAppDispatch();
+    const { user, error, loginUser } = useAuth();
 
-    const [identifier, setIdentifier] = useState("");
-    const [password, setPassword] = useState("");
     const [isOpen, setIsOpen] = useState(true);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        login(identifier, password);
+        const formData = new FormData(event.currentTarget);
+        const identifier = formData.get('identifier') as string;
+        const password = formData.get('password') as string;
+        const user = JSON.parse(JSON.stringify(await login(identifier, password)));
+        dispatch(setUserDetails(user));
         setIsOpen(false);
         router.push("/user");
     }
@@ -46,21 +51,20 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
                         <div>
                             <label
                                 className="mb-3 mt-5 block text-sm font-medium"
-                                htmlFor="tag"
+                                htmlFor="identifier"
                             >
                                 <Typography className={`mb-3 text-xl font-medium`}>
-                                    Tag
+                                    Username
                                 </Typography>
                             </label>
                             <div className="relative">
                                 <input
                                     className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-md outline-2 placeholder:text-gray-500"
-                                    id="tag"
-                                    type="tag"
-                                    value={identifier}
-                                    name="tag"
+                                    id="identifier"
+                                    type="text"
+                                    name="identifier"
                                     placeholder="Enter your tag or email"
-                                    onChange={(e) => setIdentifier(e.target.value)}
+                                    // onChange={(e) => setIdentifier(e.target.value)}
                                     required
                                 />
                                 <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -82,8 +86,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
                                     type="password"
                                     name="password"
                                     placeholder="Enter password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    // onChange={(e) => setPassword(e.target.value)}
                                     required
                                 />
                                 <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -97,7 +100,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
                             aria-live="polite"
                             aria-atomic="true"
                         >
-                            {error&& (
+                            {error && (
                                 <>
                                     <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
                                     <p className="text-sm text-red-500">{error}</p>

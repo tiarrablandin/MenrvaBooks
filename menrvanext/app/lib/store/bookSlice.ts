@@ -1,6 +1,8 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BookResponse } from "../models/book";
 import { RootState } from "./store";
+import { fetchBookById, fetchBookInteractionsById } from "../services/apiService";
+import { BookInteraction } from "../models/bookInteraction";
 
 export interface BookState {
     allBooks: BookResponse[];
@@ -119,11 +121,11 @@ export const fetchBookDetailsThunk = createAsyncThunk(
     'books/fetchBook',
     async ({ bookId }: { bookId: number }, { getState, rejectWithValue }) => {
         try {
-            const response = await fetch(`http://localhost:8085/api/books/${bookId}`);
-            if (!response.ok) {
-                throw new Error("Failed to toggle liked status");
-            }
-            const data = await response.json();
+            // const response = await fetch(`http://localhost:8085/api/books/${bookId}`);
+            // if (!response.ok) {
+            //     throw new Error("Failed to toggle liked status");
+            // }
+            const data = await fetchBookById(bookId);
             return data;
         } catch (error: any) {
             return rejectWithValue(error.message);
@@ -155,14 +157,15 @@ export const toggleBookLiked = createAsyncThunk(
 
 export const fetchInteractions = createAsyncThunk(
     'books/fetchBookInteractions',
-    async ({ bookId, token }: { bookId: number, token: string | null }, { rejectWithValue }) => {
+    async ({ bookId, token }: { bookId: number, token: string }, { rejectWithValue }) => {
         try {
-            const response = await fetch(`http://localhost:8085/api/books/${bookId}/interaction`, {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            });
-            const data = await response.json();
+            const data = await fetchBookInteractionsById(bookId, token);
+            // const response = await fetch(`http://localhost:8085/api/books/${bookId}/interaction`, {
+            //     headers: {
+            //         "Authorization": `Bearer ${token}`
+            //     }
+            // });
+            // const data = await response.json();
             console.log(data);
             return { interested: data.interested, liked: data.likeDislike === 1, disliked: data.likeDislike === -1, favorite: data.favorite, hasRead: data.hasRead };
         } catch (error: any) {
@@ -203,6 +206,22 @@ export const bookSlice = createSlice({
                 state.allBooks[index] = action.payload;
             }
         },
+        updateLikeDislike: (state, action: PayloadAction<{ status: number }>) => {
+            if (action.payload.status === 1) {
+                state.interactions.liked = true;
+            } else if (action.payload.status === -1) {
+                state.interactions.disliked = true;
+            } else {
+                state.interactions.liked = false;
+                state.interactions.disliked = false;
+            }
+        },
+        updateInteractions: (state, action: PayloadAction<BookInteraction>) => {
+            state.interactions.hasRead = action.payload.hasRead;
+            state.interactions.interested = action.payload.interested;
+            state.interactions.liked = action.payload.likeDislike === 1;
+            state.interactions.disliked = action.payload.likeDislike === -1;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -223,13 +242,13 @@ export const bookSlice = createSlice({
                 state.interactions = action.payload;
             })
             .addCase(toggleBookFavorite.fulfilled, (state, action) => {
-                state.interactions = action.payload
+                state.interactions = action.payload;
             })
             .addCase(toggleBookInterested.fulfilled, (state, action) => {
-                state.interactions = action.payload
+                state.interactions = action.payload;
             })
             .addCase(toggleBookHasRead.fulfilled, (state, action) => {
-                state.interactions = action.payload
+                state.interactions = action.payload;
             })
             .addCase(toggleBookLiked.fulfilled, (state, action) => {
                 const { bookId, liked, disliked } = action.payload;
@@ -239,6 +258,6 @@ export const bookSlice = createSlice({
     }
 });
 
-export const { updateAllBooks, updateNewReleases, updateBook } = bookSlice.actions;
+export const { updateAllBooks, updateNewReleases, updateBook, updateLikeDislike, updateInteractions } = bookSlice.actions;
 
 export default bookSlice.reducer;

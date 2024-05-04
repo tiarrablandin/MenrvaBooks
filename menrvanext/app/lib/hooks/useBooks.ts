@@ -46,7 +46,7 @@ export function useBooks() {
     }, [dispatch]);
 
     const fetchBookInteractions = useCallback((bookId: number) => {
-        dispatch(fetchInteractions({ bookId, token }))
+        if (token) dispatch(fetchInteractions({ bookId, token }))
     }, [dispatch]);
 
     return {

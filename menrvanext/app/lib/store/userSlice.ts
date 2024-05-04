@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from './store';
-import { User } from '../models/user';
 import { authenticate } from '@/app/lib/services/apiService';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { User } from '../models/user';
+import { RootState } from './store';
 
 interface UserState {
     user: User | null;
@@ -12,9 +12,9 @@ interface UserState {
 }
 
 const initialState: UserState = {
-    user: JSON.parse(sessionStorage.getItem('userDetails') || 'null'),
+    user: null,
     allUsers: [],
-    jwt: sessionStorage.getItem('token'),
+    jwt: null,
     error: null,
     loading: false,
 };

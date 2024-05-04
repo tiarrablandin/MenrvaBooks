@@ -15,12 +15,12 @@ class BookInteractionService(
     private val userRepository: UserRepository
 ) {
 
-    fun findLikedBooksByTag(tag: String): List<BookInteractionSummary> {
-        return bookInteractionRepository.findLikedBooksByUserSummary(tag)
+    fun findLikedBooksByTag(tag: String): List<BookInteractionSummary.Book> {
+        return bookInteractionRepository.findLikedBooksByUserSummary(tag).map { it.getBook() }
     }
 
-    fun findReadBooksByTag(tag: String): List<BookInteractionSummary> {
-        return bookInteractionRepository.findReadBooksByTag(tag)
+    fun findReadBooksByTag(tag: String): List<BookInteractionSummary.Book> {
+        return bookInteractionRepository.findReadBooksByTag(tag).map { it.getBook() }
     }
 
     fun toggleInterested(bookId: Long, userId: Long): BookInteraction {
