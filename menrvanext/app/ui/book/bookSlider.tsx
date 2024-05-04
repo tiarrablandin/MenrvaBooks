@@ -24,6 +24,7 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title }) => {
       setIsLoading(true);
       try {
         const fetchedBooks = await fetchData();
+        console.log(fetchedBooks);
         setBooks(fetchedBooks);
       } catch (error) {
         console.error("Failed to fetch books: ", error);
@@ -31,7 +32,8 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title }) => {
         setIsLoading(false);
       }
     };
-    if (!books) fetchBooks();
+    // if (!books) fetchBooks();
+    fetchBooks();
   }, [fetchData]);
 
   return (

@@ -1,9 +1,7 @@
 import {
-  fetchBooks,
   fetchLikedBooksForUser,
-  fetchNewReleases,
   fetchRecommendationsForUser,
-  fetchUserByTag,
+  fetchUserByTag
 } from "@/app/lib/services/apiService";
 import { cookies } from "next/headers";
 import BookSlider from "../book/bookSlider";
@@ -21,6 +19,11 @@ const UserComponent = async () => {
     return fetchRecommendationsForUser(tag!!);
   }
 
+  const wrappedFetchLikedBooksForUser = async () => {
+    'use server';
+    return fetchLikedBooksForUser(tag!!);
+  }
+
   console.log(user);
   console.log(token);
   console.log(tag);
@@ -33,7 +36,7 @@ const UserComponent = async () => {
         {/* <BookSlider fetchData={fetchNewReleases} title={"TBR"} />
         <BookSlider fetchData={fetchBooks} title={"Upcoming Releases for You"} />
         <BookSlider fetchData={fetchBooks} title={"Series in Progress"} /> */}
-        {/* {user ? (<BookSlider fetchData={wrappedFetchLikedBooksForUser} title={"Books you've liked."} />) : <></>} */}
+        {user ? (<BookSlider fetchData={wrappedFetchLikedBooksForUser} title={"Books you've liked."} />) : <></>}
         {/* {user ? (<BookSlider fetchData={wrappedFetchRecommendationsForUser} title={"Recommended from Past Reads"} />) : <></>} */}
         {user ? (<BookSlider fetchData={wrappedFetchRecommendationsForUser} title={"Recommended from Past Reads"} />) : <></>}
         {/* <BookSlider fetchData={fetchBooks} title={"New Releases from Authors you Follow"} />

@@ -46,8 +46,8 @@ export async function fetchRecommendationsForUser(tag: string): Promise<BookResp
 
 export async function fetchLikedBooksForUser(tag: string) {
   const response = await fetch(`${url}/users/${tag}/liked-books`);
-  const interactions = response.json()
-  console.log(interactions)
+  const interactions = response.json();
+  console.log("*************" + interactions);
   return interactions;
 }
 

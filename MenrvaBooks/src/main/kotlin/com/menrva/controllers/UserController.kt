@@ -39,12 +39,12 @@ class UserController(
     }
 
     @GetMapping("/{tag}/liked-books")
-    fun getLikedBooks(@PathVariable tag: String): ResponseEntity<List<BookInteractionSummary>> {
+    fun getLikedBooks(@PathVariable tag: String): ResponseEntity<List<BookInteractionSummary.Book>> {
         return ResponseEntity.ok(bookInteractionService.findLikedBooksByTag(tag))
     }
 
     @GetMapping("/{tag}/read-books")
-    fun getReadBooks(@PathVariable tag: String): ResponseEntity<List<BookInteractionSummary>> {
+    fun getReadBooks(@PathVariable tag: String): ResponseEntity<List<BookInteractionSummary.Book>> {
         return ResponseEntity.ok(bookInteractionService.findReadBooksByTag(tag))
     }
 

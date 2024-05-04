@@ -36,6 +36,7 @@ interface BookInteractionSummary {
         fun getPenName(): String
         fun getBio(): String
         fun getPhoto(): String
+        fun getUser(): User
     }
 
     interface Series {
