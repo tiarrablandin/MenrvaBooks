@@ -2,6 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BookResponse } from "../models/book";
 import { RootState } from "./store";
 import { fetchBookById, fetchBookInteractionsById } from "../services/apiService";
+import { BookInteraction } from "../models/bookInteraction";
 
 export interface BookState {
     allBooks: BookResponse[];
@@ -205,6 +206,22 @@ export const bookSlice = createSlice({
                 state.allBooks[index] = action.payload;
             }
         },
+        updateLikeDislike: (state, action: PayloadAction<{ status: number }>) => {
+            if (action.payload.status === 1) {
+                state.interactions.liked = true;
+            } else if (action.payload.status === -1) {
+                state.interactions.disliked = true;
+            } else {
+                state.interactions.liked = false;
+                state.interactions.disliked = false;
+            }
+        },
+        updateInteractions: (state, action: PayloadAction<BookInteraction>) => {
+            state.interactions.hasRead = action.payload.hasRead;
+            state.interactions.interested = action.payload.interested;
+            state.interactions.liked = action.payload.likeDislike === 1;
+            state.interactions.disliked = action.payload.likeDislike === -1;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -241,6 +258,6 @@ export const bookSlice = createSlice({
     }
 });
 
-export const { updateAllBooks, updateNewReleases, updateBook } = bookSlice.actions;
+export const { updateAllBooks, updateNewReleases, updateBook, updateLikeDislike, updateInteractions } = bookSlice.actions;
 
 export default bookSlice.reducer;

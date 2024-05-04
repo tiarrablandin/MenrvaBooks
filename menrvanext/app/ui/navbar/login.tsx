@@ -2,7 +2,6 @@
 
 import login from '@/app/actions/login';
 import { useAuth } from '@/app/lib/hooks/useAuth';
-import { User } from '@/app/lib/models/user';
 import { useAppDispatch } from '@/app/lib/store/store';
 import { selectUserLoading, setUserDetails } from '@/app/lib/store/userSlice';
 import { ArrowRightIcon, AtSymbolIcon, Button, Dialog, ExclamationCircleIcon, KeyIcon, Typography, XMarkIcon } from '@/providers';
@@ -28,7 +27,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
         const identifier = formData.get('identifier') as string;
         const password = formData.get('password') as string;
         const user = JSON.parse(JSON.stringify(await login(identifier, password)));
-        console.log(`IN LOGIN UI COMPONENT: ${JSON.stringify(user)}`);
         dispatch(setUserDetails(user));
         setIsOpen(false);
         router.push("/user");
