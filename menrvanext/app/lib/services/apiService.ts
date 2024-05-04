@@ -83,7 +83,7 @@ export async function fetchUserById(id: number): Promise<User> {
 }
 
 export async function fetchUserByTag(tag: string): Promise<User> {
-  const response = await fetch(`${url}/users/${tag}`);
+  const response = await fetch(`${url}/users/${tag}/info`);
   return response.json();
 }
 

@@ -27,9 +27,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
         const formData = new FormData(event.currentTarget);
         const identifier = formData.get('identifier') as string;
         const password = formData.get('password') as string;
-        const user  = await login(identifier, password);
-        console.log(`IN LOGIN UI COMPONENT: ${user}`);
-        dispatch(setUserDetails(JSON.parse(JSON.stringify(user))));
+        const user = JSON.parse(JSON.stringify(await login(identifier, password)));
+        console.log(`IN LOGIN UI COMPONENT: ${JSON.stringify(user)}`);
+        dispatch(setUserDetails(user));
         setIsOpen(false);
         router.push("/user");
     }
