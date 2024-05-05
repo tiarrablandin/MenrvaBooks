@@ -1,5 +1,3 @@
-'use client';
-
 import { BookResponse } from "@/app/lib/models/book";
 import { BookInteraction } from "@/app/lib/models/bookInteraction";
 import { fetchBookById, fetchBookInteractionsById, fetchBooks, toggleBookHasRead, toggleBookInterested, toggleBookLiked } from "@/app/lib/services/apiService";
@@ -21,46 +19,15 @@ interface SingleBookProps {
   interactions?: BookInteraction | null;
 }
 
-export const preload = (id: number, token: string | undefined) => {
-  console.log("Preloading data for book", id);
-  void fetchBookById(id);
-  if (token) {
-    void fetchBookInteractionsById(id, token);
-  }
-}
+// export const preload = (id: number, token: string | undefined) => {
+//   console.log("Preloading data for book", id);
+//   void fetchBookById(id);
+//   if (token) {
+//     void fetchBookInteractionsById(id, token);
+//   }
+// }
 
 const SingleBook: React.FC<SingleBookProps> = ({ id, token, book, interactions, tag }) => {
-  const iconClass = "w-6 h-6 cursor-pointer";
-  console.log(token);
-  // const book = useSelector((state: RootState) => state.book.currentBook);
-  // const interactions = useSelector((state: RootState) => state.book.interactions);
-  console.log(book);
-  // const { liked, disliked, favorite, hasRead, interested } = useSelector((state: RootState) => state.book.interactions);
-  // const { toggleLiked, fetchBookDetails, fetchBookInteractions, toggleFavorite, toggleHasRead, toggleInterested } = useBooks();
-  // const { token } = useAuth();
-  console.log(interactions);
-  // console.log(stateInteractions);
-  // useEffect(() => {
-  // if (interactions) {
-  // dispatch(updateInteractions(interactions));
-  // }
-  // }, [interactions])
-  // useEffect(() => {
-  //   if (id && token) {
-  //     fetchBookDetails(id);
-  //     fetchBookInteractions(id);
-  //   }
-  // }, [id, token]);
-
-  const handleToggleLike = () => { if (token) toggleBookLiked(id, interactions?.likeDislike === 1 ? 0 : 1, token); }
-
-  const handleToggleDislike = () => { if (token) toggleBookLiked(id, interactions?.likeDislike === -1 ? 0 : -1, token); }
-
-  const handleToggleInterested = () => { if (token) toggleBookInterested(id, token); }
-
-  // const handleToggleFavorite = () => { toggleFavorite(id); }
-
-  const handleToggleHasRead = () => { toggleBookHasRead(id, token!!); }
 
   async function fetchAllBooksSlider() {
     return fetchBooks();
