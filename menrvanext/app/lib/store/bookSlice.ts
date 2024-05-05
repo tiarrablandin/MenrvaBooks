@@ -209,8 +209,10 @@ export const bookSlice = createSlice({
         updateLikeDislike: (state, action: PayloadAction<{ status: number }>) => {
             if (action.payload.status === 1) {
                 state.interactions.liked = true;
+                state.interactions.disliked = false;
             } else if (action.payload.status === -1) {
                 state.interactions.disliked = true;
+                state.interactions.liked = false;
             } else {
                 state.interactions.liked = false;
                 state.interactions.disliked = false;
