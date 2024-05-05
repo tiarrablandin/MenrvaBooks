@@ -3,7 +3,7 @@
 import { toggleBookLiked } from "@/app/lib/services/apiService";
 import { updateLikeDislike } from "@/app/lib/store/bookSlice";
 import { RootState, useAppDispatch } from "@/app/lib/store/store";
-import { IconButton, ThumbUp, ThumbUpAltOutlined } from "@/providers";
+import { ThumbUp, ThumbUpAltOutlined } from "@/providers";
 import { useSelector } from "react-redux";
 
 interface ToggleLikeProps {
@@ -32,9 +32,9 @@ const ThumbsUpComponent: React.FC<ToggleLikeProps> = ({ id, token, liked }) => {
     return (
         <>
             {stateLiked ?
-                <ThumbUp onClick={handleToggleLike} style={{ color: "blue" }} className="cursor-pointer" />
+                <ThumbUp onClick={handleToggleLike} className="cursor-pointer text-blue-700" />
                 :
-                <ThumbUpAltOutlined onClick={handleToggleLike} style={{ color: "gray" }} className="cursor-pointer" />
+                <ThumbUpAltOutlined onClick={handleToggleLike} className="cursor-pointer text-gray-600" />
             }
         </>
     )

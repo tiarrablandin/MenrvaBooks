@@ -10,6 +10,8 @@ import Link from "next/link";
 import BookComments from "./bookComments";
 import ThumbsDownComponent from "./interactions/thumbsDown";
 import ThumbsUpComponent from "./interactions/thumbsUp";
+import InterestedButton from "./interactions/interestedButton";
+import HasReadButton from "./interactions/hasReadButton";
 
 interface SingleBookProps {
   id: number;
@@ -19,13 +21,13 @@ interface SingleBookProps {
   interactions?: BookInteraction | null;
 }
 
-// export const preload = (id: number, token: string | undefined) => {
-//   console.log("Preloading data for book", id);
-//   void fetchBookById(id);
-//   if (token) {
-//     void fetchBookInteractionsById(id, token);
-//   }
-// }
+export const preload = (id: number, token: string | undefined) => {
+  console.log("Preloading data for book", id);
+  void fetchBookById(id);
+  if (token) {
+    void fetchBookInteractionsById(id, token);
+  }
+}
 
 const SingleBook: React.FC<SingleBookProps> = ({ id, token, book, interactions, tag }) => {
 
@@ -55,21 +57,8 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, token, book, interactions, 
           <div className="flex mt-2 gap-4">
             <ThumbsUpComponent liked={interactions?.likeDislike === 1} token={token} id={id} />
             <ThumbsDownComponent disliked={interactions?.likeDislike === -1} token={token} id={id} />
-            {/* {interactions?.likeDislike === -1 ?
-              <ThumbDown onClick={handleToggleDislike} style={{ color: "red" }} className="cursor-pointer" />
-              :
-              <ThumbUpAltOutlined onClick={handleToggleLike} style={{ color: "gray" }} className="cursor-pointer" />
-            }
-            {interactions?.interested ?
-              <BookmarkIconOutline onClick={handleToggleInterested} style={{ color: "blue" }} className={iconClass} />
-              :
-              <BookmarkIconOutline onClick={handleToggleInterested} style={{ color: "gray" }} className={iconClass} />
-            }
-            {interactions?.hasRead ?
-              <BookOpenIcon onClick={handleToggleHasRead} style={{ color: "blue" }} className={iconClass} />
-              :
-              <BookOpenIcon onClick={handleToggleHasRead} style={{ color: "gray" }} className={iconClass} />
-            } */}
+            <InterestedButton interested={interactions?.interested === true} token={token} id={id} />
+            <HasReadButton hasRead={interactions?.hasRead === true} token={token} id={id} />
             {/* {interactions?.favorite ?
               <StarIcon onClick={handleToggleFavorite} style={{ color: "blue" }} className={iconClass} />
               :
@@ -97,7 +86,7 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, token, book, interactions, 
         {/* <BookSlider fetchData={fetchAllBooksSlider} title={"Books in Series"} />
         <BookSlider fetchData={fetchAllBooksSlider} title={"Similar Books"} /> */}
       </div>
-      <BookComments bookId={book?.id!!} comments={book?.comments} tag={tag}/>
+      <BookComments bookId={book?.id!!} comments={book?.comments} tag={tag} />
     </>
   );
 };

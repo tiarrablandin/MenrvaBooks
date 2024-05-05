@@ -206,6 +206,12 @@ export const bookSlice = createSlice({
                 state.allBooks[index] = action.payload;
             }
         },
+        updateHasRead: (state, action: PayloadAction<boolean>) => {
+            state.interactions.hasRead = action.payload;
+        },
+        updateInterested: (state, action: PayloadAction<boolean>) => {
+            state.interactions.interested = action.payload;
+        },
         updateLikeDislike: (state, action: PayloadAction<{ status: number }>) => {
             if (action.payload.status === 1) {
                 state.interactions.liked = true;
@@ -260,6 +266,6 @@ export const bookSlice = createSlice({
     }
 });
 
-export const { updateAllBooks, updateNewReleases, updateBook, updateLikeDislike, updateInteractions } = bookSlice.actions;
+export const { updateAllBooks, updateNewReleases, updateBook, updateLikeDislike, updateHasRead, updateInteractions, updateInterested } = bookSlice.actions;
 
 export default bookSlice.reducer;

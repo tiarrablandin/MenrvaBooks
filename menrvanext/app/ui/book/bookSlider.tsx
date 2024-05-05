@@ -9,7 +9,7 @@ import BookSkeleton from "./bookSkeleton";
 import Link from "next/link";
 
 interface BookSliderProps {
-  fetchData: () => Promise<BookResponse[]>;
+  fetchData: () => Promise<BookResponse[] | null>;
   title: string;
 }
 
@@ -25,7 +25,7 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title }) => {
       try {
         const fetchedBooks = await fetchData();
         console.log(fetchedBooks);
-        setBooks(fetchedBooks);
+        if (fetchedBooks) setBooks(fetchedBooks);
       } catch (error) {
         console.error("Failed to fetch books: ", error);
       } finally {

@@ -9,6 +9,7 @@ import {
   MenuHandler,
   MenuItem,
   MenuList,
+  TableCellsIcon,
   Typography,
   UserIcon,
 } from "@/providers";
@@ -18,6 +19,9 @@ import React from "react";
 const ProfileMenu: React.FC<{ tag: string, role: string, logout: () => void }> = ({ tag, role, logout }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const iconClass = "flex items-center gap-x-3 p-2 px-4 font-normal text-base";
+
+  console.log(tag);
+  console.log(role);
 
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -70,7 +74,7 @@ const ProfileMenu: React.FC<{ tag: string, role: string, logout: () => void }> =
             {tag ? (
               <>
                 <UserIcon className="h-4 w-4" />
-                <Link href="/account" className="flex items-center">
+                <Link href="/account" className="flex items-center text-nowrap">
                   My Profile
                 </Link>
               </>
@@ -86,13 +90,13 @@ const ProfileMenu: React.FC<{ tag: string, role: string, logout: () => void }> =
         </MenuItem>
         {tag && role === 'Admin' && (
           <MenuItem key="3" onClick={closeMenu} className="">
-            <Link onClick={handleLogout} href="/admin" className="flex items-center">
+            <Link href="/admin" className="flex items-center">
               <Typography
                 as="li"
                 variant="small"
                 className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
               >
-                <ArrowLeftStartOnRectangleIcon className="h-4 w-4" />
+                <TableCellsIcon className="h-4 w-4" />
                 Admin
               </Typography>
             </Link>
