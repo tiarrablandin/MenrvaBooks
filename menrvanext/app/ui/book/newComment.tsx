@@ -1,3 +1,5 @@
+'use client';
+
 import createComment from "@/app/actions/createComment";
 import { Button, Input, Typography } from "@/providers";
 

@@ -2,47 +2,168 @@
 
 import { Author } from "../models/author";
 import { BookResponse } from "../models/book";
-import { BookInteraction } from "../models/bookInteraction";
 import { User } from "../models/user";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 const url = baseUrl + "/api";
 
+// * AUTHORS
+
+export async function fetchAuthors(): Promise<Author[] | null> {
+  try {
+    const response = await fetch(`${url}/authors`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch authors.');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+export async function fetchAuthorById(id: number): Promise<Author | null> {
+  try {
+    const response = await fetch(`${url}/authors/${id}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch author details.');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+
+// * USERS
+
+export async function fetchUserById(id: number): Promise<User | null> {
+  try {
+    const response = await fetch(`${url}/users/${id}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch user details.');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+export async function fetchUserByTag(tag: string): Promise<User | null> {
+  try {
+    const response = await fetch(`${url}/users/${tag}/info`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch user by tag.');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+
 // * BOOKS
 
-export async function fetchBookById(id: number): Promise<BookResponse> {
-  const response = await fetch(`${url}/books/${id}`);
-  return response.json();
+export async function fetchBookById(id: number): Promise<BookResponse | null> {
+  try {
+    const response = await fetch(`${url}/books/${id}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch book details.');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
 
-export async function fetchBooks(): Promise<BookResponse[]> {
-  const response = await fetch(`${url}/books/summary`);
-  return response.json();
+export async function fetchBooks(): Promise<BookResponse[] | null> {
+  try {
+    const response = await fetch(`${url}/books/summary`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch books summary.');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
 
-export async function fetchNewReleases(): Promise<BookResponse[]> {
-  const response = await fetch(`${url}/books/newReleases`);
-  return response.json();
+export async function fetchNewReleases(): Promise<BookResponse[] | null> {
+  try {
+    const response = await fetch(`${url}/books/newReleases`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch new releases.');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
 
-export async function fetchSearchResults(searchTerm: string): Promise<BookResponse[]> {
-  const response = await fetch(`${url}/search/books?title=${searchTerm}`);
-  return response.json();
+export async function fetchSearchResults(searchTerm: string): Promise<BookResponse[] | null> {
+  try {
+    const response = await fetch(`${url}/search/books?title=${searchTerm}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch search results.');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
 
-export async function fetchRecommendationsForUser(tag: string): Promise<BookResponse[]> {
-  const response = await fetch(`${url}/recommendations/forUser?tag=${tag}`);
-  return response.json();
+export async function fetchRecommendationsForUser(tag: string): Promise<BookResponse[] | null> {
+  try {
+    const response = await fetch(`${url}/recommendations/forUser?tag=${tag}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch recommendations for user.');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
 
-export async function fetchLikedBooksForUser(tag: string): Promise<BookResponse[]> {
-  const response = await fetch(`${url}/users/${tag}/liked-books`);
-  return response.json();
+export async function fetchLikedBooksForUser(tag: string): Promise<BookResponse[] | null> {
+  try {
+    const response = await fetch(`${url}/users/${tag}/liked-books`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch liked books for user.');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
 
-export async function addBook(book: BookResponse) {
-  const response = await fetch(`${url}/books`)
+export async function addBook(book: BookResponse): Promise<Response | null> {
+  try {
+    const response = await fetch(`${url}/books`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(book),
+    });
+    if (!response.ok) {
+      throw new Error('Failed to add new book.');
+    }
+    return response;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
+
 
 //fetchTBR through user for user home
 //fetchUpcomingReleases through user for user home
@@ -51,30 +172,6 @@ export async function addBook(book: BookResponse) {
 //fetchGenres through user for user home- there will be a few of these
 //fetchRead through user for user home
 
-// * AUTHORS
-
-export async function fetchAuthors(): Promise<Author[]> {
-  const response = await fetch(`${url}/authors`);
-  return response.json();
-}
-
-export async function fetchAuthorById(id: number): Promise<Author> {
-  const response = await fetch(`${url}/authors/${id}`);
-  return response.json();
-}
-
-
-// * USERS
-
-export async function fetchUserById(id: number): Promise<User> {
-  const response = await fetch(`${url}/users/${id}`);
-  return response.json();
-}
-
-export async function fetchUserByTag(tag: string): Promise<User> {
-  const response = await fetch(`${url}/users/${tag}/info`);
-  return response.json();
-}
 
 // * INTERACTIONS
 
@@ -94,6 +191,7 @@ export async function toggleUserActive(userId: number, token: string) {
     return data;
   } catch (error: any) {
     console.error(error.message);
+    return null;
   }
 }
 
@@ -113,6 +211,7 @@ export async function toggleBookInterested(bookId: number, token: string) {
     return { bookId, interested: data.interested };
   } catch (error: any) {
     console.error(error.message);
+    return null;
   }
 }
 
@@ -132,6 +231,7 @@ export async function toggleBookHasRead(bookId: number, token: string) {
     return { bookId, hasRead: data.hasRead };
   } catch (error: any) {
     console.error(error.message);
+    return null;
   }
 }
 
@@ -151,19 +251,29 @@ export async function toggleBookLiked(bookId: number, status: number, token: str
     return { bookId, liked: data.likeDislike === 1, disliked: data.likeDislike === -1 };
   } catch (error: any) {
     console.error(error.message);
+    return null;
   }
 }
 
-export async function fetchBookInteractionsById(id: number, token: string): Promise<BookInteraction> {
-  const response = await fetch(`${url}/books/${id}/interaction`, {
-    headers: {
-      "Authorization": `Bearer ${token}`
+export async function fetchBookInteractionsById(id: number, token: string) {
+  try {
+    const response = await fetch(`${url}/books/${id}/interaction`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+    if (!response.ok) {
+      throw new Error("Failed to fetch book interactions by id: " + id);
     }
-  });
-  return response.json();
+    const data = await response.text(); // Fetch the data as text first
+    return data ? JSON.parse(data) : null; // Parse it if not empty
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
 
-export async function authenticate(identifier: string, password: string): Promise<{ jwt: string, user: User }> {
+export async function authenticate(identifier: string, password: string) {
   try {
     const response = await fetch(`${baseUrl}/authenticate`, {
       method: "POST",
@@ -175,7 +285,7 @@ export async function authenticate(identifier: string, password: string): Promis
     return response.json();
   } catch (error) {
     console.error("Unable to log in: ", error);
-    throw error;
+    return null;
   }
 }
 
@@ -196,5 +306,6 @@ export async function fetchCreateComment(comment: string, bookId: number, token:
     return await response.json();
   } catch (error: any) {
     console.error(error.message);
+    return null;
   }
 }
