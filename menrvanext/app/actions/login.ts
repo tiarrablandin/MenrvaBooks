@@ -19,6 +19,8 @@ export default async function login(identifier: string, password: string) {
 
         cookieStore.set('tag', user.tag);
 
+        cookieStore.set('role', user.role);
+
         return { user: JSON.parse(JSON.stringify(user)) };
     } catch (error) {
         console.error('login failed', error);
