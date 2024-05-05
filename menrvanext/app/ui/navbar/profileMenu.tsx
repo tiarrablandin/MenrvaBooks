@@ -1,4 +1,3 @@
-import { useAuth } from "@/app/lib/hooks/useAuth";
 import {
   ArrowLeftStartOnRectangleIcon,
   ArrowRightEndOnRectangleIcon,
@@ -10,16 +9,19 @@ import {
   MenuHandler,
   MenuItem,
   MenuList,
+  TableCellsIcon,
   Typography,
   UserIcon,
 } from "@/providers";
 import Link from "next/link";
 import React from "react";
 
-const ProfileMenu = () => {
-  const { user, logout } = useAuth();
+const ProfileMenu: React.FC<{ tag: string, role: string, logout: () => void }> = ({ tag, role, logout }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const iconClass = "flex items-center gap-x-3 p-2 px-4 font-normal text-base";
+
+  console.log(tag);
+  console.log(role);
 
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -58,7 +60,7 @@ const ProfileMenu = () => {
             className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
           >
             <HomeIcon className="h-4 w-4" />
-            <Link href={user ? "/user" : "/home"} className="flex items-center">
+            <Link href={tag ? "/user" : "/home"} className="flex items-center">
               Home
             </Link>
           </Typography>
@@ -69,10 +71,10 @@ const ProfileMenu = () => {
             variant="small"
             className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
           >
-            {user ? (
+            {tag ? (
               <>
                 <UserIcon className="h-4 w-4" />
-                <Link href="/account" className="flex items-center">
+                <Link href="/account" className="flex items-center text-nowrap">
                   My Profile
                 </Link>
               </>
@@ -86,22 +88,22 @@ const ProfileMenu = () => {
             )}
           </Typography>
         </MenuItem>
-        <MenuItem key="3" onClick={closeMenu} className="">
-          {user && user.role === 'admin' && (
-            <Link onClick={handleLogout} href="/admin" className="flex items-center">
+        {tag && role === 'Admin' && (
+          <MenuItem key="3" onClick={closeMenu} className="">
+            <Link href="/admin" className="flex items-center">
               <Typography
                 as="li"
                 variant="small"
                 className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
               >
-                <ArrowLeftStartOnRectangleIcon className="h-4 w-4" />
+                <TableCellsIcon className="h-4 w-4" />
                 Admin
               </Typography>
             </Link>
-          )}
-        </MenuItem>
+          </MenuItem>
+        )}
         <MenuItem key="4" onClick={closeMenu} className="">
-          {user ? (
+          {tag ? (
             <Link onClick={handleLogout} href="/home" className="flex items-center">
               <Typography
                 as="li"
