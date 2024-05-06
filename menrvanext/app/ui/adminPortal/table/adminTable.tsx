@@ -18,6 +18,7 @@ interface AdminTableProps {
   headDesc: string;
   add: JSX.Element;
   reviewedToggle: JSX.Element;
+  activeToggle?: JSX.Element;
   reviewedCallback?: (bookId: number) => void
   activeCallback?: (id: number) => void
   tableHeaders: string[];
@@ -32,6 +33,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
   headDesc,
   add,
   reviewedToggle,
+  activeToggle,
   tableHeaders,
   data,
   renderRow,
@@ -86,6 +88,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
             <div className="flex gap-5 items-center mr-2">
               {add}
               {showReviewedToggle && reviewedCallback && reviewedToggle}
+              {activeCallback && activeToggle}
             </div>
           </div>
         </CardHeader>

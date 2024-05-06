@@ -2,9 +2,7 @@
 
 import { toggleBookHasRead } from "@/app/lib/store/bookSlice";
 import { RootState, useAppDispatch } from "@/app/lib/store/store";
-import { setToken, setUserDetails } from "@/app/lib/store/userSlice";
 import { BookOpenOutline, BookOpenSolid } from "@/providers";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 interface HasReadButtonProps {
@@ -22,21 +20,6 @@ const HasReadButton: React.FC<HasReadButtonProps> = ({ id }) => {
             console.error("Failed to toggle like on server, rolling back", error);
         }
     }
-
-
-    useEffect(() => {
-        const fetchUserInfo = async () => {
-            const res = await fetch('/api/validateToken');
-            if (res.ok) {
-                const data = await res.json();
-                console.log("************" + data.jwt);
-                dispatch(setUserDetails(data.user));
-                dispatch(setToken(data.jwt));
-            }
-        }
-
-        fetchUserInfo();
-    }, [dispatch]);
 
     return (
         <>
