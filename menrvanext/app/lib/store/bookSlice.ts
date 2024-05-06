@@ -58,7 +58,6 @@ export const toggleBookHasRead = createAsyncThunk(
     'books/toggleHasRead',
     async ({ bookId }: { bookId: number }, { getState, rejectWithValue }) => {
         const token = (getState() as RootState).user.jwt;
-        console.log("#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#" + token);
         try {
             const response = await fetch(`http://localhost:8085/api/books/${bookId}/hasRead`, {
                 method: "POST",
@@ -122,10 +121,6 @@ export const fetchBookDetailsThunk = createAsyncThunk(
     'books/fetchBook',
     async ({ bookId }: { bookId: number }, { getState, rejectWithValue }) => {
         try {
-            // const response = await fetch(`http://localhost:8085/api/books/${bookId}`);
-            // if (!response.ok) {
-            //     throw new Error("Failed to toggle liked status");
-            // }
             const data = await fetchBookById(bookId);
             return data;
         } catch (error: any) {
@@ -161,7 +156,6 @@ export const fetchInteractions = createAsyncThunk(
     async ({ bookId }: { bookId: number }, { rejectWithValue, getState }) => {
         const token = (getState() as RootState).user.jwt;
         try {
-            // const data = await fetchBookInteractionsById(bookId, token);
             const response = await fetch(`http://localhost:8085/api/books/${bookId}/interaction`, {
                 headers: {
                     "Authorization": `Bearer ${token}`

@@ -23,14 +23,13 @@ interface SingleBookProps {
 }
 
 export const preload = (id: number, token: string | undefined) => {
-  console.log("Preloading data for book", id);
   void fetchBookById(id);
   if (token) {
     void fetchBookInteractionsById(id, token);
   }
 }
 
-const SingleBook: React.FC<SingleBookProps> = ({ id, token, book, interactions, tag }) => {
+const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) => {
 
   async function fetchAllBooksSlider() {
     return fetchBooks();

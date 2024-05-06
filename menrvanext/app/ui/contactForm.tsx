@@ -1,33 +1,39 @@
-"use client";
-
 import { Button, Card, Input, Textarea, Typography } from "@/providers";
-import React, { useState } from "react";
+import React from "react";
+import { sendEmail } from "../actions/sendEmail";
 
-interface ContactFormProps {}
+interface ContactFormProps { }
 
-const ContactForm: React.FC<ContactFormProps> = ({}) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+const ContactForm: React.FC<ContactFormProps> = ({ }) => {
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const response = await fetch('/api/sendEmail', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, email, message }),
-    });
+  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const response = await fetch('/api/sendEmail', {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ name, email, message }),
+  //   });
 
-    if (response.ok) {
-      const data = await response.json();
-      console.log (data)
-      alert("Message sent successfully!");
-    } else {
-      alert("Failed to send message.");
-    }
-  };
+  //   if (response.ok) {
+  //     const data = await response.json();
+  //     console.log (data)
+  //     alert("Message sent successfully!");
+  //   } else {
+  //     alert("Failed to send message.");
+  //   }
+  // };
+
+  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const formData = new FormData(event.currentTarget);
+  //   const name = formData.get('name') as string;
+  //   const email = formData.get('email') as string;
+  //   const message = formData.get('message') as string;
+  //   const response = await sendEmail(name, email, message);
+  //   console.log(response);
+  // }
 
   return (
     <div className="flex justify-center items-center max-h-screen h-[70vh]">
@@ -41,7 +47,7 @@ const ContactForm: React.FC<ContactFormProps> = ({}) => {
         <Typography className="mt-1 font-normal">
           Got a suggestion on how to make the site better? Let us know!
         </Typography>
-        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 text-old-lace" onSubmit={handleSubmit}>
+        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 text-old-lace" action={sendEmail}>
           <div className="mb-1 flex flex-col gap-6">
             <Typography variant="h6" className="-mb-3">
               Your Name
@@ -49,13 +55,12 @@ const ContactForm: React.FC<ContactFormProps> = ({}) => {
             <Input
               size="lg"
               placeholder="John Doe"
-              value={name}
+              name="name"
+              id="name"
               className=" !border-eggplant focus:!border-eggplant dark:text-old-lace"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
-              crossOrigin={undefined}
-              onChange={(e) => setName(e.target.value)}
             />
             <Typography variant="h6" className="-mb-3">
               Your Email
@@ -63,25 +68,24 @@ const ContactForm: React.FC<ContactFormProps> = ({}) => {
             <Input
               size="lg"
               placeholder="name@mail.com"
-              value={email}
+              name="email"
+              id="email"
               className=" !border-eggplant focus:!border-eggplant dark:text-old-lace"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
-              crossOrigin={undefined}
-              onChange={(e) => setEmail(e.target.value)}
             />
             <Typography variant="h6" className="-mb-3">
               Message
             </Typography>
             <Textarea
               size="lg"
-              value={message}
+              name="message"
+              id="message"
               className=" !border-eggplant focus:!border-eggplant dark:text-old-lace"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
-              onChange={(e) => setMessage(e.target.value)}
             />
           </div>
           <Button type="submit" className="mt-6 bg-eggplant text-old-lace" fullWidth>
