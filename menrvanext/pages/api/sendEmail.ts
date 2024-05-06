@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
 
-const sendEmail = async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { name, email, message } = req.body;
 
   let transporter = nodemailer.createTransport({
@@ -31,5 +31,3 @@ const sendEmail = async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(500).send("Failed to send message");
   }
 };
-
-export default sendEmail;

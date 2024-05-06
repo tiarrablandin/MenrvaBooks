@@ -224,7 +224,7 @@ export async function toggleBookHasRead(bookId: number, token: string) {
       }
     });
     if (!response.ok) {
-      throw new Error("Failed to toggle liked status");
+      throw new Error("Failed to toggle liked*** status");
     }
     const data = await response.json();
     console.log(data);
