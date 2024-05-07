@@ -35,6 +35,35 @@ export async function fetchAuthorById(id: number): Promise<Author | null> {
   }
 }
 
+export async function fetchAuthorBooksById(id: number): Promise<BookResponse[] | null> {
+  try {
+    const response = await fetch(`${url}/authors/${id}/books`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch author details.');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+export async function fetchUserFollowsAuthor(authorId: number, token: string): Promise<boolean | null> {
+  try {
+    const response = await fetch(`${url}/authors/${authorId}/follows`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    })
+    if (!response.ok) {
+      throw new Error('Failed to fetch user follows author details.');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
 
 // * USERS
 
@@ -57,7 +86,9 @@ export async function fetchUserByTag(tag: string): Promise<User | null> {
     if (!response.ok) {
       throw new Error('Failed to fetch user by tag.');
     }
-    return await response.json();
+    const data = await response.json();
+    console.log('************* ' + data)
+    return data;
   } catch (error) {
     console.error(error);
     return null;
@@ -224,7 +255,7 @@ export async function toggleBookHasRead(bookId: number, token: string) {
       }
     });
     if (!response.ok) {
-      throw new Error("Failed to toggle liked status");
+      throw new Error("Failed to toggle liked*** status");
     }
     const data = await response.json();
     console.log(data);

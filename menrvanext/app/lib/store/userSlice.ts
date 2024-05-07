@@ -94,9 +94,11 @@ export const userSlice = createSlice({
             state.loading = false;
         },
         setToken: (state, action: PayloadAction<string>) => {
+            console.log(action.payload);
             state.jwt = action.payload;
         },
         setUserDetails: (state, action: PayloadAction<User>) => {
+            console.log(action.payload);
             state.user = action.payload;
         },
     },

@@ -1,3 +1,4 @@
+import InitializeUserCredentials from "@/app/ui/adminPortal/initializeUserCredentials";
 import Sidebar from "@/app/ui/adminPortal/sidebar";
 
 export default function AdminLayout({ children, add, update }: { children: React.ReactNode, add: React.ReactNode, update: React.ReactNode }) {
@@ -9,6 +10,8 @@ export default function AdminLayout({ children, add, update }: { children: React
                 {update}
                 {children}
             </main>
+
+            <InitializeUserCredentials />
         </div>
     )
 }

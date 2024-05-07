@@ -1,6 +1,7 @@
 import { cookies } from "next/headers"
 import { Footer } from "../ui/footer"
 import Nav from "../ui/navbar/nav"
+import InitializeUserCredentials from "../ui/adminPortal/initializeUserCredentials";
 
 export default function DashboardLayout({ children, }: { children: React.ReactNode }) {
     const tag = cookies().get('tag')?.value as string;
@@ -18,7 +19,7 @@ export default function DashboardLayout({ children, }: { children: React.ReactNo
             <Nav tag={tag} role={role} logout={logout} />
 
             {children}
-
+            <InitializeUserCredentials />
             <Footer />
         </>
     )

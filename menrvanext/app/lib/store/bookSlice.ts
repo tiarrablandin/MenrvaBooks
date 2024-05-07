@@ -1,8 +1,8 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BookResponse } from "../models/book";
-import { RootState } from "./store";
-import { fetchBookById, fetchBookInteractionsById } from "../services/apiService";
 import { BookInteraction } from "../models/bookInteraction";
+import { fetchBookById } from "../services/apiService";
+import { RootState } from "./store";
 
 export interface BookState {
     allBooks: BookResponse[];
@@ -66,7 +66,7 @@ export const toggleBookHasRead = createAsyncThunk(
                 }
             });
             if (!response.ok) {
-                throw new Error("Failed to toggle interested status");
+                throw new Error("Failed to toggle has read status");
             }
             return await response.json();
         } catch (error: any) {
@@ -108,7 +108,7 @@ export const toggleBookFavorite = createAsyncThunk(
                 }
             });
             if (!response.ok) {
-                throw new Error("Failed to toggle reviewed status");
+                throw new Error("Failed to toggle favorite status");
             }
             return await response.json();
         } catch (error: any) {
@@ -121,10 +121,6 @@ export const fetchBookDetailsThunk = createAsyncThunk(
     'books/fetchBook',
     async ({ bookId }: { bookId: number }, { getState, rejectWithValue }) => {
         try {
-            // const response = await fetch(`http://localhost:8085/api/books/${bookId}`);
-            // if (!response.ok) {
-            //     throw new Error("Failed to toggle liked status");
-            // }
             const data = await fetchBookById(bookId);
             return data;
         } catch (error: any) {
@@ -135,7 +131,8 @@ export const fetchBookDetailsThunk = createAsyncThunk(
 
 export const toggleBookLiked = createAsyncThunk(
     'books/toggleLiked',
-    async ({ bookId, status, token }: { bookId: number, status: number, token: string | null }, { rejectWithValue }) => {
+    async ({ bookId, status }: { bookId: number, status: number }, { rejectWithValue, getState }) => {
+        const token = (getState() as RootState).user.jwt;
         try {
             const response = await fetch(`http://localhost:8085/api/books/${bookId}/react?status=${status}`, {
                 method: "POST",
@@ -147,7 +144,6 @@ export const toggleBookLiked = createAsyncThunk(
                 throw new Error("Failed to toggle liked status");
             }
             const data = await response.json();
-            console.log(data);
             return { bookId, liked: data.likeDislike === 1, disliked: data.likeDislike === -1 };
         } catch (error: any) {
             return rejectWithValue(error.message);
@@ -157,16 +153,15 @@ export const toggleBookLiked = createAsyncThunk(
 
 export const fetchInteractions = createAsyncThunk(
     'books/fetchBookInteractions',
-    async ({ bookId, token }: { bookId: number, token: string }, { rejectWithValue }) => {
+    async ({ bookId }: { bookId: number }, { rejectWithValue, getState }) => {
+        const token = (getState() as RootState).user.jwt;
         try {
-            const data = await fetchBookInteractionsById(bookId, token);
-            // const response = await fetch(`http://localhost:8085/api/books/${bookId}/interaction`, {
-            //     headers: {
-            //         "Authorization": `Bearer ${token}`
-            //     }
-            // });
-            // const data = await response.json();
-            console.log(data);
+            const response = await fetch(`http://localhost:8085/api/books/${bookId}/interaction`, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+            const data = await response.json();
             return { interested: data.interested, liked: data.likeDislike === 1, disliked: data.likeDislike === -1, favorite: data.favorite, hasRead: data.hasRead };
         } catch (error: any) {
             return rejectWithValue('Failed to fetch liked status: ' + error.message);
@@ -234,7 +229,6 @@ export const bookSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchBookDetailsThunk.fulfilled, (state, action) => {
-                console.log(action.payload);
                 state.currentBook = action.payload;
             })
             .addCase(fetchBooksThunk.fulfilled, (state, action) => {
@@ -259,9 +253,8 @@ export const bookSlice = createSlice({
                 state.interactions = action.payload;
             })
             .addCase(toggleBookLiked.fulfilled, (state, action) => {
-                const { bookId, liked, disliked } = action.payload;
-                if (liked === true) state.likedBooks[bookId] = 1;
-                else if (disliked === true) state.likedBooks[bookId] = -1;
+                state.interactions.liked = action.payload.liked;
+                state.interactions.disliked = action.payload.disliked;
             })
     }
 });

@@ -12,6 +12,7 @@ import ThumbsDownComponent from "./interactions/thumbsDown";
 import ThumbsUpComponent from "./interactions/thumbsUp";
 import InterestedButton from "./interactions/interestedButton";
 import HasReadButton from "./interactions/hasReadButton";
+import InitializeInteractions from "./interactions/initalizeInteractions";
 
 interface SingleBookProps {
   id: number;
@@ -22,14 +23,13 @@ interface SingleBookProps {
 }
 
 export const preload = (id: number, token: string | undefined) => {
-  console.log("Preloading data for book", id);
   void fetchBookById(id);
   if (token) {
     void fetchBookInteractionsById(id, token);
   }
 }
 
-const SingleBook: React.FC<SingleBookProps> = ({ id, token, book, interactions, tag }) => {
+const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) => {
 
   async function fetchAllBooksSlider() {
     return fetchBooks();
@@ -55,10 +55,10 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, token, book, interactions, 
             </Link>
           ))}
           <div className="flex mt-2 gap-4">
-            <ThumbsUpComponent liked={interactions?.likeDislike === 1} token={token} id={id} />
-            <ThumbsDownComponent disliked={interactions?.likeDislike === -1} token={token} id={id} />
-            <InterestedButton interested={interactions?.interested === true} token={token} id={id} />
-            <HasReadButton hasRead={interactions?.hasRead === true} token={token} id={id} />
+            <ThumbsUpComponent id={id} />
+            <ThumbsDownComponent id={id} />
+            <InterestedButton id={id} />
+            <HasReadButton id={id} />
             {/* {interactions?.favorite ?
               <StarIcon onClick={handleToggleFavorite} style={{ color: "blue" }} className={iconClass} />
               :
@@ -87,6 +87,7 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, token, book, interactions, 
         <BookSlider fetchData={fetchAllBooksSlider} title={"Similar Books"} /> */}
       </div>
       <BookComments bookId={book?.id!!} comments={book?.comments} tag={tag} />
+      {interactions ? <InitializeInteractions interactions={interactions} /> : <></>}
     </>
   );
 };

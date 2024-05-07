@@ -1,3 +1,5 @@
+'use client'
+
 import {
   ArrowLeftStartOnRectangleIcon,
   ArrowRightEndOnRectangleIcon,
@@ -19,9 +21,6 @@ import React from "react";
 const ProfileMenu: React.FC<{ tag: string, role: string, logout: () => void }> = ({ tag, role, logout }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const iconClass = "flex items-center gap-x-3 p-2 px-4 font-normal text-base";
-
-  console.log(tag);
-  console.log(role);
 
   const closeMenu = () => setIsMenuOpen(false);
 

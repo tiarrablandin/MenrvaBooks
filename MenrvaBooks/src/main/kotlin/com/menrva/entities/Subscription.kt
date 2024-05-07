@@ -10,7 +10,7 @@ class Subscription(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    var id: Int? = null,
+    var id: Long? = null,
 
     @Column(name = "level", nullable = false, length = 20)
     var level: String? = null,

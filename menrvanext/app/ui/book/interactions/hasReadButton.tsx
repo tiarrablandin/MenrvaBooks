@@ -1,39 +1,32 @@
 'use client';
 
-import { toggleBookHasRead } from "@/app/lib/services/apiService";
-import { updateHasRead } from "@/app/lib/store/bookSlice";
+import { toggleBookHasRead } from "@/app/lib/store/bookSlice";
 import { RootState, useAppDispatch } from "@/app/lib/store/store";
-import { BookOpenIcon } from "@/providers";
+import { BookOpenOutline, BookOpenSolid } from "@/providers";
 import { useSelector } from "react-redux";
 
 interface HasReadButtonProps {
     id: number;
-    hasRead: boolean;
-    token: string | undefined;
 }
 
-const HasReadButton: React.FC<HasReadButtonProps> = ({ id, token, hasRead }) => {
+const HasReadButton: React.FC<HasReadButtonProps> = ({ id }) => {
     const dispatch = useAppDispatch();
-    const stateHasRead = useSelector((state: RootState) => state.book.interactions.hasRead);
+    const hasRead = useSelector((state: RootState) => state.book.interactions.hasRead);
 
     const handleToggleHasRead = async () => {
-        const newHasReadStatus = !stateHasRead;
-        dispatch(updateHasRead(newHasReadStatus));
-
         try {
-            await toggleBookHasRead(id, token as string);
+            dispatch(toggleBookHasRead({ bookId: id }));
         } catch (error) {
             console.error("Failed to toggle like on server, rolling back", error);
-            dispatch(updateHasRead(hasRead));
         }
     }
 
     return (
         <>
-            {stateHasRead ?
-                <BookOpenIcon onClick={handleToggleHasRead} className="h-6 w-6 cursor-pointer text-blue-700" />
+            {hasRead ?
+                <BookOpenSolid onClick={handleToggleHasRead} className="h-6 w-6 cursor-pointer text-blue-700" />
                 :
-                <BookOpenIcon onClick={handleToggleHasRead} className="h-6 w-6 cursor-pointer text-gray-600" />
+                <BookOpenOutline onClick={handleToggleHasRead} className="h-6 w-6 cursor-pointer text-gray-600" />
             }
         </>
     )
