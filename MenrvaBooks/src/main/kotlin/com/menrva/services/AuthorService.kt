@@ -2,21 +2,49 @@ package com.menrva.services
 
 import com.menrva.data.author.AuthorSummary
 import com.menrva.data.author.AuthorUpdateDTO
+import com.menrva.data.book.BookSummary
 import com.menrva.entities.Author
 import com.menrva.entities.Book
+import com.menrva.entities.User
+import com.menrva.exceptions.AuthorNotFoundException
+import com.menrva.exceptions.UserNotFoundException
 import com.menrva.repositories.AuthorRepository
+import com.menrva.repositories.UserRepository
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
 class AuthorService(
-        private val authorRepo: AuthorRepository
+    private val authorRepo: AuthorRepository, private val userRepo: UserRepository
 ) {
     fun index(): List<AuthorSummary> {
         return authorRepo.findAllAuthorsAsSummaries()
     }
+
     fun findById(id: Long): Optional<Author> = authorRepo.findById(id)
+
+    fun findByAuthorId(authorId: Long): List<BookSummary> {
+        return authorRepo.findBooksByAuthorId(authorId)
+    }
+
+    fun followAuthor(userId: Long, authorId: Long): User {
+        val user = userRepo.findById(userId).orElseThrow { UserNotFoundException("User not found with id: $userId") }
+        val author =
+            authorRepo.findById(authorId).orElseThrow { AuthorNotFoundException("Author not found with id: $authorId") }
+
+        user.authors.add(author)
+        return userRepo.save(user)
+    }
+
+    fun unfollowAuthor(userId: Long, authorId: Long): User {
+        val user = userRepo.findById(userId).orElseThrow { UserNotFoundException("User not found with id: $userId") }
+        val author =
+            authorRepo.findById(authorId).orElseThrow { AuthorNotFoundException("Author not found with id: $authorId") }
+
+        user.authors.remove(author)
+        return userRepo.save(user)
+    }
 
     @Transactional
     fun create(author: Author): Author {

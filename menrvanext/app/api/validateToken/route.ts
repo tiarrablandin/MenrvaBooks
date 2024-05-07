@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
     const cookieStore = req.cookies;
-    console.log("########################## " + cookieStore);
     const jwt = cookieStore.get('jwt')?.value;
     const tag = cookieStore.get('tag')?.value;
 
@@ -15,6 +14,7 @@ export async function GET(req: NextRequest) {
 
     try {
         const user = await fetchUserByTag(tag);
+        console.log(user);
         return NextResponse.json({ user: user, jwt: jwt }, { status: 200 });
     } catch (error: any) {
         console.error(`JWT: ${jwt} USER: ${tag}`)

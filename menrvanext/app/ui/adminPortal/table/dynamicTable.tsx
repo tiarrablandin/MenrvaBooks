@@ -28,8 +28,7 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
   const [itemsPerPage, _setItemsPerPage] = useState(10);
   const [showUnreviewedOnly, setShowUnreviewedOnly] = useState(false);
   const [showActiveOnly, setShowActiveOnly] = useState(false);
-  const { data, fetchData, toggleReviewed, toggleActive, loading, error } =
-    useEntityHook<any>(entityType);
+  const { data, fetchData, toggleReviewed, toggleActive, loading, error } = useEntityHook<any>(entityType);
 
   const currentItems = useMemo(
     () =>

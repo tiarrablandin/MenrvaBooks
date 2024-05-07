@@ -4,6 +4,7 @@ import com.menrva.data.book.BookDTO
 import com.menrva.data.book.BookInteractionSummary
 import com.menrva.data.book.BookSummary
 import com.menrva.data.user.UserDTO
+import com.menrva.data.user.UserSummary
 import com.menrva.entities.User
 import com.menrva.services.BookInteractionService
 import com.menrva.services.UserService
@@ -25,7 +26,8 @@ class UserController(
 
     @GetMapping("{tag}/info")
     fun findByTag(@PathVariable tag: String): ResponseEntity<User> {
-        return ResponseEntity.ok(userService.findByTag(tag))
+//        return ResponseEntity.ok(userService.loadUserSummaryByIdentifier(tag))
+        return ResponseEntity.ok(userService.loadFullUserByIdentifier(tag))
     }
 
     @GetMapping("{id}")

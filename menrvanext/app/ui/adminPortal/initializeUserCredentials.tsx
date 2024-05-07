@@ -15,7 +15,6 @@ const InitializeUserCredentials: React.FC<InitializeUserCredentialsProps> = ({ }
             const res = await fetch('/api/validateToken');
             if (res.ok) {
                 const data = await res.json();
-                console.log("************" + data.jwt);
                 dispatch(setUserDetails(data.user));
                 dispatch(setToken(data.jwt));
             }

@@ -14,6 +14,7 @@ data class AuthorDTO(
     val dateAdded: LocalDate?,
     val bio: String?,
     val user: UserDTO?,
+    val followerCount: Int
 ) {
     constructor(author: Author) : this(
         id = author.id,
@@ -22,6 +23,7 @@ data class AuthorDTO(
         reviewed = author.reviewed ?: false,
         dateAdded = author.dateAdded ?: LocalDate.now(),
         bio = author.bio.toString(),
-        user = author.user?.let { UserDTO(it) }
+        user = author.user?.let { UserDTO(it) },
+        followerCount = author.followers.size
     )
 }

@@ -44,7 +44,7 @@ class Author(
 
     @JsonIgnore
     @ManyToMany(mappedBy = "authors")
-    var users: MutableSet<User> = mutableSetOf(),
+    var followers: MutableSet<User> = mutableSetOf(),
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

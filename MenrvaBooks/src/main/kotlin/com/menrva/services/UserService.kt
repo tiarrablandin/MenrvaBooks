@@ -1,6 +1,7 @@
 package com.menrva.services
 
 import com.menrva.data.user.UserDTO
+import com.menrva.data.user.UserSummary
 import com.menrva.entities.User
 import com.menrva.repositories.UserRepository
 import org.springframework.security.core.userdetails.UsernameNotFoundException
@@ -14,6 +15,14 @@ class UserService(private val userRepository: UserRepository) {
     fun index(): List<User> = userRepository.findAll()
 
     fun findById(id: Long): Optional<User> = userRepository.findById(id)
+
+    fun loadUserSummaryByIdentifier(identifier: String): UserSummary {
+        val user: UserSummary = userRepository.findUserSummaryByTag(identifier)
+            ?: userRepository.findUserSummaryByEmail(identifier)
+            ?: throw UsernameNotFoundException("User not found with identifier: $identifier")
+
+        return user
+    }
 
     fun loadFullUserByIdentifier(identifier: String): User {
         val user: User = userRepository.findByTag(identifier)  // Use a simple method for testing
