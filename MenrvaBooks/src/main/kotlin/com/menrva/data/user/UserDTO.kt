@@ -1,6 +1,7 @@
 package com.menrva.data.user
 
 import com.menrva.entities.Series
+import com.menrva.entities.Subscription
 import com.menrva.entities.User
 import java.time.LocalDate
 
@@ -14,6 +15,7 @@ data class UserDTO(
     val role: String?,
     val email: String?,
     val password: String?,
+    val subscription: Subscription?,
 ) {
     constructor(user: User) : this(
         id = user.id,
@@ -24,6 +26,7 @@ data class UserDTO(
         dateAdded = user.dateAdded ?: LocalDate.now(),
         role = user.role,
         email = user.email,
-        password = user.password
+        password = user.password,
+        subscription = user.subscription,
     )
 }

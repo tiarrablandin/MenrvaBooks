@@ -11,7 +11,7 @@ import {
 } from "@/providers";
 import React, { useMemo, useState } from "react";
 
-type NoReviewed = "genres" | "subgenres" | "keywords" | "tags" | "users" | "comments";
+type NoReviewed = "genres" | "sub-genres" | "keywords" | "tags" | "users" | "comments";
 
 interface AdminTableProps {
   head: string;
@@ -43,7 +43,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
   const [searchTerm, setSearchTerm] = useState('');
 
   const normalizedHead = head.toLowerCase().replace(/ list$/, "");
-  const showReviewedToggle: boolean = !["genres", "subgenres", "keyword", "tag", "users", "comments"].includes(normalizedHead as NoReviewed);
+  const showReviewedToggle: boolean = !["genres", "sub-genres", "keyword", "tag", "users", "comments"].includes(normalizedHead as NoReviewed);
 
   const handleSearchChange = (event: any) => {
     setSearchTerm(event.target.value.toLowerCase());

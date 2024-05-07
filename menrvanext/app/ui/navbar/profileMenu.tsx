@@ -14,7 +14,7 @@ import {
   UserIcon,
 } from "@/providers";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 const ProfileMenu = () => {
   const { user, logout } = useAuth();
@@ -27,6 +27,10 @@ const ProfileMenu = () => {
     logout();
     setIsMenuOpen(false);
   };
+
+  useEffect(()=>{
+    console.log(user)
+  },[user])
 
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -86,9 +90,9 @@ const ProfileMenu = () => {
             )}
           </Typography>
         </MenuItem>
-        <MenuItem key="3" onClick={closeMenu} className="">
-          {user && user.role === 'admin' && (
-            <Link onClick={handleLogout} href="/admin" className="flex items-center">
+        {user && user.role === "Admin" && (
+          <MenuItem key="3" onClick={closeMenu} className="">
+            <Link href="/admin" className="flex items-center">
               <Typography
                 as="li"
                 variant="small"
@@ -98,8 +102,8 @@ const ProfileMenu = () => {
                 Admin
               </Typography>
             </Link>
-          )}
-        </MenuItem>
+          </MenuItem>
+        )}
         <MenuItem key="4" onClick={closeMenu} className="">
           {user ? (
             <Link onClick={handleLogout} href="/home" className="flex items-center">

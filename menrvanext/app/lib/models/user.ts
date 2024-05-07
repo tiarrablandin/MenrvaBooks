@@ -1,3 +1,5 @@
+import { Subscription } from "./subscription";
+
 export interface User {
     id: number;
     role: string;
@@ -9,4 +11,6 @@ export interface User {
     active: boolean;
     dateAdded: Date;
     dateUpdated: Date;
+
+    subscription: Subscription;
 }
