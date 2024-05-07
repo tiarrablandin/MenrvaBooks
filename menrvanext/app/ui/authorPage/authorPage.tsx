@@ -1,13 +1,23 @@
-import { fetchBooks } from "@/app/lib/services/apiService";
+import { fetchAuthorBooksById, fetchBooks } from "@/app/lib/services/apiService";
 import BookSlider from "../book/bookSlider";
 import AnnouncementsCard from "./announcementsCard";
 import AuthorCard from "./authorCard";
-import AdvancedSearchComponent from "../search/advancedSearch";
+import { Author } from "@/app/lib/models/author";
+import InitializeUserFollowsAuthor from "./initializeUserFollowsAuthor";
 
-interface AuthorPageProps {}
+interface AuthorPageProps {
+  id: number;
+  token: string | undefined;
+  author: Author;
+}
 
-const AuthorPage: React.FC<AuthorPageProps> = ({}) => {
-  async function fetchAllBooksSlider() {
+const AuthorPage: React.FC<AuthorPageProps> = ({ author, id, token }) => {
+  async function fetchAllBooksByAuthorSlider() {
+    "use server";
+    return fetchAuthorBooksById(id);
+  }
+
+  async function fetchAllSeriesByAuthorSlider() {
     "use server";
     return fetchBooks();
   }
@@ -15,12 +25,12 @@ const AuthorPage: React.FC<AuthorPageProps> = ({}) => {
   return (
     <div>
       <div className="flex justify-center flex-wrap gap-8 my-8">
-        <AuthorCard />
+        <AuthorCard author={author} />
         <AnnouncementsCard />
       </div>
       <div className="w-screen h-full flex flex-col items-center">
-        <BookSlider fetchData={fetchAllBooksSlider} title={"Series Name"} />
-        <BookSlider fetchData={fetchAllBooksSlider} title={"Stand Alone"} />
+        <BookSlider fetchData={fetchAllBooksByAuthorSlider} title={"Books from this Author"} />
+        {/* <BookSlider fetchData={fetchAllBooksSlider} title={"Stand Alone"} /> */}
       </div>
     </div>
   );

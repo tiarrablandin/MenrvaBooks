@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 import java.security.Principal
 
 @RestController
-@RequestMapping("api/books")
+@RequestMapping("api/books/{id}")
 @CrossOrigin("*", "http://localhost")
 class InteractionsController(
     private val bookService: BookService,
@@ -21,46 +21,46 @@ class InteractionsController(
     private val userService: UserService,
 ) {
 
-    @GetMapping("{bookId}/interaction")
+    @GetMapping("interaction")
     fun getBookInteraction(
-        @PathVariable bookId: Long, @AuthenticationPrincipal principal: Principal
+        @PathVariable id: Long, @AuthenticationPrincipal principal: Principal
     ): ResponseEntity<BookInteractionSummary> {
         val tag = principal.name
-        return ResponseEntity.ok(bookInteractionService.findInteractionByBookAndUser(bookId, tag))
+        return ResponseEntity.ok(bookInteractionService.findInteractionByBookAndUser(id, tag))
     }
 
-    @PostMapping("/{id}/toggle-reviewed")
+    @PostMapping("toggle-reviewed")
     fun toggleBookReviewed(@PathVariable id: Long): ResponseEntity<BookDTO> {
         val updatedBook = bookService.toggleReviewed(id)
         return ResponseEntity.ok(BookDTO(updatedBook))
     }
 
-    @PostMapping("/{id}/favorite")
+    @PostMapping("favorite")
     fun toggleBookFavorite(@PathVariable id: Long, @AuthenticationPrincipal principal: Principal): ResponseEntity<BookInteractionDTO> {
         val user = userService.loadFullUserByIdentifier(principal.name)
         val updatedInteraction = bookInteractionService.toggleFavorite(id, user.id!!)
         return ResponseEntity.ok(BookInteractionDTO(updatedInteraction))
     }
 
-    @PostMapping("/{id}/hasRead")
+    @PostMapping("hasRead")
     fun toggleHasRead(@PathVariable id: Long, @AuthenticationPrincipal principal: Principal): ResponseEntity<BookInteractionDTO> {
         val user = userService.loadFullUserByIdentifier(principal.name)
         val updatedInteraction = bookInteractionService.toggleHasRead(id, user.id!!)
         return ResponseEntity.ok(BookInteractionDTO(updatedInteraction))
     }
 
-    @PostMapping("/{id}/interested")
+    @PostMapping("interested")
     fun toggleInterested(@PathVariable id: Long, @AuthenticationPrincipal principal: Principal): ResponseEntity<BookInteractionDTO> {
         val user = userService.loadFullUserByIdentifier(principal.name)
         val updatedInteraction = bookInteractionService.toggleInterested(id, user.id!!)
         return ResponseEntity.ok(BookInteractionDTO(updatedInteraction))
     }
 
-    @PostMapping("{bookId}/react")
+    @PostMapping("react")
     fun toggleLikeDislike(
-        @PathVariable bookId: Long, @AuthenticationPrincipal principal: Principal, @RequestParam("status") status: Int
+        @PathVariable id: Long, @AuthenticationPrincipal principal: Principal, @RequestParam("status") status: Int
     ): ResponseEntity<BookInteraction> {
         val user = userService.loadFullUserByIdentifier(principal.name)
-        return ResponseEntity.ok(bookInteractionService.toggleLikeDislike(bookId, user.id!!, status))
+        return ResponseEntity.ok(bookInteractionService.toggleLikeDislike(id, user.id!!, status))
     }
 }

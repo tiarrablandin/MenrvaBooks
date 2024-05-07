@@ -1,11 +1,6 @@
-'use client';
-
-import { useAuth } from "@/app/lib/hooks/useAuth";
-import { createCommentThunk } from "@/app/lib/store/commentSlice";
-import { useAppDispatch } from "@/app/lib/store/store";
-import { Button, Card, CardBody, HeartIcon, Input, Typography } from "@/providers";
 import { Comment } from '@/app/lib/models/comment';
-import React, { useState } from "react";
+import { Button, Card, CardBody, HeartIcon, Typography } from "@/providers";
+import { NewComment } from "./newComment";
 
 interface ContentCardPropsType {
   content: string;
@@ -49,45 +44,15 @@ function ContentCard({ content, date, tag }: ContentCardPropsType) {
   );
 }
 
-export function NewComment({ bookId }: { bookId: number }) {
-  const dispatch = useAppDispatch();
-  const { user } = useAuth();
-  const [comment, setComment] = useState("");
 
-  const handleSubmit = () => {
-    dispatch(createCommentThunk({ comment, bookId }))
-  }
-
-  return (
-    <div>
-      <div className="flex !items-center gap-4">
-        <Typography variant="small" className=" flex items-center gap-2 font-bold !text-gray-900">
-          {user ? user.tag : ""}
-        </Typography>
-      </div>
-      <div className="mt-4 h-full flex-col pl-14">
-        <Typography className=" flex items-center gap-2 !text-sm font-normal !text-blue-gray-500">
-          Constructive feedback is possible while also being nice...
-        </Typography>
-        <form action={handleSubmit} className="flex flex-col items-end">
-          <Input variant="static" value={comment} onChange={(e) => setComment(e.target.value)} />
-          <Button className="mt-4 bg-eggplant text-old-lace" size="sm">
-            submit
-          </Button>
-        </form>
-      </div>
-    </div>
-  );
-}
-
-const bookComments = ({ bookId, comments }: { bookId: number, comments?: Comment[] }) => {
+const bookComments = ({ bookId, comments, tag }: { bookId: number, comments?: Comment[], tag: string | undefined }) => {
   return (
     <div>
       <section className="mx-auto flex w-full max-w-2xl flex-col px-5 pb-20 pt-10">
         <Typography variant="h4" className="my-6 md:my-8 md:text-center">
           Have something to say about this book?
         </Typography>
-        <NewComment bookId={bookId} />
+        <NewComment bookId={bookId} tag={tag} />
         <Typography variant="h4" className="my-8 md:text-center">
           What other readers are saying about this book...
         </Typography>

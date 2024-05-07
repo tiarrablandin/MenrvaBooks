@@ -15,7 +15,7 @@ export {
   AtSymbolIcon,
   Bars3Icon,
   BellIcon as BellIconOutline,
-  BookOpenIcon,
+  BookOpenIcon as BookOpenOutline,
   BookmarkIcon as BookmarkIconOutline,
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -28,6 +28,7 @@ export {
   ShieldCheckIcon as ShieldCheckIconOutline,
   SparklesIcon,
   StarIcon,
+  TableCellsIcon,
   UserCircleIcon,
   XMarkIcon
 } from "@heroicons/react/24/outline";
@@ -35,7 +36,8 @@ export {
   ArrowLeftIcon,
   ArrowLeftStartOnRectangleIcon, ArrowRightEndOnRectangleIcon, ArrowRightIcon, ArrowUpTrayIcon,
   BellIcon,
-  BookmarkIcon,
+  BookOpenIcon as BookOpenSolid,
+  BookmarkIcon as BookmarkIconSolid,
   CheckCircleIcon,
   ChevronDownIcon,
   Cog6ToothIcon,

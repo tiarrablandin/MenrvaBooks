@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface SubscriptionRepository : JpaRepository<Subscription, Int> {
-    fun findSubscriptionById(id: Int): Subscription?
+interface SubscriptionRepository : JpaRepository<Subscription, Long> {
+    fun findSubscriptionById(id: Long): Subscription?
 }

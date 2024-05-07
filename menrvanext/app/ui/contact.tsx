@@ -1,45 +1,38 @@
-"use client";
-
 import {
-  Button,
-  Card,
-  CardBody,
-  Checkbox,
-  Input,
-  Textarea,
   Typography
 } from "@/providers";
-import React, { useState } from "react";
+import ContactForm from "./contactForm";
 
 export function Contact() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [message, setMessage] = useState("");
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const response = await fetch("/api/sendEmail", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ firstName, lastName, email, message }),
-    });
+  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const response = await fetch("/api/sendEmail", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ firstName, lastName, email, message }),
+  //   });
 
-    if (response.ok) {
-      const data = await response.json();
-      console.log(data);
-      alert("Message sent successfully!");
-    } else {
-      alert("Failed to send message.");
-    }
-  };
+  //   if (response.ok) {
+  //     const data = await response.json();
+  //     console.log(data);
+  //     alert("Message sent successfully!");
+  //   } else {
+  //     alert("Failed to send message.");
+  //   }
+  // };
 
   return (
     <section className="grid px-8 py-10 max-h-screen h-[70vh]">
       <div className="container mx-auto my-auto items-center place-items-center grid gap-y-10 gap-x-28 grid-cols-1 lg:grid-cols-2">
-        <div className="w-full lg:max-w-lg">
+        <ContactForm />
+        {/* <div className="w-full lg:max-w-lg">
           <Card shadow={true} className="bg-pink-lavender/50 dark:bg-chinese-violet/50 lg:p-6">
             <CardBody>
               <Typography variant="h4" className="text-2xl mb-6">
@@ -110,7 +103,7 @@ export function Contact() {
               </form>
             </CardBody>
           </Card>
-        </div>
+        </div> */}
         <div className="w-full lg:pb-0 pb-2">
           <Typography variant="h2" className="mb-4 !text-3xl lg:!text-4xl">
             Get in Touch

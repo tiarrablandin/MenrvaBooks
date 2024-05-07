@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
+import java.util.*
 
 @Repository
 interface BookInteractionRepository : JpaRepository<BookInteraction, BookInteractionId> {
@@ -16,7 +17,7 @@ interface BookInteractionRepository : JpaRepository<BookInteraction, BookInterac
     fun findByBookId(bookId: Long): List<BookInteraction>
 
     @Query("SELECT bi FROM BookInteraction bi WHERE bi.user.tag = :tag AND bi.book.id = :bookId")
-    fun findByBookIdAndUserTag(@Param("bookId") bookId: Long, @Param("tag") tag: String): BookInteractionSummary?
+    fun findByBookIdAndUserTag(@Param("bookId") bookId: Long, @Param("tag") tag: String): Optional<BookInteractionSummary>
 
     @Query("SELECT bi FROM BookInteraction bi WHERE bi.user.tag = :tag AND bi.likeDislike > 0")
     fun findLikedBooksByUserSummary(@Param("tag") tag: String): List<BookInteractionSummary>

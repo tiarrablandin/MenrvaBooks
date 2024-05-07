@@ -6,7 +6,6 @@ import com.menrva.entities.Book
 import com.menrva.repositories.BookJpaRepository
 import org.springframework.stereotype.Service
 import java.time.LocalDate
-import java.util.*
 
 @Service
 class BookService(
@@ -32,14 +31,14 @@ class BookService(
     }
 
     fun indexWithGenresKeywords(): List<BookSummary> {
-        return bookRepo.findAllBooksAsSummaries();
+        return bookRepo.findAllBooksAsSummaries()
     }
 
     fun getNewReleases(): List<Book> {
         val releases: MutableList<Book> = bookRepo.findAll()
         releases.sortBy { it.publicationDate }
         releases.removeIf { it.publicationDate!!.isBefore(LocalDate.now().minusDays(90)) }
-        return releases;
+        return releases
     }
 
     fun search(searchTerm: String): List<BookSummary> {

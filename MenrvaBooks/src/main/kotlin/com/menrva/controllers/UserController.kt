@@ -4,6 +4,7 @@ import com.menrva.data.book.BookDTO
 import com.menrva.data.book.BookInteractionSummary
 import com.menrva.data.book.BookSummary
 import com.menrva.data.user.UserDTO
+import com.menrva.data.user.UserSummary
 import com.menrva.entities.User
 import com.menrva.services.BookInteractionService
 import com.menrva.services.UserService
@@ -23,6 +24,12 @@ class UserController(
         return ResponseEntity.ok(userService.index().map { UserDTO(it) })
     }
 
+    @GetMapping("{tag}/info")
+    fun findByTag(@PathVariable tag: String): ResponseEntity<User> {
+//        return ResponseEntity.ok(userService.loadUserSummaryByIdentifier(tag))
+        return ResponseEntity.ok(userService.loadFullUserByIdentifier(tag))
+    }
+
     @GetMapping("{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<Any> {
         return ResponseEntity.ok(userService.findById(id))
@@ -34,12 +41,12 @@ class UserController(
     }
 
     @GetMapping("/{tag}/liked-books")
-    fun getLikedBooks(@PathVariable tag: String): ResponseEntity<List<BookInteractionSummary>> {
+    fun getLikedBooks(@PathVariable tag: String): ResponseEntity<List<BookInteractionSummary.Book>> {
         return ResponseEntity.ok(bookInteractionService.findLikedBooksByTag(tag))
     }
 
     @GetMapping("/{tag}/read-books")
-    fun getReadBooks(@PathVariable tag: String): ResponseEntity<List<BookInteractionSummary>> {
+    fun getReadBooks(@PathVariable tag: String): ResponseEntity<List<BookInteractionSummary.Book>> {
         return ResponseEntity.ok(bookInteractionService.findReadBooksByTag(tag))
     }
 

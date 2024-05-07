@@ -17,10 +17,9 @@ import AdvancedSearchBar from "../search/advancedSearchBar";
 import ThemeToggle from "../theme/themeToggle";
 import ProfileMenu from "./profileMenu";
 
-export function NavbarWithSearch() {
+export function NavbarWithSearch({ tag, logout, role }: { tag: string, logout: () => void, role: string }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
-  const { user } = useAuth();
 
   React.useEffect(() => {
     // useRestoreSession();
@@ -46,7 +45,7 @@ export function NavbarWithSearch() {
           <IconButton variant="text" className="w-8 h-8 -mr-12">
             <BellIcon className="h-5 w-5 text-eggplant" />
           </IconButton>
-          <ProfileMenu />
+          <ProfileMenu tag={tag} logout={logout} role={role} />
         </div>
         <IconButton
           size="sm"
@@ -68,7 +67,7 @@ export function NavbarWithSearch() {
           <IconButton variant="text">
             <BellIcon className="h-5 w-5 text-eggplant" />
           </IconButton>
-          <ProfileMenu />
+          <ProfileMenu tag={tag} logout={logout} role={role} />
           <AdvancedSearchBar />
           <ThemeToggle />
         </div>

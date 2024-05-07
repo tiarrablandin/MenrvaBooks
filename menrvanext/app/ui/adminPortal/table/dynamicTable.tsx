@@ -27,8 +27,8 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, _setItemsPerPage] = useState(10);
   const [showUnreviewedOnly, setShowUnreviewedOnly] = useState(false);
-  const { data, fetchData, toggleReviewed, toggleActive, loading, error } =
-    useEntityHook<any>(entityType);
+  const [showActiveOnly, setShowActiveOnly] = useState(false);
+  const { data, fetchData, toggleReviewed, toggleActive, loading, error } = useEntityHook<any>(entityType);
 
   const currentItems = useMemo(
     () =>
@@ -37,10 +37,18 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
         .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage),
     [data, showUnreviewedOnly, currentPage, itemsPerPage]
   );
+
   const totalItems = useMemo(
     () => data.filter((item: any) => !showUnreviewedOnly || !item.reviewed).length,
     [data, showUnreviewedOnly]
   );
+
+  const activeUsers = useMemo(
+    () =>
+      data
+        .filter((user: any) => !showActiveOnly || user.active),
+    [data, toggleActive]);
+
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   useEffect(() => {
@@ -64,12 +72,20 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
         <Switch
           checked={showUnreviewedOnly}
           onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
-          label={<Typography variant="lead"> Reviewed </Typography>}
+          label={<Typography variant="lead">Reviewed</Typography>}
+          className="before:h-8 before:w-8 checked:bg-eggplant"
+        />
+      }
+      activeToggle={
+        <Switch
+          checked={showActiveOnly}
+          onChange={(e) => setShowActiveOnly(e.target.checked)}
+          label={<Typography variant="lead">Active</Typography>}
           className="before:h-8 before:w-8 checked:bg-eggplant"
         />
       }
       tableHeaders={tableConfig[entityType].columns}
-      data={currentItems}
+      data={showActiveOnly ? activeUsers : currentItems}
       renderRow={tableConfig[entityType].renderRow} // Assuming renderRow is also defined in config
       pagination={
         <Pagination

@@ -3,7 +3,7 @@
 import {
   ArrowRightEndOnRectangleIcon,
   BellIconOutline,
-  BookOpenIcon,
+  BookOpenOutline,
   Cog6ToothIconOutline,
   HistoryEduOutlined,
   HomeIconOutline,
@@ -16,9 +16,8 @@ import { usePathname } from "next/navigation";
 
 const sidebar = () => {
   const pathname = usePathname();
-  
-  const isActive = (path: string) => pathname === path;
 
+  const isActive = (path: string) => pathname === path;
 
   return (
     <div className="h-screen w-16 inline-flex fixed">
@@ -41,7 +40,7 @@ const sidebar = () => {
         <ul className="text-eggplant w-full h-96 flex justify-between items-center flex-col mt-1">
           {[
             { href: "/admin", icon: HomeIconOutline },
-            { href: "/admin/books", icon: BookOpenIcon },
+            { href: "/admin/books", icon: BookOpenOutline },
             { href: "/admin/authors", icon: HistoryEduOutlined },
             { href: "/admin/users", icon: UserCircleIcon },
             { href: "/admin/other", icon: SparklesIcon },

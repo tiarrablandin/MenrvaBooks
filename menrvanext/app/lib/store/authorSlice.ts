@@ -1,14 +1,17 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Author } from "../models/author";
+import { RootState } from "./store";
 
 export interface AuthorState {
     allAuthors: Author[],
+    isFollowing: boolean;
     error: string | null;
     loading: boolean;
 }
 
 const initialState: AuthorState = {
     allAuthors: [],
+    isFollowing: false,
     error: null,
     loading: false,
 }
@@ -43,7 +46,28 @@ export const fetchAuthorsThunk = createAsyncThunk(
             return rejectWithValue(error.message);
         }
     }
-)
+);
+
+export const toggleFollowAuthor = createAsyncThunk(
+    'authors/toggleFollow',
+    async ({ authorId }: { authorId: number }, { getState, rejectWithValue }) => {
+        const token = (getState() as RootState).user.jwt;
+        try {
+            const response = await fetch(`http://localhost:8085/api/authors/${authorId}/toggleFollow`, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+            if (!response.ok) {
+                throw new Error("Failed to toggle interested status");
+            }
+            return await response.json();
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
 
 export const authorSlice = createSlice({
     name: "author",
@@ -58,6 +82,9 @@ export const authorSlice = createSlice({
                 state.allAuthors[index] = action.payload;
             }
         },
+        updateIsFollowing: (state, action: PayloadAction<boolean>) => {
+            state.isFollowing = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -69,10 +96,13 @@ export const authorSlice = createSlice({
                 if (index !== -1) {
                     state.allAuthors[index] = action.payload;
                 }
-            });
+            })
+            .addCase(toggleFollowAuthor.fulfilled, (state, action) => {
+                state.isFollowing = !state.isFollowing;
+            })
     }
 });
 
-export const { updateAllAuthors, updateAuthor } = authorSlice.actions;
+export const { updateAllAuthors, updateAuthor, updateIsFollowing } = authorSlice.actions;
 
 export default authorSlice.reducer;

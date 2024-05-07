@@ -1,24 +1,11 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
-import { Avatar, Card, CardBody, CardHeader, Typography } from "@/providers";
-import { fetchAuthorById } from '@/app/lib/services/apiService';
-import { useParams } from 'next/navigation';
 import { Author } from '@/app/lib/models/author';
+import { Avatar, Card, CardBody, CardHeader, Typography } from "@/providers";
+import React from 'react';
+import ToggleFollowAuthorButton from './toggleFollowAuthorButton';
 
-const AuthorCard: React.FC = ({}) => {
-  const searchParams = useParams();
-  const id = searchParams?.id;
-  const numericId = id ? parseInt(id as string, 10) : null;
-  const [author, setAuthor] = useState<Author | null>(null);
-
-  useEffect(() => {
-    async function fetchAuthor() {
-      const fetchedAuthor = await fetchAuthorById(numericId!!);
-      setAuthor(fetchedAuthor);
-    }
-    fetchAuthor();
-  }, [numericId]);
+const AuthorCard: React.FC<{ author: Author }> = ({ author }) => {
 
   return (
     <div>
@@ -38,16 +25,18 @@ const AuthorCard: React.FC = ({}) => {
           <div className="flex w-full flex-col gap-0.5">
             <div className="flex items-center justify-between">
               <Typography variant="h5">
-                {author?.penName}
+                {author.penName}
               </Typography>
-              <div className="5 flex items-center gap-0"></div>
+              <div className="5 flex items-center gap-0">
+                <ToggleFollowAuthorButton id={author.id} />
+              </div>
             </div>
             {/* <Typography color="blue-gray">Frontend Lead @ Google</Typography> */}
           </div>
         </CardHeader>
         <CardBody className="mb-6 p-0">
           <Typography>
-          {author?.bio}
+            {author.bio}
           </Typography>
         </CardBody>
       </Card>
