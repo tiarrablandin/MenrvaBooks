@@ -14,10 +14,12 @@ import org.springframework.stereotype.Repository
 @Repository
 interface BookJpaRepository : JpaRepository<Book, Long> {
     fun findByTitle(title: String): List<Book>
-    @Query("SELECT b FROM Book b where b.id = :id")
+
+    @Query("SELECT b FROM Book b JOIN FETCH b.bookInteractions " +
+            "WHERE b.id = :id")
     fun findBookById(id: Long): BookSummary
 
-    @Query("SELECT b FROM Book b WHERE b.id IN :ids")
+    @Query("SELECT b FROM Book b JOIN FETCH b.bookInteractions WHERE b.id IN :ids")
     fun findSummariesByIds(@Param("ids") ids: List<Long?>): List<BookSummary>
 
     @Modifying
@@ -39,7 +41,7 @@ interface BookJpaRepository : JpaRepository<Book, Long> {
     )
     fun findBySearchTerm(@Param("searchTerm") searchTerm: String): List<BookSummary>
 
-    @Query("SELECT b FROM Book b")
+    @Query("SELECT b FROM Book b JOIN FETCH b.bookInteractions")
     fun findAllBooksAsSummaries(): List<BookSummary>
 
 //    fun findByTitleWithGenresKeywords(title: String): List<BookGenreKeywordSummary>

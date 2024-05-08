@@ -19,6 +19,12 @@ class GenreController(private val genreService: GenreService) {
         return ResponseEntity.ok(genreService.findById(id))
     }
 
+    @PostMapping("")
+    fun createGenre(@RequestBody genreName: String): ResponseEntity<GenreDTO> {
+        val genre = genreService.create(genreName)
+        return ResponseEntity.ok(GenreDTO(genre))
+    }
+
     @PutMapping("{id}")
     fun updateGenre(@PathVariable id: Long, @RequestBody genreName: String): ResponseEntity<GenreDTO> {
         val genre = genreService.updateGenreName(id, genreName)

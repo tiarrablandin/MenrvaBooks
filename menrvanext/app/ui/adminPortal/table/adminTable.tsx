@@ -5,18 +5,23 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  IconButton,
   Input,
   MagnifyingGlassIcon,
+  PlusIcon,
+  Tooltip,
   Typography,
 } from "@/providers";
+import Link from "next/link";
 import React, { useMemo, useState } from "react";
+import { tableConfig } from "./tableConfig";
+import createTableRow from "@/app/actions/createTableRow";
 
-type NoReviewed = "genres" | "subgenres" | "keywords" | "tags" | "users" | "comments";
+type NoReviewed = "genres" | "sub-genres" | "keywords" | "tags" | "users" | "comments";
 
 interface AdminTableProps {
   head: string;
   headDesc: string;
-  add: JSX.Element;
   reviewedToggle: JSX.Element;
   activeToggle?: JSX.Element;
   reviewedCallback?: (bookId: number) => void
@@ -31,7 +36,6 @@ interface AdminTableProps {
 const AdminTable: React.FC<AdminTableProps> = ({
   head,
   headDesc,
-  add,
   reviewedToggle,
   activeToggle,
   tableHeaders,
@@ -43,9 +47,11 @@ const AdminTable: React.FC<AdminTableProps> = ({
   variant,
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [addingNew, setAddingNew] = useState(false);
 
   const normalizedHead = head.toLowerCase().replace(/ list$/, "");
-  const showReviewedToggle: boolean = !["genres", "subgenres", "keyword", "tag", "users", "comments"].includes(normalizedHead as NoReviewed);
+  const showReviewedToggle: boolean = !["genres", "sub-genres", "keyword", "tag", "users", "comments"].includes(normalizedHead as NoReviewed);
+  const entityType = normalizedHead;
 
   const handleSearchChange = (event: any) => {
     setSearchTerm(event.target.value.toLowerCase());
@@ -86,7 +92,20 @@ const AdminTable: React.FC<AdminTableProps> = ({
               />
             </div>
             <div className="flex gap-5 items-center mr-2">
-              {add}
+              {['books', 'users', 'authors'].includes(normalizedHead) ?
+                <Tooltip content={`Add ${entityType}`}>
+                  <IconButton variant="text" className="rounded-full">
+                    <Link href={tableConfig[entityType].addLink} className="w-min">
+                      <PlusIcon className="w-5 h-5 bg-clip-text " />
+                    </Link>
+                  </IconButton>
+                </Tooltip> :
+                <Tooltip content={`Add ${entityType}`}>
+                  <IconButton variant="text" className="rounded-full">
+                    <PlusIcon className="w-5 h-5 bg-clip-text " onClick={() => setAddingNew(!addingNew)} />
+                  </IconButton>
+                </Tooltip>
+              }
               {showReviewedToggle && reviewedCallback && reviewedToggle}
               {activeCallback && activeToggle}
             </div>
@@ -108,7 +127,32 @@ const AdminTable: React.FC<AdminTableProps> = ({
                 ))}
               </tr>
             </thead>
-            <tbody className="">{filteredData.map((item, index) => renderRow(item, index, reviewedCallback, activeCallback))}</tbody>
+            <tbody className="">
+              {filteredData.map((item, index) => renderRow(item, index, reviewedCallback, activeCallback))}
+              {addingNew && (
+                <tr className="">
+                  <td colSpan={tableHeaders.length} className="">
+                    <form action={async (formData: FormData) => {
+                      const name = formData.get('name') as string
+                      setAddingNew(false);
+                      await createTableRow(name, normalizedHead);
+                    }}
+                      className="w-3/4 mx-auto p-1"
+                    >
+                      <Input
+                        autoFocus
+                        onBlur={() => setAddingNew(false)}
+                        label="name"
+                        type="text"
+                        name="name"
+                        id="name"
+                        placeholder="Enter new name and press Enter"
+                      />
+                    </form>
+                  </td>
+                </tr>
+              )}
+            </tbody>
           </table>
         </CardBody>
         <CardFooter className={`flex justify-between items-center ${variant === 'small' ? 'scale-[85%]' : ''}`}>{pagination}</CardFooter>

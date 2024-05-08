@@ -1,6 +1,7 @@
 package com.menrva.controllers
 
 import com.menrva.data.KeywordDTO
+import com.menrva.data.SubGenreDTO
 import com.menrva.data.TagDTO
 import com.menrva.entities.Book
 import com.menrva.entities.Keyword
@@ -23,6 +24,12 @@ class TagController(private val tagService: TagService) {
     @GetMapping("{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<Any> {
         return ResponseEntity.ok(tagService.findById(id))
+    }
+
+    @PostMapping("")
+    fun createTag(@RequestBody tagName: String): ResponseEntity<TagDTO> {
+        val tag = tagService.create(tagName)
+        return ResponseEntity.ok(TagDTO(tag))
     }
 
     @PutMapping("{id}")
