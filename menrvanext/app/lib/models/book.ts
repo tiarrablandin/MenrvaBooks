@@ -13,6 +13,8 @@ export interface BookResponse {
   dateAdded: Date;
   dateUpdated: Date;
   reviewed: boolean;
+  numberOfLikes: number;
+  numberOfDislikes: number;
   authors: Author[];
   series: Series;
   comments: Comment[];

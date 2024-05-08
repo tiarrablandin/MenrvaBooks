@@ -30,6 +30,7 @@ export const preload = (id: number, token: string | undefined) => {
 }
 
 const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) => {
+  console.log(book.numberOfLikes)
 
   async function fetchAllBooksSlider() {
     return fetchBooks();
