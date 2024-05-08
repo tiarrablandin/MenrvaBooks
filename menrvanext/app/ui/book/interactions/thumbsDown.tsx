@@ -1,5 +1,5 @@
-'use client';
-
+    'use client';
+    
 import { toggleBookLiked, updateLikeDislike } from "@/app/lib/store/bookSlice";
 import { RootState, useAppDispatch } from "@/app/lib/store/store";
 import { ThumbDown, ThumbDownAltOutlined } from "@/providers";

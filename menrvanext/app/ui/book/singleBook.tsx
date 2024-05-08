@@ -57,8 +57,8 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
           <div className="flex mt-2 gap-4">
             <ThumbsUpComponent id={id} />
             <ThumbsDownComponent id={id} />
-            <InterestedButton id={id} />
-            <HasReadButton id={id} />
+            {tag ? <InterestedButton id={id} /> : <></>}
+            {tag ? <HasReadButton id={id} /> : <></>}
             {/* {interactions?.favorite ?
               <StarIcon onClick={handleToggleFavorite} style={{ color: "blue" }} className={iconClass} />
               :
