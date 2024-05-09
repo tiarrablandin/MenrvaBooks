@@ -60,7 +60,8 @@ class Book(
     var tags: MutableSet<Tag> = mutableSetOf(),
     @JsonIgnore
 //    @JsonBackReference(value = "books")
-    @ManyToOne @JoinColumn(name = "series_id")
+    @ManyToOne(cascade = [CascadeType.ALL])
+    @JoinColumn(name = "series_id")
     var series: Series? = null,
     @JsonIgnore
     @OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
@@ -102,7 +103,7 @@ class Book(
     }
 
     override fun toString(): String {
-        return "Book(id=$id, title='$title')"
+        return "Book(id=$id, title='$title', series='${series?.name}')"
     }
 
 }

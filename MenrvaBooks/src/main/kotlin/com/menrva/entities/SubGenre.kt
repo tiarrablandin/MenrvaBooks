@@ -20,10 +20,10 @@ class SubGenre(
     @Column(name = "date_added", nullable = false)
     var dateAdded: LocalDate? = null,
 
-    @UpdateTimestamp
     @Column(name = "reviewed", nullable = false)
     var reviewed: Boolean? = false,
 
+    @UpdateTimestamp
     @Column(name = "date_updated")
     var dateUpdated: LocalDate? = null,
 

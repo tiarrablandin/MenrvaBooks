@@ -6,6 +6,7 @@ import com.menrva.data.series.SeriesDTO
 import com.menrva.data.TagDTO
 import com.menrva.data.author.AuthorDTO
 import com.menrva.entities.Book
+import com.menrva.entities.Series
 import java.time.LocalDate
 
 data class BookDTO(
@@ -22,7 +23,7 @@ data class BookDTO(
     val genres: Set<GenreDTO>?,
     val keywords: Set<KeywordDTO>?,
     val tags: Set<TagDTO>?,
-    val series: SeriesDTO?,
+    val series: Series?,
     val authors: Set<AuthorDTO>?
 ) {
     constructor(book: Book) : this(
@@ -39,7 +40,7 @@ data class BookDTO(
         keywords = book.keywords.map { KeywordDTO(it) }.toSet(),
         genres = book.genres.map { GenreDTO(it) }.toSet(),
         tags = book.tags.map { TagDTO(it) }.toSet(),
-        series = book.series?.let { SeriesDTO(it) }, // Convert Series entity to DTO
+        series = book.series,
         authors = book.authors.map { AuthorDTO(it) }.toSet()
     )
 }

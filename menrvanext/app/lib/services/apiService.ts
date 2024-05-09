@@ -321,9 +321,10 @@ export async function authenticate(identifier: string, password: string) {
 }
 
 // * COMMENTS
+
 export async function fetchCreateComment(comment: string, bookId: number, token: string) {
   try {
-    const response = await fetch(`http://localhost:8085/api/comments`, {
+    const response = await fetch(`${url}/comments`, {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${token}`,
@@ -332,7 +333,22 @@ export async function fetchCreateComment(comment: string, bookId: number, token:
       body: JSON.stringify({ comment, bookId })
     })
     if (!response.ok) {
-      throw new Error("Failed to fetch authors.")
+      throw new Error("Failed to create comment.")
+    }
+    return await response.json();
+  } catch (error: any) {
+    console.error(error.message);
+    return null;
+  }
+}
+
+// * SERIES
+
+export async function fetchSeriesAll() {
+  try {
+    const response = await fetch(`${url}/series`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch series.")
     }
     return await response.json();
   } catch (error: any) {

@@ -135,7 +135,8 @@ const AdminTable: React.FC<AdminTableProps> = ({
                     <form action={async (formData: FormData) => {
                       const name = formData.get('name') as string
                       setAddingNew(false);
-                      await createTableRow(name, normalizedHead);
+                      const row = await createTableRow(name, normalizedHead);
+                      filteredData.push(row?.createdRow);
                     }}
                       className="w-3/4 mx-auto p-1"
                     >

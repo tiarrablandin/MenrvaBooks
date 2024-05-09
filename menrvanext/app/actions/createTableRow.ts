@@ -8,7 +8,7 @@ const url = baseUrl + "/api";
 export default async function createTableRow(name: string, entityType: string) {
     if (entityType === 'sub-genres') entityType = 'subgenres';
     if (entityType === 'keyword' || entityType === 'tag') entityType = entityType + 's';
-    
+
     try {
         const token = cookies().get('jwt')?.value;
         const res = await fetch(`${url}/${entityType}`, {
@@ -22,7 +22,8 @@ export default async function createTableRow(name: string, entityType: string) {
         if (!res.ok) {
             throw new Error(`Failed to add new ${entityType}.`);
         }
-        return { createdRow: res.json() };
+        const createdRow = await res.json()
+        return { createdRow: createdRow };
     } catch (error) {
         console.error('Failed to create comment:', error);
     }

@@ -1,4 +1,4 @@
-import Settings from "@/app/ui/adminPortal/settings/sidebar";
+import Settings from "@/app/ui/adminPortal/settings/settingsSidebar";
 
 export default async function Page() {
     return (

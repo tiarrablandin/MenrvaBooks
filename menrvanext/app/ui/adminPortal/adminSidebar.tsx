@@ -14,13 +14,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const sidebar = () => {
+const adminSidebar = () => {
   const pathname = usePathname();
 
   const isActive = (path: string) => pathname === path;
 
   return (
-    <div className="h-screen w-16 inline-flex fixed">
+    <div className="h-screen w-14 inline-flex fixed">
       {/* container */}
       <aside className="flex flex-col items-center bg-pink-lavender/50 text shadow h-full">
         {/* Side Nav Bar */}
@@ -66,4 +66,4 @@ const sidebar = () => {
   );
 };
 
-export default sidebar;
+export default adminSidebar;

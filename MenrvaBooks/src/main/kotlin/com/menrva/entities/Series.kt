@@ -16,10 +16,12 @@ class Series(
     var dateAdded: LocalDate? = null,
     @UpdateTimestamp @Column(name = "date_updated")
     var dateUpdated: LocalDate? = null,
-    var reviewed: Boolean? = null,
-    @JsonManagedReference
-    @OneToMany @JoinColumn(name = "series_id")
-    var books: Set<Book> = HashSet(),
+    var reviewed: Boolean? = false,
+//    @JsonManagedReference
+    @JsonIgnore
+    @OneToMany(cascade = [CascadeType.ALL])
+    @JoinColumn(name = "series_id")
+    var books: Set<Book> = mutableSetOf(),
     @JsonIgnore
     @ManyToMany(mappedBy = "series")
     var authors: MutableSet<Author> = mutableSetOf(),
