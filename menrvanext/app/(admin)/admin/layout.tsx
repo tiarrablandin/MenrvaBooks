@@ -1,5 +1,5 @@
 import InitializeUserCredentials from "@/app/ui/adminPortal/initializeUserCredentials";
-import Sidebar from "@/app/ui/adminPortal/sidebar";
+import Sidebar from "@/app/ui/adminPortal/adminSidebar";
 
 export default function AdminLayout({ children, add, update }: { children: React.ReactNode, add: React.ReactNode, update: React.ReactNode }) {
     return (

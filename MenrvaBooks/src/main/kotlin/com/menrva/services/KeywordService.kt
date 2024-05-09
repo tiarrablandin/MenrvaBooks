@@ -18,6 +18,10 @@ class KeywordService(
         return keywordRepo.findById(id)
     }
 
+    fun create(keywordName: String): Keyword {
+        return keywordRepo.save(Keyword(name = keywordName))
+    }
+
     fun updateKeywordName(id: Long, keywordName: String): Keyword {
         val keyword = keywordRepo.findById(id).orElseThrow { RuntimeException("Keyword not found") }
         keyword.name = keywordName

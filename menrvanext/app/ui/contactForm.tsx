@@ -47,7 +47,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ }) => {
         <Typography className="mt-1 font-normal">
           Got a suggestion on how to make the site better? Let us know!
         </Typography>
-        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 text-old-lace" action={sendEmail}>
+        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 text-old-lace"
+          action={async (formData: FormData) => {
+            'use server';
+            const response = await sendEmail(formData);
+            console.log(response);
+          }}>
           <div className="mb-1 flex flex-col gap-6">
             <Typography variant="h6" className="-mb-3">
               Your Name

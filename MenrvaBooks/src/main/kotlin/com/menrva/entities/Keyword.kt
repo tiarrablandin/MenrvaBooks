@@ -19,9 +19,9 @@ class Keyword(
 //    @JsonManagedReference
     @JsonIgnore
     @ManyToMany(mappedBy = "keywords")
-    var books: Set<Book> = HashSet(),
+    var books: Set<Book> = mutableSetOf(),
     @Column(name = "reviewed", nullable = false)
-    var reviewed: Boolean? = null,
+    var reviewed: Boolean? = false,
     @JsonIgnore
     @ManyToMany(mappedBy = "keywords")
     var users: MutableSet<User> = mutableSetOf()

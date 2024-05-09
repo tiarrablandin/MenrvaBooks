@@ -9,9 +9,15 @@ export async function sendEmail(formData: FormData) {
 
     let transporter = nodemailer.createTransport({
         // host: process.env.EXCHANGE_SMTP_HOST, // Exchange SMTP host, e.g., smtp.office365.com
-        host: "smtpout.secureserver.net",
+        // host: "smtp-mail.outlook.com",
+        host: "smtp.office365.com",
         port: 587,
         secure: false,
+        requireTLS: true,
+        tls: {
+            ciphers: "SSLv3",
+            rejectUnauthorized: false,
+        },
         auth: {
             user: process.env.SMTP_USER, // use environment variables for security
             pass: process.env.SMTP_PASS,

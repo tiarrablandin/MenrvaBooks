@@ -55,6 +55,7 @@ class BookController(
 
     @PutMapping("{id}")
     fun updateBook(@PathVariable id: Long, @RequestBody bookDto: BookDTO): ResponseEntity<BookDTO> {
+        print("*#*#*#*#*#*#*#*#*#*#*#*#*#*#*# $bookDto")
         val book = bookService.updateBook(id, bookDto)
         return ResponseEntity.ok(BookDTO(book))
     }

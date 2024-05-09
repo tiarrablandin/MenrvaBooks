@@ -23,6 +23,12 @@ class KeywordController(private val keywordService: KeywordService) {
         return ResponseEntity.ok(keywordService.findById(id))
     }
 
+    @PostMapping("")
+    fun createKeyword(@RequestBody keywordName: String): ResponseEntity<KeywordDTO> {
+        val keyword = keywordService.create(keywordName)
+        return ResponseEntity.ok(KeywordDTO(keyword))
+    }
+
     @PutMapping("{id}")
     fun updateKeyword(@PathVariable id: Long, @RequestBody keywordName: String): ResponseEntity<KeywordDTO> {
         val keyword = keywordService.updateKeywordName(id, keywordName)
