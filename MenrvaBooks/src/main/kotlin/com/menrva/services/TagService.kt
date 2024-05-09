@@ -1,6 +1,7 @@
 package com.menrva.services
 
 import com.menrva.entities.Keyword
+import com.menrva.entities.SubGenre
 import com.menrva.entities.Tag
 import com.menrva.repositories.TagRepository
 import org.springframework.stereotype.Service
@@ -13,6 +14,10 @@ class TagService(
 
     fun index(): List<Tag> {
         return tagRepo.findAll()
+    }
+
+    fun create(tagName: String): Tag {
+        return tagRepo.save(Tag(name = tagName))
     }
 
     fun findById(id: Long): Optional<Tag> {

@@ -59,15 +59,7 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
     <AdminTable
       head={tableConfig[entityType].pageTitle}
       headDesc={tableConfig[entityType].description}
-      add={
-        <Tooltip content={`add ${entityType}`}>
-          <IconButton variant="text" className="rounded-full">
-            <Link href={tableConfig[entityType].addLink} className="w-min">
-              <PlusIcon className="w-5 h-5 bg-clip-text " />
-            </Link>
-          </IconButton>
-        </Tooltip>
-      }
+      
       reviewedToggle={
         <Switch
           checked={showUnreviewedOnly}

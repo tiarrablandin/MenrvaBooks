@@ -59,12 +59,15 @@ class BookService(
     }
 
     fun updateBook(id: Long, bookDto: BookDTO): Book {
+        print("####################### $bookDto")
         val book = bookRepo.findById(id).orElseThrow { RuntimeException("Book not found") }
         book.title = bookDto.title
         book.description = bookDto.description
         book.pageCount = bookDto.pageCount
         book.publicationDate = bookDto.publicationDate
         book.cover = bookDto.cover
+        book.series = bookDto.series
+
         return bookRepo.save(book)
     }
 

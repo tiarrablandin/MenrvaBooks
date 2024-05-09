@@ -1,6 +1,7 @@
 package com.menrva.services
 
 import com.menrva.entities.Genre
+import com.menrva.entities.Keyword
 import com.menrva.entities.SubGenre
 import com.menrva.repositories.SubGenreRepository
 import org.springframework.stereotype.Service
@@ -14,6 +15,10 @@ class SubgenreService(private val subgenreRepo: SubGenreRepository) {
 
     fun findById(id: Long): Optional<SubGenre> {
         return subgenreRepo.findById(id)
+    }
+
+    fun create(subgenreName: String): SubGenre {
+        return subgenreRepo.save(SubGenre(name = subgenreName))
     }
 
     fun updateGenreName(id: Long, subgenreName: String): SubGenre {

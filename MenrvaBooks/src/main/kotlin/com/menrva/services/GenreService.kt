@@ -8,7 +8,7 @@ import java.util.*
 
 @Service
 class GenreService(
-        private val genreRepo: GenreRepository
+    private val genreRepo: GenreRepository
 ) {
     fun index(): List<Genre> {
         return genreRepo.findAll()
@@ -22,6 +22,10 @@ class GenreService(
         val genre = genreRepo.findById(id).orElseThrow { RuntimeException("Genre not found") }
         genre.name = genreName
         return genreRepo.save(genre)
+    }
+
+    fun create(genreName: String): Genre {
+        return genreRepo.save(Genre(name = genreName))
     }
 
     fun toggleReviewed(id: Long): Genre {

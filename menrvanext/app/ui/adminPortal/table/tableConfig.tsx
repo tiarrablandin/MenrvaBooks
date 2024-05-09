@@ -1,3 +1,5 @@
+'use client';
+
 import { renderAuthorRow, renderBookRow, renderCommentRow, renderGenreRow, renderKeywordRow, renderSeriesRow, renderSubgenreRow, renderTagRow, renderUserRow } from "./tableRows"
 
 interface TableConfigProps {

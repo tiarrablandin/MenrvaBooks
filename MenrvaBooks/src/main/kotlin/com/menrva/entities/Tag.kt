@@ -16,7 +16,7 @@ class Tag(
     var dateAdded: LocalDate? = null,
     @UpdateTimestamp @Column(name = "date_updated")
     var dateUpdated: LocalDate? = null,
-    var reviewed: Boolean? = null,
+    var reviewed: Boolean? = false,
 //    @JsonManagedReference
     @JsonIgnore
     @ManyToMany(mappedBy = "tags")

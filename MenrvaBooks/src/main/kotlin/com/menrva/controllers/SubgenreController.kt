@@ -1,7 +1,9 @@
 package com.menrva.controllers
 
 import com.menrva.data.GenreDTO
+import com.menrva.data.KeywordDTO
 import com.menrva.data.SubGenreDTO
+import com.menrva.entities.SubGenre
 import com.menrva.services.SubgenreService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -18,6 +20,12 @@ class SubgenreController(private val subgenreService: SubgenreService) {
     @GetMapping("{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<Any> {
         return ResponseEntity.ok(subgenreService.findById(id))
+    }
+
+    @PostMapping("")
+    fun createSubgenre(@RequestBody subgenreName: String): ResponseEntity<SubGenreDTO> {
+        val subgenre = subgenreService.create(subgenreName)
+        return ResponseEntity.ok(SubGenreDTO(subgenre))
     }
 
     @PutMapping("{id}")

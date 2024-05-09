@@ -2,6 +2,8 @@ package com.menrva.entities
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDate
 
 @Entity
@@ -14,12 +16,14 @@ class SubGenre(
     @Column(name = "name", nullable = false, length = 20)
     var name: String? = null,
 
+    @CreationTimestamp
     @Column(name = "date_added", nullable = false)
     var dateAdded: LocalDate? = null,
 
     @Column(name = "reviewed", nullable = false)
-    var reviewed: Boolean? = null,
+    var reviewed: Boolean? = false,
 
+    @UpdateTimestamp
     @Column(name = "date_updated")
     var dateUpdated: LocalDate? = null,
 

@@ -1,18 +1,8 @@
-'use client';
 
 import createComment from "@/app/actions/createComment";
 import { Button, Input, Typography } from "@/providers";
 
 export async function NewComment({ bookId, tag }: { bookId: number, tag: string | undefined }) {
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const comment = formData.get('comment') as string;
-
-        // console.log(createdComment);
-        void await createComment(comment, bookId);
-    }
-
     return (
         <div>
             <div className="flex !items-center gap-4">
@@ -24,8 +14,12 @@ export async function NewComment({ bookId, tag }: { bookId: number, tag: string 
                 <Typography className=" flex items-center gap-2 !text-sm font-normal !text-blue-gray-500">
                     Constructive feedback is possible while also being nice...
                 </Typography>
-                <form onSubmit={handleSubmit} className="flex flex-col items-end">
-                    <Input variant="static" type="text" name="comment" />
+                <form action={async (formData: FormData) => {
+                    'use server';
+                    const comment = formData.get('comment') as string
+                    await createComment(comment, bookId)
+                }} className="flex flex-col items-end">
+                    <Input variant="static" type="text" name="comment" id="comment" />
                     <Button className="mt-4 bg-eggplant text-old-lace" size="sm">
                         submit
                     </Button>

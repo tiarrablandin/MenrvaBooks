@@ -29,9 +29,9 @@ const ProfileMenu: React.FC<{ tag: string, role: string, logout: () => void }> =
     setIsMenuOpen(false);
   };
 
-  useEffect(()=>{
-    console.log(user)
-  },[user])
+  // useEffect(()=>{
+  //   console.log(user)
+  // },[user])
 
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">

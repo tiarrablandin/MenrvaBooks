@@ -1,5 +1,6 @@
 package com.menrva.data.book
 
+import com.menrva.data.user.UserSummary
 import com.menrva.entities.User
 import java.time.LocalDate
 
@@ -12,11 +13,18 @@ interface BookSummary {
     fun getPublicationDate(): LocalDate?
     fun getDateAdded(): LocalDate
     fun getReviewed(): Boolean
+    fun getBookInteractions(): Set<BookInteraction>?
     fun getGenres(): Set<Genre>?
     fun getKeywords(): Set<Keyword>?
     fun getAuthors(): Set<Author>?
     fun getSeries(): Series?
     fun getComments(): Set<Comment>?
+    interface BookInteraction {
+        fun getHasRead(): Boolean?
+        fun getInterested(): Boolean?
+        fun getFavorite(): Boolean?
+        fun getLikeDislike(): Int?
+    }
 
     interface Genre {
         fun getId(): Long
@@ -31,7 +39,7 @@ interface BookSummary {
     interface Author {
         fun getId(): Long
         fun getPenName(): String
-        fun getBio() :String
+        fun getBio(): String
         fun getPhoto(): String
         fun getUser(): User
     }

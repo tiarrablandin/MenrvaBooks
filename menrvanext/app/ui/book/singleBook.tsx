@@ -30,6 +30,9 @@ export const preload = (id: number, token: string | undefined) => {
 }
 
 const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) => {
+  console.log(book.bookInteractions);
+  const numberOfLikes = book.bookInteractions ? book.bookInteractions.filter(interaction => interaction.likeDislike === 1).length : 0;
+  const numberOfDislikes = book.bookInteractions ? book.bookInteractions.filter(interaction => interaction.likeDislike === -1).length : 0;
 
   async function fetchAllBooksSlider() {
     return fetchBooks();
@@ -55,10 +58,16 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
             </Link>
           ))}
           <div className="flex mt-2 gap-4">
-            <ThumbsUpComponent id={id} />
-            <ThumbsDownComponent id={id} />
-            <InterestedButton id={id} />
-            <HasReadButton id={id} />
+            <div className="flex items-center gap-2">
+              <Typography className="text-2xl font-bold">{numberOfLikes}</Typography>
+              <ThumbsUpComponent id={id} />
+            </div>
+            <div className="flex items-center gap-2">
+              <Typography className="text-2xl font-bold">{numberOfDislikes}</Typography>
+              <ThumbsDownComponent id={id} />
+            </div>
+            {tag ? <InterestedButton id={id} /> : <></>}
+            {tag ? <HasReadButton id={id} /> : <></>}
             {/* {interactions?.favorite ?
               <StarIcon onClick={handleToggleFavorite} style={{ color: "blue" }} className={iconClass} />
               :

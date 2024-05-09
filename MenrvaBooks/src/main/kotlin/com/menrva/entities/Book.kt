@@ -39,7 +39,7 @@ class Book(
         joinColumns = [JoinColumn(name = "book_id")],
         inverseJoinColumns = [JoinColumn(name = "genre_id")]
     )
-    var genres: Set<Genre> = HashSet(),
+    var genres: MutableSet<Genre> = mutableSetOf(),
 //    @JsonBackReference(value = "books")
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
@@ -48,7 +48,7 @@ class Book(
         joinColumns = [JoinColumn(name = "book_id")],
         inverseJoinColumns = [JoinColumn(name = "keyword_id")]
     )
-    var keywords: Set<Keyword> = HashSet(),
+    var keywords: MutableSet<Keyword> = mutableSetOf(),
     @JsonIgnore
 //    @JsonBackReference(value = "books")
     @ManyToMany(fetch = FetchType.LAZY)
@@ -57,14 +57,15 @@ class Book(
         joinColumns = [JoinColumn(name = "book_id")],
         inverseJoinColumns = [JoinColumn(name = "tag_id")]
     )
-    var tags: Set<Tag> = HashSet(),
+    var tags: MutableSet<Tag> = mutableSetOf(),
     @JsonIgnore
 //    @JsonBackReference(value = "books")
-    @ManyToOne @JoinColumn(name = "series_id")
+    @ManyToOne(cascade = [CascadeType.ALL])
+    @JoinColumn(name = "series_id")
     var series: Series? = null,
     @JsonIgnore
-    @OneToMany(mappedBy = "book")
-    var bookInteractions: Set<BookInteraction> = HashSet(),
+    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
+    var bookInteractions: MutableSet<BookInteraction> = mutableSetOf(),
     @JsonIgnore
     @ManyToMany(mappedBy = "books")
     var authors: MutableSet<Author> = mutableSetOf(),
@@ -76,7 +77,11 @@ class Book(
     var comments: MutableSet<Comment> = mutableSetOf(),
     @JsonIgnore
     @OneToMany(mappedBy = "book")
-    var links: MutableSet<Link> = mutableSetOf()
+    var links: MutableSet<Link> = mutableSetOf(),
+    @Transient
+    var numberOfLikes: Int? = null,
+    @Transient
+    var numberOfDislikes: Int? = null,
 ) {
 
     override fun equals(other: Any?): Boolean {
@@ -98,7 +103,7 @@ class Book(
     }
 
     override fun toString(): String {
-        return "Book(id=$id, title='$title')"
+        return "Book(id=$id, title='$title', series='${series?.name}')"
     }
 
 }
