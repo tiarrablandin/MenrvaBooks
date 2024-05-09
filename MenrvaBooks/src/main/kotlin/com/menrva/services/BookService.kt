@@ -3,13 +3,16 @@ package com.menrva.services
 import com.menrva.data.book.BookDTO
 import com.menrva.data.book.BookSummary
 import com.menrva.entities.Book
+import com.menrva.exceptions.BookNotFoundException
 import com.menrva.repositories.BookJpaRepository
+import com.menrva.repositories.SeriesRepository
 import org.springframework.stereotype.Service
 import java.time.LocalDate
 
 @Service
 class BookService(
-    private val bookRepo: BookJpaRepository
+    private val bookRepo: BookJpaRepository,
+    private val seriesRepo: SeriesRepository,
 ) {
     fun index(): List<Book> {
         return bookRepo.findAll()
@@ -59,14 +62,16 @@ class BookService(
     }
 
     fun updateBook(id: Long, bookDto: BookDTO): Book {
-        print("####################### $bookDto")
-        val book = bookRepo.findById(id).orElseThrow { RuntimeException("Book not found") }
+        println("####################### $bookDto")
+        val book = bookRepo.findById(id).orElseThrow { BookNotFoundException("Book not found") }
+        val series = bookDto.series?.id?.let { seriesRepo.findById(it).orElseThrow { RuntimeException("Series not found") } }
+
         book.title = bookDto.title
         book.description = bookDto.description
         book.pageCount = bookDto.pageCount
         book.publicationDate = bookDto.publicationDate
         book.cover = bookDto.cover
-        book.series = bookDto.series
+        book.series = series
 
         return bookRepo.save(book)
     }
