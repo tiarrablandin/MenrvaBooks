@@ -18,6 +18,7 @@ const UpdateBook: React.FC = () => {
   useEffect(() => {
     async function fetchBook() {
       const fetchedBook = await fetchBookById(numericId!!);
+      console.log(fetchedBook);
       setBook(fetchedBook);
     }
     fetchBook();
@@ -37,7 +38,6 @@ const UpdateBook: React.FC = () => {
     //   cover: formData.get('cover') as string,
     //   series: formData.get('')
     // };
-    console.log("************** " + JSON.stringify(book));
 
     const response = await fetch(`http://localhost:8085/api/books/${id}`, {
       method: 'PUT',
@@ -80,8 +80,7 @@ const UpdateBook: React.FC = () => {
             </div>
 
             <div className="flex flex-col gap-4 my-2">
-              {book?.series ? <SeriesDropdown onChange={(series: Series) => { if (book) book.series = series }} defaultValue={book?.series.name} />
-                : <Typography>Loading...</Typography>}
+              <SeriesDropdown onChange={(series: Series) => { if (book) book.series = series }} defaultValue={book?.series ? book?.series.name : ""} />
 
               <Input
                 type="text"
