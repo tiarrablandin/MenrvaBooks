@@ -154,6 +154,16 @@ export const renderUserRow = (
 				{`${user.firstName} ${user.lastName}`}
 			</Typography>
 		</td>
+		<td className="border-b border-gray-300 whitespace-nowrap">
+			<Typography variant="lead" className="w-min inline-block">
+				{user.email}
+			</Typography>
+		</td>
+		<td className="border-b border-gray-300 whitespace-nowrap">
+			<Typography variant="lead" className="w-min inline-block">
+				{user.subscription.level}
+			</Typography>
+		</td>
 		<td className="border-b border-gray-300">
 			{user.dateAdded ? <Typography variant="lead">{user.dateAdded.toString()}</Typography> : <></>}
 		</td>

@@ -16,7 +16,7 @@ import {
   UserIcon,
 } from "@/providers";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 const ProfileMenu: React.FC<{ tag: string, role: string, logout: () => void }> = ({ tag, role, logout }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -28,6 +28,10 @@ const ProfileMenu: React.FC<{ tag: string, role: string, logout: () => void }> =
     logout();
     setIsMenuOpen(false);
   };
+
+  // useEffect(()=>{
+  //   console.log(user)
+  // },[user])
 
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">

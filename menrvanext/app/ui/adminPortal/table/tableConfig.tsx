@@ -34,7 +34,7 @@ export const tableConfig: ConfigDictionary = {
     },
     users: {
         apiEndpoint: '/api/users',
-        columns: ['Tag', 'Name', 'Date Added', 'Active', 'Edit'],
+        columns: ['Tag', 'Name', 'Email', 'Subscription', 'Date Added', 'Active', 'Edit'],
         pageTitle: 'Users List',
         description: 'Manage all users',
         addLink: '/admin/addUser',
