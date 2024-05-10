@@ -302,31 +302,67 @@ CREATE TABLE user_has_keyword
 -- INSERTS
 -- -----------------------------------------------------
 
-insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
+insert into user (id, role, first_name, last_name, tag, email, password, active, date_added, date_updated,
                   subscription_id)
 Values (1, 'Admin', 'Tiarra', 'Blandin', '@tiarra', 'tiarra.blandin@gmail.com',
         '$2b$10$k0LWgoJxJlEFPizIi3OJIu/dgnQqNDD3rsKdhkx/cJ1FwSR5wVZXO', 1, NOW(),
         '2024-03-15', 1);
 
-insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
+insert into user (id, role, first_name, last_name, tag, email, password, active, date_added, date_updated,
                   subscription_id)
 Values (2, 'Admin', 'Matthew', 'Tilley', '@matt', 'matthew.tilley77@gmail.com',
         '$2b$10$6P3YaIeyd5FN0KAnk5Wd9u.IopnLe0P5vvXrVeW3OCwVL.7Tkei1m', 1, NOW(),
         '2024-03-15', 1);
 
-insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
+insert into user (id, role, first_name, last_name, tag, email, password, active, date_added, date_updated,
                   subscription_id)
 Values (3, 'Admin', 'Jonathan', 'Dominguez', '@jondom', 'jonathanadominguez@gmail.com',
         '$2b$10$RrN6OgEk09x6nvtLPOcT7e6QYRnwBYQl/kz8KhCRELlztMkbN2twq', 1, NOW(),
         '2024-03-15', 1);
 
-insert into user (id, role, first_name, last_name, tag, email, username, password, active, date_added, date_updated,
+insert into user (id, role, first_name, last_name, tag, email, password, active, date_added, date_updated,
                   subscription_id)
 Values (4, 'Admin', 'William', 'Slaunwhite', '@will', 'williamslaunwhite@gmail.com',
         '$2a$12$.aXI64OEVlXoGf8fNHOlhef6SFgQzI4bqn2unNELnfIWTPwJj.zR6', 1, NOW(), '2024-03-15', 1);
 
 insert into subscription (id, level, paid, date_added, date_updated)
-values (1, 'Admin', 1, now(), '2024-03-15');
+values (1, 'Master', 0, now(), '2024-03-15');
+
+insert into subscription (id, level, paid, date_added, date_updated)
+values (2, 'Admin I', 0, now(), '2024-03-15');
+
+insert into subscription (id, level, paid, date_added, date_updated)
+values (3, 'Admin II', 0, now(), '2024-03-15');
+
+insert into subscription (id, level, paid, date_added, date_updated)
+values (4, 'Admin III', 0, now(), '2024-03-15');
+
+insert into subscription (id, level, paid, date_added, date_updated)
+values (5, 'Employee', 0, now(), '2024-03-15');
+
+insert into subscription (id, level, paid, date_added, date_updated)
+values (6, 'Basic Reader', 0, now(), '2024-03-15');
+
+insert into subscription (id, level, paid, date_added, date_updated)
+values (7, 'Bookworm', 1, now(), '2024-03-15');
+
+insert into subscription (id, level, paid, date_added, date_updated)
+values (8, 'Bibliophile', 1, now(), '2024-03-15');
+
+insert into subscription (id, level, paid, date_added, date_updated)
+values (9, 'Scribe', 0, now(), '2024-03-15');
+
+insert into subscription (id, level, paid, date_added, date_updated)
+values (10, 'Wordsmith', 1, now(), '2024-03-15');
+
+insert into subscription (id, level, paid, date_added, date_updated)
+values (11, 'Literary Luminary', 1, now(), '2024-03-15');
+
+insert into subscription (id, level, paid, date_added, date_updated)
+values (12, 'Complimentary Reader', 0, now(), '2024-03-15');
+
+insert into subscription (id, level, paid, date_added, date_updated)
+values (13, 'Complimentary Author', 0, now(), '2024-03-15');
 
 insert into author (id, photo, pen_name, bio, text, date_created, reviewed, date_updated, user_id)
 VALUES (1, null, 'Tiarra Refosco', 'Hello, I write books.', 'Announcements', now(), 1, '2024-03-15', 1);

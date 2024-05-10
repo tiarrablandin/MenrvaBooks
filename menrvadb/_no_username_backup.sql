@@ -538,33 +538,6 @@ INSERT INTO `sub_genre` VALUES (1,'Dark fantasy','2024-04-06',1,'2024-03-15'),(2
 UNLOCK TABLES;
 
 --
--- Table structure for table `subscription`
---
-
-DROP TABLE IF EXISTS `subscription`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `subscription` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `level` varchar(20) NOT NULL,
-  `paid` int NOT NULL,
-  `date_added` date NOT NULL,
-  `date_updated` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `subscription`
---
-
-LOCK TABLES `subscription` WRITE;
-/*!40000 ALTER TABLE `subscription` DISABLE KEYS */;
-INSERT INTO `subscription` VALUES (1,'Admin',1,'2024-04-06','2024-03-15');
-/*!40000 ALTER TABLE `subscription` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `tag`
 --
 

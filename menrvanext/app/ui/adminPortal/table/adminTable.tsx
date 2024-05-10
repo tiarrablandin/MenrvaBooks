@@ -51,10 +51,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
 
   const normalizedHead = head.toLowerCase().replace(/ list$/, "");
   const showReviewedToggle: boolean = !["genres", "sub-genres", "keyword", "tag", "users", "comments"].includes(normalizedHead as NoReviewed);
-<<<<<<< HEAD
-=======
   const entityType = normalizedHead;
->>>>>>> 77ff19c439f78749fb8699f8a64fa4ea2dc9c66a
 
   const handleSearchChange = (event: any) => {
     setSearchTerm(event.target.value.toLowerCase());
