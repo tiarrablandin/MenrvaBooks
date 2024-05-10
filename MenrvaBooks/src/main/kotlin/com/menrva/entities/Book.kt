@@ -60,7 +60,7 @@ class Book(
     var tags: MutableSet<Tag> = mutableSetOf(),
     @JsonIgnore
 //    @JsonBackReference(value = "books")
-    @ManyToOne(cascade = [CascadeType.ALL])
+    @ManyToOne(cascade = [CascadeType.MERGE])
     @JoinColumn(name = "series_id")
     var series: Series? = null,
     @JsonIgnore

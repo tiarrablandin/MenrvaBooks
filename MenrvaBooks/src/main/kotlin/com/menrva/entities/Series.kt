@@ -19,7 +19,7 @@ class Series(
     var reviewed: Boolean? = false,
 //    @JsonManagedReference
     @JsonIgnore
-    @OneToMany(cascade = [CascadeType.ALL])
+    @OneToMany(cascade = [CascadeType.MERGE])
     @JoinColumn(name = "series_id")
     var books: Set<Book> = mutableSetOf(),
     @JsonIgnore
@@ -28,4 +28,8 @@ class Series(
     @JsonIgnore
     @OneToMany(mappedBy = "series")
     var seriesInteractions: MutableSet<SeriesInteraction> = mutableSetOf()
-)
+) {
+    override fun toString(): String {
+        return "Series(id=$id, name=$name, reviewed=$reviewed)"
+    }
+}

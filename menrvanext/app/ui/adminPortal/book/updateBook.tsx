@@ -2,11 +2,12 @@
 
 import { BookResponse, UpdateBookRequest } from "@/app/lib/models/book";
 import { fetchBookById } from "@/app/lib/services/apiService";
-import { Button, Dialog, DialogBody, DialogFooter, DialogHeader, Input, Textarea, Typography, XMarkIcon } from "@/providers";
+import { Alert, Button, Dialog, DialogBody, DialogFooter, DialogHeader, Input, Textarea, Typography, XMarkIcon } from "@/providers";
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import SeriesDropdown from "./seriesDropdown";
 import { Series } from "@/app/lib/models/series";
+import DefaultAlert from "../../alert";
 
 const UpdateBook: React.FC = () => {
   const router = useRouter();
@@ -14,6 +15,8 @@ const UpdateBook: React.FC = () => {
   const id = searchParams?.id;
   const numericId = id ? parseInt(id as string, 10) : null;
   const [book, setBook] = useState<BookResponse | null>(null);
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  
 
   useEffect(() => {
     async function fetchBook() {
@@ -26,18 +29,9 @@ const UpdateBook: React.FC = () => {
   const handleClose = () => { router.back(); }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    // const bookData: UpdateBookRequest = {
-    //   title: formData.get('title') as string,
-    //   description: formData.get('description') as string,
-    //   pageCount: parseInt(formData.get('pageCount') as string),
-    //   publicationDate: new Date(formData.get('publicationDate') as string),
-    //   cover: formData.get('cover') as string,
-    //   series: formData.get('')
-    // };
-    console.log("************** " + JSON.stringify(book));
 
     const response = await fetch(`http://localhost:8085/api/books/${id}`, {
       method: 'PUT',
@@ -48,11 +42,12 @@ const UpdateBook: React.FC = () => {
     });
 
     const responseData = await response.json();
-    console.log(responseData);
+    setBook(responseData);
 
     if (response.ok) {
-      alert('Book saved successfully!');
-      router.back();
+      // alert('Book saved successfully!');
+      setIsAlertOpen(true);
+      // router.back();
     } else {
       alert('Failed to save the book.');
     }
@@ -60,8 +55,8 @@ const UpdateBook: React.FC = () => {
 
   return (
     <>
-      <Dialog open={true} handler={handleClose} >
-        <form onSubmit={handleSubmit}>
+      <Dialog open={true} handler={handleClose} className="container">
+        <form onSubmit={handleSubmit} >
           <DialogHeader className="justify-between pb-0">
             <Typography color="blue-gray" className="mb-1 font-bold text-2xl">
               Update Book
@@ -80,8 +75,7 @@ const UpdateBook: React.FC = () => {
             </div>
 
             <div className="flex flex-col gap-4 my-2">
-              {book?.series ? <SeriesDropdown onChange={(series: Series) => { if (book) book.series = series }} defaultValue={book?.series.name} />
-                : <Typography>Loading...</Typography>}
+              <SeriesDropdown onChange={(series: Series) => { if (book) book.series = series }} defaultValue={book?.series ? book?.series.name : ""} />
 
               <Input
                 type="text"
@@ -165,17 +159,20 @@ const UpdateBook: React.FC = () => {
               />
             </div>
             {/* <div className="w-full mt-2">
-                            <Input
-                                placeholder="Add up to 10 tags, separated by commas"
-                                label="Tags"
-                                labelProps={{
-                                    className: "peer-focus:before:!border-t-eggplant peer-focus:before:!border-t-2 peer-focus:before:!border-l-eggplant peer-focus:before:!border-l-2 peer-focus:after:!border-t-eggplant peer-focus:after:!border-t-2 peer-focus:after:!border-r-eggplant peer-focus:after:!border-r-2 peer-focus:before:mt-[6px] peer-focus:after:mt-[6px]",
-                                }}
-                                className={`focus:!border-l-eggplant focus:!border-r-eggplant focus:!border-b-eggplant focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
-                            />
-                        </div> */}
+              <Input
+                placeholder="Add up to 10 tags, separated by commas"
+                label="Tags"
+                labelProps={{
+                  className: "peer-focus:before:!border-t-eggplant peer-focus:before:!border-t-2 peer-focus:before:!border-l-eggplant peer-focus:before:!border-l-2 peer-focus:after:!border-t-eggplant peer-focus:after:!border-t-2 peer-focus:after:!border-r-eggplant peer-focus:after:!border-r-2 peer-focus:before:mt-[6px] peer-focus:after:mt-[6px]",
+                }}
+                className={`focus:!border-l-eggplant focus:!border-r-eggplant focus:!border-b-eggplant focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
+              />
+            </div> */}
           </DialogBody>
           <DialogFooter className="gap-2">
+            <div className='-translate-y-24 container opacity-95'>
+              <DefaultAlert text='hello world' defaultIsOpen={isAlertOpen} />
+            </div>
             <Button onClick={handleClose} color="red" variant="outlined" className="w-24 h-10 flex items-center justify-center border-2">
               <Typography className="normal-case text-lg font-medium text-eggplant">
                 Cancel
@@ -188,7 +185,7 @@ const UpdateBook: React.FC = () => {
             </Button>
           </DialogFooter>
         </form>
-      </Dialog>
+      </Dialog >
     </>
   );
 }

@@ -20,11 +20,16 @@ const SeriesDropdown: React.FC<SeriesDropdownProps> = ({ onChange, defaultValue 
             const fetchedOptions = await fetchSeriesAll();
             setOptions(fetchedOptions);
             setLoading(false);
-            if (!selectedValue) { setSelectedValue(fetchedOptions[0].name) }
         };
 
         fetchOptions();
     }, []);
+
+    useEffect(() => {
+        if (defaultValue) {
+            setSelectedValue(defaultValue);
+        }
+    }, [defaultValue]);
 
     const handleChange = (selectedName: string | undefined) => {
         const selectedSeries = options.find(option => option.name === selectedName);
