@@ -1,69 +1,61 @@
-import React from "react";
+'use client';
+
 import {
+  BellIconOutline,
   Card,
-  Typography,
+  KeyIconOutline,
   List,
   ListItem,
   ListItemPrefix,
-  UserCircleIcon,
-  KeyIconOutline,
   ShieldCheckIconOutline,
-  CreditCardIconOutline,
-  BellIconOutline,
+  Typography,
+  UserCircleIcon
 } from "@/providers";
 import Link from "next/link";
 
 const SettingsSidebar = () => {
   return (
-    <Card className="h-screen w-52 shadow-blue-gray-900/5 rounded-none bg-pink-lavender/65">
+    <Card className="h-screen fixed w-52 shadow-blue-gray-900/5 rounded-none bg-pink-lavender/65">
       <div className="mb-2 p-4">
         <Typography variant="h5" className="text-xl px-2">
           Settings
         </Typography>
       </div>
       <List className="text-eggplant min-w-full">
-        <ListItem className="hover:bg-pink-lavender/40">
-          <ListItemPrefix>
-            <UserCircleIcon className="h-5 w-5" />
-          </ListItemPrefix>
-          <Link href="./settings/profile">
+        <Link href="#profile" passHref>
+          <ListItem className="hover:bg-pink-lavender/40 flex items-center cursor-pointer">
+            <ListItemPrefix>
+              <UserCircleIcon className="h-5 w-5" />
+            </ListItemPrefix>
             <Typography variant="h6">Profile</Typography>
-          </Link>
-        </ListItem>
-        <ListItem className="hover:bg-pink-lavender/40">
-          <ListItemPrefix>
-            <KeyIconOutline className="h-5 w-5" />
-          </ListItemPrefix>
-          <Link href="./settings/password">
+          </ListItem>
+        </Link>
+        <Link href="#password" passHref>
+          <ListItem className="hover:bg-pink-lavender/40 flex items-center cursor-pointer">
+            <ListItemPrefix>
+              <KeyIconOutline className="h-5 w-5" />
+            </ListItemPrefix>
             <Typography variant="h6">Password</Typography>
-          </Link>
-        </ListItem>
-        <ListItem className="hover:bg-pink-lavender/40">
-          <ListItemPrefix>
-            <BellIconOutline className="h-5 w-5" />
-          </ListItemPrefix>
-          <Link href="./settings/notifications">
+          </ListItem>
+        </Link>
+        <Link href="#notifications" passHref>
+          <ListItem className="hover:bg-pink-lavender/40 flex items-center cursor-pointer">
+            <ListItemPrefix>
+              <BellIconOutline className="h-5 w-5" />
+            </ListItemPrefix>
             <Typography variant="h6">Notifications</Typography>
-          </Link>
-        </ListItem>
-        <ListItem className="hover:bg-pink-lavender/40">
-          <ListItemPrefix>
-            <ShieldCheckIconOutline className="h-5 w-5" />
-          </ListItemPrefix>
-          <Link href="./settings/security">
+          </ListItem>
+        </Link>
+        <Link href="#security" passHref>
+          <ListItem className="hover:bg-pink-lavender/40 flex items-center cursor-pointer">
+            <ListItemPrefix>
+              <ShieldCheckIconOutline className="h-5 w-5" />
+            </ListItemPrefix>
             <Typography variant="h6">Security</Typography>
-          </Link>
-        </ListItem>
-        <ListItem className="hover:bg-pink-lavender/40">
-          <ListItemPrefix>
-            <CreditCardIconOutline className="h-5 w-5" />
-          </ListItemPrefix>
-          <Link href="./settings/payments">
-            <Typography variant="h6">Payments</Typography>
-          </Link>
-        </ListItem>
+          </ListItem>
+        </Link>
       </List>
-    </Card>
+    </Card >
   );
 };
 
