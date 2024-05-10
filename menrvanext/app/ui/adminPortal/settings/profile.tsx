@@ -5,7 +5,7 @@ const Profile = () => {
   return (
     <div>
       {/* Avatar Upload */}
-      <section className="py-28 pl-16 px-4 container mx-auto">
+      <section className="pt-12 pb-4 pl-16 px-4 container mx-auto">
         <div className="flex justify-between items-start">
           <div className="grid lg:grid-cols-2 gap-6">
             <div className="flex items-center gap-3">
@@ -34,7 +34,7 @@ const Profile = () => {
       </section>
 
       {/* Basic Form */}
-      <section className="px-8 pl-16 py-20 container mx-auto">
+      <section className="px-8 pl-16 py-2 container mx-auto">
         <Typography variant="h5" color="blue-gray">
           Basic Information
         </Typography>
