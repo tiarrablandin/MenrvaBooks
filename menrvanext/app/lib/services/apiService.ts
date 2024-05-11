@@ -2,6 +2,7 @@
 
 import { Author } from "../models/author";
 import { BookResponse } from "../models/book";
+import { BookInteraction } from "../models/bookInteraction";
 import { User } from "../models/user";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -88,6 +89,36 @@ export async function fetchUserByTag(tag: string): Promise<User | null> {
     }
     const data = await response.json();
     console.log('************* ' + data)
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+export async function fetchUserReadBooksByTag(tag: string): Promise<BookResponse[] | null> {
+  try {
+    const response = await fetch(`${url}/users/${tag}/read-books`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch user read books by tag.');
+    }
+    const data = await response.json();
+    console.log('#*#*#*#*#*#*' + data)
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+export async function fetchUserInterestedBooksByTag(tag: string): Promise<BookResponse[] | null> {
+  try {
+    const response = await fetch(`${url}/users/${tag}/interested-books`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch user interested books by tag.');
+    }
+    const data = await response.json();
+    console.log('#*#*#*#*#*#*' + data)
     return data;
   } catch (error) {
     console.error(error);

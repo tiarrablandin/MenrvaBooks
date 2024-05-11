@@ -63,7 +63,7 @@ const ProfileMenu: React.FC<{ tag: string, role: string, logout: () => void }> =
             className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
           >
             <HomeIcon className="h-4 w-4" />
-            <Link href={tag ? "/user" : "/home"} className="flex items-center">
+            <Link href={tag ? `/userHome/${tag}` : "/home"} className="flex items-center">
               Home
             </Link>
           </Typography>

@@ -13,6 +13,7 @@ export default async function Page({ params: { id } }: { params: { id: number } 
   const tag = cookies().get('tag')?.value;
   const book = await fetchBookById(id);
   const interactions: BookInteraction | null = token ? await fetchBookInteractionsById(id, token) : null;
+  console.log(interactions)
   preload(id, token);
 
   return (

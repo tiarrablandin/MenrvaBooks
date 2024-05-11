@@ -9,6 +9,6 @@ export interface BookInteraction {
     hasRead: boolean;
     favorite: boolean;
     likeDislike: number;
-    // book: BookResponse;
+    book: BookResponse;
     // user: User;
 }
