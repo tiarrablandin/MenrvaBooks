@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   ArrowLeftStartOnRectangleIcon,
@@ -18,7 +18,11 @@ import {
 import Link from "next/link";
 import React, { useEffect } from "react";
 
-const ProfileMenu: React.FC<{ tag: string, role: string, logout: () => void }> = ({ tag, role, logout }) => {
+const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> = ({
+  tag,
+  role,
+  logout,
+}) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const iconClass = "flex items-center gap-x-3 p-2 px-4 font-normal text-base";
 
@@ -68,30 +72,25 @@ const ProfileMenu: React.FC<{ tag: string, role: string, logout: () => void }> =
             </Link>
           </Typography>
         </MenuItem>
-        <MenuItem key="2" onClick={closeMenu} className="">
-          <Typography
-            as="li"
-            variant="small"
-            className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
-          >
-            {tag ? (
-              <>
-                <UserIcon className="h-4 w-4" />
-                <Link href="/account" className="flex items-center text-nowrap">
-                  My Profile
-                </Link>
-              </>
-            ) : (
+        {!tag ? (
+          <MenuItem key="2" onClick={closeMenu} className="">
+            <Typography
+              as="li"
+              variant="small"
+              className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
+            >
               <>
                 <UserIcon className="h-4 w-4" />
                 <Link href="/subscriptions" className="flex items-center">
                   Register
                 </Link>
               </>
-            )}
-          </Typography>
-        </MenuItem>
-        {tag && role === 'Admin' && (
+            </Typography>
+          </MenuItem>
+        ) : (
+          <></>
+        )}
+        {tag && role === "Admin" && (
           <MenuItem key="3" onClick={closeMenu} className="">
             <Link href="/admin" className="flex items-center">
               <Typography
