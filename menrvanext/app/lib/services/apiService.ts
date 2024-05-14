@@ -86,8 +86,9 @@ export async function fetchUserByTag(tag: string): Promise<User | null> {
     if (!response.ok) {
       throw new Error('Failed to fetch user by tag.');
     }
+
     const user = await response.json() as User;
-    
+
     user ? user.tbrBooks = user?.bookInteractions
       .filter((interaction) => interaction.interested)
       .map((interaction) => interaction.book)

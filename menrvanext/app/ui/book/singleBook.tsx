@@ -30,7 +30,6 @@ export const preload = (id: number, token: string | undefined) => {
 }
 
 const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) => {
-  console.log(book.bookInteractions);
   const numberOfLikes = book.bookInteractions ? book.bookInteractions.filter(interaction => interaction.likeDislike === 1).length : 0;
   const numberOfDislikes = book.bookInteractions ? book.bookInteractions.filter(interaction => interaction.likeDislike === -1).length : 0;
 

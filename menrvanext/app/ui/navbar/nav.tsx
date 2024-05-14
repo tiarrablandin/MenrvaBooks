@@ -27,8 +27,8 @@ export function NavbarWithSearch({ tag, logout, role }: { tag: string, logout: (
   }, []);
 
   return (
-    <Navbar shadow={false} fullWidth className="border-none bg-pink-lavender dark:bg-chinese-violet p-0.5 pr-2">
-      <div className="w-full mx-auto flex h-[5rem] items-center">
+    <Navbar shadow={false} fullWidth className="border-none bg-pink-lavender dark:bg-chinese-violet p-0.5 pr-2 relative z-10">
+      <div className="w-full mx-auto flex h-[5rem] items-center ">
         <Link href="/home">
           <Image
             className="object-center w-[5rem] h-[5.5rem] mx-2"

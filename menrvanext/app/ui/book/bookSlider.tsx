@@ -40,7 +40,6 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks 
 
   useEffect(() => {
     if (defaultBooks) {
-      console.log("######################" + defaultBooks);
       setBooks(defaultBooks);
       setIsLoading(false);
     }
