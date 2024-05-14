@@ -2,7 +2,6 @@
 
 import { Author } from "../models/author";
 import { BookResponse } from "../models/book";
-import { BookInteraction } from "../models/bookInteraction";
 import { User } from "../models/user";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -87,9 +86,24 @@ export async function fetchUserByTag(tag: string): Promise<User | null> {
     if (!response.ok) {
       throw new Error('Failed to fetch user by tag.');
     }
-    const data = await response.json();
-    console.log('************* ' + data)
-    return data;
+    const user = await response.json() as User;
+    
+    user ? user.tbrBooks = user?.bookInteractions
+      .filter((interaction) => interaction.interested)
+      .map((interaction) => interaction.book)
+      : []
+
+    user ? user.hasReadBooks = user?.bookInteractions
+      .filter((interaction) => interaction.hasRead)
+      .map((interaction) => interaction.book)
+      : []
+
+    user ? user.likedBooks = user?.bookInteractions
+      .filter((interaction) => interaction.likeDislike === 1)
+      .map((interaction) => interaction.book)
+      : []
+
+    return user;
   } catch (error) {
     console.error(error);
     return null;
@@ -103,7 +117,6 @@ export async function fetchUserReadBooksByTag(tag: string): Promise<BookResponse
       throw new Error('Failed to fetch user read books by tag.');
     }
     const data = await response.json();
-    console.log('#*#*#*#*#*#*' + data)
     return data;
   } catch (error) {
     console.error(error);
@@ -118,7 +131,6 @@ export async function fetchUserInterestedBooksByTag(tag: string): Promise<BookRe
       throw new Error('Failed to fetch user interested books by tag.');
     }
     const data = await response.json();
-    console.log('#*#*#*#*#*#*' + data)
     return data;
   } catch (error) {
     console.error(error);
@@ -239,7 +251,7 @@ export async function addBook(book: BookResponse): Promise<Response | null> {
 
 export async function toggleUserActive(userId: number, token: string) {
   try {
-    const response = await fetch(`http://localhost:8085/api/users/${userId}/active`, {
+    const response = await fetch(`${url}/users/${userId}/active`, {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${token}`
@@ -249,7 +261,6 @@ export async function toggleUserActive(userId: number, token: string) {
       throw new Error("Failed to toggle liked status");
     }
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error: any) {
     console.error(error.message);
@@ -259,17 +270,16 @@ export async function toggleUserActive(userId: number, token: string) {
 
 export async function toggleBookInterested(bookId: number, token: string) {
   try {
-    const response = await fetch(`http://localhost:8085/api/books/${bookId}/interested`, {
+    const response = await fetch(`${url}/books/${bookId}/interested`, {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${token}`
       }
     });
     if (!response.ok) {
-      throw new Error("Failed to toggle liked status");
+      throw new Error("Failed to toggle interested status");
     }
     const data = await response.json();
-    console.log(data);
     return { bookId, interested: data.interested };
   } catch (error: any) {
     console.error(error.message);
@@ -279,17 +289,16 @@ export async function toggleBookInterested(bookId: number, token: string) {
 
 export async function toggleBookHasRead(bookId: number, token: string) {
   try {
-    const response = await fetch(`http://localhost:8085/api/books/${bookId}/hasRead`, {
+    const response = await fetch(`${url}/books/${bookId}/hasRead`, {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${token}`
       }
     });
     if (!response.ok) {
-      throw new Error("Failed to toggle liked*** status");
+      throw new Error("Failed to toggle has read status");
     }
     const data = await response.json();
-    console.log(data);
     return { bookId, hasRead: data.hasRead };
   } catch (error: any) {
     console.error(error.message);
@@ -299,7 +308,7 @@ export async function toggleBookHasRead(bookId: number, token: string) {
 
 export async function toggleBookLiked(bookId: number, status: number, token: string) {
   try {
-    const response = await fetch(`http://localhost:8085/api/books/${bookId}/react?status=${status}`, {
+    const response = await fetch(`${url}/books/${bookId}/react?status=${status}`, {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${token}`
@@ -309,7 +318,6 @@ export async function toggleBookLiked(bookId: number, status: number, token: str
       throw new Error("Failed to toggle liked status");
     }
     const data = await response.json();
-    console.log(data);
     return { bookId, liked: data.likeDislike === 1, disliked: data.likeDislike === -1 };
   } catch (error: any) {
     console.error(error.message);

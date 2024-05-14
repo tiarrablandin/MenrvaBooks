@@ -29,7 +29,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
         const user = JSON.parse(JSON.stringify(await login(identifier, password)));
         dispatch(setUserDetails(user));
         setIsOpen(false);
-        router.push("/user");
+        router.push(`/userHome/${user.id}`);
     }
 
     const handleClose = () => { setIsOpen(false); router.back(); }

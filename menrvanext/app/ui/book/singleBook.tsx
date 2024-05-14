@@ -1,6 +1,6 @@
 import { BookResponse } from "@/app/lib/models/book";
 import { BookInteraction } from "@/app/lib/models/bookInteraction";
-import { fetchBookById, fetchBookInteractionsById, fetchBooks, toggleBookHasRead, toggleBookInterested, toggleBookLiked } from "@/app/lib/services/apiService";
+import { fetchBookById, fetchBookInteractionsById, fetchBooks } from "@/app/lib/services/apiService";
 import {
   Card,
   Typography
@@ -8,11 +8,11 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import BookComments from "./bookComments";
-import ThumbsDownComponent from "./interactions/thumbsDown";
-import ThumbsUpComponent from "./interactions/thumbsUp";
-import InterestedButton from "./interactions/interestedButton";
 import HasReadButton from "./interactions/hasReadButton";
 import InitializeInteractions from "./interactions/initalizeInteractions";
+import InterestedButton from "./interactions/interestedButton";
+import ThumbsDownComponent from "./interactions/thumbsDown";
+import ThumbsUpComponent from "./interactions/thumbsUp";
 
 interface SingleBookProps {
   id: number;

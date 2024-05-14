@@ -9,13 +9,14 @@ import BookSkeleton from "./bookSkeleton";
 import Link from "next/link";
 
 interface BookSliderProps {
-  fetchData: () => Promise<BookResponse[] | null>;
+  fetchData?: () => Promise<BookResponse[] | null>;
   title: string;
+  defaultBooks?: BookResponse[];
 }
 
 const neue = Comic_Neue({ subsets: ["latin"], weight: "400" });
 
-const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title }) => {
+const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks }) => {
   const [books, setBooks] = useState<BookResponse[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,18 +24,27 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title }) => {
     const fetchBooks = async () => {
       setIsLoading(true);
       try {
-        const fetchedBooks = await fetchData();
-        console.log(fetchedBooks);
-        if (fetchedBooks) setBooks(fetchedBooks);
+        if (fetchData) {
+          const fetchedBooks = await fetchData();
+          if (fetchedBooks) setBooks(fetchedBooks);
+        }
       } catch (error) {
         console.error("Failed to fetch books: ", error);
       } finally {
         setIsLoading(false);
       }
     };
-    // if (!books) fetchBooks();
+
     fetchBooks();
   }, [fetchData]);
+
+  useEffect(() => {
+    if (defaultBooks) {
+      console.log("######################" + defaultBooks);
+      setBooks(defaultBooks);
+      setIsLoading(false);
+    }
+  }, [defaultBooks])
 
   return (
     <>

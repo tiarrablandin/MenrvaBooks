@@ -1,5 +1,7 @@
 package com.menrva.data.user
 
+import com.menrva.data.BookInteractionDTO
+import com.menrva.entities.BookInteraction
 import com.menrva.entities.Series
 import com.menrva.entities.Subscription
 import com.menrva.entities.User
@@ -16,6 +18,7 @@ data class UserDTO(
     val email: String?,
     val password: String?,
     val subscription: Subscription?,
+    val bookInteractions: List<BookInteractionDTO>?
 ) {
     constructor(user: User) : this(
         id = user.id,
@@ -28,5 +31,6 @@ data class UserDTO(
         email = user.email,
         password = user.password,
         subscription = user.subscription,
+        bookInteractions = user.bookInteractions.map { BookInteractionDTO(it) },
     )
 }
