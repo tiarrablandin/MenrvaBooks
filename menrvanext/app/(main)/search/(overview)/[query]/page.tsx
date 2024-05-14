@@ -4,17 +4,18 @@ import { Metadata } from "next";
 import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
-  title: "MenrvaBooks | User",
+  title: "MenrvaBooks | Search",
 };
 
-export default async function Page({ params: { tag } }: { params: { tag: string } }) {
+export default async function Page({ params: { query } }: { params: { query: string } }) {
   const cookieStore = cookies();
+  const tag = cookieStore.get("tag")?.value;
   const token = cookieStore.get("jwt")?.value;
-  // console.log("#*******######********" + JSON.stringify(user));
 
   return (
     <main className="w-screen min-h-[calc(100vh-295px)]">
-      {tag ? <UserComponent tag={tag} /> : <></>}
+      <p>Hello World</p>
+      <p>{query}</p>
     </main>
   );
 }

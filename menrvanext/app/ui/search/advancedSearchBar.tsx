@@ -4,12 +4,14 @@ import { clearSuggestions, fetchSuggestions, setSearchTerm } from "@/app/lib/sto
 import { RootState, useAppDispatch } from "@/app/lib/store/store";
 import { Input } from '@/providers';
 import { debounce } from "lodash";
+import { useRouter } from "next/navigation";
 import React, { useEffect } from 'react';
 import { useSelector } from "react-redux";
 
 const AdvancedSearchBar = () => {
     const dispatch = useAppDispatch();
-    const { searchTerm } = useSelector((state: RootState) => state.search);
+    const router = useRouter();
+    const { searchTerm, suggestions } = useSelector((state: RootState) => state.search);
 
     const debouncedSetSearchTerm = debounce((value) => {
         dispatch(setSearchTerm(value));
@@ -18,32 +20,36 @@ const AdvancedSearchBar = () => {
     useEffect(() => {
         if (searchTerm && searchTerm.length > 0) {
             dispatch(fetchSuggestions(searchTerm))
+        } else if (!searchTerm || searchTerm === "") {
+            dispatch(clearSuggestions());
         }
     }, [searchTerm, dispatch]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault();
         if (event.target.value === "") { dispatch(clearSuggestions()) }
-        debouncedSetSearchTerm(event.target.value);
+        // debouncedSetSearchTerm(event.target.value);
+        dispatch(setSearchTerm(event.target.value));
     };
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         // * placeholder for dispatching search and navigating to book page.
+        dispatch(clearSuggestions());
+        await new Promise(resolve => setTimeout(resolve, 0));
         console.log("Search submitted for:", searchTerm);
+        router.push(`../search/${searchTerm}`)
     };
 
     return (
         <form onSubmit={handleSubmit} className='flex gap-3 container'>
             <Input
-                className={`focus:!border-l-eggplant focus:!border-r-eggplant focus:!border-b-eggplant focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
-                labelProps={{
-                    className: "peer-focus:before:!border-t-eggplant peer-focus:before:!border-t-2 peer-focus:before:!border-l-eggplant peer-focus:before:!border-l-2 peer-focus:after:!border-t-eggplant peer-focus:after:!border-t-2 peer-focus:after:!border-r-eggplant peer-focus:after:!border-r-2 peer-focus:before:mt-[6px] peer-focus:after:mt-[6px]",
-                }}
                 type="text"
                 size="lg"
-                placeholder="Search for books, authors, genres..."
                 label="Search"
+                placeholder="Search for books, authors, genres..."
                 onChange={handleInputChange}
+                value={searchTerm}
             />
         </form>
     )
