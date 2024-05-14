@@ -34,7 +34,7 @@ class User(
     var dateUpdated: LocalDate? = null,
     @JsonBackReference(value = "user")
     @OneToMany(mappedBy = "user")
-    var bookInteractions: Set<BookInteraction> = HashSet(),
+    var bookInteractions: MutableSet<BookInteraction> = mutableSetOf(),
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "subscription_id", nullable = true)
     var subscription: Subscription? = null,

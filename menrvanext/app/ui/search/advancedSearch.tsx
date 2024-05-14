@@ -3,7 +3,7 @@ import SuggestionCards from './suggestionCards';
 
 const AdvancedSearchComponent = () => {
     return (
-        <div className="advanced-search-container flex flex-col w-4/5">
+        <div className="flex flex-col w-4/5">
             <AdvancedSearchBar />
             <SuggestionCards />
         </div>

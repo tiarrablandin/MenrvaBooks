@@ -13,28 +13,35 @@ interface UserSummary {
     fun getEmail(): String?
     fun getDateAdded(): LocalDate?
     fun getBookInteractions(): Set<BookInteraction>?
-    fun getSeriesInteractions(): Set<SeriesInteraction>?
+
+    //    fun getSeriesInteractions(): Set<SeriesInteraction>?
     fun getSubscription(): Subscription?
     fun getComments(): Set<Comment>?
     fun getAuthor(): Author?
     fun getAuthors(): Set<Author>?
     fun getKeywords(): Set<Keyword>?
     fun getGenres(): Set<Genre>?
-    fun getSubgenres(): Set<SubGenre>?
+    fun getSubGenres(): Set<SubGenre>?
+
+    interface BookInteractionId {
+        fun getBookId(): Long?
+        fun getUserId(): Long?
+    }
 
     interface BookInteraction {
+        fun getId(): BookInteractionId
         fun getBook(): Book?
-        fun hasRead(): Boolean?
-        fun interested(): Boolean?
-        fun favorite(): Boolean?
-        fun likeDislike(): Int?
+        fun getHasRead(): Boolean?
+        fun getInterested(): Boolean?
+        fun getFavorite(): Boolean?
+        fun getLikeDislike(): Int?
     }
 
     interface SeriesInteraction {
         fun getSeries(): Series?
-        fun interested(): Boolean?
-        fun favorite(): Boolean?
-        fun likeDislike(): Int?
+        fun getInterested(): Boolean?
+        fun getFavorite(): Boolean?
+        fun getLikeDislike(): Int?
     }
 
     interface Genre {
@@ -68,7 +75,7 @@ interface UserSummary {
         fun getPublicationDate(): LocalDate?
         fun getDateAdded(): LocalDate?
         fun getAuthors(): Set<Author>?
-        fun getSeries(): Series?
+//        fun getSeries(): Series?
     }
 
     interface Comment {

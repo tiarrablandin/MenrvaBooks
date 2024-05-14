@@ -25,9 +25,9 @@ class UserController(
     }
 
     @GetMapping("{tag}/info")
-    fun findByTag(@PathVariable tag: String): ResponseEntity<User> {
+    fun findByTag(@PathVariable tag: String): ResponseEntity<UserSummary> {
 //        return ResponseEntity.ok(userService.loadUserSummaryByIdentifier(tag))
-        return ResponseEntity.ok(userService.loadFullUserByIdentifier(tag))
+        return ResponseEntity.ok(userService.loadUserSummaryByIdentifier(tag))
     }
 
     @GetMapping("{id}")

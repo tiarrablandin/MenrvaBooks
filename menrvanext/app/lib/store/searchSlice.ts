@@ -36,6 +36,7 @@ const searchSlice = createSlice({
             state.searchTerm = action.payload;
         },
         clearSuggestions(state) {
+            state.searchTerm = "";
             state.suggestions = [];
         }
     },

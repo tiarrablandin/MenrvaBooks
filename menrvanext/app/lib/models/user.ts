@@ -1,3 +1,4 @@
+import { BookResponse } from "./book";
 import { BookInteraction } from "./bookInteraction";
 import { Subscription } from "./subscription";
 
@@ -15,4 +16,8 @@ export interface User {
     
     bookInteractions: BookInteraction[]; 
     subscription: Subscription;
+    bookInteractions: BookInteraction[];
+    hasReadBooks?: BookResponse[];
+    likedBooks?: BookResponse[];
+    tbrBooks?: BookResponse[];
 }

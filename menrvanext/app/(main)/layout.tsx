@@ -19,7 +19,7 @@ export default function DashboardLayout({ children, }: { children: React.ReactNo
             <Nav tag={tag} role={role} logout={logout} />
 
             {children}
-            <InitializeUserCredentials />
+            {/* <InitializeUserCredentials /> */}
             <Footer />
         </>
     )
