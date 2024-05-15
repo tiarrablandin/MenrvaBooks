@@ -27,9 +27,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
         const identifier = formData.get('identifier') as string;
         const password = formData.get('password') as string;
         const user = JSON.parse(JSON.stringify(await login(identifier, password)));
+        console.log(user)
         dispatch(setUserDetails(user));
         setIsOpen(false);
-        router.push(`/userHome/${user.id}`);
+        router.push(`/userHome/@${identifier}`);
     }
 
     const handleClose = () => { setIsOpen(false); router.back(); }

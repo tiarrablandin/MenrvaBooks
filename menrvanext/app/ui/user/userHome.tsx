@@ -3,6 +3,7 @@ import {
   fetchUserByTag
 } from "@/app/lib/services/apiService";
 import BookSlider from "../book/bookSlider";
+import UserSpeedDial from "./userSpeedDial";
 
 const UserComponent: React.FC<{ tag: string }> = async ({ tag }) => {
   const user = await fetchUserByTag(tag);
@@ -25,6 +26,7 @@ const UserComponent: React.FC<{ tag: string }> = async ({ tag }) => {
         <BookSlider fetchData={fetchBooks} title={"Liked Genre"} />
         <BookSlider fetchData={fetchBooks} title={"Liked Genre"} />
         <BookSlider fetchData={fetchBooks} title={"Liked Genre"} /> */}
+      <UserSpeedDial tag={tag}/>
       </div>
     </div>
   ) : (

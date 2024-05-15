@@ -14,7 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const adminSidebar = () => {
+const AdminSidebar: React.FC = () => {
   const pathname = usePathname();
 
   const isActive = (path: string) => pathname === path;
@@ -66,4 +66,4 @@ const adminSidebar = () => {
   );
 };
 
-export default adminSidebar;
+export default AdminSidebar;

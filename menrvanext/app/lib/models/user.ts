@@ -14,7 +14,6 @@ export interface User {
     dateAdded: Date;
     dateUpdated: Date;
     
-    bookInteractions: BookInteraction[]; 
     subscription: Subscription;
     bookInteractions: BookInteraction[];
     hasReadBooks?: BookResponse[];
