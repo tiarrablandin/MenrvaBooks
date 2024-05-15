@@ -11,7 +11,7 @@ export default function AdminLayout({ children, add, update }: { children: React
                 {children}
             </main>
 
-            <InitializeUserCredentials />
+            {/* <InitializeUserCredentials /> */}
         </div>
     )
 }

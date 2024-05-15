@@ -1,4 +1,4 @@
-import UserComponent from "@/app/ui/user/userHome";
+import UserSettingsPage from "@/app/ui/user/settings/userSettingsPage";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <main className="w-screen min-h-[calc(100vh-295px)]">
-      <UserComponent />
+      <UserSettingsPage />
     </main>
   );
 }

@@ -1,9 +1,7 @@
+import UserSpeedDial from "@/app/ui/user/userSpeedDial";
 import { cookies } from "next/headers"
-import { Footer } from "../ui/footer"
-import Nav from "../ui/navbar/nav"
-import InitializeUserCredentials from "../ui/adminPortal/initializeUserCredentials";
 
-export default function DashboardLayout({ children, }: { children: React.ReactNode }) {
+export default function UserLayout({ children, }: { children: React.ReactNode }) {
     const tag = cookies().get('tag')?.value as string;
     const role = cookies().get('role')?.value as string;
 
@@ -16,11 +14,7 @@ export default function DashboardLayout({ children, }: { children: React.ReactNo
 
     return (
         <>
-            <Nav tag={tag} role={role} logout={logout} />
-
             {children}
-            {/* <InitializeUserCredentials /> */}
-            <Footer />
         </>
     )
 }

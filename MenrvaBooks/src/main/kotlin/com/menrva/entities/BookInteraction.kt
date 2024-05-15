@@ -18,7 +18,7 @@ class BookInteraction(
     var id: BookInteractionId,
     @JsonIgnore
     @MapsId("bookId")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "book_id")
     var book: Book,
     @JsonIgnore
