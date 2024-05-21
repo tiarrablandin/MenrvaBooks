@@ -57,7 +57,7 @@ const Pagination: React.FC<PaginationProps> = ({ onPageChange, totalPages, curre
                 onClick={prev}
                 disabled={currentPage === 1}
             >
-                <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" /> Previous
+                <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" />
             </Button>
             <div className="flex items-center gap-2">
                 {pages.map((page, index) =>
@@ -76,7 +76,7 @@ const Pagination: React.FC<PaginationProps> = ({ onPageChange, totalPages, curre
                 onClick={next}
                 disabled={currentPage === totalPages}
             >
-                Next <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
+                <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
             </Button>
         </div>
     );
