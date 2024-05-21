@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchSearchResults } from '../services/apiService';
 import { BookResponse } from '../models/book';
 
-// Define a type for the slice state
 export interface SearchState {
     searchTerm: string;
     suggestions: BookResponse[];
@@ -10,7 +9,6 @@ export interface SearchState {
     error: string | null;
 }
 
-// Define the initial state with the SearchState type
 const initialState: SearchState = {
     searchTerm: '',
     suggestions: [],
@@ -19,12 +17,12 @@ const initialState: SearchState = {
 };
 
 
-// Async thunk for fetching search suggestions
 export const fetchSuggestions = createAsyncThunk<BookResponse[], string>(
     'search/fetchSuggestions',
     async (searchTerm: string) => {
         const response = await fetchSearchResults(searchTerm);
-        return response.slice(0, 5);
+        if (response && response.length > 5) return response.slice(0, 5);
+        else return []
     }
 );
 

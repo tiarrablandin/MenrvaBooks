@@ -2,11 +2,12 @@
 
 import { Typography } from "@/providers";
 import { Comic_Neue } from "next/font/google";
+import Link from "next/link";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { BookResponse } from "../../lib/models/book";
 import BookCard from "./bookCard";
-import { useEffect, useState } from "react";
 import BookSkeleton from "./bookSkeleton";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface BookSliderProps {
   fetchData?: () => Promise<BookResponse[] | null>;
@@ -19,6 +20,59 @@ const neue = Comic_Neue({ subsets: ["latin"], weight: "400" });
 const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks }) => {
   const [books, setBooks] = useState<BookResponse[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDragging, setIsDragging] = useState(false);
+  const [displayLimit, setDisplayLimit] = useState(10);
+  const sliderRef = useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
+  const router = useRouter();
+
+  const enableDragScroll = (node: HTMLDivElement) => {
+    let pos = { top: 0, left: 0, x: 0, y: 0 };
+
+    const mouseDownHandler = (e: MouseEvent) => {
+      setIsDragging(true);
+      pos = {
+        left: node.scrollLeft,
+        top: node.scrollTop,
+        x: e.clientX,
+        y: e.clientY,
+      };
+
+      document.addEventListener('mousemove', mouseMoveHandler);
+      document.addEventListener('mouseup', mouseUpHandler);
+    };
+
+    const mouseMoveHandler = (e: MouseEvent) => {
+      setIsDragging(false);
+      const dx = e.clientX - pos.x;
+      const dy = e.clientY - pos.y;
+
+      node.scrollTop = pos.top - dy;
+      node.scrollLeft = pos.left - dx;
+    };
+
+    const mouseUpHandler = () => {
+      document.removeEventListener('mousemove', mouseMoveHandler);
+      document.removeEventListener('mouseup', mouseUpHandler);
+    };
+
+    node.addEventListener('mousedown', mouseDownHandler);
+
+    return () => {
+      node.removeEventListener('mousedown', mouseDownHandler);
+      document.removeEventListener('mousemove', mouseMoveHandler);
+      document.removeEventListener('mouseup', mouseUpHandler);
+    };
+  };
+
+  useEffect(() => {
+    const node = sliderRef.current;
+    if (node) {
+      const cleanupDragScroll = enableDragScroll(node);
+      return () => {
+        cleanupDragScroll();
+      };
+    }
+  }, []);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -45,20 +99,46 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks 
     }
   }, [defaultBooks])
 
+  const handleScroll = useCallback(() => {
+    const node = sliderRef.current;
+    if (node) {
+      const { scrollLeft, clientWidth, scrollWidth } = node;
+      if (scrollWidth - scrollLeft === clientWidth && displayLimit < books.length) {
+        setDisplayLimit(prevLimit => prevLimit + 10);
+      }
+    }
+  }, [displayLimit, books.length]);
+
+  useEffect(() => {
+    const node = sliderRef.current;
+    if (node) {
+      node.addEventListener('scroll', handleScroll);
+    }
+
+    return () => {
+      if (node) {
+        node.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, [handleScroll]);
+
+
   return (
     <>
       <Typography variant="h2" className={`${neue.className} text-2xl self-start ml-8 my-4`}>
         {title}
       </Typography>
-      <div className="flex w-[95%] items-end justify-start gap-4 overflow-scroll pb-3 md:pb-6">
+      <div ref={sliderRef} className="flex w-[95%] items-end justify-start gap-4 overflow-scroll pb-3 md:pb-6">
         {isLoading
           ? Array(10)
             .fill(0)
             .map((_, index) => <BookSkeleton key={index} />)
-          : books.map((book) => (
-            <Link href={`../book/${book.id}`} key={book.id}>
-              <BookCard book={book} />
-            </Link>
+          : books.slice(0, displayLimit).map((book) => (
+            // <Link href={`../book/${book.id}`} key={book.id} className={`${isDragging ? 'pointer-events-auto' : ''} block`}>
+            <div onClick={() => router.push(`../book/${book.id}`)} key={book.id} className="w-full h-full cursor-pointer">
+              <BookCard book={book} key={book.id} />
+            </div>
+            // </Link>
           ))}
       </div>
     </>
