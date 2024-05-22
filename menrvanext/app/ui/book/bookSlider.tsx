@@ -21,6 +21,7 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks 
   const [books, setBooks] = useState<BookResponse[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isDragging, setIsDragging] = useState(false);
+  const [isMoving, setIsMoving] = useState(false);
   const [displayLimit, setDisplayLimit] = useState(10);
   const sliderRef = useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
   const router = useRouter();
@@ -29,7 +30,6 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks 
     let pos = { top: 0, left: 0, x: 0, y: 0 };
 
     const mouseDownHandler = (e: MouseEvent) => {
-      setIsDragging(true);
       pos = {
         left: node.scrollLeft,
         top: node.scrollTop,
@@ -39,10 +39,14 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks 
 
       document.addEventListener('mousemove', mouseMoveHandler);
       document.addEventListener('mouseup', mouseUpHandler);
+      setIsDragging(false); // Assume no dragging initially
     };
 
     const mouseMoveHandler = (e: MouseEvent) => {
-      setIsDragging(false);
+      if (!isMoving) {
+        setIsDragging(true); // Set dragging true only if movement starts
+        setIsMoving(true); // Update flag indicating movement started
+      }
       const dx = e.clientX - pos.x;
       const dy = e.clientY - pos.y;
 
@@ -53,6 +57,10 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks 
     const mouseUpHandler = () => {
       document.removeEventListener('mousemove', mouseMoveHandler);
       document.removeEventListener('mouseup', mouseUpHandler);
+      if (isMoving) {
+        setIsDragging(false); // Reset dragging state only here
+        setIsMoving(false); // Reset movement flag
+      }
     };
 
     node.addEventListener('mousedown', mouseDownHandler);
@@ -134,15 +142,15 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks 
             .fill(0)
             .map((_, index) => <BookSkeleton key={index} />)
           : books.slice(0, displayLimit).map((book) => (
-            // <Link href={`../book/${book.id}`} key={book.id} className={`${isDragging ? 'pointer-events-auto' : ''} block`}>
-            <div onClick={() => router.push(`../book/${book.id}`)} key={book.id} className="w-full h-full cursor-pointer">
-              <BookCard book={book} key={book.id} />
-            </div>
-            // </Link>
+            // <Link href={`../book/${book.id}`} key={book.id} className={`${(isDragging) ? 'pointer-events-none' : ''}`}>
+              <div onClick={() => { if (!isDragging) (router.push(`../book/${book.id}`)) }} key={book.id} className="w-full h-full cursor-pointer">
+                <BookCard book={book} key={book.id} />
+              </div>
+              // {/* </Link> */}
           ))}
-      </div>
+            </div>
     </>
-  );
+      );
 };
 
-export default BookSlider;
+      export default BookSlider;
