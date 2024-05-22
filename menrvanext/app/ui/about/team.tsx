@@ -32,7 +32,7 @@ function TeamCard({ img, name, title, linkedin }: TeamCardPropsType) {
         <div className="flex items-center justify-center gap-1.5">
           <Link href={linkedin}>
             <IconButton variant="text">
-            <FontAwesomeIcon icon={faLinkedin} className="text-eggplant h-5 w-5"/>
+              <FontAwesomeIcon icon={faLinkedin} className="text-eggplant h-5 w-5" />
             </IconButton>
           </Link>
         </div>

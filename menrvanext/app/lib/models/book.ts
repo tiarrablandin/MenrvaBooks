@@ -2,6 +2,7 @@ import { Series } from "./series";
 import { Comment } from "./comment";
 import { Author } from "./author";
 import { BookInteraction } from "./bookInteraction";
+import { Link } from "./link";
 
 export interface BookResponse {
   id: number;
@@ -20,6 +21,7 @@ export interface BookResponse {
   authors: Author[];
   series: Series;
   comments: Comment[];
+  links: Link[];
 }
 
 export interface AddBookRequest {

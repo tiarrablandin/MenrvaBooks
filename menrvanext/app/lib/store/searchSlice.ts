@@ -33,9 +33,15 @@ const searchSlice = createSlice({
         setSearchTerm(state, action) {
             state.searchTerm = action.payload;
         },
-        clearSuggestions(state) {
+        clearSuggestionsAndTerm(state) {
             state.searchTerm = "";
             state.suggestions = [];
+        },
+        clearSuggestions(state) {
+            state.suggestions = [];
+        },
+        clearSearchTerm(state) {
+            state.searchTerm = "";
         }
     },
     extraReducers(builder) {
@@ -54,6 +60,6 @@ const searchSlice = createSlice({
     }
 });
 
-export const { setSearchTerm, clearSuggestions } = searchSlice.actions;
+export const { setSearchTerm, clearSuggestions, clearSuggestionsAndTerm, clearSearchTerm } = searchSlice.actions;
 
 export default searchSlice.reducer;

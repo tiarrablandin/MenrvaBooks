@@ -1,9 +1,8 @@
+import { Author } from "@/app/lib/models/author";
 import { fetchAuthorBooksById, fetchBooks } from "@/app/lib/services/apiService";
 import BookSlider from "../book/bookSlider";
 import AnnouncementsCard from "./announcementsCard";
 import AuthorCard from "./authorCard";
-import { Author } from "@/app/lib/models/author";
-import InitializeUserFollowsAuthor from "./initializeUserFollowsAuthor";
 
 interface AuthorPageProps {
   id: number;

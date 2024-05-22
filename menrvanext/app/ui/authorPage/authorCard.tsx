@@ -4,6 +4,7 @@ import { Author } from '@/app/lib/models/author';
 import { Avatar, Card, CardBody, CardHeader, Typography } from "@/providers";
 import React from 'react';
 import ToggleFollowAuthorButton from './toggleFollowAuthorButton';
+import SocialLink from './socialLink';
 
 const AuthorCard: React.FC<{ author: Author }> = ({ author }) => {
 
@@ -27,11 +28,15 @@ const AuthorCard: React.FC<{ author: Author }> = ({ author }) => {
               <Typography variant="h5">
                 {author.penName}
               </Typography>
-              <div className="5 flex items-center gap-0">
+              <div className="flex items-center gap-0">
                 <ToggleFollowAuthorButton id={author.id} />
               </div>
             </div>
-            {/* <Typography color="blue-gray">Frontend Lead @ Google</Typography> */}
+            <div className="flex gap-4 mt-3">
+              {author.socialMedia.map(social => (
+                <SocialLink key={social.id} name={social.name} link={social.link} />
+              ))}
+            </div>
           </div>
         </CardHeader>
         <CardBody className="mb-6 p-0">

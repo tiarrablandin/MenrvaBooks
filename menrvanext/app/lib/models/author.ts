@@ -1,3 +1,4 @@
+import { SocialMedia } from "./ socialMedia";
 import { User } from "./user";
 
 export interface Author {
@@ -10,4 +11,5 @@ export interface Author {
     dateUpdated: Date;
     reviewed: boolean;
     user: User | null;
+    socialMedia: SocialMedia[];
 }
