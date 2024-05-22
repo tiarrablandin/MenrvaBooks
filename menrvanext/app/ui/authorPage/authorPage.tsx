@@ -11,7 +11,6 @@ interface AuthorPageProps {
 }
 
 const AuthorPage: React.FC<AuthorPageProps> = ({ author, id, token }) => {
-  console.log(author);
   async function fetchAllBooksByAuthorSlider() {
     "use server";
     return fetchAuthorBooksById(id);

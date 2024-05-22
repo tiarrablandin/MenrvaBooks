@@ -7,7 +7,6 @@ import ToggleFollowAuthorButton from './toggleFollowAuthorButton';
 import SocialLink from './socialLink';
 
 const AuthorCard: React.FC<{ author: Author }> = ({ author }) => {
-  author.socialMedia.map(sm => console.log(typeof sm.link));
 
   return (
     <div>

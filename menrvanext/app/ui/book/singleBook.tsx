@@ -3,7 +3,9 @@ import { BookInteraction } from "@/app/lib/models/bookInteraction";
 import { fetchBookById, fetchBookInteractionsById, fetchBooks } from "@/app/lib/services/apiService";
 import {
   Card,
-  Typography
+  FontAwesomeIcon,
+  Typography,
+  faAmazon
 } from "@/providers";
 import Image from "next/image";
 import Link from "next/link";
@@ -46,17 +48,24 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
           <></>
         )}
         <Card className="bg-transparent shadow-none">
-          <Typography variant="h2" className="">
+          <Typography variant="h2" className="text-xl">
             {book ? book.title : "Loading..."}
           </Typography>
           {(book?.authors || []).map((author) => (
-            <Link href={`../author/${author.id}`} key={author.id}>
-              <Typography variant="small" className="hover:underline underline-offset-2">
-                {author.penName}
-              </Typography>
-            </Link>
+            <div key={author.id} className="w-1/3 h-10 flex justify-between py-2">
+              <Link href={`../author/${author.id}`} className="w-min">
+                <Typography variant="small" className="hover:underline underline-offset-2 text-nowrap text-lg">
+                  {author.penName}
+                </Typography>
+              </Link>
+              {book?.links.map((link) => (
+                <Link href={link.link} className="inline-block mt-1" key={link.id}>
+                  <FontAwesomeIcon icon={faAmazon} className="h-6 w-6" />
+                </Link>
+              ))}
+            </div>
           ))}
-          <div className="flex mt-2 gap-4">
+          <div className="flex gap-4">
             <div className="flex items-center gap-2">
               <Typography className="text-2xl font-bold">{numberOfLikes}</Typography>
               <ThumbsUpComponent id={id} />

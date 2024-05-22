@@ -1,21 +1,22 @@
 'use client';
 
-import { clearSuggestions, fetchSuggestions, setSearchTerm } from "@/app/lib/store/searchSlice";
+import { clearSuggestions, clearSuggestionsAndTerm, fetchSuggestions, setSearchTerm } from "@/app/lib/store/searchSlice";
 import { RootState, useAppDispatch } from "@/app/lib/store/store";
 import { Input } from '@/providers';
 import { debounce } from "lodash";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSelector } from "react-redux";
 
 const AdvancedSearchBar = () => {
     const dispatch = useAppDispatch();
     const router = useRouter();
     const { searchTerm, suggestions } = useSelector((state: RootState) => state.search);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-    const debouncedSetSearchTerm = debounce((value) => {
-        dispatch(setSearchTerm(value));
-    }, 300)
+    // const debouncedSetSearchTerm = debounce((value) => {
+    //     dispatch(setSearchTerm(value));
+    // }, 300);
 
     useEffect(() => {
         if (searchTerm && searchTerm.length > 0) {
@@ -27,28 +28,34 @@ const AdvancedSearchBar = () => {
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
-        if (event.target.value === "") { dispatch(clearSuggestions()) }
-        // debouncedSetSearchTerm(event.target.value);
-        dispatch(setSearchTerm(event.target.value));
+        const value = event.target.value;
+        if (value === "") { dispatch(clearSuggestions()) }
+        dispatch(setSearchTerm(value));
+    };
+
+    const handleFocus = () => {
+        if (searchTerm) {
+            dispatch(fetchSuggestions(searchTerm));
+        }
     };
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        // * placeholder for dispatching search and navigating to book page.
-        dispatch(clearSuggestions());
-        await new Promise(resolve => setTimeout(resolve, 0));
-        console.log("Search submitted for:", searchTerm);
-        router.push(`../search/${searchTerm}`)
+        router.push(`../search/${searchTerm}`);
+        dispatch(clearSuggestionsAndTerm());
     };
 
     return (
         <form onSubmit={handleSubmit} className='flex gap-3 container'>
             <Input
+                ref={inputRef}
                 type="text"
                 size="lg"
                 label="Search"
                 placeholder="Search for books, authors, genres..."
                 onChange={handleInputChange}
+                onBlur={() => { dispatch(clearSuggestions()); }}
+                onFocus={handleFocus}
                 value={searchTerm}
             />
         </form>

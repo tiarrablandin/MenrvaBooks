@@ -1,5 +1,5 @@
-// components/socialLink.tsx
 import { FontAwesomeIcon, GlobeAltIcon, faAmazon, faFacebook, faGoodreads, faInstagram, faTiktok } from '@/providers';
+import Link from 'next/link';
 import React from 'react';
 
 interface SocialLinkProps {
@@ -18,14 +18,16 @@ const socialIconMap: Record<string, { icon: any; type: 'fa' | 'hero' }> = {
 
 const SocialLink: React.FC<SocialLinkProps> = ({ name, link }) => {
   const IconComponent = socialIconMap[name];
+  if (link[0] === "w") { link = `https://${link}` }
+
   return (
-    <a href={link} target="_blank" rel="noopener noreferrer" className="inline-block">
+    <Link href={link} rel="noopener noreferrer" className="inline-block">
       {IconComponent.type === 'fa' ? (
         <FontAwesomeIcon icon={IconComponent.icon} className="h-6 w-6 text-gray-600 hover:text-gray-800" />
       ) : (
         <IconComponent.icon className="h-6 w-6 text-gray-600 hover:text-gray-800" />
       )}
-    </a>
+    </Link>
   );
 };
 
