@@ -1,6 +1,14 @@
 "use client";
 
-export { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+export {
+  faLinkedin,
+  faTiktok,
+  faInstagram,
+  faAmazon,
+  faFacebook,
+  faMeta,
+  faGoodreads,
+} from "@fortawesome/free-brands-svg-icons";
 export { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export {
@@ -8,7 +16,7 @@ export {
   ThumbDown,
   ThumbDownAltOutlined,
   ThumbUp,
-  ThumbUpAltOutlined
+  ThumbUpAltOutlined,
 } from "@mui/icons-material";
 
 export {
@@ -24,6 +32,7 @@ export {
   EnvelopeIcon,
   ExclamationCircleIcon,
   HomeIcon as HomeIconOutline,
+  GlobeAltIcon,
   KeyIcon as KeyIconOutline,
   PlusIcon as PlusIconOutline,
   ShieldCheckIcon as ShieldCheckIconOutline,
@@ -32,7 +41,7 @@ export {
   Square3Stack3DIcon as Square3Stack3DIconOutline,
   TableCellsIcon,
   UserCircleIcon,
-  XMarkIcon
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 export {
   ArrowLeftIcon,
@@ -58,7 +67,7 @@ export {
   PlusIcon,
   ShieldCheckIcon, Squares2X2Icon, SunIcon, TicketIcon,
   TrashIcon,
-  UserIcon
+  UserIcon,
 } from "@heroicons/react/24/solid";
 export {
   Accordion, AccordionBody, AccordionHeader, Alert,

@@ -14,16 +14,25 @@ interface BookSummary {
     fun getDateAdded(): LocalDate
     fun getReviewed(): Boolean
     fun getBookInteractions(): Set<BookInteraction>?
+    fun getLinks(): Set<Link>?
     fun getGenres(): Set<Genre>?
     fun getKeywords(): Set<Keyword>?
     fun getAuthors(): Set<Author>?
     fun getSeries(): Series?
     fun getComments(): Set<Comment>?
+
+
     interface BookInteraction {
         fun getHasRead(): Boolean?
         fun getInterested(): Boolean?
         fun getFavorite(): Boolean?
         fun getLikeDislike(): Int?
+    }
+
+    interface Link {
+        fun getId(): Long?
+        fun getLink(): String?
+        fun getName(): String?
     }
 
     interface Genre {
