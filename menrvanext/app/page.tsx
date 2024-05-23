@@ -4,6 +4,7 @@ import AnimatedHeader from "./ui/motion/animatedHeader";
 import { NavbarNoSearch } from "./ui/navbar/nav";
 import AdvancedSearchBar from "./ui/search/advancedSearchBar";
 import SuggestionCards from "./ui/search/suggestionCards";
+import AdvancedSearchComponent from "./ui/search/advancedSearch";
 
 export default function Home() {
     const tag = cookies().get('tag')?.value as string;
@@ -15,7 +16,7 @@ export default function Home() {
         cookies().delete('role');
         cookies().delete('jwt');
     }
-    
+
     return (
         <div className="flex flex-col h-screen w-full">
             <NavbarNoSearch tag={tag} role={role} logout={logout} />
@@ -24,10 +25,7 @@ export default function Home() {
                 <AnimatedHeader />
 
                 <div className="flex flex-col w-3/5">
-                    <AdvancedSearchBar />
-                    <div className="relative w-full h-16">
-                        <SuggestionCards />
-                    </div>
+                    <AdvancedSearchComponent />
                 </div>
             </main>
 

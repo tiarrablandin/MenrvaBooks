@@ -21,10 +21,10 @@ def fetch_book_summaries():
                 id=item['id'],
                 title=item['title'],
                 cover=item['cover'],
-                series=Series(name=item['series']['name'] ) if item['series'] is not None else None,
+                series=Series(id=item['series']['id'], name=item['series']['name'] ) if item['series'] is not None else None,
                 authors=[Author(id=author['id'], penName=author['penName'], photo=author.get('photo'), bio=author['bio'], user=author['user']) for author in item['authors']],
-                keywords=[Keyword(name=keyword['name']) for keyword in item['keywords']],
-                genres=[Genre(name=genre['name']) for genre in item['genres']]
+                keywords=[Keyword(id=keyword['id'], name=keyword['name']) for keyword in item['keywords']],
+                genres=[Genre(id=genre['id'], name=genre['name']) for genre in item['genres']]
             )
             book_summaries.append(book_summary)
     else:

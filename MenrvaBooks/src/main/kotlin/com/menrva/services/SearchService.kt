@@ -15,9 +15,10 @@ class SearchService(
 
     fun getSearchResultsByTitle(title: String): List<BookSummary> {
         val books = bookSearchRepository.findByTitleMatching(title)
+        print("######### $books")
         val bookIds = books.map { book -> book.id }
         val bookSummaries = bookJpaRepository.findSummariesByIds(bookIds)
-        print("IN SERVICE: ${bookSummaries.size}")
+        print("$$$$$$$$$$$ $bookSummaries")
         return bookSummaries
     }
 }
