@@ -79,7 +79,7 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
             } */}
           </div>
           {book?.links.map((link) => (
-            <Link href={link.link} className="inline-block mt-1" key={link.id}>
+            <Link href={link.link} target="_blank" className="inline-block mt-2 w-min" key={link.id}>
               <Button
                 size="lg"
                 variant="gradient"
