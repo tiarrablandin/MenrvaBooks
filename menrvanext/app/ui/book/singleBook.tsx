@@ -16,6 +16,7 @@ import InitializeInteractions from "./interactions/initalizeInteractions";
 import InterestedButton from "./interactions/interestedButton";
 import ThumbsDownComponent from "./interactions/thumbsDown";
 import ThumbsUpComponent from "./interactions/thumbsUp";
+import BookSlider from "./bookSlider";
 
 interface SingleBookProps {
   id: number;
@@ -111,8 +112,8 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
         </Card>
       </div>
       <div className="w-screen h-full flex flex-col items-center">
-        {/* <BookSlider fetchData={fetchAllBooksSlider} title={"Books in Series"} />
-        <BookSlider fetchData={fetchAllBooksSlider} title={"Similar Books"} /> */}
+        {/* <BookSlider fetchData={fetchAllBooksSlider} title={"Similar Books"} /> */}
+        <BookSlider defaultBooks={book.series.books} title={"Books in Series"} /> 
       </div>
       <BookComments bookId={book?.id!!} comments={book?.comments} tag={tag} />
       {interactions ? <InitializeInteractions interactions={interactions} /> : <></>}

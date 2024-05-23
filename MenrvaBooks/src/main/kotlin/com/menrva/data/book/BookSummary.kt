@@ -24,6 +24,17 @@ interface BookSummary {
     fun getTags(): Set<Tag>?
 
 
+    interface BookOverview {
+        fun getId(): Long
+        fun getTitle(): String
+        fun getCover(): String?
+        fun getDescription(): String?
+        fun getPageCount(): Int?
+        fun getPublicationDate(): LocalDate?
+        fun getDateAdded(): LocalDate
+        fun getReviewed(): Boolean
+    }
+
     interface Tag {
         fun getId(): Long?
         fun getName(): String?
@@ -63,11 +74,13 @@ interface BookSummary {
         fun getBio(): String?
         fun getPhoto(): String?
         fun getUser(): User?
+        fun getBooks(): Set<BookOverview>?
     }
 
     interface Series {
         fun getId(): Long?
         fun getName(): String?
+        fun getBooks(): Set<BookOverview>?
     }
 
     interface Comment {
