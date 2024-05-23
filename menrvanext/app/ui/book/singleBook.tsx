@@ -2,6 +2,7 @@ import { BookResponse } from "@/app/lib/models/book";
 import { BookInteraction } from "@/app/lib/models/bookInteraction";
 import { fetchBookById, fetchBookInteractionsById, fetchBooks } from "@/app/lib/services/apiService";
 import {
+  Button,
   Card,
   FontAwesomeIcon,
   Typography,
@@ -58,11 +59,6 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
                   {author.penName}
                 </Typography>
               </Link>
-              {book?.links.map((link) => (
-                <Link href={link.link} className="inline-block mt-1" key={link.id}>
-                  <FontAwesomeIcon icon={faAmazon} className="h-6 w-6" />
-                </Link>
-              ))}
             </div>
           ))}
           <div className="flex gap-4">
@@ -82,6 +78,21 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
               <StarIcon onClick={handleToggleFavorite} style={{ color: "gray" }} className={iconClass} />
             } */}
           </div>
+          {book?.links.map((link) => (
+            <Link href={link.link} className="inline-block mt-1" key={link.id}>
+              <Button
+                size="lg"
+                variant="gradient"
+                color="light-blue"
+                className="h-8 relative flex items-center overflow-hidden pr-[72px]"
+              >
+                <Typography className="normal-case text-nowrap text-xl font-medium -mx-4 w-min">Purchase on Amazon</Typography>
+                <span className="absolute right-0 grid h-full w-12 place-items-center bg-light-blue-600 transition-colors group-hover:bg-light-blue-700">
+                  <FontAwesomeIcon icon={faAmazon} className="h-6 w-6" />
+                </span>
+              </Button>
+            </Link>
+          ))}
           <Typography className="mt-6">{book ? book.description : "Loading..."}</Typography>
           <div className="flex justify-center gap-12 mt-8">
             <div className="text-center">
