@@ -12,7 +12,15 @@ interface BookSearchRepository : ElasticsearchRepository<Book, Long> {
     fun findByTitle(title: String): List<Book>
 
 
-    @Query("{\"query_string\": {\"default_field\": \"title\", \"query\": \"?0*\"}}")
-    fun findByTitleMatching(title: String): List<Book>
+    @Query("""
+    {
+        "query_string": {
+            "query": "*?0*",
+            "fields": ["title", "authors.penName", "series.name"],
+            "default_operator": "or"
+        }
+    }
+    """)
+    fun findByQueryString(query: String): List<Book>
 
 }
