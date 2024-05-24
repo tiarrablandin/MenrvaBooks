@@ -1,3 +1,4 @@
+import logging
 import ssl
 from elasticsearch import Elasticsearch
 
@@ -26,40 +27,36 @@ def insert_books_into_elasticsearch(books=[]):
     print(f"BOOKS INSIDE INSERT BOOKS INTO ELASTICSEARCH: {books}")
     
     for book in books:
-        print(f"************* BOOK ${book}")
-        series = {'id': book.series.id, 'name': book.series.name} if book.series else None
+        try:
+            document = {
+                "id": book.id,
+                "cover": book.cover,
+                "title": book.title,
+                "series": {
+                    "id": book.series.id,
+                    "name": book.series.name
+                } if book.series else None,
+                "keywords": [{"id": keyword.id, "name": keyword.name} for keyword in book.keywords],
+                "authors": [{
+                    "id": author.id,
+                    "penName": author.penName,
+                    "bio": author.bio,
+                    "photo": author.photo
+                } for author in book.authors]
+            }
 
-        keywords = [{'id': keyword.id, 'name': keyword.name} for keyword in book.keywords]
-        authors = [
-            {
-                "id": author.id,
-                'penName': author.penName,
-                'bio': author.bio,
-                'photo': author.photo,
-                'user': author.user
-            } for author in book.authors
-        ]
-
-        document = {
-            "id": book.id,
-            "cover": book.cover,
-            "title": book.title,
-            # "description": book.description,
-            # "page_count": page_count,
-            # "publication_date": publication_date,
-            # "date_added": date_added,
-            # "reviewed": bool(reviewed),
-            # "date_updated": date_updated,
-            "series": series,
-            "keywords": keywords,
-            "authors": authors,
-        }
-        response = es.index(index="books", id=book.id, document=document)
-        print(f"Indexed book {book.id}: {response['result']}") 
+            response = es.index(index="books", id=book.id, document=document)
+            logging.info(f"Indexed book {book.id}: {response['result']}")
+        except Exception as e:
+            logging.error(f"Error indexing book {book.id}: {str(e)}")
 
 def sync_es_with_db():
-    books = fetch_book_summaries()
-    insert_books_into_elasticsearch(books)
+    try:
+        books = fetch_book_summaries()
+        insert_books_into_elasticsearch(books)
+        logging.info("Synchronization with Elasticsearch completed successfully.")
+    except Exception as e:
+        logging.error(f"Failed to synchronize with Elasticsearch: {str(e)}")
 
 
 

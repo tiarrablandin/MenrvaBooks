@@ -1,4 +1,5 @@
 import { Author } from "./author";
+import { BookResponse } from "./book";
 
 export interface Series {
     id: number;
@@ -7,4 +8,5 @@ export interface Series {
     dateAdded: Date;
     dateUpdated: Date;
     authors: Author[];
+    books: BookResponse[];
 }

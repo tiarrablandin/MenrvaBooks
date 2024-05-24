@@ -18,7 +18,7 @@ class SearchController(private val searchService: SearchService) {
 
     @GetMapping("/books")
     fun searchBooksByTitle(@RequestParam title: String): ResponseEntity<List<BookSummary>> {
-        val searchResults = searchService.getSearchResultsByTitle(title)
+        val searchResults = searchService.getSearchResultsByQuery(title)
         return ResponseEntity.ok(searchResults)
     }
 }

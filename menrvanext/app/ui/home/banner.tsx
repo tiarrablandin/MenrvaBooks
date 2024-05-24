@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export function Banner() {
   return (
-    <section className="container mx-auto">
-      <div className="mb-4 shadow-sm px-4 py-2 flex flex-wrap lg:items-center lg:justify-center justify-end gap-x-6">
+    <section className="w-full mx-auto">
+      <div className="mb-4 shadow-sm px-4 py-2 flex items-center justify-center  gap-x-6 text-nowrap">
         {/* <IconButton variant="text">
           <XMarkIcon className="w-4 h-4 stroke-2" />
         </IconButton> */}

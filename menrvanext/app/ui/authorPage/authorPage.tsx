@@ -23,11 +23,11 @@ const AuthorPage: React.FC<AuthorPageProps> = ({ author, id, token }) => {
 
   return (
     <div>
-      <div className="flex justify-center flex-wrap gap-8 my-8">
+      <div className="flex justify-center flex-nowrap sm:flex-wrap gap-8 my-8 mx-4">
         <AuthorCard author={author} />
         <AnnouncementsCard />
       </div>
-      <div className="w-screen h-full flex flex-col items-center">
+      <div className="w-min h-full flex flex-col items-center ml-2">
         <BookSlider fetchData={fetchAllBooksByAuthorSlider} title={"Books from this Author"} />
         {/* <BookSlider fetchData={fetchAllBooksSlider} title={"Stand Alone"} /> */}
       </div>

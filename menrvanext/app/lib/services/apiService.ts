@@ -187,7 +187,8 @@ export async function fetchSearchResults(searchTerm: string): Promise<BookRespon
     if (!response.ok) {
       throw new Error('Failed to fetch search results.');
     }
-    return await response.json();
+    const data = await response.json(); 
+    return data;
   } catch (error) {
     console.error(error);
     return null;

@@ -21,7 +21,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({ name, link }) => {
   if (link[0] === "w") { link = `https://${link}` }
 
   return (
-    <Link href={link} rel="noopener noreferrer" className="inline-block">
+    <Link href={link} target='_blank' rel="noopener noreferrer" className="inline-block">
       {IconComponent.type === 'fa' ? (
         <FontAwesomeIcon icon={IconComponent.icon} className="h-6 w-6 text-gray-600 hover:text-gray-800" />
       ) : (

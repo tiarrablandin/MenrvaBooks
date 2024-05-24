@@ -16,13 +16,15 @@ const HomeComponent: React.FC = () => {
     "use server";
     return fetchBooks();
   }
-  
+
   return (
     <div className="w-screen h-full flex flex-col items-center">
-      <Banner/>
+      <Banner />
       {/* temporarily commenting out new releases */}
       {/* <BookSlider fetchData={fetchNewReleasesSlider} title={"New Releases"} /> */}
-      <BookSlider fetchData={fetchAllBooksSlider} title={"All Books"} />
+      <div className="w-[95%]">
+        <BookSlider fetchData={fetchAllBooksSlider} title={"All Books"} />
+      </div>
     </div>
   );
 };
