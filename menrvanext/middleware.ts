@@ -5,6 +5,8 @@ export function middleware(req: NextRequest) {
 
   if (role !== "Admin" && req.nextUrl.pathname.startsWith('/admin')) {
     return Response.redirect(new URL('/login', req.url))
+  } else if (!role && ['/userHome', '/userSettings'].includes(req.nextUrl.pathname)) {
+    return Response.redirect(new URL('/login', req.url))
   }
 
   return NextResponse.next();
@@ -12,8 +14,9 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    '/admin',
     '/admin/:path*',
+    '/userHome/:path*',
+    '/userSettings/:path*',
 
     // checks every route, basically
     // '/((?!api|_next/static|_next/image|favicon.ico).*)',

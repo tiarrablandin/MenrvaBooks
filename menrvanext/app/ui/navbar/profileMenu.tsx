@@ -7,6 +7,7 @@ import {
   Button,
   ChevronDownIcon,
   HomeIcon,
+  IconButton,
   Menu,
   MenuHandler,
   MenuItem,
@@ -17,6 +18,7 @@ import {
 } from "@/providers";
 import Link from "next/link";
 import React, { useEffect } from "react";
+import Image from "next/image";
 
 const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> = ({
   tag,
@@ -41,22 +43,42 @@ const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> =
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
         <div className="w-24 mx-2">
+          {/* <div className="flex items-center w-full cursor-pointer">
+            <Image
+              width={120}
+              height={120}
+              src="/avatars/avatar7.webp"
+              alt="user avatar"
+              className="bg-transparent w-24 h-24"
+            />
+            <div>
+              <ChevronDownIcon
+                strokeWidth={2.5}
+                className={`h-4 w-4 -mx-6 text-onyx transition-transform ${isMenuOpen ? "rotate-180" : ""}`}
+              />
+            </div>
+          </div> */}
           <Button
             variant="text"
-            className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
+            className="flex items-center justify-start w-12 h-12 translate-x-1 gap-1 rounded-full"
           >
-            <Avatar
-              className="w-10 h-10"
-              variant="circular"
-              size="sm"
+            <Image
+              className="min-w-24 min-h-24 p-0 bg-transparent -translate-x-6 pointer-events-none"
+              // variant="circular"
+              // size="sm"
               alt="tania andrew"
-              src="https://docs.material-tailwind.com/img/face-2.jpg"
+              src="/avatars/avatar7.webp"
+              width={180}
+              height={180}
             />
-            <ChevronDownIcon
-              strokeWidth={2.5}
-              className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""}`}
-            />
+            <div>
+              <ChevronDownIcon
+                strokeWidth={2.5}
+                className={`h-3 w-3 -translate-x-12 transition-transform ${isMenuOpen ? "rotate-180" : ""}`}
+              />
+            </div>
           </Button>
+
         </div>
       </MenuHandler>
       <MenuList className="p-1 bg-pink-lavender dark:bg-chinese-violet">
