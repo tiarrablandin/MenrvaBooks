@@ -62,7 +62,7 @@ const Pagination: React.FC<PaginationProps> = ({ onPageChange, totalPages, curre
             <div className="flex items-center gap-2">
                 {pages.map((page, index) =>
                     page === "..." ? (
-                        <span key={index} className="px-2">...</span>
+                        <span key={index} className="px-2 text-onyx">...</span>
                     ) : (
                         <IconButton {...getItemProps(page as number) as any} key={index}>
                             {page}

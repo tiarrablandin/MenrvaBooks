@@ -7,7 +7,7 @@ export default function AnimatedHeader() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="text-3xl font-bold mb-4 text-eggplant dark:text-pink-lavender"
+        className="text-3xl font-bold mb-4 bg-gradient-to-r from-indigo-300 to-red-800 inline-block text-transparent bg-clip-text "
     >
         Find Your Favorite Books, Authors, and Series
     </motion.h1>
