@@ -160,19 +160,28 @@ create table if not exists subscription
 
 create table if not exists user
 (
-    id              int auto_increment
-        primary key,
+    id              int auto_increment primary key,
     role            varchar(20)  not null,
     first_name      varchar(20)  not null,
     last_name       varchar(20)  not null,
-    tag             varchar(200)  not null UNIQUE,
-    email           varchar(50)  not null,
+    tag             varchar(20)  not null UNIQUE,
+    email           varchar(200)  not null,
     password        varchar(200) not null,
-    active          int          not null,
+    active          tinyint(1)   not null,
     date_added      date         not null,
     date_updated    date         null,
-    subscription_id int          not null,
+    subscription_id int          not null default 1,
+    -- subscription_id int          not null,
     FOREIGN KEY (subscription_id) REFERENCES subscription (id)
+);
+
+create table if not exists user_profile
+(
+    id                     int auto_increment primary key,
+    user_id                int not null,
+    preference_vector      varchar(1024) null,
+    recommendation_score   double null,
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
 CREATE TABLE author_has_series
