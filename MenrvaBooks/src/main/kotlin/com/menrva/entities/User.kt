@@ -38,7 +38,7 @@ class User(
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "subscription_id", nullable = true)
     var subscription: Subscription? = null,
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = [CascadeType.ALL])
     var userProfile: UserProfile? = null,
     @JsonIgnore
     @OneToMany(mappedBy = "user")

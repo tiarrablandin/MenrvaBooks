@@ -2,6 +2,7 @@ package com.menrva.services
 
 import com.menrva.data.book.BookDTO
 import com.menrva.exceptions.UserNotFoundException
+import com.menrva.exceptions.UserProfileNotFoundException
 import com.menrva.repositories.BookInteractionRepository
 import com.menrva.repositories.BookJpaRepository
 import com.menrva.repositories.UserRepository
@@ -15,6 +16,8 @@ class RecommendationService(
 ) {
     fun getRecommendationsForUser(tag: String): List<BookDTO> {
         val user = userRepo.findByTag(tag) ?: throw UserNotFoundException()
+        val userProfile = user.userProfile ?: throw UserProfileNotFoundException("User profile not found for user: $tag")
+
         val interactions = bookInteractionRepo.findByUserId(user.id!!)
         val preferredGenres = interactions.flatMap { it.book.genres }.groupBy { it }.maxBy { it.value.size }
         val preferredKeywords = interactions.flatMap { it.book.keywords }.groupBy { it }.maxBy { it.value.size }

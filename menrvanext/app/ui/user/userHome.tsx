@@ -26,7 +26,7 @@ const UserComponent: React.FC<{ tag: string }> = async ({ tag }) => {
         <BookSlider fetchData={fetchBooks} title={"Liked Genre"} />
         <BookSlider fetchData={fetchBooks} title={"Liked Genre"} />
         <BookSlider fetchData={fetchBooks} title={"Liked Genre"} /> */}
-      <UserSpeedDial tag={tag}/>
+        <UserSpeedDial tag={tag} />
       </div>
     </div>
   ) : (
