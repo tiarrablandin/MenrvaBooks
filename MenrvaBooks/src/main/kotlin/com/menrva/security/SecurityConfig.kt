@@ -42,6 +42,7 @@ class SecurityConfig {
                         "api/comments/**",
                         "api/genres/**",
                         "api/keywords/**",
+                        "api/profile/**",
                         "api/recommendations/**",
                         "api/search/**",
                         "api/series/**",

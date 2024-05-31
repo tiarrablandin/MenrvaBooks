@@ -1,6 +1,5 @@
 "use client";
 
-import { useAuth } from "@/app/lib/hooks/useAuth";
 import {
   Bars3Icon,
   BellIcon,

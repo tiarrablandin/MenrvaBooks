@@ -1,5 +1,7 @@
 package com.menrva.services
 
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.menrva.data.book.BookDTO
 import com.menrva.exceptions.UserNotFoundException
 import com.menrva.exceptions.UserProfileNotFoundException
@@ -16,13 +18,20 @@ class RecommendationService(
 ) {
     fun getRecommendationsForUser(tag: String): List<BookDTO> {
         val user = userRepo.findByTag(tag) ?: throw UserNotFoundException()
-        val userProfile = user.userProfile ?: throw UserProfileNotFoundException("User profile not found for user: $tag")
+        val userProfile =
+            user.userProfile ?: throw UserProfileNotFoundException("User profile not found for user: $tag")
 
-        val interactions = bookInteractionRepo.findByUserId(user.id!!)
-        val preferredGenres = interactions.flatMap { it.book.genres }.groupBy { it }.maxBy { it.value.size }
-        val preferredKeywords = interactions.flatMap { it.book.keywords }.groupBy { it }.maxBy { it.value.size }
+        val gson = Gson()
+        val type = object : TypeToken<Map<String, Map<String, Double>>>() {}.type
+        println("************************************ ${userProfile.preferenceVector}")
+        val preferenceVector: Map<String, Map<String, Double>> = gson.fromJson(userProfile.preferenceVector, type) as Map<String, Map<String, Double>>
+        println("################################### $preferenceVector")
 
-        val recommendedBooks = bookRepo.findBooksByGenresAndKeywords(preferredGenres.value, preferredKeywords.value)
+        // Extract top genres and keywords
+        val genres = preferenceVector["Genres"]?.entries?.sortedByDescending { it.value }?.map { it.key }?.take(3) ?: listOf()
+        val keywords = preferenceVector["Keywords"]?.entries?.sortedByDescending { it.value }?.map { it.key }?.take(3) ?: listOf()
+
+        val recommendedBooks = bookRepo.findBooksByGenresSubgenresOrKeywordsTags(genres, keywords)
             .filterNot { user.bookInteractions.any { interaction -> interaction.book.id == it.id } }
             .map { book -> BookDTO(book) }
         return recommendedBooks

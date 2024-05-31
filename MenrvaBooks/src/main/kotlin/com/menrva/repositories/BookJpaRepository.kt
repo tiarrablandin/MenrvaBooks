@@ -45,6 +45,18 @@ interface BookJpaRepository : JpaRepository<Book, Long> {
 
 //    fun findByTitleWithGenresKeywords(title: String): List<BookGenreKeywordSummary>
 
+    @Query("SELECT DISTINCT b FROM Book b " +
+            "LEFT JOIN b.genres g " +
+            "LEFT JOIN b.subGenres sg " +
+            "LEFT JOIN b.keywords k " +
+            "LEFT JOIN b.tags t " +
+            "WHERE g.name IN :genresOrSubgenres OR sg.name IN :genresOrSubgenres " +
+            "OR k.name IN :keywordsOrTags OR t.name IN :keywordsOrTags")
+    fun findBooksByGenresSubgenresOrKeywordsTags(
+        @Param("genresOrSubgenres") genresOrSubgenres: List<String>,
+        @Param("keywordsOrTags") keywordsOrTags: List<String>,
+    ):  List<Book>
+
     @Query(
         "SELECT DISTINCT b FROM Book b " +
                 "JOIN b.genres g " +

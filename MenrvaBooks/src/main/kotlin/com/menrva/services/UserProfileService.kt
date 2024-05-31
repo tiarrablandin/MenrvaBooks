@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service
 class UserProfileService(
     private val userRepo: UserRepository,
 ) {
-    fun initializeUserProfile(userId: Long) {
-        val gson = Gson();
+    fun initializeOrUpdateUserProfile(userId: Long): UserProfile {
         val user = userRepo.findById(userId).orElseThrow { UserNotFoundException("User not found: $userId") }
         if (user.userProfile == null) {
             user.userProfile = UserProfile(user = user)
@@ -39,7 +38,11 @@ class UserProfileService(
         }
 
         // Convert the map to a JSON string and store in preference_vector
-        user.userProfile!!.preferenceVector = gson.toJson(genreWeights).toString()
+        val gson = Gson()
+        user.userProfile!!.preferenceVector = gson.toJson(mapOf("Genres" to genreWeights, "Keywords" to keywordWeights))
         userRepo.save(user)
+        println("PROFILE: ${user.userProfile}")
+
+        return user.userProfile!!
     }
 }

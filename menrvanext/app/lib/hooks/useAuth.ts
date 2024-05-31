@@ -1,8 +1,8 @@
-import { useCallback, useEffect } from "react";
+import login from "@/app/actions/login";
+import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../store/store";
-import { logout as logoutUser, setToken, setUserDetails } from "../store/userSlice";
-import login from "@/app/actions/login";
+import { logout as logoutUser } from "../store/userSlice";
 
 export function useAuth() {
     const dispatch = useAppDispatch();
@@ -29,11 +29,11 @@ export function useAuth() {
     //     fetchUserData();
     // }, [dispatch]);
 
-    const loginUser = useCallback(async (identifier: string, password: string) => {
-        console.log('in loginUser');
+    // const loginUser = useCallback(async (identifier: string, password: string) => {
+    //     console.log('in loginUser');
         
-        // dispatch(loginUser({ identifier, password }));
-    }, [dispatch]);
+    //     // dispatch(loginUser({ identifier, password }));
+    // }, [dispatch]);
 
     const logout = useCallback(() => {
         sessionStorage.removeItem('token');

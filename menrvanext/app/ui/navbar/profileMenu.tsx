@@ -7,18 +7,16 @@ import {
   Button,
   ChevronDownIcon,
   HomeIcon,
-  IconButton,
   Menu,
   MenuHandler,
   MenuItem,
   MenuList,
   TableCellsIcon,
   Typography,
-  UserIcon,
+  UserIcon
 } from "@/providers";
 import Link from "next/link";
-import React, { useEffect } from "react";
-import Image from "next/image";
+import React from "react";
 
 const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> = ({
   tag,
@@ -72,7 +70,7 @@ const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> =
               width={180}
               height={180}
             />
-            <div className="-translate-x-8">
+            <div className="-translate-x-7">
               <ChevronDownIcon
                 strokeWidth={2.5}
                 className={`inline-block h-3 w-3 text-eggplant  transition-transform ${isMenuOpen ? "rotate-180" : ""}`}

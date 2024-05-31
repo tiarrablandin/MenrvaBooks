@@ -41,7 +41,7 @@ export function useBooks() {
 
 
 
-    const toggleLiked = useCallback((bookId: number, status: number) => {
+    const toggleLiked = useCallback((bookId: number, status: number,) => {
         dispatch(toggleBookLiked({ bookId, status, token }));
     }, [dispatch]);
 
