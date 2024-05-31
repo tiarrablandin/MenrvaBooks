@@ -88,21 +88,20 @@ export async function fetchUserByTag(tag: string): Promise<User | null> {
     }
 
     const user = await response.json() as User;
+      if (user && user.bookInteractions){
 
-    user ? user.tbrBooks = user?.bookInteractions
-      .filter((interaction) => interaction.interested)
-      .map((interaction) => interaction.book)
-      : []
+        user.tbrBooks = user?.bookInteractions
+        .filter((interaction) => interaction.interested)
+        .map((interaction) => interaction.book)
 
-    user ? user.hasReadBooks = user?.bookInteractions
-      .filter((interaction) => interaction.hasRead)
-      .map((interaction) => interaction.book)
-      : []
-
-    user ? user.likedBooks = user?.bookInteractions
-      .filter((interaction) => interaction.likeDislike === 1)
-      .map((interaction) => interaction.book)
-      : []
+        user.hasReadBooks = user?.bookInteractions
+        .filter((interaction) => interaction.hasRead)
+        .map((interaction) => interaction.book)
+        
+        user.likedBooks = user?.bookInteractions
+        .filter((interaction) => interaction.likeDislike === 1)
+        .map((interaction) => interaction.book)
+      }
 
     return user;
   } catch (error) {
