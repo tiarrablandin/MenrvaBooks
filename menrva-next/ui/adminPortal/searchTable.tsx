@@ -1,8 +1,8 @@
 "use client";
 
-import { BookResponse } from "@/app/lib/models/book";
-import { fetchBooks } from "@/app/lib/services/apiService";
-import { Card, Checkbox, Typography } from "@/providers";
+import { BookResponse } from "@/lib/models/book";
+import { fetchBooks } from "@/lib/services/apiService";
+import { Card, Checkbox, Typography } from "@/providers/coreProviders";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Pagination from "../pagination";
@@ -43,7 +43,7 @@ const SearchTable: React.FC<SearchTableProps> = ({ showUnreviewedOnly }) => {
     async function fetchAllBooksSlider() {
       const books = await fetchBooks();
       console.log(books);
-      setBooks(books);
+      if (books) setBooks(books);
       return books;
     }
     fetchAllBooksSlider();
@@ -57,9 +57,9 @@ const SearchTable: React.FC<SearchTableProps> = ({ showUnreviewedOnly }) => {
             <tr>
               {TABLE_HEAD.map((head) => (
                 <th key={head} className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
-                  <Typography variant="h6" className="text-lg leading-none opacity-70">
+                  <p className="text-lg leading-none opacity-70">
                     {head}
-                  </Typography>
+                  </p>
                 </th>
               ))}
             </tr>
@@ -69,40 +69,37 @@ const SearchTable: React.FC<SearchTableProps> = ({ showUnreviewedOnly }) => {
               <tr key={index} className="even:bg-blue-gray-50/50">
                 <td className="p-4">
                   <Link href={`book/${id}`}>
-                    <Typography variant="small" className="hover:underline underline-offset-2">
+                    <p className="hover:underline underline-offset-2">
                       {title}
-                    </Typography>
+                    </p>
                   </Link>
                 </td>
                 <td className="p-4">
                   {authors[0] ? (
                     <Link href={`author/${authors[0].id}`}>
-                      <Typography variant="small" className="hover:underline underline-offset-2">
+                      <p className="hover:underline underline-offset-2">
                         {authors[0].penName}
-                      </Typography>
+                      </p>
                     </Link>
                   ) : (
                     ""
                   )}
                 </td>
                 <td className="p-4">
-                  <Typography variant="small" className="">
+                  <p className="">
                     {dateAdded ? dateAdded.toString() : ""}
-                  </Typography>
+                  </p>
                 </td>
                 <td className="p-4">
                   <Checkbox onChange={() => toggleReviewed(id)} checked={reviewed} className="checked:bg-eggplant before:h-8 before:w-8" />
                 </td>
                 <td className="p-4">
-                  <Typography
-                    as="a"
-                    href="#"
-                    variant="small"
+                  <p
                     color="blue-gray"
                     className="font-medium"
                   >
                     Edit
-                  </Typography>
+                  </p>
                 </td>
               </tr>
             ))}

@@ -1,9 +1,9 @@
 "use client";
 
-import { Author } from "@/app/lib/models/author";
-import { Comment } from "@/app/lib/models/comment";
-import { BookResponse } from "@/app/lib/models/book";
-import { User } from "@/app/lib/models/user";
+import { Author } from "@/lib/models/author";
+import { Comment } from "@/lib/models/comment";
+import { BookResponse } from "@/lib/models/book";
+import { User } from "@/lib/models/user";
 import {
 	Button,
 	Checkbox,
@@ -13,20 +13,20 @@ import {
 	Tooltip,
 	Typography,
 	XMarkIcon,
-} from "@/providers";
+} from "@/providers/coreProviders";
 import Image from "next/image";
 import Link from "next/link";
-import { Series } from "@/app/lib/models/series";
+import { Series } from "@/lib/models/series";
 import { useState } from "react";
-import { updateGenreThunk } from "@/app/lib/store/genreSlice";
-import { useAppDispatch } from "@/app/lib/store/store";
-import { updateKeywordThunk } from "@/app/lib/store/keywordSlice";
-import { updateTagThunk } from "@/app/lib/store/tagSlice";
-import { deleteCommentThunk } from "@/app/lib/store/commentSlice";
-import { Genre } from "@/app/lib/models/genre";
-import { Keyword } from "@/app/lib/models/keyword";
-import { Subgenre } from "@/app/lib/models/subgenre";
-import { updateSubgenreThunk } from "@/app/lib/store/subgenreSlice";
+import { updateGenreThunk } from "@/lib/store/features/genreSlice";
+import { useAppDispatch } from "@/lib/store/store";
+import { updateKeywordThunk } from "@/lib/store/features/keywordSlice";
+import { updateTagThunk } from "@/lib/store/features/tagSlice";
+import { deleteCommentThunk } from "@/lib/store/features/commentSlice";
+import { Genre } from "@/lib/models/genre";
+import { Keyword } from "@/lib/models/keyword";
+import { Subgenre } from "@/lib/models/subgenre";
+import { updateSubgenreThunk } from "@/lib/store/features/subgenreSlice";
 
 export const renderBookRow = (
 	book: BookResponse,
@@ -35,10 +35,10 @@ export const renderBookRow = (
 ) => {
 	return (
 		<tr key={index}>
-			<td className="pl-4 py-1 border-b border-gray-300 flex">
+			<td className="pl-4 py-1 border-b border-gray-300 flex justify-center">
 				<Link href={`../book/${book.id}`} className="inline-block">
 					<Image
-						className="rounded-md object-center h-[6rem] w-[4rem]"
+						className="rounded-md object-center h-[6rem] w-[4rem] mr-4"
 						src={book.cover}
 						width={340}
 						height={680}
@@ -48,24 +48,24 @@ export const renderBookRow = (
 			</td>
 			<td className="border-b border-gray-300 whitespace-nowrap w-min">
 				<Link href={`../book/${book.id}`} className="inline-block">
-					<Typography variant="lead" className="hover:underline underline-offset-2 w-min">
+					<p className="hover:underline underline-offset-2 w-min">
 						{book.title}
-					</Typography>
+					</p>
 				</Link>
 			</td>
 			<td className="border-b border-gray-300 mr-2">
 				{book.authors[0] ? (
 					<Link href={`../author/${book.authors[0].id}`}>
-						<Typography variant="lead" className="hover:underline text-center underline-offset-2">
+						<p className="hover:underline text-center underline-offset-2">
 							{book.authors[0].penName}
-						</Typography>
+						</p>
 					</Link>
 				) : (
 					""
 				)}
 			</td>
 			<td className="mx-auto text-center pr-2 border-b border-gray-300">
-				<Typography variant="lead">{book.dateAdded.toString()}</Typography>
+				<p>{book.dateAdded.toString()}</p>
 			</td>
 			<td className="mx-auto text-center pr-2 border-b border-gray-300">
 				{toggleReviewed && (
@@ -97,21 +97,21 @@ export const renderAuthorRow = (
 	<tr key={index}>
 		<td className="border-b border-gray-300 whitespace-nowrap w-min">
 			<Link href={`../author/${author.id}`} className="inline-block">
-				<Typography variant="lead" className="hover:underline underline-offset-2">
+				<p className="hover:underline underline-offset-2">
 					{author.user ? author.user.tag : "n/a"}
-				</Typography>
+				</p>
 			</Link>
 		</td>
 		<td className="border-b border-gray-300 whitespace-nowrap">
 			<Link href={`../author/${author.id}`} className="inline-block">
-				<Typography variant="lead" className="hover:underline underline-offset-2 w-min">
+				<p className="hover:underline underline-offset-2 w-min">
 					{author.penName ? author.penName : "any"}
-				</Typography>
+				</p>
 			</Link>
 		</td>
 		<td className="border-b border-gray-300">
 			{author.dateAdded ? (
-				<Typography variant="lead">{author.dateAdded.toString()}</Typography>
+				<p>{author.dateAdded.toString()}</p>
 			) : (
 				<></>
 			)}
@@ -144,28 +144,28 @@ export const renderUserRow = (
 	<tr key={index} className="text-center">
 		<td className="border-b border-gray-300 whitespace-nowrap w-min">
 			<Link href={`../user/${user.id}`} className="inline-block">
-				<Typography variant="lead" className="hover:underline underline-offset-2">
+				<p className="hover:underline underline-offset-2">
 					{user.tag}
-				</Typography>
+				</p>
 			</Link>
 		</td>
 		<td className="border-b border-gray-300 whitespace-nowrap">
-			<Typography variant="lead" className="w-min inline-block">
+			<p className="w-min inline-block">
 				{`${user.firstName} ${user.lastName}`}
-			</Typography>
+			</p>
 		</td>
 		<td className="border-b border-gray-300 whitespace-nowrap">
-			<Typography variant="lead" className="w-min inline-block">
+			<p className="w-min inline-block">
 				{user.email}
-			</Typography>
+			</p>
 		</td>
 		<td className="border-b border-gray-300 whitespace-nowrap">
-			<Typography variant="lead" className="w-min inline-block">
+			<p className="w-min inline-block">
 				{user.subscription.level}
-			</Typography>
+			</p>
 		</td>
 		<td className="border-b border-gray-300">
-			{user.dateAdded ? <Typography variant="lead">{user.dateAdded.toString()}</Typography> : <></>}
+			{user.dateAdded ? <p>{user.dateAdded.toString()}</p> : <></>}
 		</td>
 		<td className="border-b border-gray-300 ">
 			{toggleActive && (
@@ -224,9 +224,9 @@ export const renderGenreRow = (genre: Genre, index: number) => {
 							</form>
 						</div>
 					) : (
-						<Typography variant="lead" className="">
+						<p className="">
 							{genre.name}
-						</Typography>
+						</p>
 					)}
 				</td>
 				<td className="border-b border-gray-300">
@@ -285,9 +285,9 @@ export const renderKeywordRow = (keyword: Keyword, index: number) => {
 							</form>
 						</div>
 					) : (
-						<Typography variant="lead" className="">
+						<p className="">
 							{keyword.name}
-						</Typography>
+						</p>
 					)}
 				</td>
 				<td className="border-b border-gray-300">
@@ -346,9 +346,9 @@ export const renderTagRow = (tag: Tag, index: number) => {
 							</form>
 						</div>
 					) : (
-						<Typography variant="lead" className="">
+						<p className="">
 							{tag.name}
-						</Typography>
+						</p>
 					)}
 				</td>
 				<td className="border-b border-gray-300">
@@ -365,7 +365,7 @@ export const renderTagRow = (tag: Tag, index: number) => {
 			</tr>
 		);
 	};
-	return <TagRow key={index}/>;
+	return <TagRow key={index} />;
 };
 
 export const renderSeriesRow = (
@@ -376,21 +376,21 @@ export const renderSeriesRow = (
 	<tr key={index} className="text-center">
 		<td className="border-b border-gray-300 whitespace-nowrap w-min">
 			<Link href={`../series/${series.id}`} className="inline-block">
-				<Typography variant="lead" className="hover:underline underline-offset-2">
+				<p className="hover:underline underline-offset-2">
 					{series.name}
-				</Typography>
+				</p>
 			</Link>
 		</td>
 		<td className="border-b border-gray-300 whitespace-nowrap w-min pl-2">
 			<Link href={`../series/${series.id}`} className="inline-block">
-				<Typography variant="lead" className="hover:underline underline-offset-2 pr-2">
+				<p className="hover:underline underline-offset-2 pr-2">
 					{series.authors[0].penName}
-				</Typography>
+				</p>
 			</Link>
 		</td>
 		<td className="border-b border-gray-300">
 			{series.dateAdded ? (
-				<Typography variant="lead">{series.dateAdded.toString()}</Typography>
+				<p>{series.dateAdded.toString()}</p>
 			) : (
 				<></>
 			)}
@@ -430,31 +430,29 @@ export const renderCommentRow = (
 				<td className="border-b border-gray-300 h-8 max-w-36 whitespace-nowrap overflow-ellipsis">
 					<Tooltip content={comment.book.title} placement="top">
 						<Link href={`/book/${comment.book.id}`}>
-							<Typography
-								variant="lead"
+							<p
 								className="pl-6 hover:underline underline-offset-2 w-full text-ellipsis line-clamp-2"
 							>
 								{comment.book.title}
-							</Typography>
+							</p>
 						</Link>
 					</Tooltip>
 				</td>
 				<td className="border-b border-gray-300 h-8 max-w-48 whitespace-nowrap overflow-ellipsis">
 					<Tooltip content={comment.comment} placement="top">
-						<Typography
-							variant="lead"
+						<p
 							className="pl-6 w-full text-ellipsis line-clamp-2 inline-block"
 						>
 							{comment.comment}
-						</Typography>
+						</p>
 					</Tooltip>
 				</td>
 				<td className="border-b border-gray-300">
-					{comment.user ? <Typography variant="lead">{comment.user.tag}</Typography> : <></>}
+					{comment.user ? <p>{comment.user.tag}</p> : <></>}
 				</td>
 				<td className="border-b border-gray-300">
 					{comment.dateAdded ? (
-						<Typography variant="lead">{comment.dateAdded.toString()}</Typography>
+						<p>{comment.dateAdded.toString()}</p>
 					) : (
 						<></>
 					)}
@@ -510,9 +508,9 @@ export const renderSubgenreRow = (subgenre: Subgenre, index: number) => {
 							</form>
 						</div>
 					) : (
-						<Typography variant="lead" className="">
+						<p className="">
 							{subgenre.name}
-						</Typography>
+						</p>
 					)}
 				</td>
 				<td className="border-b border-gray-300">

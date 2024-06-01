@@ -34,7 +34,7 @@ export function NavbarWithSearch({ tag, logout, role }: { tag: string, logout: (
           <div className="w-full mx-auto flex h-[5rem] items-center ">
             <Link href="/home">
               <Image
-                className="object-center w-[5rem] h-[5.5rem] mx-2"
+                className="object-center w-[4rem] h-[4.5rem] mx-6"
                 src="https://i.imgur.com/RGGXm1T.png"
                 width={92}
                 height={92}

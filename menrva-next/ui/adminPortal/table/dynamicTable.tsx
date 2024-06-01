@@ -1,17 +1,16 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
-import { useAuthors } from "@/app/lib/hooks/useAuthors";
-import { useBooks } from "@/app/lib/hooks/useBooks";
-import { useComments } from "@/app/lib/hooks/useComments";
-import { useGenres } from "@/app/lib/hooks/useGenres";
-import { useKeywords } from "@/app/lib/hooks/useKeywords";
-import { useSeries } from "@/app/lib/hooks/useSeries";
-import { useSubgenres } from "@/app/lib/hooks/useSubgenres";
-import { useTags } from "@/app/lib/hooks/useTags";
-import { useUsers } from "@/app/lib/hooks/useUsers";
-import { IconButton, PlusIcon, Switch, Tooltip, Typography } from "@/providers";
-import Link from "next/link";
+import { useAuthors } from "@/lib/hooks/useAuthors";
+import { useBooks } from "@/lib/hooks/useBooks";
+import { useComments } from "@/lib/hooks/useComments";
+import { useGenres } from "@/lib/hooks/useGenres";
+import { useKeywords } from "@/lib/hooks/useKeywords";
+import { useSeries } from "@/lib/hooks/useSeries";
+import { useSubgenres } from "@/lib/hooks/useSubgenres";
+import { useTags } from "@/lib/hooks/useTags";
+import { useUsers } from "@/lib/hooks/useUsers";
+import { Switch, Typography } from "@/providers/coreProviders";
 import React, { useEffect, useMemo, useState } from "react";
 import Pagination from "../../pagination";
 import AdminTable from "./adminTable";
@@ -64,7 +63,7 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
         <Switch
           checked={showUnreviewedOnly}
           onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
-          label={<Typography variant="lead">Reviewed</Typography>}
+          label={<p>Reviewed</p>}
           className="before:h-8 before:w-8 checked:bg-eggplant"
         />
       }
@@ -72,7 +71,7 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
         <Switch
           checked={showActiveOnly}
           onChange={(e) => setShowActiveOnly(e.target.checked)}
-          label={<Typography variant="lead">Active</Typography>}
+          label={<p>Active</p>}
           className="before:h-8 before:w-8 checked:bg-eggplant"
         />
       }

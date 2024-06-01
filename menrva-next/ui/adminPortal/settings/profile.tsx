@@ -1,5 +1,4 @@
-import { ArrowUpTrayIcon, Button, Input, Select, Typography } from "@/providers";
-import React from "react";
+import { ArrowUpTrayIcon, Button, Input } from "@/providers/coreProviders";
 
 const Profile = () => {
   return (
@@ -15,12 +14,12 @@ const Profile = () => {
                 className="w-14 rounded-full"
               />
               <div>
-                <Typography color="blue-gray" className="!font-semibold mb-1">
+                <p color="blue-gray" className="!font-semibold mb-1">
                   Select and Upload image
-                </Typography>
-                <Typography variant="small" className="!font-medium text-gray-600">
+                </p>
+                <p className="!font-medium text-gray-600">
                   .svg, .png, .jpg (size 400x400px).
-                </Typography>
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -35,18 +34,18 @@ const Profile = () => {
 
       {/* Basic Form */}
       <section className="px-8 pl-16 py-2 container mx-auto">
-        <Typography variant="h5" color="blue-gray">
+        <p>
           Basic Information
-        </Typography>
-        <Typography variant="small" className="text-gray-600 font-normal mt-1">
+        </p>
+        <p className="text-gray-600 font-normal mt-1">
           Update your profile information below.
-        </Typography>
+        </p>
         <div className="flex flex-col mt-8">
           <div className="mb-6 flex flex-col items-end gap-4 md:flex-row">
             <div className="w-full">
-              <Typography variant="small" color="blue-gray" className="mb-2 font-medium">
+              <p className="mb-2 font-medium">
                 First Name
-              </Typography>
+              </p>
               <Input
                 size="lg"
                 placeholder="Emma"
@@ -57,9 +56,9 @@ const Profile = () => {
               />
             </div>
             <div className="w-full">
-              <Typography variant="small" color="blue-gray" className="mb-2 font-medium">
+              <p color="blue-gray" className="mb-2 font-medium">
                 Last Name
-              </Typography>
+              </p>
               <Input
                 size="lg"
                 placeholder="Roberts"
@@ -72,9 +71,9 @@ const Profile = () => {
           </div>
           <div className="mb-6 flex flex-col items-end gap-4 md:flex-row">
             <div className="w-full">
-              <Typography variant="small" color="blue-gray" className="mb-2 font-medium">
+              <p color="blue-gray" className="mb-2 font-medium">
                 Email
-              </Typography>
+              </p>
               <Input
                 size="lg"
                 placeholder="emma@mail.com"
@@ -85,9 +84,9 @@ const Profile = () => {
               />
             </div>
             <div className="w-full">
-              <Typography variant="small" color="blue-gray" className="mb-2 font-medium">
+              <p color="blue-gray" className="mb-2 font-medium">
                 Confirm Email
-              </Typography>
+              </p>
               <Input
                 size="lg"
                 placeholder="emma@mail.com"
@@ -100,9 +99,9 @@ const Profile = () => {
           </div>
           <div className="mb-6 flex flex-col items-end gap-4 md:flex-row">
             <div className="w-full">
-              <Typography variant="small" color="blue-gray" className="mb-2 font-medium">
+              <p color="blue-gray" className="mb-2 font-medium">
                 Location
-              </Typography>
+              </p>
               <Input
                 size="lg"
                 placeholder="Florida, USA"
@@ -113,9 +112,9 @@ const Profile = () => {
               />
             </div>
             <div className="w-full">
-              <Typography variant="small" color="blue-gray" className="mb-2 font-medium">
+              <p color="blue-gray" className="mb-2 font-medium">
                 Phone Number
-              </Typography>
+              </p>
               <Input
                 size="lg"
                 placeholder="+123 0123 456 789"
@@ -128,9 +127,9 @@ const Profile = () => {
           </div>
           <div className="flex flex-col items-end gap-4 md:flex-row">
             <div className="w-full">
-              <Typography variant="small" color="blue-gray" className="mb-2 font-medium">
+              <p color="blue-gray" className="mb-2 font-medium">
                 Language
-              </Typography>
+              </p>
               <Input
                 size="lg"
                 placeholder="Language"
@@ -141,9 +140,9 @@ const Profile = () => {
               />
             </div>
             <div className="w-full">
-              <Typography variant="small" color="blue-gray" className="mb-2 font-medium">
+              <p color="blue-gray" className="mb-2 font-medium">
                 Skills
-              </Typography>
+              </p>
               <Input
                 size="lg"
                 placeholder="Skills"

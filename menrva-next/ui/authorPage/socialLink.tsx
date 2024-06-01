@@ -1,4 +1,4 @@
-import { FontAwesomeIcon, GlobeAltIcon, faAmazon, faFacebook, faGoodreads, faInstagram, faTiktok } from '@/providers';
+import { FontAwesomeIcon, GlobeAltIcon, faAmazon, faFacebook, faGoodreads, faInstagram, faTiktok } from '@/providers/coreProviders';
 import Link from 'next/link';
 import React from 'react';
 

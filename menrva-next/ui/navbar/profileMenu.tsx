@@ -26,7 +26,7 @@ const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> =
   logout,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const iconClass = "flex items-center gap-x-3 p-2 px-4 font-normal text-base";
+  const iconClass = "flex items-center gap-x-3 p-2 px-6 font-normal text-base text-lg";
 
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -69,7 +69,7 @@ const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> =
       <MenuList className={`p-1 bg-pink-lavender dark:bg-chinese-violet dark:text-old-lace ${advent.className}`}>
         <MenuItem key="1" onClick={closeMenu} className="">
           <div
-            className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
+            className={`${iconClass} transition-transform hover:scale-105 w-full cursor-pointer`}
           >
             <HomeIcon className="h-4 w-4" />
             <Link href={tag ? `/userHome/${tag}` : "/home"} className="flex items-center">
@@ -80,7 +80,7 @@ const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> =
         {!tag ? (
           <MenuItem key="2" onClick={closeMenu} className="">
             <div
-              className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
+              className={`${iconClass} transition-transform hover:scale-105 w-full cursor-pointer`}
             >
               <>
                 <UserIcon className="h-4 w-4" />
@@ -97,7 +97,7 @@ const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> =
           <MenuItem key="3" onClick={closeMenu} className="">
             <Link href="/admin" className="flex items-center">
               <div
-                className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
+                className={`${iconClass} transition-transform hover:scale-105 w-full cursor-pointer`}
               >
                 <TableCellsIcon className="h-4 w-4" />
                 Admin
@@ -109,7 +109,7 @@ const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> =
           {tag ? (
             <Link onClick={handleLogout} href="/home" className="flex items-center">
               <div
-                className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
+                className={`${iconClass} transition-transform hover:scale-105 w-full cursor-pointer`}
               >
                 <ArrowLeftStartOnRectangleIcon className="h-4 w-4" />
                 Logout
@@ -118,7 +118,7 @@ const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> =
           ) : (
             <Link href="/login" className="flex items-center">
               <div
-                className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
+                className={`${iconClass} transition-transform hover:scale-105 w-full cursor-pointer`}
               >
                 <ArrowRightEndOnRectangleIcon className="h-4 w-4" />
                 Login

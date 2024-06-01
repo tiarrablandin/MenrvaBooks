@@ -1,5 +1,4 @@
-import { Switch, Typography } from "@/providers";
-import React from "react";
+import { Switch } from "@/providers/coreProviders";
 
 const TABLE_HEAD = ["Activity", "Email", "Push", "SMS"];
 
@@ -23,13 +22,13 @@ const Notifications = () => {
     <div>
       <section className="px-8 pl-16 py-20 container mx-auto">
         <div>
-          <Typography variant="h6">
+          <p>
             Notifications
-          </Typography>
-          <Typography className="mt-1 !font-normal !text-gray-600" variant="small">
+          </p>
+          <p className="mt-1 !font-normal !text-gray-600">
             Choose how you receive notifications. These notification settings apply to the things
             you&apos;re watching.
-          </Typography>
+          </p>
         </div>
         <div className="overflow-x-scroll">
           <table className="w-full min-w-max table-auto text-left">
@@ -37,9 +36,9 @@ const Notifications = () => {
               <tr>
                 {TABLE_HEAD.map((head) => (
                   <th key={head} className="border-b border-gray-300 !py-6 pr-8">
-                    <Typography color="blue-gray" variant="small" className="!font-bold">
+                    <p className="!font-bold">
                       {head}
-                    </Typography>
+                    </p>
                   </th>
                 ))}
               </tr>
@@ -51,10 +50,10 @@ const Notifications = () => {
                 return (
                   <tr key={title}>
                     <td className={classes}>
-                      <Typography className="font-bold">{title}</Typography>
-                      <Typography variant="small" className="mt-1 font-normal !text-gray-600">
+                      <p className="font-bold">{title}</p>
+                      <p className="mt-1 font-normal !text-gray-600">
                         {desc}
-                      </Typography>
+                      </p>
                     </td>
                     <td className={classes}>
                       <Switch defaultChecked />

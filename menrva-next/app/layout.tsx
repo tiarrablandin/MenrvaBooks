@@ -12,14 +12,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  admin,
+  auth
 }: Readonly<{
   children: React.ReactNode;
+  admin?: React.ReactNode;
+  auth?: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${advent.className} bg-old-lace dark:bg-onyx text-eggplant dark:text-old-lace`}>
+    <html lang="en" className={`${advent.className}`}>
+      <body className={`bg-old-lace dark:bg-onyx text-eggplant dark:text-old-lace`}>
         <MenrvaThemeProvider>
+          {admin}
           {children}
+          {auth}
         </MenrvaThemeProvider>
       </body>
     </html>

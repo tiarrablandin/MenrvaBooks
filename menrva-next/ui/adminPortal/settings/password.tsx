@@ -1,8 +1,7 @@
 "use client";
 
-import { Button, EyeIcon, EyeSlashIcon, Input } from "@/providers";
-import { Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Button, EyeIcon, EyeSlashIcon, Input } from "@/providers/coreProviders";
+import { useState } from "react";
 
 const Password = () => {
   const [passwordShown, setPasswordShown] = useState(false);
@@ -11,18 +10,18 @@ const Password = () => {
   return (
     <div className="">
       <section className="px-12 py-20 container mx-auto">
-        <Typography variant="h6" className="text-eggplant">
+        <p className="text-eggplant">
           Change Password
-        </Typography>
-        <Typography className="text-gray-600 font-normal mt-1">
+        </p>
+        <p className="text-gray-600 font-normal mt-1">
           Update your profile information below.
-        </Typography>
+        </p>
         <div className="flex flex-col md:flex-row justify-between gap-10 mt-8">
           <div className="flex flex-col gap-6 w-full">
             <div className="w-full">
-              <Typography className="mb-2 font-medium text-eggplant">
+              <p className="mb-2 font-medium text-eggplant">
                 Current Password
-              </Typography>
+              </p>
               <div>
                 <Input
                   placeholder="Current Password"
@@ -44,9 +43,9 @@ const Password = () => {
               </div>
             </div>
             <div className="w-full">
-              <Typography className="mb-2 font-medium text-eggplant">
+              <p className="mb-2 font-medium text-eggplant">
                 New Password
-              </Typography>
+              </p>
               <Input
                 placeholder="New Password"
                 labelProps={{
@@ -66,9 +65,9 @@ const Password = () => {
               />
             </div>
             <div className="w-full">
-              <Typography className="mb-2 font-medium text-eggplant">
+              <p className="mb-2 font-medium text-eggplant">
                 Confirm New Password
-              </Typography>
+              </p>
               <Input
                 placeholder="Confirm New Password"
                 labelProps={{
@@ -90,12 +89,12 @@ const Password = () => {
             <Button className="max-w-fit bg-eggplant text-old-lace">Update Password</Button>
           </div>
           <div className="w-full">
-            <Typography variant="h6" className="text-eggplant">
+            <p className="text-eggplant">
               Password Requirement
-            </Typography>
-            <Typography className="my-2 !font-normal !text-gray-600">
+            </p>
+            <p className="my-2 !font-normal !text-gray-600">
               Please follow this guide for a strong password:
-            </Typography>
+            </p>
             <div className="flex flex-col justify-between lg:items-end md:items-end gap-8 md:flex-row">
               <div className="grid gap-0.5">
                 <ul className="list-disc ml-6">

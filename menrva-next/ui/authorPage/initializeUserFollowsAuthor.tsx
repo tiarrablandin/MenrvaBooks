@@ -1,7 +1,7 @@
 'use client';
-import { fetchUserFollowsAuthor } from "@/app/lib/services/apiService";
-import { updateIsFollowing } from "@/app/lib/store/authorSlice";
-import { useAppDispatch } from "@/app/lib/store/store";
+import { fetchUserFollowsAuthor } from "@/lib/services/apiService";
+import { updateIsFollowing } from "@/lib/store/features/authorSlice";
+import { useAppDispatch } from "@/lib/store/store";
 import { useEffect } from "react";
 
 const InitializeUserFollowsAuthor: React.FC<{ id: number, token: string }> = ({ id, token }) => {

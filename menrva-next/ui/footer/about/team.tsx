@@ -75,7 +75,7 @@ export function Team() {
         <div className="mb-4 text-3xl lg:text-5xl">
           The Executive Team
         </div>
-        <plead" className="mx-auto max-w-4xl">
+        <p className="mx-auto max-w-4xl">
           This is the paragraph where you can write more details about your team. Keep you user
           engaged by providing meaningful information.
         </div>

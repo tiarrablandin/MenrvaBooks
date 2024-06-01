@@ -8,23 +8,25 @@ export const lightTheme = {
             base: {
                 tab: {
                     initial: {
-                        color: "text-white"
+                        color: "text-old-lace"
                     }
                 },
                 indicator: {
                     bg: "bg-eggplant",
+
                 },
+                label: {}
             }
         }
     },
     typography: {
-        defaultProps: {
+        styles: {
             className: `text-eggplant text-base ${advent.className}`
             // className: `text-eggplant text-base`
         }
     },
     input: {
-        defaultProps: {
+        styles: {
             className: `${advent.className}`
         }
     }

@@ -1,5 +1,4 @@
-import { Button, Chip, Typography } from "@/providers";
-import React from "react";
+import { Button, Typography } from "@/providers/coreProviders";
 
 interface AccountCardPropsType {
   title: string;
@@ -21,22 +20,21 @@ function AccountCard({ title, desc, keys, label }: AccountCardPropsType) {
   return (
     <div className="flex flex-wrap items-center justify-between border-b border-b-gray-200 py-6">
       <div>
-        <Typography variant="h6" color="blue-gray">
+        <p color="blue-gray">
           {title}
-        </Typography>
-        <Typography variant="small" className="text-gray-600 font-normal mt-1">
+        </p>
+        <p className="text-gray-600 font-normal mt-1">
           {desc}
-        </Typography>
+        </p>
       </div>
       <div className="flex items-center gap-4 ml-auto">
-        <Typography
-          variant="small"
+        <p
           className={`!ml-auto
           ${keys === "+4 0123 456 789" ? "!font-bold text-eggplant " : "!font-normal"}
           `}
         >
           {keys}
-        </Typography>
+        </p>
         <Button size="sm" variant="outlined" className="text-eggplant">
           {label}
         </Button>
@@ -51,12 +49,12 @@ const Security = () => {
       <section className="px-8 pl-16 py-16 container mx-auto">
         <div className="flex items-start justify-between rounded-none mb-2">
           <div>
-            <Typography variant="h6" className="text-2xl">
+            <p className="text-2xl">
               Two-factor authentication
-            </Typography>
-            <Typography variant="h6" className="text-gray-600 font-normal mt-1">
+            </p>
+            <p className="text-gray-600 font-normal mt-1">
               Update your profile information below.
-            </Typography>
+            </p>
           </div>
           <div className="mt-7 flex justify-end">
             <Button className="bg-eggplant text-old-lace">enable</Button>

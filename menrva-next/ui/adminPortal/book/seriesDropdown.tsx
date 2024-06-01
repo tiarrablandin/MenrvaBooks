@@ -40,7 +40,7 @@ const SeriesDropdown: React.FC<SeriesDropdownProps> = ({ onChange, defaultValue 
     };
 
     if (loading) {
-        return <Typography>Loading...</Typography>;
+        return <Typography>Loading...</p>;
     }
 
     return (

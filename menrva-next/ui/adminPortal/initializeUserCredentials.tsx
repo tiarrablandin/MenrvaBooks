@@ -1,7 +1,7 @@
 'use client';
 
-import { useAppDispatch } from "@/app/lib/store/store";
-import { setToken, setUserDetails } from "@/app/lib/store/userSlice";
+import { useAppDispatch } from "@/lib/store/store";
+import { setToken, setUserDetails } from "@/lib/store/features/userSlice";
 import { useEffect } from "react";
 
 interface InitializeUserCredentialsProps {

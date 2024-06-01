@@ -60,7 +60,7 @@ const UpdateBook: React.FC = () => {
           <DialogHeader className="justify-between pb-0">
             <Typography color="blue-gray" className="mb-1 font-bold text-2xl">
               Update Book
-            </Typography>
+            </p>
             <XMarkIcon className="w-5 h-5 cursor-pointer text-black inline-block mr-1" onClick={handleClose} />
           </DialogHeader>
           <DialogBody className="overflow-y-scroll pt-0">
@@ -69,7 +69,7 @@ const UpdateBook: React.FC = () => {
               className="font-normal text-gray-600 text-lg "
             >
               Update a book from the database.
-            </Typography>
+            </p>
             <div className="flex gap-4 mt-6">
               PLACEHOLDER FOR ADD IMAGE
             </div>
@@ -176,12 +176,12 @@ const UpdateBook: React.FC = () => {
             <Button onClick={handleClose} color="red" variant="outlined" className="w-24 h-10 flex items-center justify-center border-2">
               <Typography className="normal-case text-lg font-medium text-eggplant">
                 Cancel
-              </Typography>
+              </p>
             </Button>
             <Button type="submit" className="w-24 h-10 flex items-center justify-center">
               <Typography className="normal-case text-lg font-medium text-old-lace">
                 Update
-              </Typography>
+              </p>
             </Button>
           </DialogFooter>
         </form>

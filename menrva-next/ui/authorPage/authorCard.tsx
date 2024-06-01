@@ -1,7 +1,7 @@
 "use client"
 
-import { Author } from '@/app/lib/models/author';
-import { Avatar, Card, CardBody, CardHeader, Typography } from "@/providers";
+import { Author } from '@/lib/models/author';
+import { Avatar, Card, CardBody, CardHeader, Typography } from "@/providers/coreProviders";
 import React from 'react';
 import ToggleFollowAuthorButton from './toggleFollowAuthorButton';
 import SocialLink from './socialLink';
@@ -25,9 +25,9 @@ const AuthorCard: React.FC<{ author: Author }> = ({ author }) => {
           />
           <div className="flex w-full flex-col gap-0.5">
             <div className="flex items-center justify-between">
-              <Typography variant="h5">
+              <p>
                 {author.penName}
-              </Typography>
+              </p>
               <div className="flex items-center gap-0">
                 <ToggleFollowAuthorButton id={author.id} />
               </div>
@@ -40,9 +40,9 @@ const AuthorCard: React.FC<{ author: Author }> = ({ author }) => {
           </div>
         </CardHeader>
         <CardBody className="mb-6 p-0">
-          <Typography>
+          <p>
             {author.bio}
-          </Typography>
+          </p>
         </CardBody>
       </Card>
     </div>

@@ -1,8 +1,7 @@
 "use client";
 
 import { Button, EyeIcon, EyeSlashIcon, Input } from "@/providers/coreProviders";
-import { Typography } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Password = () => {
   const [passwordShown, setPasswordShown] = useState(false);

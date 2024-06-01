@@ -13,7 +13,7 @@ export default async function Page({ params: { query } }: { params: { query: str
   return (
     <main className="w-screen min-h-[calc(100vh-295px)]">
       <div className="h-full w-full flex flex-col items-center justify-center py-4">
-        <Typography className="w-4/5 mt-2 text-left text-eggplant text-3xl font-semibold">Results for: {query}</Typography>
+        <Typography className="w-4/5 mt-2 text-left text-eggplant text-3xl font-semibold">Results for: {query}</p>
         <SearchResults books={books ? books : []} />
       </div>
     </main>

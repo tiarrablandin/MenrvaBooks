@@ -11,13 +11,16 @@ import {
   PlusIcon,
   Tooltip,
   Typography,
-} from "@/providers";
+} from "@/providers/coreProviders";
 import Link from "next/link";
 import React, { useMemo, useState } from "react";
 import { tableConfig } from "./tableConfig";
-import createTableRow from "@/app/actions/createTableRow";
+import createTableRow from "@/lib/actions/createTableRow";
+import { Advent_Pro } from "next/font/google";
 
 type NoReviewed = "genres" | "sub-genres" | "keywords" | "tags" | "users" | "comments";
+
+const advent = Advent_Pro({ weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], subsets: ["latin"] });
 
 interface AdminTableProps {
   head: string;
@@ -68,7 +71,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
 
   return (
     <>
-      <Card className={variant === 'small' ? "h-[85vh] w-[95%] mx-auto my-4 overflow-scroll" : "h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll"}>
+      <Card className={` ${variant === 'small' ?  'h-[85vh] w-[95%] mx-auto my-4 overflow-scroll' : 'h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll'} ${advent.className} text-eggplant`}>
         <CardHeader
           floated={false}
           shadow={false}
@@ -76,12 +79,12 @@ const AdminTable: React.FC<AdminTableProps> = ({
         >
           <div className='flex items-center justify-between gap-4 w-full'>
             <div className="flex flex-col">
-              <Typography variant="h1" className="text-3xl">
+              <p className="text-3xl">
                 {head}
-              </Typography>
-              <Typography variant="h1" className="text-md">
+              </p>
+              <p className="text-md">
                 {headDesc}
-              </Typography>
+              </p>
             </div>
             <div className="w-1/2 lg:w-48">
               <Input
@@ -120,9 +123,9 @@ const AdminTable: React.FC<AdminTableProps> = ({
                     key={index}
                     className="px-4 py-3 text-center text-md font-lg uppercase tracking-wider text-nowrap"
                   >
-                    <Typography variant="h5" className="text-xl">
+                    <p className="text-xl">
                       {tableHeaders}
-                    </Typography>
+                    </p>
                   </th>
                 ))}
               </tr>

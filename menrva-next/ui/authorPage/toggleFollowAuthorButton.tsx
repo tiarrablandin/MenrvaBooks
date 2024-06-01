@@ -1,7 +1,7 @@
 'use client';
 
-import { toggleFollowAuthor } from "@/app/lib/store/authorSlice";
-import { RootState, useAppDispatch } from "@/app/lib/store/store";
+import { toggleFollowAuthor } from "@/lib/store/features/authorSlice";
+import { RootState, useAppDispatch } from "@/lib/store/store";
 import { PlusCircleIcon as PlusCircleIconOutline } from "@heroicons/react/24/outline";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { useSelector } from "react-redux";
