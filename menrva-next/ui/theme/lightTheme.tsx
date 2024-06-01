@@ -22,5 +22,10 @@ export const lightTheme = {
             className: `text-eggplant text-base ${advent.className}`
             // className: `text-eggplant text-base`
         }
+    },
+    input: {
+        defaultProps: {
+            className: `${advent.className}`
+        }
     }
 };

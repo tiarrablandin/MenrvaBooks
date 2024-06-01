@@ -46,7 +46,7 @@ export function NavbarWithSearch({ tag, logout, role }: { tag: string, logout: (
                 <AdvancedSearchComponent />
               </div>
               <IconButton variant="text" className="w-8 h-8 -mr-12 mt-2">
-                <BellIcon className="h-5 w-5 text-eggplant" />
+                <BellIcon className="h-5 w-5 text-eggplant dark:text-old-lace" />
               </IconButton>
               <ProfileMenu tag={tag} logout={logout} role={role} />
             </div>
@@ -68,7 +68,7 @@ export function NavbarWithSearch({ tag, logout, role }: { tag: string, logout: (
           <Collapse open={open} className="hidden">
             <div className="flex flex-wrap items-center gap-2">
               <IconButton variant="text">
-                <BellIcon className="h-5 w-5 text-eggplant" />
+                <BellIcon className="h-5 w-5 text-eggplant dark:text-old-lace" />
               </IconButton>
               <ProfileMenu tag={tag} logout={logout} role={role} />
               <AdvancedSearchBar />

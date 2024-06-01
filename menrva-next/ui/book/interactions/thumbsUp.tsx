@@ -28,7 +28,7 @@ const ThumbsUpComponent: React.FC<ToggleLikeProps> = ({ id }) => {
             {liked ?
                 <ThumbUp onClick={handleToggleLike} className="cursor-pointer text-blue-700 hover:text-gray-600" />
                 :
-                <ThumbUpAltOutlined onClick={handleToggleLike} className="cursor-pointer text-gray-600 hover:text-blue-700" />
+                <ThumbUpAltOutlined onClick={handleToggleLike} className="cursor-pointer text-gray-600 hover:text-blue-700 dark:text-old-lace dark:hover:text-blue-700" />
             }
         </>
     )

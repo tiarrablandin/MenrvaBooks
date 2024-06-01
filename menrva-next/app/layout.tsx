@@ -17,11 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <MenrvaThemeProvider>
-        <body className={`${advent.className} bg-old-lace dark:bg-onyx text-eggplant dark:text-old-lace`}>
+      <body className={`${advent.className} bg-old-lace dark:bg-onyx text-eggplant dark:text-old-lace`}>
+        <MenrvaThemeProvider>
           {children}
-        </body>
-      </MenrvaThemeProvider>
+        </MenrvaThemeProvider>
+      </body>
     </html>
   );
 }

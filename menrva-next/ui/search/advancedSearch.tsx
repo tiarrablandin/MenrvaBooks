@@ -7,9 +7,14 @@ import { debounce } from 'lodash';
 import { useRouter } from 'next/navigation';
 import { Suspense, useCallback, useEffect, useState } from 'react';
 import SuggestionCards from './suggestionCards';
+import { Advent_Pro } from 'next/font/google';
+import { useAppDispatch, useAppSelector } from '@/lib/store/store';
+
+const advent = Advent_Pro({ subsets: ["latin"] });
 
 const AdvancedSearchComponent = () => {
     const router = useRouter();
+    const theme = useAppSelector((state) => state.theme.theme);
     const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState<BookResponse[]>([]);
     const [isFocused, setIsFocused] = useState(false);
@@ -64,10 +69,14 @@ const AdvancedSearchComponent = () => {
         <div className="flex flex-col w-4/5 h-12 mx-auto">
             <form onSubmit={handleSubmit} className='flex gap-3 container'>
                 <Input
+                    color={theme  === "light" ? "black" : "white"}
                     type="text"
                     size="lg"
                     label="Search"
-                    placeholder="Search for books, authors, genres..."
+                    labelProps={{
+                        className: "text-old-lace"
+                    }}
+                    className={`${advent.className} tracking-wide text-[1.15rem]`}
                     onChange={handleInputChange}
                     value={searchTerm}
                     onFocus={handleFocus}

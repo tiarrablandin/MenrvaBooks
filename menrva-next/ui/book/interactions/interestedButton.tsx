@@ -26,7 +26,7 @@ const InterestedButton: React.FC<InterestedButtonProps> = ({ id }) => {
             {interested ?
                 <BookmarkIconSolid onClick={handleToggleInterested} className="h-6 w-6 cursor-pointer hover:text-gray-600 text-blue-700" />
                 :
-                <BookmarkIconOutline onClick={handleToggleInterested} className="h-6 w-6 cursor-pointer hover:text-blue-700 text-gray-600" />
+                <BookmarkIconOutline onClick={handleToggleInterested} className="h-6 w-6 cursor-pointer hover:text-blue-700 text-gray-600 dark:text-old-lace dark:hover:text-blue-700" />
             }
         </>
     )

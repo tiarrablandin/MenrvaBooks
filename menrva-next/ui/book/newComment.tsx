@@ -1,6 +1,6 @@
 
 import createComment from "@/lib/actions/createComment";
-import { Button, Input, Typography } from "@/providers/coreProviders";
+import { Button, Input } from "@/providers/coreProviders";
 
 export async function NewComment({ bookId, tag }: { bookId: number, tag: string | undefined }) {
     return (
@@ -21,7 +21,7 @@ export async function NewComment({ bookId, tag }: { bookId: number, tag: string 
                 }} className="flex flex-col items-end">
                     <Input variant="static" type="text" name="comment" id="comment" />
                     <Button className="mt-4 bg-eggplant text-old-lace" size="sm">
-                        submit
+                        <p>submit</p>
                     </Button>
                 </form>
             </div>

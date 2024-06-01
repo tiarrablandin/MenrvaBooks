@@ -17,11 +17,12 @@
   }
 }
 
-@layer base {
+/* @layer base {
   @font-face {
-    font-family: "Advent_Pro";
+    font-family: 'Advent_Pro';
+    font-style: normal;
   }
-}
+} */
 
 body {
   color: rgb(var(--foreground-rgb));

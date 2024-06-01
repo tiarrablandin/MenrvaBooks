@@ -18,6 +18,7 @@ import ThumbsDownComponent from "./interactions/thumbsDown";
 import ThumbsUpComponent from "./interactions/thumbsUp";
 import BookSlider from "./bookSlider";
 import ReduxProvider from "@/providers/reduxProvider";
+import { Advent_Pro } from "next/font/google";
 
 interface SingleBookProps {
   id: number;
@@ -33,6 +34,8 @@ export const preload = (id: number, token: string | undefined) => {
     void fetchBookInteractionsById(id, token);
   }
 }
+
+const advent = Advent_Pro({ subsets: ["latin"] });
 
 const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) => {
   const numberOfLikes = book.bookInteractions ? book.bookInteractions.filter(interaction => interaction.likeDislike === 1).length : 0;
@@ -50,8 +53,8 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
         ) : (
           <></>
         )}
-        <Card className="bg-transparent shadow-none">
-          <div className="text-2xl font-semibold px-2">
+        <Card className="bg-transparent shadow-none dark:text-old-lace">
+          <div className="text-2xl font-semibold">
             {book ? book.title : "Loading..."}
           </div>
           {(book?.authors || []).map((author) => (
@@ -63,13 +66,13 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
               </Link>
             </div>
           ))}
-          <div className="flex gap-4">
+          <div className="flex gap-4 text-gray-600 dark:text-old-lace">
             <ReduxProvider>
-              <div className="flex items-center gap-2 text-gray-600">
+              <div className="flex items-center gap-2">
                 <div className="text-2xl font-bold">{numberOfLikes}</div>
                 <ThumbsUpComponent id={id} />
               </div>
-              <div className="flex items-center gap-2 text-gray-600">
+              <div className="flex items-center gap-2">
                 <div className="text-2xl font-bold">{numberOfDislikes}</div>
                 <ThumbsDownComponent id={id} />
               </div>
@@ -92,14 +95,14 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
                 color="light-blue"
                 className="h-8 relative flex items-center overflow-hidden pr-[72px]"
               >
-                <p className="normal-case text-nowrap text-xl font-medium -mx-4 w-min ">Purchase on Amazon</p>
+                <p className={`normal-case text-nowrap text-lg font-medium -mx-4 w-min ${advent.className}`}>Purchase on Amazon</p>
                 <span className="absolute right-0 grid h-full w-12 place-items-center bg-light-blue-600 transition-colors group-hover:bg-light-blue-700">
-                  <FontAwesomeIcon icon={faAmazon} className="h-6 w-6" />
+                  <FontAwesomeIcon icon={faAmazon} className="h-5 w-5" />
                 </span>
               </Button>
             </Link>
           ))}
-          <div className="mt-6">{book ? book.description : "Loading..."}</div>
+          <div className="mt-6 dark:text-old-lace">{book ? book.description : "Loading..."}</div>
           <div className="flex justify-center gap-12 mt-8">
             <div className="text-center">
               <div className="">
@@ -116,7 +119,7 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
       </div>
       <div className="w-screen h-full flex flex-col items-center">
         {/* <BookSlider fetchData={fetchAllBooksSlider} title={"Similar Books"} /> */}
-        <BookSlider defaultBooks={book.series.books} title={"Books in Series"} />
+        <BookSlider defaultBooks={book.series.books.filter((book) => book.id !== Number(id))} title={"Books in Series"} />
       </div>
       <BookComments bookId={book?.id!!} comments={book?.comments} tag={tag} />
       {interactions ? <InitializeInteractions interactions={interactions} /> : <></>}
