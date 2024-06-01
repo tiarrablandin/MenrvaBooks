@@ -9,6 +9,7 @@ export {
   faMeta,
   faGoodreads,
 } from "@fortawesome/free-brands-svg-icons";
+export { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export {
   HistoryEduOutlined,

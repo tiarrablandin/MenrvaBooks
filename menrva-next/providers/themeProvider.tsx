@@ -1,4 +1,4 @@
-import { lightTheme } from "@/app/ui/theme/lightTheme";
+import { lightTheme } from "@/ui/theme/lightTheme";
 import { ReactElement, ReactNode } from "react";
 import { ThemeProvider } from "./coreProviders";
 

@@ -1,13 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit/react"
 import { useDispatch, useSelector, useStore } from "react-redux"
-import themeReducer from "./features/theme/themeSlice"
-import searchReducer from "./features/theme/searchSlice"
+import themeReducer from "./features/themeSlice"
+import searchReducer from "./features/searchSlice"
+import userReducer from "./features/userSlice"
+import bookReducer from "./features/bookSlice"
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
+      book: bookReducer,
       theme: themeReducer,
       search: searchReducer,
+      user: userReducer,
     },
   })
 }

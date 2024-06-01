@@ -1,7 +1,7 @@
 "use client";
 
-import { darkTheme } from "@/app/ui/theme/darkTheme";
-import { lightTheme } from "@/app/ui/theme/lightTheme";
+import { darkTheme } from "@/ui/theme/darkTheme";
+import { lightTheme } from "@/ui/theme/lightTheme";
 import { useAppSelector } from "@/lib/store/store";
 import { ThemeProvider } from "@material-tailwind/react";
 import { ReactElement, ReactNode, useEffect } from "react";
