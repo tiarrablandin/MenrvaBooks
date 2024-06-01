@@ -13,20 +13,16 @@ function ContentCard({ content, date, tag }: ContentCardPropsType) {
     <Card color="transparent" shadow={false} className="grid items-center gap-6 ">
       <CardBody className="flex gap-5 p-0 ">
         <div className="mb-3 flex items-center gap-1">
-          <p
-            className="text-lg font-bold !text-gray-900 px-4"
-          >
+          <div className="text-lg font-bold !text-gray-900 px-4" >
             {tag}
-          </p>
-          <p
-            className="font-medium !text-gray-900"
-          >
+          </div>
+          <div className="font-medium !text-gray-900" >
             {content}
-          </p>
+          </div>
 
-          <p className="font-bold !text-gray-700">
+          <div className="font-bold !text-gray-700">
             {date ? date.toString() : ""}
-          </p>
+          </div>
           <Button
             size="sm"
             color="red"
@@ -48,13 +44,13 @@ const bookComments = ({ bookId, comments, tag }: { bookId: number, comments?: Co
   return (
     <div>
       <section className="mx-auto flex w-full max-w-2xl flex-col px-5 pb-20 pt-10">
-        <p className="my-6 md:my-8 md:text-center">
+        <div className="my-6 md:my-8 md:text-center">
           Have something to say about this book?
-        </p>
+        </div>
         <NewComment bookId={bookId} tag={tag} />
-        <p className="my-8 md:text-center">
+        <div className="my-8 md:text-center">
           What other readers are saying about this book...
-        </p>
+        </div>
         {comments ?
           <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-1">
             {comments.map((comment, index) => (

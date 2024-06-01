@@ -51,26 +51,26 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
           <></>
         )}
         <Card className="bg-transparent shadow-none">
-          <p className="text-2xl font-semibold px-2">
+          <div className="text-2xl font-semibold px-2">
             {book ? book.title : "Loading..."}
-          </p>
+          </div>
           {(book?.authors || []).map((author) => (
             <div key={author.id} className="w-1/3 h-10 flex justify-between p-2">
               <Link href={`../author/${author.id}`} className="w-min">
-                <p className="hover:underline underline-offset-2 text-nowrap text-lg">
+                <div className="hover:underline underline-offset-2 text-nowrap text-lg">
                   {author.penName}
-                </p>
+                </div>
               </Link>
             </div>
           ))}
           <div className="flex gap-4">
             <ReduxProvider>
               <div className="flex items-center gap-2">
-                <p className="text-2xl font-bold">{numberOfLikes}</p>
+                <div className="text-2xl font-bold">{numberOfLikes}</div>
                 <ThumbsUpComponent id={id} />
               </div>
               <div className="flex items-center gap-2">
-                <p className="text-2xl font-bold">{numberOfDislikes}</p>
+                <div className="text-2xl font-bold">{numberOfDislikes}</div>
                 <ThumbsDownComponent id={id} />
               </div>
               {tag ? <InterestedButton id={id} /> : <></>}
@@ -90,26 +90,26 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
                 color="light-blue"
                 className="h-8 relative flex items-center overflow-hidden pr-[72px]"
               >
-                <p className="normal-case text-nowrap text-xl font-medium -mx-4 w-min">Purchase on Amazon</p>
+                <div className="normal-case text-nowrap text-xl font-medium -mx-4 w-min font-sans">Purchase on Amazon</div>
                 <span className="absolute right-0 grid h-full w-12 place-items-center bg-light-blue-600 transition-colors group-hover:bg-light-blue-700">
                   <FontAwesomeIcon icon={faAmazon} className="h-6 w-6" />
                 </span>
               </Button>
             </Link>
           ))}
-          <p className="mt-6">{book ? book.description : "Loading..."}</p>
+          <div className="mt-6">{book ? book.description : "Loading..."}</div>
           <div className="flex justify-center gap-12 mt-8">
             <div className="text-center">
-              <p>Page Count:</p>
-              <p className="">
+              <div>Page Count:</div>
+              <div className="">
                 {book ? ` ${book.pageCount}` : "Loading..."}
-              </p>
+              </div>
             </div>
             <div className="text-center">
-              <p>Publication Date:</p>
-              <p className="">
+              <div>Publication Date:</div>
+              <div className="">
                 {book?.publicationDate ? book.publicationDate.toString() : ""}
-              </p>
+              </div>
             </div>
           </div>
         </Card>

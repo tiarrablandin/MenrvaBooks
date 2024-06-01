@@ -23,19 +23,19 @@ export function Footer() {
         <div className="w-2/3 flex flex-row justify-start">
           {SITEMAP.map(({ title, links, routes }, key) => (
             <div key={key} className="w-3/5 text-start">
-              <p className="py-2 pt-4 font-bold text-lg uppercase">
+              <div className="py-2 pt-4 font-bold text-lg uppercase">
                 {title}
-              </p>
+              </div>
               <ul className="">
                 {links.map((link, key) => (
-                  <p key={key} as="li" className="font-normal">
+                  <div key={key} as="li" className="font-normal">
                     <Link
                       href={routes[key]}
                       className="inline-block pt-1 pr-2 transition-transform hover:scale-105"
                     >
                       {link}
                     </Link>
-                  </p>
+                  </div>
                 ))}
               </ul>
             </div>
@@ -47,7 +47,7 @@ export function Footer() {
               className="mb-3 text-lg !font-semibold opacity-70"
             >
               Get the app
-            </p>
+            </div>
             <Button
               color="white"
               size="sm"
@@ -62,12 +62,12 @@ export function Footer() {
                   className="h-10 w-10 grayscale"
                 />
                 <div className="grid place-items-start">
-                  <p className="!text-xs !font-medium -mb-1.5">
+                  <div className="!text-xs !font-medium -mb-1.5">
                     get it on
-                  </p>
-                  <p className="font-medium capitalize !text-lg">
+                  </div>
+                  <div className="font-medium capitalize !text-lg">
                     google play
-                  </p>
+                  </div>
                 </div>
               </div>
             </Button>
@@ -85,23 +85,23 @@ export function Footer() {
                   className="h-10 w-10"
                 />
                 <div className="grid place-items-start mt-1">
-                  <p className="!text-xs font-medium -mb-1 capitalize">
+                  <div className="!text-xs font-medium -mb-1 capitalize">
                     Download on the
-                  </p>
-                  <p className="font-medium capitalize !text-lg">
+                  </div>
+                  <div className="font-medium capitalize !text-lg">
                     App Store
-                  </p>
+                  </div>
                 </div>
               </div>
             </Button>
         </div>*/}
         <div className="flex w-full flex-col items-center justify-center border-t border-eggplant py-4 md:flex-row md:justify-between mt-2">
-          <p className="mb-2 text-center font-normal md:mb-0">
+          <div className="mb-2 text-center font-normal md:mb-0">
             &copy; {currentYear} <a href="https://material-tailwind.com/">Menrva Books</a>. All
             Rights Reserved.
-          </p>
+          </div>
           <div className="flex gap-4 sm:justify-center">
-            <p as="a" href="#" className="opacity-80 transition-opacity hover:opacity-100">
+            <div as="a" href="#" className="opacity-80 transition-opacity hover:opacity-100">
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   fillRule="evenodd"
@@ -109,8 +109,8 @@ export function Footer() {
                   clipRule="evenodd"
                 />
               </svg>
-            </p>
-            <p as="a" href="#" className="opacity-80 transition-opacity hover:opacity-100">
+            </div>
+            <div as="a" href="#" className="opacity-80 transition-opacity hover:opacity-100">
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   fillRule="evenodd"
@@ -118,12 +118,12 @@ export function Footer() {
                   clipRule="evenodd"
                 />
               </svg>
-            </p>
-            <p as="a" href="#" className="opacity-80 transition-opacity hover:opacity-100">
+            </div>
+            <div as="a" href="#" className="opacity-80 transition-opacity hover:opacity-100">
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
               </svg>
-            </p>
+            </div>
           </div>
         </div>
       </div>

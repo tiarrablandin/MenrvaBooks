@@ -19,12 +19,12 @@ const Notifications = () => {
     <div>
       <section className="px-8 pl-16 py-20 container mx-auto">
         <div>
-          <p>
+          <div>
             Notifications
-          </p>
-          <p className="mt-1 !font-normal !text-gray-600" variant="small">
+          </div>
+          <div className="mt-1 !font-normal !text-gray-600" variant="small">
             Choose how you receive notifications.
-          </p>
+          </div>
         </div>
         <div className="overflow-x-scroll">
           <table className="w-full min-w-max table-auto text-left">
@@ -32,9 +32,9 @@ const Notifications = () => {
               <tr>
                 {TABLE_HEAD.map((head) => (
                   <th key={head} className="border-b border-gray-300 !py-6 pr-8">
-                    <p color="blue-gray" variant="small" className="!font-medium">
+                    <div color="blue-gray" variant="small" className="!font-medium">
                       {head}
-                    </p>
+                    </div>
                   </th>
                 ))}
               </tr>
@@ -46,10 +46,10 @@ const Notifications = () => {
                 return (
                   <tr key={title}>
                     <td className={classes}>
-                      <p className="font-medium">{title}</p>
-                      <p className="mt-1 font-normal !text-gray-600">
+                      <div className="font-medium">{title}</div>
+                      <div className="mt-1 font-normal !text-gray-600">
                         {desc}
-                      </p>
+                      </div>
                     </td>
                     <td className={classes}>
                       <Switch defaultChecked />

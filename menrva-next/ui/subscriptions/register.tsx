@@ -57,12 +57,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({}) => {
         aria-disabled={isLoading}
         disabled={isLoading}
       >
-        <p
+        <div
           onClick={handleOpen}
           className="mt-1 font-normal text-old-lace"
         >
           {isLoading ? "Registering..." : "Sign Up"}
-        </p>
+        </div>
       </Button>
       <Dialog
         size="xl"
@@ -208,7 +208,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({}) => {
                 {errorMessage && (
                   <>
                     <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
-                    <p className="text-sm text-red-500">{errorMessage}</p>
+                    <div className="text-sm text-red-500">{errorMessage}</div>
                   </>
                 )}
               </div>
@@ -230,9 +230,9 @@ function RegisterButton() {
       aria-disabled={isLoading}
       disabled={isLoading}
     >
-      <p className="mt-1 font-normal text-old-lace">
+      <div className="mt-1 font-normal text-old-lace">
         {isLoading ? "Registering..." : "Sign Up"}
-      </p>
+      </div>
       <ArrowRightIcon className="ml-auto h-6 w-6 text-old-lace" />
     </Button>
   );

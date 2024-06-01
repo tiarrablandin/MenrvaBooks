@@ -25,14 +25,14 @@ const subCard: React.FC<SubCardProps> = ({ header, price, info }) => {
           color="transparent"
           className="m-0 mb-4 rounded-none border-b border-white/10 pb-4 text-center"
         >
-          <p className="font-normal uppercase text-xl">
+          <div className="font-normal uppercase text-xl">
             {header}
-          </p>
-          <p
+          </div>
+          <div
             className="text-xl mt-4 flex justify-center gap-1 font-normal text-eggplant"
           >
             {` ${price}`}
-          </p>
+          </div>
         </CardHeader>
         <CardBody className="p-0">
           <ul className="flex flex-col gap-2">
@@ -41,7 +41,7 @@ const subCard: React.FC<SubCardProps> = ({ header, price, info }) => {
                 <span className="rounded-full p-1">
                   <CheckCircleIcon className="h-5 w-5" />
                 </span>
-                <p className="font-normal">{data}</p>
+                <div className="font-normal">{data}</div>
               </li>
             ))}
           </ul>

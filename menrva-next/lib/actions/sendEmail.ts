@@ -31,7 +31,7 @@ export async function sendEmail(formData: FormData) {
             subject: `New Contact Message from ${name}`,
             text: `You have received a new message from ${email}:\n\n${message}`,
             // text: `Message from ${name} (${email}): ${message}`, // plain text body
-            // html: `<b>Message from ${name} (${email}):</b><p>${message}</p>`, // HTML body content
+            // html: `<b>Message from ${name} (${email}):</b><div>${message}</div>`, // HTML body content
         });
         console.log(res.response);
         return res.response;

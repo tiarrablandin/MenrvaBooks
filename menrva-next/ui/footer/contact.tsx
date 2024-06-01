@@ -35,9 +35,9 @@ export function Contact() {
         {/* <div className="w-full lg:max-w-lg">
           <Card shadow={true} className="bg-pink-lavender/50 dark:bg-chinese-violet/50 lg:p-6">
             <CardBody>
-              <p className="text-2xl mb-6">
+              <div className="text-2xl mb-6">
                 Contact us
-              </p>
+              </div>
               <form action="#" className="flex flex-col gap-6" onSubmit={handleSubmit}>
                 <div className="grid gap-4 grid-cols-2">
                   <Input
@@ -84,13 +84,13 @@ export function Contact() {
                 <Checkbox
                   label={
                     (
-                      <p className="font-normal text-base -mt-6">
+                      <div className="font-normal text-base -mt-6">
                         You agree to our{" "}
                         <a href="/legal" className="font-medium hover:text-gray-900 hover:underline underline-offset-2">
                           Privacy Policy
                         </a>
                         .
-                      </p>
+                      </div>
                     ) as any
                   }
                   containerProps={{
@@ -105,13 +105,13 @@ export function Contact() {
           </Card>
         </div> */}
         <div className="w-full lg:pb-0 pb-2">
-          <p className="mb-4 !text-3xl lg:!text-4xl">
+          <div className="mb-4 !text-3xl lg:!text-4xl">
             Get in Touch
-          </p>
-          <p className="mb-16 max-w-md !font-normal">
+          </div>
+          <div className="mb-16 max-w-md !font-normal">
             You need more information? Check what other persons are saying about our product. They
             are very happy with their purchase.
-          </p>
+          </div>
         </div>
       </div>
     </section>

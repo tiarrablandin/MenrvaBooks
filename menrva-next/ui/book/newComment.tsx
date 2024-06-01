@@ -6,14 +6,14 @@ export async function NewComment({ bookId, tag }: { bookId: number, tag: string 
     return (
         <div>
             <div className="flex !items-center gap-4">
-                <p className=" flex items-center gap-2 font-bold !text-gray-900">
+                <div className=" flex items-center gap-2 font-bold !text-gray-900">
                     {tag ? tag : ""}
-                </p>
+                </div>
             </div>
             <div className="mt-4 h-full flex-col pl-14">
-                <p className=" flex items-center gap-2 !text-sm font-normal !text-blue-gray-500">
+                <div className=" flex items-center gap-2 !text-sm font-normal !text-blue-gray-500">
                     Constructive feedback is possible while also being nice...
-                </p>
+                </div>
                 <form action={async (formData: FormData) => {
                     'use server';
                     const comment = formData.get('comment') as string

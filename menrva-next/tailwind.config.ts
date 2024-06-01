@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
-// import withMT from "@material-tailwind/react/utils/withMT";
-const withMT = require("@material-tailwind/react/utils/withMT")
+import withMT from "@material-tailwind/react/utils/withMT";
+// const withMT = require("@material-tailwind/react/utils/withMT")
 
 const config: Config = {
   darkMode: 'class',
@@ -11,6 +11,7 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./ui/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {

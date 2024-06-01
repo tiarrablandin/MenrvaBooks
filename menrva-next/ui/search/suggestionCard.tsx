@@ -4,11 +4,11 @@ import React from 'react';
 
 const SuggestionCard: React.FC<{ book: BookResponse }> = ({ book }) => {
     return (
-        <div className="flex items-center p-2 bg-white border border-gray-200 rounded-md shadow-sm space-x-2 w-full">
+        <div className="flex items-center p-2 bg-white border border-gray-200 rounded-md shadow-sm space-x-2 w-full ">
             <Image
                 src={book.cover}
                 alt={book.title}
-                className="h-14 w-10 object-cover rounded-md"
+                className="min-h-14 w-10 object-cover rounded-md"
                 width={50}
                 height={150}
             />

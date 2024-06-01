@@ -11,18 +11,18 @@ const Password = () => {
   return (
     <div className="">
       <section className="px-12 py-20 container mx-auto">
-        <p className="text-eggplant">
+        <div className="text-eggplant">
           Change Password
-        </p>
-        <p className="text-gray-600 font-normal mt-1">
+        </div>
+        <div className="text-gray-600 font-normal mt-1">
           Update your profile information below.
-        </p>
+        </div>
         <div className="flex flex-col md:flex-row justify-between gap-10 mt-8">
           <div className="flex flex-col gap-6 w-full">
             <div className="w-full">
-              <p className="mb-2 font-medium text-eggplant">
+              <div className="mb-2 font-medium text-eggplant">
                 Current Password
-              </p>
+              </div>
               <div>
                 <Input
                   placeholder="Current Password"
@@ -44,9 +44,9 @@ const Password = () => {
               </div>
             </div>
             <div className="w-full">
-              <p className="mb-2 font-medium text-eggplant">
+              <div className="mb-2 font-medium text-eggplant">
                 New Password
-              </p>
+              </div>
               <Input
                 placeholder="New Password"
                 labelProps={{
@@ -66,9 +66,9 @@ const Password = () => {
               />
             </div>
             <div className="w-full">
-              <p className="mb-2 font-medium text-eggplant">
+              <div className="mb-2 font-medium text-eggplant">
                 Confirm New Password
-              </p>
+              </div>
               <Input
                 placeholder="Confirm New Password"
                 labelProps={{
@@ -90,12 +90,12 @@ const Password = () => {
             <Button className="max-w-fit bg-eggplant text-old-lace">Update Password</Button>
           </div>
           <div className="w-full">
-            <p className="text-eggplant">
+            <div className="text-eggplant">
               Password Requirement
-            </p>
-            <p className="my-2 !font-normal !text-gray-600">
+            </div>
+            <div className="my-2 !font-normal !text-gray-600">
               Please follow this guide for a strong password:
-            </p>
+            </div>
             <div className="flex flex-col justify-between lg:items-end md:items-end gap-8 md:flex-row">
               <div className="grid gap-0.5">
                 <ul className="list-disc ml-6">

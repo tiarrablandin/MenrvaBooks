@@ -19,16 +19,16 @@ function TeamCard({ img, name, title, linkedin }: TeamCardPropsType) {
           size="xxl"
           className="mx-auto mb-6 object-top"
         />
-        <p className="!font-medium">
+        <div className="!font-medium">
           {name}
-        </p>
+        </div>
         <p
           color="gray"
           variant="small"
           className="mb-2 text-lg !font-semibold"
         >
           {title}
-        </p>
+        </div>
         <div className="flex items-center justify-center gap-1.5">
           <Link href={linkedin}>
             <IconButton variant="text">
@@ -72,13 +72,13 @@ export function Team() {
   return (
     <section className="container mx-auto py-8 px-8 lg:py-10">
       <div className="mb-8 text-center lg:mb-10">
-        <p className="mb-4 text-3xl lg:text-5xl">
+        <div className="mb-4 text-3xl lg:text-5xl">
           The Executive Team
-        </p>
+        </div>
         <plead" className="mx-auto max-w-4xl">
           This is the paragraph where you can write more details about your team. Keep you user
           engaged by providing meaningful information.
-        </p>
+        </div>
       </div>
       <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
         {members.map((props, key) => (

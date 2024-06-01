@@ -14,9 +14,9 @@ const Profile = () => {
                 className="w-14 rounded-full"
               />
               <div>
-                <p color="blue-gray" className="!font-semibold mb-1">
+                <div color="blue-gray" className="!font-semibold mb-1">
                   Select image
-                </p>
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -31,18 +31,18 @@ const Profile = () => {
 
       {/* Basic Form */}
       <section className="px-8 pl-16 py-2 container mx-auto">
-        <p color="blue-gray">
+        <div color="blue-gray">
           Basic Information
-        </p>
-        <p className="text-gray-600 font-normal mt-1">
+        </div>
+        <div className="text-gray-600 font-normal mt-1">
           Update your profile information below.
-        </p>
+        </div>
         <div className="flex flex-col mt-8">
           <div className="mb-6 flex flex-col items-end gap-4 md:flex-row">
             <div className="w-full">
-              <p color="blue-gray" className="mb-2 font-medium">
+              <div color="blue-gray" className="mb-2 font-medium">
                 First Name
-              </p>
+              </div>
               <Input
                 size="lg"
                 placeholder="Emma"
@@ -53,9 +53,9 @@ const Profile = () => {
               />
             </div>
             <div className="w-full">
-              <p color="blue-gray" className="mb-2 font-medium">
+              <div color="blue-gray" className="mb-2 font-medium">
                 Last Name
-              </p>
+              </div>
               <Input
                 size="lg"
                 placeholder="Roberts"
@@ -68,9 +68,9 @@ const Profile = () => {
           </div>
           <div className="mb-6 flex flex-col items-end gap-4 md:flex-row">
             <div className="w-full">
-              <p color="blue-gray" className="mb-2 font-medium">
+              <div color="blue-gray" className="mb-2 font-medium">
                 Email
-              </p>
+              </div>
               <Input
                 size="lg"
                 placeholder="emma@mail.com"

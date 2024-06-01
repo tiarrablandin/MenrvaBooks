@@ -21,20 +21,20 @@ const aboutCard: React.FC<AboutCardProps> = ({}) => {
             />
           </CardHeader>
           <CardBody>
-            <p className="mb-2">
+            <div className="mb-2">
               About Menrva Books
-            </p>
-            <p className="mb-8 tracking-wide font-normal">
+            </div>
+            <div className="mb-8 tracking-wide font-normal">
               Welcome to Menrva Books, your ultimate destination for book lovers
               and creators everywhere.
-            </p>
-            <p className="mb-8 font-normal">
+            </div>
+            <div className="mb-8 font-normal">
               Born out of a passion for literature and a desire to create a
               vibrant community of readers, Menrva Books is poised to
               revolutionize the way you discover, share, and discuss your
               favorite books.
-            </p>
-            <p className="mb-8 font-normal">
+            </div>
+            <div className="mb-8 font-normal">
               At Menrva, we believe that reading is more than just a solitary
               activity—it's a shared experience that connects people across the
               globe. Whether you're an avid reader looking for your next
@@ -45,13 +45,13 @@ const aboutCard: React.FC<AboutCardProps> = ({}) => {
               Engage in lively discussions with fellow book enthusiasts through
               our vibrant community forums. Keep track of your reading progress,
               and share your thoughts and reviews with fellow readers.
-            </p>
-            <p className="mb-8 font-normal">
+            </div>
+            <div className="mb-8 font-normal">
               But Menrva Books is more than just a platform—it's a celebration
               of the written word and the diverse voices that enrich our
               literary landscape. Join us on a journey of exploration and
               discovery as we embark on this literary adventure together.
-            </p>
+            </div>
           </CardBody>
         </Card>
       </div>

@@ -16,7 +16,7 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
         <Image
           className="min-h-[12rem] rounded-none object-center shadow-deep-purple-100 relative"
           src={`${book.cover}`}
-          width={100}
+          width={150}
           height={250}
           alt="book cover"
         />

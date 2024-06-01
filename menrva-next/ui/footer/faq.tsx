@@ -15,9 +15,9 @@ const accordionBodies=[
 
   return (
       <div className="flex flex-col items-center pt-10 max-w-2/3">
-        <p className="text-2xl pb-6">
+        <div className="text-2xl pb-6">
           Frequently asked questions
-        </p>
+        </div>
 
         <Card className="w-[80%] bg-transparent shadow-none">
           <CustomAccordion id={1} 

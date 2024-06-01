@@ -39,18 +39,18 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
             <form onSubmit={handleSubmit} className="space-y-2 container m-0">
                 <div className="flex-1 rounded-lg bg-gray-50 px-6 py-8 mx-auto h-full my-auto">
                     <XMarkIcon className="w-5 h-5 cursor-pointer text-black inline-block -mt-8 -ml-2 mb-2" onClick={handleClose} />
-                    <p className={`mb-3 text-center text-4xl text-gray-900 font-medium`}>
+                    <div className={`mb-3 text-center text-4xl text-gray-900 font-medium`}>
                         Please log in to continue
-                    </p>
+                    </div>
                     <div className="w-full text-gray-900 mt-7">
                         <div>
                             <label
                                 className="mb-3 mt-5 block text-sm font-medium"
                                 htmlFor="identifier"
                             >
-                                <p className={`mb-3 text-xl font-medium`}>
+                                <div className={`mb-3 text-xl font-medium`}>
                                     Username
-                                </p>
+                                </div>
                             </label>
                             <div className="relative">
                                 <input
@@ -70,9 +70,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
                                 className="mb-3 mt-5 block text-xl"
                                 htmlFor="password"
                             >
-                                <p className={`mb-3 text-lg font-medium text-eggplant`}>
+                                <div className={`mb-3 text-lg font-medium text-eggplant`}>
                                     Password
-                                </p>
+                                </div>
                             </label>
                             <div className="relative">
                                 <input
@@ -98,7 +98,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
                             {error && (
                                 <>
                                     <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
-                                    <p className="text-sm text-red-500">{error}</p>
+                                    <div className="text-sm text-red-500">{error}</div>
                                 </>
                             )}
                         </div>
@@ -114,7 +114,7 @@ const LoginButton: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
         <Button type='submit' className="mt-20 w-full flex flex-row justify-center items-center shadow-md" aria-disabled={isLoading} disabled={isLoading}>
             <p='h4' className='mt-1 font-normal'>
                 {isLoading ? "Logging in..." : "Log In"}
-            </p>
+            </div>
             <ArrowRightIcon className="ml-auto h-6 w-6 text-gray-50" />
         </Button>
     );

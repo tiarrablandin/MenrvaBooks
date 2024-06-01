@@ -2,6 +2,7 @@ import { Advent_Pro } from "next/font/google";
 import Link from "next/link";
 import AnimatedHeader from "../ui/motion/animatedHeader";
 import AdvancedSearchComponent from "../ui/search/advancedSearch";
+import SuggestionCards from "@/ui/search/suggestionCards";
 
 
 const advent = Advent_Pro({ subsets: ["latin"] });
@@ -16,10 +17,10 @@ export default function Home() {
           <AdvancedSearchComponent />
           <div className="flex w-3/4 justify-between mx-auto">
             <Link href="/login">
-              <p className="text-[1.1rem] hover:underline">Already a member? Sign In</p>
+              <div className="text-[1.1rem] hover:underline">Already a member? Sign In</div>
             </Link>
             <Link href="/subscriptions">
-              <p className="text-[1.1rem] hover:underline">If not, create a free account!</p>
+              <div className="text-[1.1rem] hover:underline">If not, create a free account!</div>
             </Link>
           </div>
         </div>

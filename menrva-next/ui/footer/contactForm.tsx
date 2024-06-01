@@ -41,12 +41,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ }) => {
         className="flex items-center p-10 bg-transparent"
         shadow={false}
       >
-        <p className="">
+        <div className="">
           Contact Us
-        </p>
-        <p className="mt-1 font-normal">
+        </div>
+        <div className="mt-1 font-normal">
           Got a suggestion on how to make the site better? Let us know!
-        </p>
+        </div>
         <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 text-old-lace"
           action={async (formData: FormData) => {
             'use server';
@@ -54,9 +54,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ }) => {
             console.log(response);
           }}>
           <div className="mb-1 flex flex-col gap-6">
-            <p className="-mb-3">
+            <div className="-mb-3">
               Your Name
-            </p>
+            </div>
             <Input
               size="lg"
               placeholder="John Doe"
@@ -67,9 +67,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ }) => {
                 className: "before:content-none after:content-none",
               }}
             />
-            <p className="-mb-3">
+            <div className="-mb-3">
               Your Email
-            </p>
+            </div>
             <Input
               size="lg"
               placeholder="name@mail.com"
@@ -80,9 +80,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ }) => {
                 className: "before:content-none after:content-none",
               }}
             />
-            <p className="-mb-3">
+            <div className="-mb-3">
               Message
-            </p>
+            </div>
             <Textarea
               size="lg"
               name="message"

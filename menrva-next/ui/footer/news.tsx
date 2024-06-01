@@ -19,9 +19,9 @@ const news: React.FC<NewsProps> = ({}) => {
           <TimelineConnector className=""/>
           <TimelineHeader className="h-3">
             <TimelineIcon className="bg-eggplant"/>
-            <p className="leading-none w-4/5">
+            <div className="leading-none w-4/5">
               Timeline Title Here.
-            </p>
+            </div>
           </TimelineHeader>
           <TimelineBody className="pb-8">
             <p
@@ -32,16 +32,16 @@ const news: React.FC<NewsProps> = ({}) => {
               way, it took me twenty five years to get these plants, twenty five
               years of blood sweat and tears, and I&apos;m never giving up,
               I&apos;m just getting started. I&apos;m up to something. Fan luv.
-            </p>
+            </div>
           </TimelineBody>
         </TimelineItem>
         <TimelineItem>
           <TimelineConnector />
           <TimelineHeader className="h-3">
             <TimelineIcon className="bg-eggplant"/>
-            <p className="leading-none">
+            <div className="leading-none">
               Timeline Title Here.
-            </p>
+            </div>
           </TimelineHeader>
           <TimelineBody className="pb-8">
             <p
@@ -52,15 +52,15 @@ const news: React.FC<NewsProps> = ({}) => {
               way, it took me twenty five years to get these plants, twenty five
               years of blood sweat and tears, and I&apos;m never giving up,
               I&apos;m just getting started. I&apos;m up to something. Fan luv.
-            </p>
+            </div>
           </TimelineBody>
         </TimelineItem>
         <TimelineItem>
           <TimelineHeader className="h-3">
             <TimelineIcon className="bg-eggplant"/>
-            <p className="leading-none">
+            <div className="leading-none">
               Timeline Title Here.
-            </p>
+            </div>
           </TimelineHeader>
           <TimelineBody>
             <p
@@ -71,7 +71,7 @@ const news: React.FC<NewsProps> = ({}) => {
               way, it took me twenty five years to get these plants, twenty five
               years of blood sweat and tears, and I&apos;m never giving up,
               I&apos;m just getting started. I&apos;m up to something. Fan luv.
-            </p>
+            </div>
           </TimelineBody>
         </TimelineItem>
       </Timeline>
