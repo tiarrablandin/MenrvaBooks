@@ -7,15 +7,16 @@ import { useSelector } from "react-redux";
 
 interface InterestedButtonProps {
     id: number;
+    token: string | undefined;
 }
 
-const InterestedButton: React.FC<InterestedButtonProps> = ({ id }) => {
+const InterestedButton: React.FC<InterestedButtonProps> = ({ id, token }) => {
     const dispatch = useAppDispatch();
     const interested = useSelector((state: RootState) => state.book.interactions.interested);
 
     const handleToggleInterested = async () => {
         try {
-            dispatch(toggleBookInterested({ bookId: id }));
+            dispatch(toggleBookInterested({ bookId: id, token: token }));
         } catch (error) {
             console.error("Failed to toggle like on server, rolling back", error);
         }

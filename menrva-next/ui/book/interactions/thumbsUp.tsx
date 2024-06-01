@@ -7,17 +7,18 @@ import { useSelector } from "react-redux";
 
 interface ToggleLikeProps {
     id: number;
+    token: string | undefined;
 }
 
-const ThumbsUpComponent: React.FC<ToggleLikeProps> = ({ id }) => {
+const ThumbsUpComponent: React.FC<ToggleLikeProps> = ({ id, token }) => {
     const dispatch = useAppDispatch();
     const liked = useSelector((state: RootState) => state.book.interactions.liked);
+    console.log("#################" + liked)
 
     const handleToggleLike = async () => {
-        dispatch(toggleBookLiked({ bookId: id, status: liked ? 0 : 1 }));
-
         try {
-            dispatch(toggleBookLiked({ bookId: id, status: liked ? 0 : 1 }));
+            console.log(token);
+            dispatch(toggleBookLiked({ bookId: id, status: liked ? 0 : 1, token: token }));
         } catch (error) {
             console.error("Failed to toggle like on server, rolling back", error);
         }

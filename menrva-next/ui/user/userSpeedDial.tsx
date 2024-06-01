@@ -25,7 +25,7 @@ const UserSpeedDial: React.FC<UserSpeedDialProps> = ({tag}) => {
               <PlusIconOutline className="h-5 w-5 transition-transform group-hover:rotate-45" />
             </IconButton>
           </SpeedDialHandler>
-          <SpeedDialContent>
+          <SpeedDialContent className="text-old-lace">
             <Link href={tag ? `/userSettings/${tag}` : `/userHome/${tag}`}>
               <SpeedDialAction className="bg-eggplant">
                 <Cog6ToothIconOutline className="h-5 w-5" />

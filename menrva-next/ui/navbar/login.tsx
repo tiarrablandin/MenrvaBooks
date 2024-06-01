@@ -1,7 +1,8 @@
 'use client';
 
 import login from '@/lib/actions/login';
-import { ArrowRightIcon, AtSymbolIcon, Button, Dialog, KeyIcon, Typography, XMarkIcon } from '@/providers/coreProviders';
+import { ArrowRightIcon, AtSymbolIcon, Button, Dialog, KeyIcon, XMarkIcon } from '@/providers/coreProviders';
+import { Advent_Pro } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
@@ -9,6 +10,7 @@ import React, { useState } from 'react';
 interface LoginFormProps {
 }
 
+const advent = Advent_Pro({ weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], subsets: ["latin"] });
 
 const LoginForm: React.FC<LoginFormProps> = ({ }) => {
     const router = useRouter();
@@ -35,7 +37,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
     // }
 
     return (
-        <Dialog size='xl' open={isOpen} handler={() => router.back()} className='bg-transparent shadow-none flex items-center !w-2/5 !min-w-[40%] !max-w-[40%] mx-auto'>
+        <Dialog size='xl' open={isOpen} handler={() => router.back()} className={`bg-transparent shadow-none flex items-center !w-2/5 !min-w-[40%] !max-w-[40%] mx-auto`}>
             <form onSubmit={handleSubmit} className="space-y-2 container m-0">
                 <div className="flex-1 rounded-lg bg-gray-50 px-6 py-8 mx-auto h-full my-auto">
                     <XMarkIcon className="w-5 h-5 cursor-pointer text-black inline-block -mt-8 -ml-2 mb-2" onClick={handleClose} />
@@ -112,9 +114,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
 const LoginButton: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
     return (
         <Button type='submit' className="mt-20 w-full flex flex-row justify-center items-center shadow-md" aria-disabled={isLoading} disabled={isLoading}>
-            <p='h4' className='mt-1 font-normal'>
+            <p className='mt-1 font-normal'>
                 {isLoading ? "Logging in..." : "Log In"}
-            </div>
+            </p>
             <ArrowRightIcon className="ml-auto h-6 w-6 text-gray-50" />
         </Button>
     );

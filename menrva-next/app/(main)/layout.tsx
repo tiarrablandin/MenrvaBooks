@@ -1,10 +1,16 @@
+import InitializeUserCredentials from "@/lib/utils/initializeUserCredentials";
+import ReduxProvider from "@/providers/reduxProvider";
+import InitializeInteractions from "@/ui/book/interactions/initalizeInteractions";
 import { Footer } from "@/ui/footer/footer";
 import Nav from "@/ui/navbar/nav";
-import { cookies } from "next/headers"
+import { cookies } from "next/headers";
 
 export default function DashboardLayout({ children, }: { children: React.ReactNode }) {
     const tag = cookies().get('tag')?.value as string;
     const role = cookies().get('role')?.value as string;
+    const token = cookies().get('jwt')?.value as string;
+
+    console.log(token)
 
     const logout = async () => {
         'use server';
@@ -18,8 +24,11 @@ export default function DashboardLayout({ children, }: { children: React.ReactNo
             <Nav tag={tag} role={role} logout={logout} />
 
             {children}
-            {/* <InitializeUserCredentials /> */}
             <Footer />
+
+            <ReduxProvider>
+                <InitializeUserCredentials />
+            </ReduxProvider>
         </>
     )
 }

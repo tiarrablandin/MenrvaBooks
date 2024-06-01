@@ -56,8 +56,7 @@ export const toggleBookReviewed = createAsyncThunk(
 
 export const toggleBookHasRead = createAsyncThunk(
     'books/toggleHasRead',
-    async ({ bookId }: { bookId: number }, { getState, rejectWithValue }) => {
-        const token = (getState() as RootState).user.jwt;
+    async ({ bookId, token }: { bookId: number, token: string | undefined }, { getState, rejectWithValue }) => {
         try {
             const response = await fetch(`http://localhost:8085/api/books/${bookId}/hasRead`, {
                 method: "POST",
@@ -77,8 +76,7 @@ export const toggleBookHasRead = createAsyncThunk(
 
 export const toggleBookInterested = createAsyncThunk(
     'books/toggleInterested',
-    async ({ bookId }: { bookId: number }, { getState, rejectWithValue }) => {
-        const token = (getState() as RootState).user.jwt;
+    async ({ bookId, token }: { bookId: number, token: string | undefined }, { getState, rejectWithValue }) => {
         try {
             const response = await fetch(`http://localhost:8085/api/books/${bookId}/interested`, {
                 method: "POST",
@@ -131,8 +129,8 @@ export const fetchBookDetailsThunk = createAsyncThunk(
 
 export const toggleBookLiked = createAsyncThunk(
     'books/toggleLiked',
-    async ({ bookId, status }: { bookId: number, status: number }, { rejectWithValue, getState }) => {
-        const token = (getState() as RootState).user.jwt;
+    async ({ bookId, status, token }: { bookId: number, status: number, token: string | undefined }, { rejectWithValue, getState }) => {
+        console.log(token);
         try {
             const response = await fetch(`http://localhost:8085/api/books/${bookId}/react?status=${status}`, {
                 method: "POST",
@@ -220,9 +218,10 @@ export const bookSlice = createSlice({
             }
         },
         updateInteractions: (state, action: PayloadAction<BookInteraction>) => {
+            console.log("****** " + (Number(action.payload.likeDislike) === 1));
             state.interactions.hasRead = action.payload.hasRead;
             state.interactions.interested = action.payload.interested;
-            state.interactions.liked = action.payload.likeDislike === 1;
+            state.interactions.liked = Number(action.payload.likeDislike) === 1;
             state.interactions.disliked = action.payload.likeDislike === -1;
         },
     },
@@ -248,9 +247,11 @@ export const bookSlice = createSlice({
             })
             .addCase(toggleBookInterested.fulfilled, (state, action) => {
                 state.interactions = action.payload;
+                state.currentBook!!.bookInteractions = action.payload;
             })
             .addCase(toggleBookHasRead.fulfilled, (state, action) => {
                 state.interactions = action.payload;
+                state.currentBook!!.bookInteractions = action.payload;
             })
             .addCase(toggleBookLiked.fulfilled, (state, action) => {
                 state.interactions.liked = action.payload.liked;

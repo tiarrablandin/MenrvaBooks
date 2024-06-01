@@ -19,6 +19,7 @@ import ThumbsUpComponent from "./interactions/thumbsUp";
 import BookSlider from "./bookSlider";
 import ReduxProvider from "@/providers/reduxProvider";
 import { Advent_Pro } from "next/font/google";
+import InitializeUserCredentials from "@/lib/utils/initializeUserCredentials";
 
 interface SingleBookProps {
   id: number;
@@ -37,9 +38,10 @@ export const preload = (id: number, token: string | undefined) => {
 
 const advent = Advent_Pro({ subsets: ["latin"] });
 
-const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) => {
+const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, token }) => {
   const numberOfLikes = book.bookInteractions ? book.bookInteractions.filter(interaction => interaction.likeDislike === 1).length : 0;
   const numberOfDislikes = book.bookInteractions ? book.bookInteractions.filter(interaction => interaction.likeDislike === -1).length : 0;
+  console.log(token);
 
   async function fetchAllBooksSlider() {
     return fetchBooks();
@@ -70,15 +72,15 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
             <ReduxProvider>
               <div className="flex items-center gap-2">
                 <div className="text-2xl font-bold">{numberOfLikes}</div>
-                <ThumbsUpComponent id={id} />
+                <ThumbsUpComponent id={id} token={token} />
               </div>
               <div className="flex items-center gap-2">
                 <div className="text-2xl font-bold">{numberOfDislikes}</div>
-                <ThumbsDownComponent id={id} />
+                <ThumbsDownComponent id={id} token={token} />
               </div>
               <div className="flex items-center gap-4">
-                {tag ? <InterestedButton id={id} /> : <></>}
-                {tag ? <HasReadButton id={id} /> : <></>}
+                {tag ? <InterestedButton id={id} token={token} /> : <></>}
+                {tag ? <HasReadButton id={id} token={token} /> : <></>}
               </div>
               {/* {interactions?.favorite ?
               <StarIcon onClick={handleToggleFavorite} style={{ color: "blue" }} className={iconClass} />
@@ -122,7 +124,6 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
         <BookSlider defaultBooks={book.series.books.filter((book) => book.id !== Number(id))} title={"Books in Series"} />
       </div>
       <BookComments bookId={book?.id!!} comments={book?.comments} tag={tag} />
-      {interactions ? <InitializeInteractions interactions={interactions} /> : <></>}
     </>
   );
 };
