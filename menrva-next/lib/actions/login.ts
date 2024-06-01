@@ -1,7 +1,7 @@
 'use server';
 
 import { cookies } from "next/headers";
-import { authenticate } from "../lib/services/apiService";
+import { authenticate } from "../services/apiService";
 
 
 // * PARAMETERS ARE PASSED IN FROM FOR AS FORMDATA

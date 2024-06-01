@@ -15,8 +15,11 @@ import {
   Typography,
   UserIcon
 } from "@/providers/coreProviders";
+import { Advent_Pro } from "next/font/google";
 import Link from "next/link";
 import React from "react";
+
+const advent = Advent_Pro({ weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], subsets: ["latin"] });
 
 const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> = ({
   tag,
@@ -81,24 +84,20 @@ const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> =
 
         </div>
       </MenuHandler>
-      <MenuList className="p-1 bg-pink-lavender dark:bg-chinese-violet">
+      <MenuList className={`p-1 bg-pink-lavender dark:bg-chinese-violet ${advent.className}`}>
         <MenuItem key="1" onClick={closeMenu} className="">
-          <Typography
-            as="li"
-            variant="small"
+          <div
             className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
           >
             <HomeIcon className="h-4 w-4" />
             <Link href={tag ? `/userHome/${tag}` : "/home"} className="flex items-center">
               Home
             </Link>
-          </Typography>
+          </div>
         </MenuItem>
         {!tag ? (
           <MenuItem key="2" onClick={closeMenu} className="">
-            <Typography
-              as="li"
-              variant="small"
+            <div
               className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
             >
               <>
@@ -107,7 +106,7 @@ const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> =
                   Register
                 </Link>
               </>
-            </Typography>
+            </div>
           </MenuItem>
         ) : (
           <></>
@@ -115,39 +114,33 @@ const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> =
         {tag && role === "Admin" && (
           <MenuItem key="3" onClick={closeMenu} className="">
             <Link href="/admin" className="flex items-center">
-              <Typography
-                as="li"
-                variant="small"
+              <div
                 className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
               >
                 <TableCellsIcon className="h-4 w-4" />
                 Admin
-              </Typography>
+              </div>
             </Link>
           </MenuItem>
         )}
         <MenuItem key="4" onClick={closeMenu} className="">
           {tag ? (
             <Link onClick={handleLogout} href="/home" className="flex items-center">
-              <Typography
-                as="li"
-                variant="small"
+              <div
                 className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
               >
                 <ArrowLeftStartOnRectangleIcon className="h-4 w-4" />
                 Logout
-              </Typography>
+              </div>
             </Link>
           ) : (
             <Link href="/login" className="flex items-center">
-              <Typography
-                as="li"
-                variant="small"
+              <div
                 className={`${iconClass} transition-transform hover:scale-105 w-min cursor-pointer`}
               >
                 <ArrowRightEndOnRectangleIcon className="h-4 w-4" />
                 Login
-              </Typography>
+              </div>
             </Link>
           )}
         </MenuItem>

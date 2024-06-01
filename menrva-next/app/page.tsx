@@ -1,15 +1,15 @@
-import { Typography } from "@/providers/coreProviders";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import AnimatedHeader from "./ui/motion/animatedHeader";
-import NavbarWithSearch from "./ui/navbar/nav";
-import { cookies } from "next/headers";
-import ReduxProvider from "@/providers/reduxProvider";
 import AdvancedSearchComponent from "./ui/search/advancedSearch";
+import { Advent_Pro } from "next/font/google";
+
+
+const advent = Advent_Pro({ subsets: ["latin"] });
 
 export default function Home() {
   const tag = cookies().get('tag')?.value as string;
   const role = cookies().get('role')?.value as string;
-  const theme = cookies().get('theme')?.value as string;
 
   const logout = async () => {
     'use server';
@@ -19,10 +19,8 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col h-screen w-full">
-      <ReduxProvider>
-        <NavbarWithSearch tag={tag} role={role} logout={logout} theme={theme}></NavbarWithSearch>
-      </ReduxProvider>
+    <div className={`flex flex-col h-screen w-full `}>
+      {/* <NavbarWithSearch tag={tag} role={role} logout={logout}></NavbarWithSearch> */}
       <main className="flex flex-col h-full w-full items-center justify-center text-nowrap">
         <AnimatedHeader />
 
@@ -30,10 +28,10 @@ export default function Home() {
           <AdvancedSearchComponent />
           <div className="flex w-3/4 justify-between mx-auto">
             <Link href="/login">
-              <Typography>Already a member? Sign In</Typography>
+              <p className="text-[1.1rem] hover:underline">Already a member? Sign In</p>
             </Link>
             <Link href="/subscriptions">
-              <Typography>If not, create a free account!</Typography>
+              <p className="text-[1.1rem] hover:underline">If not, create a free account!</p>
             </Link>
           </div>
         </div>

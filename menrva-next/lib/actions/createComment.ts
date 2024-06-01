@@ -1,7 +1,7 @@
 'use server'
 
 import { cookies } from "next/headers";
-import { fetchCreateComment } from "../lib/services/apiService";
+import { fetchCreateComment } from "../services/apiService";
 
 export default async function createComment(comment: string, bookId: number) {
     try {

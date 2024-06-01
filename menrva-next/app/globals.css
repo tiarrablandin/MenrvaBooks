@@ -16,6 +16,12 @@
   }
 }
 
+@layer base {
+  @font-face {
+    font-family: 'Advent_Pro'
+  }
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   /* background: linear-gradient(

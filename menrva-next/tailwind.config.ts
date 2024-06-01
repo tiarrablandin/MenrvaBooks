@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
-import withMT from "@material-tailwind/react/utils/withMT";
+// import withMT from "@material-tailwind/react/utils/withMT";
+const withMT = require("@material-tailwind/react/utils/withMT")
 
 const config: Config = {
   darkMode: 'class',
@@ -24,6 +25,11 @@ const config: Config = {
         "old-lace": "#FFF3E0",
         "chinese-violet": "#827191",
         "onyx": "#3d3d3d",
+      },
+      fontFamily: {
+        sans: ['"Advent Pro"', "sans-serif"],
+        serif:['"Advent Pro"', "sans-serif"],
+        body: ['"Advent Pro"', "sans-serif"],
       }
     },
   },

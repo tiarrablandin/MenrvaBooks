@@ -1,10 +1,8 @@
-import ReduxProvider from "@/providers/reduxProvider";
-import { MenrvaThemeProvider } from "@/providers/themeProvider";
 import type { Metadata } from "next";
 import { Advent_Pro } from "next/font/google";
 import "./globals.css";
 
-const advent = Advent_Pro({ subsets: ["latin"] });
+const advent = Advent_Pro({ weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Menrva Books",
@@ -18,12 +16,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${advent.className} bg-old-lace dark:bg-onyx`}>
-        <ReduxProvider>
-          <MenrvaThemeProvider>
-            {children}
-          </MenrvaThemeProvider>
-        </ReduxProvider>
+      <body className={`${advent.className} bg-old-lace dark:bg-onyx text-eggplant dark:text-old-lace`}>
+        {children}
       </body>
     </html>
   );

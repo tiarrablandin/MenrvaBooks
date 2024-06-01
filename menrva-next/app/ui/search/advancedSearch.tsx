@@ -1,13 +1,12 @@
 'use client';
 
-import { debounce } from 'lodash';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
-import SuggestionCard from './suggestionCard';
 import { BookResponse } from '@/lib/models/book';
 import { fetchSearchResults } from '@/lib/services/apiService';
-import { Input, List, ListItem, Typography } from '@/providers/coreProviders';
+import { Input } from '@/providers/coreProviders';
+import { debounce } from 'lodash';
+import { useRouter } from 'next/navigation';
+import { Suspense, useCallback, useEffect, useState } from 'react';
+import SuggestionCards from './suggestionCards';
 
 const AdvancedSearchComponent = () => {
     const router = useRouter();
@@ -72,25 +71,28 @@ const AdvancedSearchComponent = () => {
                     onChange={handleInputChange}
                     value={searchTerm}
                     onFocus={handleFocus}
-                    onBlur={handleBlur} crossOrigin={undefined}                />
+                    onBlur={handleBlur} />
             </form>
             {isFocused && suggestions.length > 0 && (
-                <List className="relative rounded w-full flex flex-col p-0 py-1 -ml-[2px]">
-                    {suggestions.slice(0, 5).map((book, key) => (
-                        <Link key={key} href={`book/${book.id}`}>
-                            <ListItem className="p-1 hover:bg-eggplant/60 -my-1 dark:hover:bg-pink-lavender/80">
-                                <SuggestionCard book={book} />
-                            </ListItem>
-                        </Link>
-                    ))}
-                    <Link href={`../search/${searchTerm}`}>
-                        <ListItem className="p-1 hover:bg-eggplant/60 -my-1 dark:hover:bg-pink-lavender/80">
-                            <div className="flex items-center h-8 p-2 bg-white border border-gray-200 rounded-md shadow-sm space-x-2 w-full">
-                                <Typography variant="h6">See Results...</Typography>
-                            </div>
-                        </ListItem>
-                    </Link>
-                </List>
+                <Suspense fallback={<p>Loading...</p>}>
+                    <SuggestionCards suggestions={suggestions} searchTerm={searchTerm} />
+                </Suspense>
+                // <List className="relative rounded w-full flex flex-col p-0 py-1 -ml-[2px]">
+                //     {suggestions.slice(0, 5).map((book, key) => (
+                //         <Link key={key} href={`book/${book.id}`}>
+                //             <ListItem className="p-1 hover:bg-eggplant/60 -my-1 dark:hover:bg-pink-lavender/80">
+                //                 <SuggestionCard book={book} />
+                //             </ListItem>
+                //         </Link>
+                //     ))}
+                //     <Link href={`../search/${searchTerm}`}>
+                //         <ListItem className="p-1 hover:bg-eggplant/60 -my-1 dark:hover:bg-pink-lavender/80">
+                //             <div className="flex items-center h-8 p-2 bg-white border border-gray-200 rounded-md shadow-sm space-x-2 w-full">
+                //                 <p>See Results...</p>
+                //             </div>
+                //         </ListItem>
+                //     </Link>
+                // </List>
             )}
         </div>
     );

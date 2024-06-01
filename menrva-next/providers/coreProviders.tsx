@@ -95,6 +95,7 @@ export {
   SpeedDialHandler,
   SpeedDialContent,
   SpeedDialAction,
+  Spinner,
   Switch, Tab,
   TabPanel, Tabs, TabsBody, TabsHeader, Textarea,
   ThemeProvider,
