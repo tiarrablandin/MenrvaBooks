@@ -44,7 +44,7 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
 
   return (
     <>
-      <div className="flex m-8 gap-8">
+      <div className="flex m-8 gap-8 text-lg">
         {book?.cover ? (
           <Image src={`${book?.cover}`} width={360} height={720} alt="" className="rounded-md" />
         ) : (
@@ -65,16 +65,18 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
           ))}
           <div className="flex gap-4">
             <ReduxProvider>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 text-gray-600">
                 <div className="text-2xl font-bold">{numberOfLikes}</div>
                 <ThumbsUpComponent id={id} />
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 text-gray-600">
                 <div className="text-2xl font-bold">{numberOfDislikes}</div>
                 <ThumbsDownComponent id={id} />
               </div>
-              {tag ? <InterestedButton id={id} /> : <></>}
-              {tag ? <HasReadButton id={id} /> : <></>}
+              <div className="flex items-center gap-4">
+                {tag ? <InterestedButton id={id} /> : <></>}
+                {tag ? <HasReadButton id={id} /> : <></>}
+              </div>
               {/* {interactions?.favorite ?
               <StarIcon onClick={handleToggleFavorite} style={{ color: "blue" }} className={iconClass} />
               :
@@ -90,7 +92,7 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
                 color="light-blue"
                 className="h-8 relative flex items-center overflow-hidden pr-[72px]"
               >
-                <div className="normal-case text-nowrap text-xl font-medium -mx-4 w-min font-sans">Purchase on Amazon</div>
+                <p className="normal-case text-nowrap text-xl font-medium -mx-4 w-min ">Purchase on Amazon</p>
                 <span className="absolute right-0 grid h-full w-12 place-items-center bg-light-blue-600 transition-colors group-hover:bg-light-blue-700">
                   <FontAwesomeIcon icon={faAmazon} className="h-6 w-6" />
                 </span>
@@ -100,15 +102,13 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag }) 
           <div className="mt-6">{book ? book.description : "Loading..."}</div>
           <div className="flex justify-center gap-12 mt-8">
             <div className="text-center">
-              <div>Page Count:</div>
               <div className="">
-                {book ? ` ${book.pageCount}` : "Loading..."}
+                {book ? `Page Count: ${book.pageCount}` : "Loading..."}
               </div>
             </div>
             <div className="text-center">
-              <div>Publication Date:</div>
               <div className="">
-                {book?.publicationDate ? book.publicationDate.toString() : ""}
+                {book?.publicationDate ? `Publication Date: ${book.publicationDate.toString()}` : ""}
               </div>
             </div>
           </div>

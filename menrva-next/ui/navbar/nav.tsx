@@ -45,7 +45,7 @@ export function NavbarWithSearch({ tag, logout, role }: { tag: string, logout: (
               <div className="w-3/4 py-3 h-16 flex flex-col items-center">
                 <AdvancedSearchComponent />
               </div>
-              <IconButton variant="text" className="w-8 h-8 -mr-12">
+              <IconButton variant="text" className="w-8 h-8 -mr-12 mt-2">
                 <BellIcon className="h-5 w-5 text-eggplant" />
               </IconButton>
               <ProfileMenu tag={tag} logout={logout} role={role} />
