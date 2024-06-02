@@ -35,7 +35,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ books }) => {
         })}
 
       </div>
-      <div className="py-6">
+      <div className="pb-6 pt-10">
         <Pagination
           totalPages={totalPages}
           currentPage={currentPage}

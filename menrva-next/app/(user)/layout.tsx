@@ -23,9 +23,6 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
         <UserSpeedDial tag={tag} />
       </div>
       {children}
-      <ReduxProvider>
-        <InitializeUserCredentials />
-      </ReduxProvider>
       <Footer />
     </>
   );

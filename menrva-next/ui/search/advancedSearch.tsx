@@ -66,6 +66,7 @@ const AdvancedSearchComponent = () => {
     };
 
     return (
+        
         <div className="flex flex-col w-4/5 h-12 mx-auto">
             <form onSubmit={handleSubmit} className='flex gap-3 container'>
                 <Input

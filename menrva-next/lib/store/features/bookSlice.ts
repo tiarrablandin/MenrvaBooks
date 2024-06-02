@@ -218,7 +218,6 @@ export const bookSlice = createSlice({
             }
         },
         updateInteractions: (state, action: PayloadAction<BookInteraction>) => {
-            console.log("****** " + action.payload);
             state.interactions.hasRead = action.payload.hasRead;
             state.interactions.interested = action.payload.interested;
             state.interactions.liked = Number(action.payload.likeDislike) === 1;

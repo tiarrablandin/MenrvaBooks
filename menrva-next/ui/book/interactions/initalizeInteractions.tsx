@@ -14,11 +14,8 @@ const InitializeInteractions: React.FC<InitializeInteractionsProps> = ({ interac
     const initialized = useRef(false);
 
 
-    // const dispatch = useAppDispatch();
-
     useEffect(() => {
         if (!initialized.current) {
-            console.log("############ " + interactions);
             store.dispatch(updateInteractions(interactions))
             initialized.current = true;
         }

@@ -21,12 +21,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        setIsLoading(true);
         const formData = new FormData(event.currentTarget);
         const identifier = formData.get('identifier') as string;
-        const password = formData.get('password') as string;
-        const user = JSON.parse(JSON.stringify(await login(identifier, password)));
-        setIsOpen(false);
         router.push(`/userHome/@${identifier}`);
+        const password = formData.get('password') as string;
+        await login(identifier, password);
+        setIsOpen(false);
     }
 
     const handleClose = () => { setIsOpen(false); router.back(); }
@@ -37,7 +38,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
     // }
 
     return (
-        <Dialog size='xl' open={isOpen} handler={() => router.back()} className={`bg-transparent shadow-none flex items-center !w-2/5 !min-w-[40%] !max-w-[40%] mx-auto`}>
+        <Dialog size='sm' open={isOpen} handler={() => router.back()} className={`bg-transparent shadow-none flex items-center  mx-auto ${advent.className}`}>
             <form onSubmit={handleSubmit} className="space-y-2 container m-0">
                 <div className="flex-1 rounded-lg bg-gray-50 px-6 py-8 mx-auto h-full my-auto">
                     <XMarkIcon className="w-5 h-5 cursor-pointer text-black inline-block -mt-8 -ml-2 mb-2" onClick={handleClose} />
@@ -61,7 +62,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
                                     type="text"
                                     name="identifier"
                                     placeholder="Enter your tag or email"
-                                    // onChange={(e) => setIdentifier(e.target.value)}
                                     required
                                 />
                                 <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -83,7 +83,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
                                     type="password"
                                     name="password"
                                     placeholder="Enter password"
-                                    // onChange={(e) => setPassword(e.target.value)}
                                     required
                                 />
                                 <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />

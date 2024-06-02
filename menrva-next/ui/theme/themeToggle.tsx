@@ -2,6 +2,7 @@
 import { toggleTheme } from '@/lib/store/features/themeSlice';
 import { useAppDispatch, useAppSelector } from '@/lib/store/store';
 import { MoonIcon, SunIcon, Switch } from '@/providers/coreProviders';
+import ReduxProvider from '@/providers/reduxProvider';
 import { useEffect } from 'react';
 
 const ThemeToggle = () => {
@@ -17,6 +18,7 @@ const ThemeToggle = () => {
   };
 
   return (
+    // <ReduxProvider>
       <div className="flex items-center w-28  lg:mr-2">
         <SunIcon className={`h-9 w-9 mr-2 ${theme === 'dark' ? 'text-gray-400' : 'text-yellow-500'}`} />
         <Switch
@@ -34,6 +36,7 @@ const ThemeToggle = () => {
         />
         <MoonIcon className={`h-8 w-8 ml-1 ${theme === 'dark' ? 'text-indigo-500' : 'text-gray-400'}`} />
       </div>
+    // {/* </ReduxProvider> */}
   );
 };
 

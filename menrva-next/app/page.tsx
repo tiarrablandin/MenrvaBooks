@@ -25,9 +25,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-      {/* <ReduxProvider>
-        <InitializeUserCredentials />
-      </ReduxProvider> */}
     </div>
   );
 }
