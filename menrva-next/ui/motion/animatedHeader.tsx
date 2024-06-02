@@ -6,7 +6,7 @@ export default function AnimatedHeader() {
     return <motion.h1
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 2 }}
         // className="text-3xl font-bold mb-4 text-black"
         className="text-3xl font-bold mb-4 bg-gradient-to-r from-indigo-300 to-red-800 inline-block text-transparent bg-clip-text "
     >

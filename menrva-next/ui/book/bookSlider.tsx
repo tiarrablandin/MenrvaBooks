@@ -1,15 +1,14 @@
 "use client";
 
+import useDragScroll from "@/lib/hooks/useDragScroll";
+import useFetchBooks from "@/lib/hooks/useFetchBooks";
 import useInfiniteScroll from "@/lib/hooks/useInfiniteScroll";
-import { Typography } from "@/providers/coreProviders";
 import { Comic_Neue } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { BookResponse } from "../../lib/models/book";
 import BookCard from "./bookCard";
 import BookSkeleton from "./bookSkeleton";
-import useFetchBooks from "@/lib/hooks/useFetchBooks";
-import useDragScroll from "@/lib/hooks/useDragScroll";
 
 interface BookSliderProps {
   fetchData?: () => Promise<BookResponse[] | null>;

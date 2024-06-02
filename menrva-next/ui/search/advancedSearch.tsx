@@ -2,13 +2,13 @@
 
 import { BookResponse } from '@/lib/models/book';
 import { fetchSearchResults } from '@/lib/services/apiService';
+import { useAppSelector } from '@/lib/store/store';
 import { Input } from '@/providers/coreProviders';
 import { debounce } from 'lodash';
+import { Advent_Pro } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 import { Suspense, useCallback, useEffect, useState } from 'react';
 import SuggestionCards from './suggestionCards';
-import { Advent_Pro } from 'next/font/google';
-import { useAppDispatch, useAppSelector } from '@/lib/store/store';
 
 const advent = Advent_Pro({ subsets: ["latin"] });
 
@@ -66,7 +66,6 @@ const AdvancedSearchComponent = () => {
     };
 
     return (
-        
         <div className="flex flex-col w-4/5 h-12 mx-auto">
             <form onSubmit={handleSubmit} className='flex gap-3 container'>
                 <Input

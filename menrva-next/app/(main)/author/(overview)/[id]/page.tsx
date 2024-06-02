@@ -1,6 +1,6 @@
 import { fetchAuthorById } from "@/lib/services/apiService";
 import AuthorPage from "@/ui/authorPage/authorPage";
-import InitializeUserFollowsAuthor from "@/ui/authorPage/initializeUserFollowsAuthor";
+import InitializeUserFollowsAuthor from "@/lib/utils/initializeUserFollowsAuthor";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 

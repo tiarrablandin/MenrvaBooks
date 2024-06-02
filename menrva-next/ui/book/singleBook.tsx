@@ -14,7 +14,7 @@ import Link from "next/link";
 import BookComments from "./bookComments";
 import BookSlider from "./bookSlider";
 import HasReadButton from "./interactions/hasReadButton";
-import InitializeInteractions from "./interactions/initalizeInteractions";
+import InitializeInteractions from "../../lib/utils/initalizeInteractions";
 import InterestedButton from "./interactions/interestedButton";
 import ThumbsDownComponent from "./interactions/thumbsDown";
 import ThumbsUpComponent from "./interactions/thumbsUp";

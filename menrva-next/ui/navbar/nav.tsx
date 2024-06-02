@@ -8,18 +8,16 @@ import {
   Navbar,
   XMarkIcon
 } from "@/providers/coreProviders";
+import ReduxProvider from "@/providers/reduxProvider";
+import { MenrvaThemeToggleProvider } from "@/providers/themeToggleProvider";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import AdvancedSearchComponent from "../search/advancedSearch";
-import AdvancedSearchBar from "../search/advancedSearchBar";
+import { default as AdvancedSearch, default as AdvancedSearchComponent } from "../search/advancedSearch";
 import ThemeToggle from "../theme/themeToggle";
 import ProfileMenu from "./profileMenu";
-import ReduxProvider from "@/providers/reduxProvider";
-import { MenrvaThemeProvider } from "@/providers/themeProvider";
-import AdvancedSearch from "../search/advancedSearch";
 
-export function NavbarWithSearch({ tag, logout, role }: { tag: string, logout: () => void, role: string }) {
+export function NavbarWithSearch({ tag, logout, role, theme }: { tag: string, logout: () => void, role: string, theme: string }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
 
@@ -64,9 +62,7 @@ export function NavbarWithSearch({ tag, logout, role }: { tag: string, logout: (
             <Bars3Icon className="h-6 w-6" strokeWidth={2} />
           )}
         </IconButton>
-        <ReduxProvider>
-          <ThemeToggle />
-        </ReduxProvider>
+        <ThemeToggle theme={theme} />
       </div>
       <Collapse open={open} className="hidden">
         <div className="flex flex-wrap items-center gap-2">
@@ -76,8 +72,8 @@ export function NavbarWithSearch({ tag, logout, role }: { tag: string, logout: (
           <ProfileMenu tag={tag} logout={logout} role={role} />
           <ReduxProvider>
             <AdvancedSearch />
-            <ThemeToggle />
           </ReduxProvider>
+          <ThemeToggle theme={theme} />
         </div>
       </Collapse>
     </Navbar>
@@ -87,7 +83,7 @@ export function NavbarWithSearch({ tag, logout, role }: { tag: string, logout: (
 export default NavbarWithSearch;
 
 
-export function NavbarNoSearch({ tag, logout, role }: { tag: string, logout: () => void, role: string }) {
+export function NavbarNoSearch({ tag, logout, role, theme }: { tag: string, logout: () => void, role: string, theme: string | undefined }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
 
@@ -127,7 +123,7 @@ export function NavbarNoSearch({ tag, logout, role }: { tag: string, logout: () 
             <Bars3Icon className="h-6 w-6" strokeWidth={2} />
           )}
         </IconButton>
-        <ThemeToggle />
+        <ThemeToggle theme={theme ? theme : 'light'} />
       </div>
       <Collapse open={open} className="hidden">
         <div className="flex flex-wrap items-center gap-2">
@@ -137,8 +133,8 @@ export function NavbarNoSearch({ tag, logout, role }: { tag: string, logout: () 
           <ProfileMenu tag={tag} logout={logout} role={role} />
           <ReduxProvider>
             <AdvancedSearch />
-            <ThemeToggle />
           </ReduxProvider>
+          <ThemeToggle theme={theme ? theme : 'light'} />
         </div>
       </Collapse>
     </Navbar>

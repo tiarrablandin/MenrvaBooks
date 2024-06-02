@@ -2,7 +2,7 @@
 
 import { BookInteraction } from "@/lib/models/bookInteraction";
 import { updateInteractions } from "@/lib/store/features/bookSlice";
-import { useAppDispatch, useAppStore } from "@/lib/store/store";
+import { useAppStore } from "@/lib/store/store";
 import { useEffect, useRef } from "react";
 
 interface InitializeInteractionsProps {
@@ -19,7 +19,7 @@ const InitializeInteractions: React.FC<InitializeInteractionsProps> = ({ interac
             store.dispatch(updateInteractions(interactions))
             initialized.current = true;
         }
-    }, [interactions, initialized])
+    }, [interactions, initialized, store])
 
     return (
         <></>

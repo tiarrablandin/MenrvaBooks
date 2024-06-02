@@ -1,6 +1,6 @@
 import { fetchBookById, fetchBookInteractionsById } from "@/lib/services/apiService";
 import ReduxProvider from "@/providers/reduxProvider";
-import InitializeInteractions from "@/ui/book/interactions/initalizeInteractions";
+import InitializeInteractions from "@/lib/utils/initalizeInteractions";
 import SingleBook, { preload } from "@/ui/book/singleBook";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
