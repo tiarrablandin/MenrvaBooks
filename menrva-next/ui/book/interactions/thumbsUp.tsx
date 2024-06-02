@@ -14,7 +14,6 @@ const ThumbsUpComponent: React.FC<ToggleLikeProps> = ({ id, token }) => {
     const dispatch = useAppDispatch();
     const liked = useSelector((state: RootState) => state.book.interactions.liked);
     const currentBook = useSelector((state: RootState) => state.book.currentBook);
-    console.log(currentBook);
 
     const handleToggleLike = async () => {
         try {

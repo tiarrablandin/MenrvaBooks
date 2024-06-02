@@ -9,6 +9,7 @@ import { useCallback, useState } from "react";
 import { BookResponse } from "../../lib/models/book";
 import BookCard from "./bookCard";
 import BookSkeleton from "./bookSkeleton";
+import Link from "next/link";
 
 interface BookSliderProps {
   fetchData?: () => Promise<BookResponse[] | null>;
@@ -19,7 +20,7 @@ interface BookSliderProps {
 const neue = Comic_Neue({ subsets: ["latin"], weight: "400" });
 
 const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks }) => {
-  const { ref, isDragging } = useDragScroll();
+  const { ref, isDragging, isMoving } = useDragScroll();
   const { books, isLoading } = useFetchBooks(fetchData, defaultBooks);
   const [displayLimit, setDisplayLimit] = useState(12);
   const router = useRouter();
@@ -35,7 +36,7 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks 
 
   return (
     <>
-    <p className={`${neue.className} text-2xl self-start ml-4 my-4`}>
+      <p className={`${neue.className} text-2xl self-start ml-4 my-4`}>
         {title}
       </p>
       <div ref={ref} className="flex items-end justify-start gap-4 overflow-scroll max-w-full mx-4 mr-auto pb-3 md:pb-6">
@@ -44,7 +45,7 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks 
             .fill(0)
             .map((_, index) => <BookSkeleton key={index} />)
           : books.slice(0, displayLimit).map((book) => (
-            <div onClick={() => { if (!isDragging) (router.push(`../book/${book.id}`)) }} key={book.id} className="w-full h-full cursor-pointer">
+            <div onClick={() => { if (!isMoving) (router.push(`../book/${book.id}`)) }} key={book.id} className="w-full h-full cursor-pointer">
               <BookCard book={book} key={book.id} />
             </div>
           ))}

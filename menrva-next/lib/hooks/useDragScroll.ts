@@ -25,6 +25,7 @@ function useDragScroll() {
       document.addEventListener('mousemove', mouseMoveHandler);
       document.addEventListener('mouseup', mouseUpHandler);
       setIsDragging(false);
+      setIsMoving(false);
     };
   
     const mouseMoveHandler = (e: MouseEvent) => {
@@ -54,10 +55,12 @@ function useDragScroll() {
       node.removeEventListener('mousedown', mouseDownHandler);
       document.removeEventListener('mousemove', mouseMoveHandler);
       document.removeEventListener('mouseup', mouseUpHandler);
+      setIsDragging(false);
+      setIsMoving(false);
     };
   }, [startDragging, stopDragging]); // Ensure these functions don't change between renders
 
-  return { ref, isDragging };
+  return { ref, isDragging, isMoving };
 }
 
 export default useDragScroll;
