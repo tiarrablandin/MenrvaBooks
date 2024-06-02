@@ -13,11 +13,9 @@ interface ToggleLikeProps {
 const ThumbsUpComponent: React.FC<ToggleLikeProps> = ({ id, token }) => {
     const dispatch = useAppDispatch();
     const liked = useSelector((state: RootState) => state.book.interactions.liked);
-    console.log("#################" + liked)
 
     const handleToggleLike = async () => {
         try {
-            console.log(token);
             dispatch(toggleBookLiked({ bookId: id, status: liked ? 0 : 1, token: token }));
         } catch (error) {
             console.error("Failed to toggle like on server, rolling back", error);

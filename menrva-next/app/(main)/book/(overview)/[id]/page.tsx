@@ -14,10 +14,7 @@ export default async function Page({ params: { id } }: { params: { id: number } 
   const token = cookies().get('jwt')?.value as string;
 
   const book = await fetchBookById(id);
-  
   const interactions = token ? await fetchBookInteractionsById(id, token) : null;
-  console.log(interactions)
-  preload(id, token);
 
   return (
     <>
@@ -27,10 +24,6 @@ export default async function Page({ params: { id } }: { params: { id: number } 
           : <></>
         }
       </main>
-
-      <ReduxProvider>
-        {interactions ? <InitializeInteractions interactions={interactions} /> : <></>}
-      </ReduxProvider>
     </>
   );
 }

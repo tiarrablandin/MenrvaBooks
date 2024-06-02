@@ -5,21 +5,19 @@ import {
   Button,
   Card,
   FontAwesomeIcon,
-  Typography,
   faAmazon
 } from "@/providers/coreProviders";
+import ReduxProvider from "@/providers/reduxProvider";
+import { Advent_Pro } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import BookComments from "./bookComments";
+import BookSlider from "./bookSlider";
 import HasReadButton from "./interactions/hasReadButton";
 import InitializeInteractions from "./interactions/initalizeInteractions";
 import InterestedButton from "./interactions/interestedButton";
 import ThumbsDownComponent from "./interactions/thumbsDown";
 import ThumbsUpComponent from "./interactions/thumbsUp";
-import BookSlider from "./bookSlider";
-import ReduxProvider from "@/providers/reduxProvider";
-import { Advent_Pro } from "next/font/google";
-import InitializeUserCredentials from "@/lib/utils/initializeUserCredentials";
 
 interface SingleBookProps {
   id: number;
@@ -41,7 +39,6 @@ const advent = Advent_Pro({ subsets: ["latin"] });
 const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, token }) => {
   const numberOfLikes = book.bookInteractions ? book.bookInteractions.filter(interaction => interaction.likeDislike === 1).length : 0;
   const numberOfDislikes = book.bookInteractions ? book.bookInteractions.filter(interaction => interaction.likeDislike === -1).length : 0;
-  console.log(token);
 
   async function fetchAllBooksSlider() {
     return fetchBooks();
@@ -87,6 +84,7 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
               :
               <StarIcon onClick={handleToggleFavorite} style={{ color: "gray" }} className={iconClass} />
             } */}
+              {interactions ? <InitializeInteractions interactions={interactions} /> : <></>}
             </ReduxProvider>
           </div>
           {book?.links.map((link) => (
