@@ -1,8 +1,8 @@
 'use client';
 
-import { Series } from "@/app/lib/models/series";
-import { fetchSeriesAll } from "@/app/lib/services/apiService";
-import { Select, Option, Typography } from "@/providers";
+import { Series } from "@/lib/models/series";
+import { fetchSeriesAll } from "@/lib/services/apiService";
+import { Select, Option, Typography } from "@/providers/coreProviders";
 import { useEffect, useState } from "react";
 
 interface SeriesDropdownProps {
@@ -40,7 +40,7 @@ const SeriesDropdown: React.FC<SeriesDropdownProps> = ({ onChange, defaultValue 
     };
 
     if (loading) {
-        return <Typography>Loading...</p>;
+        return <p>Loading...</p>;
     }
 
     return (

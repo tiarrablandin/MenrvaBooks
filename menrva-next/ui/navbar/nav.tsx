@@ -9,19 +9,18 @@ import {
   XMarkIcon
 } from "@/providers/coreProviders";
 import ReduxProvider from "@/providers/reduxProvider";
-import { MenrvaThemeToggleProvider } from "@/providers/themeToggleProvider";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { default as AdvancedSearch, default as AdvancedSearchComponent } from "../search/advancedSearch";
 import ThemeToggle from "../theme/themeToggle";
 import ProfileMenu from "./profileMenu";
 
-export function NavbarWithSearch({ tag, logout, role, theme }: { tag: string, logout: () => void, role: string, theme: string }) {
+export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: string, theme: string }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
 
-  React.useEffect(() => {
+  useEffect(() => {
     // useRestoreSession();
     window.addEventListener("resize", () => window.innerWidth >= 960 && setOpen(false));
   }, []);
@@ -41,13 +40,13 @@ export function NavbarWithSearch({ tag, logout, role, theme }: { tag: string, lo
         <div className="lg:flex hidden justify-end items-center gap-8 container">
           <ReduxProvider>
             <div className="w-3/4 py-3 h-16 flex flex-col items-center">
-              <AdvancedSearchComponent />
+              <AdvancedSearchComponent theme={theme} />
             </div>
           </ReduxProvider>
           <IconButton variant="text" className="w-8 h-8 -mr-12 mt-2">
             <BellIcon className="h-5 w-5 text-eggplant dark:text-old-lace" />
           </IconButton>
-          <ProfileMenu tag={tag} logout={logout} role={role} />
+          <ProfileMenu tag={tag} role={role} />
         </div>
         <IconButton
           size="sm"
@@ -62,18 +61,18 @@ export function NavbarWithSearch({ tag, logout, role, theme }: { tag: string, lo
             <Bars3Icon className="h-6 w-6" strokeWidth={2} />
           )}
         </IconButton>
-        <ThemeToggle theme={theme} />
+        {theme ? <ThemeToggle theme={theme} /> : <></>}
       </div>
       <Collapse open={open} className="hidden">
         <div className="flex flex-wrap items-center gap-2">
           <IconButton variant="text">
             <BellIcon className="h-5 w-5 text-eggplant dark:text-old-lace" />
           </IconButton>
-          <ProfileMenu tag={tag} logout={logout} role={role} />
+          <ProfileMenu tag={tag} role={role} />
           <ReduxProvider>
-            <AdvancedSearch />
+            <AdvancedSearch theme={theme} />
           </ReduxProvider>
-          <ThemeToggle theme={theme} />
+          {theme ? <ThemeToggle theme={theme} /> : <></>}
         </div>
       </Collapse>
     </Navbar>
@@ -81,62 +80,3 @@ export function NavbarWithSearch({ tag, logout, role, theme }: { tag: string, lo
 }
 
 export default NavbarWithSearch;
-
-
-export function NavbarNoSearch({ tag, logout, role, theme }: { tag: string, logout: () => void, role: string, theme: string | undefined }) {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen((cur) => !cur);
-
-  React.useEffect(() => {
-    // useRestoreSession();
-    window.addEventListener("resize", () => window.innerWidth >= 960 && setOpen(false));
-  }, []);
-
-  return (
-    <Navbar shadow={false} fullWidth className="border-none bg-pink-lavender dark:bg-chinese-violet p-0.5 pr-2 relative z-10">
-      <div className="w-full mx-auto flex h-[4rem] items-center ">
-        <Link href="/home">
-          <Image
-            className="object-center w-[4rem] h-[4.5rem] mx-2"
-            src="https://i.imgur.com/RGGXm1T.png"
-            width={92}
-            height={92}
-            alt="logo"
-          />
-        </Link>
-        <div className="lg:flex hidden justify-end items-center gap-8 container">
-          <IconButton variant="text" className="w-8 h-8 -mr-12">
-            <BellIcon className="h-5 w-5 text-eggplant" />
-          </IconButton>
-          <ProfileMenu tag={tag} logout={logout} role={role} />
-        </div>
-        <IconButton
-          size="sm"
-          variant="text"
-          color="gray"
-          onClick={handleOpen}
-          className="ml-auto inline-block lg:hidden"
-        >
-          {open ? (
-            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
-          ) : (
-            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
-          )}
-        </IconButton>
-        <ThemeToggle theme={theme ? theme : 'light'} />
-      </div>
-      <Collapse open={open} className="hidden">
-        <div className="flex flex-wrap items-center gap-2">
-          <IconButton variant="text">
-            <BellIcon className="h-5 w-5 text-eggplant" />
-          </IconButton>
-          <ProfileMenu tag={tag} logout={logout} role={role} />
-          <ReduxProvider>
-            <AdvancedSearch />
-          </ReduxProvider>
-          <ThemeToggle theme={theme ? theme : 'light'} />
-        </div>
-      </Collapse>
-    </Navbar>
-  );
-}

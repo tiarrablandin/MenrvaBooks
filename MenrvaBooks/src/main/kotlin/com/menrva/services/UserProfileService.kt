@@ -41,7 +41,6 @@ class UserProfileService(
         val gson = Gson()
         user.userProfile!!.preferenceVector = gson.toJson(mapOf("Genres" to genreWeights, "Keywords" to keywordWeights))
         userRepo.save(user)
-        println("PROFILE: ${user.userProfile}")
 
         return user.userProfile!!
     }

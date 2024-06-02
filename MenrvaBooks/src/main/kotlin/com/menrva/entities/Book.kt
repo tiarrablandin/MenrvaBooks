@@ -22,6 +22,7 @@ class Book(
     var description: String? = null,
     @Column(name = "page_count")
     var pageCount: Int? = null,
+    var views: Int? = null,
     @Column(name = "publication_date")
     var publicationDate: LocalDate? = null,
     @CreationTimestamp

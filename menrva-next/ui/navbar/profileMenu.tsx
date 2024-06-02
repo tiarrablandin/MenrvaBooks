@@ -1,5 +1,6 @@
 "use client";
 
+import logout from "@/lib/actions/logout";
 import {
   ArrowLeftStartOnRectangleIcon,
   ArrowRightEndOnRectangleIcon,
@@ -20,24 +21,16 @@ import React from "react";
 
 const advent = Advent_Pro({ weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], subsets: ["latin"] });
 
-const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> = ({
-  tag,
-  role,
-  logout,
-}) => {
+const ProfileMenu: React.FC<{ tag: string; role: string; }> = ({ tag, role }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const iconClass = "flex items-center gap-x-3 p-2 px-6 font-normal text-base text-lg";
 
   const closeMenu = () => setIsMenuOpen(false);
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     setIsMenuOpen(false);
   };
-
-  // useEffect(()=>{
-  //   console.log(user)
-  // },[user])
 
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">

@@ -187,7 +187,7 @@ export async function fetchSearchResults(searchTerm: string): Promise<BookRespon
     if (!response.ok) {
       throw new Error('Failed to fetch search results.');
     }
-    const data = await response.json(); 
+    const data = await response.json();
     return data;
   } catch (error) {
     console.error(error);
@@ -195,9 +195,13 @@ export async function fetchSearchResults(searchTerm: string): Promise<BookRespon
   }
 }
 
-export async function fetchRecommendationsForUser(tag: string): Promise<BookResponse[] | null> {
+export async function fetchRecommendationsForUser(token: string): Promise<BookResponse[] | null> {
   try {
-    const response = await fetch(`${url}/recommendations/forUser?tag=${tag}`);
+    const response = await fetch(`${url}/recommendations/user`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
     if (!response.ok) {
       throw new Error('Failed to fetch recommendations for user.');
     }

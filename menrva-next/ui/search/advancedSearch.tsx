@@ -2,7 +2,6 @@
 
 import { BookResponse } from '@/lib/models/book';
 import { fetchSearchResults } from '@/lib/services/apiService';
-import { useAppSelector } from '@/lib/store/store';
 import { Input } from '@/providers/coreProviders';
 import { debounce } from 'lodash';
 import { Advent_Pro } from 'next/font/google';
@@ -12,9 +11,8 @@ import SuggestionCards from './suggestionCards';
 
 const advent = Advent_Pro({ subsets: ["latin"] });
 
-const AdvancedSearchComponent = () => {
+const AdvancedSearchComponent: React.FC<{ theme: string }> = ({ theme }) => {
     const router = useRouter();
-    const theme = useAppSelector((state) => state.theme.theme);
     const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState<BookResponse[]>([]);
     const [isFocused, setIsFocused] = useState(false);
@@ -69,7 +67,7 @@ const AdvancedSearchComponent = () => {
         <div className="flex flex-col w-4/5 h-12 mx-auto">
             <form onSubmit={handleSubmit} className='flex gap-3 container'>
                 <Input
-                    color={theme  === "light" ? "black" : "white"}
+                    color={theme === "light" ? "black" : "white"}
                     type="text"
                     size="lg"
                     label="Search"

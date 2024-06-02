@@ -5,18 +5,11 @@ import { cookies } from "next/headers";
 export default function DashboardLayout({ children, }: { children: React.ReactNode }) {
     const tag = cookies().get('tag')?.value as string;
     const role = cookies().get('role')?.value as string;
-    const theme = cookies().get('theme')?.value;
-
-    const logout = async () => {
-        'use server';
-        cookies().delete('tag');
-        cookies().delete('role');
-        cookies().delete('jwt');
-    }
+    const theme = cookies().get('theme')?.value as string;
 
     return (
         <>
-            <Nav tag={tag} role={role} logout={logout} theme={theme} />
+            <Nav tag={tag} role={role} theme={theme} />
 
             {children}
             <Footer />

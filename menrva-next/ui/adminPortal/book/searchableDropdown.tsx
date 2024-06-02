@@ -1,6 +1,6 @@
 'use client';
 
-import { Option, Select } from "@/providers";
+import { Select } from "@/providers/coreProviders";
 import React, { useEffect, useState } from "react";
 
 interface SearchableDropdownProps {

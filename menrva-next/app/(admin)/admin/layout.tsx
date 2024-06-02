@@ -16,8 +16,6 @@ export default function AdminLayout({ children, add, update }: { children: React
                         {update}
                         {children}
                     </main>
-
-                    {/* <InitializeUserCredentials /> */}
                 </div>
             </MenrvaThemeProvider>
         </ReduxProvider>

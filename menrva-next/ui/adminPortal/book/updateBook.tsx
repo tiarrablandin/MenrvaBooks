@@ -1,13 +1,13 @@
 'use client';
 
-import { BookResponse, UpdateBookRequest } from "@/app/lib/models/book";
-import { fetchBookById } from "@/app/lib/services/apiService";
-import { Alert, Button, Dialog, DialogBody, DialogFooter, DialogHeader, Input, Textarea, Typography, XMarkIcon } from "@/providers";
+import { BookResponse, UpdateBookRequest } from "@/lib/models/book";
+import { fetchBookById } from "@/lib/services/apiService";
+import { Alert, Button, Dialog, DialogBody, DialogFooter, DialogHeader, Input, Textarea, Typography, XMarkIcon } from "@/providers/coreProviders";
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import SeriesDropdown from "./seriesDropdown";
-import { Series } from "@/app/lib/models/series";
-import DefaultAlert from "../../alert";
+import { Series } from "@/lib/models/series";
+import DefaultAlert from "@/ui/footer/alert";
 
 const UpdateBook: React.FC = () => {
   const router = useRouter();
@@ -58,14 +58,13 @@ const UpdateBook: React.FC = () => {
       <Dialog open={true} handler={handleClose} className="container">
         <form onSubmit={handleSubmit} >
           <DialogHeader className="justify-between pb-0">
-            <Typography color="blue-gray" className="mb-1 font-bold text-2xl">
+            <p className="mb-1 font-bold text-2xl">
               Update Book
             </p>
             <XMarkIcon className="w-5 h-5 cursor-pointer text-black inline-block mr-1" onClick={handleClose} />
           </DialogHeader>
           <DialogBody className="overflow-y-scroll pt-0">
-            <Typography
-              variant="lead"
+            <p
               className="font-normal text-gray-600 text-lg "
             >
               Update a book from the database.
@@ -174,12 +173,12 @@ const UpdateBook: React.FC = () => {
               <DefaultAlert text='hello world' defaultIsOpen={isAlertOpen} />
             </div>
             <Button onClick={handleClose} color="red" variant="outlined" className="w-24 h-10 flex items-center justify-center border-2">
-              <Typography className="normal-case text-lg font-medium text-eggplant">
+              <p className="normal-case text-lg font-medium text-eggplant">
                 Cancel
               </p>
             </Button>
             <Button type="submit" className="w-24 h-10 flex items-center justify-center">
-              <Typography className="normal-case text-lg font-medium text-old-lace">
+              <p className="normal-case text-lg font-medium text-old-lace">
                 Update
               </p>
             </Button>

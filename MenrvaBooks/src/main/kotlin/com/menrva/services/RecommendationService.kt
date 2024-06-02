@@ -23,17 +23,23 @@ class RecommendationService(
 
         val gson = Gson()
         val type = object : TypeToken<Map<String, Map<String, Double>>>() {}.type
-        println("************************************ ${userProfile.preferenceVector}")
-        val preferenceVector: Map<String, Map<String, Double>> = gson.fromJson(userProfile.preferenceVector, type) as Map<String, Map<String, Double>>
-        println("################################### $preferenceVector")
+        val preferenceVector: Map<String, Map<String, Double>> =
+            gson.fromJson(userProfile.preferenceVector, type) as Map<String, Map<String, Double>>
 
         // Extract top genres and keywords
-        val genres = preferenceVector["Genres"]?.entries?.sortedByDescending { it.value }?.map { it.key }?.take(3) ?: listOf()
-        val keywords = preferenceVector["Keywords"]?.entries?.sortedByDescending { it.value }?.map { it.key }?.take(3) ?: listOf()
+        val genres =
+            preferenceVector["Genres"]?.entries?.sortedByDescending { it.value }?.map { it.key }?.take(7) ?: listOf()
+        val keywords =
+            preferenceVector["Keywords"]?.entries?.sortedByDescending { it.value }?.map { it.key }?.take(7) ?: listOf()
 
         val recommendedBooks = bookRepo.findBooksByGenresSubgenresOrKeywordsTags(genres, keywords)
-            .filterNot { user.bookInteractions.any { interaction -> interaction.book.id == it.id } }
+            .filterNot { user.bookInteractions.any { interaction -> interaction.book.id == it.id && ((interaction.hasRead == true || interaction.likeDislike != 0) || interaction.interested == true) } }
             .map { book -> BookDTO(book) }
+
         return recommendedBooks
+    }
+
+    fun test(): List<BookDTO> {
+        return bookRepo.findAll().map { BookDTO(it) }
     }
 }

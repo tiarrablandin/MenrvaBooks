@@ -2,39 +2,42 @@
 
 import setTheme from '@/lib/actions/setTheme';
 import { MoonIcon, SunIcon, Switch } from '@/providers/coreProviders';
-import { useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const ThemeToggle: React.FC<{ theme: string }> = ({ theme }) => {
   const [isDark, setIsDark] = useState(theme === 'dark');
   const initialized = useRef(false);
 
-  const initTheme = async () => {
-    document.documentElement.classList.toggle('dark', true);
-    setIsDark(true);
-    await setTheme('dark');
-  }
-
-  if (!initialized.current && theme === 'dark') {
-    initTheme();
+  const initTheme = useCallback(async () => {
+    if (!initialized.current && theme === 'dark' && document !== undefined) {
+      document.documentElement.classList.add('dark');
+      setIsDark(true);
+      await setTheme('dark');
+    } else if (!initialized.current) {
+      document.documentElement.classList.remove('dark');
+      setIsDark(false);
+      await setTheme('light');
+    }
     initialized.current = true;
-  }
+  }, [theme]);
+
+  useEffect(() => {
+    initTheme();
+  }, [initTheme]);
 
   const handleToggleTheme = async () => {
     if (theme === 'light') {
-      document.documentElement.classList.toggle('dark', true);
+      document.documentElement.classList.add('dark');
       setIsDark(true);
       await setTheme('dark');
     } else {
-      document.documentElement.classList.toggle('dark', false);
+      document.documentElement.classList.remove('dark');
       setIsDark(false);
       await setTheme('light');
-      const res = await setTheme('light');
     }
-    // dispatch(toggleTheme());
   };
 
   return (
-    // <ReduxProvider>
     <div className="flex items-center w-28  lg:mr-2">
       <SunIcon className={`h-9 w-9 mr-2 ${isDark ? 'text-gray-400' : 'text-yellow-500'}`} />
       <Switch
@@ -52,7 +55,6 @@ const ThemeToggle: React.FC<{ theme: string }> = ({ theme }) => {
       />
       <MoonIcon className={`h-8 w-8 ml-1 ${isDark ? 'text-indigo-500' : 'text-gray-400'}`} />
     </div>
-    // {/* </ReduxProvider> */}
   );
 };
 

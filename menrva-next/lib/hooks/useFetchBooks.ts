@@ -23,7 +23,7 @@ const useFetchBooks = (fetchData?: () => Promise<BookResponse[] | null>, default
       };
       fetchBooks();
     }
-  }, [fetchData, defaultBooks]);
+  }, []);
 
   return { books, isLoading };
 };

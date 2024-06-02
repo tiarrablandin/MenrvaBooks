@@ -32,6 +32,7 @@ class User(
     @Column(name = "date_updated")
     @UpdateTimestamp
     var dateUpdated: LocalDate? = null,
+    var theme: String? = null,
     @JsonBackReference(value = "user")
     @OneToMany(mappedBy = "user")
     var bookInteractions: MutableSet<BookInteraction> = mutableSetOf(),

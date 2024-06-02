@@ -26,11 +26,11 @@ create table if not exists author
 (
     id           int auto_increment
         primary key,
-    photo        varchar(100) null,
+    photo        varchar(1000) null,
     pen_name     varchar(100) not null UNIQUE,
     bio          longtext     null,
     text         longtext     null,
-    date_created date         not null,
+    date_created date         null,
     reviewed     tinyint      not null default 0,
     date_updated date         null,
     user_id      int          null,
@@ -43,16 +43,17 @@ create table if not exists book
     id               int auto_increment
         primary key,
     cover            varchar(500) not null,
-    title            varchar(50)  not null,
+    title            varchar(500)  not null,
     description      longtext     not null,
     page_count       int          not null,
-    publication_date date         not null,
+    publication_date date         null,
     isbn             int          null,
-    date_added       date         not null,
+    date_added       date         null default (CURDATE()),
     reviewed         tinyint      not null default 0,
     rejected         tinyint      not null default 0,
     date_updated     date         null,
     series_id        int          null,
+    views	     int	  not null default 0,
     foreign key (series_id) references series (id)
 
 );
@@ -62,7 +63,7 @@ create table if not exists tag
     id           int auto_increment
         primary key,
     name         varchar(50) not null,
-    date_added   date        not null,
+    date_added   date        null,
     reviewed     tinyint     not null default 0,
     date_updated date        null
 
@@ -73,7 +74,7 @@ create table if not exists comment
     id           int auto_increment
         primary key,
     comment      longtext not null,
-    date_added   date     not null,
+    date_added   date     null,
     reviewed     tinyint  not null default 0,
     date_updated date     null,
     user_id      int      not null,
@@ -88,7 +89,7 @@ create table if not exists genre
     id           int auto_increment
         primary key,
     name         varchar(20) not null,
-    date_added   date        not null,
+    date_added   date        null,
     reviewed     tinyint     not null default 0,
     date_updated date        null
 );
@@ -98,7 +99,7 @@ create table if not exists keyword
     id           int auto_increment
         primary key,
     name         varchar(20) not null,
-    date_added   date        not null,
+    date_added   date        null,
     reviewed     tinyint     not null default 0,
     date_updated date        null
 );
@@ -109,7 +110,7 @@ create table if not exists link
         primary key,
     name         varchar(20)  not null,
     link         varchar(100) not null,
-    date_added   date         not null,
+    date_added   date         null,
     reviewed     tinyint      not null default 0,
     date_updated date         null,
     book_id      int          not null,
@@ -121,7 +122,7 @@ create table if not exists series
     id           int auto_increment
         primary key,
     name         varchar(100) not null,
-    date_added   date         not null,
+    date_added   date         null,
     reviewed     tinyint      not null default 0,
     date_updated date         null
 );
@@ -132,7 +133,7 @@ create table if not exists social_media
         primary key,
     name         varchar(100) not null,
     link         varchar(100) not null,
-    date_added   date         not null,
+    date_added   date         null,
     date_updated date         null,
     author_id    int          not null,
     FOREIGN KEY (author_id) REFERENCES author (id)
@@ -143,7 +144,7 @@ create table if not exists sub_genre
     id           int auto_increment
         primary key,
     name         varchar(20) not null,
-    date_added   date        not null,
+    date_added   date        null,
     reviewed     tinyint     not null default 0,
     date_updated date        null
 );
@@ -154,7 +155,7 @@ create table if not exists subscription
         primary key,
     level        varchar(20) not null,
     paid         int         not null,
-    date_added   date        not null,
+    date_added   date        null,
     date_updated date        null
 );
 
@@ -162,15 +163,16 @@ create table if not exists user
 (
     id              int auto_increment primary key,
     role            varchar(20)  not null,
-    first_name      varchar(20)  not null,
-    last_name       varchar(20)  not null,
-    tag             varchar(20)  not null UNIQUE,
-    email           varchar(200)  not null,
-    password        varchar(200) not null,
-    active          tinyint(1)   not null,
-    date_added      date         not null,
+    first_name      varchar(25)  not null,
+    last_name       varchar(25)  not null,
+    tag             varchar(40)  not null UNIQUE,
+    email           varchar(200)  not null UNIQUE,
+    password        varchar(50) not null,
+    active          tinyint(1)   not null default 0,
+    date_added      date         null,
     date_updated    date         null,
     subscription_id int          not null default 1,
+    theme	    varchar(10) not null default 'light',
     -- subscription_id int          not null,
     FOREIGN KEY (subscription_id) REFERENCES subscription (id)
 );
