@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
-import { fetchBookDetailsThunk, fetchBooksThunk, fetchInteractions, toggleBookFavorite, toggleBookHasRead, toggleBookInterested, toggleBookLiked, toggleBookReviewed } from "../store/features/bookSlice";
+import { fetchBookDetailsThunk, fetchBooksThunk, toggleBookReviewed } from "../store/features/bookSlice";
 import { RootState, useAppDispatch } from "../store/store";
 
 export function useBooks() {
@@ -27,41 +27,14 @@ export function useBooks() {
 
 
 
-    const toggleInterested = useCallback((bookId: number) => {
-        dispatch(toggleBookInterested({ bookId }));
-    }, [dispatch]);
-
-    const toggleFavorite = useCallback((bookId: number) => {
-        dispatch(toggleBookFavorite({ bookId }));
-    }, [dispatch]);
-
-    const toggleHasRead = useCallback((bookId: number) => {
-        dispatch(toggleBookHasRead({ bookId }));
-    }, [dispatch]);
-
-
-
-    const toggleLiked = useCallback((bookId: number, status: number,) => {
-        dispatch(toggleBookLiked({ bookId, status, token }));
-    }, [dispatch]);
-
-    const fetchBookInteractions = useCallback((bookId: number) => {
-        if (token) dispatch(fetchInteractions({ bookId, token }))
-    }, [dispatch]);
-
     return {
         data: books,
         loading,
         error,
         fetchData: fetchBooks,
         toggleReviewed,
-        toggleLiked,
-        fetchBookInteractions,
         likedBooks,
         fetchBookDetails,
         currentBook,
-        toggleInterested,
-        toggleFavorite,
-        toggleHasRead,
     };
 }

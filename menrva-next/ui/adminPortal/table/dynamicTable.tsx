@@ -29,23 +29,19 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
   const [showActiveOnly, setShowActiveOnly] = useState(false);
   const { data, fetchData, toggleReviewed, toggleActive, loading, error } = useEntityHook<any>(entityType);
 
-  const currentItems = useMemo(
-    () =>
-      data
-        .filter((item: any) => !showUnreviewedOnly || !item.reviewed)
-        .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage),
+  const currentItems = useMemo(() => data
+    .filter((item: any) => !showUnreviewedOnly || !item.reviewed)
+    .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage),
     [data, showUnreviewedOnly, currentPage, itemsPerPage]
   );
 
-  const totalItems = useMemo(
-    () => data.filter((item: any) => !showUnreviewedOnly || !item.reviewed).length,
+  const totalItems = useMemo(() => data
+    .filter((item: any) => !showUnreviewedOnly || !item.reviewed).length,
     [data, showUnreviewedOnly]
   );
 
-  const activeUsers = useMemo(
-    () =>
-      data
-        .filter((user: any) => !showActiveOnly || user.active),
+  const activeUsers = useMemo(() => data
+    .filter((user: any) => !showActiveOnly || user.active),
     [data, toggleActive]);
 
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -58,7 +54,7 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
     <AdminTable
       head={tableConfig[entityType].pageTitle}
       headDesc={tableConfig[entityType].description}
-      
+
       reviewedToggle={
         <Switch
           checked={showUnreviewedOnly}

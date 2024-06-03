@@ -28,9 +28,9 @@ create table if not exists author
         primary key,
     photo        varchar(1000) null,
     pen_name     varchar(100) not null UNIQUE,
-    bio          longtext     null,
-    text         longtext     null,
-    date_created date         null,
+    bio          varchar(10000) null,
+    text         varchar(10000) null,
+    date_added   date         null,
     reviewed     tinyint      not null default 0,
     date_updated date         null,
     user_id      int          null,
@@ -43,12 +43,12 @@ create table if not exists book
     id               int auto_increment
         primary key,
     cover            varchar(500) not null,
-    title            varchar(500)  not null,
-    description      longtext     not null,
+    title            varchar(500) not null UNIQUE,
+    description      varchar(10000) not null,
     page_count       int          not null,
     publication_date date         null,
-    isbn             int          null,
-    date_added       date         null default (CURDATE()),
+    isbn             varchar(100) null,
+    date_added       date         null,
     reviewed         tinyint      not null default 0,
     rejected         tinyint      not null default 0,
     date_updated     date         null,
@@ -73,7 +73,7 @@ create table if not exists comment
 (
     id           int auto_increment
         primary key,
-    comment      longtext not null,
+    comment      varchar(10000) not null,
     date_added   date     null,
     reviewed     tinyint  not null default 0,
     date_updated date     null,
@@ -167,7 +167,7 @@ create table if not exists user
     last_name       varchar(25)  not null,
     tag             varchar(40)  not null UNIQUE,
     email           varchar(200)  not null UNIQUE,
-    password        varchar(50) not null,
+    password        varchar(1000) not null,
     active          tinyint(1)   not null default 0,
     date_added      date         null,
     date_updated    date         null,
@@ -375,19 +375,19 @@ values (12, 'Complimentary Reader', 0, now(), '2024-03-15');
 insert into subscription (id, level, paid, date_added, date_updated)
 values (13, 'Complimentary Author', 0, now(), '2024-03-15');
 
-insert into author (id, photo, pen_name, bio, text, date_created, reviewed, date_updated, user_id)
+insert into author (id, photo, pen_name, bio, text, date_added, reviewed, date_updated, user_id)
 VALUES (1, null, 'Tiarra Refosco', 'Hello, I write books.', 'Announcements', now(), 1, '2024-03-15', 1);
 
-insert into author (id, photo, pen_name, bio, text, date_created, reviewed, date_updated, user_id)
+insert into author (id, photo, pen_name, bio, text, date_added, reviewed, date_updated, user_id)
 VALUES (2, null, 'Matthew Blackmore', 'Hello, I write books.', 'Announcements', now(), 1, '2024-03-15', 2);
 
-insert into author (id, photo, pen_name, bio, text, date_created, reviewed, date_updated, user_id)
+insert into author (id, photo, pen_name, bio, text, date_added, reviewed, date_updated, user_id)
 VALUES (3, null, 'Jonathan Dominguez', 'Hello, I write books.', 'Announcements', now(), 1, '2024-03-15', 3);
 
-insert into author (id, photo, pen_name, bio, text, date_created, reviewed, date_updated, user_id)
+insert into author (id, photo, pen_name, bio, text, date_added, reviewed, date_updated, user_id)
 VALUES (4, null, 'Amarah Calderini', '', '', now(), 1, '2024-03-15', null);
 
-insert into author (id, photo, pen_name, bio, text, date_created, reviewed, date_updated, user_id)
+insert into author (id, photo, pen_name, bio, text, date_added, reviewed, date_updated, user_id)
 VALUES (5, null, 'S.E. Babin', '', '', now(), 1, '2024-03-15', null);
 
 insert into book (id, cover, title, description, page_count, publication_date, date_added, reviewed, rejected,

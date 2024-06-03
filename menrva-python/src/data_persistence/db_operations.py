@@ -10,6 +10,7 @@ db_config = {
 }
 
 def insert_books_into_database(books=[]):
+    book_ids = []  # List to store the book IDs
     with mysql.connector.connect(**db_config) as conn:
         with conn.cursor() as cursor:
             for book in books:
@@ -43,20 +44,37 @@ def insert_books_into_database(books=[]):
                 book_id = cursor.lastrowid
 
                 print(f"BOOK ID: {book_id}")
+                if book_id:
+                    book_ids.append(book_id)
+
+    return book_ids
 
 
-def insert_author_into_database(author_name):
+def insert_author_into_database(author):
     with mysql.connector.connect(**db_config) as conn:
         with conn.cursor() as cursor:
-            date_created = datetime.now().strftime('%Y-%m-%d')
-
+            author_name = author.get('name')
+            date_added = datetime.now().strftime('%Y-%m-%d')
+            photo = f'https://covers.openlibrary.org/b/id/{author.get("photos")[0]}-L.jpg' if author.get("photos") else None
+            bio = author.get('bio').get('value') if isinstance(author.get('bio'), dict) else author.get('bio')
 
             insert_query = """
-            INSERT IGNORE INTO author (pen_name, date_created, reviewed) VALUES (%s, %s, %s)
+            INSERT IGNORE INTO author (pen_name, photo, bio, date_added, reviewed) VALUES (%s, %s, %s, %s, %s)
             """
-            cursor.execute(insert_query, (author_name, date_created, 0))
+            cursor.execute(insert_query, (author_name, photo, bio, date_added, 0))
             conn.commit()
 
             author_id = cursor.lastrowid
-            print(f"Author ID: {author_id}")
             return author_id
+
+def link_author_and_book(author_id, book_id):
+    with mysql.connector.connect(**db_config) as conn:
+        with conn.cursor() as cursor:
+            insert_query = """
+            INSERT IGNORE INTO author_has_book (author_id, book_id) VALUES (%s, %s)
+            """
+            cursor.execute(insert_query, (author_id, book_id))
+            conn.commit()
+
+            author_book_id = cursor.lastrowid
+            return author_book_id

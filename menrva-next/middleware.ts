@@ -5,7 +5,7 @@ export function middleware(req: NextRequest) {
 
   if (role !== "Admin" && req.nextUrl.pathname.startsWith('/admin')) {
     return Response.redirect(new URL('/login', req.url))
-  } else if (!role && ['/userHome', '/userSettings'].includes(req.nextUrl.pathname)) {
+  } else if (!role && req.nextUrl.pathname.startsWith('/user')) {
     return Response.redirect(new URL('/login', req.url))
   }
 

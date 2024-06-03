@@ -9,18 +9,22 @@ FETCH BOOK INFO
 
 def fetch_popular_books_from_ol_by_genre(genre):
     books = []
-    url = f'https://openlibrary.org/search.json?subject={genre}&limit=250'
+    url = f'https://openlibrary.org/search.json?subject={genre}&limit=500'
     response = requests.get(url, timeout=30)
     if response.status_code == 200:
         results = response.json()['docs']
         for result in results:
             cover_id = result.get('cover_i')
+            if result.get('language')[0] != "eng" or cover_id == "https://covers.openlibrary.org/b/id/-1-L.jpg": continue
+
             book = {
                 'title': result.get('title'),
-                'cover': get_cover_url_by_cover_id(cover_id),
+                'cover': get_cover_url_by_photo_id(cover_id),
                 'publish_year': result.get('first_publish_year'),
                 'description': result.get('first_sentence'),
                 'median_page_count': result.get('number_of_pages_median'),
+                'first_publish_year': result.get('first_publish_year'),
+                'isbn': result.get('isbn', [None])[0],
                 'work_id': result.get('key').split('/')[-1]
             }
             books.append(book)
@@ -40,30 +44,56 @@ def fetch_work_id_for_title(title):
         print(f"Failed to fetch search results, status code: {response.status_code}")
         return []
 
+def fetch_single_book_by_work_id(work_id):
+    url = f"https://openlibrary.org/works/{work_id}.json"
+
+    response = requests.get(url)
+    if response.status_code == 200:
+        work_data = response.json()
+        print(f"WORK DATA: {work_data}")
+
+        authors = [author['author']['key'].split('/')[-1] for author in work_data.get('authors', [])]
+        description = work_data.get('description', {}).get('value') if isinstance(work_data.get('description'), dict) else work_data.get('description')
+        # genres = [genre for genre in work_data.get('subjects', []) if "fiction" in genre.lower()]
+        # keywords = [keyword for keyword in work_data.get('subjects', []) if "fiction" not in keyword.lower()]
+
+        book = {
+            'title': work_data.get('title'),
+            'cover': get_cover_url_by_photo_id(work_data.get('covers', [None])[0]),
+            'description': description,
+            'authors': authors,
+            # 'genres': genres,
+            # 'keywords': keywords
+        }
+        return book
+    else:
+        print(f"Failed to fetch work details, status code: {response.status_code}")
+        return None
+
 def fetch_full_books_by_work_id(work_id):
     url = f"https://openlibrary.org/works/{work_id}/editions.json"
     response = requests.get(url)
     if response.status_code == 200:
-        editions = response.json()['entries']
-        for edition in editions:
-            print(f"EDITION: {edition}")
-            if 'languages' in edition and any(lang.get('key') == "/languages/eng" for lang in edition['languages']):
-                cover_id = edition.get('covers', [None])[0]
-                cover_url = f"http://covers.openlibrary.org/b/id/{cover_id}-L.jpg" if cover_id else None
-                publish_date = edition.get('publish_date', "")
-                # Additional logic to validate publish_date format
-                description = edition.get('description', {}).get('value') if isinstance(edition.get('description'), dict) else edition.get('description')
-                page_count = edition.get('number_of_pages')
-                book = {
-                    'cover': cover_url,
-                    'title': edition.get('title'),
-                    'description': description,
-                    'page_count': page_count,
-                    'publication_date': parse_publication_date(publish_date),
-                }
-                if cover_url and publish_date and description and page_count:
-                    return book  # Returns the first edition that meets all criteria
-    return None  # Return None if no suitable edition is found
+        work_data = response.json()
+        print(f"WORK DATA: {work_data}")
+
+        authors = [author['author']['key'].split('/')[-1] for author in work_data.get('authors', [])]
+        description = work_data.get('description', {}).get('value') if isinstance(work_data.get('description'), dict) else work_data.get('description')
+        genres = [genre for genre in work_data.get('subjects', []) if "fiction" in genre.lower()]
+        keywords = [keyword for keyword in work_data.get('subjects', []) if "fiction" not in keyword.lower()]
+
+        book = {
+            'title': work_data.get('title'),
+            'cover': get_cover_url_by_photo_id(work_data.get('covers', [None])[0]),
+            'description': description,
+            'authors': authors,
+            'genres': genres,
+            'keywords': keywords
+        }
+        return book
+    else:
+        print(f"Failed to fetch work details, status code: {response.status_code}")
+        return None
 
 def fetch_editions_for_work_id(work_id):
     url = f"https://openlibrary.org/{work_id}/editions.json"
@@ -79,14 +109,11 @@ def fetch_editions_for_work_id(work_id):
 FETCH COVER INFO
 '''
 
-def get_cover_url_by_cover_id(cover_id, size="L"):
-    return f"https://covers.openlibrary.org/b/id/{cover_id}-{size}.jpg"
+def get_cover_url_by_photo_id(photo_id, size="L"):
+    return f"https://covers.openlibrary.org/b/id/{photo_id}-{size}.jpg"
 
 def get_cover_url_by_ol_id(ol_id, size="L"):
     return f"https://covers.openlibrary.org/b/olid/{ol_id}-{size}.jpg"
 
 def get_cover_url_by_isbn(isbn, size="L"):
     return f"https://covers.openlibrary.org/b/isbn/{isbn}-{size}.jpg"
-
-def get_goodreads_cover_url_by_isbn(goodreads_id, size="L"):
-    return f"https://covers.openlibrary.org/b/goodreads/{goodreads_id}-{size}.jpg"

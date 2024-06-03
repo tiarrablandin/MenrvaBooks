@@ -27,6 +27,12 @@ class AuthorController(
         return ResponseEntity.ok(authorService.index())
     }
 
+    @GetMapping("/name/{penName}")
+    fun findByPenName(@PathVariable penName: String): ResponseEntity<List<AuthorSummary>> {
+        val author = authorService.findByPenName(penName)
+        return ResponseEntity.ok(authorService.findByPenName(penName))
+    }
+
     @GetMapping("{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<Optional<Author>> {
         val author = authorService.findById(id)

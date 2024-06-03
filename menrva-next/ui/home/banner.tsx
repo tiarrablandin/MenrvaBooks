@@ -8,11 +8,11 @@ export function Banner() {
         {/* <IconButton variant="text">
           <XMarkIcon className="w-4 h-4 stroke-2" />
         </IconButton> */}
-        <div color="blue-gray" className="text-md">
+        <p className="text-md">
           COMING SOON! | Forums! Soon there will be a forum community to discuss books with like-minded individuals!
-        </div>
+        </p>
           <Link href="/news">
-            <div className="text-eggplant hover:scale-105 underline">
+            <div className="text-eggplant dark:text-old-lace hover:scale-105 underline">
             Learn More
             </div>
           </Link>

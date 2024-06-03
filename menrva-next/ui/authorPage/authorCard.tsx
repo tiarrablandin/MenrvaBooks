@@ -1,21 +1,21 @@
-"use client"
-
 import { Author } from '@/lib/models/author';
-import { Avatar, Card, CardBody, CardHeader, Typography } from "@/providers/coreProviders";
+import { Avatar, Card, CardBody, CardHeader } from "@/providers/coreProviders";
 import React from 'react';
-import ToggleFollowAuthorButton from './toggleFollowAuthorButton';
 import SocialLink from './socialLink';
+import ToggleFollowAuthorButton from './toggleFollowAuthorButton';
+import ReduxProvider from '@/providers/reduxProvider';
 
 const AuthorCard: React.FC<{ author: Author }> = ({ author }) => {
+  console.log(author.socialMedia);
 
   return (
     <div>
-      <Card className="h-72 w-full min-w-[40rem] max-w-[40rem] px-4 bg-pink-lavender/70 dark:bg-chinese-violet">
+      <Card className="h-72 w-full min-w-[40rem] max-w-[40rem] px-4 bg-pink-lavender/70 dark:bg-chinese-violet dark:text-old-lace">
         <CardHeader
           color="transparent"
           floated={false}
           shadow={false}
-          className="mx-0 flex items-center gap-4 pt-0 pb-8"
+          className="mx-0 flex items-center gap-4 pt-0 pb-8 dark:text-old-lace"
         >
           <Avatar
             size="xxl"
@@ -29,7 +29,9 @@ const AuthorCard: React.FC<{ author: Author }> = ({ author }) => {
                 {author.penName}
               </p>
               <div className="flex items-center gap-0">
-                <ToggleFollowAuthorButton id={author.id} />
+                <ReduxProvider>
+                  <ToggleFollowAuthorButton id={author.id} />
+                </ReduxProvider>
               </div>
             </div>
             <div className="flex gap-4 mt-3">

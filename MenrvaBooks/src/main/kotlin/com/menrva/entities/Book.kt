@@ -13,8 +13,7 @@ import java.time.LocalDate
 @Entity
 @Document(indexName = "books")
 class Book(
-    @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @org.springframework.data.annotation.Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
     var cover: String? = null,
     @Field(type = FieldType.Text, index = true)

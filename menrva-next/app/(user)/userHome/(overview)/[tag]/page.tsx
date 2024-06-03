@@ -1,6 +1,5 @@
 import { fetchRecommendationsForUser, fetchUserByTag } from "@/lib/services/apiService";
 import BookSlider from "@/ui/book/bookSlider";
-import UserComponent from "@/ui/user/userHome";
 import UserSpeedDial from "@/ui/user/userSpeedDial";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
@@ -14,7 +13,6 @@ export default async function Page({ params: { tag } }: { params: { tag: string 
   const token = cookieStore.get("jwt")?.value as string;
   const user = await fetchUserByTag(tag);
   const recommendations = await fetchRecommendationsForUser(token);
-  // console.log("#*******######********" + JSON.stringify(user));
 
   return (
     <main className="w-screen min-h-[calc(100vh-295px)]">

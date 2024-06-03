@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BookResponse } from "../models/book";
 
-const useFetchBooks = (fetchData?: () => Promise<BookResponse[] | null>, defaultBooks?: BookResponse[]) => {
+const useFetchBooks = (fetchData?: () => Promise<BookResponse[] | null>, defaultBooks?: BookResponse[] | null) => {
   const [books, setBooks] = useState<BookResponse[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 

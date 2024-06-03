@@ -4,7 +4,7 @@ import React from 'react';
 
 const SuggestionCard: React.FC<{ book: BookResponse }> = ({ book }) => {
     return (
-        <div className="flex items-center p-1 bg-white border border-gray-200 rounded-md shadow-sm space-x-2 w-full opacity-95 hover:opacity-100">
+        <div className="flex items-center max-h-14 p-1 bg-white border border-gray-200 rounded-md shadow-sm space-x-2 w-full opacity-95 hover:opacity-100">
             <Image
                 src={book.cover}
                 alt={book.title}

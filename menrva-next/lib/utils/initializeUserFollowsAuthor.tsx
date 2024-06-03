@@ -1,20 +1,18 @@
 'use client';
-import { fetchUserFollowsAuthor } from "@/lib/services/apiService";
 import { updateIsFollowing } from "@/lib/store/features/authorSlice";
-import { useAppDispatch } from "@/lib/store/store";
-import { useEffect } from "react";
+import { useAppStore } from "@/lib/store/store";
+import { useEffect, useRef } from "react";
 
-const InitializeUserFollowsAuthor: React.FC<{ id: number, token: string }> = ({ id, token }) => {
-    const dispatch = useAppDispatch();
+const InitializeUserFollowsAuthor: React.FC<{ isFollowing: boolean }> = ({ isFollowing }) => {
+    const store = useAppStore();
+    const initialized = useRef(false);
 
     useEffect(() => {
-        const fetchUserFollowsAuthorInfo = async () => {
-            const isFollowing = await fetchUserFollowsAuthor(id, token);
-            dispatch(updateIsFollowing(isFollowing ? true : false));
+        if (!initialized.current) {
+            store.dispatch(updateIsFollowing(isFollowing ? true : false));
+            initialized.current = true;
         }
-
-        fetchUserFollowsAuthorInfo();
-    }, [dispatch]);
+    }, [initialized, store])
 
     return (
         <></>

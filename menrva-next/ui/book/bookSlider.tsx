@@ -9,12 +9,11 @@ import { useCallback, useState } from "react";
 import { BookResponse } from "../../lib/models/book";
 import BookCard from "./bookCard";
 import BookSkeleton from "./bookSkeleton";
-import Link from "next/link";
 
 interface BookSliderProps {
   fetchData?: () => Promise<BookResponse[] | null>;
   title: string;
-  defaultBooks?: BookResponse[];
+  defaultBooks?: BookResponse[] | null;
 }
 
 const neue = Comic_Neue({ subsets: ["latin"], weight: "400" });
