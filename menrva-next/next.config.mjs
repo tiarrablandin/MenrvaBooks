@@ -16,7 +16,13 @@ const nextConfig = {
         port: "",
       },
       {
-        protocol: ["https", "http"],
+        protocol: "https",
+        hostname: "covers.openlibrary.org",
+        pathname: "/**",
+        port: "",
+      },
+      {
+        protocol: "http",
         hostname: "covers.openlibrary.org",
         pathname: "/**",
         port: "",

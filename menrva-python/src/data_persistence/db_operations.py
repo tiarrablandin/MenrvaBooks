@@ -14,12 +14,12 @@ def insert_books_into_database(books=[]):
     with mysql.connector.connect(**db_config) as conn:
         with conn.cursor() as cursor:
             for book in books:
-                print(f"BOOK INSIDE INSERT BOOKS INTO DATABASE: {books}")
+                print(f"&&&&&&&&&&&&&&&&&&&&: {book.get('page_count')}")
                 title = book.get('title', 'Unknown Title')
                 # authors = ', '.join(book.get('creator', ['Unknown Author']))  # Join multiple authors
                 cover = book.get('cover', '')
                 description = book.get('description', 'No description available.')
-                page_count = book.get('page_count')
+                page_count = int(book.get('page_count'))
                 publication_date = book.get('publication_date', '1900')
                 # Check if the publication_date is just a year and format it
                 if publication_date.isdigit() and len(publication_date) == 4:
@@ -43,7 +43,6 @@ def insert_books_into_database(books=[]):
 
                 book_id = cursor.lastrowid
 
-                print(f"BOOK ID: {book_id}")
                 if book_id:
                     book_ids.append(book_id)
 

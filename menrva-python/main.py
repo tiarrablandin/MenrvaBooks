@@ -24,7 +24,7 @@ def process_popular_books_by_genre(genre):
             'cover': full_book.get('cover'),
             'title': book.get('title'),
             'description': full_book.get('description', book.get('description')),
-            'page_count': book.get('number_of_pages_median', book.get('page_count')),
+            'page_count': book.get('page_count'),
             'publication_date': str(book.get('first_publish_year', '1900-01-01')),
         }
 
@@ -35,11 +35,9 @@ def process_popular_books_by_genre(genre):
                 author = fetch_author_from_ol_by_key(author_key)
                 db_authors = fetch_author_by_pen_name(author.get('name'))
                 if len(db_authors) > 0:
-                    print(f"$$$$$$$$$$$$$$$$$$$$ {db_authors[0].get('id')}")
                     link_author_and_book(db_authors[0].get('id'), book_ids[0]) 
                 else:
                     author_id = insert_author_into_database(author)
-                    print(f"^^^^^^^^^^^^^^^^^^^^^^^^ {author_id}")
                     link_author_and_book(author_id, book_ids[0]) 
         else:
             continue
@@ -48,6 +46,6 @@ def process_author_by_book_title(book_title):
     author = fetch_author_from_ol_by_book_title(book_title)
 
 if __name__ == "__main__":
-    # process_popular_books_by_genre("Fantasy")
+    process_popular_books_by_genre("Fantasy")
     # process_author_by_book_title("Lord of the Rings")
-    sync_es_with_db()
+    # sync_es_with_db()
