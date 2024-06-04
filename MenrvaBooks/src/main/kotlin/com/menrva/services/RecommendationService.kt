@@ -1,28 +1,45 @@
 package com.menrva.services
 
-import com.menrva.data.BookDTO
-import com.menrva.entities.Book
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.menrva.data.book.BookDTO
 import com.menrva.exceptions.UserNotFoundException
-import com.menrva.repositories.BookInteractionsRepository
-import com.menrva.repositories.BookRepository
+import com.menrva.exceptions.UserProfileNotFoundException
+import com.menrva.repositories.BookInteractionRepository
+import com.menrva.repositories.BookJpaRepository
 import com.menrva.repositories.UserRepository
 import org.springframework.stereotype.Service
 
 @Service
 class RecommendationService(
     private val userRepo: UserRepository,
-    private val bookRepo: BookRepository,
-    private val bookInteractionsRepo: BookInteractionsRepository,
+    private val bookRepo: BookJpaRepository,
+    private val bookInteractionRepo: BookInteractionRepository,
 ) {
-    fun getRecommendationsForUser(username: String): List<BookDTO> {
-        val user = userRepo.findByUsername(username) ?: throw UserNotFoundException()
-        val interactions = bookInteractionsRepo.findByUserId(user.id)
-        val preferredGenres = interactions.flatMap { it.book.genres }.groupBy { it }.maxBy { it.value.size }
-        val preferredKeywords = interactions.flatMap { it.book.keywords }.groupBy { it }.maxBy { it.value.size }
+    fun getRecommendationsForUser(tag: String): List<BookDTO> {
+        val user = userRepo.findByTag(tag) ?: throw UserNotFoundException()
+        val userProfile =
+            user.userProfile ?: throw UserProfileNotFoundException("User profile not found for user: $tag")
 
-        val recommendedBooks = bookRepo.findBooksByGenresAndKeywords(preferredGenres.value, preferredKeywords.value)
-            .filterNot { user.bookInteractions.any { interaction -> interaction.book.id == it.id } }
+        val gson = Gson()
+        val type = object : TypeToken<Map<String, Map<String, Double>>>() {}.type
+        val preferenceVector: Map<String, Map<String, Double>> =
+            gson.fromJson(userProfile.preferenceVector, type) as Map<String, Map<String, Double>>
+
+        // Extract top genres and keywords
+        val genres =
+            preferenceVector["Genres"]?.entries?.sortedByDescending { it.value }?.map { it.key }?.take(7) ?: listOf()
+        val keywords =
+            preferenceVector["Keywords"]?.entries?.sortedByDescending { it.value }?.map { it.key }?.take(7) ?: listOf()
+
+        val recommendedBooks = bookRepo.findBooksByGenresSubgenresOrKeywordsTags(genres, keywords)
+            .filterNot { user.bookInteractions.any { interaction -> interaction.book.id == it.id && ((interaction.hasRead == true || interaction.likeDislike != 0) || interaction.interested == true) } }
             .map { book -> BookDTO(book) }
+
         return recommendedBooks
+    }
+
+    fun test(): List<BookDTO> {
+        return bookRepo.findAll().map { BookDTO(it) }
     }
 }

@@ -1,5 +1,6 @@
 package com.menrva.entities
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
@@ -7,16 +8,28 @@ import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDate
 
 @Entity
-data class Series(
+class Series(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
-    val name: String,
+    var id: Long? = null,
+    var name: String? = null,
     @CreationTimestamp @Column(name = "date_added")
-    val dateAdded: LocalDate,
+    var dateAdded: LocalDate? = null,
     @UpdateTimestamp @Column(name = "date_updated")
-    val dateUpdated: LocalDate,
-    val reviewed: Boolean,
-    @JsonManagedReference
-    @OneToMany @JoinColumn(name = "series_id")
-    val books: Set<Book> = HashSet()
-)
+    var dateUpdated: LocalDate? = null,
+    var reviewed: Boolean? = false,
+//    @JsonManagedReference
+    @JsonIgnore
+    @OneToMany(cascade = [CascadeType.MERGE])
+    @JoinColumn(name = "series_id")
+    var books: Set<Book> = mutableSetOf(),
+    @JsonIgnore
+    @ManyToMany(mappedBy = "series")
+    var authors: MutableSet<Author> = mutableSetOf(),
+    @JsonIgnore
+    @OneToMany(mappedBy = "series")
+    var seriesInteractions: MutableSet<SeriesInteraction> = mutableSetOf()
+) {
+    override fun toString(): String {
+        return "Series(id=$id, name=$name, reviewed=$reviewed)"
+    }
+}

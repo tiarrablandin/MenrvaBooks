@@ -1,26 +1,37 @@
 package com.menrva.entities
 
 import com.fasterxml.jackson.annotation.JsonBackReference
-import com.fasterxml.jackson.annotation.JsonIdentityInfo
-import com.fasterxml.jackson.annotation.ObjectIdGenerators
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
+import org.springframework.data.elasticsearch.annotations.Document
+import org.springframework.data.elasticsearch.annotations.Field
+import org.springframework.data.elasticsearch.annotations.FieldType
 import java.time.LocalDate
 
 @Entity
-data class Book(
+@Document(indexName = "books")
+class Book(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
-    val cover: String,
-    val title: String,
-    val description: String,
+    var id: Long? = null,
+    var cover: String? = null,
+    @Field(type = FieldType.Text, index = true)
+    var title: String? = null,
+    var description: String? = null,
     @Column(name = "page_count")
-    val pageCount: Int,
+    var pageCount: Int? = null,
+    var views: Int? = null,
     @Column(name = "publication_date")
-    val publicationDate: LocalDate,
+    var publicationDate: LocalDate? = null,
+    @CreationTimestamp
     @Column(name = "date_added")
-    val dateAdded: LocalDate,
+    var dateAdded: LocalDate? = null,
+    @UpdateTimestamp
     @Column(name = "date_updated")
-    val dateUpdated: LocalDate,
+    var dateUpdated: LocalDate? = null,
+    @Column(name = "reviewed", nullable = false)
+    var reviewed: Boolean? = false,
     @JsonBackReference(value = "books")
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -28,29 +39,51 @@ data class Book(
         joinColumns = [JoinColumn(name = "book_id")],
         inverseJoinColumns = [JoinColumn(name = "genre_id")]
     )
-    val genres: Set<Genre> = HashSet(),
-    @JsonBackReference(value = "books")
+    var genres: MutableSet<Genre> = mutableSetOf(),
+//    @JsonBackReference(value = "books")
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "book_has_keyword",
         joinColumns = [JoinColumn(name = "book_id")],
         inverseJoinColumns = [JoinColumn(name = "keyword_id")]
     )
-    val keywords: Set<Keyword> = HashSet(),
-    @JsonBackReference(value = "books")
+    var keywords: MutableSet<Keyword> = mutableSetOf(),
+    @JsonIgnore
+//    @JsonBackReference(value = "books")
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "book_has_tag",
         joinColumns = [JoinColumn(name = "book_id")],
         inverseJoinColumns = [JoinColumn(name = "tag_id")]
     )
-    val tags: Set<Tag> = HashSet(),
-    @JsonBackReference(value = "books")
-    @ManyToOne @JoinColumn(name = "series_id")
-    val series: Series?,
+    var tags: MutableSet<Tag> = mutableSetOf(),
+    @JsonIgnore
+//    @JsonBackReference(value = "books")
+    @ManyToOne(cascade = [CascadeType.MERGE])
+    @JoinColumn(name = "series_id")
+    var series: Series? = null,
+    @JsonIgnore
+    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
+    var bookInteractions: MutableSet<BookInteraction> = mutableSetOf(),
+    @JsonIgnore
+    @ManyToMany(mappedBy = "books")
+    var authors: MutableSet<Author> = mutableSetOf(),
+    @JsonIgnore
+    @ManyToMany(mappedBy = "books")
+    var subGenres: MutableSet<SubGenre> = mutableSetOf(),
+    @JsonIgnore
     @OneToMany(mappedBy = "book")
-    val bookInteractions: Set<BookInteractions> = HashSet()
+    var comments: MutableSet<Comment> = mutableSetOf(),
+    @JsonIgnore
+    @OneToMany(mappedBy = "book")
+    var links: MutableSet<Link> = mutableSetOf(),
+    @Transient
+    var numberOfLikes: Int? = null,
+    @Transient
+    var numberOfDislikes: Int? = null,
 ) {
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -68,5 +101,10 @@ data class Book(
         result = 31 * result + title.hashCode()
         return result
     }
+
+    override fun toString(): String {
+        return "Book(id=$id, title='$title', series='${series?.name}')"
+    }
+
 }
 

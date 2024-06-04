@@ -1,28 +1,32 @@
+import { authenticate } from '@/app/lib/services/apiService';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from './store';
 import { User } from '../models/user';
-import { authenticate } from '@/app/services/apiService';
+import { RootState } from './store';
 
 interface UserState {
     user: User | null;
-    error: string | null;
+    allUsers: User[];
     jwt: string | null;
+    error: string | null;
     loading: boolean;
 }
 
 const initialState: UserState = {
     user: null,
-    error: null,
+    allUsers: [],
     jwt: null,
+    error: null,
     loading: false,
 };
 
 // Define an async thunk for the login process
 export const login = createAsyncThunk(
     'user/login',
-    async ({ username, password }: { username: string, password: string }, { rejectWithValue }) => {
+    async ({ identifier, password }: { identifier: string, password: string }, { rejectWithValue }) => {
         try {
-            const { jwt, user } = await authenticate(username, password);
+            const { jwt, user } = await authenticate(identifier, password);
+            sessionStorage.setItem('token', jwt);
+            sessionStorage.setItem('userDetails', JSON.stringify(user));
             return { jwt, user };
         } catch (error) {
             return rejectWithValue('Failed to login');
@@ -39,7 +43,45 @@ export const logout = createAsyncThunk(
         } catch (error) {
             return rejectWithValue("Failed to logout");
         }
-    });
+    }
+);
+
+export const toggleUserActive = createAsyncThunk(
+    'user/toggleActive',
+    async ({ userId, token }: { userId: number, token: string | null }, { rejectWithValue }) => {
+        try {
+            const response = await fetch(`http://localhost:8085/api/users/${userId}/active`, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+            if (!response.ok) {
+                throw new Error("Failed to toggle liked status");
+            }
+            const data = await response.json();
+            console.log(data);
+            return data;
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+export const fetchUsersThunk = createAsyncThunk(
+    'user/fetchUsers',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await fetch('http://localhost:8085/api/users');
+            if (!response.ok) {
+                throw new Error("Failed to fetch users.")
+            }
+            return await response.json();
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+)
 
 // Create a user slice with reducers and extraReducers for handling async thunks
 export const userSlice = createSlice({
@@ -51,10 +93,24 @@ export const userSlice = createSlice({
             state.jwt = null;
             state.loading = false;
         },
-        // Add any other user-related reducers here
+        setToken: (state, action: PayloadAction<string>) => {
+            state.jwt = action.payload;
+        },
+        setUserDetails: (state, action: PayloadAction<User>) => {
+            state.user = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
+            .addCase(fetchUsersThunk.fulfilled, (state, action) => {
+                state.allUsers = action.payload;
+            })
+            .addCase(toggleUserActive.fulfilled, (state, action) => {
+                const index = state.allUsers.findIndex(user => user.id === action.payload.id);
+                if (index !== -1) {
+                    state.allUsers[index] = action.payload;
+                }
+            })
             .addCase(login.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -80,7 +136,7 @@ export const userSlice = createSlice({
     },
 });
 
-export const { logoutSuccess } = userSlice.actions;
+export const { logoutSuccess, setToken, setUserDetails } = userSlice.actions;
 export default userSlice.reducer;
 
 export const selectCurrentUser = (state: RootState) => state.user.user;

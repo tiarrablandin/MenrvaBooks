@@ -1,16 +1,16 @@
-import { authenticate } from "@/app/services/apiService";
+import { authenticate } from "@/app/lib/services/apiService";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../store/store";
 import { login } from "../store/userSlice";
 
 export function useAuthenticateUser() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const router = useRouter();
 
-    const authenticateUser = async (username: string, password: string) => {
+    const authenticateUser = async (identifier: string, password: string) => {
         try {
-            const { jwt, user } = await authenticate(username, password);
-            // dispatch(login({username, password}))
+            const { jwt, user } = await authenticate(identifier, password);
+            dispatch(login({ identifier, password }))
         } catch (error) {
 
         }

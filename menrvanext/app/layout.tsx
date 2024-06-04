@@ -1,31 +1,32 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import CustomNavbar from "./ui/nav";
-import { Footer } from "./ui/footer";
 import ReduxProvider from "@/providers";
-
-const inter = Inter({ subsets: ["latin"] });
+import type { Metadata } from "next";
+import "./globals.css";
+import { MenrvaThemeProvider } from "./ui/theme/themeProvider";
 
 export const metadata: Metadata = {
-  title: "Menrva Book",
+  title: "Menrva Books",
   description: "",
 };
 
 export default function RootLayout({
   children,
+  auth,
 }: Readonly<{
   children: React.ReactNode;
+  auth?: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <ReduxProvider>
-        <body className={inter.className}>
-          <CustomNavbar />
-          {children}
-          <Footer />
-        </body>
-      </ReduxProvider>
-    </html >
+      <body
+        className={`bg-old-lace dark:bg-onyx`}
+      >
+        <ReduxProvider>
+          <MenrvaThemeProvider>
+            {auth}
+            {children}
+          </MenrvaThemeProvider>
+        </ReduxProvider>
+      </body>
+    </html>
   );
 }

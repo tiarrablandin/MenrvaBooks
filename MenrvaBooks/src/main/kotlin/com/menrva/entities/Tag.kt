@@ -1,5 +1,6 @@
 package com.menrva.entities
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
@@ -7,16 +8,17 @@ import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDate
 
 @Entity
-data class Tag(
+class Tag(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
-    val name: String,
+    var id: Long? = null,
+    var name: String? = null,
     @CreationTimestamp @Column(name = "date_added")
-    val dateAdded: LocalDate,
+    var dateAdded: LocalDate? = null,
     @UpdateTimestamp @Column(name = "date_updated")
-    val dateUpdated: LocalDate,
-    val reviewed: Boolean,
-    @JsonManagedReference
+    var dateUpdated: LocalDate? = null,
+    var reviewed: Boolean? = false,
+//    @JsonManagedReference
+    @JsonIgnore
     @ManyToMany(mappedBy = "tags")
-    val books: Set<Book> = HashSet()
+    var books: Set<Book> = HashSet()
 )
