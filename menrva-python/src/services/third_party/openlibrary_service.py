@@ -22,7 +22,7 @@ def fetch_popular_books_from_ol_by_genre(genre):
                 'cover': get_cover_url_by_photo_id(cover_id),
                 'publish_year': result.get('first_publish_year'),
                 'description': result.get('first_sentence'),
-                'median_page_count': result.get('number_of_pages_median'),
+                'page_count': result.get('number_of_pages_median'),
                 'first_publish_year': result.get('first_publish_year'),
                 'isbn': result.get('isbn', [None])[0],
                 'work_id': result.get('key').split('/')[-1]
@@ -50,7 +50,6 @@ def fetch_single_book_by_work_id(work_id):
     response = requests.get(url)
     if response.status_code == 200:
         work_data = response.json()
-        print(f"WORK DATA: {work_data}")
 
         authors = [author['author']['key'].split('/')[-1] for author in work_data.get('authors', [])]
         description = work_data.get('description', {}).get('value') if isinstance(work_data.get('description'), dict) else work_data.get('description')
@@ -75,7 +74,6 @@ def fetch_full_books_by_work_id(work_id):
     response = requests.get(url)
     if response.status_code == 200:
         work_data = response.json()
-        print(f"WORK DATA: {work_data}")
 
         authors = [author['author']['key'].split('/')[-1] for author in work_data.get('authors', [])]
         description = work_data.get('description', {}).get('value') if isinstance(work_data.get('description'), dict) else work_data.get('description')
