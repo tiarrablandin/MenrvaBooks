@@ -43,10 +43,13 @@ export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: stri
               <AdvancedSearchComponent theme={theme} />
             </div>
           </ReduxProvider>
-          <IconButton variant="text" className="w-8 h-8 -mr-12 mt-2">
-            <BellIcon className="h-5 w-5 text-eggplant dark:text-old-lace" />
-          </IconButton>
-          <ProfileMenu tag={tag} role={role} />
+          <div className="mr-12 flex items-center gap-1">
+            <IconButton variant="text" className="w-8 h-8 mt-2">
+              <BellIcon className="h-5 w-5 text-eggplant dark:text-old-lace" />
+            </IconButton>
+            <ProfileMenu tag={tag} role={role} />
+            <ThemeToggle theme={theme} />
+          </div>
         </div>
         <IconButton
           size="sm"
@@ -61,7 +64,6 @@ export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: stri
             <Bars3Icon className="h-6 w-6" strokeWidth={2} />
           )}
         </IconButton>
-        {theme ? <ThemeToggle theme={theme} /> : <></>}
       </div>
       <Collapse open={open} className="hidden">
         <div className="flex flex-wrap items-center gap-2">
@@ -72,7 +74,7 @@ export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: stri
           <ReduxProvider>
             <AdvancedSearch theme={theme} />
           </ReduxProvider>
-          {theme ? <ThemeToggle theme={theme} /> : <></>}
+          <ThemeToggle theme={theme} />
         </div>
       </Collapse>
     </Navbar>

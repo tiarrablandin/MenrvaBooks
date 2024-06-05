@@ -13,8 +13,6 @@ import {
 import { Advent_Pro } from "next/font/google";
 import Link from "next/link";
 
-const advent = Advent_Pro({ subsets: ["latin"] });
-
 const SettingsSidebar = () => {
   return (
     <Card className="h-screen fixed w-52 shadow-blue-gray-900/5 rounded-none bg-pink-lavender/65">
@@ -23,7 +21,7 @@ const SettingsSidebar = () => {
           Settings
         </p>
       </div>
-      <List className={`text-eggplant min-w-full ${advent.className}`}>
+      <List className={`text-eggplant min-w-full`}>
         <Link href="#profile" passHref>
           <ListItem className="hover:bg-pink-lavender/40 flex items-center cursor-pointer">
             <ListItemPrefix>

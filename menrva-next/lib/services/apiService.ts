@@ -281,6 +281,7 @@ export async function toggleBookInterested(bookId: number, token: string) {
       headers: {
         "Authorization": `Bearer ${token}`
       }
+
     });
     if (!response.ok) {
       throw new Error("Failed to toggle interested status");
@@ -361,6 +362,31 @@ export async function authenticate(identifier: string, password: string) {
     return response.json();
   } catch (error) {
     console.error("Unable to log in: ", error);
+    return null;
+  }
+}
+
+export async function registerUser(email: string, firstName: string, lastName: string, tag: string, password: string) {
+  try {
+    console.log("####################################")
+    console.log(email);
+    console.log(firstName);
+    console.log(lastName);
+    console.log(tag);
+    console.log(password);
+    console.log("####################################")
+    const response = await fetch(`${baseUrl}/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, tag, firstName, lastName, password }),
+    })
+    const data = await response.json();
+    console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ " + data);
+    return data;
+  } catch (error) {
+    console.error("Unable to register: ", error);
     return null;
   }
 }
