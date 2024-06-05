@@ -1,5 +1,6 @@
 package com.menrva.services
 
+import com.menrva.data.user.RegistrationRequest
 import com.menrva.data.user.UserDetailsImpl
 import com.menrva.entities.Subscription
 import com.menrva.entities.User
@@ -35,16 +36,22 @@ class UserDetailsServiceImpl(
 
     fun existsByTag(tag: String): Boolean = userRepository.existsByTag(tag)
 
-    fun save(user: User): User {
-        println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ IN SERVICE 1")
+    fun save(user: RegistrationRequest): User {
         // Ensure you encode the password if not already done before calling this method
         val newPassword = passwordEncoder.encode(user.password)
-        println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ IN SERVICE 2 $newPassword")
-        val updatedUser = User(password = newPassword, subscription = Subscription(1))
-        println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ IN SERVICE 3 $updatedUser")
+        val updatedUser = User(
+            email = user.email,
+            tag = "@" + user.tag,
+            password = newPassword,
+            firstName = user.firstName,
+            lastName = user.lastName,
+            active = true,
+            role = "User",
+            subscription = Subscription(1)
+        )
 
 
-        return userRepository.save(updatedUser)
+        return userRepository.saveAndFlush(updatedUser)
     }
 
 }

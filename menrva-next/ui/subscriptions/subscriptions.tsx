@@ -19,9 +19,9 @@ const Subscriptions = () => {
   return (
     <div className="">
       <Tabs value="annual" className="py-8">
-        <TabsHeader className="flex justify-center bg-eggplant w-80 mx-auto">
+        <TabsHeader className="flex justify-center bg-eggplant w-80 mx-auto" indicatorProps={{ className: "bg-eggplant"}}>
           {data.map(({ label, value }) => (
-            <Tab key={value} value={value} className="">
+            <Tab key={value} value={value} className="text-old-lace">
               {label}
             </Tab>
           ))}
@@ -42,7 +42,7 @@ const Subscriptions = () => {
                     price={"$11.99/yr"}
                     info={[
                       "BASIC PLUS:",
-                      "No ad's",
+                      "No ads",
                       "Personalized recommendations",
                       "Book tracking",
                       "Release notifications",

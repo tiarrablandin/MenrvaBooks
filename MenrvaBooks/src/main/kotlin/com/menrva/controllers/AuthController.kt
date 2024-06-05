@@ -2,10 +2,12 @@ package com.menrva.controllers
 
 import com.menrva.data.user.AuthenticationRequest
 import com.menrva.data.user.AuthenticationResponse
+import com.menrva.data.user.RegistrationRequest
 import com.menrva.data.user.RegistrationResponse
 import com.menrva.entities.User
 import com.menrva.security.JwtUtil
 import com.menrva.services.UserDetailsServiceImpl
+import com.menrva.services.UserProfileService
 import org.apache.http.auth.AuthenticationException
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
@@ -21,6 +23,7 @@ class AuthController(
     private val jwtUtil: JwtUtil,
     private val userDetailsService: UserDetailsServiceImpl,
     private val authenticationManager: AuthenticationManager,
+    private val userProfileService: UserProfileService,
 ) {
 
     @PostMapping("/authenticate")
@@ -51,15 +54,17 @@ class AuthController(
     }
 
     @PostMapping("/register")
-    fun registerUser(@RequestBody newUser: User): ResponseEntity<RegistrationResponse> {
-        val tag = newUser.tag ?: ""
+    fun registerUser(@RequestBody newUser: RegistrationRequest): ResponseEntity<RegistrationResponse> {
+        print("%%%%%%%%%%%%% $newUser")
+        val tag = "@$newUser.tag" ?: ""
         // Check if user already exists to prevent duplicates
         if (userDetailsService.existsByTag(tag)) {
-            throw Exception("Error: Username is already taken!")
+            throw Exception("Error: Tag is already taken!")
         }
 
         try {
             val savedUser = userDetailsService.save(newUser)
+            userProfileService.initializeOrUpdateUserProfile(savedUser.id!!)
             val userDetails = userDetailsService.loadUserByUsername(tag)
             val existingUser = userDetailsService.loadFullUserByIdentifier(tag)
             val jwt = jwtUtil.generateToken(userDetails)

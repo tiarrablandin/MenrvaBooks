@@ -27,11 +27,9 @@ const config: Config = {
         "chinese-violet": "#827191",
         "onyx": "#3d3d3d",
       },
-      // fontFamily: {
-      //   sans: ['"Advent Pro"', "sans-serif"],
-      //   serif:['"Advent Pro"', "sans-serif"],
-      //   body: ['"Advent Pro"', "sans-serif"],
-      // }
+      fontFamily: {
+        sans: ['var(--font-advent-pro)'],
+      },
     },
   },
   plugins: [],

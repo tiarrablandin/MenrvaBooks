@@ -17,6 +17,11 @@
   }
 }
 
+.text {
+  font-family: var(--font-advent-pro);
+  font-weight: 400;
+}
+
 /* @layer base {
   @font-face {
     font-family: 'Advent_Pro';
