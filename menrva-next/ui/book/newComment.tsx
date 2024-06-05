@@ -20,7 +20,7 @@ export async function NewComment({ bookId, tag }: { bookId: number, tag: string 
                     await createComment(comment, bookId)
                 }} className="flex flex-col items-end">
                     <Input variant="static" type="text" name="comment" id="comment" />
-                    <Button className="mt-4 bg-eggplant text-old-lace" size="sm">
+                    <Button type="submit" className="mt-4 bg-eggplant text-old-lace" size="sm">
                         <p>submit</p>
                     </Button>
                 </form>
