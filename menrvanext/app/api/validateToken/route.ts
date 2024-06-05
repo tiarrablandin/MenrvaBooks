@@ -14,8 +14,6 @@ export async function GET(req: NextRequest) {
 
     try {
         const user = await fetchUserByTag(tag);
-
-
         return NextResponse.json({ user: user, jwt: jwt }, { status: 200 });
     } catch (error: any) {
         console.error(`JWT: ${jwt} USER: ${tag}`)

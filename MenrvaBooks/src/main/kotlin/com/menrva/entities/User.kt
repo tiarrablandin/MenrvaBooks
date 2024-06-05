@@ -32,13 +32,15 @@ class User(
     @Column(name = "date_updated")
     @UpdateTimestamp
     var dateUpdated: LocalDate? = null,
+    var theme: String? = null,
     @JsonBackReference(value = "user")
     @OneToMany(mappedBy = "user")
     var bookInteractions: MutableSet<BookInteraction> = mutableSetOf(),
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "subscription_id", nullable = true)
     var subscription: Subscription? = null,
-    @OneToOne(mappedBy = "user")
+    @JsonIgnore
+    @OneToOne(mappedBy = "user", cascade = [CascadeType.ALL])
     var userProfile: UserProfile? = null,
     @JsonIgnore
     @OneToMany(mappedBy = "user")

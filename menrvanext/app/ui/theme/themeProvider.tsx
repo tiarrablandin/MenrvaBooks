@@ -13,8 +13,6 @@ interface MenrvaThemeProviderProps {
 export function MenrvaThemeProvider({ children }: MenrvaThemeProviderProps) {
   const theme = useAppSelector((state) => state.theme.theme);
 
-
-
   useEffect(() => {
     document.body.classList.toggle("dark", theme === "dark");
   }, [theme]);

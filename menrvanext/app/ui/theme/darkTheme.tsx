@@ -19,7 +19,7 @@ export const darkTheme = {
     },
     typography: {
         defaultProps: {
-            className: `text-old-lace ${advent.className}`
+            className: `text-old-lace text-base`
         }
     }
 };

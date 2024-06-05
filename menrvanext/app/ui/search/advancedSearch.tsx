@@ -91,8 +91,6 @@ const AdvancedSearchComponent = () => {
                             </div>
                         </ListItem>
                     </Link>
-                    :
-                    <></>
                 </List>
             )}
         </div>

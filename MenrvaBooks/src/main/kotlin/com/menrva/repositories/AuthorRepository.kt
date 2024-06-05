@@ -12,7 +12,8 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface AuthorRepository : JpaRepository<Author, Long> {
-    fun findByPenName(penName: String): Author?
+    @Query("SELECT a FROM Author a WHERE LOWER(a.penName) LIKE LOWER(CONCAT('%', :penName, '%'))")
+    fun findByPenNameContainingIgnoreCase(@Param("penName") penName: String): List<AuthorSummary>
     fun existsByPenName(penName: String): Boolean
     @Query("SELECT a FROM Author a")
     fun findAllAuthorsAsSummaries(): List<AuthorSummary>

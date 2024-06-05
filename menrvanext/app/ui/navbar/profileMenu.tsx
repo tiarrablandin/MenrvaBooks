@@ -7,18 +7,16 @@ import {
   Button,
   ChevronDownIcon,
   HomeIcon,
-  IconButton,
   Menu,
   MenuHandler,
   MenuItem,
   MenuList,
   TableCellsIcon,
   Typography,
-  UserIcon,
+  UserIcon
 } from "@/providers";
 import Link from "next/link";
-import React, { useEffect } from "react";
-import Image from "next/image";
+import React from "react";
 
 const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> = ({
   tag,
@@ -60,23 +58,25 @@ const ProfileMenu: React.FC<{ tag: string; role: string; logout: () => void }> =
           </div> */}
           <Button
             variant="text"
-            className="flex items-center justify-start w-12 h-12 translate-x-1 gap-1 rounded-full"
+            className="flex items-center justify-center w-20 h-12 translate-x-4 gap-1 rounded-full"
           >
-            <Image
-              className="min-w-24 min-h-24 p-0 bg-transparent -translate-x-6 pointer-events-none"
-              // variant="circular"
-              // size="sm"
+            {/* <div className="-translate-x-12"> */}
+            <Avatar
+              className="min-w-24 min-h-24 p-0 bg-transparent pointer-events-none"
+              variant="circular"
+              size="sm"
               alt="tania andrew"
               src="/avatars/avatar7.webp"
               width={180}
               height={180}
             />
-            <div>
+            <div className="-translate-x-7">
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`h-3 w-3 -translate-x-12 transition-transform ${isMenuOpen ? "rotate-180" : ""}`}
+                className={`inline-block h-3 w-3 text-eggplant  transition-transform ${isMenuOpen ? "rotate-180" : ""}`}
               />
             </div>
+            {/* </div> */}
           </Button>
 
         </div>

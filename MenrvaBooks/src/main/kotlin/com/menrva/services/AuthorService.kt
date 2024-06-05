@@ -24,6 +24,8 @@ class AuthorService(
 
     fun findById(id: Long): Optional<Author> = authorRepo.findById(id)
 
+    fun findByPenName(penName: String): List<AuthorSummary> = authorRepo.findByPenNameContainingIgnoreCase(penName)
+
     fun findByAuthorId(authorId: Long): List<BookSummary> {
         return authorRepo.findBooksByAuthorId(authorId)
     }

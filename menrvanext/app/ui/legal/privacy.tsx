@@ -27,7 +27,7 @@ const Privacy: React.FC<PrivacyProps> = ({}) => {
           applies to all information collected through our website, mobile
           application, and/or any related services, sales, marketing, or events
           (we refer to them collectively in this privacy policy as the
-          "Services").
+          &#34;Services&#34;).
         </Typography>
         <Typography variant="h6" className="w-4/5 text-start pt-4">
           2. Consent
@@ -50,7 +50,7 @@ const Privacy: React.FC<PrivacyProps> = ({}) => {
         </Typography>
         <Typography className="flex text-start w-4/5 max-w-2/3">
           Usage Data: Information collected automatically through the operation
-          of our Services, which may include details such as your device's
+          of our Services, which may include details such as your device&#39;s
           Internet Protocol address (e.g., IP address), browser type, browser
           version, our Services pages that you visit, the time and date of your
           visit, the time spent on those pages, unique device identifiers, and

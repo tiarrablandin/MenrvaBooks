@@ -2,16 +2,11 @@ package com.menrva.controllers
 
 import com.menrva.data.book.BookDTO
 import com.menrva.data.book.BookSummary
-import com.menrva.entities.BookInteraction
 import com.menrva.services.BookInteractionService
 import com.menrva.services.BookService
 import com.menrva.services.UserService
-import com.sun.security.auth.UserPrincipal
 import org.springframework.http.ResponseEntity
-import org.springframework.security.core.annotation.AuthenticationPrincipal
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.*
-import java.security.Principal
 
 @RestController
 @RequestMapping("api/books")
@@ -56,7 +51,6 @@ class BookController(
     @PutMapping("{id}")
     fun updateBook(@PathVariable id: Long, @RequestBody bookDto: BookDTO): ResponseEntity<BookDTO> {
         val book = bookService.updateBook(id, bookDto)
-        println("*#*#*#*#*#*#*#*#*#*#*#*#*#*#*# $book")
         return ResponseEntity.ok(BookDTO(book))
     }
 

@@ -15,7 +15,7 @@ class Author(
     var penName: String? = null,
     var bio: String? = null,
     var text: String? = null,
-    @Column(name = "date_created")
+    @Column(name = "date_added")
     var dateAdded: LocalDate? = null,
     @Column(name = "date_updated")
     var dateUpdated: LocalDate? = null,

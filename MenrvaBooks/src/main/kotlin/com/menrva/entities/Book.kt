@@ -13,8 +13,7 @@ import java.time.LocalDate
 @Entity
 @Document(indexName = "books")
 class Book(
-    @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @org.springframework.data.annotation.Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
     var cover: String? = null,
     @Field(type = FieldType.Text, index = true)
@@ -22,6 +21,7 @@ class Book(
     var description: String? = null,
     @Column(name = "page_count")
     var pageCount: Int? = null,
+    var views: Int? = null,
     @Column(name = "publication_date")
     var publicationDate: LocalDate? = null,
     @CreationTimestamp
