@@ -19,7 +19,6 @@ const AdvancedSearchComponent: React.FC<{ theme: string }> = ({ theme }) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const fetchSuggestions = useCallback(async (term: string) => {
-        setIsLoading(true);
         const fetchedSuggestions = await fetchSearchResults(term);
         if (fetchedSuggestions) setSuggestions(fetchedSuggestions);
         setIsLoading(false);
@@ -41,8 +40,9 @@ const AdvancedSearchComponent: React.FC<{ theme: string }> = ({ theme }) => {
     }, [searchTerm, debouncedFetchSuggestions]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsLoading(true);
         setSearchTerm(event.target.value);
-        if (event.target.value === "") setSuggestions([]);
+        if (event.target.value === "") { setSuggestions([]); setIsLoading(false); }
     };
 
     const handleSubmit = async (event: React.FormEvent) => {
@@ -50,6 +50,7 @@ const AdvancedSearchComponent: React.FC<{ theme: string }> = ({ theme }) => {
         router.push(`/search/${searchTerm}`);
         setSuggestions([]);
         setSearchTerm("");
+        setIsLoading(false);
     };
 
     const handleFocus = () => {
@@ -81,29 +82,12 @@ const AdvancedSearchComponent: React.FC<{ theme: string }> = ({ theme }) => {
                     onFocus={handleFocus}
                     onBlur={handleBlur} />
             </form>
-            {isFocused && suggestions.length > 0 && (
-                isLoading ?
-                    <ListItem className="p-1 py-3 bg-white pointer-events-none">
-                        <Spinner className="mx-auto" />
-                    </ListItem>
-                    :
-                    <SuggestionCards suggestions={suggestions} searchTerm={searchTerm} isLoading={isLoading} />
-                // <List className="relative rounded w-full flex flex-col p-0 py-1 -ml-[2px]">
-                //     {suggestions.slice(0, 5).map((book, key) => (
-                //         <Link key={key} href={`book/${book.id}`}>
-                //             <ListItem className="p-1 hover:bg-eggplant/60 -my-1 dark:hover:bg-pink-lavender/80">
-                //                 <SuggestionCard book={book} />
-                //             </ListItem>
-                //         </Link>
-                //     ))}
-                //     <Link href={`../search/${searchTerm}`}>
-                //         <ListItem className="p-1 hover:bg-eggplant/60 -my-1 dark:hover:bg-pink-lavender/80">
-                //             <div className="flex items-center h-8 p-2 bg-white border border-gray-200 rounded-md shadow-sm space-x-2 w-full">
-                //                 <p>See Results...</p>
-                //             </div>
-                //         </ListItem>
-                //     </Link>
-                // </List>
+            {isFocused && (isLoading ?
+                <ListItem className="p-1 py-3 bg-white pointer-events-none">
+                    <Spinner className="mx-auto" />
+                </ListItem>
+                :
+                suggestions.length > 0 && <SuggestionCards suggestions={suggestions} searchTerm={searchTerm} isLoading={isLoading} />
             )}
         </div>
     );

@@ -173,6 +173,7 @@ create table if not exists user
     date_updated    date         null,
     subscription_id int          not null default 1,
     theme	    varchar(10) not null default 'light',
+    avatar	    int 	not null default 1,
     -- subscription_id int          not null,
     FOREIGN KEY (subscription_id) REFERENCES subscription (id)
 );
