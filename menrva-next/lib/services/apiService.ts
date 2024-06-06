@@ -2,6 +2,7 @@
 
 import { Author } from "../models/author";
 import { BookResponse } from "../models/book";
+import { Comment } from '@/lib/models/comment';
 import { User } from "../models/user";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -281,6 +282,7 @@ export async function toggleBookInterested(bookId: number, token: string) {
       headers: {
         "Authorization": `Bearer ${token}`
       }
+
     });
     if (!response.ok) {
       throw new Error("Failed to toggle interested status");
@@ -365,9 +367,34 @@ export async function authenticate(identifier: string, password: string) {
   }
 }
 
+export async function registerUser(email: string, firstName: string, lastName: string, tag: string, password: string) {
+  try {
+    console.log("####################################")
+    console.log(email);
+    console.log(firstName);
+    console.log(lastName);
+    console.log(tag);
+    console.log(password);
+    console.log("####################################")
+    const response = await fetch(`${baseUrl}/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, tag, firstName, lastName, password }),
+    })
+    const data = await response.json();
+    console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ " + data);
+    return data;
+  } catch (error) {
+    console.error("Unable to register: ", error);
+    return null;
+  }
+}
+
 // * COMMENTS
 
-export async function fetchCreateComment(comment: string, bookId: number, token: string) {
+export async function fetchCreateComment(comment: string, bookId: number, token: string): Promise<Comment | undefined> {
   try {
     const response = await fetch(`${url}/comments`, {
       method: "POST",
@@ -383,7 +410,7 @@ export async function fetchCreateComment(comment: string, bookId: number, token:
     return await response.json();
   } catch (error: any) {
     console.error(error.message);
-    return null;
+    return undefined;
   }
 }
 

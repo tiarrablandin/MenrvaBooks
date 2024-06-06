@@ -1,8 +1,8 @@
-
+import { Comment } from '@/lib/models/comment';
 import createComment from "@/lib/actions/createComment";
 import { Button, Input } from "@/providers/coreProviders";
 
-export async function NewComment({ bookId, tag }: { bookId: number, tag: string | undefined }) {
+export async function NewComment({ bookId, tag, comments }: { bookId: number, tag: string | undefined, comments?: Comment[]}) {
     return (
         <div>
             <div className="flex !items-center gap-4">
@@ -17,10 +17,12 @@ export async function NewComment({ bookId, tag }: { bookId: number, tag: string 
                 <form action={async (formData: FormData) => {
                     'use server';
                     const comment = formData.get('comment') as string
-                    await createComment(comment, bookId)
+                    const newComment = await createComment(comment, bookId)
+                    console.log(typeof newComment === 'object');
+                    // if (typeof newComment) comments?.push(newComment);
                 }} className="flex flex-col items-end">
                     <Input variant="static" type="text" name="comment" id="comment" />
-                    <Button className="mt-4 bg-eggplant text-old-lace" size="sm">
+                    <Button type="submit" className="mt-4 bg-eggplant text-old-lace" size="sm">
                         <p>submit</p>
                     </Button>
                 </form>

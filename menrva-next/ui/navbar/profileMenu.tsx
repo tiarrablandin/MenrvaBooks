@@ -59,7 +59,7 @@ const ProfileMenu: React.FC<{ tag: string; role: string; }> = ({ tag, role }) =>
 
         </div>
       </MenuHandler>
-      <MenuList className={`p-1 bg-pink-lavender dark:bg-chinese-violet dark:text-old-lace ${advent.className}`}>
+      <MenuList className={`p-1 bg-pink-lavender dark:bg-chinese-violet text-eggplant dark:text-old-lace ${advent.className}`}>
         <MenuItem key="1" onClick={closeMenu} className="">
           <div
             className={`${iconClass} transition-transform hover:scale-105 w-full cursor-pointer`}

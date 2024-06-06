@@ -10,27 +10,26 @@ import React, { useState } from 'react';
 interface LoginFormProps {
 }
 
-const advent = Advent_Pro({ weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], subsets: ["latin"] });
+const advent = Advent_Pro({ subsets: ["latin"] });
 
 const LoginForm: React.FC<LoginFormProps> = ({ }) => {
     const router = useRouter();
-    // const { user, error, loginUser } = useAuth();
 
-    const [isOpen, setIsOpen] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setIsLoading(true);
         const formData = new FormData(event.currentTarget);
         const identifier = formData.get('identifier') as string;
-        router.push(`/userHome/@${identifier}`);
         const password = formData.get('password') as string;
+        router.push(`/userHome/@${identifier}`);
         await login(identifier, password);
         setIsOpen(false);
     }
 
-    const handleClose = () => { setIsOpen(false); router.back(); }
+    // const handleClose = () => { setIsOpen(false); router.back(); }
 
     // if (currentUser) {
     //     router.push("/user");
@@ -41,23 +40,21 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
         <Dialog size='xs' open={isOpen} handler={() => router.back()} className={`bg-transparent shadow-none flex items-center  mx-auto ${advent.className}`}>
             <form onSubmit={handleSubmit} className="space-y-2 container m-0">
                 <div className="flex-1 rounded-lg bg-gray-50 px-6 py-8 mx-auto h-full my-auto">
-                    <XMarkIcon className="w-5 h-5 cursor-pointer text-black inline-block -mt-8 -ml-2 mb-2" onClick={handleClose} />
+                    <XMarkIcon className="w-5 h-5 cursor-pointer text-black inline-block -mt-8 -ml-2 mb-2" onClick={() => router.back()} />
                     <div className={`mb-3 text-center text-4xl text-gray-900 font-medium`}>
                         Please log in to continue
                     </div>
                     <div className="w-full text-gray-900 mt-7">
                         <div>
                             <label
-                                className="mb-3 mt-5 block text-sm font-medium"
+                                className="mb-3 mt-5 block text-2xl font-medium"
                                 htmlFor="identifier"
                             >
-                                <div className={`mb-3 text-xl font-medium`}>
-                                    Username
-                                </div>
+                                Username
                             </label>
                             <div className="relative">
                                 <input
-                                    className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-md outline-2 placeholder:text-gray-500"
+                                    className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-md font-medium outline-2 placeholder:text-gray-500"
                                     id="identifier"
                                     type="text"
                                     name="identifier"
@@ -69,16 +66,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
                         </div>
                         <div className="mt-8">
                             <label
-                                className="mb-3 mt-5 block text-xl"
+                                className="mb-3 mt-5 block text-2xl font-medium"
                                 htmlFor="password"
                             >
-                                <div className={`mb-3 text-lg font-medium text-eggplant`}>
-                                    Password
-                                </div>
+                                Password
                             </label>
                             <div className="relative">
                                 <input
-                                    className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-md outline-2 placeholder:text-gray-500"
+                                    className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-md font-medium outline-2 placeholder:text-gray-500"
                                     id="password"
                                     type="password"
                                     name="password"

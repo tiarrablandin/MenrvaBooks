@@ -19,6 +19,7 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
           width={150}
           height={250}
           alt="book cover"
+          priority
         />
       </CardBody>
     </Card>

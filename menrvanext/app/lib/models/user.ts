@@ -1,6 +1,8 @@
+import { Author } from "./author";
 import { BookResponse } from "./book";
 import { BookInteraction } from "./bookInteraction";
 import { Subscription } from "./subscription";
+import { Comment } from "./comment";
 
 export interface User {
     id: number;
@@ -19,4 +21,6 @@ export interface User {
     hasReadBooks?: BookResponse[];
     likedBooks?: BookResponse[];
     tbrBooks?: BookResponse[];
+    author?: Author[];
+    comments?: Comment[];
 }

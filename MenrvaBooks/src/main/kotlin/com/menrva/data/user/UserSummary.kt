@@ -17,9 +17,9 @@ interface UserSummary {
     //    fun getSeriesInteractions(): Set<SeriesInteraction>?
     fun getSubscription(): Subscription?
     fun getComments(): Set<Comment>?
-    fun getAuthor(): Author?
-    fun getAuthors(): Set<Author>?
     fun getKeywords(): Set<Keyword>?
+    fun getAuthors(): Set<Author>?
+    fun getAuthor(): Set<Author>?
     fun getGenres(): Set<Genre>?
     fun getSubGenres(): Set<SubGenre>?
 

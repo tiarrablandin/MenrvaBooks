@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   CardBody,
   CardFooter,
@@ -8,6 +9,7 @@ import {
 } from "@/providers/coreProviders";
 import React from "react";
 import RegisterForm from "./register";
+import Link from "next/link";
 
 interface SubCardProps {
   header: string;
@@ -35,9 +37,9 @@ const subCard: React.FC<SubCardProps> = ({ header, price, info }) => {
           </div>
         </CardHeader>
         <CardBody className="p-0">
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-1">
             {info.map((data, key) => (
-              <li key={key} className="flex items-center gap-2">
+              <li key={key} className="flex items-center gap-1 text-nowrap">
                 <span className="rounded-full p-1">
                   <CheckCircleIcon className="h-5 w-5" />
                 </span>
@@ -47,16 +49,16 @@ const subCard: React.FC<SubCardProps> = ({ header, price, info }) => {
           </ul>
         </CardBody>
         <CardFooter className="flex justify-center mt-6 p-0">
-          <RegisterForm/>
-          {/* <Button
-          href="/register"
-            size="lg"
-            className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100 bg-eggplant"
-            ripple={false}
-            fullWidth={true}
-          >
-            Subscribe
-          </Button> */}
+          <Link href="/register" >
+            <Button
+              size="lg"
+              className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100 bg-eggplant"
+              ripple={false}
+              fullWidth={true}
+            >
+              Subscribe
+            </Button>
+          </Link>
         </CardFooter>
       </Card>
     </div>

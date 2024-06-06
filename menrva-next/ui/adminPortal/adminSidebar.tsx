@@ -33,6 +33,7 @@ const AdminSidebar: React.FC = () => {
               width={96}
               height={96}
               alt="logo"
+              priority
             />
           </div>
         </Link>

@@ -47,7 +47,7 @@ const bookComments = ({ bookId, comments, tag }: { bookId: number, comments?: Co
         <div className="my-6 md:my-8 md:text-center">
           Have something to say about this book?
         </div>
-        <NewComment bookId={bookId} tag={tag} />
+        <NewComment bookId={bookId} tag={tag} comments={comments} />
         <div className="my-8 md:text-center">
           What other readers are saying about this book...
         </div>

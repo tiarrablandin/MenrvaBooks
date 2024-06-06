@@ -23,12 +23,10 @@ function TeamCard({ img, name, title, linkedin }: TeamCardPropsType) {
           {name}
         </div>
         <p
-          color="gray"
-          variant="small"
           className="mb-2 text-lg !font-semibold"
         >
           {title}
-        </div>
+        </p>
         <div className="flex items-center justify-center gap-1.5">
           <Link href={linkedin}>
             <IconButton variant="text">
@@ -78,7 +76,7 @@ export function Team() {
         <p className="mx-auto max-w-4xl">
           This is the paragraph where you can write more details about your team. Keep you user
           engaged by providing meaningful information.
-        </div>
+        </p>
       </div>
       <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
         {members.map((props, key) => (

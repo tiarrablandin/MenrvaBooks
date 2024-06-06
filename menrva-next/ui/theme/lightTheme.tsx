@@ -13,21 +13,15 @@ export const lightTheme = {
                 },
                 indicator: {
                     bg: "bg-eggplant",
-
                 },
                 label: {}
             }
         }
     },
     typography: {
-        styles: {
-            className: `text-eggplant text-base ${advent.className}`
+        defaultProps: {
+            className: `text-eggplant text-base text`
             // className: `text-eggplant text-base`
         }
     },
-    input: {
-        styles: {
-            className: `${advent.className}`
-        }
-    }
 };
