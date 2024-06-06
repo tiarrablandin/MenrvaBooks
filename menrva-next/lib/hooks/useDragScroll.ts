@@ -29,12 +29,13 @@ function useDragScroll() {
     };
   
     const mouseMoveHandler = (e: MouseEvent) => {
-      if (!isMoving) {
+      const dx = e.clientX - pos.x;
+      const dy = e.clientY - pos.y;
+
+      if (!isMoving && (dy > 10 && dx > 10)) {
         setIsDragging(true);
         setIsMoving(true);
       }
-      const dx = e.clientX - pos.x;
-      const dy = e.clientY - pos.y;
   
       node.scrollTop = pos.top - dy;
       node.scrollLeft = pos.left - dx;
