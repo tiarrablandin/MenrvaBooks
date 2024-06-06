@@ -23,7 +23,7 @@ const config: Config = {
       colors: {
         "eggplant": "#673C4F",
         "pink-lavender": "#E1BEE7",
-        "old-lace": "#FFF3E0",
+        "old-lace": "#FFF3E0ce",
         "chinese-violet": "#827191",
         "onyx": "#3d3d3d",
       },

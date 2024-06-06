@@ -44,7 +44,7 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks 
             .fill(0)
             .map((_, index) => <BookSkeleton key={index} />)
           : books.slice(0, displayLimit).map((book) => (
-            <div onClick={() => { if (!isMoving) (router.push(`../book/${book.id}`)) }} key={book.id} className="w-full h-full cursor-pointer">
+            <div onClick={() => { if (!isDragging || !isMoving) (router.push(`../book/${book.id}`)) }} key={book.id} className="w-full h-full cursor-pointer">
               <BookCard book={book} key={book.id} />
             </div>
           ))}
