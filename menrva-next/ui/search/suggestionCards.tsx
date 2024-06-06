@@ -6,7 +6,7 @@ import { Advent_Pro } from "next/font/google";
 
 const advent = Advent_Pro({ subsets: ["latin"] });
 
-const SuggestionCards: React.FC<{ suggestions: BookResponse[], searchTerm: string }> = ({ suggestions, searchTerm }) => {
+const SuggestionCards: React.FC<{ suggestions: BookResponse[], searchTerm: string }> = async ({ suggestions, searchTerm }) => {
   return (
     <List className={`relative rounded w-full flex flex-col p-0 py-1 -ml-[2px] ${advent.className}`}>
       {suggestions.slice(0, 5).map((book, key) => (
@@ -19,7 +19,7 @@ const SuggestionCards: React.FC<{ suggestions: BookResponse[], searchTerm: strin
       <Link href={`../search/${searchTerm}`}>
         <ListItem className="p-1 hover:bg-eggplant/60 -my-1 dark:hover:bg-pink-lavender/80">
           <div className="flex items-center h-8 p-2 bg-white border border-gray-200 rounded-md shadow-sm space-x-2 w-full">
-            <p className="text-lg">See Results...</p>
+            <Typography variant="h6" className="text-lg">See Results...</Typography>
           </div>
         </ListItem>
       </Link>

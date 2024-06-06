@@ -6,7 +6,6 @@ import { registerUser } from "../services/apiService";
 // * PARAMETERS ARE PASSED IN FROM FORM AS FORMDATA
 export default async function register(email: string, firstName: string, lastName: string, tag: string, password: string) {
   try {
-    console.log("************************************ 1")
     const { jwt, user } = await registerUser(email, firstName, lastName, tag, password);
 
     const cookieStore = cookies();
@@ -17,9 +16,9 @@ export default async function register(email: string, firstName: string, lastNam
       sameSite: 'lax'
     });
 
-    cookieStore.set('tag', user.tag);
+    cookieStore.set('tag', user.tag, { sameSite: 'lax' });
 
-    cookieStore.set('role', user.role);
+    cookieStore.set('role', user.role, { sameSite: 'lax' });
 
     return { user: JSON.parse(JSON.stringify(user)) };
   } catch (error) {

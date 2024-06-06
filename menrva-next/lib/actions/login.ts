@@ -14,12 +14,12 @@ export default async function login(identifier: string, password: string) {
             httpOnly: true,
             secure: true,
             path: '/',
-            sameSite: 'lax'
+            sameSite: 'lax',
         });
 
-        cookieStore.set('tag', user.tag);
+        cookieStore.set('tag', user.tag, { sameSite: 'lax' });
 
-        cookieStore.set('role', user.role);
+        cookieStore.set('role', user.role, { sameSite: 'lax' });
 
         return { user: JSON.parse(JSON.stringify(user)) };
     } catch (error) {

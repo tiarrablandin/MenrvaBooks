@@ -2,6 +2,7 @@
 
 import { Author } from "../models/author";
 import { BookResponse } from "../models/book";
+import { Comment } from '@/lib/models/comment';
 import { User } from "../models/user";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -393,7 +394,7 @@ export async function registerUser(email: string, firstName: string, lastName: s
 
 // * COMMENTS
 
-export async function fetchCreateComment(comment: string, bookId: number, token: string) {
+export async function fetchCreateComment(comment: string, bookId: number, token: string): Promise<Comment | undefined> {
   try {
     const response = await fetch(`${url}/comments`, {
       method: "POST",
@@ -409,7 +410,7 @@ export async function fetchCreateComment(comment: string, bookId: number, token:
     return await response.json();
   } catch (error: any) {
     console.error(error.message);
-    return null;
+    return undefined;
   }
 }
 

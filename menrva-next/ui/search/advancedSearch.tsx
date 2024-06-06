@@ -6,62 +6,45 @@ import { Input } from '@/providers/coreProviders';
 import { debounce } from 'lodash';
 import { Advent_Pro } from 'next/font/google';
 import { useRouter } from 'next/navigation';
-import { Suspense, useCallback, useEffect, useState } from 'react';
+import { Suspense, use, useCallback, useEffect, useState } from 'react';
 import SuggestionCards from './suggestionCards';
 
 const advent = Advent_Pro({ subsets: ["latin"] });
 
+const fetchSuggestions = async (term: string) => {
+    const fetchedSuggestions = await fetchSearchResults(term);
+    return fetchedSuggestions;
+};
+
+const SuspensefulSuggestionCards: React.FC<{ searchTerm: string }> = ({ searchTerm }) => {
+    const suggestions = use(fetchSuggestions(searchTerm));
+    return <SuggestionCards suggestions={suggestions ? suggestions : []} searchTerm={searchTerm} />;
+};
+
 const AdvancedSearchComponent: React.FC<{ theme: string }> = ({ theme }) => {
     const router = useRouter();
     const [searchTerm, setSearchTerm] = useState('');
-    const [suggestions, setSuggestions] = useState<BookResponse[]>([]);
     const [isFocused, setIsFocused] = useState(false);
-
-    const fetchSuggestions = useCallback(async (term: string) => {
-        const fetchedSuggestions = await fetchSearchResults(term);
-        if (fetchedSuggestions) setSuggestions(fetchedSuggestions);
-    }, []);
 
     // Wrap the function with debounce and useCallback
     const debouncedFetchSuggestions = useCallback(debounce((term) => {
         fetchSuggestions(term);
     }, 300), [fetchSuggestions]);
 
-    useEffect(() => {
-        if (searchTerm) {
-            debouncedFetchSuggestions(searchTerm);
-        } else {
-            setSuggestions([]);
-        }
-        return () => {
-            debouncedFetchSuggestions.cancel();
-        };
-    }, [searchTerm, debouncedFetchSuggestions]);
-
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
-        if (event.target.value === "") setSuggestions([]);
     };
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         router.push(`/search/${searchTerm}`);
-        setSuggestions([]);
         setSearchTerm("");
     };
 
-    const handleFocus = () => {
-        setIsFocused(true);
-        if (searchTerm) {
-            debouncedFetchSuggestions(searchTerm);
-        }
-    };
+    const handleFocus = () => { setIsFocused(true); };
 
-    const handleBlur = () => {
-        // Delay hiding the suggestions to allow click events on suggestions to be registered
-        setTimeout(() => setIsFocused(false), 200);
-        // setSuggestions
-    };
+    // Delay hiding the suggestions to allow click events on suggestions to be registered
+    const handleBlur = () => { setTimeout(() => setIsFocused(false), 200); };
 
     return (
         <div className="flex flex-col w-4/5 h-12 mx-auto">
@@ -80,9 +63,9 @@ const AdvancedSearchComponent: React.FC<{ theme: string }> = ({ theme }) => {
                     onFocus={handleFocus}
                     onBlur={handleBlur} />
             </form>
-            {isFocused && suggestions.length > 0 && (
-                <Suspense fallback={<p>Loading...</p>}>
-                    <SuggestionCards suggestions={suggestions} searchTerm={searchTerm} />
+            {isFocused && searchTerm && (
+                <Suspense fallback={<>Loading...</>}>
+                    <SuspensefulSuggestionCards searchTerm={searchTerm} />
                 </Suspense>
                 // <List className="relative rounded w-full flex flex-col p-0 py-1 -ml-[2px]">
                 //     {suggestions.slice(0, 5).map((book, key) => (

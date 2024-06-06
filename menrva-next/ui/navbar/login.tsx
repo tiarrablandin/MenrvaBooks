@@ -16,6 +16,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
     const router = useRouter();
 
     const [isLoading, setIsLoading] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -25,7 +26,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
         const password = formData.get('password') as string;
         router.push(`/userHome/@${identifier}`);
         await login(identifier, password);
-        // setIsOpen(false);
+        setIsOpen(false);
     }
 
     // const handleClose = () => { setIsOpen(false); router.back(); }
@@ -36,7 +37,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
     // }
 
     return (
-        <Dialog size='xs' open={true} handler={() => router.back()} className={`bg-transparent shadow-none flex items-center  mx-auto ${advent.className}`}>
+        <Dialog size='xs' open={isOpen} handler={() => router.back()} className={`bg-transparent shadow-none flex items-center  mx-auto ${advent.className}`}>
             <form onSubmit={handleSubmit} className="space-y-2 container m-0">
                 <div className="flex-1 rounded-lg bg-gray-50 px-6 py-8 mx-auto h-full my-auto">
                     <XMarkIcon className="w-5 h-5 cursor-pointer text-black inline-block -mt-8 -ml-2 mb-2" onClick={() => router.back()} />

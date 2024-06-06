@@ -35,6 +35,7 @@ export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: stri
             width={92}
             height={92}
             alt="logo"
+            priority
           />
         </Link>
         <div className="lg:flex hidden justify-end items-center gap-8 container">

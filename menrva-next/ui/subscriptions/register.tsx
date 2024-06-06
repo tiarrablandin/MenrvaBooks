@@ -21,6 +21,9 @@ interface RegisterFormProps { }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({ }) => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
@@ -31,18 +34,16 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ }) => {
     const tag = formData.get('tag') as string;
     const password = formData.get('password') as string;
     
-    console.log({ email, firstName, lastName, tag, password });  // Log the data to check
     router.push(`/userHome/@${tag}`);
     
     await register(email, firstName, lastName, tag, password);
-    // setIsOpen(false);
+    setIsOpen(false);
   }
-  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <Dialog
       size="sm"
-      open={true}
+      open={isOpen}
       handler={() => router.back()}
       className={`bg-transparent shadow-none w-full ${advent.className} text-lg`}
     >
