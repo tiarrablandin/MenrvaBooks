@@ -1,21 +1,20 @@
-import { Typography } from "@/providers/coreProviders";
 import Link from "next/link";
 
 export function Banner() {
   return (
-    <section className="w-full mx-auto">
-      <div className="mb-4 shadow-sm px-4 py-2 flex items-center justify-center  gap-x-6 text-nowrap">
+    <section className="w-full lg:w-full mx-auto dark:bg-eggplant">
+      <div className="mb-4 shadow-sm p-1 flex items-center justify-center leading-tight">
         {/* <IconButton variant="text">
           <XMarkIcon className="w-4 h-4 stroke-2" />
         </IconButton> */}
-        <p className="text-md">
+        <p className="text-md line-clamp-2 text-center w-full">
           COMING SOON! | Forums! Soon there will be a forum community to discuss books with like-minded individuals!
         </p>
-          <Link href="/news">
-            <div className="text-eggplant dark:text-old-lace hover:scale-105 underline">
+        <Link href="/news">
+          <p className="w-min text-eggplant dark:text-old-lace hover:scale-105 underline text-nowrap text-sm">
             Learn More
-            </div>
-          </Link>
+          </p>
+        </Link>
       </div>
     </section>
   );

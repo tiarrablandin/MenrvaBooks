@@ -47,7 +47,7 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
         <div className="grid grid-cols-3 grid-rows-3 gap-8 pt-6 text-lg w-[97.5%] mx-auto">
           {/* Image */}
           {book?.cover ? (
-            <Image src={`${book?.cover}`} width={360} height={600} alt="" className="rounded-md h-auto min-w-36 lg:w-96 col-span-1 row-span-1 lg:row-span-3" />
+            <Image src={`${book?.cover}`} width={360} height={600} alt="" className="rounded-md h-auto min-w-36 mx-auto lg:w-96 col-span-1 row-span-1 lg:row-span-3" />
           ) : (
             <></>
           )}

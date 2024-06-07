@@ -17,8 +17,8 @@ const currentYear = new Date().getFullYear();
 
 export function Footer() {
   return (
-    <footer className="w-full bg-pink-lavender/80 dark:bg-chinese-violet h-60">
-      <div className="w-full max-w-7xl px-8 h-full">
+    <footer className="w-full bg-pink-lavender/80 dark:bg-chinese-violet h-[16rem] relative bottom-0">
+      <div className="w-full max-w-7xl px-8 h-full flex flex-col">
         <div className="w-2/3 flex flex-row justify-start">
           {SITEMAP.map(({ title, links, routes }, key) => (
             <div key={key} className="w-3/5 text-start">
@@ -40,62 +40,8 @@ export function Footer() {
             </div>
           ))}
         </div>
-        {/* <div>
-            <p
-              color="white"
-              className="mb-3 text-lg !font-semibold opacity-70"
-            >
-              Get the app
-            </p>
-            <Button
-              color="white"
-              size="sm"
-              className="flex items-center gap-3 px-3 mb-4"
-            >
-              <div className="flex items-center gap-1">
-                <Image
-                  src="https://www.material-tailwind.com/logos/logo-google-play.svg"
-                  alt="google-play"
-                  height={100}
-                  width={100}
-                  className="h-10 w-10 grayscale"
-                />
-                <div className="grid place-items-start">
-                  <p className="!text-xs !font-medium -mb-1.5">
-                    get it on
-                  </p>
-                  <p className="font-medium capitalize !text-lg">
-                    google play
-                  </p>
-                </div>
-              </div>
-            </Button>
-            <Button
-              size="sm"
-              color="white"
-              className="flex items-center gap-3 px-3"
-            >
-              <div className="flex items-center gap-1">
-                <Image
-                  src="https://www.material-tailwind.com/logos/logo-apple.png"
-                  alt="apple-ios"
-                  height={100}
-                  width={100}
-                  className="h-10 w-10"
-                />
-                <div className="grid place-items-start mt-1">
-                  <p className="!text-xs font-medium -mb-1 capitalize">
-                    Download on the
-                  </p>
-                  <p className="font-medium capitalize !text-lg">
-                    App Store
-                  </p>
-                </div>
-              </div>
-            </Button>
-        </div>*/}
-        <div className="flex w-full flex-col items-center justify-center border-t border-eggplant py-4 md:flex-row md:justify-between mt-2">
-          <p className="mb-2 text-center font-normal md:mb-0">
+        <div className="flex w-full flex-col items-center justify-center border-t border-eggplant md:flex-row md:justify-between mt-6">
+          <p className="my-2 text-center font-normal md:my-0">
             &copy; {currentYear} <a href="https://material-tailwind.com/">Menrva Books</a>. All
             Rights Reserved.
           </p>

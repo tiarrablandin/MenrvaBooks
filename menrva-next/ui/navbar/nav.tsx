@@ -26,11 +26,11 @@ export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: stri
   }, []);
 
   return (
-    <Navbar shadow={false} fullWidth className="border-none bg-pink-lavender dark:bg-chinese-violet p-0.5 pr-2 relative z-10">
-      <div className="w-full mx-auto flex h-[4.5rem] items-center justify-between">
+    <Navbar shadow={false} fullWidth className="border-none bg-pink-lavender dark:bg-chinese-violet p-0.5 relative overflow-visible">
+      <div className="w-full mx-auto flex h-[4.5rem] items-center justify-between overflow-visible">
         <Link href="/home">
           <Image
-            className="object-center w-[4rem] h-[4.5rem] mx-6"
+            className="object-center w-[4rem] h-[4.5rem] mx-4"
             src="https://i.imgur.com/RGGXm1T.png"
             width={92}
             height={92}
@@ -38,13 +38,13 @@ export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: stri
             priority
           />
         </Link>
-        <div className="lg:flex hidden justify-end items-center gap-8 container">
+        <div className="lg:flex hidden justify-end items-center gap-8 container z-10 overflow-visible">
           <ReduxProvider>
-            <div className="w-3/4 py-3 h-16 flex flex-col items-center">
+            <div className="w-3/4 py-1 h-16 flex flex-col items-center z-10">
               <AdvancedSearchComponent theme={theme} />
             </div>
           </ReduxProvider>
-          <div className="mr-12 flex items-center gap-1">
+          <div className="mr-12 flex items-center gap-1 z-10">
             <IconButton variant="text" className="w-8 h-8 mt-2">
               <BellIcon className="h-5 w-5 text-eggplant dark:text-old-lace" />
             </IconButton>
@@ -57,7 +57,7 @@ export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: stri
           variant="text"
           color="gray"
           onClick={handleOpen}
-          className="ml-auto inline-block lg:hidden"
+          className="ml-auto inline-block lg:hidden mr-4"
         >
           {open ? (
             <XMarkIcon className="h-6 w-6" strokeWidth={2} />
@@ -66,16 +66,20 @@ export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: stri
           )}
         </IconButton>
       </div>
-      <Collapse open={open} className="hidden">
-        <div className="flex flex-wrap items-center gap-2">
-          <IconButton variant="text">
-            <BellIcon className="h-5 w-5 text-eggplant dark:text-old-lace" />
-          </IconButton>
-          <ProfileMenu tag={tag} role={role} />
-          <ReduxProvider>
-            <AdvancedSearch theme={theme} />
-          </ReduxProvider>
-          <ThemeToggle theme={theme} />
+      <Collapse open={open} className="hidden z-10 overflow-visible">
+        <div className="grid grid-cols-3 grid-rows-2 gap-2 z-10">
+          <div className="col-span-3 flex mx-auto items-center z-10">
+            <IconButton variant="text">
+              <BellIcon className="h-5 w-5 text-eggplant dark:text-old-lace" />
+            </IconButton>
+            <ProfileMenu tag={tag} role={role} />
+            <ThemeToggle theme={theme} />
+          </div>
+          <div className="col-span-3 z-10 py-1">
+            <ReduxProvider>
+              <AdvancedSearch theme={theme} />
+            </ReduxProvider>
+          </div>
         </div>
       </Collapse>
     </Navbar>

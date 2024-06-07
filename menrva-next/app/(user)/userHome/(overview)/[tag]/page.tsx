@@ -18,7 +18,7 @@ export default async function Page({ params: { tag } }: { params: { tag: string 
   const recommendations = await fetchRecommendationsForUser(token);
 
   return (
-    <main className="w-screen min-h-[calc(100vh-295px)]">
+    <main className="w-screen min-h-[calc(100vh-295px)] overflow-x-hidden">
       <div className="w-screen h-full min-h-full flex flex-col items-center justify-start">
         <div className="w-[97%] min-h-full h-full flex flex-col items-center">
           <BookSlider defaultBooks={user?.tbrBooks} title={"TBR"} />
