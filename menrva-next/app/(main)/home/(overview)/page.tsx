@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
-  title: "MenrvaBooks",
+  title: "Home | MenrvaBooks",
 };
 
 export default async function Page() {
@@ -14,8 +14,10 @@ export default async function Page() {
 
   return (
     <main className="w-screen min-h-[calc(100vh-295px)]">
-      <div className="w-screen h-full flex flex-col items-center">
-        <Banner />
+      <div className="w-screen h-full flex flex-col items-center text-old-lace">
+        <div className="w-full">
+          <Banner />
+        </div>
         {/* temporarily commenting out new releases */}
         {/* <BookSlider fetchData={fetchNewReleasesSlider} title={"New Releases"} /> */}
         <div className="w-[95%]">

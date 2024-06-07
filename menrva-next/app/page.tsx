@@ -1,10 +1,9 @@
+import { Typography } from "@/providers/coreProviders";
 import ReduxProvider from "@/providers/reduxProvider";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import AnimatedHeader from "../ui/motion/animatedHeader";
 import AdvancedSearchComponent from "../ui/search/advancedSearch";
-import { Typography } from "@/providers/coreProviders";
-import { Suspense } from "react";
 
 
 export default function Home() {
@@ -12,9 +11,7 @@ export default function Home() {
   return (
     <div className={`flex flex-col h-screen w-full `}>
       <main className="flex flex-col h-full w-full items-center justify-center text-nowrap">
-        <Suspense fallback={<p>Loading...</p>}>
-          <AnimatedHeader />
-        </Suspense>
+        <AnimatedHeader />
 
         <div className="flex flex-col w-4/5 xl:w-3/5">
           <ReduxProvider>
