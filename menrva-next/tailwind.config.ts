@@ -21,11 +21,19 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        "eggplant": "#673C4F",
-        "pink-lavender": "#E1BEE7",
-        "old-lace": "#FFF3E0ce",
-        "chinese-violet": "#827191",
-        "onyx": "#3d3d3d",
+        // "old-lace": "#FFF3E0ce",
+        // "pink-lavender": "#E1BEE7",
+        // "eggplant": "#673C4F",
+        // "chinese-violet": "#827191",
+        // "onyx": "#3d3d3d",
+        
+        "old-lace": "#fef5e5", //parchment
+        "eggplant": "#632D47",
+        "pink-lavender": "#ad6684", //rose
+        "deep-sea": "#3c5a65",
+        
+        "chinese-violet": "#7B455C",
+        "onyx": "#373741",
       },
       fontFamily: {
         sans: ['var(--font-advent-pro)'],
