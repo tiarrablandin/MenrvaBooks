@@ -10,5 +10,5 @@ export async function MenrvaThemeProvider({ children }: MenrvaThemeProviderProps
   const theme = cookies().get('theme')?.value as string;
 
   // ******************* IGNORE THIS ERROR!!!!!!!!!!!!!!
-  return (<ThemeProvider selectedTheme={theme}>{children as ReactElement}</ThemeProvider>);
+  return (<ThemeProvider selectedTheme={theme === 'dark' ? 'dark' : 'light'}>{children as ReactElement}</ThemeProvider>);
 }

@@ -22,7 +22,7 @@ interface RegisterFormProps { }
 const RegisterForm: React.FC<RegisterFormProps> = ({ }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,9 +33,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ }) => {
     const lastName = formData.get('lastName') as string;
     const tag = formData.get('tag') as string;
     const password = formData.get('password') as string;
-    
+
     router.push(`/userHome/@${tag}`);
-    
+
     await register(email, firstName, lastName, tag, password);
     setIsOpen(false);
   }
@@ -44,7 +44,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ }) => {
     <Dialog
       size="sm"
       open={isOpen}
-      handler={() => router.back()}
+      handler={() => { router.back(); setIsOpen(false); }}
       className={`bg-transparent shadow-none w-full ${advent.className} text-lg`}
     >
       <form onSubmit={handleSubmit} className="space-y-3 my-auto text-xl font-medium">
@@ -53,7 +53,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ }) => {
             <h1 className={` text-center text-3xl font-semibold text-eggplant`}>Register for an account.</h1>
             <XMarkIcon
               className="w-5 h-5 cursor-pointer inline-block absolute top-5 right-5 text-eggplant"
-              onClick={() => router.back()}
+              onClick={() => { router.back(); setIsOpen(false); }}
             />
           </div>
           <div className="w-full my-auto">

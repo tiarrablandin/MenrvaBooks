@@ -10,7 +10,7 @@ export async function NewComment({ bookId, tag, comments }: { bookId: number, ta
                     {tag ? tag : ""}
                 </div>
             </div>
-            <div className="mt-4 h-full flex-col pl-14">
+            <div className="mt-4 h-full flex-col">
                 <div className=" flex items-center gap-2 !text-sm font-normal !text-blue-gray-500">
                     Constructive feedback is possible while also being nice...
                 </div>

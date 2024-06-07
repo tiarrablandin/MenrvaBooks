@@ -1,13 +1,16 @@
 import { fetchBookById, fetchBookInteractionsById } from "@/lib/services/apiService";
-import ReduxProvider from "@/providers/reduxProvider";
-import InitializeInteractions from "@/lib/utils/initalizeInteractions";
-import SingleBook, { preload } from "@/ui/book/singleBook";
+import SingleBook from "@/ui/book/singleBook";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 
-export const metadata: Metadata = {
-  title: "MenrvaBooks | Book",
-};
+export async function generateMetadata(
+  { params: { id } }: { params: { id: number } }): Promise<Metadata> {
+    const book = await fetchBookById(id);
+    const title = book?.title ? decodeURIComponent(book.title) : ""
+  return {
+    title: title
+  }
+}
 
 export default async function Page({ params: { id } }: { params: { id: number } }) {
   const tag = cookies().get('tag')?.value as string;

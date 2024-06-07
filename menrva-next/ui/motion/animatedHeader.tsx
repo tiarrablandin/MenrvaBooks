@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 
-export default async function AnimatedHeader() {
+export default function AnimatedHeader() {
     return <motion.h1
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
