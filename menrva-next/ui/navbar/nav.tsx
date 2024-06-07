@@ -66,7 +66,7 @@ export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: stri
           )}
         </IconButton>
       </div>
-      <Collapse open={open} className="hidden z-10 overflow-visible">
+      <Collapse open={open} className={`hidden z-10 ${open ? "overflow-visible" : "overflow-hidden" }`}>
         <div className="grid grid-cols-3 grid-rows-2 gap-2 z-10">
           <div className="col-span-3 flex mx-auto items-center z-10">
             <IconButton variant="text">
@@ -75,7 +75,7 @@ export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: stri
             <ProfileMenu tag={tag} role={role} />
             <ThemeToggle theme={theme} />
           </div>
-          <div className="col-span-3 z-10 py-1">
+          <div className="col-span-3 z-10 py-1 overflow-visible">
             <ReduxProvider>
               <AdvancedSearch theme={theme} />
             </ReduxProvider>

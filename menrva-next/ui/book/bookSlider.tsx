@@ -38,13 +38,13 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks 
       <p className={`${neue.className} text-2xl self-start ml-4 my-4`}>
         {title}
       </p>
-      <div ref={ref} className="flex items-end justify-start gap-4 overflow-scroll max-w-full mx-4 mr-auto pb-3 md:pb-6">
+      <div ref={ref} className="flex items-end justify-start gap-4 overflow-scroll max-w-full mx-4 mr-auto pb-3 md:pb-6 z-0">
         {isLoading
           ? Array(10)
             .fill(0)
             .map((_, index) => <BookSkeleton key={index} />)
           : books.slice(0, displayLimit).map((book) => (
-            <div onClick={() => { if (!isMoving) (router.push(`../book/${book.id}`)) }} key={book.id} className="w-full h-full cursor-pointer">
+            <div onClick={() => { if (!isMoving) (router.push(`../book/${book.id}`)) }} key={book.id} className="w-full h-full cursor-pointer z-0">
               <BookCard book={book} key={book.id} />
             </div>
           ))}
