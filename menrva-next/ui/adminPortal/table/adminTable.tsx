@@ -71,11 +71,11 @@ const AdminTable: React.FC<AdminTableProps> = ({
 
   return (
     <>
-      <Card className={` ${variant === 'small' ?  'h-[85vh] w-[95%] mx-auto my-4 overflow-scroll' : 'h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll'} ${advent.className} text-eggplant`}>
+      <Card className={` ${variant === 'small' ?  'h-[85vh] w-[95%] mx-auto my-4 overflow-scroll' : 'h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll'} ${advent.className} text-eggplant dark:text-old-lace dark:bg-eggplant`}>
         <CardHeader
           floated={false}
           shadow={false}
-          className={`h-1/6 rounded-none flex flex-nowrap justify-between gap-2 p-2 text-nowrap overflow-x-scroll no-scrollbar ${variant === 'small' ? 'flex-col' : ''}`}
+          className={`h-1/6 rounded-none flex flex-nowrap justify-between gap-2 p-2 text-nowrap overflow-x-scroll no-scrollbar ${variant === 'small' ? 'flex-col' : ''} bg-eggplant`}
         >
           <div className='flex items-center justify-between gap-4 w-full'>
             <div className="flex flex-col">

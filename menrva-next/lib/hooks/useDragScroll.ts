@@ -32,7 +32,7 @@ function useDragScroll() {
       const dx = e.clientX - pos.x;
       const dy = e.clientY - pos.y;
 
-      if (!isMoving && (dy > 10 && dx > 10)) {
+      if (!isMoving && (dx > 10 && dy > 10)) {
         setIsDragging(true);
         setIsMoving(true);
       }

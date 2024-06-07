@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${advent.variable}`}>
-      <body className={`bg-old-lace dark:bg-onyx text-eggplant dark:text-old-lace min-h-[calc(100vh-295px)]`}>
+      <body className={`bg-old-lace dark:bg-onyx text-eggplant dark:text-old-lace min-h-[calc(100vh-295px)] overflow-x-hidden`}>
         <MenrvaThemeProvider>
           {children}
           {auth}
