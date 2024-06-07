@@ -8,17 +8,17 @@ const advent = Advent_Pro({ subsets: ["latin"] });
 
 const SuggestionCards: React.FC<{ suggestions: BookResponse[], searchTerm: string, isLoading: boolean }> = ({ suggestions, searchTerm, isLoading}) => {
   return (
-    <List className={`relative rounded w-full flex flex-col p-0 py-1 -ml-[2px] ${advent.className} z-10`}>
+    <List className={`relative rounded w-full flex flex-col p-0 py-1 -ml-[2px] ${advent.className} z-20`}>
       {suggestions.slice(0, 5).map((book, key) => (
         <Link key={key} href={`book/${book.id}`}>
-          <ListItem className="p-1 hover:bg-eggplant/60 -my-1 dark:hover:bg-pink-lavender/80 z-10">
+          <ListItem className="p-1 hover:bg-eggplant/60 -my-1 dark:hover:bg-pink-lavender/80 z-20">
             <SuggestionCard book={book} />
           </ListItem>
         </Link>
       ))}
       <Link href={`../search/${searchTerm}`}>
-        <ListItem className="p-1 hover:bg-eggplant/60 -my-1 dark:hover:bg-pink-lavender/80">
-          <div className="flex items-center h-8 p-2 bg-white border border-gray-200 rounded-md shadow-sm space-x-2 w-full z-10">
+        <ListItem className="p-1 hover:bg-eggplant/60 -my-1 dark:hover:bg-pink-lavender/80 z-20">
+          <div className="flex items-center h-8 p-2 bg-white border border-gray-200 rounded-md shadow-sm space-x-2 w-full z-20">
             <Typography variant="h6" className="text-lg">See Results...</Typography>
           </div>
         </ListItem>
