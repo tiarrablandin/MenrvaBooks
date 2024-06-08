@@ -12,7 +12,7 @@ export const lightTheme = {
                     }
                 },
                 indicator: {
-                    bg: "bg-eggplant",
+                    bg: "bg-onyx",
                 },
                 label: {}
             }

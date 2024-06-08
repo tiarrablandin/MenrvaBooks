@@ -24,7 +24,7 @@ const AuthorPage: React.FC<AuthorPageProps> = ({ author, id, token }) => {
   return (
     <div>
       <div className="flex justify-center flex-nowrap sm:flex-wrap gap-8 my-8 mx-4">
-        <AuthorCard author={author} />
+        <AuthorCard author={author} token={token} />
         <AnnouncementsCard />
       </div>
       <div className="w-min h-full flex flex-col items-center ml-2">

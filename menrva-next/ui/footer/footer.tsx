@@ -9,7 +9,7 @@ const SITEMAP = [
   {
     title: "Help & Support",
     links: ["Contact Us", "FAQ", "Pricing"],
-    routes: ["contact", "faq", "../subscriptions"],
+    routes: ["contact", "faq", "subscriptions"],
   },
 ];
 
@@ -29,7 +29,7 @@ export function Footer() {
                 {links.map((link, key) => (
                   <p key={key} className="font-normal">
                     <Link
-                      href={routes[key]}
+                      href={`/${routes[key]}`}
                       className="inline-block pt-1 pr-2 transition-transform hover:scale-105"
                     >
                       {link}
