@@ -44,7 +44,7 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
   return (
     <>
       <div className="flex flex-col">
-        <div className="grid grid-cols-3 grid-rows-3 gap-8 pt-6 text-lg w-[97.5%] mx-auto">
+        <div className="grid grid-cols-3 grid-rows-3 gap-8 pt-6 text-lg w-[97.5%] mx-auto pl-2">
           {/* Image */}
           {book?.cover ? (
             <Image src={`${book?.cover}`} width={360} height={600} alt="" className="rounded-md h-auto min-w-36 mx-auto lg:w-96 col-span-1 row-span-1 lg:row-span-3" />
@@ -54,19 +54,19 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
 
           {/* Title, Authors, and Interactions */}
           <div className="col-span-2 lg:col-span-2 flex flex-col justify-start p-2 pl-8 lg:pl-0 row-span-1">
-            <Typography className="text-2xl font-semibold line-clamp-2 min-h-8">
+            <Typography className="text-2xl text-eggplant dark:text-parchment/70 font-semibold line-clamp-2 min-h-8">
               {book ? book.title : "Loading..."}
             </Typography>
             {(book?.authors || []).map((author) => (
               <div key={author.id} className="w-full h-10 flex justify-between">
                 <Link href={`../author/${author.id}`}>
-                  <div className="hover:underline underline-offset-2 text-nowrap text-lg">
+                  <div className="hover:underline underline-offset-2 text-nowrap text-lg text-eggplant dark:text-parchment/70">
                     {author.penName}
                   </div>
                 </Link>
               </div>
             ))}
-            <div className="flex flex-col gap-4 text-gray-600 dark:text-old-lace">
+            <div className="flex flex-col gap-4 text-deep-sea dark:text-parchment/70">
               <div className="flex gap-2">
                 <ReduxProvider>
                   <div className="flex items-center gap-2">
@@ -85,19 +85,21 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
                 </ReduxProvider>
               </div>
               {book?.links.map((link) => (
-                <Link href={link.link} target="_blank" className="inline-block w-min" key={link.id}>
-                  <Button
-                    size="lg"
-                    variant="gradient"
-                    color="light-blue"
-                    className="h-8 relative flex items-center overflow-hidden pr-[72px]"
-                  >
-                    <p className={`normal-case text-nowrap text-lg font-medium -mx-4 w-min ${advent.className}`}>Purchase on Amazon</p>
-                    <span className="absolute right-0 grid h-full w-12 place-items-center bg-light-blue-600 transition-colors group-hover:bg-light-blue-700">
-                      <FontAwesomeIcon icon={faAmazon} className="h-5 w-5" />
-                    </span>
-                  </Button>
-                </Link>
+                <div className="relative z-0">
+                  <Link href={link.link} target="_blank" className="relative w-min z-0" key={link.id}>
+                    <Button
+                      size="lg"
+                      variant="gradient"
+                      color="light-blue"
+                      className="h-8 relative flex items-center overflow-hidden pr-[72px] z-0"
+                    >
+                      <p className={`normal-case text-nowrap text-lg font-medium -mx-4 w-min z-0 ${advent.className}`}>Purchase on Amazon</p>
+                      <span className="absolute right-0 grid h-full w-12 place-items-center z-0 bg-light-blue-600 transition-colors group-hover:bg-light-blue-700">
+                        <FontAwesomeIcon icon={faAmazon} className="h-5 w-5 z-0" />
+                      </span>
+                    </Button>
+                  </Link>
+                </div>
               ))}
             </div>
           </div>
@@ -109,10 +111,15 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
             </p>
             <div className="text-center flex mx-auto gap-8 m-4">
               <p>
-                {book ? `Page Count: ${book.pageCount}` : "Loading..."}
+                {book ? `Page Count:` : "Loading..."}
+                <br/>
+                {book ? `${book.pageCount}` : ""}
               </p>
+              |
               <p>
-                {book?.publicationDate ? `Publication Date: ${book.publicationDate.toString()}` : ""}
+                {book?.publicationDate ? `Publication Date:` : "Loading..."}
+                <br/>
+                {book?.publicationDate ? `${book.publicationDate.toString()}` : ""}
               </p>
             </div>
           </div>

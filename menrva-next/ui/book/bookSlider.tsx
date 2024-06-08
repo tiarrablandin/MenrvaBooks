@@ -35,7 +35,7 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks 
 
   return (
     <>
-      <p className={`${neue.className} text-2xl self-start ml-4 my-4`}>
+      <p className={`${neue.className} text-2xl self-start ml-4 my-4 text-eggplant dark:text-rose`}>
         {title}
       </p>
       <div ref={ref} className="flex items-end justify-start gap-4 overflow-scroll max-w-full mx-4 mr-auto pb-3 md:pb-6 z-0">

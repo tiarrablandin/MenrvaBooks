@@ -13,21 +13,20 @@ function ContentCard({ content, date, tag }: ContentCardPropsType) {
     <Card color="transparent" shadow={false} className="grid items-center gap-6 ">
       <CardBody className="flex gap-5 p-0 ">
         <div className="mb-3 flex items-center gap-1">
-          <div className="text-lg font-bold !text-gray-900 px-4" >
+          <p className="text-lg font-bold text-eggplant dark:text-rose px-4" >
             {tag}
-          </div>
-          <div className="font-medium !text-gray-900" >
+          </p>
+          <p className="font-medium text-deep-sea dark:text-parchment/70" >
             {content}
-          </div>
+          </p>
 
-          <div className="font-bold !text-gray-700">
+          <p className="font-bold">
             {date ? date.toString() : ""}
-          </div>
+          </p>
           <Button
             size="sm"
-            color="red"
             variant="text"
-            className="flex shrink-0 gap-1"
+            className="flex shrink-0 gap-1 text-rose"
           >
             <HeartIcon className="h-4 w-4" />
             243

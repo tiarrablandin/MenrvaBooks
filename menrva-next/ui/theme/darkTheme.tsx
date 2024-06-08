@@ -8,7 +8,7 @@ export const darkTheme = {
             base: {
                 tab: {
                     initial: {
-                        color: "text-old-lace"
+                        color: "text-parchment"
                     }
                 },
                 indicator: {
@@ -19,17 +19,17 @@ export const darkTheme = {
     },
     typography: {
         defaultProps: {
-            className: `text-old-lace ${advent.className}`
+            className: `text-parchment ${advent.className}`
         }
     },
     input: {
         defaultProps: {
-            className: `${advent.className} text-old-lace`
+            className: `${advent.className} text-parchment`
         },
         styles: {
             base: {
                 container: {
-                    className: " text-old-lace"
+                    className: " text-parchment"
                 }
             }
         }

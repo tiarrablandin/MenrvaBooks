@@ -50,8 +50,7 @@ export const fetchAuthorsThunk = createAsyncThunk(
 
 export const toggleFollowAuthor = createAsyncThunk(
     'authors/toggleFollow',
-    async ({ authorId }: { authorId: number }, { getState, rejectWithValue }) => {
-        const token = (getState() as RootState).user.jwt;
+    async ({ authorId, token }: { authorId: number, token: string }, { rejectWithValue }) => {
         try {
             const response = await fetch(`http://localhost:8085/api/authors/${authorId}/toggleFollow`, {
                 method: "POST",

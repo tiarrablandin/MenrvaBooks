@@ -25,9 +25,9 @@ const HasReadButton: React.FC<HasReadButtonProps> = ({ id, token }) => {
     return (
         <>
             {hasRead ?
-                <BookOpenSolid onClick={handleToggleHasRead} className="h-6 w-6 cursor-pointer hover:text-gray-600 text-blue-700" />
+                <BookOpenSolid onClick={handleToggleHasRead} className="h-6 w-6 cursor-pointer text-eggplant dark:text-rose hover:text-gray-600 dark:hover:text-gray-600" />
                 :
-                <BookOpenOutline onClick={handleToggleHasRead} className="h-6 w-6 cursor-pointer hover:text-blue-700 text-gray-600 dark:text-old-lace dark:hover:text-blue-700" />
+                <BookOpenOutline onClick={handleToggleHasRead} className="h-6 w-6 cursor-pointer text-gray-600 hover:text-eggplant dark:hover:text-rose" />
             }
         </>
     )

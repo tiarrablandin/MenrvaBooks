@@ -27,9 +27,9 @@ const ThumbsDownComponent: React.FC<ToggleLikeProps> = ({ id, token }) => {
     return (
         <>
             {disliked ?
-                <ThumbDown onClick={handleToggleLike} style={{ color: "red" }} className="cursor-pointer" />
+                <ThumbDown onClick={handleToggleLike} className="cursor-pointer text-eggplant dark:text-rose hover:text-gray-600 dark:hover:text-gray-600" />
                 :
-                <ThumbDownAltOutlined onClick={handleToggleLike} className="cursor-pointer text-gray-600 dark:text-old-lace hover:text-red-500 dark:hover:text-red-500" />
+                <ThumbDownAltOutlined onClick={handleToggleLike} className="cursor-pointer text-gray-600 hover:text-eggplant dark:hover:text-rose" />
             }
         </>
     )

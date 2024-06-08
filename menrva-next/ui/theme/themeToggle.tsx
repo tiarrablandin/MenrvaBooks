@@ -39,21 +39,21 @@ const ThemeToggle: React.FC<{ theme: string }> = ({ theme }) => {
 
   return (
     <div className="flex items-center w-28  lg:mr-2">
-      <SunIcon className={`h-9 w-9 mr-2 ${isDark ? 'text-gray-400' : 'text-yellow-500'}`} />
+      <SunIcon className={`h-9 w-9 mr-2 dark:text-parchment/70 text-eggplant`} />
       <Switch
         color="blue"
         checked={isDark}
         onChange={handleToggleTheme}
-        className="w-10 bg-old-lace dark:bg-eggplant"
+        className="w-10 bg-parchment/70 dark:bg-parchment/70"
         containerProps={{
           className: "mr-3"
         }}
         circleProps={{
-          className: "before:hidden  border-none bg-eggplant dark:bg-old-lace dark:left-1 ",
+          className: "before:hidden  border-none bg-eggplant dark:bg-rose dark:left-1 ",
         }}
         ripple={false}
       />
-      <MoonIcon className={`h-8 w-8 ml-1 ${isDark ? 'text-indigo-500' : 'text-gray-400'}`} />
+      <MoonIcon className={`h-8 w-8 ml-2 dark:text-rose text-parchment/70`} />
     </div>
   );
 };

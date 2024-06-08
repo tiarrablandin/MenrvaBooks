@@ -10,8 +10,8 @@ const SuggestionCards: React.FC<{ suggestions: BookResponse[], searchTerm: strin
   return (
     <List className={`relative rounded w-full flex flex-col p-0 py-1 -ml-[2px] ${advent.className} z-20`}>
       {suggestions.slice(0, 5).map((book, key) => (
-        <Link key={key} href={`book/${book.id}`}>
-          <ListItem className="p-1 hover:bg-eggplant/60 -my-1 dark:hover:bg-pink-lavender/80 z-20">
+        <Link key={key} href={`book/${book.id}`} className="relative z-20">
+          <ListItem className="p-1 hover:bg-eggplant/60 -my-1 dark:hover:bg-pink-lavender/80 z-20 relative">
             <SuggestionCard book={book} />
           </ListItem>
         </Link>
