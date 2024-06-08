@@ -109,10 +109,15 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
             </p>
             <div className="text-center flex mx-auto gap-8 m-4">
               <p>
-                {book ? `Page Count: ${book.pageCount}` : "Loading..."}
+                {book ? `Page Count:` : "Loading..."}
+                <br/>
+                {book ? `${book.pageCount}` : ""}
               </p>
+              |
               <p>
-                {book?.publicationDate ? `Publication Date: ${book.publicationDate.toString()}` : ""}
+                {book?.publicationDate ? `Publication Date:` : "Loading..."}
+                <br/>
+                {book?.publicationDate ? `${book.publicationDate.toString()}` : ""}
               </p>
             </div>
           </div>

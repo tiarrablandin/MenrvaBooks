@@ -26,7 +26,7 @@ export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: stri
   }, []);
 
   return (
-    <Navbar shadow={false} fullWidth className="border-none bg-pink-lavender dark:bg-chinese-violet p-0.5 relative overflow-visible">
+    <Navbar shadow={false} fullWidth className="border-none bg-rose dark:bg-eggplant p-0.5 relative overflow-visible">
       <div className="w-full mx-auto flex h-[4.5rem] items-center justify-between overflow-visible">
         <Link href="/home">
           <Image

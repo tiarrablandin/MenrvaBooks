@@ -27,12 +27,12 @@ const config: Config = {
         // "chinese-violet": "#827191",
         // "onyx": "#3d3d3d",
         
-        "old-lace": "#fef5e5", //parchment
+        "parchment": "#fef5e5",
         "eggplant": "#632D47",
-        "pink-lavender": "#ad6684", //rose
+        "rose": "#ad6684",
         "deep-sea": "#3c5a65",
         
-        "chinese-violet": "#7B455C",
+        "medium-malachite": "#506e79",
         "onyx": "#373741",
       },
       fontFamily: {
