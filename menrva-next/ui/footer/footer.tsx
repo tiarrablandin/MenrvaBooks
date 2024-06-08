@@ -22,7 +22,7 @@ export function Footer() {
         <div className="w-2/3 flex flex-row justify-start">
           {SITEMAP.map(({ title, links, routes }, key) => (
             <div key={key} className="w-3/5 text-start">
-              <p className="py-2 pt-4 font-bold text-lg uppercase text-eggplant dark:text-medium-malachite">
+              <p className="py-2 pt-4 font-bold text-lg uppercase text-eggplant dark:text-rose">
                 {title}
               </p>
               <ul className="">
@@ -40,7 +40,7 @@ export function Footer() {
             </div>
           ))}
         </div>
-        <div className="flex w-full flex-col items-center justify-center border-t border-eggplant dark:border-medium-malachite md:flex-row md:justify-between mt-6">
+        <div className="flex w-full flex-col items-center justify-center border-t border-eggplant dark:border-rose md:flex-row md:justify-between mt-6">
           <p className="my-2 md:pt-2 text-center font-normal">
             &copy; {currentYear} <a href="https://material-tailwind.com/">Menrva Books</a>. All
             Rights Reserved.

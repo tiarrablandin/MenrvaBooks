@@ -40,13 +40,13 @@ export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: stri
         </Link>
         <div className="lg:flex hidden justify-end items-center gap-8 container z-10 overflow-visible">
           <ReduxProvider>
-            <div className="w-3/4 py-1 h-16 flex flex-col items-center z-10">
+            <div className="w-3/4 py-3 h-16 flex flex-col items-center z-10">
               <AdvancedSearchComponent theme={theme} />
             </div>
           </ReduxProvider>
           <div className="mr-12 flex items-center gap-1 z-10">
             <IconButton variant="text" className="w-8 h-8 mt-2">
-              <BellIcon className="h-5 w-5 text-eggplant dark:text-old-lace" />
+              <BellIcon className="h-5 w-5 text-eggplant dark:text-rose" />
             </IconButton>
             <ProfileMenu tag={tag} role={role} />
             <ThemeToggle theme={theme} />

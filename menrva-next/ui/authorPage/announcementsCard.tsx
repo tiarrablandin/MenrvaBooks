@@ -3,11 +3,11 @@ import { Card, CardBody, Typography } from '@/providers/coreProviders'
 const announcementsCard = () => {
   return (
     <div>
-      <Card className="h-72 max-w-[25rem] bg-pink-lavender/70 dark:bg-chinese-violet">
+      <Card className="h-72 max-w-[25rem] bg-deep-sea/90 text-parchment/70">
         <CardBody>
-          <p className="mb-2">
+          <Typography variant='h4' className="mb-2">
             Announcements!
-          </p>
+          </Typography>
           <p>
             The place is close to Barceloneta Beach and bus stop just 2 min by
             walk and near to &quot;Naviglio&quot; where you can enjoy the main

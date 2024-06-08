@@ -52,14 +52,14 @@ const ProfileMenu: React.FC<{ tag: string; role: string; }> = ({ tag, role }) =>
             <div className="-translate-x-7">
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`inline-block h-3 w-3 text-eggplant dark:text-old-lace transition-transform ${isMenuOpen ? "rotate-180" : ""}`}
+                className={`inline-block h-3 w-3 text-eggplant dark:text-parchment transition-transform ${isMenuOpen ? "rotate-180" : ""}`}
               />
             </div>
           </Button>
 
         </div>
       </MenuHandler>
-      <MenuList className={`p-1 bg-pink-lavender dark:bg-chinese-violet text-eggplant dark:text-old-lace ${advent.className}`}>
+      <MenuList className={`p-1 bg-rose/90 text-eggplant dark:bg-eggplant dark:text-parchment/70 ${advent.className}`}>
         <MenuItem key="1" onClick={closeMenu} className="">
           <div
             className={`${iconClass} transition-transform hover:scale-105 w-full cursor-pointer`}

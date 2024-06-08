@@ -54,19 +54,19 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
 
           {/* Title, Authors, and Interactions */}
           <div className="col-span-2 lg:col-span-2 flex flex-col justify-start p-2 pl-8 lg:pl-0 row-span-1">
-            <Typography className="text-2xl font-semibold line-clamp-2 min-h-8">
+            <Typography className="text-2xl text-eggplant dark:text-parchment/70 font-semibold line-clamp-2 min-h-8">
               {book ? book.title : "Loading..."}
             </Typography>
             {(book?.authors || []).map((author) => (
               <div key={author.id} className="w-full h-10 flex justify-between">
                 <Link href={`../author/${author.id}`}>
-                  <div className="hover:underline underline-offset-2 text-nowrap text-lg">
+                  <div className="hover:underline underline-offset-2 text-nowrap text-lg text-eggplant dark:text-parchment/70">
                     {author.penName}
                   </div>
                 </Link>
               </div>
             ))}
-            <div className="flex flex-col gap-4 text-gray-600 dark:text-old-lace">
+            <div className="flex flex-col gap-4 text-deep-sea dark:text-parchment/70">
               <div className="flex gap-2">
                 <ReduxProvider>
                   <div className="flex items-center gap-2">

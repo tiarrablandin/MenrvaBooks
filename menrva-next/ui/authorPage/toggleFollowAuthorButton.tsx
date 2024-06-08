@@ -21,9 +21,9 @@ const ToggleFollowAuthorButton: React.FC<{ id: number, token: string }> = ({ id,
     return (
         <>
             {isFollowing ?
-                <PlusCircleIcon onClick={handleToggleIsFollowing} className="h-8 w-8 cursor-pointer text-blue-700" />
+                <PlusCircleIcon onClick={handleToggleIsFollowing} className="h-8 w-8 cursor-pointer text-rose hover:text-parchment/70" />
                 :
-                <PlusCircleIconOutline onClick={handleToggleIsFollowing} className="h-8 w-8 cursor-pointer text-gray-600" />
+                <PlusCircleIconOutline onClick={handleToggleIsFollowing} className="h-8 w-8 cursor-pointer text-parchment/70 hover:text-rose" />
             }
         </>
     )
