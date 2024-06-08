@@ -6,13 +6,13 @@ import { PlusCircleIcon as PlusCircleIconOutline } from "@heroicons/react/24/out
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { useSelector } from "react-redux";
 
-const ToggleFollowAuthorButton: React.FC<{ id: number }> = ({ id }) => {
+const ToggleFollowAuthorButton: React.FC<{ id: number, token: string }> = ({ id, token }) => {
     const dispatch = useAppDispatch();
     const isFollowing = useSelector((state: RootState) => state.author.isFollowing);
 
     const handleToggleIsFollowing = async () => {
         try {
-            dispatch(toggleFollowAuthor({ authorId: id }));
+            dispatch(toggleFollowAuthor({ authorId: id, token: token }));
         } catch (error) {
             console.error("Failed to toggle like on server, rolling back", error);
         }

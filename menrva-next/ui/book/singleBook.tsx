@@ -44,7 +44,7 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
   return (
     <>
       <div className="flex flex-col">
-        <div className="grid grid-cols-3 grid-rows-3 gap-8 pt-6 text-lg w-[97.5%] mx-auto">
+        <div className="grid grid-cols-3 grid-rows-3 gap-8 pt-6 text-lg w-[97.5%] mx-auto pl-2">
           {/* Image */}
           {book?.cover ? (
             <Image src={`${book?.cover}`} width={360} height={600} alt="" className="rounded-md h-auto min-w-36 mx-auto lg:w-96 col-span-1 row-span-1 lg:row-span-3" />
@@ -85,19 +85,21 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
                 </ReduxProvider>
               </div>
               {book?.links.map((link) => (
-                <Link href={link.link} target="_blank" className="inline-block w-min" key={link.id}>
-                  <Button
-                    size="lg"
-                    variant="gradient"
-                    color="light-blue"
-                    className="h-8 relative flex items-center overflow-hidden pr-[72px]"
-                  >
-                    <p className={`normal-case text-nowrap text-lg font-medium -mx-4 w-min ${advent.className}`}>Purchase on Amazon</p>
-                    <span className="absolute right-0 grid h-full w-12 place-items-center bg-light-blue-600 transition-colors group-hover:bg-light-blue-700">
-                      <FontAwesomeIcon icon={faAmazon} className="h-5 w-5" />
-                    </span>
-                  </Button>
-                </Link>
+                <div className="relative z-0">
+                  <Link href={link.link} target="_blank" className="relative w-min z-0" key={link.id}>
+                    <Button
+                      size="lg"
+                      variant="gradient"
+                      color="light-blue"
+                      className="h-8 relative flex items-center overflow-hidden pr-[72px] z-0"
+                    >
+                      <p className={`normal-case text-nowrap text-lg font-medium -mx-4 w-min z-0 ${advent.className}`}>Purchase on Amazon</p>
+                      <span className="absolute right-0 grid h-full w-12 place-items-center z-0 bg-light-blue-600 transition-colors group-hover:bg-light-blue-700">
+                        <FontAwesomeIcon icon={faAmazon} className="h-5 w-5 z-0" />
+                      </span>
+                    </Button>
+                  </Link>
+                </div>
               ))}
             </div>
           </div>
