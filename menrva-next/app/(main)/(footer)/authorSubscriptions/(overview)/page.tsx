@@ -1,4 +1,4 @@
-import Subscriptions from "@/ui/subscriptions/subscriptions";
+import AuthorSubscriptions from "@/ui/subscriptions/authorSubscriptions";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <main className="w-screen min-h-[calc(100vh-295px)]">
-      <Subscriptions/>
+      <AuthorSubscriptions/>
     </main>
   );
 }

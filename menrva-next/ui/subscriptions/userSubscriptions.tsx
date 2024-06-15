@@ -16,7 +16,7 @@ const data = [
   },
 ];
 
-const Subscriptions = () => {
+const UserSubscriptions = () => {
   return (
     <div className="">
       <Tabs value="annual" className="py-8">
@@ -25,7 +25,7 @@ const Subscriptions = () => {
           indicatorProps={{ className: "bg-eggplant dark:bg-rose/70" }}
         >
           {data.map(({ label, value }) => (
-            <Tab key={value} value={value} className="">
+            <Tab key={value} value={value} className="text-parchment/70">
               {label}
             </Tab>
           ))}
@@ -92,12 +92,12 @@ const Subscriptions = () => {
           ))}
         </TabsBody>
       </Tabs>
-      <div className="flex justify-center text-xl">
+      <div className="flex justify-center text-xl font-semibold">
         Are you an author?
-        <Link href={"/subscriptions"} className="ml-2 underline hover:text-eggplant dark:hover:text-rose/70 transition-colors duration-200 ease-in-out">Sign up here.</Link>
+        <Link href={"/authorSubscriptions"} className="ml-2 underline hover:text-eggplant dark:hover:text-rose/70 transition-colors duration-200 ease-in-out">Sign up here.</Link>
       </div>
     </div>
   );
 };
 
-export default Subscriptions;
+export default UserSubscriptions;

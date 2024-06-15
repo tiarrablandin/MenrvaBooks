@@ -9,7 +9,7 @@ const SITEMAP = [
   {
     title: "Help & Support",
     links: ["Contact Us", "FAQ", "Pricing"],
-    routes: ["contact", "faq", "subscriptions"],
+    routes: ["contact", "faq", "userSubscriptions"],
   },
 ];
 

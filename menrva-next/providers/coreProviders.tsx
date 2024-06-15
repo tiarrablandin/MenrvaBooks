@@ -31,6 +31,7 @@ export {
   CreditCardIcon as CreditCardIconOutline,
   EnvelopeIcon,
   ExclamationCircleIcon,
+  HandThumbUpIcon,
   HomeIcon as HomeIconOutline,
   GlobeAltIcon,
   KeyIcon as KeyIconOutline,
