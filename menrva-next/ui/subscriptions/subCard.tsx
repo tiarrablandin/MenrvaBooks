@@ -31,7 +31,7 @@ const subCard: React.FC<SubCardProps> = ({ header, price, info }) => {
             {header}
           </div>
           <div
-            className="text-xl font-semibold mt-4 flex justify-center gap-1 text-eggplant"
+            className="text-xl font-semibold mt-4 flex justify-center gap-1 text-eggplant dark:text-rose/70"
           >
             {` ${price}`}
           </div>
@@ -43,7 +43,7 @@ const subCard: React.FC<SubCardProps> = ({ header, price, info }) => {
                 <span className="rounded-full p-1">
                   <CheckCircleIcon className="h-5 w-5" />
                 </span>
-                <div className="font-normal">{data}</div>
+                <div className="">{data}</div>
               </li>
             ))}
           </ul>

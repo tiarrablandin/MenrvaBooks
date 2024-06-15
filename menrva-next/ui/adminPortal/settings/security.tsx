@@ -46,7 +46,7 @@ function AccountCard({ title, desc, keys, label }: AccountCardPropsType) {
 const Security = () => {
   return (
     <div>
-      <section className="px-8 pl-16 py-16 container mx-auto text-deep-sea dark:text-parchment/70">
+      <section className="px-8 pl-16 py-12 container mx-auto text-deep-sea dark:text-parchment/70">
         <div className="flex items-start justify-between rounded-none mb-2">
           <div>
             <p className="font-semibold">
@@ -56,7 +56,7 @@ const Security = () => {
               Update your profile information below.
             </p>
           </div>
-          <div className="mt-7 flex justify-end">
+          <div className="flex justify-end">
             <Button className="bg-eggplant dark:bg-rose/70 text-parchment/70">enable</Button>
           </div>
         </div>
