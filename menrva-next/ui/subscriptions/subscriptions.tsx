@@ -19,7 +19,7 @@ const Subscriptions = () => {
   return (
     <div className="">
       <Tabs value="annual" className="py-8">
-        <TabsHeader className="flex justify-center bg-eggplant w-80 mx-auto" indicatorProps={{ className: "bg-eggplant"}}>
+        <TabsHeader className="flex justify-center text-parchment/70 bg-eggplant dark:bg-rose/70 w-80 mx-auto" indicatorProps={{ className:"bg-eggplant dark:bg-rose/70"}}>
           {data.map(({ label, value }) => (
             <Tab key={value} value={value} className="text-old-lace">
               {label}
@@ -28,7 +28,7 @@ const Subscriptions = () => {
         </TabsHeader>
         <TabsBody className="flex text-center ">
           {data.map(({ value, desc }) => (
-            <TabPanel key={value} value={value} className="text-eggplant dark:text-old-lace">
+            <TabPanel key={value} value={value} className="text-deep-sea dark:text-parchment/70">
               {desc}
               {value === "annual" && (
                 <div className="flex justify-center pt-8 gap-8">

@@ -8,7 +8,7 @@ import ReduxProvider from '@/providers/reduxProvider';
 const AuthorCard: React.FC<{ author: Author, token: string | undefined }> = ({ author, token }) => {
   return (
     <div>
-      <Card className="h-72 w-full min-w-[40rem] max-w-[40rem] px-4 bg-deep-sea/90 text-parchment/70">
+      <Card className="h-72 w-full min-w-[40rem] max-w-[40rem] px-4 bg-deep-sea/70 text-parchment/70">
         <CardHeader
           color="transparent"
           floated={false}

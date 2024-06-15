@@ -20,9 +20,9 @@ const termsAndPrivacy: React.FC<TermsAndPrivacyProps> = ({}) => {
   return (
     <div>
       <Tabs value="terms" className="py-8">
-        <TabsHeader className="flex justify-center bg-eggplant w-80 mx-auto">
+        <TabsHeader className="flex justify-center w-80 mx-auto bg-eggplant dark:bg-rose/70" indicatorProps={{ className: "bg-eggplant dark:bg-rose/70"}}>
           {data.map(({ label, value }) => (
-            <Tab key={value} value={value} className="">
+            <Tab key={value} value={value} className="text-parchment/70">
               {label}
             </Tab>
           ))}

@@ -38,7 +38,7 @@ const AdminSidebar: React.FC = () => {
           </div>
         </Link>
 
-        <ul className="text-eggplant w-full h-96 flex justify-between items-center flex-col mt-1">
+        <ul className="text-eggplant dark:text-rose/70 w-full h-96 flex justify-between items-center flex-col mt-1">
           {[
             { href: "/admin", icon: HomeIconOutline },
             { href: "/admin/books", icon: BookOpenOutline },
@@ -48,7 +48,7 @@ const AdminSidebar: React.FC = () => {
             { href: "/admin/settings", icon: Cog6ToothIconOutline },
             { href: "/admin/notifications", icon: BellIconOutline }
           ].map(({ href, icon: Icon }) => (
-            <li key={href} className={`h-1/4 flex justify-center items-center w-full ${isActive(href) ? 'bg-pink-lavender' : 'hover:bg-pink-lavender/40'}`}>
+            <li key={href} className={`h-1/4 flex justify-center items-center w-full ${isActive(href) ? 'bg-eggplant/10 dark:bg-rose/10' : 'hover:bg-eggplant/10 dark:hover:bg-rose/10'}`}>
               <Link href={href}>
                 <Icon className="h-7 w-7 mx-auto" />
               </Link>
@@ -56,10 +56,10 @@ const AdminSidebar: React.FC = () => {
           ))}
         </ul>
 
-        <div className="mt-auto h-16 flex items-center justify-center w-full hover:bg-pink-lavender/40">
+        <div className="mt-auto h-16 flex items-center justify-center w-full hover:bg-eggplant/10 dark:hover:bg-rose/10">
           {/* Action Section */}
           <Link href=".">
-            <ArrowRightEndOnRectangleIcon className="h-7 w-7 mx-auto text-eggplant" />
+            <ArrowRightEndOnRectangleIcon className="h-7 w-7 mx-auto text-eggplant dark:text-rose/70" />
           </Link>
         </div>
       </aside>

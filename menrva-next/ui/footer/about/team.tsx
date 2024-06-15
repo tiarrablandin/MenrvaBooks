@@ -27,12 +27,12 @@ function TeamCard({ img, name, title, linkedin }: TeamCardPropsType) {
           size="xxl"
           className="mx-auto mb-6 object-top"
         />
-        <div className="!font-medium text-deep-sea dark:text-old-lace/70">{name}</div>
-        <Typography variant="h5" className="text-eggplant dark:text-pink-lavender/70">{title}</Typography>
+        <div className="!font-medium text-deep-sea dark:text-parchment/70">{name}</div>
+        <Typography variant="h5" className="text-eggplant dark:text-rose/70">{title}</Typography>
         <div className="flex items-center justify-center gap-1.5">
           <Link href={linkedin}>
             <IconButton variant="text">
-              <FontAwesomeIcon icon={faLinkedin} className="text-deep-sea dark:text-old-lace/70 h-5 w-5" />
+              <FontAwesomeIcon icon={faLinkedin} className="text-deep-sea dark:text-parchment/70 h-5 w-5" />
             </IconButton>
           </Link>
         </div>
@@ -72,10 +72,10 @@ export function Team() {
   return (
     <section className="container mx-auto py-8 px-8 lg:py-10">
       <div className="mb-8 text-center lg:mb-10">
-        <div className="mb-4 text-3xl lg:text-5xl dark:text-pink-lavender/70">
+        <div className="mb-4 text-3xl lg:text-5xl text-eggplant dark:text-rose/70">
           The Executive Team
         </div>
-        <p className="mx-auto max-w-4xl text-deep-sea dark:text-old-lace/70">
+        <p className="mx-auto max-w-4xl">
           This is the paragraph where you can write more details about your team. Keep you user
           engaged by providing meaningful information.
         </p>

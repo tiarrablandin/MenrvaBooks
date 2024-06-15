@@ -33,9 +33,8 @@ const Pagination: React.FC<PaginationProps> = ({ onPageChange, totalPages, curre
 
     const getItemProps = (index: number) => ({
         variant: currentPage === index ? "filled" : "text",
-        color: "gray",
         onClick: () => onPageChange(index),
-        className: "rounded-full",
+        className: "rounded-full text-parchment/70",
         children: index,
     });
 
@@ -57,12 +56,12 @@ const Pagination: React.FC<PaginationProps> = ({ onPageChange, totalPages, curre
                 onClick={prev}
                 disabled={currentPage === 1}
             >
-                <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" />
+                <ArrowLeftIcon strokeWidth={2} className="h-4 w-4 text-parchment/70" />
             </Button>
             <div className="flex items-center gap-2">
                 {pages.map((page, index) =>
                     page === "..." ? (
-                        <span key={index} className="px-2 text-onyx">...</span>
+                        <span key={index} className="px-2 ">...</span>
                     ) : (
                         <IconButton {...getItemProps(page as number) as any} key={index}>
                             {page}
@@ -76,7 +75,7 @@ const Pagination: React.FC<PaginationProps> = ({ onPageChange, totalPages, curre
                 onClick={next}
                 disabled={currentPage === totalPages}
             >
-                <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
+                <ArrowRightIcon strokeWidth={2} className="h-4 w-4 text-parchment/70" />
             </Button>
         </div>
     );

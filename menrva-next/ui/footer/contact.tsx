@@ -105,7 +105,7 @@ export function Contact() {
           </Card>
         </div> */}
         <div className="w-full lg:pb-0 pb-2">
-          <div className="mb-4 !text-3xl lg:!text-4xl">
+          <div className="mb-4 !text-3xl lg:!text-4xl text-eggplant dark:text-rose/70">
             Get in Touch
           </div>
           <div className="mb-16 max-w-md !font-normal">
