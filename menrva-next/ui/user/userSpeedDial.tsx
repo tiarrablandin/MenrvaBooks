@@ -10,6 +10,8 @@ import {
   Square3Stack3DIconOutline,
   UserGroupIcon,
   BookOpenOutline,
+  ThumbUpAltOutlined,
+  HandThumbUpIcon,
 } from "@/providers/coreProviders";
 import Link from "next/link";
 import React from "react";
@@ -41,17 +43,7 @@ const UserSpeedDial: React.FC<UserSpeedDialProps> = ({tag}) => {
             </Link>
             <Link href={tag ? `/userHome/${tag}` : `/userHome/${tag}`}>
               <SpeedDialAction className={`${cn}`}>
-                <UserGroupIcon className="h-5 w-5" />
-              </SpeedDialAction>
-            </Link>
-            <Link href={tag ? `/userHome/${tag}` : `/userHome/${tag}`}>
-              <SpeedDialAction className={`${cn}`}>
-                <Square3Stack3DIconOutline className="h-5 w-5" />
-              </SpeedDialAction>
-            </Link>
-            <Link href={tag ? `/userHome/${tag}` : `/userHome/${tag}`}>
-              <SpeedDialAction className={`${cn}`}>
-                <Square3Stack3DIconOutline className="h-5 w-5" />
+                <HandThumbUpIcon className="h-5 w-5" />
               </SpeedDialAction>
             </Link>
             <Link href={tag ? `/userSettings/${tag}` : `/userHome/${tag}`}>
