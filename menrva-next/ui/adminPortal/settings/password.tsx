@@ -6,10 +6,11 @@ import { useState } from "react";
 const Password = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => setPasswordShown((cur) => !cur);
+  const cn="w-full placeholder:opacity-100 !border-eggplant dark:!border-parchment/70 text-deep-sea dark:text-parchment/70";
 
   return (
     <div className="text-deep-sea dark:text-parchment/70">
-      <section className="px-12 py-20 container mx-auto">
+      <section className="px-8 pl-16 py-12 container mx-auto">
         <p className="font-semibold">
           Change Password
         </p>
@@ -28,7 +29,7 @@ const Password = () => {
                   labelProps={{
                     className: "hidden",
                   }}
-                  className="w-full placeholder:opacity-100 focus:border-eggplant border-eggplant dark:border-parchment/70 text-deep-sea dark:text-parchment/70"
+                  className={`${cn}`}
                   type={passwordShown ? "text" : "password"}
                   icon={
                     <i onClick={togglePasswordVisiblity}>
@@ -51,7 +52,7 @@ const Password = () => {
                 labelProps={{
                   className: "hidden",
                 }}
-                className="w-full placeholder:opacity-100 focus:border-eggplant border-eggplant dark:border-parchment/70 text-deep-sea dark:text-parchment/70"
+                className={`${cn}`}
                 type={passwordShown ? "text" : "password"}
                 icon={
                   <i onClick={togglePasswordVisiblity}>
@@ -73,7 +74,7 @@ const Password = () => {
                 labelProps={{
                   className: "hidden",
                 }}
-                className="w-full placeholder:opacity-100 focus:border-eggplant border-eggplant dark:border-parchment/70 text-deep-sea dark:text-parchment/70"
+                className={`${cn}`}
                 type={passwordShown ? "text" : "password"}
                 icon={
                   <i onClick={togglePasswordVisiblity}>

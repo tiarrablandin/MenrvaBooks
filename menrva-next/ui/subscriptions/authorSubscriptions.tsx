@@ -37,45 +37,67 @@ const Subscriptions = () => {
               {value === "annual" && (
                 <div className="flex justify-center pt-8 gap-8">
                   <SubCard
-                    header={"Basic"}
+                    header={"Scribe"}
                     price={"Free"}
                     info={["Unlimited searches", "Genre recommendations"]}
                   />
-                  <SubCard
-                    header={"Bookworm"}
+                  {/* <SubCard
+                    header={"Wordsmith"}
                     price={"$11.99/yr"}
                     info={[
-                      "BASIC PLUS:",
+                      "Scribe PLUS:",
                       "No ads",
                       "Personalized recommendations",
                       "Book tracking",
                       "Release notifications",
                       "Commenting",
                     ]}
-                  />
-                  {/* <SubCard header={"Bibliophile"} price={$23.99/yr} info={["BOOKWORM PLUS:", "Access to community forums"]} /> */}
+                  /> */}
+                  {/* <SubCard
+                    header={"Literary Luminary"}
+                    price={"$29.99/yr"}
+                    info={[
+                      "Wordsmith PLUS:",
+                      "No ads",
+                      "Personalized recommendations",
+                      "Book tracking",
+                      "Release notifications",
+                      "Commenting",
+                    ]}
+                  /> */}
                 </div>
               )}
               {value === "monthly" && (
                 <div className="flex justify-center pt-8 gap-8">
                   <SubCard
-                    header={"Basic"}
+                    header={"Scribe"}
                     price={"Free"}
                     info={["Unlimited searches", "Genre recommendations"]}
                   />
-                  <SubCard
-                    header={"Bookworm"}
+                  {/* <SubCard
+                    header={"Wordsmith"}
                     price={"$1.99/mo"}
                     info={[
-                      "BASIC PLUS:",
+                      "Scribe PLUS:",
                       "No ad's",
                       "Personalized recommendations",
                       "Book tracking",
                       "Release notifications",
                       "Commenting",
                     ]}
-                  />
-                  {/* <SubCard header={"Bibliophile"} price={"$2.99/mo"} info={["BOOKWORM PLUS:", "Access to community forums"]} /> */}
+                  /> */}
+                  {/* <SubCard
+                    header={"Literary Luminary"}
+                    price={"$3.99/mo"}
+                    info={[
+                      "Wordsmith PLUS:",
+                      "No ad's",
+                      "Personalized recommendations",
+                      "Book tracking",
+                      "Release notifications",
+                      "Commenting",
+                    ]}
+                  /> */}
                 </div>
               )}
               {value === "authors" && (
@@ -94,7 +116,7 @@ const Subscriptions = () => {
       </Tabs>
       <div className="flex justify-center text-xl">
         Are you an author?
-        <Link href={"/subscriptions"} className="ml-2 underline hover:text-eggplant dark:hover:text-rose/70 transition-colors duration-200 ease-in-out">Sign up here.</Link>
+        <Link href={"/subscriptions"}>Sign up here.</Link>
       </div>
     </div>
   );

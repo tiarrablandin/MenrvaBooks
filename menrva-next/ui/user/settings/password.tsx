@@ -6,29 +6,30 @@ import { useState } from "react";
 const Password = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => setPasswordShown((cur) => !cur);
+  const cn="w-full placeholder:opacity-100 !border-eggplant dark:!border-parchment/70 text-deep-sea dark:text-parchment/70";
 
   return (
-    <div className="">
-      <section className="px-12 py-20 container mx-auto">
-        <div className="text-eggplant">
+    <div className="text-deep-sea dark:text-parchment/70">
+      <section className="px-8 pl-16 py-12 container mx-auto">
+        <p className="font-semibold">
           Change Password
-        </div>
-        <div className="text-gray-600 font-normal mt-1">
+        </p>
+        <p className= "font-normal mt-1">
           Update your profile information below.
-        </div>
+        </p>
         <div className="flex flex-col md:flex-row justify-between gap-10 mt-8">
           <div className="flex flex-col gap-6 w-full">
             <div className="w-full">
-              <div className="mb-2 font-medium text-eggplant">
+              <p className="mb-2 font-medium">
                 Current Password
-              </div>
+              </p>
               <div>
                 <Input
                   placeholder="Current Password"
                   labelProps={{
                     className: "hidden",
                   }}
-                  className="w-full placeholder:opacity-100 focus:border-t-eggplant"
+                  className={`${cn}`}
                   type={passwordShown ? "text" : "password"}
                   icon={
                     <i onClick={togglePasswordVisiblity}>
@@ -43,15 +44,15 @@ const Password = () => {
               </div>
             </div>
             <div className="w-full">
-              <div className="mb-2 font-medium text-eggplant">
+              <p className="mb-2 font-medium">
                 New Password
-              </div>
+              </p>
               <Input
                 placeholder="New Password"
                 labelProps={{
                   className: "hidden",
                 }}
-                className="w-full placeholder:opacity-100 focus:border-t-eggplant"
+                className={`${cn}`}
                 type={passwordShown ? "text" : "password"}
                 icon={
                   <i onClick={togglePasswordVisiblity}>
@@ -65,15 +66,15 @@ const Password = () => {
               />
             </div>
             <div className="w-full">
-              <div className="mb-2 font-medium text-eggplant">
+              <p className="mb-2 font-medium">
                 Confirm New Password
-              </div>
+              </p>
               <Input
                 placeholder="Confirm New Password"
                 labelProps={{
                   className: "hidden",
                 }}
-                className="w-full placeholder:opacity-100 focus:border-t-eggplant"
+                className={`${cn}`}
                 type={passwordShown ? "text" : "password"}
                 icon={
                   <i onClick={togglePasswordVisiblity}>
@@ -86,26 +87,26 @@ const Password = () => {
                 }
               />
             </div>
-            <Button className="max-w-fit bg-eggplant text-old-lace">Update Password</Button>
+            <Button className="max-w-fit bg-eggplant dark:bg-rose/70 text-parchment/70">Update Password</Button>
           </div>
           <div className="w-full">
-            <div className="text-eggplant">
+            <p className="">
               Password Requirement
-            </div>
-            <div className="my-2 !font-normal !text-gray-600">
+            </p>
+            <p className="my-2 !font-normal">
               Please follow this guide for a strong password:
-            </div>
+            </p>
             <div className="flex flex-col justify-between lg:items-end md:items-end gap-8 md:flex-row">
               <div className="grid gap-0.5">
                 <ul className="list-disc ml-6">
-                  <li className="!text-sm !font-normal !text-gray-600">
+                  <li className="!text-sm !font-normal">
                     One special characters ( ! @ # $ % ^ & * ( ) - _ = + )
                   </li>
-                  <li className="!text-sm !font-normal !text-gray-600">Min 6 characters</li>
-                  <li className="!text-sm !font-normal !text-gray-600">
+                  <li className="!text-sm !font-normal">Min 6 characters</li>
+                  <li className="!text-sm !font-normal">
                     One number (2 are recommended)
                   </li>
-                  <li className="!text-sm !font-normal !text-gray-600">Change it often</li>
+                  <li className="!text-sm !font-normal">Change it often</li>
                 </ul>
               </div>
             </div>

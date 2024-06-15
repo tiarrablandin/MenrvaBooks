@@ -41,6 +41,7 @@ export {
   Square3Stack3DIcon as Square3Stack3DIconOutline,
   TableCellsIcon,
   UserCircleIcon,
+  UserGroupIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 export {

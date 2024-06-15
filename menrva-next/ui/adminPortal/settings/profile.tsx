@@ -6,7 +6,7 @@ const Profile = () => {
   return (
     <div className="text-deep-sea dark:text-parchment/70">
       {/* Avatar Upload */}
-      <section className="pt-12 pb-4 pl-16 px-4 container mx-auto">
+      <section className="py-12 pl-16 px-4 container mx-auto">
         <div className="flex justify-between items-start">
           <div className="grid lg:grid-cols-2 gap-6">
             <div className="flex items-center gap-3">
@@ -35,7 +35,7 @@ const Profile = () => {
       </section>
 
       {/* Basic Form */}
-      <section className="px-8 pl-16 py-2 container mx-auto">
+      <section className="px-8 pl-16 py-8 pb-12 container mx-auto">
         <p className="font-semibold">
           Basic Information
         </p>
