@@ -19,7 +19,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
   return (
     <>
       <Nav tag={tag} role={role} theme={theme} />
-      <div className="">
+      <div className="relative z-20">
         <UserSpeedDial tag={tag} />
       </div>
       {children}

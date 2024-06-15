@@ -22,7 +22,7 @@ const accordionBodies = [
   return (
     <div>
       <div className="flex flex-col items-center pt-10 max-w-2/3">
-        <div className="pb-6 text-2xl">
+        <div className="pb-6 text-2xl text-eggplant dark:text-rose/70">
           Join our Team!
         </div>
 

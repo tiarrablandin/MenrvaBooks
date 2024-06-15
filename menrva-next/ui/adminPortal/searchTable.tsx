@@ -56,7 +56,7 @@ const SearchTable: React.FC<SearchTableProps> = ({ showUnreviewedOnly }) => {
           <thead>
             <tr>
               {TABLE_HEAD.map((head) => (
-                <th key={head} className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
+                <th key={head} className="border-b border-eggplant dark:border-rose/70 bg-blue-gray-50 p-4">
                   <p className="text-lg leading-none opacity-70">
                     {head}
                   </p>

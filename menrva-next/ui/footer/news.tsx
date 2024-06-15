@@ -13,13 +13,14 @@ interface NewsProps {}
 
 const news: React.FC<NewsProps> = ({}) => {
   return (
-    <div className="flex justify-center">
-      <Timeline className="w-4/5 my-20">
+    <div className="">
+      <Typography variant="h5" className="flex justify-center text-2xl py-10 max-w-2/3 text-eggplant dark:text-rose/70">Updates & News</Typography>
+      <Timeline className="flex justify-center w-11/12 my-6 mx-12">
         <TimelineItem>
           <TimelineConnector className=""/>
           <TimelineHeader className="h-3">
-            <TimelineIcon className="bg-eggplant"/>
-            <div className="leading-none w-4/5">
+            <TimelineIcon className="bg-eggplant dark:bg-rose/70"/>
+            <div className="leading-none w-4/5 font-semibold text-eggplant dark:text-rose/70">
               Timeline Title Here.
             </div>
           </TimelineHeader>
@@ -37,8 +38,8 @@ const news: React.FC<NewsProps> = ({}) => {
         <TimelineItem>
           <TimelineConnector />
           <TimelineHeader className="h-3">
-            <TimelineIcon className="bg-eggplant"/>
-            <div className="leading-none">
+            <TimelineIcon className="bg-eggplant dark:bg-rose/70"/>
+            <div className="leading-none font-semibold text-eggplant dark:text-rose/70">
               Timeline Title Here.
             </div>
           </TimelineHeader>
@@ -55,8 +56,8 @@ const news: React.FC<NewsProps> = ({}) => {
         </TimelineItem>
         <TimelineItem>
           <TimelineHeader className="h-3">
-            <TimelineIcon className="bg-eggplant"/>
-            <div className="leading-none">
+            <TimelineIcon className="bg-eggplant dark:bg-rose/70"/>
+            <div className="leading-none font-semibold text-eggplant dark:text-rose/70">
               Timeline Title Here.
             </div>
           </TimelineHeader>

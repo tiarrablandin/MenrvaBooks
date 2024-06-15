@@ -1,16 +1,17 @@
 import { Card, Typography } from "@/providers/coreProviders";
+import Link from "next/link";
 import React from "react";
 
 interface PrivacyProps {}
 
 const Privacy: React.FC<PrivacyProps> = ({}) => {
   return (
-    <div className="flex items-center flex-col">
-      <Card className="flex items-center w-[90%] shadow-none bg-transparent">
-        <div className="flex justify-center">
+    <div className="flex items-center flex-col text-lg">
+      <Card className="flex items-center w-[90%] shadow-none bg-transparent text-deep-sea dark:text-parchment/70">
+        <Typography variant="h5" className="flex justify-center font-bold text-eggplant dark:text-rose/70">
           Privacy Policy
-        </div>
-        <div className="flex text-start pt-8 w-4/5 max-w-2/3">
+        </Typography>
+        <div className="flex text-start pt-8 w-4/5 max-w-2/3 font-semibold">
           Effective Date:
         </div>
         <div className="flex text-start pt-4 w-4/5 max-w-2/3">
@@ -141,17 +142,17 @@ const Privacy: React.FC<PrivacyProps> = ({}) => {
         If you have any questions about this Privacy Policy, please contact us:
         </div>
         <div className="flex text-start pt-4 w-4/5 max-w-2/3">
-        By email: [Insert Email Address]
+        By email: contact@menrvabooks.com
         </div>
         <div className="flex text-start w-4/5 max-w-2/3">
-        By visiting this page on our website: [Insert Contact Us URL]
+        By visiting this page on our website: <Link href={"/contact"}>Contact us</Link>
         </div>
-        <div className="flex text-start w-4/5 max-w-2/3">
+        {/* <div className="flex text-start w-4/5 max-w-2/3">
         By phone number: [Insert Phone Number]
         </div>
         <div className="flex text-start pb-10 w-4/5 max-w-2/3">
         By mail: [Insert Mailing Address]
-        </div>
+        </div> */}
       </Card>
     </div>
   );

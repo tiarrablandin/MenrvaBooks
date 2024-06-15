@@ -8,7 +8,7 @@ export const lightTheme = {
             base: {
                 tab: {
                     initial: {
-                        color: "text-parchment"
+                        color: "text-parchment/70"
                     }
                 },
                 indicator: {
@@ -22,6 +22,17 @@ export const lightTheme = {
         defaultProps: {
             className: `text-deep-sea text-base text`
             // className: `text-eggplant text-base`
+        }
+    },
+    iconButton: {
+        styles: {
+            variants: {
+                filled: {
+                    gray: {
+                        background: "bg-eggplant"
+                    }
+                }
+            }
         }
     },
 };

@@ -5,11 +5,11 @@ export default async function Page() {
     return (
         <main className="min-h-[calc(100vh-295px)] w-[calc(100%-4rem)] mr-1 ml-auto">
             <Tabs value="users" className="py-8">
-                <TabsHeader className="flex justify-center bg-eggplant w-80 mx-auto" indicatorProps={{className: "bg-eggplant"}} >
+                <TabsHeader className="flex justify-center bg-eggplant dark:bg-rose/70 w-80 mx-auto" indicatorProps={{className: "bg-eggplant dark:bg-rose/70"}} >
                     <Tab value="users" className="text-old-lace">
                         Users
                     </Tab>
-                    <Tab value="comments" className="text-old-lace">
+                    <Tab value="comments" className="text-parchment/70">
                         Comments
                     </Tab>
                 </TabsHeader>

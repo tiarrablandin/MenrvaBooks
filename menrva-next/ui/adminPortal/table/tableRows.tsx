@@ -35,7 +35,7 @@ export const renderBookRow = (
 ) => {
 	return (
 		<tr key={index}>
-			<td className="pl-4 py-1 border-b border-gray-300 flex justify-center">
+			<td className="pl-4 py-1 border-b border-parchment/20 flex justify-center">
 				<Link href={`../book/${book.id}`} className="inline-block">
 					<Image
 						className="rounded-md object-center h-[6rem] w-[4rem] mr-4"
@@ -46,14 +46,14 @@ export const renderBookRow = (
 					/>
 				</Link>
 			</td>
-			<td className="border-b border-gray-300 whitespace-nowrap w-min">
+			<td className="border-b border-parchment/20 whitespace-nowrap w-min">
 				<Link href={`../book/${book.id}`} className="inline-block">
 					<p className="hover:underline underline-offset-2 w-min">
 						{book.title}
 					</p>
 				</Link>
 			</td>
-			<td className="border-b border-gray-300 mr-2">
+			<td className="border-b border-parchment/20 mr-2">
 				{book.authors[0] ? (
 					<Link href={`../author/${book.authors[0].id}`}>
 						<p className="hover:underline text-center underline-offset-2">
@@ -64,23 +64,23 @@ export const renderBookRow = (
 					""
 				)}
 			</td>
-			<td className="mx-auto text-center pr-2 border-b border-gray-300">
+			<td className="mx-auto text-center pr-2 border-b border-parchment/20">
 				<p>{book.dateAdded.toString()}</p>
 			</td>
-			<td className="mx-auto text-center pr-2 border-b border-gray-300">
+			<td className="mx-auto text-center pr-2 border-b border-parchment/20">
 				{toggleReviewed && (
 					<Checkbox
 						onChange={() => toggleReviewed(book.id)}
 						checked={book.reviewed}
-						className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
+						className="checked:bg-eggplant dark:checked:bg-rose/70 border-eggplant dark:border-rose/70 before:h-8 before:w-8"
 					/>
 				)}
 			</td>
-			<td className="text-center mx-auto pr-2 border-b border-gray-300">
+			<td className="text-center mx-auto pr-2 border-b border-parchment/20">
 				<Tooltip content="Edit Book">
 					<Link href={`/admin/updateBook/${book.id}`}>
 						<IconButton variant="text" className="rounded-full">
-							<PencilIcon className="w-4 h-4 text-eggplant" />
+							<PencilIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
 						</IconButton>
 					</Link>
 				</Tooltip>
@@ -95,40 +95,40 @@ export const renderAuthorRow = (
 	toggleReviewed?: (authorId: number) => void
 ) => (
 	<tr key={index}>
-		<td className="border-b border-gray-300 whitespace-nowrap w-min">
+		<td className="border-b border-parchment/20 whitespace-nowrap w-min">
 			<Link href={`../author/${author.id}`} className="inline-block">
 				<p className="hover:underline underline-offset-2">
 					{author.user ? author.user.tag : "n/a"}
 				</p>
 			</Link>
 		</td>
-		<td className="border-b border-gray-300 whitespace-nowrap">
+		<td className="border-b border-parchment/20 whitespace-nowrap">
 			<Link href={`../author/${author.id}`} className="inline-block">
 				<p className="hover:underline underline-offset-2 w-min">
 					{author.penName ? author.penName : "any"}
 				</p>
 			</Link>
 		</td>
-		<td className="border-b border-gray-300">
+		<td className="border-b border-parchment/20">
 			{author.dateAdded ? (
 				<p>{author.dateAdded.toString()}</p>
 			) : (
 				<></>
 			)}
 		</td>
-		<td className="mx-auto border-b border-gray-300 ">
+		<td className="mx-auto border-b border-parchment/20">
 			{toggleReviewed && (
 				<Checkbox
 					onChange={() => toggleReviewed(author.id)}
 					checked={author.reviewed}
-					className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
+					className="checked:bg-eggplant dark:checked:bg-rose/70 border-eggplant dark:border-rose/70 before:h-8 before:w-8"
 				/>
 			)}
 		</td>
-		<td className="mx-auto border-b border-gray-300">
+		<td className="mx-auto border-b border-parchment/20">
 			<Tooltip content="Edit Author">
 				<IconButton variant="text" className="rounded-full">
-					<PencilIcon className="w-4 h-4 text-eggplant" />
+					<PencilIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
 				</IconButton>
 			</Tooltip>
 		</td>
@@ -142,44 +142,44 @@ export const renderUserRow = (
 	toggleActive?: (id: number) => void
 ) => (
 	<tr key={index} className="text-center">
-		<td className="border-b border-gray-300 whitespace-nowrap w-min">
+		<td className="border-b border-parchment/20 whitespace-nowrap w-min">
 			<Link href={`../user/${user.id}`} className="inline-block">
 				<p className="hover:underline underline-offset-2">
 					{user.tag}
 				</p>
 			</Link>
 		</td>
-		<td className="border-b border-gray-300 whitespace-nowrap">
+		<td className="border-b border-parchment/20 whitespace-nowrap">
 			<p className="w-min inline-block">
 				{`${user.firstName} ${user.lastName}`}
 			</p>
 		</td>
-		<td className="border-b border-gray-300 whitespace-nowrap">
+		<td className="border-b border-parchment/20 whitespace-nowrap">
 			<p className="w-min inline-block">
 				{user.email}
 			</p>
 		</td>
-		<td className="border-b border-gray-300 whitespace-nowrap">
+		<td className="border-b border-parchment/20 whitespace-nowrap">
 			<p className="w-min inline-block">
 				{user.subscription.level}
 			</p>
 		</td>
-		<td className="border-b border-gray-300">
+		<td className="border-b border-parchment/20">
 			{user.dateAdded ? <p>{user.dateAdded.toString()}</p> : <></>}
 		</td>
-		<td className="border-b border-gray-300 ">
+		<td className="border-b border-parchment/20">
 			{toggleActive && (
 				<Checkbox
 					onChange={() => toggleActive(user.id)}
 					checked={user.active}
-					className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
+					className="checked:bg-eggplant dark:checked:bg-rose/70 border-eggplant dark:border-rose/70 before:h-8 before:w-8"
 				/>
 			)}
 		</td>
-		<td className="border-b border-gray-300">
+		<td className="border-b border-parchment/20">
 			<Tooltip content="Edit User">
 				<IconButton variant="text" className="rounded-full">
-					<PencilIcon className="w-4 h-4 text-eggplant" />
+					<PencilIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
 				</IconButton>
 			</Tooltip>
 		</td>
@@ -203,12 +203,12 @@ export const renderGenreRow = (genre: Genre, index: number) => {
 
 		return (
 			<tr key={index} className="text-center">
-				<td className="border-b border-gray-300 whitespace-nowrap w-min">
+				<td className="border-b border-parchment/20 whitespace-nowrap w-min">
 					{isEditing ? (
 						<div className="w-16 mr-auto ml-16">
 							<form onSubmit={handleSubmit}>
 								<Input
-									className={`pr-8 text-center focus:!border-l-eggplant focus:!border-r-eggplant focus:!border-b-eggplant focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
+									className={`pr-8 text-center focus:!border-l-eggplant dark:focus:!border-l-rose/70 focus:!border-r-eggplant dark:focus:!border-r-rose/70 focus:!border-b-eggplant dark:focus:!border-b-rose/70 focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
 									labelProps={{
 										className:
 											"peer-focus:before:!border-t-eggplant peer-focus:before:!border-t-2 peer-focus:before:!border-l-eggplant peer-focus:before:!border-l-2 peer-focus:after:!border-t-eggplant peer-focus:after:!border-t-2 peer-focus:after:!border-r-eggplant peer-focus:after:!border-r-2 peer-focus:before:mt-[6px] peer-focus:after:mt-[6px]",
@@ -229,14 +229,14 @@ export const renderGenreRow = (genre: Genre, index: number) => {
 						</p>
 					)}
 				</td>
-				<td className="border-b border-gray-300">
+				<td className="border-b border-parchment/20">
 					<Tooltip content="Edit Genre">
 						<IconButton
 							variant="text"
 							className="rounded-full"
 							onClick={() => setIsEditing(!isEditing)}
 						>
-							<PencilIcon className="w-4 h-4 text-eggplant" />
+							<PencilIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
 						</IconButton>
 					</Tooltip>
 				</td>
@@ -264,12 +264,12 @@ export const renderKeywordRow = (keyword: Keyword, index: number) => {
 
 		return (
 			<tr key={index} className="text-center">
-				<td className="border-b border-gray-300 whitespace-nowrap w-min">
+				<td className="border-b border-parchment/20 whitespace-nowrap w-min">
 					{isEditing ? (
 						<div className="w-16 mr-auto ml-16">
 							<form onSubmit={handleSubmit}>
 								<Input
-									className={`pr-8 text-center focus:!border-l-eggplant focus:!border-r-eggplant focus:!border-b-eggplant focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
+									className={`pr-8 text-center focus:!border-l-eggplant dark:focus:!border-l-rose/70 focus:!border-r-eggplant dark:focus:!border-r-rose/70 focus:!border-b-eggplant dark:focus:!border-b-rose/70 focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
 									labelProps={{
 										className:
 											"peer-focus:before:!border-t-eggplant peer-focus:before:!border-t-2 peer-focus:before:!border-l-eggplant peer-focus:before:!border-l-2 peer-focus:after:!border-t-eggplant peer-focus:after:!border-t-2 peer-focus:after:!border-r-eggplant peer-focus:after:!border-r-2 peer-focus:before:mt-[6px] peer-focus:after:mt-[6px]",
@@ -290,14 +290,14 @@ export const renderKeywordRow = (keyword: Keyword, index: number) => {
 						</p>
 					)}
 				</td>
-				<td className="border-b border-gray-300">
+				<td className="border-b border-parchment/20">
 					<Tooltip content="Edit Keyword">
 						<IconButton
 							variant="text"
 							className="rounded-full"
 							onClick={() => setIsEditing(!isEditing)}
 						>
-							<PencilIcon className="w-4 h-4 text-eggplant" />
+							<PencilIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
 						</IconButton>
 					</Tooltip>
 				</td>
@@ -325,12 +325,12 @@ export const renderTagRow = (tag: Tag, index: number) => {
 
 		return (
 			<tr key={index} className="text-center">
-				<td className="border-b border-gray-300 whitespace-nowrap w-min">
+				<td className="border-b border-parchment/20 whitespace-nowrap w-min">
 					{isEditing ? (
 						<div className="w-16 mr-auto ml-16">
 							<form onSubmit={handleSubmit}>
 								<Input
-									className={`pr-8 text-center focus:!border-l-eggplant focus:!border-r-eggplant focus:!border-b-eggplant focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
+									className={`pr-8 text-center focus:!border-l-eggplant dark:focus:!border-l-rose/70 focus:!border-r-eggplant dark:focus:!border-r-rose/70 focus:!border-b-eggplant dark:focus:!border-b-rose/70 focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
 									labelProps={{
 										className:
 											"peer-focus:before:!border-t-eggplant peer-focus:before:!border-t-2 peer-focus:before:!border-l-eggplant peer-focus:before:!border-l-2 peer-focus:after:!border-t-eggplant peer-focus:after:!border-t-2 peer-focus:after:!border-r-eggplant peer-focus:after:!border-r-2 peer-focus:before:mt-[6px] peer-focus:after:mt-[6px]",
@@ -351,14 +351,14 @@ export const renderTagRow = (tag: Tag, index: number) => {
 						</p>
 					)}
 				</td>
-				<td className="border-b border-gray-300">
+				<td className="border-b border-parchment/20">
 					<Tooltip content="Edit Tag">
 						<IconButton
 							variant="text"
 							className="rounded-full"
 							onClick={() => setIsEditing(!isEditing)}
 						>
-							<PencilIcon className="w-4 h-4 text-eggplant" />
+							<PencilIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
 						</IconButton>
 					</Tooltip>
 				</td>
@@ -374,40 +374,40 @@ export const renderSeriesRow = (
 	toggleReviewed?: (seriesId: number) => void
 ) => (
 	<tr key={index} className="text-center">
-		<td className="border-b border-gray-300 whitespace-nowrap w-min">
+		<td className="border-b border-parchment/20 whitespace-nowrap w-min">
 			<Link href={`../series/${series.id}`} className="inline-block">
 				<p className="hover:underline underline-offset-2">
 					{series.name}
 				</p>
 			</Link>
 		</td>
-		<td className="border-b border-gray-300 whitespace-nowrap w-min pl-2">
+		<td className="border-b border-parchment/20 whitespace-nowrap w-min pl-2">
 			<Link href={`../series/${series.id}`} className="inline-block">
 				<p className="hover:underline underline-offset-2 pr-2">
 					{series.authors[0].penName}
 				</p>
 			</Link>
 		</td>
-		<td className="border-b border-gray-300">
+		<td className="border-b border-parchment/20">
 			{series.dateAdded ? (
 				<p>{series.dateAdded.toString()}</p>
 			) : (
 				<></>
 			)}
 		</td>
-		<td className="mx-auto border-b border-gray-300 ">
+		<td className="mx-auto border-b border-parchment/20 ">
 			{toggleReviewed && (
 				<Checkbox
 					onChange={() => toggleReviewed(series.id)}
 					checked={series.reviewed}
-					className="checked:bg-eggplant border-eggplant before:h-8 before:w-8"
+					className="checked:bg-eggplant dark:checked:bg-rose/70 border-eggplant dark:border-rose/70 before:h-8 before:w-8"
 				/>
 			)}
 		</td>
-		<td className="border-b border-gray-300">
+		<td className="border-b border-parchment/20">
 			<Tooltip content="Edit Series">
 				<IconButton variant="text" className="rounded-full">
-					<PencilIcon className="w-4 h-4 text-eggplant" />
+					<PencilIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
 				</IconButton>
 			</Tooltip>
 		</td>
@@ -427,7 +427,7 @@ export const renderCommentRow = (
 
 		return (
 			<tr key={index} className="text-center">
-				<td className="border-b border-gray-300 h-8 max-w-36 whitespace-nowrap overflow-ellipsis">
+				<td className="border-b border-parchment/20 h-8 max-w-36 whitespace-nowrap overflow-ellipsis">
 					<Tooltip content={comment.book.title} placement="top">
 						<Link href={`/book/${comment.book.id}`}>
 							<p
@@ -438,7 +438,7 @@ export const renderCommentRow = (
 						</Link>
 					</Tooltip>
 				</td>
-				<td className="border-b border-gray-300 h-8 max-w-48 whitespace-nowrap overflow-ellipsis">
+				<td className="border-b border-parchment/20 h-8 max-w-48 whitespace-nowrap overflow-ellipsis">
 					<Tooltip content={comment.comment} placement="top">
 						<p
 							className="pl-6 w-full text-ellipsis line-clamp-2 inline-block"
@@ -447,20 +447,20 @@ export const renderCommentRow = (
 						</p>
 					</Tooltip>
 				</td>
-				<td className="border-b border-gray-300">
+				<td className="border-b border-parchment/20">
 					{comment.user ? <p>{comment.user.tag}</p> : <></>}
 				</td>
-				<td className="border-b border-gray-300">
+				<td className="border-b border-parchment/20">
 					{comment.dateAdded ? (
 						<p>{comment.dateAdded.toString()}</p>
 					) : (
 						<></>
 					)}
 				</td>
-				<td className="border-b border-gray-300">
+				<td className="border-b border-parchment/20">
 					<Tooltip content="Edit Comment">
 						<IconButton variant="text" className="rounded-full">
-							<XMarkIcon className="w-6 h-6 text-eggplant" onClick={handleDelete} />
+							<XMarkIcon className="w-6 h-6 text-eggplant dark:text-rose/70" onClick={handleDelete} />
 						</IconButton>
 					</Tooltip>
 				</td>
@@ -487,12 +487,12 @@ export const renderSubgenreRow = (subgenre: Subgenre, index: number) => {
 
 		return (
 			<tr key={index} className="text-center">
-				<td className="border-b border-gray-300 whitespace-nowrap w-min">
+				<td className="border-b border-parchment/20 whitespace-nowrap w-min">
 					{isEditing ? (
 						<div className="w-16 mr-auto ml-16">
 							<form onSubmit={handleSubmit}>
 								<Input
-									className={`pr-8 text-center focus:!border-l-eggplant focus:!border-r-eggplant focus:!border-b-eggplant focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
+									className={`pr-8 text-center focus:!border-l-eggplant dark:focus:!border-l-rose/70 focus:!border-r-eggplant dark:focus:!border-r-rose/70 focus:!border-b-eggplant dark:focus:!border-b-rose/70 focus:!border-l-2 focus:!border-r-2 focus:!border-b-2`}
 									labelProps={{
 										className:
 											"peer-focus:before:!border-t-eggplant peer-focus:before:!border-t-2 peer-focus:before:!border-l-eggplant peer-focus:before:!border-l-2 peer-focus:after:!border-t-eggplant peer-focus:after:!border-t-2 peer-focus:after:!border-r-eggplant peer-focus:after:!border-r-2 peer-focus:before:mt-[6px] peer-focus:after:mt-[6px]",
@@ -513,14 +513,14 @@ export const renderSubgenreRow = (subgenre: Subgenre, index: number) => {
 						</p>
 					)}
 				</td>
-				<td className="border-b border-gray-300">
+				<td className="border-b border-parchment/20">
 					<Tooltip content="Edit Subgenre">
 						<IconButton
 							variant="text"
 							className="rounded-full"
 							onClick={() => setIsEditing(!isEditing)}
 						>
-							<PencilIcon className="w-4 h-4 text-eggplant" />
+							<PencilIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
 						</IconButton>
 					</Tooltip>
 				</td>
