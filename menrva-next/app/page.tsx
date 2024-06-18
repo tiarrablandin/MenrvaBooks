@@ -1,11 +1,10 @@
 import { Typography } from "@/providers/coreProviders";
 import ReduxProvider from "@/providers/reduxProvider";
+import AnimatedLogo from "@/ui/motion/animatedLogo";
 import { cookies } from "next/headers";
 import Link from "next/link";
-import Image from "next/image";
 import AnimatedHeader from "../ui/motion/animatedHeader";
 import AdvancedSearchComponent from "../ui/search/advancedSearch";
-import AnimatedLogo from "@/ui/motion/animatedLogo";
 
 export default function Home() {
   const theme = cookies().get("theme")?.value as string;
@@ -25,7 +24,7 @@ export default function Home() {
           <div className="flex w-3/4 justify-between mx-auto">
             <Typography className="text-[1.1rem] font-medium">
               Already a member?
-              <Link href="/login" className="ml-2 hover:underline">
+              <Link href="/login" className="ml-2 hover:underline hover:scale-105">
                 Sign In
               </Link>
             </Typography>
