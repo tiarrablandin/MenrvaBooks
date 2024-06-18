@@ -5,21 +5,15 @@ import Link from "next/link";
 import Image from "next/image";
 import AnimatedHeader from "../ui/motion/animatedHeader";
 import AdvancedSearchComponent from "../ui/search/advancedSearch";
+import AnimatedLogo from "@/ui/motion/animatedLogo";
 
 export default function Home() {
   const theme = cookies().get("theme")?.value as string;
   return (
     <div className={`flex flex-col h-screen w-full `}>
       <main className="flex flex-col h-full w-full items-center justify-center text-nowrap">
-        <Link href="/home">
-          <Image
-            className="object-center w-[30rem] h-[35rem] mx-4"
-            src="https://i.imgur.com/RGGXm1T.png"
-            width={92}
-            height={92}
-            alt="logo"
-            priority
-          />
+        <Link href="/home" className="">
+          <AnimatedLogo />
         </Link>
 
         <AnimatedHeader />
