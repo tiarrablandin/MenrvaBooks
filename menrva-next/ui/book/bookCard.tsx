@@ -10,16 +10,17 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
   return (
     <Card
       shadow={false}
-      className="relative min-w-[8rem] max-w-[8rem] min-h-[12rem] max-h-[12rem] overflow-hidden rounded-lg pointer-events-none flex items-center justify-center z-10"
+      className="relative min-w-[8rem] max-w-[8rem] min-h-[12rem] max-h-[12rem] overflow-hidden rounded-lg pointer-events-none flex items-center justify-center z-0"
     >
-      <CardBody className="relative w-full h-full py-14 p-0 z-10">
+      <CardBody className="relative block w-full h-full py-14 p-0 z-0">
         <Image
-          className="min-h-[12rem] rounded-none object-center shadow-deep-purple-100 relative z-10"
+          className="min-h-[12rem] rounded-none object-center shadow-deep-purple-100  z-0"
           src={`${book.cover}`}
-          width={150}
-          height={250}
           alt="book cover"
+          width={144}
+          height={144}
           priority
+          // fill
         />
       </CardBody>
     </Card>

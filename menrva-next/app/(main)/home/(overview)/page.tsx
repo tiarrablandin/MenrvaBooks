@@ -20,7 +20,7 @@ export default async function Page() {
         </div>
         {/* temporarily commenting out new releases */}
         {/* <BookSlider fetchData={fetchNewReleasesSlider} title={"New Releases"} /> */}
-        <div className="w-[95%]">
+        <div className="w-[95%] pointer-events-none">
           <BookSlider defaultBooks={allBooks} title={"All Books"} />
         </div>
       </div>

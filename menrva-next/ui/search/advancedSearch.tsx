@@ -66,7 +66,7 @@ const AdvancedSearchComponent: React.FC<{ theme: string }> = ({ theme }) => {
     };
 
     return (
-        <div className="flex flex-col w-4/5 h-12 mx-auto z-10">
+        <div className="flex flex-col w-4/5 h-12 mx-auto z-10 relative">
             <form onSubmit={handleSubmit} className='flex gap-3 container'>
                 <Input
                     color={theme !== "dark" ? "black" : "white"}
