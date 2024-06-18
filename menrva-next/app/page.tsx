@@ -8,14 +8,22 @@ import AdvancedSearchComponent from "../ui/search/advancedSearch";
 
 export default function Home() {
   const theme = cookies().get("theme")?.value as string;
+
   return (
     <div className={`flex flex-col h-screen w-full `}>
       <main className="flex flex-col h-full w-full items-center justify-center text-nowrap">
-        <Link href="/home" className="">
-          <AnimatedLogo />
-        </Link>
+        <div className="grid grid-cols-[auto,1fr] w-1/2 items-center mx-auto py-4 gap-2">
+          <div className="col-span-1 flex justify-center h-48 ">
+            <Link href="/home" className="">
+              <AnimatedLogo />
+            </Link>
+          </div>
+          <div className="flex flex-col justify-around mt-auto">
+            <AnimatedHeader />
+            <Typography variant="h6" className="-mt-4 ml-2 text-lg text-onyx">Start by searching for a book, author or genre.</Typography>
+          </div>
+        </div>
 
-        <AnimatedHeader />
 
         <div className="flex flex-col w-4/5 xl:w-3/5">
           <ReduxProvider>
