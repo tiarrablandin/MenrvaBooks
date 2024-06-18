@@ -59,8 +59,8 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
         <Switch
           checked={showUnreviewedOnly}
           onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
-          label={<p>Reviewed</p>}
-          className="before:h-8 before:w-8 checked:bg-eggplant"
+          label={<p className="text-parchment/70">Reviewed</p>}
+          className="before:h-8 before:w-8 checked:bg-eggplant dark:checked:bg-rose/70"
         />
       }
       activeToggle={
@@ -68,7 +68,7 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
           checked={showActiveOnly}
           onChange={(e) => setShowActiveOnly(e.target.checked)}
           label={<p>Active</p>}
-          className="before:h-8 before:w-8 checked:bg-eggplant"
+          className="before:h-8 before:w-8 checked:bg-eggplant dark:checked:bg-rose/70"
         />
       }
       tableHeaders={tableConfig[entityType].columns}

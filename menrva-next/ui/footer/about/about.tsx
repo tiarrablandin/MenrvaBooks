@@ -3,12 +3,12 @@ export function About() {
   return (
     <section className="py-8 px-8 lg:py-10">
       <div className="container mx-auto grid items-center lg:grid-cols-2">
-        <div className="row-start-2 mt-12 lg:row-auto lg:mt-0 lg:pr-12 text-deep-sea dark:text-old-lace/70">
+        <div className="row-start-2 mt-12 lg:row-auto lg:mt-0 lg:pr-12">
           <div className="mb-4 !font-semibold">
             About Menrva Books
           </div>
           <div
-            className="mb-6 pr-5 text-4xl !leading-snug lg:text-5xl text-eggplant dark:text-pink-lavender/70"
+            className="mb-6 pr-5 text-4xl !leading-snug lg:text-5xl text-eggplant dark:text-rose/70"
           >
             The Castle Looks Different at Night...
           </div>

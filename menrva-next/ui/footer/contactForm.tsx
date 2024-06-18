@@ -38,12 +38,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ }) => {
   return (
     <div className="flex justify-center items-center max-h-screen h-[70vh]">
       <Card
-        className="flex items-center p-10 bg-transparent"
+        className="flex items-center p-10 bg-transparent text-deep-sea dark:text-parchment/70"
         shadow={false}
       >
-        <div className="">
+        <Typography variant="h5" className="text-eggplant dark:text-rose/70">
           Contact Us
-        </div>
+        </Typography>
         <div className="mt-1 font-normal">
           Got a suggestion on how to make the site better? Let us know!
         </div>
@@ -62,7 +62,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ }) => {
               placeholder="John Doe"
               name="name"
               id="name"
-              className=" !border-eggplant focus:!border-eggplant dark:text-old-lace"
+              className="!border-eggplant focus:!border-eggplant dark:!border-rose/70 dark:focus:!border-rose/70 text-deep-sea dark:text-parchment/70"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -75,7 +75,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ }) => {
               placeholder="name@mail.com"
               name="email"
               id="email"
-              className=" !border-eggplant focus:!border-eggplant dark:text-old-lace"
+              className="!border-eggplant focus:!border-eggplant dark:!border-rose/70 dark:focus:!border-rose/70 text-deep-sea dark:text-parchment/70"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
@@ -87,13 +87,13 @@ const ContactForm: React.FC<ContactFormProps> = ({ }) => {
               size="lg"
               name="message"
               id="message"
-              className=" !border-eggplant focus:!border-eggplant dark:text-old-lace"
+              className="!border-eggplant focus:!border-eggplant dark:!border-rose/70 dark:focus:!border-rose/70 text-deep-sea dark:text-parchment/70"
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
             />
           </div>
-          <Button type="submit" className="mt-6 bg-eggplant text-old-lace" fullWidth>
+          <Button type="submit" className="mt-6 bg-eggplant text-parchment dark:bg-rose/70" fullWidth>
             submit
           </Button>
         </form>

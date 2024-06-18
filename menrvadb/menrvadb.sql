@@ -472,19 +472,22 @@ insert into genre (id, name, date_added, reviewed, date_updated)
 VALUES (1, 'Fantasy', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (2, 'Fiction', now(), 1, '2024-03-15');
+VALUES (2, 'History', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (3, 'Non-fiction', now(), 1, '2024-03-15');
+VALUES (3, 'Self-help', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (5, 'Science fiction', now(), 1, '2024-03-15');
+VALUES (4, 'Science', now(), 1, '2024-03-15');
+
+insert into genre (id, name, date_added, reviewed, date_updated)
+VALUES (5, 'Science Fiction', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
 VALUES (6, 'Mystery', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (7, 'Historical fiction', now(), 1, '2024-03-15');
+VALUES (7, 'Historical Fiction', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
 VALUES (8, 'Horror', now(), 1, '2024-03-15');
@@ -496,7 +499,7 @@ insert into genre (id, name, date_added, reviewed, date_updated)
 VALUES (10, 'Thriller', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (11, 'Autobiography', now(), 1, '2024-03-15');
+VALUES (11, 'Travel', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
 VALUES (12, 'Young Adult', now(), 1, '2024-03-15');
@@ -508,73 +511,301 @@ insert into genre (id, name, date_added, reviewed, date_updated)
 VALUES (14, 'Dystopian', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (15, 'Contemporary fiction', now(), 1, '2024-03-15');
+VALUES (15, 'True Crime', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (16, 'Literary fiction', now(), 1, '2024-03-15');
+VALUES (16, 'Literary Fiction', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (17, 'Historical', now(), 1, '2024-03-15');
+VALUES (17, 'Cookbooks', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (18, 'Graphic novel', now(), 1, '2024-03-15');
+VALUES (18, 'Graphic Novel', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (20, 'Short story', now(), 1, '2024-03-15');
+VALUES (19, 'Health and Fitness', now(), 1, '2024-03-15');
+
+insert into genre (id, name, date_added, reviewed, date_updated)
+VALUES (20, 'Business and Economics', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
 VALUES (21, 'Biography', now(), 1, '2024-03-15');
 
 insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (22, 'Classics', now(), 1, '2024-03-15');
-
-insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (25, 'Western fiction', now(), 1, '2024-03-15');
-
-insert into genre (id, name, date_added, reviewed, date_updated)
-VALUES (26, 'Comedy', now(), 1, '2024-03-15');
+VALUES (22, 'Religion and Spirituality', now(), 1, '2024-03-15');
 
 insert into sub_genre (id, name, date_added, reviewed, date_updated)
-VALUES (1, 'Dark fantasy', now(), 1, '2024-03-15');
+VALUES (1, 'Hard Sci-fi', now(), 1, '2024-03-15');
 
 insert into sub_genre (id, name, date_added, reviewed, date_updated)
-VALUES (2, 'High fantasy', now(), 1, '2024-03-15');
+VALUES (2, 'Soft Sci-fi', now(), 1, '2024-03-15');
 
 insert into sub_genre (id, name, date_added, reviewed, date_updated)
-VALUES (3, 'Low fantasy', now(), 1, '2024-03-15');
+VALUES (3, 'Military Sci-fi', now(), 1, '2024-03-15');
 
 insert into sub_genre (id, name, date_added, reviewed, date_updated)
-VALUES (4, 'Erotica', now(), 1, '2024-03-15');
+VALUES (4, 'Space Opera', now(), 1, '2024-03-15');
 
 insert into sub_genre (id, name, date_added, reviewed, date_updated)
-VALUES (5, 'Gothic fiction', now(), 1, '2024-03-15');
+VALUES (5, 'Cyberpunk', now(), 1, '2024-03-15');
 
 insert into sub_genre (id, name, date_added, reviewed, date_updated)
-VALUES (6, 'Fairy tale', now(), 1, '2024-03-15');
+VALUES (6, 'High Fantasy', now(), 1, '2024-03-15');
 
 insert into sub_genre (id, name, date_added, reviewed, date_updated)
-VALUES (7, 'Crime', now(), 1, '2024-03-15');
+VALUES (7, 'Low Fantasy', now(), 1, '2024-03-15');
 
 insert into sub_genre (id, name, date_added, reviewed, date_updated)
-VALUES (9, 'Action', now(), 1, '2024-03-15');
+VALUES (8, 'Travel and Expedition', now(), 1, '2024-03-15');
 
 insert into sub_genre (id, name, date_added, reviewed, date_updated)
-VALUES (10, 'Supernatural', now(), 1, '2024-03-15');
+VALUES (9, 'Urban Fantasy', now(), 1, '2024-03-15');
 
 insert into sub_genre (id, name, date_added, reviewed, date_updated)
-VALUES (11, 'Urban-fantasy', now(), 1, '2024-03-15');
+VALUES (10, 'Dark Fantasy', now(), 1, '2024-03-15');
 
 insert into sub_genre (id, name, date_added, reviewed, date_updated)
-VALUES (12, 'Paranormal romance', now(), 1, '2024-03-15');
+VALUES (11, 'Epic Fantasy', now(), 1, '2024-03-15');
 
 insert into sub_genre (id, name, date_added, reviewed, date_updated)
-VALUES (13, 'Paranormal', now(), 1, '2024-03-15');
+VALUES (12, 'Sword and Sorcery', now(), 1, '2024-03-15');
 
 insert into sub_genre (id, name, date_added, reviewed, date_updated)
-VALUES (14, 'Post apocalyptic', now(), 1, '2024-03-15');
+VALUES (13, 'Cozy Mystery', now(), 1, '2024-03-15');
 
 insert into sub_genre (id, name, date_added, reviewed, date_updated)
-VALUES (15, 'Magical realism', now(), 1, '2024-03-15');
+VALUES (14, 'Hard-boiled Detective', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (15, 'Police Procedural', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (16, 'Crime Thriller', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (17, 'Psychological Thriller', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (18, 'Techno Thriller', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (19, 'Legal Thriller', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (20, 'Medical Thriller', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (21, 'Gothic Horror', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (22, 'Paranormal', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (23, 'Monster Literature', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (24, 'Psychological Horror', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (25, 'Survival Horror', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (26, 'Contemporary Romance', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (27, 'Historical Romance', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (28, 'Romantic Suspense', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (29, 'Paranormal Romance', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (30, 'Erotica', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (31, 'Biographical', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (32, 'Period Fiction', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (33, 'Historical Romance', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (34, 'Alternate History', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (35, 'YA Romance', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (36, 'YA Fantasy', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (37, 'YA Mystery', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (38, 'YA Dystopian', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (39, 'Modern Literature', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (40, 'Postmodern Literature', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (41, 'Magical Realism', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (42, 'Bildungsroman', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (43, 'Survival Adventure', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (44, 'Treasure Hunt', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (45, 'Post-Apocalyptic', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (46, 'Social Dystopias', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (47, 'Environmental Dystopias', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (48, 'Techno Dystopias', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (49, 'Steampunk', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (50, 'Memoir', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (51, 'Historical Biography', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (52, 'Sea Adventure', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (53, 'Celebrity Biography', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (54, 'Political Biography', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (55, 'Personal Development', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (56, 'Health and Wellness', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (57, 'Motivational', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (58, 'Relationships', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (59, 'Military History', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (60, 'World History', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (61, 'Cultural History', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (62, 'Historical and Period Studies', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (63, 'Popular Science', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (64, 'Physics', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (65, 'Biology', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (66, 'Earth Sciences', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (67, 'Astronomy', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (68, 'Travel Guides', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (69, 'Adventure Travel', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (70, 'Cultural Exploration', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (71, 'Travel Memoirs', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (72, 'Criminal Biographies', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (73, 'Unsolved Crimes', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (74, 'Legal Investigations', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (75, 'Psychological Profiles', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (76, 'Regional Cuisine', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (77, 'Health and Diet', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (78, 'Cooking Techniques', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (79, 'Baking and Desserts', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (80, 'Exercise', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (81, 'Diet and Nutrition', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (82, 'Mental Health', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (83, 'Disease and Prevention', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (84, 'Entrepreneurship', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (85, 'Economics Theory', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (86, 'Personal Finance', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (87, 'Business Biography', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (88, 'Inspirational', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (89, 'Theology', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (90, 'Religious History', now(), 1, '2024-03-15');
+
+insert into sub_genre (id, name, date_added, reviewed, date_updated)
+VALUES (91, 'Spiritual Practices', now(), 1, '2024-03-15');
 
 insert into keyword (id, name, date_added, reviewed, date_updated)
 VALUES (1, 'Fairy', now(), 1, '2024-03-15');
@@ -1287,58 +1518,283 @@ insert into book_has_tag (book_id, tag_id)
 VALUES (6, 7);
 
 insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (1, 1);
-
-insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (1, 2);
-
-insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (2, 1);
-
-insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (2, 2);
-
-insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (3, 1);
-
-insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (3, 2);
-
-insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (4, 2);
-
-insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (4, 9);
+values (5, 1);
 
 insert into genre_has_sub_genre (genre_id, sub_genre_id)
 values (5, 2);
 
 insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (6, 2);
+values (5, 3);
 
 insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (7, 6);
+values (5, 4);
 
 insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (9, 5);
+values (5, 5);
 
 insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (10, 2);
+values (1, 6);
 
 insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (11, 1);
+values (1, 7);
 
 insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (12, 9);
+values (13, 8);
 
 insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (13, 2);
+values (1, 9);
 
 insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (14, 1);
+values (1, 10);
 
 insert into genre_has_sub_genre (genre_id, sub_genre_id)
-values (15, 1);
+values (1, 11);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (1, 12);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (6, 13);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (6, 14);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (6, 15);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (6, 16);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (10, 16);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (10, 17);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (10, 18);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (10, 19);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (10, 20);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (8, 21);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (8, 22);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (8, 23);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (8, 24);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (8, 25);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (9, 26);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (9, 27);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (9, 28);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (9, 29);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (9, 30);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (7, 31);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (7, 32);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (7, 33);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (7, 34);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (12, 35);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (12, 36);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (12, 37);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (12, 38);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (16, 39);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (16, 40);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (16, 41);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (1, 41);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (16, 42);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (13, 43);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (13, 44);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (14, 45);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (14, 46);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (14, 47);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (14, 48);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (1, 49);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (21, 50);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (21, 51);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (13, 52);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (21, 53);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (21, 54);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (3, 55);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (3, 56);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (3, 57);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (3, 58);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (2, 59);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (2, 60);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (2, 61);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (2, 62);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (4, 63);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (4, 64);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (4, 65);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (4, 66);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (4, 67);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (11, 68);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (11, 69);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (11, 70);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (11, 71);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (15, 72);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (15, 73);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (15, 74);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (15, 75);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (17, 76);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (17, 77);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (17, 78);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (17, 79);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (19, 80);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (19, 81);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (19, 82);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (19, 83);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (20, 84);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (20, 85);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (20, 86);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (20, 87);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (22, 88);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (22, 89);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (22, 90);
+
+insert into genre_has_sub_genre (genre_id, sub_genre_id)
+values (22, 91);
 
 insert into user_has_genre (user_id, genre_id)
 VALUES (1, 1);

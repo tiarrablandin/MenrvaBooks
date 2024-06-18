@@ -74,16 +74,16 @@ const AdvancedSearchComponent: React.FC<{ theme: string }> = ({ theme }) => {
                     size="lg"
                     label="Search"
                     labelProps={{
-                        className: "!text-eggplant dark:!text-old-lace"
+                        className: "!text-eggplant dark:!text-rose"
                     }}
-                    className={`${advent.className} text-eggplant dark:text-old-lace tracking-wide text-[1.15rem]`}
+                    className={`${advent.className} tracking-wide text-[1.15rem]`}
                     onChange={handleInputChange}
                     value={searchTerm}
                     onFocus={handleFocus}
                     onBlur={handleBlur} />
             </form>
             {isFocused && (isLoading ?
-                <ListItem className="p-1 py-3 bg-white pointer-events-none z-10">
+                <ListItem className="p-1 py-3 bg-parchment/70 dark:bg-onyx pointer-events-none z-10">
                     <Spinner className="mx-auto" />
                 </ListItem>
                 :

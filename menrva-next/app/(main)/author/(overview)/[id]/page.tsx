@@ -14,6 +14,8 @@ export default async function Page({ params: { id } }: { params: { id: number } 
   const token = cookies().get('jwt')?.value;
   const isFollowing = token ? await fetchUserFollowsAuthor(id, token) : false;
 
+  console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" + isFollowing) 
+
   return (
     <main className="w-screen min-h-[calc(100vh-295px)]">
       {fetchedAuthor ?
@@ -23,7 +25,7 @@ export default async function Page({ params: { id } }: { params: { id: number } 
       }
       
       <ReduxProvider>
-        {token ? <InitializeUserFollowsAuthor isFollowing={!isFollowing ? false : true} /> : <></>}
+        {token ? <InitializeUserFollowsAuthor isFollowing={isFollowing ? isFollowing : false} /> : <></>}
       </ReduxProvider>
     </main>
   );

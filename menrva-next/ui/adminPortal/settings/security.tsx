@@ -18,24 +18,24 @@ const data = [
 
 function AccountCard({ title, desc, keys, label }: AccountCardPropsType) {
   return (
-    <div className="flex flex-wrap items-center justify-between border-b border-b-gray-200 py-6">
+    <div className="flex flex-wrap items-center justify-between py-6">
       <div>
-        <p color="blue-gray">
+        <p className="">
           {title}
         </p>
-        <p className="text-gray-600 font-normal mt-1">
+        <p className="font-normal mt-1">
           {desc}
         </p>
       </div>
       <div className="flex items-center gap-4 ml-auto">
         <p
           className={`!ml-auto
-          ${keys === "+4 0123 456 789" ? "!font-bold text-eggplant " : "!font-normal"}
+          ${keys === "+4 0123 456 789" ? "!font-bold text-deep-sea dark:text-parchment/70 " : "!font-normal"}
           `}
         >
           {keys}
         </p>
-        <Button size="sm" variant="outlined" className="text-eggplant">
+        <Button size="sm" variant="outlined" className="border-eggplant dark:border-rose/70 text-deep-sea dark:text-parchment/70">
           {label}
         </Button>
       </div>
@@ -46,18 +46,18 @@ function AccountCard({ title, desc, keys, label }: AccountCardPropsType) {
 const Security = () => {
   return (
     <div>
-      <section className="px-8 pl-16 py-16 container mx-auto">
+      <section className="px-8 pl-16 py-12 container mx-auto text-deep-sea dark:text-parchment/70">
         <div className="flex items-start justify-between rounded-none mb-2">
           <div>
-            <p className="text-2xl">
+            <p className="font-semibold">
               Two-factor authentication
             </p>
-            <p className="text-gray-600 font-normal mt-1">
+            <p className="font-normal mt-1">
               Update your profile information below.
             </p>
           </div>
-          <div className="mt-7 flex justify-end">
-            <Button className="bg-eggplant text-old-lace">enable</Button>
+          <div className="flex justify-end">
+            <Button className="bg-eggplant dark:bg-rose/70 text-parchment/70">enable</Button>
           </div>
         </div>
         {data.map(({ title, desc, keys, label }) => (

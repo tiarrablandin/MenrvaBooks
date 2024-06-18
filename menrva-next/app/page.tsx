@@ -23,16 +23,16 @@ export default function Home() {
             <AdvancedSearchComponent theme={theme} />
           </ReduxProvider>
           <div className="flex w-3/4 justify-between mx-auto">
-            <Link href="/login">
-              <Typography className="text-[1.1rem] hover:underline font-medium">
-                Already a member? Sign In
-              </Typography>
-            </Link>
-            <Link href="/subscriptions">
-              <Typography className="text-[1.1rem] hover:underline font-medium">
-                If not, create a free account!
-              </Typography>
-            </Link>
+            <Typography className="text-[1.1rem] font-medium">
+              Already a member?
+              <Link href="/login" className="ml-2 hover:underline">
+                Sign In
+              </Link>
+            </Typography>
+            <Typography className="text-[1.1rem] font-medium">
+              If not,
+              <Link href="/subscriptions" className="ml-2 hover:underline">create a free account!</Link>
+            </Typography>
           </div>
         </div>
       </main>

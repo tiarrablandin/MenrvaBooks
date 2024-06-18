@@ -31,6 +31,7 @@ export {
   CreditCardIcon as CreditCardIconOutline,
   EnvelopeIcon,
   ExclamationCircleIcon,
+  HandThumbUpIcon,
   HomeIcon as HomeIconOutline,
   GlobeAltIcon,
   KeyIcon as KeyIconOutline,
@@ -41,6 +42,7 @@ export {
   Square3Stack3DIcon as Square3Stack3DIconOutline,
   TableCellsIcon,
   UserCircleIcon,
+  UserGroupIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 export {

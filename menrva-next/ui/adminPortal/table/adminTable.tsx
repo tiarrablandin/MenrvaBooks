@@ -71,15 +71,15 @@ const AdminTable: React.FC<AdminTableProps> = ({
 
   return (
     <>
-      <Card className={` ${variant === 'small' ?  'h-[85vh] w-[95%] mx-auto my-4 overflow-scroll' : 'h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll'} ${advent.className} text-eggplant dark:text-old-lace dark:bg-eggplant`}>
+      <Card className={` ${variant === 'small' ?  'h-[85vh] w-[95%] mx-auto my-4 overflow-scroll' : 'h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll'} ${advent.className} text-parchment/70 bg-deep-sea/90 dark:bg-deep-sea/70`}>
         <CardHeader
           floated={false}
           shadow={false}
-          className={`h-1/6 rounded-none flex flex-nowrap justify-between gap-2 p-2 text-nowrap overflow-x-scroll no-scrollbar ${variant === 'small' ? 'flex-col' : ''} bg-eggplant`}
+          className={`h-1/6 rounded-none flex flex-nowrap justify-between gap-2 p-2 text-nowrap overflow-x-scroll no-scrollbar ${variant === 'small' ? 'flex-col' : ''} bg-transparent`}
         >
           <div className='flex items-center justify-between gap-4 w-full'>
             <div className="flex flex-col">
-              <p className="text-3xl">
+              <p className="text-3xl text-eggplant dark:text-rose/70">
                 {head}
               </p>
               <p className="text-md">
@@ -97,7 +97,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
             <div className="flex gap-5 items-center mr-2">
               {['books', 'users', 'authors'].includes(normalizedHead) ?
                 <Tooltip content={`Add ${entityType}`}>
-                  <IconButton variant="text" className="rounded-full">
+                  <IconButton variant="text" className="rounded-full text-eggplant dark:text-rose/70">
                     <Link href={tableConfig[entityType].addLink} className="w-min">
                       <PlusIcon className="w-5 h-5 bg-clip-text " />
                     </Link>
@@ -123,7 +123,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
                     key={index}
                     className="px-4 py-3 text-center text-md font-lg uppercase tracking-wider text-nowrap"
                   >
-                    <p className="text-xl">
+                    <p className="text-xl text-eggplant dark:text-rose/70">
                       {tableHeaders}
                     </p>
                   </th>
