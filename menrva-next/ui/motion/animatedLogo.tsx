@@ -42,8 +42,8 @@ export default function AnimatedLogo() {
         <svg
             id="svg"
             version="1.1"
-            width="400"
-            height="572.6618705035971"
+            width="150"
+            height="250"
             viewBox="0 0 400 572.6618705035971"
             xmlns="http://www.w3.org/2000/svg"
         >

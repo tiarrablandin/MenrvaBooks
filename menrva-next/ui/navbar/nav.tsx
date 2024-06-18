@@ -45,10 +45,10 @@ export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: stri
             </div>
           </ReduxProvider>
           <div className="mr-12 flex items-center gap-1 z-10">
-            <IconButton variant="text" className="w-8 h-8 mt-2">
+            {tag ? <IconButton variant="text" className="w-8 h-8 mt-2">
               <BellIcon className="h-5 w-5 text-eggplant dark:text-rose" />
-            </IconButton>
-            <ProfileMenu tag={tag} role={role} />
+            </IconButton> : <></>}
+            {tag ? <ProfileMenu tag={tag} role={role} /> : <Link href="/login" className="underline hover:scale-105 underline-offset-2 pr-6 text-nowrap text-eggplant dark:text-parchment/70">Log In</Link>}
             <ThemeToggle theme={theme} />
           </div>
         </div>
@@ -69,10 +69,10 @@ export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: stri
       <Collapse open={open} className={`hidden z-10 ${open ? "overflow-visible" : "overflow-hidden" }`}>
         <div className="grid grid-cols-3 grid-rows-2 gap-2 z-10">
           <div className="col-span-3 flex mx-auto items-center z-10">
-            <IconButton variant="text">
+            {tag ? <IconButton variant="text">
               <BellIcon className="h-5 w-5 text-eggplant dark:text-old-lace" />
-            </IconButton>
-            <ProfileMenu tag={tag} role={role} />
+            </IconButton> : <></>}
+            {tag ? <ProfileMenu tag={tag} role={role} /> : <Link href="/login" className="underline">Log In</Link>}
             <ThemeToggle theme={theme} />
           </div>
           <div className="col-span-3 z-10 py-1 overflow-visible">
