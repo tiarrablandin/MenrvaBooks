@@ -70,22 +70,6 @@ const ProfileMenu: React.FC<{ tag: string; role: string; }> = ({ tag, role }) =>
             </Link>
           </div>
         </MenuItem>
-        {!tag ? (
-          <MenuItem key="2" onClick={closeMenu} className="">
-            <div
-              className={`${iconClass} transition-transform hover:scale-105 w-full cursor-pointer`}
-            >
-              <>
-                <UserIcon className="h-4 w-4" />
-                <Link href="/subscriptions" className="flex items-center">
-                  Register
-                </Link>
-              </>
-            </div>
-          </MenuItem>
-        ) : (
-          <></>
-        )}
         {tag && role === "Admin" && (
           <MenuItem key="3" onClick={closeMenu} className="">
             <Link href="/admin" className="flex items-center">

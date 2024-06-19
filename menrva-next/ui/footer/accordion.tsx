@@ -27,7 +27,7 @@ const CustomAccordion: React.FC<AccordionProps> = ({ id, header, body }) => {
             </div>
           </AccordionHeader>
           <AccordionBody>
-            <div className="font-normal text-deep-sea dark:text-parchment/70">
+            <div className="font-normal text-lg text-deep-sea dark:text-parchment/70">
               {body}
             </div>
           </AccordionBody>

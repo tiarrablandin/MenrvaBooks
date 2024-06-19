@@ -114,10 +114,6 @@ const Subscriptions = () => {
           ))}
         </TabsBody>
       </Tabs>
-      <div className="flex justify-center text-xl">
-        Are you an author?
-        <Link href={"/subscriptions"}>Sign up here.</Link>
-      </div>
     </div>
   );
 };

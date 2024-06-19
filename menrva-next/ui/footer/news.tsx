@@ -18,7 +18,7 @@ const news: React.FC<NewsProps> = ({}) => {
       <Timeline className="flex justify-center w-11/12 my-6 mx-12">
         <TimelineItem>
           <TimelineConnector className=""/>
-          <TimelineHeader className="h-3">
+          <TimelineHeader className="">
             <TimelineIcon className="bg-eggplant dark:bg-rose/70"/>
             <div className="leading-none w-4/5 font-semibold text-eggplant dark:text-rose/70">
               Timeline Title Here.
@@ -37,7 +37,7 @@ const news: React.FC<NewsProps> = ({}) => {
         </TimelineItem>
         <TimelineItem>
           <TimelineConnector />
-          <TimelineHeader className="h-3">
+          <TimelineHeader className="">
             <TimelineIcon className="bg-eggplant dark:bg-rose/70"/>
             <div className="leading-none font-semibold text-eggplant dark:text-rose/70">
               Timeline Title Here.
@@ -55,7 +55,7 @@ const news: React.FC<NewsProps> = ({}) => {
           </TimelineBody>
         </TimelineItem>
         <TimelineItem>
-          <TimelineHeader className="h-3">
+          <TimelineHeader className="">
             <TimelineIcon className="bg-eggplant dark:bg-rose/70"/>
             <div className="leading-none font-semibold text-eggplant dark:text-rose/70">
               Timeline Title Here.

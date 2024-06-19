@@ -1,86 +1,105 @@
-'use client';
+"use client";
 
-import login from '@/lib/actions/login';
-import { ArrowRightIcon, AtSymbolIcon, Button, Dialog, KeyIcon, XMarkIcon } from '@/providers/coreProviders';
-import { Advent_Pro } from 'next/font/google';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import login from "@/lib/actions/login";
+import {
+  ArrowRightIcon,
+  AtSymbolIcon,
+  Button,
+  Dialog,
+  KeyIcon,
+  Typography,
+  XMarkIcon,
+} from "@/providers/coreProviders";
+import { Advent_Pro } from "next/font/google";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
-
-interface LoginFormProps {
-}
+interface LoginFormProps {}
 
 const advent = Advent_Pro({ subsets: ["latin"] });
 
-const LoginForm: React.FC<LoginFormProps> = ({ }) => {
-    const router = useRouter();
+const LoginForm: React.FC<LoginFormProps> = ({}) => {
+  const router = useRouter();
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [isOpen, setIsOpen] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        setIsLoading(true);
-        const formData = new FormData(event.currentTarget);
-        const identifier = formData.get('identifier') as string;
-        const password = formData.get('password') as string;
-        await login(identifier, password);
-        router.push(`/userHome/@${identifier}`);
-        setIsOpen(false);
-    }
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsLoading(true);
+    const formData = new FormData(event.currentTarget);
+    const identifier = formData.get("identifier") as string;
+    const password = formData.get("password") as string;
+    await login(identifier, password);
+    router.push(`/userHome/@${identifier}`);
+    setIsOpen(false);
+  };
 
-    const handleClose = () => { setIsOpen(false); router.back(); }
+  const handleClose = () => {
+    setIsOpen(false);
+    router.back();
+  };
 
-    return (
-        <Dialog size='xs' open={isOpen} handler={handleClose} className={`bg-transparent shadow-none flex items-center  mx-auto ${advent.className}`}>
-            <form onSubmit={handleSubmit} className="space-y-2 container m-0">
-                <div className="flex-1 rounded-lg bg-gray-50 px-6 py-8 mx-auto h-full my-auto">
-                    <XMarkIcon className="w-5 h-5 cursor-pointer text-black inline-block -mt-8 -ml-2 mb-2" onClick={() => router.back()} />
-                    <div className={`mb-3 text-center text-4xl text-gray-900 font-medium`}>
-                        Please log in to continue
-                    </div>
-                    <div className="w-full text-gray-900 mt-7">
-                        <div>
-                            <label
-                                className="mb-3 mt-5 block text-2xl font-medium"
-                                htmlFor="identifier"
-                            >
-                                Username
-                            </label>
-                            <div className="relative">
-                                <input
-                                    className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-md font-medium outline-2 placeholder:text-gray-500"
-                                    id="identifier"
-                                    type="text"
-                                    name="identifier"
-                                    placeholder="Enter your tag or email"
-                                    required
-                                />
-                                <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
-                            </div>
-                        </div>
-                        <div className="mt-8">
-                            <label
-                                className="mb-3 mt-5 block text-2xl font-medium"
-                                htmlFor="password"
-                            >
-                                Password
-                            </label>
-                            <div className="relative">
-                                <input
-                                    className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-md font-medium outline-2 placeholder:text-gray-500"
-                                    id="password"
-                                    type="password"
-                                    name="password"
-                                    placeholder="Enter password"
-                                    required
-                                />
-                                <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
-                            </div>
-                        </div>
-                    </div>
-                    <LoginButton isLoading={isLoading} />
-                    {/* <div className="flex h-3 items-end space-x-1">
+  return (
+    <Dialog
+      size="xs"
+      open={isOpen}
+      handler={handleClose}
+      className={`bg-transparent shadow-none flex items-center  mx-auto ${advent.className}`}
+    >
+      <form onSubmit={handleSubmit} className="space-y-2 container m-0">
+        <div className="flex-1 rounded-lg bg-parchment px-6 py-8 mx-auto h-full my-auto">
+          <XMarkIcon
+            className="w-5 h-5 cursor-pointer text-eggplant inline-block -mt-8 -ml-2 mb-2"
+            onClick={() => router.back()}
+          />
+          <div className={`mb-3 text-center text-4xl text-eggplant font-medium`}>
+            Log in to continue
+          </div>
+          <div className="w-full text-deep-sea mt-7">
+            <div>
+              <label className="mb-2 mt-5 block text-xl font-medium" htmlFor="identifier">
+                Username
+              </label>
+              <div className="relative">
+                <input
+                  className="peer block w-full bg-parchment/70 rounded-md border border-eggplant py-[9px] pl-10 text-md font-medium outline-2 placeholder:text-gray-500"
+                  id="identifier"
+                  type="text"
+                  name="identifier"
+                  placeholder="Enter your tag or email"
+                  required
+                />
+                <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-eggplant peer-focus:text-eggplant" />
+              </div>
+            </div>
+            <div className="mt-8">
+              <label className="mb-2 mt-5 block text-xl font-medium" htmlFor="password">
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  className="peer block w-full rounded-md border border-eggplant bg-parchment/70 py-[9px] pl-10 text-md font-medium outline-2 placeholder:text-gray-500"
+                  id="password"
+                  type="password"
+                  name="password"
+                  placeholder="Enter password"
+                  required
+                />
+                <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-eggplant peer-focus:text-eggplant" />
+              </div>
+              <div className="mr-auto w-min text-nowrap p-1">
+                <Link href="/">
+                  <Typography className="ml-2 underline underline-offset-1 hover:scale-105">
+                    Forgot your password?
+                  </Typography>
+                </Link>
+              </div>
+            </div>
+          </div>
+          <LoginButton isLoading={isLoading} />
+          {/* <div className="flex h-3 items-end space-x-1">
                         <div
                             className="flex h-5 items-end space-x-1"
                             aria-live="polite"
@@ -94,21 +113,33 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
                             )}
                         </div>
                     </div> */}
-                </div>
-            </form >
-        </Dialog>
-    );
-}
+
+          <div className="mx-auto w-full flex flex-nowrap justify-center py-2">
+            <Typography>New to Menrva?</Typography>
+            <Link href="/subscriptions">
+              <Typography className="ml-2 underline underline-offset-1 hover:scale-105">
+                Create a free account!
+              </Typography>
+            </Link>
+          </div>
+        </div>
+      </form>
+    </Dialog>
+  );
+};
 
 const LoginButton: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
-    return (
-        <Button type='submit' className="mt-20 w-full flex flex-row justify-center items-center shadow-md" aria-disabled={isLoading} disabled={isLoading}>
-            <p className='mt-1 font-normal'>
-                {isLoading ? "Logging in..." : "Log In"}
-            </p>
-            <ArrowRightIcon className="ml-auto h-6 w-6 text-gray-50" />
-        </Button>
-    );
-}
+  return (
+    <Button
+      type="submit"
+      className="mt-8 w-full flex flex-row justify-center items-center shadow-md bg-eggplant"
+      aria-disabled={isLoading}
+      disabled={isLoading}
+    >
+      <p className="mt-1 font-normal text-lg">{isLoading ? "Logging in..." : "Log In"}</p>
+      <ArrowRightIcon className="ml-auto h-6 w-6 text-parchment/70" />
+    </Button>
+  );
+};
 
 export default LoginForm;

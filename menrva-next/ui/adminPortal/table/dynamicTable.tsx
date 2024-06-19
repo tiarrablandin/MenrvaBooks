@@ -60,7 +60,14 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
           checked={showUnreviewedOnly}
           onChange={(e) => setShowUnreviewedOnly(e.target.checked)}
           label={<p className="text-parchment/70">Reviewed</p>}
-          className="before:h-8 before:w-8 checked:bg-eggplant dark:checked:bg-rose/70"
+          className="before:h-8 before:w-8 bg-rose dark:bg-rose/40 checked:bg-rose dark:checked:bg-rose/40"
+          containerProps={{
+            className: "mr-3"
+          }}
+          circleProps={{
+            className: "before:hidden  border-none bg-eggplant dark:bg-rose ",
+          }}
+          ripple={false}
         />
       }
       activeToggle={
@@ -68,7 +75,14 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
           checked={showActiveOnly}
           onChange={(e) => setShowActiveOnly(e.target.checked)}
           label={<p>Active</p>}
-          className="before:h-8 before:w-8 checked:bg-eggplant dark:checked:bg-rose/70"
+          className="before:h-8 before:w-8 bg-rose dark:bg-rose/70 checked:bg-rose dark:checked:bg-rose/40"
+          containerProps={{
+            className: "mr-3"
+          }}
+          circleProps={{
+            className: "before:hidden  border-none bg-eggplant dark:bg-rose ",
+          }}
+          ripple={false}
         />
       }
       tableHeaders={tableConfig[entityType].columns}
