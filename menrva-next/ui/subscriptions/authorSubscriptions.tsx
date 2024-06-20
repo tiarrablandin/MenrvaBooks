@@ -22,7 +22,7 @@ const Subscriptions = () => {
       <Tabs value="annual" className="py-8">
         <TabsHeader
           className="flex justify-center text-parchment/70 bg-eggplant dark:bg-rose/70 w-80 mx-auto"
-          indicatorProps={{ className: "bg-eggplant dark:bg-rose/70" }}
+          indicatorProps={{ className: " text-parchment/70 bg-eggplant dark:bg-rose/70" }}
         >
           {data.map(({ label, value }) => (
             <Tab key={value} value={value} className="">

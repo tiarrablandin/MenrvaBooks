@@ -74,7 +74,7 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
         <Switch
           checked={showActiveOnly}
           onChange={(e) => setShowActiveOnly(e.target.checked)}
-          label={<p>Active</p>}
+          label={<p className="text-parchment/70">Active</p>}
           className="before:h-8 before:w-8 bg-rose dark:bg-rose/70 checked:bg-rose dark:checked:bg-rose/40"
           containerProps={{
             className: "mr-3"

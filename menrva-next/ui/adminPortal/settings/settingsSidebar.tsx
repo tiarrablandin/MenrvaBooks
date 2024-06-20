@@ -10,7 +10,6 @@ import {
   ShieldCheckIconOutline,
   UserCircleIcon
 } from "@/providers/coreProviders";
-import { Advent_Pro } from "next/font/google";
 import Link from "next/link";
 
 const SettingsSidebar = () => {

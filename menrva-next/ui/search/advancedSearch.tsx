@@ -69,14 +69,14 @@ const AdvancedSearchComponent: React.FC<{ theme: string }> = ({ theme }) => {
         <div className="flex flex-col w-4/5 h-12 mx-auto z-10 relative">
             <form onSubmit={handleSubmit} className='flex gap-3 container'>
                 <Input
-                    color={theme !== "dark" ? "black" : "white"}
+                    color={theme !== "dark" ? "gray" : "gray"}
                     type="text"
                     size="lg"
                     label="Search"
                     labelProps={{
-                        className: "!text-eggplant dark:!text-rose"
+                        className: ""
                     }}
-                    className={`${advent.className} tracking-wide text-[1.15rem]`}
+                    className={`${advent.className} tracking-wide text-[1.15rem] !border-eggplant dark:!border-parchment/70 !text-deep-sea dark:!text-parchment/70`}
                     onChange={handleInputChange}
                     value={searchTerm}
                     onFocus={handleFocus}

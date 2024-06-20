@@ -1,4 +1,4 @@
-import RegisterForm from "@/ui/subscriptions/register";
+import Register from "@/ui/register/register";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 const RegisterModal = () => {
     return (
         <>
-            <RegisterForm />
+            <Register />
         </>
     );
 }

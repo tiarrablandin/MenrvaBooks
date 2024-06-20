@@ -45,9 +45,9 @@ export function NavbarWithSearch({ tag, role, theme }: { tag: string, role: stri
             </div>
           </ReduxProvider>
           <div className="mr-12 flex items-center gap-1 z-10">
-            {tag ? <IconButton variant="text" className="w-8 h-8 mt-2">
+            {/* {tag ? <IconButton variant="text" className="w-8 h-8 mt-2">
               <BellIcon className="h-5 w-5 text-eggplant dark:text-rose" />
-            </IconButton> : <></>}
+            </IconButton> : <></>} */}
             {tag ? <ProfileMenu tag={tag} role={role} /> : <Link href="/login" className="underline hover:scale-105 underline-offset-2 pr-6 text-nowrap text-eggplant dark:text-parchment/70">Log In</Link>}
             <ThemeToggle theme={theme} />
           </div>

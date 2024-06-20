@@ -53,7 +53,7 @@ const Notifications = () => {
                     <td className={classes}>
                       <Switch
                         defaultChecked
-                        className="bg-rose/70"
+                        className="bg-rose/70 checked:bg-rose dark:checked:bg-rose/40"
                         containerProps={{
                           className: "mr-3",
                         }}
@@ -65,7 +65,7 @@ const Notifications = () => {
                     </td>
                     <td className={classes}>
                     <Switch
-                        className="bg-rose/70"
+                        className="bg-rose/70 checked:bg-rose dark:checked:bg-rose/40"
                         containerProps={{
                           className: "mr-3",
                         }}
@@ -77,7 +77,7 @@ const Notifications = () => {
                     </td>
                     <td className={classes}>
                     <Switch
-                        className="bg-rose/70"
+                        className="bg-rose/70 checked:bg-rose dark:checked:bg-rose/40"
                         containerProps={{
                           className: "mr-3",
                         }}

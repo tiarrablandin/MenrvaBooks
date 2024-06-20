@@ -8,7 +8,7 @@ import {
   Typography
 } from "@/providers/coreProviders";
 import React from "react";
-import RegisterForm from "./register";
+import RegisterForm from "../register/registerModal";
 import Link from "next/link";
 
 interface SubCardProps {
