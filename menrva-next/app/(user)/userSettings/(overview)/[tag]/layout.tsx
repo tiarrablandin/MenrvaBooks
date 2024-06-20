@@ -1,20 +1,15 @@
-import UserSpeedDial from "@/ui/user/userSpeedDial";
-import { cookies } from "next/headers"
+import SettingsSidebar from "@/ui/user/settings/userSettingsSidebar";
 
-export default function UserLayout({ children, }: { children: React.ReactNode }) {
-    const tag = cookies().get('tag')?.value as string;
-    const role = cookies().get('role')?.value as string;
 
-    const logout = async () => {
-        'use server';
-        cookies().delete('tag');
-        cookies().delete('role');
-        cookies().delete('jwt');
-    }
-
+export default function SettingsLayout({ children }: { children: React.ReactNode }) {
     return (
         <>
-            {children}
+            <div className="">
+                <SettingsSidebar />
+            </div>
+            <div className="ml-44 max-w-[(100vw-16.5rem)]">
+                {children}
+            </div>
         </>
     )
 }

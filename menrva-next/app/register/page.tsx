@@ -1,7 +1,7 @@
-import RegisterModal from "../@auth/(.)register/page";
+import Register from "@/ui/register/register";
 
 export default async function Page() {
     return (
-        <RegisterModal />
+        <Register />
     );
 }

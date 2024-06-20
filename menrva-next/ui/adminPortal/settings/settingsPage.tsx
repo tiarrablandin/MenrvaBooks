@@ -12,9 +12,9 @@ const settingsPage = () => {
             <div id="password">
                 <Password />
             </div>
-            <div id="notifications">
+            {/* <div id="notifications">
                 <Notifications />
-            </div>
+            </div> */}
             <div id="security">
                 <Security />
             </div>

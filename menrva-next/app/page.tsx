@@ -32,15 +32,19 @@ export default function Home() {
           <div className="flex w-3/4 justify-between mx-auto">
             <Typography className="text-[1.1rem] font-medium">
               Already a member?
-              <Link href="/login" className="ml-2 hover:underline hover:scale-105">
+              <Link href="/login" className="ml-2 underline hover:scale-105">
                 Sign In
               </Link>
             </Typography>
             <Typography className="text-[1.1rem] font-medium">
               If not,
-              <Link href="/subscriptions" className="ml-2 hover:underline">create a free account!</Link>
+              <Link href="/subscriptions" className="ml-2 underline hover:scale-105">create a free account.</Link>
             </Typography>
           </div>
+            <Typography className="text-[1.1rem] font-medium flex justify-center my-4">
+              Not sure what to search for? Check out our 
+              <Link href="/home" className="ml-2 underline hover:scale-105">home page.</Link>
+            </Typography>
         </div>
       </main>
     </div>

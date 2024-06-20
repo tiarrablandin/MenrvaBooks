@@ -91,6 +91,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
                 label="Search"
                 icon={<MagnifyingGlassIcon className="h-5 w-5" />}
                 value={searchTerm}
+                className="active:!border-t-eggplant !border-eggplant dark:!border-parchment/70 !text-parchment/70"
                 onChange={handleSearchChange}
               />
             </div>
@@ -99,13 +100,13 @@ const AdminTable: React.FC<AdminTableProps> = ({
                 <Tooltip content={`Add ${entityType}`}>
                   <IconButton variant="text" className="rounded-full text-eggplant dark:text-rose/70">
                     <Link href={tableConfig[entityType].addLink} className="w-min">
-                      <PlusIcon className="w-5 h-5 bg-clip-text " />
+                      <PlusIcon className="w-5 h-5 bg-clip-text text-eggplant dark:text-rose/70" />
                     </Link>
                   </IconButton>
                 </Tooltip> :
                 <Tooltip content={`Add ${entityType}`}>
                   <IconButton variant="text" className="rounded-full">
-                    <PlusIcon className="w-5 h-5 bg-clip-text " onClick={() => setAddingNew(!addingNew)} />
+                    <PlusIcon className="w-5 h-5 bg-clip-text text-eggplant dark:text-rose/70" onClick={() => setAddingNew(!addingNew)} />
                   </IconButton>
                 </Tooltip>
               }
@@ -151,6 +152,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
                         name="name"
                         id="name"
                         placeholder="Enter new name and press Enter"
+                        className="!border-eggplant dark:!border-rose/70 text-parchment/70"
                       />
                     </form>
                   </td>

@@ -46,7 +46,7 @@ const AdminSidebar: React.FC = () => {
             { href: "/admin/users", icon: UserCircleIcon },
             { href: "/admin/other", icon: SparklesIcon },
             { href: "/admin/settings", icon: Cog6ToothIconOutline },
-            { href: "/admin/notifications", icon: BellIconOutline }
+            // { href: "/admin/notifications", icon: BellIconOutline }
           ].map(({ href, icon: Icon }) => (
             <li key={href} className={`h-1/4 flex justify-center items-center w-full ${isActive(href) ? 'bg-eggplant/10 dark:bg-rose/10' : 'hover:bg-eggplant/10 dark:hover:bg-rose/10'}`}>
               <Link href={href}>

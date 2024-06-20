@@ -49,7 +49,7 @@ const members = [
     linkedin: "https://linkedin.com/in/tiarrablandin",
   },
   {
-    img: `https://www.material-tailwind.com/img/avatar2.jpg`,
+    img: `https://i.imgur.com/crMBb4C.png`,
     name: "Matthew Tilley",
     title: "Director of Infrastructure",
     linkedin: "https://www.linkedin.com/in/matthewt77/",
