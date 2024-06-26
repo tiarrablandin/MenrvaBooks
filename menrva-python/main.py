@@ -46,6 +46,6 @@ def process_author_by_book_title(book_title):
     author = fetch_author_from_ol_by_book_title(book_title)
 
 if __name__ == "__main__":
-    process_popular_books_by_genre("Fantasy")
+    # process_popular_books_by_genre("Fantasy")
     # process_author_by_book_title("Lord of the Rings")
-    # sync_es_with_db()
+    sync_es_with_db()
