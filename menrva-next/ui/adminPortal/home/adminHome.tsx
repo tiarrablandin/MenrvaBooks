@@ -3,16 +3,15 @@ import AdminCard from './adminCard'
 import { User } from '@/lib/models/user';
 
 interface UserProps {
-  id: number;
   token: string | undefined;
-  user: User;
+  user: User | null;
 }
 
-const AdminHome: React.FC<UserProps> = ({ user, id, token }) => {
+const AdminHome: React.FC<UserProps> = ({ user, token }) => {
 
   return (
     <div className='pl-16 pt-28'>
-      <AdminCard user={user} token={token}/>
+      {user ? <AdminCard user={user} token={token} /> : <></>}
     </div>
   )
 }

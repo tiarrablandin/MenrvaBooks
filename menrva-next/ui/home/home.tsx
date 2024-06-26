@@ -19,6 +19,7 @@ const HomeComponent: React.FC = React.memo(() => {
   }
 
   return (
+    <></>
   );
 });
 
