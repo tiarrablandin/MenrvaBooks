@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
-  title: "MenrvaBooks",
+  title: "| Admin Portal",
 };
 
 export default async function Page() {

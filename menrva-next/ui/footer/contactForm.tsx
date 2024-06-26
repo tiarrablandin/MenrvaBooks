@@ -51,7 +51,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ }) => {
           action={async (formData: FormData) => {
             'use server';
             const response = await sendEmail(formData);
-            console.log(response);
           }}>
           <div className="mb-1 flex flex-col gap-6">
             <div className="-mb-3">

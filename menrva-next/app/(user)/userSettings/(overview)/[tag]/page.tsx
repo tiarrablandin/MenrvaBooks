@@ -2,7 +2,7 @@ import UserSettingsPage from "@/ui/user/settings/userSettingsPage";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "MenrvaBooks | User",
+  title: "Settings",
 };
 
 export default async function Page() {

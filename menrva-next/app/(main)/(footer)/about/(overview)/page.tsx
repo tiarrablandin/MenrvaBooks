@@ -3,7 +3,7 @@ import Team from "@/ui/footer/about/team";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "MenrvaBooks",
+  title: "About Us",
 };
 
 export default async function Page() {

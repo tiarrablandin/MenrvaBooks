@@ -5,16 +5,19 @@ import { Metadata } from "next";
 import { cookies } from "next/headers";
 import ReduxProvider from "@/providers/reduxProvider";
 
-export const metadata: Metadata = {
-  title: "MenrvaBooks",
-};
+export async function generateMetadata(
+  { params: { id } }: { params: { id: number } }): Promise<Metadata> {
+    const author = await fetchAuthorById(id);
+    const name = author?.penName? decodeURIComponent(author.penName) : ""
+  return {
+    title: name
+  }
+}
 
 export default async function Page({ params: { id } }: { params: { id: number } }) {
   const fetchedAuthor = await fetchAuthorById(id);
   const token = cookies().get('jwt')?.value;
   const isFollowing = token ? await fetchUserFollowsAuthor(id, token) : false;
-
-  console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" + isFollowing) 
 
   return (
     <main className="w-screen min-h-[calc(100vh-295px)]">
@@ -23,7 +26,7 @@ export default async function Page({ params: { id } }: { params: { id: number } 
         // * need to add error component here
         : <></>
       }
-      
+
       <ReduxProvider>
         {token ? <InitializeUserFollowsAuthor isFollowing={isFollowing ? isFollowing : false} /> : <></>}
       </ReduxProvider>

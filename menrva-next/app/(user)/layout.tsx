@@ -6,6 +6,9 @@ import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: {
+    // TODO 
+    // * need to reorganize folder so all routes have tag
+    // * then need to rewrite metadata to use tag
     template: '%s | MenrvaBooks',
     default: 'MernvaBooks',
   },

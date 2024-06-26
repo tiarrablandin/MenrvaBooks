@@ -2,11 +2,10 @@ import { fetchUserByTag } from "@/lib/services/apiService";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 
-export async function generateMetadata({
-  params: { tag },
-}: {
-  params: { tag: string };
-}): Promise<Metadata> {
+// TODO
+//* display all of user's liked books
+
+export async function generateMetadata({ params: { tag }, }: { params: { tag: string }; }): Promise<Metadata> {
   return {
     title: decodeURIComponent(tag),
   };

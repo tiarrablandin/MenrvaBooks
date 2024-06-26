@@ -30,7 +30,6 @@ const AddBook: React.FC = () => {
         });
 
         const responseData = await response.json();
-        console.log(responseData);
 
         if (response.ok) {
             alert('Book saved successfully!');

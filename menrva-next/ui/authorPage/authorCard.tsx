@@ -1,5 +1,5 @@
 import { Author } from '@/lib/models/author';
-import { Avatar, Card, CardBody, CardHeader } from "@/providers/coreProviders";
+import { Avatar, Card, CardBody, CardHeader, Typography } from "@/providers/coreProviders";
 import React from 'react';
 import SocialLink from './socialLink';
 import ToggleFollowAuthorButton from './toggleFollowAuthorButton';
@@ -8,12 +8,12 @@ import ReduxProvider from '@/providers/reduxProvider';
 const AuthorCard: React.FC<{ author: Author, token: string | undefined }> = ({ author, token }) => {
   return (
     <div>
-      <Card className="h-72 w-full min-w-[40rem] max-w-[40rem] px-4 bg-deep-sea/70 text-parchment/70">
+      <Card className="h-72 w-full min-w-[40rem] max-w-[40rem] px-4 bg-deep-sea/70 text-onyx/70 dark:text-parchment/70">
         <CardHeader
           color="transparent"
           floated={false}
           shadow={false}
-          className="mx-0 flex items-center gap-4 pt-0 pb-8 dark:text-old-lace"
+          className="mx-0 flex items-center gap-4 pt-0 pb-8 text-onyx/70 dark:text-old-lace"
         >
           <Avatar
             size="xxl"
@@ -22,10 +22,11 @@ const AuthorCard: React.FC<{ author: Author, token: string | undefined }> = ({ a
             alt="tania andrew"
           />
           <div className="flex w-full flex-col gap-0.5">
-            <div className="flex items-center justify-between text-parchment/70">
-              <p>
+            <div className="flex items-center justify-between">
+              {/* // * BUG WITH TYPOGRAPHY needs empty/any classname */}
+              <Typography variant='h3' className=''>
                 {author.penName}
-              </p>
+              </Typography>
               <div className="flex items-center gap-0">
                 <ReduxProvider>
                   {token ? <ToggleFollowAuthorButton id={author.id} token={token} /> : <></>}
@@ -40,9 +41,9 @@ const AuthorCard: React.FC<{ author: Author, token: string | undefined }> = ({ a
           </div>
         </CardHeader>
         <CardBody className="mb-6 p-0">
-          <p>
+          <Typography variant='lead' className='font-semibold leading-snug'>
             {author.bio}
-          </p>
+          </Typography>
         </CardBody>
       </Card>
     </div>

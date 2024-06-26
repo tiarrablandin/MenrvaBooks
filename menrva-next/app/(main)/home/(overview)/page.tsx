@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
-  title: "Home | MenrvaBooks",
+  title: "Home ",
 };
 
 export default async function Page() {

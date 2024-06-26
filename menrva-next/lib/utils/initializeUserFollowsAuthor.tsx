@@ -9,7 +9,6 @@ const InitializeUserFollowsAuthor: React.FC<{ isFollowing: boolean }> = ({ isFol
 
     useEffect(() => {
         if (!initialized.current) {
-            console.log("##########################" + isFollowing)
             store.dispatch(updateIsFollowing(isFollowing));
             initialized.current = true;
         }

@@ -25,7 +25,6 @@ export async function NewComment({
             "use server";
             const comment = formData.get("comment") as string;
             const newComment = await createComment(comment, bookId);
-            console.log(typeof newComment === "object");
             // if (typeof newComment) comments?.push(newComment);
           }}
           className="flex flex-col items-end"

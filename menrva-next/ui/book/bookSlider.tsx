@@ -21,7 +21,7 @@ const neue = Comic_Neue({ subsets: ["latin"], weight: "400" });
 const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks }) => {
   const { ref, isDragging, isMoving } = useDragScroll();
   const { books, isLoading } = useFetchBooks(fetchData, defaultBooks);
-  const [displayLimit, setDisplayLimit] = useState(12);
+  const [displayLimit, setDisplayLimit] = useState(13);
   const router = useRouter();
 
   const increaseLimit = useCallback(() => {
@@ -44,6 +44,7 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks 
             .fill(0)
             .map((_, index) => <BookSkeleton key={index} />)
           : books.slice(0, displayLimit).map((book) => (
+            // TODO Drag scroll doesn't work properly
             <div onClick={() => { if (!isDragging || !isMoving) (router.push(`../book/${book.id}`)) }} key={book.id} className="w-full h-full cursor-pointer">
               <BookCard book={book} key={book.id} />
             </div>
