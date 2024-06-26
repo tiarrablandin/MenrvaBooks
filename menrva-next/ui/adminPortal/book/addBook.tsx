@@ -1,7 +1,7 @@
 'use client';
 
-import { AddBookRequest } from "@/app/lib/models/book";
-import { Button, Dialog, DialogBody, DialogFooter, DialogHeader, Input, Textarea, Typography, XMarkIcon } from "@/providers";
+import { Button, Dialog, DialogBody, DialogFooter, DialogHeader, Input, Textarea, Typography, XMarkIcon } from "@/providers/coreProviders";
+import { AddBookRequest } from "@/lib/models/book";
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
@@ -47,7 +47,7 @@ const AddBook: React.FC = () => {
                     <DialogHeader className="justify-between pb-0">
                         <Typography color="blue-gray" className="mb-1 font-bold text-2xl">
                             Add Book
-                        </p>
+                        </Typography>
                         <XMarkIcon className="w-5 h-5 cursor-pointer text-black inline-block mr-1" onClick={handleClose} />
                     </DialogHeader>
                     <DialogBody className="overflow-y-scroll pt-0">
@@ -56,7 +56,7 @@ const AddBook: React.FC = () => {
                             className="font-normal text-gray-600 text-lg "
                         >
                             Add a book to the database.
-                        </p>
+                        </Typography>
                         <div className="flex gap-4 mt-6">
                             PLACEHOLDER FOR ADD IMAGE
                         </div>
@@ -156,12 +156,12 @@ const AddBook: React.FC = () => {
                         <Button onClick={handleClose} color="red" variant="outlined" className="w-24 h-10 flex items-center justify-center border-2">
                             <Typography className="normal-case text-lg font-medium text-eggplant">
                                 Cancel
-                            </p>
+                            </Typography>
                         </Button>
                         <Button type="submit" className="w-24 h-10 flex items-center justify-center">
                             <Typography className="normal-case text-lg font-medium text-old-lace">
                                 Create
-                            </p>
+                            </Typography>
                         </Button>
                     </DialogFooter>
                 </form>

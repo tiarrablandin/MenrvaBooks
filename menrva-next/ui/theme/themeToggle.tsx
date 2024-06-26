@@ -8,15 +8,15 @@ const ThemeToggle: React.FC<{ theme: string }> = ({ theme }) => {
   const [isDark, setIsDark] = useState(theme === 'dark');
   const initialized = useRef(false);
 
-  const initTheme = useCallback(async () => {
+  const initTheme = useCallback(() => {
     if (!initialized.current && theme === 'dark' && document !== undefined) {
       document.documentElement.classList.add('dark');
       setIsDark(true);
-      await setTheme('dark');
+      setTheme('dark');
     } else if (!initialized.current) {
       document.documentElement.classList.remove('dark');
       setIsDark(false);
-      await setTheme('light');
+      setTheme('light');
     }
     initialized.current = true;
   }, [theme]);
@@ -25,15 +25,15 @@ const ThemeToggle: React.FC<{ theme: string }> = ({ theme }) => {
     initTheme();
   }, [initTheme]);
 
-  const handleToggleTheme = async () => {
+  const handleToggleTheme = () => {
     if (theme === 'light') {
       document.documentElement.classList.add('dark');
       setIsDark(true);
-      await setTheme('dark');
+      setTheme('dark');
     } else {
       document.documentElement.classList.remove('dark');
       setIsDark(false);
-      await setTheme('light');
+      setTheme('light');
     }
   };
 

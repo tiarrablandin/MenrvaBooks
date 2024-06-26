@@ -30,7 +30,6 @@ def insert_books_into_elasticsearch(books=[]):
         try:
             document = {
                 "id": book.id,
-                "cover": book.cover,
                 "title": book.title,
                 "series": {
                     "id": book.series.id,
@@ -40,8 +39,6 @@ def insert_books_into_elasticsearch(books=[]):
                 "authors": [{
                     "id": author.id,
                     "penName": author.penName,
-                    "bio": author.bio,
-                    "photo": author.photo
                 } for author in book.authors]
             }
 
