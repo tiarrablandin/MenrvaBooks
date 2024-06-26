@@ -14,7 +14,7 @@ cert_path = "../MenrvaBooks/es-cert.pem"
 # context.load_verify_locations(cert_path)
 
 es = Elasticsearch(
-    [{"host": "3.137.26.103", "port": 9200, "scheme": "https"}],
+    [{"host": "34.135.112.113", "port": 9200, "scheme": "http"}],
     # ssl_context=context,
     request_timeout=120,
     basic_auth=('elastic', 'elastic'),
