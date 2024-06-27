@@ -14,7 +14,7 @@ cert_path = "../MenrvaBooks/es-cert.pem"
 # context.load_verify_locations(cert_path)
 
 es = Elasticsearch(
-    [{"host": "3.137.26.103", "port": 9200, "scheme": "https"}],
+    [{"host": "34.135.112.113", "port": 9200, "scheme": "http"}],
     # ssl_context=context,
     request_timeout=120,
     basic_auth=('elastic', 'elastic'),
@@ -30,7 +30,6 @@ def insert_books_into_elasticsearch(books=[]):
         try:
             document = {
                 "id": book.id,
-                "cover": book.cover,
                 "title": book.title,
                 "series": {
                     "id": book.series.id,
@@ -40,8 +39,6 @@ def insert_books_into_elasticsearch(books=[]):
                 "authors": [{
                     "id": author.id,
                     "penName": author.penName,
-                    "bio": author.bio,
-                    "photo": author.photo
                 } for author in book.authors]
             }
 

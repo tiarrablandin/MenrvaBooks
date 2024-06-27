@@ -85,8 +85,8 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
                 </ReduxProvider>
               </div>
               {book?.links.map((link) => (
-                <div className="relative z-0">
-                  <Link href={link.link} target="_blank" className="relative w-min z-0" key={link.id}>
+                <div className="relative z-0 w-min">
+                  <Link href={link.link} target="_blank" className="relative z-0" key={link.id}>
                     <Button
                       size="lg"
                       variant="gradient"

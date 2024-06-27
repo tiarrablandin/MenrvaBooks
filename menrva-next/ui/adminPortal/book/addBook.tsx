@@ -1,7 +1,12 @@
 'use client';
 
+<<<<<<< HEAD
 import { AddBookRequest } from "@/lib/models/book";
 import { Button, Dialog, DialogBody, DialogFooter, DialogHeader, Input, Textarea, Typography, XMarkIcon } from "@/providers/coreProviders";
+=======
+import { Button, Dialog, DialogBody, DialogFooter, DialogHeader, Input, Textarea, Typography, XMarkIcon } from "@/providers/coreProviders";
+import { AddBookRequest } from "@/lib/models/book";
+>>>>>>> 11c08824c0c96eb2c0235af91819d12175862dde
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
