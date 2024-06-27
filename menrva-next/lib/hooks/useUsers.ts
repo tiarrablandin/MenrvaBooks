@@ -15,7 +15,6 @@ export function useUsers() {
     }, [dispatch]);
 
     const toggleActive = useCallback((id: number) => {
-        console.log('toggleActive called with id:', id); // Debug output
         dispatch(toggleUserActive({ userId: id, token }));
     }, [dispatch, token]);
 

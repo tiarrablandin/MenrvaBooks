@@ -22,6 +22,6 @@ export function MenrvaThemeToggleProvider({ children }: MenrvaThemeProviderProps
 
   // ******************* IGNORE THIS ERROR!!!!!!!!!!!!!!
   return (
-    <ThemeProvider value={selectedTheme}>{children as ReactElement}</ThemeProvider>
+    <ThemeProvider value={selectedTheme}>{children as any}</ThemeProvider>
   );
 }

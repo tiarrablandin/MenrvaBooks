@@ -2,7 +2,7 @@ import Contact from "@/ui/footer/contact";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "MenrvaBooks",
+  title: "Contact Us",
 };
 
 export default async function Page() {

@@ -2,7 +2,7 @@ import FAQ from "@/ui/footer/faq";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "MenrvaBooks",
+  title: "Frequently Asked Questions",
 };
 
 export default async function Page() {

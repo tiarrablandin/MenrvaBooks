@@ -33,7 +33,6 @@ export async function sendEmail(formData: FormData) {
             // text: `Message from ${name} (${email}): ${message}`, // plain text body
             // html: `<b>Message from ${name} (${email}):</b><div>${message}</div>`, // HTML body content
         });
-        console.log(res.response);
         return res.response;
     } catch (error) {
         console.error("Error sending email", error);

@@ -2,7 +2,7 @@ import News from "@/ui/footer/news";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "MenrvaBooks",
+  title: "News",
 };
 
 export default async function Page() {

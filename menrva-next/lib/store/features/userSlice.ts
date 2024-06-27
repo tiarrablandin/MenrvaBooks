@@ -60,7 +60,6 @@ export const toggleUserActive = createAsyncThunk(
                 throw new Error("Failed to toggle liked status");
             }
             const data = await response.json();
-            console.log(data);
             return data;
         } catch (error: any) {
             return rejectWithValue(error.message);

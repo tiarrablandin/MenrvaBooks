@@ -2,7 +2,7 @@ import Notifications from "@/ui/user/settings/notifications";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "MenrvaBooks",
+  title: "Notifications",
 };
 
 export default async function Page() {

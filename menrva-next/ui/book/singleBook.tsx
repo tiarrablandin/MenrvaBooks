@@ -85,8 +85,8 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
                 </ReduxProvider>
               </div>
               {book?.links.map((link) => (
-                <div className="relative z-0 w-min">
-                  <Link href={link.link} target="_blank" className="relative z-0" key={link.id}>
+                <div className="relative z-0 w-min" key={link.id}>
+                  <Link href={link.link} target="_blank" className="relative z-0">
                     <Button
                       size="lg"
                       variant="gradient"
@@ -112,13 +112,13 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
             <div className="text-center flex mx-auto gap-8 m-4">
               <p>
                 {book ? `Page Count:` : "Loading..."}
-                <br/>
+                <br />
                 {book ? `${book.pageCount}` : ""}
               </p>
               |
               <p>
                 {book?.publicationDate ? `Publication Date:` : "Loading..."}
-                <br/>
+                <br />
                 {book?.publicationDate ? `${book.publicationDate.toString()}` : ""}
               </p>
             </div>

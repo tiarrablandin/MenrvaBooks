@@ -23,9 +23,9 @@ const SocialLink: React.FC<SocialLinkProps> = ({ name, link }) => {
   return (
     <Link href={link} target='_blank' rel="noopener noreferrer" className="inline-block">
       {IconComponent.type === 'fa' ? (
-        <FontAwesomeIcon icon={IconComponent.icon} className="h-6 w-6 text-parchment/70 hover:text-rose" />
+        <FontAwesomeIcon icon={IconComponent.icon} className="h-6 w-6 text-onyx/70 hover:text-rose/70" />
       ) : (
-        <IconComponent.icon className="h-6 w-6 text-parchment/70 hover:text-rose" />
+        <IconComponent.icon className="h-6 w-6 text-onyx/70 hover:text-rose/70" />
       )}
     </Link>
   );
