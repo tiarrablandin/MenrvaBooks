@@ -8,6 +8,9 @@ export {
   faFacebook,
   faMeta,
   faGoodreads,
+  faTwitter,
+  faSnapchat,
+  faThreads
 } from "@fortawesome/free-brands-svg-icons";
 export { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { authenticate } from "../services/apiService";
 
 
-// * PARAMETERS ARE PASSED IN FROM FOR AS FORMDATA
+// * PARAMETERS ARE PASSED IN FROM FORM AS FORM DATA
 export default async function login(identifier: string, password: string) {
     try {
         const { jwt, user } = await authenticate(identifier, password);

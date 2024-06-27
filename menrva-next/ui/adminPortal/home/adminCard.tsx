@@ -19,9 +19,9 @@ const adminCard: React.FC<{ user: User; token: string | undefined }> = ({ user, 
             alt="tania andrew"
           />
           <div className="flex w-full flex-col gap-0.5">
-            <div className="flex items-center justify-between text-parchment/70">
+            <div className="flex justify-start items-center gap-2 text-parchment/70">
               <Typography className="text-2xl">Hello</Typography>
-              {/* <p>{user.firstName}</p> */}
+              <p className="text-xl ">{user.firstName}</p>
             </div>
           </div>
         </CardHeader>

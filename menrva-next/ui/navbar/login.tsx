@@ -25,6 +25,8 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
 
+  console.log(isOpen)
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
@@ -116,11 +118,9 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
 
           <div className="mx-auto w-full flex flex-nowrap justify-center py-2">
             <Typography>New to Menrva?</Typography>
-            <Link href="/subscriptions">
-              <Typography className="ml-2 underline underline-offset-1 hover:scale-105">
+              <Typography className="ml-2 underline underline-offset-1 hover:scale-105" onClick={() => {router.push('/subscriptions'); setIsOpen(false)}}>
                 Create a free account!
               </Typography>
-            </Link>
           </div>
         </div>
       </form>

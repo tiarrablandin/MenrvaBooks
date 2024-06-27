@@ -89,6 +89,9 @@ const AdminTable: React.FC<AdminTableProps> = ({
             <div className="w-1/2 lg:w-48">
               <Input
                 label="Search"
+                labelProps={{
+                  className: "hidden",
+                }}
                 icon={<MagnifyingGlassIcon className="h-5 w-5" />}
                 value={searchTerm}
                 className="active:!border-t-eggplant !border-eggplant dark:!border-parchment/70 !text-parchment/70"
@@ -104,11 +107,11 @@ const AdminTable: React.FC<AdminTableProps> = ({
                     </Link>
                   </IconButton>
                 </Tooltip> :
-                <Tooltip content={`Add ${entityType}`}>
+                (entityType !== "comments" ? <Tooltip content={`Add ${entityType}`}>
                   <IconButton variant="text" className="rounded-full">
                     <PlusIcon className="w-5 h-5 bg-clip-text text-eggplant dark:text-rose/70" onClick={() => setAddingNew(!addingNew)} />
                   </IconButton>
-                </Tooltip>
+                </Tooltip> : <></>)
               }
               {showReviewedToggle && reviewedCallback && reviewedToggle}
               {activeCallback && activeToggle}
@@ -148,6 +151,9 @@ const AdminTable: React.FC<AdminTableProps> = ({
                         autoFocus
                         onBlur={() => setAddingNew(false)}
                         label="name"
+                        labelProps={{
+                          className: "hidden",
+                        }}
                         type="text"
                         name="name"
                         id="name"

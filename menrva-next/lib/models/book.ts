@@ -30,6 +30,7 @@ export interface AddBookRequest {
   description: string;
   pageCount: number;
   publicationDate: Date;
+  views: number;
 }
 
 export interface UpdateBookRequest {
