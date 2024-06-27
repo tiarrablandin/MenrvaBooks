@@ -49,8 +49,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
     setIsOpen(false);
   };
 
-  console.log("########################### " + isOpen)
-
   return (
     <Dialog
       size="xs"

@@ -16,6 +16,6 @@ export async function MenrvaThemeProvider({ children }: MenrvaThemeProviderProps
     // <>
     //   {children ? <ThemeProvider selectedTheme={theme === 'dark' ? darkTheme : lightTheme}>{children as ReactElement}</ThemeProvider> : <></>}
     // </>
-    <ThemeProvider value={theme === 'dark' ? darkTheme : lightTheme}>{children as ReactNode}</ThemeProvider>);
+    <ThemeProvider value={theme === 'dark' ? darkTheme : lightTheme}>{children as any}</ThemeProvider>);
   // )
 }
