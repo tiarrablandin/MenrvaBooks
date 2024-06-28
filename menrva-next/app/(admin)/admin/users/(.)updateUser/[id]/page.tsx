@@ -1,7 +1,7 @@
 import UpdateBook from "@/ui/adminPortal/book/updateBook";
 import React from "react";
 
-const UpdateAuthorModal = () => {
+const UpdateUserModal = () => {
     return (
         <>
             <UpdateBook />
@@ -9,4 +9,4 @@ const UpdateAuthorModal = () => {
     )
 }
 
-export default UpdateAuthorModal;
+export default UpdateUserModal;
