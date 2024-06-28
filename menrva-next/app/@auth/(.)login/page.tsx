@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import LoginForm from "@/ui/navbar/login";
+import ReduxProvider from "@/providers/reduxProvider";
 
 export const metadata: Metadata = {
     title: "Sign In",
@@ -7,9 +8,9 @@ export const metadata: Metadata = {
 
 const LoginModal = () => {
     return (
-        <>
+        <ReduxProvider>
             <LoginForm />
-        </>
+        </ReduxProvider>
     );
 }
 

@@ -1,6 +1,8 @@
 "use client";
 
 import login from "@/lib/actions/login";
+import { setToken, setUserDetails } from "@/lib/store/features/userSlice";
+import { useAppDispatch } from "@/lib/store/store";
 import {
   ArrowRightIcon,
   AtSymbolIcon,
@@ -22,6 +24,7 @@ const advent = Advent_Pro({ subsets: ["latin"] });
 const LoginForm: React.FC<LoginFormProps> = ({ }) => {
   const router = useRouter();
   const pathname = usePathname();
+  const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
 
@@ -39,9 +42,18 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
     const formData = new FormData(event.currentTarget);
     const identifier = formData.get("identifier") as string;
     const password = formData.get("password") as string;
-    await login(identifier, password);
-    router.push(`/userHome/@${identifier}`);
-    setIsOpen(false);
+    const response = await login(identifier, password);
+
+    if(response && response.user){
+      router.push(`/userHome/@${identifier}`);
+      dispatch(setToken(response.token))
+      dispatch(setUserDetails(response.user))
+      setIsOpen(false);
+    } else{
+      throw new Error("Failed to login")
+    }
+    
+    setIsLoading(false);
   };
 
   const handleClose = () => {
