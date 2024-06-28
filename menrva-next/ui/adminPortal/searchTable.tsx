@@ -42,7 +42,6 @@ const SearchTable: React.FC<SearchTableProps> = ({ showUnreviewedOnly }) => {
   useEffect(() => {
     async function fetchAllBooksSlider() {
       const books = await fetchBooks();
-      console.log(books);
       if (books) setBooks(books);
       return books;
     }

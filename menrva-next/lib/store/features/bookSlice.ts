@@ -130,7 +130,6 @@ export const fetchBookDetailsThunk = createAsyncThunk(
 export const toggleBookLiked = createAsyncThunk(
     'books/toggleLiked',
     async ({ bookId, status, token }: { bookId: number, status: number, token: string | undefined }, { rejectWithValue, getState }) => {
-        console.log(token);
         try {
             const response = await fetch(`http://localhost:8085/api/books/${bookId}/react?status=${status}`, {
                 method: "POST",

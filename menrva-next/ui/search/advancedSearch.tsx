@@ -13,7 +13,7 @@ const advent = Advent_Pro({ subsets: ["latin"] });
 
 const AdvancedSearchComponent: React.FC<{ theme: string }> = ({ theme }) => {
     const router = useRouter();
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState('Search...');
     const [suggestions, setSuggestions] = useState<BookResponse[]>([]);
     const [isFocused, setIsFocused] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -55,6 +55,7 @@ const AdvancedSearchComponent: React.FC<{ theme: string }> = ({ theme }) => {
 
     const handleFocus = () => {
         setIsFocused(true);
+        if(searchTerm === "Search...") {setSearchTerm("")}
         if (searchTerm) {
             debouncedFetchSuggestions(searchTerm);
         }
@@ -69,14 +70,15 @@ const AdvancedSearchComponent: React.FC<{ theme: string }> = ({ theme }) => {
         <div className="flex flex-col w-4/5 h-12 mx-auto z-10 relative">
             <form onSubmit={handleSubmit} className='flex gap-3 container'>
                 <Input
-                    color={theme !== "dark" ? "gray" : "gray"}
+                    // color={theme !== "dark" ? "gray" : "gray"}
                     type="text"
                     size="lg"
                     label="Search"
                     labelProps={{
-                        className: ""
+                        className: "hidden"
                     }}
-                    className={`${advent.className} tracking-wide text-[1.15rem] !border-eggplant dark:!border-parchment/70 !text-deep-sea dark:!text-parchment/70`}
+                    name="search"
+                    className={`${advent.className} tracking-wide text-[1.15rem] !border-eggplant dark:!border-parchment/70 !text-parchment/70`}
                     onChange={handleInputChange}
                     value={searchTerm}
                     onFocus={handleFocus}

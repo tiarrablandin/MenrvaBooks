@@ -351,7 +351,7 @@ export async function fetchBookInteractionsById(id: number, token: string) {
   }
 }
 
-export async function authenticate(identifier: string, password: string) {
+export async function authenticate(identifier: string, password: string) : Promise<{user: User, jwt: string} | null>{
   try {
     const response = await fetch(`${baseUrl}/authenticate`, {
       method: "POST",
@@ -360,7 +360,11 @@ export async function authenticate(identifier: string, password: string) {
       },
       body: JSON.stringify({ identifier, password }),
     })
-    return response.json();
+    const data = await response.json();
+    return {
+      user: data.user,
+      jwt: data.token
+    }
   } catch (error) {
     console.error("Unable to log in: ", error);
     return null;
@@ -369,13 +373,6 @@ export async function authenticate(identifier: string, password: string) {
 
 export async function registerUser(email: string, firstName: string, lastName: string, tag: string, password: string) {
   try {
-    console.log("####################################")
-    console.log(email);
-    console.log(firstName);
-    console.log(lastName);
-    console.log(tag);
-    console.log(password);
-    console.log("####################################")
     const response = await fetch(`${baseUrl}/register`, {
       method: "POST",
       headers: {
@@ -384,7 +381,6 @@ export async function registerUser(email: string, firstName: string, lastName: s
       body: JSON.stringify({ email, tag, firstName, lastName, password }),
     })
     const data = await response.json();
-    console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ " + data);
     return data;
   } catch (error) {
     console.error("Unable to register: ", error);

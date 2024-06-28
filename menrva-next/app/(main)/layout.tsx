@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 export const metadata: Metadata = {
     title: {
         template: '%s | MenrvaBooks',
-        default: 'MernvaBooks',
+        default: '',
     }
 };
 

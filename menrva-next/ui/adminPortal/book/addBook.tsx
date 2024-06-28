@@ -19,6 +19,7 @@ const AddBook: React.FC = () => {
             pageCount: parseInt(formData.get('pageCount') as string),
             publicationDate: new Date(formData.get('publicationDate') as string),
             cover: formData.get('cover') as string,
+            views: 0,
         };
 
         const response = await fetch('http://localhost:8085/api/books', {
@@ -30,7 +31,6 @@ const AddBook: React.FC = () => {
         });
 
         const responseData = await response.json();
-        console.log(responseData);
 
         if (response.ok) {
             alert('Book saved successfully!');

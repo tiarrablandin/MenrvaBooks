@@ -2,7 +2,7 @@ import AuthorSubscriptions from "@/ui/subscriptions/authorSubscriptions";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "MenrvaBooks",
+  title: "Author Subscriptions",
 };
 
 export default async function Page() {

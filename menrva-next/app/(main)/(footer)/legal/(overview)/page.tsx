@@ -2,7 +2,7 @@ import TermsAndPrivacy from "@/ui/footer/legal/termsAndPrivacy";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "MenrvaBooks",
+  title: "Terms & Privacy",
 };
 
 export default async function Page() {

@@ -1,6 +1,8 @@
 "use client";
 
 import login from "@/lib/actions/login";
+import { setToken, setUserDetails } from "@/lib/store/features/userSlice";
+import { useAppDispatch } from "@/lib/store/store";
 import {
   ArrowRightIcon,
   AtSymbolIcon,
@@ -12,18 +14,27 @@ import {
 } from "@/providers/coreProviders";
 import { Advent_Pro } from "next/font/google";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
-interface LoginFormProps {}
+interface LoginFormProps { }
 
 const advent = Advent_Pro({ subsets: ["latin"] });
 
-const LoginForm: React.FC<LoginFormProps> = ({}) => {
+const LoginForm: React.FC<LoginFormProps> = ({ }) => {
   const router = useRouter();
-
+  const pathname = usePathname();
+  const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
+
+  useEffect(() => {
+    if (pathname === '/login') {
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
+    }
+  }, [pathname]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -31,14 +42,23 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
     const formData = new FormData(event.currentTarget);
     const identifier = formData.get("identifier") as string;
     const password = formData.get("password") as string;
-    await login(identifier, password);
-    router.push(`/userHome/@${identifier}`);
-    setIsOpen(false);
+    const response = await login(identifier, password);
+
+    if(response && response.user){
+      router.push(`/userHome/@${identifier}`);
+      dispatch(setToken(response.token))
+      dispatch(setUserDetails(response.user))
+      setIsOpen(false);
+    } else{
+      throw new Error("Failed to login")
+    }
+    
+    setIsLoading(false);
   };
 
   const handleClose = () => {
+    router.push('/home');
     setIsOpen(false);
-    router.back();
   };
 
   return (
@@ -46,13 +66,14 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
       size="xs"
       open={isOpen}
       handler={handleClose}
+      // handler={() => router.push('/home')}
       className={`bg-transparent shadow-none flex items-center  mx-auto ${advent.className}`}
     >
       <form onSubmit={handleSubmit} className="space-y-2 container m-0">
         <div className="flex-1 rounded-lg bg-parchment px-6 py-8 mx-auto h-full my-auto">
           <XMarkIcon
             className="w-5 h-5 cursor-pointer text-eggplant inline-block -mt-8 -ml-2 mb-2"
-            onClick={() => router.back()}
+            onClick={handleClose}
           />
           <div className={`mb-3 text-center text-4xl text-eggplant font-medium`}>
             Log in to continue
@@ -116,11 +137,9 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
 
           <div className="mx-auto w-full flex flex-nowrap justify-center py-2">
             <Typography>New to Menrva?</Typography>
-            <Link href="/subscriptions">
-              <Typography className="ml-2 underline underline-offset-1 hover:scale-105">
+              <Typography className="ml-2 underline underline-offset-1 hover:scale-105" onClick={() => {router.push('/subscriptions'); setIsOpen(false)}}>
                 Create a free account!
               </Typography>
-            </Link>
           </div>
         </div>
       </form>

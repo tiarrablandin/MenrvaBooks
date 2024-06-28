@@ -13,6 +13,6 @@ interface MenrvaThemeProviderProps {
 export function MTUIProvider({ children, theme }: MenrvaThemeProviderProps) {
   const selectedTheme = theme === "dark" ? darkTheme : lightTheme;
   return (
-    <ThemeProvider value={selectedTheme}>{children as ReactElement}</ThemeProvider>
+    <ThemeProvider value={selectedTheme}>{children as any}</ThemeProvider>
   );
 }
