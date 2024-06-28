@@ -1,11 +1,9 @@
 import AddBook from "@/ui/adminPortal/book/addBook";
 
-const AddBookModal = () => {
+export default function Page() {
     return (
         <>
             <AddBook />
         </>
     )
 }
-
-export default AddBookModal;
