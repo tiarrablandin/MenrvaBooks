@@ -1,9 +1,9 @@
-import AddBook from "@/ui/adminPortal/book/addBook";
+import AddUser from "@/ui/adminPortal/user/addUser";
 
 const AddUserModal = () => {
     return (
         <>
-            <AddBook />
+            <AddUser />
         </>
     )
 }

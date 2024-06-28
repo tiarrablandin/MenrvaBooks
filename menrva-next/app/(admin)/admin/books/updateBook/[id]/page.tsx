@@ -1,10 +1,10 @@
-import AddBook from "@/ui/adminPortal/book/addBook";
+import UpdateBookModal from "../../../@update/(.)updateBook/[id]/page";
 
 export default function Page() {
   console.log("HELLO 1")
   return (
     <>
-      <AddBook />
+      <UpdateBookModal />
     </>
   )
 }

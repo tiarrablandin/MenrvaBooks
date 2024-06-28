@@ -1,7 +1,7 @@
-import UpdateBook from "@/ui/adminPortal/book/updateBook";
+import UpdateAuthorModal from "../../../@update/(.)updateAuthor/[id]/page";
 
 export default function Page() {
   <>
-    <UpdateBook />
+    <UpdateAuthorModal />
   </>
 }
