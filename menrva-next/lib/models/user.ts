@@ -20,3 +20,31 @@ export interface User {
     likedBooks?: BookResponse[];
     tbrBooks?: BookResponse[];
 }
+
+export interface AddUserRequest {
+    role: string;
+    firstName: string;
+    lastName: string;
+    tag: string;
+    email: string;
+    password: string;
+    active: boolean;
+
+    // subscription: Subscription;
+}
+
+export interface UpdateUserRequest {
+    role: string;
+    firstName: string;
+    lastName: string;
+    tag: string;
+    email: string;
+    password: string;
+    active: boolean;
+
+    subscription: Subscription;
+    bookInteractions: BookInteraction[];
+    hasReadBooks?: BookResponse[];
+    likedBooks?: BookResponse[];
+    tbrBooks?: BookResponse[];
+}

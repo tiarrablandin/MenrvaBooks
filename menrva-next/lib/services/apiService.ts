@@ -351,7 +351,7 @@ export async function fetchBookInteractionsById(id: number, token: string) {
   }
 }
 
-export async function authenticate(identifier: string, password: string) : Promise<{user: User, jwt: string} | null>{
+export async function authenticate(identifier: string, password: string): Promise<{ user: User, token: string } | null> {
   try {
     const response = await fetch(`${baseUrl}/authenticate`, {
       method: "POST",
@@ -360,12 +360,8 @@ export async function authenticate(identifier: string, password: string) : Promi
       },
       body: JSON.stringify({ identifier, password }),
     })
-    const data = await response.json();
-    return {
-      user: data.user,
-      jwt: data.token
-    }
-  } catch (error) {
+    return response.json();
+  } catch(error) {
     console.error("Unable to log in: ", error);
     return null;
   }

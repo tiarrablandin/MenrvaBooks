@@ -13,3 +13,17 @@ export interface Author {
     user: User | null;
     socialMedia: SocialMedia[];
 }
+
+export interface AddAuthorRequest {
+    photo: string;
+    penName: string;
+    bio: string;
+    text: string;
+  }
+  
+  export interface UpdateAuthorRequest {
+    photo: string;
+    penName: string;
+    bio: string;
+    text: string;
+  }
