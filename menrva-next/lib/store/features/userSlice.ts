@@ -24,10 +24,11 @@ export const login = createAsyncThunk(
     'user/login',
     async ({ identifier, password }: { identifier: string, password: string }, { rejectWithValue }) => {
         try {
-            const { jwt, user } = await authenticate(identifier, password);
-            sessionStorage.setItem('token', jwt);
-            sessionStorage.setItem('userDetails', JSON.stringify(user));
-            return { jwt, user };
+            const res = await authenticate(identifier, password);
+            if (!res) return rejectWithValue('Failed to login');
+            sessionStorage.setItem('token', res.token);
+            sessionStorage.setItem('userDetails', JSON.stringify(res.user));
+            return { token: res.token, user: res.user };
         } catch (error) {
             return rejectWithValue('Failed to login');
         }
@@ -114,9 +115,9 @@ export const userSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(login.fulfilled, (state, action: PayloadAction<{ jwt: string, user: User }>) => {
+            .addCase(login.fulfilled, (state, action: PayloadAction<{ token: string, user: User }>) => {
                 state.loading = false;
-                state.jwt = action.payload.jwt;
+                state.jwt = action.payload.token;
                 state.user = action.payload.user;
             })
             .addCase(login.rejected, (state, action) => {

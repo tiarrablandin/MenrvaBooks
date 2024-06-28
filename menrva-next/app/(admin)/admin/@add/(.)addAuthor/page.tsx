@@ -1,6 +1,6 @@
 import AddBook from "@/ui/adminPortal/book/addBook";
 
-const AddBookModal = () => {
+const AddAuthorModal = () => {
     return (
         <>
             <AddBook />
@@ -8,4 +8,4 @@ const AddBookModal = () => {
     )
 }
 
-export default AddBookModal;
+export default AddAuthorModal;

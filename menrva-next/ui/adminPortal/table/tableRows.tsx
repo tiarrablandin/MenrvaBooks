@@ -127,9 +127,11 @@ export const renderAuthorRow = (
 		</td>
 		<td className="mx-auto border-b border-parchment/20">
 			<Tooltip content="Edit Author">
-				<IconButton variant="text" className="rounded-full">
-					<PencilIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
-				</IconButton>
+				<Link href={`/admin/updateAuthor/${author.id}`}>
+					<IconButton variant="text" className="rounded-full">
+						<PencilIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
+					</IconButton>
+				</Link>
 			</Tooltip>
 		</td>
 	</tr>
