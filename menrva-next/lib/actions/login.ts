@@ -9,13 +9,13 @@ export default async function login(identifier: string, password: string) {
     try {
         const response = await authenticate(identifier, password);
 
-        if (!response){
+        if (!response) {
             throw new Error("Authentication failed")
         }
-        const {jwt, user} = response;
+        const { token, user } = response;
 
         const cookieStore = cookies();
-        cookieStore.set('jwt', jwt, {
+        cookieStore.set('jwt', token, {
             httpOnly: true,
             secure: true,
             path: '/',
@@ -26,7 +26,7 @@ export default async function login(identifier: string, password: string) {
 
         cookieStore.set('role', user.role, { sameSite: 'lax' });
 
-        return { user: JSON.parse(JSON.stringify(user)), token: jwt };
+        return { user: JSON.parse(JSON.stringify(user)), token: token };
     } catch (error) {
         console.error('login failed', error);
     }

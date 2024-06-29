@@ -1,21 +1,14 @@
-import { cookies } from "next/headers";
-import { ReactElement, ReactNode } from "react";
-import { ThemeProvider } from "./coreProviders";
-import { darkTheme } from "@/ui/theme/darkTheme";
-import { lightTheme } from "@/ui/theme/lightTheme";
+'use client'
+
+import { ThemeProvider } from "next-themes";
+import { ReactNode } from "react";
 
 interface MenrvaThemeProviderProps {
   children: ReactNode;
 }
 
-export async function MenrvaThemeProvider({ children }: MenrvaThemeProviderProps) {
-  const theme = cookies().get('theme')?.value as string;
-
-  // ******************* IGNORE THIS ERROR!!!!!!!!!!!!!!
+export function MenrvaThemeProvider({ children }: MenrvaThemeProviderProps) {
   return (
-    // <>
-    //   {children ? <ThemeProvider selectedTheme={theme === 'dark' ? darkTheme : lightTheme}>{children as ReactElement}</ThemeProvider> : <></>}
-    // </>
-    <ThemeProvider value={theme === 'dark' ? darkTheme : lightTheme}>{children as any}</ThemeProvider>);
-  // )
+    <ThemeProvider attribute='class' defaultTheme="system" enableSystem>{children as any}</ThemeProvider>
+  );
 }

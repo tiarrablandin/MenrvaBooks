@@ -67,7 +67,7 @@ export function Footer() {
             {
               socialIconMap.map((social) => {
                 return (
-                  <p className="opacity-80 transition-opacity hover:opacity-100 cursor-pointer">
+                  <p className="opacity-80 transition-opacity hover:opacity-100 cursor-pointer" key={social.title}>
                     <Link
                       href={social.link}
                       target="_blank"

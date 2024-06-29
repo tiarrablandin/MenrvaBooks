@@ -11,7 +11,7 @@ import SuggestionCards from './suggestionCards';
 
 const advent = Advent_Pro({ subsets: ["latin"] });
 
-const AdvancedSearchComponent: React.FC<{ theme: string }> = ({ theme }) => {
+const AdvancedSearchComponent: React.FC<{}> = ({ }) => {
     const router = useRouter();
     const [searchTerm, setSearchTerm] = useState('Search...');
     const [suggestions, setSuggestions] = useState<BookResponse[]>([]);
@@ -70,7 +70,6 @@ const AdvancedSearchComponent: React.FC<{ theme: string }> = ({ theme }) => {
         <div className="flex flex-col w-4/5 h-12 mx-auto z-10 relative">
             <form onSubmit={handleSubmit} className='flex gap-3 container'>
                 <Input
-                    // color={theme !== "dark" ? "gray" : "gray"}
                     type="text"
                     size="lg"
                     label="Search"
