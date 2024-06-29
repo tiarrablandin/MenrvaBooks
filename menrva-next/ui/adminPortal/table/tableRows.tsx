@@ -180,9 +180,11 @@ export const renderUserRow = (
 		</td>
 		<td className="border-b border-parchment/20">
 			<Tooltip content="Edit User">
+			<Link href={`/admin/updateUser/${user.id}`}>
 				<IconButton variant="text" className="rounded-full">
 					<PencilIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
 				</IconButton>
+				</Link>
 			</Tooltip>
 		</td>
 	</tr>

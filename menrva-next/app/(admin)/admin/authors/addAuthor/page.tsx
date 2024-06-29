@@ -1,8 +1,7 @@
-import AddBook from "@/ui/adminPortal/book/addBook";
+import AddAuthorModal from "../../@add/(.)addAuthor/page";
 
 export default function Page() {
-  <p className="text-black">
-    HELLO
-    <AddBook />
-  </p>
+  <>
+    <AddAuthorModal />
+  </>
 }
