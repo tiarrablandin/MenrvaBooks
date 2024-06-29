@@ -47,7 +47,7 @@ class AuthorController(
     @PostMapping("{id}/toggleFollow")
     fun toggleFollowAuthor(
         @PathVariable id: Long, @AuthenticationPrincipal principal: Principal
-    ): ResponseEntity<UserDTO> {
+    ): ResponseEntity<Boolean> {
         val user = userService.loadFullUserByIdentifier(principal.name)
         val isFollowing = user.authors.any { it.id == id }
         val updatedUser = if (isFollowing) {
@@ -55,7 +55,7 @@ class AuthorController(
         } else {
             authorService.followAuthor(user.id!!, id)
         }
-        return ResponseEntity.ok(UserDTO(updatedUser))
+        return ResponseEntity.ok(!isFollowing)
     }
 
     @GetMapping("{id}/follows")

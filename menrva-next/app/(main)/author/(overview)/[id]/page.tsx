@@ -21,8 +21,8 @@ export default async function Page({ params: { id } }: { params: { id: number } 
 
   return (
     <main className="w-screen min-h-[calc(100vh-295px)]">
-      {fetchedAuthor ?
-        <AuthorPage author={fetchedAuthor} id={id} token={token} />
+      {fetchedAuthor && isFollowing !== null ?
+        <AuthorPage author={fetchedAuthor} id={id} token={token} isFollowing={isFollowing} />
         // * need to add error component here
         : <></>
       }

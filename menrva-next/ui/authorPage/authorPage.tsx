@@ -8,9 +8,10 @@ interface AuthorPageProps {
   id: number;
   token: string | undefined;
   author: Author;
+  isFollowing: boolean;
 }
 
-const AuthorPage: React.FC<AuthorPageProps> = ({ author, id, token }) => {
+const AuthorPage: React.FC<AuthorPageProps> = ({ author, id, token, isFollowing }) => {
   async function fetchAllBooksByAuthorSlider() {
     "use server";
     return fetchAuthorBooksById(id);
@@ -24,7 +25,7 @@ const AuthorPage: React.FC<AuthorPageProps> = ({ author, id, token }) => {
   return (
     <div>
       <div className="flex justify-center flex-nowrap sm:flex-wrap gap-8 my-8 mx-4">
-        <AuthorCard author={author} token={token} />
+        <AuthorCard author={author} token={token} isFollowing={isFollowing} />
         <AnnouncementsCard />
       </div>
       <div className="w-min h-full flex flex-col items-center ml-2">

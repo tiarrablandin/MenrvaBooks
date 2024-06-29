@@ -23,18 +23,17 @@ const SITEMAP = [
 ];
 
 const socialIconMap = [
-    {title: "Facebook", icon: faFacebook, link: "https://www.facebook.com" },
-    {title: "Instagram", icon: faInstagram, link: "https://www.instagram.com/menrvabooks/?hl=en" },
-    {title: "Threads", icon: faThreads, link: "https://www.threads.net" },
-    {title: "Twitter", icon: faTwitter, link: "https://x.com/MenrvaBooks" },
-    {title: "Snapchat", icon: faSnapchat, link: "https://www.snapchat.com" },
-    {title: "TikTok", icon: faTiktok, link: "https://www.tiktok.com" },
+  { title: "Facebook", icon: faFacebook, link: "https://www.facebook.com" },
+  { title: "Instagram", icon: faInstagram, link: "https://www.instagram.com/menrvabooks/?hl=en" },
+  { title: "Threads", icon: faThreads, link: "https://www.threads.net" },
+  { title: "Twitter", icon: faTwitter, link: "https://x.com/MenrvaBooks" },
+  { title: "Snapchat", icon: faSnapchat, link: "https://www.snapchat.com" },
+  { title: "TikTok", icon: faTiktok, link: "https://www.tiktok.com" },
 ];
 
 const currentYear = new Date().getFullYear();
 
 export function Footer() {
-  console.log(socialIconMap);
   return (
     <footer className="w-full bg-rose/80 dark:bg-eggplant h-[16rem] relative bottom-0">
       <div className="w-full max-w-7xl px-8 h-full flex flex-col">
@@ -66,8 +65,7 @@ export function Footer() {
           </p>
           <div className="flex gap-4 md:pt-2 sm:justify-center">
             {
-              socialIconMap.map(( social ) => {
-                console.log(social);
+              socialIconMap.map((social) => {
                 return (
                   <p className="opacity-80 transition-opacity hover:opacity-100 cursor-pointer">
                     <Link
