@@ -2,6 +2,7 @@
 
 import register from "@/lib/actions/register";
 import { ArrowUpTrayIcon, Button, Input } from "@/providers/coreProviders";
+import Link from "next/link";
 import router from "next/router";
 import { useState } from "react";
 
@@ -166,6 +167,9 @@ const ProfileInfo = () => {
                   className={`${cn}`}
                 />
               </div>
+              <Link href="https://square.link/u/12DC4ZOw">
+                <Button>Pay Here</Button>
+              </Link>
             </div>
           </div>
         </section>
