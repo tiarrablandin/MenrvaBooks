@@ -19,15 +19,7 @@ import {
 import ThemeToggle from "../theme/themeToggle";
 import ProfileMenu from "./profileMenu";
 
-export function NavbarWithSearch({
-  tag,
-  role,
-  theme,
-}: {
-  tag: string;
-  role: string;
-  theme: string;
-}) {
+export function NavbarWithSearch({ tag, role, theme, }: { tag: string; role: string; theme: string; }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
 
@@ -69,7 +61,7 @@ export function NavbarWithSearch({
         <div className="lg:flex hidden justify-end items-center gap-8 container z-10 overflow-visible">
           <ReduxProvider>
             <div className="w-3/4 py-3 h-16 flex flex-col items-center z-10">
-              <AdvancedSearchComponent theme={theme} />
+              <AdvancedSearchComponent />
             </div>
           </ReduxProvider>
           <div className="mr-12 flex items-center gap-1 z-10">
@@ -86,7 +78,7 @@ export function NavbarWithSearch({
                 Log In
               </Link>
             )}
-            <ThemeToggle theme={theme} />
+            <ThemeToggle />
           </div>
         </div>
         <IconButton
@@ -123,11 +115,11 @@ export function NavbarWithSearch({
                 Log In
               </Link>
             )}
-            <ThemeToggle theme={theme} />
+            <ThemeToggle />
           </div>
           <div className="col-span-3 z-10 py-1 overflow-visible">
             <ReduxProvider>
-              <AdvancedSearch theme={theme} />
+              <AdvancedSearch />
             </ReduxProvider>
           </div>
         </div>

@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en" className={`${advent.variable}`}>
+    <html lang="en" className={`${advent.variable}`} suppressHydrationWarning>
       <body className={`bg-parchment dark:bg-onyx text-deep-sea dark:text-parchment/70 min-h-[calc(100vh-295px)] overflow-x-hidden`}>
         <MenrvaThemeProvider>
           {auth}

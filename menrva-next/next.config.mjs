@@ -1,5 +1,5 @@
-import { createRequire } from 'module'
-const require = createRequire(import.meta.url)
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
@@ -29,6 +29,12 @@ const nextConfig = {
       },
     ],
   },
+  webpack(config, { dev, isServer }) {
+    if (!dev) {
+      config.devtool = false;
+    }
+    return config;
+  },
 };
 
-export default withBundleAnalyzer(nextConfig)
+export default withBundleAnalyzer(nextConfig);

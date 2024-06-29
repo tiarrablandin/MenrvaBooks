@@ -1,7 +1,7 @@
 import { fetchUserByTag } from "@/lib/services/apiService";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest, { params }: { params: { theme: string} }) {
     const cookieStore = req.cookies;
     const jwt = cookieStore.get('jwt')?.value;
     const tag = cookieStore.get('tag')?.value;
