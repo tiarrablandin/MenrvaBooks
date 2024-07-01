@@ -1,16 +1,23 @@
+import createComment from "@/lib/actions/comments/createComment";
 import { Comment } from "@/lib/models/comment";
-import createComment from "@/lib/actions/createComment";
 import { Button, Input } from "@/providers/coreProviders";
+import { FormEvent, useState } from "react";
 
-export async function NewComment({
-  bookId,
-  tag,
-  comments,
-}: {
-  bookId: number;
-  tag: string | undefined;
-  comments?: Comment[];
-}) {
+export function NewComment({ bookId, tag, onNewComment }: { bookId: number; tag: string | undefined; onNewComment: (comment: Comment) => void; }) {
+  const [comment, setComment] = useState('');
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const response = await createComment(comment, bookId);
+
+    if ("comment" in response) {
+      onNewComment(response.comment);
+      setComment('');
+    } else {
+      console.error(response.error);
+    }
+  };
+
   return (
     <div>
       <div className="flex !items-center gap-4">
@@ -21,15 +28,10 @@ export async function NewComment({
           Constructive feedback is possible while also being nice...
         </div>
         <form
-          action={async (formData: FormData) => {
-            "use server";
-            const comment = formData.get("comment") as string;
-            const newComment = await createComment(comment, bookId);
-            // if (typeof newComment) comments?.push(newComment);
-          }}
+          onSubmit={handleSubmit}
           className="flex flex-col items-end"
         >
-          <Input variant="static" type="text" name="comment" id="comment" />
+          <Input variant="static" type="text" name="comment" id="comment" value={comment} onChange={(e) => setComment(e.target.value)}/>
           <Button type="submit" className="mt-4 bg-eggplant text-parchment/70" size="sm">
             <p>submit</p>
           </Button>

@@ -1,6 +1,6 @@
 "use client";
 
-import register from "@/lib/actions/register";
+import register from "@/lib/actions/user/register";
 import { ArrowUpTrayIcon, Button, Input } from "@/providers/coreProviders";
 import router from "next/router";
 import { useState } from "react";

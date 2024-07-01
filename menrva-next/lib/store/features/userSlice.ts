@@ -26,9 +26,9 @@ export const login = createAsyncThunk(
         try {
             const res = await authenticate(identifier, password);
             if (!res) return rejectWithValue('Failed to login');
-            sessionStorage.setItem('token', res.token);
+            sessionStorage.setItem('token', res.jwt);
             sessionStorage.setItem('userDetails', JSON.stringify(res.user));
-            return { token: res.token, user: res.user };
+            return { token: res.jwt, user: res.user };
         } catch (error) {
             return rejectWithValue('Failed to login');
         }

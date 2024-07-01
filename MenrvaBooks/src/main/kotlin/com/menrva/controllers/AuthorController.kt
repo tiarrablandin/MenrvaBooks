@@ -77,4 +77,10 @@ class AuthorController(
         return ResponseEntity.ok(authorService.create(author))
     }
 
+    @DeleteMapping("{id}")
+    fun deleteAuthor(@PathVariable id: Long): ResponseEntity<Any> {
+        val deleted = authorService.delete(id)
+        return ResponseEntity.ok(deleted)
+    }
+
 }

@@ -15,7 +15,7 @@ import Link from "next/link";
 import BookComments from "./bookComments";
 import BookSlider from "./bookSlider";
 import HasReadButton from "./interactions/hasReadButton";
-import InitializeInteractions from "../../lib/utils/initalizeInteractions";
+import InitializeInteractions from "../../lib/utils/initializeInteractions";
 import InterestedButton from "./interactions/interestedButton";
 import ThumbsDownComponent from "./interactions/thumbsDown";
 import ThumbsUpComponent from "./interactions/thumbsUp";
@@ -129,7 +129,7 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
         <div className="w-screen h-full flex flex-col items-center">
           {book.series ? <BookSlider defaultBooks={book.series.books.filter((book) => book.id !== Number(id))} title={"Books in Series"} /> : <></>}
         </div>
-        <BookComments bookId={book?.id!!} comments={book?.comments} tag={tag} />
+        <BookComments bookId={book?.id!!} initialComments={book?.comments} tag={tag} />
       </div>
     </>
   );

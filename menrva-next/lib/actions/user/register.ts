@@ -1,7 +1,7 @@
 'use server';
 
+import { registerUser } from "@/lib/services/apiService";
 import { cookies } from "next/headers";
-import { registerUser } from "../services/apiService";
 
 // * PARAMETERS ARE PASSED IN FROM FORM AS FORMDATA
 export default async function register(email: string, firstName: string, lastName: string, tag: string, password: string) {

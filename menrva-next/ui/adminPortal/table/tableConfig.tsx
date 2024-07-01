@@ -8,7 +8,7 @@ interface TableConfigProps {
     pageTitle: string
     description: string
     addLink: string
-    renderRow: (item: any, index: number, toggleReviewed?: (bookId: number) => void | undefined, toggleActive?: (id: number) => void | undefined) => JSX.Element
+    renderRow: (item: any, index: number, toggleReviewed?: (bookId: number) => void | undefined, toggleActive?: (id: number) => void | undefined, deleteEntity?: (id: number) => any) => JSX.Element;
 }
 
 type ConfigDictionary = {
@@ -18,7 +18,7 @@ type ConfigDictionary = {
 export const tableConfig: ConfigDictionary = {
     books: {
         apiEndpoint: '/api/books',
-        columns: ['Cover', 'Title', 'Author', 'Date Added', 'Reviewed', 'Edit'],
+        columns: ['Cover', 'Title', 'Author', 'Date Added', 'Reviewed', 'Edit', 'Delete'],
         pageTitle: 'Books List',
         description: 'Manage all books',
         addLink: '/admin/addBook',
@@ -26,7 +26,7 @@ export const tableConfig: ConfigDictionary = {
     },
     authors: {
         apiEndpoint: '/api/authors',
-        columns: ['Tag', 'Pen Name', 'Date Added', 'Reviewed', 'Edit'],
+        columns: ['Tag', 'Pen Name', 'Date Added', 'Reviewed', 'Edit', 'Delete'],
         pageTitle: 'Authors List',
         description: 'Manage all authors',
         addLink: '/admin/addAuthor',
@@ -34,7 +34,7 @@ export const tableConfig: ConfigDictionary = {
     },
     users: {
         apiEndpoint: '/api/users',
-        columns: ['Tag', 'Name', 'Email', 'Subscription', 'Date Added', 'Active', 'Edit'],
+        columns: ['Tag', 'Name', 'Email', 'Subscription', 'Date Added', 'Active', 'Edit', 'Delete'],
         pageTitle: 'Users List',
         description: 'Manage all users',
         addLink: '/admin/addUser',
@@ -42,7 +42,7 @@ export const tableConfig: ConfigDictionary = {
     },
     genres: {
         apiEndpoint: '/api/genres',
-        columns: ['Name', 'Edit'],
+        columns: ['Name', 'Edit', 'Delete'],
         pageTitle: 'Genres List',
         description: 'Manage all genres',
         addLink: '/admin/addGenre',
@@ -50,7 +50,7 @@ export const tableConfig: ConfigDictionary = {
     },
     series: {
         apiEndpoint: '/api/series',
-        columns: ['Name', 'Author', 'Date Added', 'Reviewed', 'Edit'],
+        columns: ['Name', 'Author', 'Date Added', 'Reviewed', 'Edit', 'Delete'],
         pageTitle: 'Series List',
         description: 'Manage all series',
         addLink: '/admin/addSeries',
@@ -58,7 +58,7 @@ export const tableConfig: ConfigDictionary = {
     },
     keywords: {
         apiEndpoint: '/api/keywords',
-        columns: ['Name', 'Edit'],
+        columns: ['Name', 'Edit', 'Delete'],
         pageTitle: 'Keyword List',
         description: 'Manage all keywords',
         addLink: '/admin/addKeyword',
@@ -66,7 +66,7 @@ export const tableConfig: ConfigDictionary = {
     },
     tags: {
         apiEndpoint: '/api/tags',
-        columns: ['Name', 'Edit'],
+        columns: ['Name', 'Edit', 'Delete'],
         pageTitle: 'Tag List',
         description: 'Manage all tags',
         addLink: '/admin/addTag',
@@ -74,7 +74,7 @@ export const tableConfig: ConfigDictionary = {
     },
     comments: {
         apiEndpoint: '/api/comments',
-        columns: ['Book', 'Comment', 'User', 'Date Added', 'Delete'],
+        columns: ['Book', 'Comment', 'User', 'Date Added', 'Reviewed', 'Delete'],
         pageTitle: 'Comments List',
         description: 'Manage all comments',
         addLink: '/admin/addComments',
@@ -82,7 +82,7 @@ export const tableConfig: ConfigDictionary = {
     },
     subgenres: {
         apiEndpoint: '/api/subgenres',
-        columns: ['Name', 'Edit'],
+        columns: ['Name', 'Edit', 'Delete'],
         pageTitle: 'Sub-genres List',
         description: 'Manage all sub-genres',
         addLink: '/admin/addSubgenre',

@@ -53,7 +53,8 @@ create table if not exists book
     rejected         tinyint      not null default 0,
     date_updated     date         null,
     series_id        int          null,
-    views	     int	  not null default 0,
+    views	         int	      not null default 0,
+    olid             int          null,
     foreign key (series_id) references series (id)
 
 );
@@ -154,7 +155,7 @@ create table if not exists subscription
     id           int auto_increment
         primary key,
     level        varchar(20) not null,
-    paid         int         not null,
+    paid         tinyint         not null default 0,
     date_added   date        null,
     date_updated date        null
 );
@@ -172,9 +173,10 @@ create table if not exists user
     date_added      date         null,
     date_updated    date         null,
     subscription_id int          not null default 1,
-    theme	    varchar(10) not null default 'light',
-    avatar	    int 	not null default 1,
-    -- subscription_id int          not null,
+    theme	        varchar(10) not null default 'light',
+    avatar	        int 	    not null default 1,
+    password_reset_token varchar(1000) null,
+    password_reset_token_expiration TIMESTAMP null,
     FOREIGN KEY (subscription_id) REFERENCES subscription (id)
 );
 

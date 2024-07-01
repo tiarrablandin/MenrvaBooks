@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   return (
-    <main className="">
-      <Profile/>
+    <main className="min-h-[calc(100vh-295px)] h-[97%] my-auto w-[calc(100%-4rem)] mr-1 ml-auto">
+      <Profile />
     </main>
   );
 }

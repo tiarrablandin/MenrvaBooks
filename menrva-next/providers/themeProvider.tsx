@@ -20,7 +20,7 @@ export function MenrvaThemeProvider({ children }: MenrvaThemeProviderProps) {
     }
 
     if (!initialized.current) {
-      initialize();
+      // initialize();
     }
   }, [initialized, setSelectedTheme])
 
@@ -29,6 +29,6 @@ export function MenrvaThemeProvider({ children }: MenrvaThemeProviderProps) {
     // <>
     //   {children ? <ThemeProvider selectedTheme={theme === 'dark' ? darkTheme : lightTheme}>{children as ReactElement}</ThemeProvider> : <></>}
     // </>
-    <ThemeProvider attribute='class' defaultTheme={selectedTheme}>{children as any}</ThemeProvider>);
+    <ThemeProvider attribute='class' >{children as any}</ThemeProvider>);
   // )
 }

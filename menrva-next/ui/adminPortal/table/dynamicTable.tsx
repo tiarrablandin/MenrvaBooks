@@ -27,7 +27,7 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
   const [itemsPerPage, _setItemsPerPage] = useState(10);
   const [showUnreviewedOnly, setShowUnreviewedOnly] = useState(false);
   const [showActiveOnly, setShowActiveOnly] = useState(false);
-  const { data, fetchData, toggleReviewed, toggleActive, loading, error } = useEntityHook<any>(entityType);
+  const { data, fetchData, toggleReviewed, toggleActive, deleteEntity, loading, error } = useEntityHook<any>(entityType);
 
   const currentItems = useMemo(() => data
     .filter((item: any) => !showUnreviewedOnly || !item.reviewed)
@@ -86,8 +86,8 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
         />
       }
       tableHeaders={tableConfig[entityType].columns}
-      data={showActiveOnly ? activeUsers : currentItems}
-      renderRow={tableConfig[entityType].renderRow} // Assuming renderRow is also defined in config
+      initialData={showActiveOnly ? activeUsers : currentItems}
+      renderRow={tableConfig[entityType].renderRow}
       pagination={
         <Pagination
           totalPages={totalPages}
@@ -97,6 +97,7 @@ const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant })
       }
       reviewedCallback={toggleReviewed}
       activeCallback={toggleActive}
+      deleteCallback={deleteEntity}
       variant={variant}
     />
   );
@@ -114,11 +115,12 @@ interface EntityData<T> {
   toggleLiked?: (bookId: number, status: number) => void;
   fetchBookInteractions?: (bookId: number) => void;
   likedBooks?: number[];
-  fetchBookDetails: (bookId: number) => void;
+  fetchBookDetails?: (bookId: number) => void;
   currentBook?: T;
   toggleFavorite?: (id: number) => void;
   toggleInterested?: (id: number) => void;
   toggleHasRead?: (id: number) => void;
+  deleteEntity?: (id: number) => any;
 }
 
 // useEntityHook is a function that returns the correct hook based on entityType

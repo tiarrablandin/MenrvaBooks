@@ -1,7 +1,7 @@
+import InitializeFromCookies from "@/lib/utils/initializeFromCookies";
 import ReduxProvider from "@/providers/reduxProvider";
 import Sidebar from "@/ui/adminPortal/adminSidebar";
 import ThemeToggle from "@/ui/theme/themeToggle";
-import { cookies } from "next/headers";
 
 export default function AdminLayout({ children, add, update }: { children: React.ReactNode, add: React.ReactNode, update: React.ReactNode }) {
     return (
@@ -17,6 +17,7 @@ export default function AdminLayout({ children, add, update }: { children: React
                     {children}
                 </main>
             </div>
+            <InitializeFromCookies/>
         </ReduxProvider>
     )
 }

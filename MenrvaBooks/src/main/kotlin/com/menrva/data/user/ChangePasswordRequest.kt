@@ -1,4 +1,6 @@
 package com.menrva.data.user
 
-class ChangePasswordRequest {
-}
+data class ChangePasswordRequest (
+    val oldPassword: String,
+    val newPassword: String
+)

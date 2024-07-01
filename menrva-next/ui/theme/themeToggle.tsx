@@ -10,27 +10,27 @@ const ThemeToggle: React.FC<{}> = ({ }) => {
   const [mounted, setMounted] = useState(false);
   const initialized = useRef(false);
 
-  const setThemeCookie = async (theme: string) => {
-    const res = await fetch('/api/theme/setTheme', { method: "POST", body: JSON.stringify(theme) });
-    const data = await res.json();
-  };
+  // const setThemeCookie = async (theme: string) => {
+  //   const res = await fetch('/api/theme/setTheme', { method: "POST", body: JSON.stringify(theme) });
+  //   const data = await res.json();
+  // };
 
-  const getThemeCookie = async () => {
-    const res = await fetch('/api/theme/getTheme');
-    const data = await res.json();
-    return data;
-  };
+  // const getThemeCookie = async () => {
+  //   const res = await fetch('/api/theme/getTheme');
+  //   const data = await res.json();
+  //   return data;
+  // };
 
   const initTheme = useCallback(async () => {
     if (!initialized.current) {
-      const themeCookie = await getThemeCookie();
+      // const themeCookie = await getThemeCookie();
 
       if (theme === 'dark') {
         setIsDark(true);
-        if (themeCookie.theme === undefined) { setThemeCookie('dark'); }
+        // if (themeCookie.theme === undefined) { setThemeCookie('dark'); }
       } else if (theme === 'light') {
         setIsDark(false);
-        if (themeCookie.theme === undefined) { setThemeCookie('light'); }
+        // if (themeCookie.theme === undefined) { setThemeCookie('light'); }
       }
       initialized.current = true;
       setMounted(true);
@@ -45,7 +45,7 @@ const ThemeToggle: React.FC<{}> = ({ }) => {
     const newTheme = isDark ? 'light' : 'dark';
     setIsDark(!isDark);
     setTheme(newTheme);
-    setThemeCookie(newTheme);
+    // setThemeCookie(newTheme);
   };
 
   return (

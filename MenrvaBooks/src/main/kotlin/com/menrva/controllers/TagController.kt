@@ -43,4 +43,10 @@ class TagController(private val tagService: TagService) {
         val updatedTag = tagService.toggleReviewed(id)
         return ResponseEntity.ok(TagDTO(updatedTag))
     }
+
+    @DeleteMapping("{id}")
+    fun deleteTag(@PathVariable id: Long): ResponseEntity<Any> {
+        val deleted = tagService.delete(id)
+        return ResponseEntity.ok(deleted)
+    }
 }

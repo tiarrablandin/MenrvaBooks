@@ -40,4 +40,10 @@ class KeywordController(private val keywordService: KeywordService) {
         val updatedKeyword = keywordService.toggleReviewed(id)
         return ResponseEntity.ok(KeywordDTO(updatedKeyword))
     }
+
+    @DeleteMapping("{id}")
+    fun deleteKeyword(@PathVariable id: Long): ResponseEntity<Any> {
+        val deleted = keywordService.delete(id)
+        return ResponseEntity.ok(deleted)
+    }
 }

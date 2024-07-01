@@ -39,4 +39,10 @@ class SubgenreController(private val subgenreService: SubgenreService) {
         val updatedSubgenre = subgenreService.toggleReviewed(id)
         return ResponseEntity.ok(SubGenreDTO(updatedSubgenre))
     }
+
+    @DeleteMapping("{id}")
+    fun deleteSubgenre(@PathVariable id: Long): ResponseEntity<Any> {
+        val deleted = subgenreService.delete(id)
+        return ResponseEntity.ok(deleted)
+    }
 }

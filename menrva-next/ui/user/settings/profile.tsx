@@ -4,7 +4,7 @@ const Profile = () => {
   const cn="w-full placeholder:opacity-100 !border-eggplant dark:!border-parchment/70 text-deep-sea dark:text-parchment/70";
 
   return (
-    <div className="text-deep-sea dark:text-parchment/70">
+    <div className="text-deep-sea dark:text-parchment/70 w-full">
       {/* Avatar Upload */}
       <section className="py-12 pl-16 px-4 container mx-auto">
         <div className="flex justify-between items-start">

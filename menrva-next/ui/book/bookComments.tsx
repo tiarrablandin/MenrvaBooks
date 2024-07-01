@@ -1,6 +1,9 @@
+'use client';
+
 import { Comment } from '@/lib/models/comment';
 import { Button, Card, CardBody, HeartIcon } from "@/providers/coreProviders";
 import { NewComment } from "./newComment";
+import { useState } from 'react';
 
 interface ContentCardPropsType {
   content: string;
@@ -11,8 +14,8 @@ interface ContentCardPropsType {
 function ContentCard({ content, date, tag }: ContentCardPropsType) {
   return (
     <Card color="transparent" shadow={false} className="grid items-center gap-6 ">
-      <CardBody className="flex gap-5 p-0 ">
-        <div className="mb-3 flex items-center gap-1">
+      <CardBody className="flex p-0 w-full">
+        <div className="mb-3 flex items-center gap-1 w-full justify-around">
           <p className="text-lg font-bold text-eggplant dark:text-rose px-4" >
             {tag}
           </p>
@@ -39,26 +42,33 @@ function ContentCard({ content, date, tag }: ContentCardPropsType) {
 }
 
 
-const bookComments = ({ bookId, comments, tag }: { bookId: number, comments?: Comment[], tag: string | undefined }) => {
+const BookComments = ({ bookId, initialComments, tag }: { bookId: number, initialComments?: Comment[], tag: string | undefined }) => {
+  const [comments, setComments] = useState(initialComments || []);
+
+  const handleNewComment = (newComment: Comment) => {
+    setComments((prevComments) => [...prevComments, newComment]);
+  };
+
   return (
     <div>
       <section className="mx-auto flex w-full max-w-2xl flex-col px-5 pb-20 pt-10">
         <div className="my-6 md:my-8 md:text-center">
           Have something to say about this book?
         </div>
-        <NewComment bookId={bookId} tag={tag} comments={comments} />
+        <NewComment bookId={bookId} tag={tag} onNewComment={handleNewComment} />
         <div className="my-8 md:text-center">
           What other readers are saying about this book...
         </div>
-        {comments ?
+        {comments.length > 0 ? (
           <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-1">
             {comments.map((comment, index) => (
               <ContentCard key={index} content={comment.comment} date={comment.dateAdded} tag={comment.user.tag} />
             ))}
-          </div> : <></>}
+          </div>
+        ) : null}
       </section>
     </div>
   );
 };
 
-export default bookComments;
+export default BookComments;

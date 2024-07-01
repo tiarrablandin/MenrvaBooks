@@ -44,7 +44,7 @@ class CommentService(
         return commentRepo.save(comment)
     }
 
-    fun deleteById(id: Long): Boolean {
+    fun delete(id: Long): Boolean {
         val comment = commentRepo.findById(id).orElseThrow { RuntimeException("Comment not found") }
         commentRepo.delete(comment)
         return commentRepo.existsById(id)

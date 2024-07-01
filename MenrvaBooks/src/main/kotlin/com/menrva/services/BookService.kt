@@ -62,7 +62,6 @@ class BookService(
     }
 
     fun updateBook(id: Long, bookDto: BookDTO): Book {
-        println("####################### $bookDto")
         val book = bookRepo.findById(id).orElseThrow { BookNotFoundException("Book not found") }
         val series = bookDto.series?.id?.let { seriesRepo.findById(it).orElseThrow { RuntimeException("Series not found") } }
 
@@ -76,4 +75,9 @@ class BookService(
         return bookRepo.save(book)
     }
 
+    fun delete(id: Long): Any {
+        val book = bookRepo.findById(id).orElseThrow { RuntimeException("Book not found") }
+        bookRepo.delete(book)
+        return bookRepo.existsById(id)
+    }
 }

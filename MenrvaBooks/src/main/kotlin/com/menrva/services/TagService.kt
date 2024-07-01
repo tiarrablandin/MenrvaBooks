@@ -4,6 +4,7 @@ import com.menrva.entities.Keyword
 import com.menrva.entities.SubGenre
 import com.menrva.entities.Tag
 import com.menrva.repositories.TagRepository
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -25,15 +26,22 @@ class TagService(
     }
 
     fun updateTagName(id: Long, tagName: String): Tag {
-        val tag = tagRepo.findById(id).orElseThrow { RuntimeException("Keyword not found") }
+        val tag = tagRepo.findById(id).orElseThrow { RuntimeException("Tag not found") }
         tag.name = tagName
         return tagRepo.save(tag)
     }
 
     fun toggleReviewed(id: Long): Tag {
-        val tag = tagRepo.findById(id).orElseThrow { RuntimeException("Book not found") }
+        val tag = tagRepo.findById(id).orElseThrow { RuntimeException("Tag not found") }
         val newReviewedStatus = tag.reviewed?.not() ?: true
         tag.reviewed = newReviewedStatus
         return tagRepo.save(tag)
+    }
+
+    @Transactional
+    fun delete(id: Long): Boolean {
+        val tag = tagRepo.findById(id).orElseThrow { RuntimeException("Tag not found") }
+        tagRepo.delete(tag)
+        return tagRepo.existsById(id)
     }
 }

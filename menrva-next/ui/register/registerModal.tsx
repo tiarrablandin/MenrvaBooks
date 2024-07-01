@@ -1,6 +1,6 @@
 "use client";
 
-import register from "@/lib/actions/register";
+import register from "@/lib/actions/user/register";
 import {
   ArrowRightIcon,
   AtSymbolIcon,

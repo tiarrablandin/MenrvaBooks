@@ -48,10 +48,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ }) => {
           Got a suggestion on how to make the site better? Let us know!
         </div>
         <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 text-old-lace"
-          action={async (formData: FormData) => {
-            'use server';
-            const response = await sendEmail(formData);
-          }}>
+          action={sendEmail}>
           <div className="mb-1 flex flex-col gap-6">
             <div className="-mb-3">
               Your Name

@@ -1,8 +1,8 @@
-import login from "@/lib/actions/login";
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../store/store";
 import { logout as logoutUser } from "../store/features/userSlice";
+import login from "../actions/user/login";
 
 export function useAuth() {
     const dispatch = useAppDispatch();

@@ -4,6 +4,7 @@ import com.menrva.entities.Genre
 import com.menrva.entities.Keyword
 import com.menrva.entities.SubGenre
 import com.menrva.repositories.SubGenreRepository
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -22,15 +23,22 @@ class SubgenreService(private val subgenreRepo: SubGenreRepository) {
     }
 
     fun updateGenreName(id: Long, subgenreName: String): SubGenre {
-        val subgenre = subgenreRepo.findById(id).orElseThrow { RuntimeException("Genre not found") }
+        val subgenre = subgenreRepo.findById(id).orElseThrow { RuntimeException("Subgenre not found") }
         subgenre.name = subgenreName
         return subgenreRepo.save(subgenre)
     }
 
     fun toggleReviewed(id: Long): SubGenre {
-        val subgenre = subgenreRepo.findById(id).orElseThrow { RuntimeException("Genre not found") }
+        val subgenre = subgenreRepo.findById(id).orElseThrow { RuntimeException("Subgenre not found") }
         val newReviewedStatus = subgenre.reviewed?.not() ?: true
         subgenre.reviewed = newReviewedStatus
         return subgenreRepo.save(subgenre)
+    }
+
+    @Transactional
+    fun delete(id: Long): Boolean {
+        val subgenre = subgenreRepo.findById(id).orElseThrow { RuntimeException("Subgenre not found") }
+        subgenreRepo.delete(subgenre)
+        return subgenreRepo.existsById(id)
     }
 }

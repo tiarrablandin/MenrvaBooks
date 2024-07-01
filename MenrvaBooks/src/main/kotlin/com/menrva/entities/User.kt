@@ -8,6 +8,7 @@ import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 @JsonIdentityInfo(
     generator = ObjectIdGenerators.PropertyGenerator::class,
@@ -33,6 +34,11 @@ class User(
     @UpdateTimestamp
     var dateUpdated: LocalDate? = null,
     var theme: String? = "light",
+    var avatar: Int? = 1,
+    @Column(name = "password_reset_token")
+    var passwordResetToken: String? = null,
+    @Column(name = "password_reset_token_expiration")
+    var passwordResetTokenExpiration: LocalDateTime? = null,
     @JsonBackReference(value = "user")
     @OneToMany(mappedBy = "user")
     var bookInteractions: MutableSet<BookInteraction> = mutableSetOf(),

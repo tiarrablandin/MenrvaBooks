@@ -8,12 +8,14 @@ import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
+import java.util.*
 
 
 @Repository
 interface UserRepository : JpaRepository<User, Long> {
     fun findByTag(tag: String): User?
     fun findByEmail(email: String): User?
+    fun findByPasswordResetToken(passwordResetToken: String): Optional<User>
     @Query("SELECT u FROM User u WHERE u.email = :email")
     fun findUserSummaryByEmail(@Param("email") email: String): UserSummary?
     @Query("SELECT u FROM User u WHERE u.tag = :tag")

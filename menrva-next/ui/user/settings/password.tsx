@@ -6,7 +6,7 @@ import { useState } from "react";
 const Password = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => setPasswordShown((cur) => !cur);
-  const cn="w-full placeholder:opacity-100 !border-eggplant dark:!border-parchment/70 text-deep-sea dark:text-parchment/70";
+  const cn = "w-full placeholder:opacity-100 !border-eggplant dark:!border-parchment/70 text-deep-sea dark:text-parchment/70";
 
   return (
     <div className="text-deep-sea dark:text-parchment/70">
@@ -14,11 +14,11 @@ const Password = () => {
         <p className="font-semibold">
           Change Password
         </p>
-        <p className= "font-normal mt-1">
+        <p className="font-normal mt-1">
           Update your profile information below.
         </p>
         <div className="flex flex-col md:flex-row justify-between gap-10 mt-8">
-          <div className="flex flex-col gap-6 w-full">
+          <form className="flex flex-col gap-6 w-full">
             <div className="w-full">
               <p className="mb-2 font-medium">
                 Current Password
@@ -30,6 +30,7 @@ const Password = () => {
                     className: "hidden",
                   }}
                   className={`${cn}`}
+                  name="oldPassword"
                   type={passwordShown ? "text" : "password"}
                   icon={
                     <i onClick={togglePasswordVisiblity}>
@@ -53,6 +54,7 @@ const Password = () => {
                   className: "hidden",
                 }}
                 className={`${cn}`}
+                name="newPassword"
                 type={passwordShown ? "text" : "password"}
                 icon={
                   <i onClick={togglePasswordVisiblity}>
@@ -88,7 +90,7 @@ const Password = () => {
               />
             </div>
             <Button className="max-w-fit bg-eggplant dark:bg-rose/70 text-parchment/70">Update Password</Button>
-          </div>
+          </form>
           <div className="w-full">
             <p className="">
               Password Requirement
