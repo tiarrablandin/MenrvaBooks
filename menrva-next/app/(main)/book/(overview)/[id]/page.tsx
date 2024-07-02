@@ -5,8 +5,8 @@ import { cookies } from "next/headers";
 
 export async function generateMetadata(
   { params: { id } }: { params: { id: number } }): Promise<Metadata> {
-    const book = await fetchBookById(id);
-    const title = book?.title ? decodeURIComponent(book.title) : ""
+  const book = await fetchBookById(id);
+  const title = book?.title ? decodeURIComponent(book.title) : ""
   return {
     title: title
   }
@@ -18,6 +18,10 @@ export default async function Page({ params: { id } }: { params: { id: number } 
 
   const book = await fetchBookById(id);
   const interactions = token ? await fetchBookInteractionsById(id, token) : null;
+
+  let numberOfLikes = book?.bookInteractions ? book.bookInteractions.filter(interaction => interaction.likeDislike === 1).length : 0;
+  let numberOfDislikes = book?.bookInteractions ? book.bookInteractions.filter(interaction => interaction.likeDislike === -1).length : 0;
+
 
   return (
     <>
