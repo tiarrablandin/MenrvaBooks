@@ -7,8 +7,6 @@ import AnimatedHeader from "../ui/motion/animatedHeader";
 import AdvancedSearchComponent from "../ui/search/advancedSearch";
 
 export default function Home() {
-  const theme = cookies().get("theme")?.value as string;
-
   return (
     <div className={`flex flex-col h-screen w-full `}>
       <main className="flex flex-col h-full w-full items-center justify-center text-nowrap">
@@ -20,14 +18,14 @@ export default function Home() {
           </div>
           <div className="flex flex-col justify-around mt-auto">
             <AnimatedHeader />
-            <Typography variant="h6" className="-mt-4 ml-2 text-lg text-onyx">Start by searching for a book, author or genre.</Typography>
+            <Typography variant="h6" className="-mt-4 ml-2 text-lg text-onyx dark:text-parchment">Start by searching for a book, author or genre.</Typography>
           </div>
         </div>
 
 
         <div className="flex flex-col w-4/5 xl:w-3/5">
           <ReduxProvider>
-            <AdvancedSearchComponent theme={theme} />
+            <AdvancedSearchComponent />
           </ReduxProvider>
           <div className="flex w-3/4 justify-between mx-auto">
             <Typography className="text-[1.1rem] font-medium">

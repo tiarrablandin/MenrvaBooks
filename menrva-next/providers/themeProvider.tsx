@@ -1,21 +1,34 @@
-import { cookies } from "next/headers";
-import { ReactElement, ReactNode } from "react";
-import { ThemeProvider } from "./coreProviders";
-import { darkTheme } from "@/ui/theme/darkTheme";
-import { lightTheme } from "@/ui/theme/lightTheme";
+'use client'
+
+import { ThemeProvider } from "next-themes";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
 interface MenrvaThemeProviderProps {
   children: ReactNode;
 }
 
-export async function MenrvaThemeProvider({ children }: MenrvaThemeProviderProps) {
-  const theme = cookies().get('theme')?.value as string;
+export function MenrvaThemeProvider({ children }: MenrvaThemeProviderProps) {
+  const initialized = useRef(false);
+  const [selectedTheme, setSelectedTheme] = useState('light');
+
+  useEffect(() => {
+    const initialize = async () => {
+      const res = await fetch('api/theme/getTheme');
+      const theme = await res.json();
+      setSelectedTheme(theme);
+      initialized.current = true;
+    }
+
+    if (!initialized.current) {
+      // initialize();
+    }
+  }, [initialized, setSelectedTheme])
 
   // ******************* IGNORE THIS ERROR!!!!!!!!!!!!!!
   return (
     // <>
     //   {children ? <ThemeProvider selectedTheme={theme === 'dark' ? darkTheme : lightTheme}>{children as ReactElement}</ThemeProvider> : <></>}
     // </>
-    <ThemeProvider value={theme === 'dark' ? darkTheme : lightTheme}>{children as any}</ThemeProvider>);
+    <ThemeProvider attribute='class' >{children as any}</ThemeProvider>);
   // )
 }

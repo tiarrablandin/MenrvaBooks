@@ -5,17 +5,17 @@ import Security from "./security";
 
 const UserSettingsPage = () => {
     return (
-        <div className="">
-            <div id="profile">
+        <div className="flex items-center flex-col w-full">
+            <div id="profile" className="w-full">
                 <Profile />
             </div>
-            <div id="password">
+            <div id="password" className="w-full">
                 <Password />
             </div>
             {/* <div id="notifications">
                 <Notifications />
             </div> */}
-            <div id="security">
+            <div id="security" className="w-full">
                 <Security />
             </div>
         </div>

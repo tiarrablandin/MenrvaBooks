@@ -37,4 +37,10 @@ class GenreController(private val genreService: GenreService) {
         val updatedGenre = genreService.toggleReviewed(id)
         return ResponseEntity.ok(GenreDTO(updatedGenre))
     }
+
+    @DeleteMapping("{id}")
+    fun deleteGenre(@PathVariable id: Long): ResponseEntity<Any> {
+        val deleted = genreService.delete(id)
+        return ResponseEntity.ok(deleted)
+    }
 }

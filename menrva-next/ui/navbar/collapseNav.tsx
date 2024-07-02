@@ -36,9 +36,9 @@ export default function CollapseNav({ tag, role, theme }: { tag: string, role: s
           </IconButton>
           <ProfileMenu tag={tag} role={role} />
           <ReduxProvider>
-            <AdvancedSearch theme={theme} />
+            <AdvancedSearch />
           </ReduxProvider>
-          <ThemeToggle theme={theme} />
+          <ThemeToggle />
         </div>
       </Collapse>
     </>

@@ -77,5 +77,9 @@ class AuthorService(
     }
 
     @Transactional
-    fun delete(id: Long) = authorRepo.deleteById(id)
+    fun delete(id: Long): Boolean {
+        val author = authorRepo.findById(id).orElseThrow { RuntimeException("Author not found") }
+        authorRepo.delete(author)
+        return authorRepo.existsById(id)
+    }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import login from "@/lib/actions/login";
+import login from "@/lib/actions/user/login";
 import { setToken, setUserDetails } from "@/lib/store/features/userSlice";
 import { useAppDispatch } from "@/lib/store/store";
 import {
@@ -44,15 +44,16 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
     const password = formData.get("password") as string;
     const response = await login(identifier, password);
 
-    if(response && response.user){
+    if (response && response.user) {
+      console.log(response.token);
       router.push(`/userHome/@${identifier}`);
       dispatch(setToken(response.token))
       dispatch(setUserDetails(response.user))
       setIsOpen(false);
-    } else{
+    } else {
       throw new Error("Failed to login")
     }
-    
+
     setIsLoading(false);
   };
 
@@ -137,9 +138,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
 
           <div className="mx-auto w-full flex flex-nowrap justify-center py-2">
             <Typography>New to Menrva?</Typography>
-              <Typography className="ml-2 underline underline-offset-1 hover:scale-105" onClick={() => {router.push('/subscriptions'); setIsOpen(false)}}>
-                Create a free account!
-              </Typography>
+            <Typography className="ml-2 underline underline-offset-1 hover:scale-105" onClick={() => { router.push('/subscriptions'); setIsOpen(false) }}>
+              Create a free account!
+            </Typography>
           </div>
         </div>
       </form>

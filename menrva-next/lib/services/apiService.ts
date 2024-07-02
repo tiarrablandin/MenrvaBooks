@@ -351,7 +351,7 @@ export async function fetchBookInteractionsById(id: number, token: string) {
   }
 }
 
-export async function authenticate(identifier: string, password: string): Promise<{ user: User, token: string } | null> {
+export async function authenticate(identifier: string, password: string): Promise<{ user: User, jwt: string } | null> {
   try {
     const response = await fetch(`${baseUrl}/authenticate`, {
       method: "POST",

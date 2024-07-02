@@ -33,11 +33,6 @@ class CommentController(
         return ResponseEntity.ok(commentService.findByBookId(id))
     }
 
-    @DeleteMapping("{id}")
-    fun deleteById(@PathVariable id: Long): ResponseEntity<Boolean> {
-        return ResponseEntity.ok(commentService.deleteById(id))
-    }
-
     @PostMapping("")
     fun create(
         @RequestBody comment: CreateCommentDTO,
@@ -51,4 +46,11 @@ class CommentController(
         val updatedComment = commentService.toggleReviewed(id)
         return ResponseEntity.ok(CommentDTO(updatedComment))
     }
+
+    @DeleteMapping("{id}")
+    fun deleteAuthor(@PathVariable id: Long): ResponseEntity<Any> {
+        val deleted = commentService.delete(id)
+        return ResponseEntity.ok(deleted)
+    }
+
 }

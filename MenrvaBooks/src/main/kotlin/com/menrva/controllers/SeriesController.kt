@@ -25,4 +25,10 @@ class SeriesController (private val seriesService: SeriesService) {
         val updatedSeries = seriesService.toggleReviewed(id)
         return ResponseEntity.ok(SeriesDTO(updatedSeries))
     }
+
+    @DeleteMapping("{id}")
+    fun deleteSeries(@PathVariable id: Long): ResponseEntity<Any> {
+        val deleted = seriesService.delete(id)
+        return ResponseEntity.ok(deleted)
+    }
 }

@@ -1,37 +1,38 @@
 "use client";
 
 import { Author } from "@/lib/models/author";
-import { Comment } from "@/lib/models/comment";
 import { BookResponse } from "@/lib/models/book";
+import { Comment } from "@/lib/models/comment";
+import { Genre } from "@/lib/models/genre";
+import { Keyword } from "@/lib/models/keyword";
+import { Series } from "@/lib/models/series";
+import { Subgenre } from "@/lib/models/subgenre";
 import { User } from "@/lib/models/user";
+import { deleteCommentThunk } from "@/lib/store/features/commentSlice";
+import { updateGenreThunk } from "@/lib/store/features/genreSlice";
+import { updateKeywordThunk } from "@/lib/store/features/keywordSlice";
+import { updateSubgenreThunk } from "@/lib/store/features/subgenreSlice";
+import { updateTagThunk } from "@/lib/store/features/tagSlice";
+import { useAppDispatch } from "@/lib/store/store";
 import {
-	Button,
 	Checkbox,
 	IconButton,
 	Input,
 	PencilIcon,
 	Tooltip,
-	Typography,
-	XMarkIcon,
+	TrashIcon,
+	XMarkIcon
 } from "@/providers/coreProviders";
 import Image from "next/image";
 import Link from "next/link";
-import { Series } from "@/lib/models/series";
 import { useState } from "react";
-import { updateGenreThunk } from "@/lib/store/features/genreSlice";
-import { useAppDispatch } from "@/lib/store/store";
-import { updateKeywordThunk } from "@/lib/store/features/keywordSlice";
-import { updateTagThunk } from "@/lib/store/features/tagSlice";
-import { deleteCommentThunk } from "@/lib/store/features/commentSlice";
-import { Genre } from "@/lib/models/genre";
-import { Keyword } from "@/lib/models/keyword";
-import { Subgenre } from "@/lib/models/subgenre";
-import { updateSubgenreThunk } from "@/lib/store/features/subgenreSlice";
 
 export const renderBookRow = (
 	book: BookResponse,
 	index: number,
-	toggleReviewed?: (bookId: number) => void
+	toggleReviewed?: (bookId: number) => void,
+	toggleActive?: (bookId: number) => void,
+	deleteEntity?: (bookId: number) => any,
 ) => {
 	return (
 		<tr key={index}>
@@ -85,6 +86,15 @@ export const renderBookRow = (
 					</Link>
 				</Tooltip>
 			</td>
+			<td className="text-center mx-auto pr-2 border-b border-parchment/20">
+				{deleteEntity && (
+					<Tooltip content="Delete Book">
+						<IconButton variant="text" className="rounded-full" onClick={() => deleteEntity(book.id)}>
+							<TrashIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
+						</IconButton>
+					</Tooltip>
+				)}
+			</td>
 		</tr>
 	);
 };
@@ -92,7 +102,9 @@ export const renderBookRow = (
 export const renderAuthorRow = (
 	author: Author,
 	index: number,
-	toggleReviewed?: (authorId: number) => void
+	toggleReviewed?: (authorId: number) => void,
+	toggleActive?: (authorId: number) => void,
+	deleteEntity?: (authord: number) => any,
 ) => (
 	<tr key={index}>
 		<td className="border-b border-parchment/20 whitespace-nowrap w-min">
@@ -134,6 +146,15 @@ export const renderAuthorRow = (
 				</Link>
 			</Tooltip>
 		</td>
+		<td className="text-center mx-auto pr-2 border-b border-parchment/20">
+			{deleteEntity && (
+				<Tooltip content="Delete Author">
+					<IconButton variant="text" className="rounded-full" onClick={() => deleteEntity(author.id)}>
+						<TrashIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
+					</IconButton>
+				</Tooltip>
+			)}
+		</td>
 	</tr>
 );
 
@@ -141,56 +162,76 @@ export const renderUserRow = (
 	user: User,
 	index: number,
 	toggleReviewed?: (id: number) => void,
-	toggleActive?: (id: number) => void
-) => (
-	<tr key={index} className="text-center">
-		<td className="border-b border-parchment/20 whitespace-nowrap w-min">
-			<Link href={`../user/${user.id}`} className="inline-block">
-				<p className="hover:underline underline-offset-2">
-					{user.tag}
-				</p>
-			</Link>
-		</td>
-		<td className="border-b border-parchment/20 whitespace-nowrap">
-			<p className="w-min inline-block">
-				{`${user.firstName} ${user.lastName}`}
-			</p>
-		</td>
-		<td className="border-b border-parchment/20 whitespace-nowrap">
-			<p className="w-min inline-block">
-				{user.email}
-			</p>
-		</td>
-		<td className="border-b border-parchment/20 whitespace-nowrap">
-			<p className="w-min inline-block">
-				{user.subscription.level}
-			</p>
-		</td>
-		<td className="border-b border-parchment/20">
-			{user.dateAdded ? <p>{user.dateAdded.toString()}</p> : <></>}
-		</td>
-		<td className="border-b border-parchment/20">
-			{toggleActive && (
-				<Checkbox
-					onChange={() => toggleActive(user.id)}
-					checked={user.active}
-					className="checked:bg-eggplant dark:checked:bg-rose/70 border-eggplant dark:border-rose/70 before:h-8 before:w-8"
-				/>
-			)}
-		</td>
-		<td className="border-b border-parchment/20">
-			<Tooltip content="Edit User">
-			<Link href={`/admin/updateUser/${user.id}`}>
-				<IconButton variant="text" className="rounded-full">
-					<PencilIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
-				</IconButton>
-				</Link>
-			</Tooltip>
-		</td>
-	</tr>
-);
+	toggleActive?: (id: number) => void,
+	deleteEntity?: (userId: number) => any,
+) => {
+	console.log(toggleActive)
 
-export const renderGenreRow = (genre: Genre, index: number) => {
+	return (
+		<tr key={index} className="text-center">
+			<td className="border-b border-parchment/20 whitespace-nowrap w-min">
+				<Link href={`../user/${user.id}`} className="inline-block">
+					<p className="hover:underline underline-offset-2">
+						{user.tag}
+					</p>
+				</Link>
+			</td>
+			<td className="border-b border-parchment/20 whitespace-nowrap">
+				<p className="w-min inline-block">
+					{`${user.firstName} ${user.lastName}`}
+				</p>
+			</td>
+			<td className="border-b border-parchment/20 whitespace-nowrap">
+				<p className="w-min inline-block">
+					{user.email}
+				</p>
+			</td>
+			<td className="border-b border-parchment/20 whitespace-nowrap">
+				<p className="w-min inline-block">
+					{user.subscription.level}
+				</p>
+			</td>
+			<td className="border-b border-parchment/20">
+				{user.dateAdded ? <p>{user.dateAdded.toString()}</p> : <></>}
+			</td>
+			<td className="border-b border-parchment/20">
+				{toggleActive && (
+					<Checkbox
+						onChange={() => toggleActive(user.id)}
+						checked={user.active}
+						className="checked:bg-eggplant dark:checked:bg-rose/70 border-eggplant dark:border-rose/70 before:h-8 before:w-8"
+					/>
+				)}
+			</td>
+			<td className="border-b border-parchment/20">
+				<Tooltip content="Edit User">
+					<Link href={`/admin/updateUser/${user.id}`}>
+						<IconButton variant="text" className="rounded-full">
+							<PencilIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
+						</IconButton>
+					</Link>
+				</Tooltip>
+			</td>
+			<td className="text-center mx-auto pr-2 border-b border-parchment/20">
+				{deleteEntity && (
+					<Tooltip content="Delete User">
+						<IconButton variant="text" className="rounded-full" onClick={() => deleteEntity(user.id)}>
+							<TrashIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
+						</IconButton>
+					</Tooltip>
+				)}
+			</td>
+		</tr>
+	);
+};
+
+export const renderGenreRow = (
+	genre: Genre,
+	index: number,
+	toggleReviewed?: (genreId: number) => void,
+	toggleActive?: (genreId: number) => void,
+	deleteEntity?: (genreId: number) => any,
+) => {
 	const GenreRow = () => {
 		const [isEditing, setIsEditing] = useState(false);
 		const [name, setName] = useState(genre.name);
@@ -244,6 +285,15 @@ export const renderGenreRow = (genre: Genre, index: number) => {
 						</IconButton>
 					</Tooltip>
 				</td>
+				<td className="text-center mx-auto pr-2 border-b border-parchment/20">
+					{deleteEntity && (
+						<Tooltip content="Delete Genre">
+							<IconButton variant="text" className="rounded-full" onClick={() => deleteEntity(genre.id)}>
+								<TrashIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
+							</IconButton>
+						</Tooltip>
+					)}
+				</td>
 			</tr>
 		);
 	};
@@ -251,7 +301,13 @@ export const renderGenreRow = (genre: Genre, index: number) => {
 	return <GenreRow key={index} />;
 };
 
-export const renderKeywordRow = (keyword: Keyword, index: number) => {
+export const renderKeywordRow = (
+	keyword: Keyword,
+	index: number,
+	toggleReviewed?: (keywordId: number) => void,
+	toggleActive?: (keywordId: number) => void,
+	deleteEntity?: (keywordId: number) => any,
+) => {
 	const KeywordRow = () => {
 		const [isEditing, setIsEditing] = useState(false);
 		const [name, setName] = useState(keyword.name);
@@ -305,6 +361,15 @@ export const renderKeywordRow = (keyword: Keyword, index: number) => {
 						</IconButton>
 					</Tooltip>
 				</td>
+				<td className="text-center mx-auto pr-2 border-b border-parchment/20">
+					{deleteEntity && (
+						<Tooltip content="Delete Keyword">
+							<IconButton variant="text" className="rounded-full" onClick={() => deleteEntity(keyword.id)}>
+								<TrashIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
+							</IconButton>
+						</Tooltip>
+					)}
+				</td>
 			</tr>
 		);
 	};
@@ -312,7 +377,13 @@ export const renderKeywordRow = (keyword: Keyword, index: number) => {
 	return <KeywordRow key={index} />;
 };
 
-export const renderTagRow = (tag: Tag, index: number) => {
+export const renderTagRow = (
+	tag: Tag,
+	index: number,
+	toggleReviewed?: (tagId: number) => void,
+	toggleActive?: (tagId: number) => void,
+	deleteEntity?: (tagId: number) => any,
+) => {
 	const TagRow = () => {
 		const [isEditing, setIsEditing] = useState(false);
 		const [name, setName] = useState(tag.name);
@@ -366,6 +437,15 @@ export const renderTagRow = (tag: Tag, index: number) => {
 						</IconButton>
 					</Tooltip>
 				</td>
+				<td className="text-center mx-auto pr-2 border-b border-parchment/20">
+					{deleteEntity && (
+						<Tooltip content="Delete Book">
+							<IconButton variant="text" className="rounded-full" onClick={() => deleteEntity(tag.id)}>
+								<TrashIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
+							</IconButton>
+						</Tooltip>
+					)}
+				</td>
 			</tr>
 		);
 	};
@@ -375,7 +455,9 @@ export const renderTagRow = (tag: Tag, index: number) => {
 export const renderSeriesRow = (
 	series: Series,
 	index: number,
-	toggleReviewed?: (seriesId: number) => void
+	toggleReviewed?: (seriesId: number) => void,
+	toggleActive?: (seriesId: number) => void,
+	deleteEntity?: (seriesId: number) => any,
 ) => (
 	<tr key={index} className="text-center">
 		<td className="border-b border-parchment/20 whitespace-nowrap w-min">
@@ -415,20 +497,26 @@ export const renderSeriesRow = (
 				</IconButton>
 			</Tooltip>
 		</td>
+		<td className="text-center mx-auto pr-2 border-b border-parchment/20">
+			{deleteEntity && (
+				<Tooltip content="Delete Series">
+					<IconButton variant="text" className="rounded-full" onClick={() => deleteEntity(series.id)}>
+						<TrashIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
+					</IconButton>
+				</Tooltip>
+			)}
+		</td>
 	</tr>
 );
 
 export const renderCommentRow = (
 	comment: Comment,
 	index: number,
-	toggleReviewed?: (commentId: number) => void
+	toggleReviewed?: (commentId: number) => void,
+	toggleActive?: (commentId: number) => void,
+	deleteEntity?: (commentId: number) => any,
 ) => {
 	const CommentRow = () => {
-		const dispatch = useAppDispatch();
-		const handleDelete = () => {
-			dispatch(deleteCommentThunk({ commentId: comment.id }));
-		};
-
 		return (
 			<tr key={index} className="text-center">
 				<td className="border-b border-parchment/20 h-8 max-w-36 whitespace-nowrap overflow-ellipsis">
@@ -462,11 +550,22 @@ export const renderCommentRow = (
 					)}
 				</td>
 				<td className="border-b border-parchment/20">
-					<Tooltip content="Edit Comment">
-						<IconButton variant="text" className="rounded-full">
-							<XMarkIcon className="w-6 h-6 text-eggplant dark:text-rose/70" onClick={handleDelete} />
-						</IconButton>
-					</Tooltip>
+					{toggleReviewed && (
+						<Checkbox
+							onChange={() => toggleReviewed(comment.id)}
+							checked={comment.reviewed}
+							className="checked:bg-eggplant dark:checked:bg-rose/70 border-eggplant dark:border-rose/70 before:h-8 before:w-8"
+						/>
+					)}
+				</td>
+				<td className="text-center mx-auto pr-2 border-b border-parchment/20">
+					{deleteEntity && (
+						<Tooltip content="Delete Comment">
+							<IconButton variant="text" className="rounded-full" onClick={() => deleteEntity(comment.id)}>
+								<TrashIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
+							</IconButton>
+						</Tooltip>
+					)}
 				</td>
 			</tr>
 		);
@@ -474,8 +573,14 @@ export const renderCommentRow = (
 	return <CommentRow key={index} />;
 };
 
-export const renderSubgenreRow = (subgenre: Subgenre, index: number) => {
-	const GenreRow = () => {
+export const renderSubgenreRow = (
+	subgenre: Subgenre,
+	index: number,
+	toggleReviewed?: (subgenreId: number) => void,
+	toggleActive?: (subgenreId: number) => void,
+	deleteEntity?: (subgenreId: number) => any
+) => {
+	const SubgenreRow = () => {
 		const [isEditing, setIsEditing] = useState(false);
 		const [name, setName] = useState(subgenre.name);
 		const dispatch = useAppDispatch();
@@ -528,9 +633,17 @@ export const renderSubgenreRow = (subgenre: Subgenre, index: number) => {
 						</IconButton>
 					</Tooltip>
 				</td>
+				<td className="text-center mx-auto pr-2 border-b border-parchment/20">
+					{deleteEntity && (
+						<Tooltip content="Delete Subgenre">
+							<IconButton variant="text" className="rounded-full" onClick={() => deleteEntity(subgenre.id)}>
+								<TrashIcon className="w-4 h-4 text-eggplant dark:text-rose/70" />
+							</IconButton>
+						</Tooltip>
+					)}
+				</td>
 			</tr>
 		);
 	};
-
-	return <GenreRow key={index} />;
+	return <SubgenreRow key={index} />;
 };

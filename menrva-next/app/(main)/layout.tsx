@@ -18,7 +18,6 @@ export default function DashboardLayout({ children, }: { children: React.ReactNo
     return (
         <>
             <Nav tag={tag} role={role} theme={theme} />
-
             {children}
             <Footer />
         </>

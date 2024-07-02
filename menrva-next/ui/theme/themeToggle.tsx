@@ -1,24 +1,40 @@
 'use client';
 
-import setTheme from '@/lib/actions/setTheme';
 import { MoonIcon, SunIcon, Switch } from '@/providers/coreProviders';
+import { useTheme } from 'next-themes';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-const ThemeToggle: React.FC<{ theme: string }> = ({ theme }) => {
-  const [isDark, setIsDark] = useState(theme === 'dark');
+const ThemeToggle: React.FC<{}> = ({ }) => {
+  const { setTheme, theme } = useTheme();
+  const [isDark, setIsDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const initialized = useRef(false);
 
-  const initTheme = useCallback(() => {
-    if (!initialized.current && theme === 'dark' && document !== undefined) {
-      document.documentElement.classList.add('dark');
-      setIsDark(true);
-      setTheme('dark');
-    } else if (!initialized.current) {
-      document.documentElement.classList.remove('dark');
-      setIsDark(false);
-      setTheme('light');
+  // const setThemeCookie = async (theme: string) => {
+  //   const res = await fetch('/api/theme/setTheme', { method: "POST", body: JSON.stringify(theme) });
+  //   const data = await res.json();
+  // };
+
+  // const getThemeCookie = async () => {
+  //   const res = await fetch('/api/theme/getTheme');
+  //   const data = await res.json();
+  //   return data;
+  // };
+
+  const initTheme = useCallback(async () => {
+    if (!initialized.current) {
+      // const themeCookie = await getThemeCookie();
+
+      if (theme === 'dark') {
+        setIsDark(true);
+        // if (themeCookie.theme === undefined) { setThemeCookie('dark'); }
+      } else if (theme === 'light') {
+        setIsDark(false);
+        // if (themeCookie.theme === undefined) { setThemeCookie('light'); }
+      }
+      initialized.current = true;
+      setMounted(true);
     }
-    initialized.current = true;
   }, [theme]);
 
   useEffect(() => {
@@ -26,19 +42,14 @@ const ThemeToggle: React.FC<{ theme: string }> = ({ theme }) => {
   }, [initTheme]);
 
   const handleToggleTheme = () => {
-    if (theme === 'light') {
-      document.documentElement.classList.add('dark');
-      setIsDark(true);
-      setTheme('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      setIsDark(false);
-      setTheme('light');
-    }
+    const newTheme = isDark ? 'light' : 'dark';
+    setIsDark(!isDark);
+    setTheme(newTheme);
+    // setThemeCookie(newTheme);
   };
 
   return (
-    <div className="flex items-center w-28  lg:mr-2">
+    <div className="flex items-center w-28 lg:mr-2">
       <SunIcon className={`h-9 w-9 mr-2 dark:text-gray-500 text-yellow-500`} />
       <Switch
         color="blue"
@@ -49,7 +60,7 @@ const ThemeToggle: React.FC<{ theme: string }> = ({ theme }) => {
           className: "mr-3"
         }}
         circleProps={{
-          className: "before:hidden  border-none bg-eggplant dark:bg-rose dark:left-1 ",
+          className: `before:hidden border-none ${mounted ? 'bg-eggplant dark:bg-rose dark:left-1' : 'bg-gray-500 ml-[14px]'}`,
         }}
         ripple={false}
       />

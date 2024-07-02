@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { fetchBookDetailsThunk, fetchBooksThunk, toggleBookReviewed } from "../store/features/bookSlice";
 import { RootState, useAppDispatch } from "../store/store";
+import { url } from "@/providers/coreProviders";
 
 export function useBooks() {
     const dispatch = useAppDispatch();
@@ -24,7 +25,16 @@ export function useBooks() {
         dispatch(toggleBookReviewed({ bookId }));
     }, [dispatch]);
 
-
+    const deleteEntity = useCallback(async (bookId: number) => {
+        const res = await fetch(`${url}/books/${bookId}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        const data = await res.json()
+        return { deleted: data.deleted }
+    }, [dispatch, token])
 
 
     return {
@@ -36,5 +46,6 @@ export function useBooks() {
         likedBooks,
         fetchBookDetails,
         currentBook,
+        deleteEntity,
     };
 }

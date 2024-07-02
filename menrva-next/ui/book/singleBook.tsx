@@ -15,7 +15,7 @@ import Link from "next/link";
 import BookComments from "./bookComments";
 import BookSlider from "./bookSlider";
 import HasReadButton from "./interactions/hasReadButton";
-import InitializeInteractions from "../../lib/utils/initalizeInteractions";
+import InitializeInteractions from "../../lib/utils/initializeInteractions";
 import InterestedButton from "./interactions/interestedButton";
 import ThumbsDownComponent from "./interactions/thumbsDown";
 import ThumbsUpComponent from "./interactions/thumbsUp";
@@ -70,12 +70,10 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
               <div className="flex gap-2">
                 <ReduxProvider>
                   <div className="flex items-center gap-2">
-                    <div className="text-2xl font-bold">{numberOfLikes}</div>
-                    <ThumbsUpComponent id={id} token={token} />
+                    <ThumbsUpComponent id={id} token={token} initialLikes={numberOfLikes} />
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="text-2xl font-bold">{numberOfDislikes}</div>
-                    <ThumbsDownComponent id={id} token={token} />
+                    <ThumbsDownComponent id={id} token={token} initialDislikes={numberOfDislikes} />
                   </div>
                   <div className="flex items-center gap-4">
                     {tag ? <InterestedButton id={id} token={token} /> : <></>}
@@ -129,7 +127,7 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
         <div className="w-screen h-full flex flex-col items-center">
           {book.series ? <BookSlider defaultBooks={book.series.books.filter((book) => book.id !== Number(id))} title={"Books in Series"} /> : <></>}
         </div>
-        <BookComments bookId={book?.id!!} comments={book?.comments} tag={tag} />
+        <BookComments bookId={book?.id!!} initialComments={book?.comments} tag={tag} />
       </div>
     </>
   );

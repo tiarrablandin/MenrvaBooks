@@ -54,4 +54,10 @@ class BookController(
         return ResponseEntity.ok(BookDTO(book))
     }
 
+    @DeleteMapping("{id}")
+    fun deleteBook(@PathVariable id: Long): ResponseEntity<Any> {
+        val deleted = bookService.delete(id)
+        return ResponseEntity.ok(deleted)
+    }
+
 }

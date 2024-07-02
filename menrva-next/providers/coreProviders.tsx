@@ -110,3 +110,6 @@ export {
   TimelineIcon, TimelineItem, Tooltip,
   Typography
 } from "@material-tailwind/react";
+
+export const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+export const url = `${baseUrl}/api`;

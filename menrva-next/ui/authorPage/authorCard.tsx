@@ -5,7 +5,7 @@ import SocialLink from './socialLink';
 import ToggleFollowAuthorButton from './toggleFollowAuthorButton';
 import ReduxProvider from '@/providers/reduxProvider';
 
-const AuthorCard: React.FC<{ author: Author, token: string | undefined }> = ({ author, token }) => {
+const AuthorCard: React.FC<{ author: Author, token: string | undefined, isFollowing: boolean }> = ({ author, token, isFollowing }) => {
   return (
     <div>
       <Card className="h-72 w-full min-w-[40rem] max-w-[40rem] px-4 bg-deep-sea/70 text-onyx/70 dark:text-parchment/70">
@@ -29,7 +29,7 @@ const AuthorCard: React.FC<{ author: Author, token: string | undefined }> = ({ a
               </Typography>
               <div className="flex items-center gap-0">
                 <ReduxProvider>
-                  {token ? <ToggleFollowAuthorButton id={author.id} token={token} /> : <></>}
+                  {token ? <ToggleFollowAuthorButton id={author.id} token={token} isFollowing={isFollowing} /> : <></>}
                 </ReduxProvider>
               </div>
             </div>

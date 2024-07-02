@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@/providers/coreProviders";
 import Link from "next/link";
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { tableConfig } from "./tableConfig";
 import createTableRow from "@/lib/actions/createTableRow";
 import { Advent_Pro } from "next/font/google";
@@ -27,11 +27,12 @@ interface AdminTableProps {
   headDesc: string;
   reviewedToggle: JSX.Element;
   activeToggle?: JSX.Element;
-  reviewedCallback?: (bookId: number) => void
-  activeCallback?: (id: number) => void
+  reviewedCallback?: (bookId: number) => void;
+  activeCallback?: (id: number) => void;
+  deleteCallback?: (id: number) => any;
   tableHeaders: string[];
-  data: any[];
-  renderRow: (item: any, index: number, toggleReviewed?: (bookId: number) => void, toggleActive?: (id: number) => void) => JSX.Element;
+  initialData: any[];
+  renderRow: (item: any, index: number, reviewedCallback?: (bookId: number) => void, activeCallback?: (id: number) => void, deleteCallback?: (id: number) => any) => JSX.Element;
   pagination: JSX.Element;
   variant?: 'small' | 'normal';
 }
@@ -42,19 +43,25 @@ const AdminTable: React.FC<AdminTableProps> = ({
   reviewedToggle,
   activeToggle,
   tableHeaders,
-  data,
+  initialData,
   renderRow,
   pagination,
   reviewedCallback,
   activeCallback,
+  deleteCallback,
   variant,
 }) => {
+  const [data, setData] = useState<any[]>(initialData);
   const [searchTerm, setSearchTerm] = useState('');
   const [addingNew, setAddingNew] = useState(false);
 
   const normalizedHead = head.toLowerCase().replace(/ list$/, "");
   const showReviewedToggle: boolean = !["genres", "sub-genres", "keyword", "tag", "users", "comments"].includes(normalizedHead as NoReviewed);
   const entityType = normalizedHead;
+
+  useEffect(() => {
+    setData(initialData)
+  }, [initialData])
 
   const handleSearchChange = (event: any) => {
     setSearchTerm(event.target.value.toLowerCase());
@@ -69,9 +76,17 @@ const AdminTable: React.FC<AdminTableProps> = ({
     });
   }, [data, searchTerm]);
 
+  const onDelete = useCallback((id: number) => {
+    if (deleteCallback) {
+      deleteCallback(id);
+      setData(prevData => prevData.filter(item => item.id !== id));
+    }
+  }, [deleteCallback]);
+
+
   return (
     <>
-      <Card className={` ${variant === 'small' ?  'h-[85vh] w-[95%] mx-auto my-4 overflow-scroll' : 'h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll'} ${advent.className} text-parchment/70 bg-deep-sea/90 dark:bg-deep-sea/70`}>
+      <Card className={` ${variant === 'small' ? 'h-[85vh] w-[95%] mx-auto my-4 overflow-scroll' : 'h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll'} ${advent.className} text-parchment/70 bg-deep-sea/90 dark:bg-deep-sea/70`}>
         <CardHeader
           floated={false}
           shadow={false}
@@ -135,7 +150,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
               </tr>
             </thead>
             <tbody className="">
-              {filteredData.map((item, index) => renderRow(item, index, reviewedCallback, activeCallback))}
+              {filteredData.map((item, index) => renderRow(item, index, reviewedCallback, activeCallback, onDelete))}
               {addingNew && (
                 <tr className="">
                   <td colSpan={tableHeaders.length} className="">

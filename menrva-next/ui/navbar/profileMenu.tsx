@@ -1,6 +1,6 @@
 "use client";
 
-import logout from "@/lib/actions/logout";
+import logout from "@/lib/actions/user/logout";
 import {
   ArrowLeftStartOnRectangleIcon,
   ArrowRightEndOnRectangleIcon,
