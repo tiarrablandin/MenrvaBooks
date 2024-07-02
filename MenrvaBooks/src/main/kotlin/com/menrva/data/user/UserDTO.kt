@@ -18,6 +18,7 @@ data class UserDTO(
     val email: String?,
     val password: String?,
     val subscription: Subscription?,
+    val avatar: Int?,
     val bookInteractions: List<BookInteractionDTO>?
 ) {
     constructor(user: User) : this(
@@ -31,6 +32,7 @@ data class UserDTO(
         email = user.email,
         password = user.password,
         subscription = user.subscription,
+        avatar= user.avatar,
         bookInteractions = user.bookInteractions.map { BookInteractionDTO(it) },
     )
 }

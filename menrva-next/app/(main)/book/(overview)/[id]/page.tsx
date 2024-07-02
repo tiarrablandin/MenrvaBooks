@@ -15,6 +15,7 @@ export async function generateMetadata(
 export default async function Page({ params: { id } }: { params: { id: number } }) {
   const tag = cookies().get('tag')?.value as string;
   const token = cookies().get('jwt')?.value as string;
+  console.log(tag)
 
   const book = await fetchBookById(id);
   const interactions = token ? await fetchBookInteractionsById(id, token) : null;

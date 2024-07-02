@@ -1,7 +1,31 @@
-import { ArrowUpTrayIcon, Button, Input } from "@/providers/coreProviders";
+"use client";
 
-const Profile = () => {
-  const cn="w-full placeholder:opacity-100 !border-eggplant dark:!border-parchment/70 text-deep-sea dark:text-parchment/70";
+import { SimpleUpdateUserRequest, UpdateUserRequest, User } from "@/lib/models/user";
+import { fetchUpdateUser } from "@/lib/services/apiService";
+import { RootState, useAppDispatch } from "@/lib/store/store";
+import { ArrowUpTrayIcon, Button, Input, url } from "@/providers/coreProviders";
+import { useSelector } from "react-redux";
+
+const Profile: React.FC<{ user: User }> = ({ user }) => {
+  const token = useSelector((state: RootState) => state.user.jwt) as string;
+  const cn =
+    "w-full placeholder:opacity-100 !border-eggplant dark:!border-parchment/70 text-deep-sea dark:text-parchment/70";
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const userData: SimpleUpdateUserRequest = {
+      firstName: formData.get("firstName") as string,
+      lastName: formData.get("lastName") as string,
+      tag: formData.get("tag") as string,
+      email: formData.get("email") as string,
+      role: user.role,
+    };
+
+    const updatedUser = await fetchUpdateUser(user.id, userData, token);
+    console.log(updatedUser);
+  };
 
   return (
     <div className="text-deep-sea dark:text-parchment/70">
@@ -16,12 +40,8 @@ const Profile = () => {
                 className="w-14 rounded-full"
               />
               <div>
-                <p className="!font-semibold mb-1">
-                  Select and Upload image
-                </p>
-                <p className="!font-medium">
-                  .svg, .png, .jpg (size 400x400px).
-                </p>
+                <p className="!font-semibold mb-1">Select and Upload image</p>
+                <p className="!font-medium">.svg, .png, .jpg (size 400x400px).</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -36,21 +56,17 @@ const Profile = () => {
 
       {/* Basic Form */}
       <section className="px-8 pl-16 py-8 pb-12 container mx-auto">
-        <p className="font-semibold">
-          Basic Information
-        </p>
-        <p className="font-normal mt-1">
-          Update your profile information below.
-        </p>
-        <div className="flex flex-col mt-8">
+        <p className="font-semibold">Basic Information</p>
+        <p className="font-normal mt-1">Update your profile information below.</p>
+        <form className="flex flex-col mt-8" onSubmit={handleSubmit}>
           <div className="mb-6 flex flex-col items-end gap-4 md:flex-row">
             <div className="w-full">
-              <p className="mb-2 font-medium">
-                First Name
-              </p>
+              <p className="mb-2 font-medium">First Name</p>
               <Input
                 size="lg"
-                placeholder="Emma"
+                placeholder={user.firstName}
+                name="firstName"
+                id="firstName"
                 labelProps={{
                   className: "hidden",
                 }}
@@ -58,12 +74,12 @@ const Profile = () => {
               />
             </div>
             <div className="w-full">
-              <p className="mb-2 font-medium">
-                Last Name
-              </p>
+              <p className="mb-2 font-medium">Last Name</p>
               <Input
                 size="lg"
-                placeholder="Roberts"
+                placeholder={user.lastName}
+                name="lastName"
+                id="lastName"
                 labelProps={{
                   className: "hidden",
                 }}
@@ -73,12 +89,12 @@ const Profile = () => {
           </div>
           <div className="mb-6 flex flex-col items-end gap-4 md:flex-row">
             <div className="w-full">
-              <p  className="mb-2 font-medium">
-                Email
-              </p>
+              <p className="mb-2 font-medium">Tag</p>
               <Input
                 size="lg"
-                placeholder="emma@mail.com"
+                placeholder={user.tag}
+                name="tag"
+                id="tag"
                 labelProps={{
                   className: "hidden",
                 }}
@@ -86,12 +102,12 @@ const Profile = () => {
               />
             </div>
             <div className="w-full">
-              <p  className="mb-2 font-medium">
-                Confirm Email
-              </p>
+              <p className="mb-2 font-medium">Email</p>
               <Input
                 size="lg"
-                placeholder="emma@mail.com"
+                placeholder={user.email}
+                name="email"
+                id="email"
                 labelProps={{
                   className: "hidden",
                 }}
@@ -99,63 +115,24 @@ const Profile = () => {
               />
             </div>
           </div>
-          <div className="mb-6 flex flex-col items-end gap-4 md:flex-row">
-            <div className="w-full">
-              <p  className="mb-2 font-medium">
-                Location
-              </p>
-              <Input
-                size="lg"
-                placeholder="Florida, USA"
-                labelProps={{
-                  className: "hidden",
-                }}
-                className={`${cn}`}
-              />
-            </div>
-            <div className="w-full">
-              <p  className="mb-2 font-medium">
-                Phone Number
-              </p>
-              <Input
-                size="lg"
-                placeholder="+123 0123 456 789"
-                labelProps={{
-                  className: "hidden",
-                }}
-                className={`${cn}`}
-              />
-            </div>
+          <div className="w-1/2">
+            <p className="mb-2 font-medium">Role</p>
+            <Input
+              size="lg"
+              value={user.role}
+              name="role"
+              id="role"
+              disabled={user.role !== "Master"}
+              labelProps={{
+                className: "hidden",
+              }}
+              className={`${cn} disabled:bg-parchment/70 dark:disabled:bg-onyx/50 !border !border-eggplant dark:!border-parchment/70`}
+            />
           </div>
-          <div className="flex flex-col items-end gap-4 md:flex-row">
-            <div className="w-full">
-              <p  className="mb-2 font-medium">
-                Language
-              </p>
-              <Input
-                size="lg"
-                placeholder="Language"
-                labelProps={{
-                  className: "hidden",
-                }}
-                className={`${cn}`}
-              />
-            </div>
-            <div className="w-full">
-              <p  className="mb-2 font-medium">
-                Skills
-              </p>
-              <Input
-                size="lg"
-                placeholder="Skills"
-                labelProps={{
-                  className: "hidden",
-                }}
-                className={`${cn}`}
-              />
-            </div>
-          </div>
-        </div>
+          <Button type="submit" className="mt-6 max-w-fit bg-eggplant dark:bg-rose/70 text-parchment/70">
+            Save Updates
+          </Button>
+        </form>
       </section>
     </div>
   );

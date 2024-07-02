@@ -1,10 +1,13 @@
 'use server';
 
-import { url } from "@/providers/coreProviders";
+import { fetchUserByTag } from "@/lib/services/apiService";
 import { sendPasswordResetEmail } from "./sendPasswordResetEmail";
 
+const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+const url = `${baseUrl}/api`;
+
 export async function requestPasswordReset(identifier: string) {
-  const res = await fetch(`${url}/api/users/password-reset`, {
+  const res = await fetch(`${url}/users/password-reset`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -16,8 +19,9 @@ export async function requestPasswordReset(identifier: string) {
     return { message: 'User not found or failed to generate reset token' };
   }
 
-  const data = await res.json();
-  const token = data.token;
+  const {message, token} = await res.json();
+  const user = await fetchUserByTag(identifier)
+  console.log("##################################" + token)
 
   await sendPasswordResetEmail(identifier, token);
 
