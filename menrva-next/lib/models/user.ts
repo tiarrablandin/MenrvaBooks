@@ -48,3 +48,10 @@ export interface UpdateUserRequest {
     likedBooks?: BookResponse[];
     tbrBooks?: BookResponse[];
 }
+export interface SimpleUpdateUserRequest {
+    role: string;
+    firstName: string;
+    lastName: string;
+    tag: string;
+    email: string;
+}
