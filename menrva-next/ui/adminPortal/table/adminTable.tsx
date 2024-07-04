@@ -56,7 +56,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
   const [addingNew, setAddingNew] = useState(false);
 
   const normalizedHead = head.toLowerCase().replace(/ list$/, "");
-  const showReviewedToggle: boolean = !["genres", "sub-genres", "keyword", "tag", "users", "comments"].includes(normalizedHead as NoReviewed);
+  const showReviewedToggle: boolean = !["genres", "sub-genres", "keyword", "tag", "users"].includes(normalizedHead as NoReviewed);
   const entityType = normalizedHead;
 
   useEffect(() => {
