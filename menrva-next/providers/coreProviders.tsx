@@ -15,6 +15,10 @@ export {
 export { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export {
+  HistoryEduOutlined,
+} from "@mui/icons-material";
+
+export {
   AtSymbolIcon,
   Bars3Icon,
   BellIcon as BellIconOutline,
