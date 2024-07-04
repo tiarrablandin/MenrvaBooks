@@ -1,43 +1,46 @@
-
 export function About() {
   return (
     <section className="py-8 px-8 lg:py-10">
       <div className="container mx-auto grid items-center lg:grid-cols-2">
         <div className="row-start-2 mt-12 lg:row-auto lg:mt-0 lg:pr-12">
-          <div className="mb-4 !font-semibold">
-            About Menrva Books
-          </div>
-          <div
-            className="mb-6 pr-5 text-4xl !leading-snug lg:text-5xl text-eggplant dark:text-rose/70"
-          >
-            The Castle Looks Different at Night...
+          <div className="mb-4 !font-semibold">About Menrva Books</div>
+          <div className="mb-6 pr-5 text-4xl !leading-snug lg:text-5xl text-eggplant dark:text-rose/70">
+            For readers and authors, by readers and authors
           </div>
           <div className="mb-12">
-            This is the paragraph where you can write more details about your
-            product. Keep you user engaged by providing meaningful information.
-            Remember that by this time, the user is curious, otherwise he
-            wouldn&apos;t scroll to get here. Add a button if you want the user
-            to see more. We are here to make life better.
+            Editor, avid reader, and coder Tiarra had an idea one day that evolved into what is now
+            known as Menrva Books. Always engaging with tech and books in new and interesting ways
+            is something that everyone in the book space has loved ever since the printing press was
+            invented, and Tiarra wanted to not just make it better but easier to use, intuitive and
+            ultimatly a place where readers want to use everyday for their reading and writing needs.
             <br />
             <br />
-            And now I look and look around and there&apos;s so many Kanyes
-            I&apos;ve been trying to figure out the bed design for the master
-            bedroom at our Hidden Hills compound... and thank you for turning my
-            personal jean jacket into a couture piece.
-          </div>
-          <div className="mb-6">
-            Rest of the Story:
-          </div>
-          <div className="">
-            Thank you Anna for the invite thank you to the whole Vogue team And
-            I love you like Kanye loves Kanye Pand Pand Panda I&apos;ve been
-            trying to figure out the bed design for the master bedroom at our
-            Hidden Hills compound...The Pablo pop up was almost a pop up of
-            influence. All respect prayers and love to Phife•s family Thank you
-            for so much inspiration daytime I love this new Ferg album! The Life
-            of Pablo is now available for purchase I have a dream. Thank you to
-            everybody who made The Life of Pablo the number 1 album in the
-            world! I&apos;m so proud of the nr #1 song in the country. Panda!
+            Fiercely independent, Tiarra had a clear vision of what she wanted Menrva Books to
+            become and set out to build a small team and lead them to create this site and all of
+            its wonderful features, with much, much more to come. We plan on making this a site that
+            has everything readers and authors need or want in one place.
+            <br />
+            <br />
+            A place for readers to connect with other readers about books they love, discovering new
+            favorites along the way. Having focused on the Indie publishing world for years, we
+            wanted to give authors access to new audiences and readers outside of the conventional
+            website discovery and connect readers to worlds and stories they might never get to
+            experience.
+            <br />
+            <br />
+            Boasting a unique search algorithm designed to make finding books not only easy but make
+            sense. Instead of spending hours, sometimes days sluething the internet, we're instead
+            making it a one stop shop for all things books. Finally we don't take any money that will
+            prioritize one book or other over another. Everyone gets a fair chance, that way the
+            searches are organic, and our search function stays clean and intuitive for everyone,
+            period.
+            <br />
+            <br />
+            We want you to discover new stories and enjoy what this passion project has to offer.
+            It's easy when you're creating something you love to get myopic about the things we're
+            creating; we want to avoid that as much as possible. We're always open to feedback so
+            please let us know any way we can make Menrva Books a better place for both readers and
+            authors alike.
           </div>
         </div>
         <img

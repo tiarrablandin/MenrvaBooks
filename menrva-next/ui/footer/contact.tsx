@@ -109,8 +109,7 @@ export function Contact() {
             Get in Touch
           </div>
           <div className="mb-16 max-w-md !font-normal">
-            You need more information? Check what other persons are saying about our product. They
-            are very happy with their purchase.
+          Whether you have a question or a burning concern, we are listening. Send us a message and the team will be in touch with you! 
           </div>
         </div>
       </div>

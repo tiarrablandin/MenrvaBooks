@@ -10,9 +10,9 @@ interface CareersProps {}
 const careers: React.FC<CareersProps> = ({}) => {
 
 const accordionHeaders = [
-  "Sales & Marketing",
-  "IT",
-  "Operations"
+  "Sales & Marketing - Laid back but driven, we are the magic that connects readers and authors to Menrva Books!",
+  "IT - The builders, we are the team that makes all of the awesome features on Menrva possible!",
+  "Operations - We are in the business of keeping Menrva a working reality that delivers fantastic worlds to out readers and authors!"
 ];
 
 const accordionBodies = [
