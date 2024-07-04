@@ -2,7 +2,7 @@
 
 import { toggleBookHasRead } from "@/lib/store/features/bookSlice";
 import { RootState, useAppDispatch } from "@/lib/store/store";
-import { BookOpenOutline, BookOpenSolid } from "@/providers/coreProviders";
+import { BookOpenOutline, BookOpenIcon } from "@/providers/coreProviders";
 import { useSelector } from "react-redux";
 
 interface HasReadButtonProps {
@@ -25,7 +25,7 @@ const HasReadButton: React.FC<HasReadButtonProps> = ({ id, token }) => {
     return (
         <>
             {hasRead ?
-                <BookOpenSolid onClick={handleToggleHasRead} className="h-6 w-6 cursor-pointer text-eggplant dark:text-rose hover:text-gray-600 dark:hover:text-gray-600" />
+                <BookOpenIcon onClick={handleToggleHasRead} className="h-6 w-6 cursor-pointer text-eggplant dark:text-rose hover:text-gray-600 dark:hover:text-gray-600" />
                 :
                 <BookOpenOutline onClick={handleToggleHasRead} className="h-6 w-6 cursor-pointer text-gray-600 hover:text-eggplant dark:hover:text-rose" />
             }

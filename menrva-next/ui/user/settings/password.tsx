@@ -1,9 +1,10 @@
 "use client";
 
+import { User } from "@/lib/models/user";
 import { Button, EyeIcon, EyeSlashIcon, Input } from "@/providers/coreProviders";
 import { useState } from "react";
 
-const Password = () => {
+const Password: React.FC<{ user: User }> = ({ user }) => {
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => setPasswordShown((cur) => !cur);
   const cn = "w-full placeholder:opacity-100 !border-eggplant dark:!border-parchment/70 text-deep-sea dark:text-parchment/70";

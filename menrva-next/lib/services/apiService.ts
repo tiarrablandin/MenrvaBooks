@@ -1,3 +1,4 @@
+import { SimpleUpdateUserRequest } from './../models/user';
 'use server'
 
 import { Author } from "../models/author";
@@ -73,6 +74,26 @@ export async function fetchUserById(id: number): Promise<User | null> {
     const response = await fetch(`${url}/users/${id}`);
     if (!response.ok) {
       throw new Error('Failed to fetch user details.');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+export async function fetchUpdateUser(id: number, user: User | SimpleUpdateUserRequest, token: string): Promise<User | null> {
+  try {
+    const response = await fetch(`${url}/users/${id}/update`, {
+      method: "PUT", 
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    });
+    if (!response.ok) {
+      throw new Error('Failed to update user.');
     }
     return await response.json();
   } catch (error) {

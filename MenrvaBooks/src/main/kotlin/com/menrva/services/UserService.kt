@@ -63,6 +63,7 @@ class UserService(
         val user: User = userRepository.findByTag(identifier) ?: userRepository.findByEmail(identifier)
         ?: throw UsernameNotFoundException("User not found with identifier: $identifier")
         val token = UUID.randomUUID().toString()
+        println("################################ $token")
         val expirationTime = LocalDateTime.now().plusHours(1)
         user.passwordResetToken = token
         user.passwordResetTokenExpiration = expirationTime
@@ -88,19 +89,27 @@ class UserService(
     fun create(user: User): User = userRepository.save(user)
 
     @Transactional
-    fun update(id: Long, userDTO: UserDTO): User? {
-        val user: User = userRepository.findById(id).orElse(null) ?: return null
-        val updatedUser = User(
-            firstName = userDTO.firstName,
-            lastName = userDTO.lastName,
-            tag = userDTO.tag,
-            password = userDTO.password,
-            active = userDTO.active,
-            role = userDTO.role,
-            email = userDTO.email,
-            // Do not update creation timestamp as it's auto-generated
-        )
-        return userRepository.save(updatedUser)
+    fun update(id: Long, userDTO: UserDTO): User {
+        val user: User = userRepository.findById(id).orElse(null)
+            ?: throw UsernameNotFoundException("User not found with id: $id")
+//        val updatedUser = User(
+//            firstName = userDTO.firstName,
+//            lastName = userDTO.lastName,
+//            tag = userDTO.tag,
+//            role = userDTO.role,
+//            email = userDTO.email,
+//            avatar = user.avatar,
+//            // Do not update creation timestamp as it's auto-generated
+//        )
+
+        user.firstName = userDTO.firstName
+        user.lastName = userDTO.lastName
+        user.tag = userDTO.tag
+        user.email = userDTO.email
+        user.role = userDTO.role
+//        user.avatar = userDTO.avatar
+
+        return userRepository.save(user)
     }
 
     @Transactional

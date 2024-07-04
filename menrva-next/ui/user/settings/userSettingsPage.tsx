@@ -1,16 +1,17 @@
+import { User } from "@/lib/models/user";
 import Notifications from "./notifications";
 import Password from "./password";
 import Profile from "./profile";
 import Security from "./security";
 
-const UserSettingsPage = () => {
+const UserSettingsPage: React.FC<{user:User}> = ({user}) => {
     return (
         <div className="flex items-center flex-col w-full">
             <div id="profile" className="w-full">
-                <Profile />
+                <Profile user={user}/>
             </div>
             <div id="password" className="w-full">
-                <Password />
+                <Password user={user}/>
             </div>
             {/* <div id="notifications">
                 <Notifications />

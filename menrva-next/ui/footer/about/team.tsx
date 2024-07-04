@@ -28,11 +28,16 @@ function TeamCard({ img, name, title, linkedin }: TeamCardPropsType) {
           className="mx-auto mb-6 object-top"
         />
         <div className="!font-medium text-deep-sea dark:text-parchment/70">{name}</div>
-        <Typography variant="h5" className="text-eggplant dark:text-rose/70">{title}</Typography>
+        <Typography variant="h5" className="text-eggplant dark:text-rose/70">
+          {title}
+        </Typography>
         <div className="flex items-center justify-center gap-1.5">
           <Link href={linkedin}>
             <IconButton variant="text">
-              <FontAwesomeIcon icon={faLinkedin} className="text-deep-sea dark:text-parchment/70 h-5 w-5" />
+              <FontAwesomeIcon
+                icon={faLinkedin}
+                className="text-deep-sea dark:text-parchment/70 h-5 w-5"
+              />
             </IconButton>
           </Link>
         </div>
@@ -76,8 +81,18 @@ export function Team() {
           The Executive Team
         </div>
         <p className="mx-auto max-w-4xl">
-          This is the paragraph where you can write more details about your team. Keep you user
-          engaged by providing meaningful information.
+          Hello, yes , it us! We're the super nerds who love books. Some of us are Writers, some
+          Editors, and some of us are simply just passionate about literature. Tiarra brought us
+          together, the nerd Vultron team of literature. I know it may not need to be said, but if
+          anything on the site isn't to your liking, something is broken or your favorite book isn't
+          listed (yet) head over to the{" "}
+          <Link href="/contact" className="mx-1 underline hover:">
+            "Contact Us"
+          </Link>{" "}
+          page and fill out a bug report or request. We will get back to you faster then Steven King
+          writes his books. Take heart that we're working hard to bring you the experience we've
+          always been looking for ourselves in a book repository, a reliquary of sacred texts of all
+          genres.
         </p>
       </div>
       <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">

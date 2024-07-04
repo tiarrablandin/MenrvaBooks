@@ -1,9 +1,7 @@
 package com.menrva.controllers
 
 import com.menrva.data.book.BookInteractionSummary
-import com.menrva.data.user.ChangePasswordRequest
-import com.menrva.data.user.UserDTO
-import com.menrva.data.user.UserSummary
+import com.menrva.data.user.*
 import com.menrva.services.BookInteractionService
 import com.menrva.services.UserService
 import org.springframework.http.ResponseEntity
@@ -56,12 +54,15 @@ class UserController(
 //    ************ POST ************
 
     @PostMapping("info")
-    fun getUserByIdentifier(@RequestBody identifier: String): ResponseEntity<UserSummary> {
+    fun getUserByIdentifier(@RequestBody request: RequestUserByIdentifier): ResponseEntity<UserSummary> {
+        val identifier = request.identifier
         return ResponseEntity.ok(userService.loadUserSummaryByIdentifier(identifier))
     }
 
     @PostMapping("/password-reset")
-    fun requestPasswordReset(@RequestBody identifier: String): ResponseEntity<Any> {
+    fun requestPasswordReset(@RequestBody request: ResetPasswordRequest): ResponseEntity<Any> {
+        val identifier = request.identifier
+        println("************************* $identifier")
         val token = userService.generatePasswordResetToken(identifier)
         // Send the token to the user's email (handled by your Next.js frontend)
         return ResponseEntity.ok(mapOf("message" to "Password reset token generated", "token" to token))
@@ -72,7 +73,11 @@ class UserController(
         return ResponseEntity.ok(UserDTO(userService.toggleActive(id)))
     }
 
-//    ************ PUT ************
+    //    ************ PUT ************
+    @PutMapping("{id}/update")
+    fun update(@RequestBody user: UserDTO, @PathVariable id:Long): ResponseEntity<Any> {
+        return ResponseEntity.ok(UserDTO(userService.update(id, user)))
+    }
 
     @PutMapping("/change-password")
     fun changePassword(

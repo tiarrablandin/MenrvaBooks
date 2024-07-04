@@ -1,6 +1,7 @@
 'use server';
 
-import { url } from '@/providers/coreProviders';
+const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+const url = `${baseUrl}/api`;
 
 export async function resetPassword(token: string, newPassword: string) {
   const res = await fetch(`${url}/users/password-reset`, {

@@ -1,19 +1,24 @@
-'use server';
+"use server";
 
-import { url } from "@/providers/coreProviders";
+import { fetchUserByTag } from "@/lib/services/apiService";
 import nodemailer from "nodemailer";
 
-export async function sendPasswordResetEmail(identifier: string, token: string) {
-  const res = await fetch(`${url}/users/info`, {
-    method: "POST",
-    body: JSON.stringify({ identifier })
-  });
+const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+const url = `${baseUrl}/api`;
 
-  if (res.ok) {
-    console.error("Failed to fetch user will sending password reset: ", res.status);
+export async function sendPasswordResetEmail(identifier: string, token: string) {
+  const user = await fetchUserByTag(identifier);
+  // const res = await fetch(`${url}/users/info`, {
+  //   method: "POST",
+  //   body: { identifier }
+  // });
+
+  if (!user) {
+    return "Failed to fetch user will sending password reset: ";
   }
 
-  const user = await res.json();
+  // const user = await res.json();
+  console.log("*********************************" + user);
 
   let transporter = nodemailer.createTransport({
     host: "smtp.office365.com",
