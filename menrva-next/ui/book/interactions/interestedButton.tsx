@@ -2,7 +2,7 @@
 
 import { toggleBookInterested } from "@/lib/store/features/bookSlice";
 import { RootState, useAppDispatch } from "@/lib/store/store";
-import { BookmarkIconOutline, BookmarkIconSolid } from "@/providers/coreProviders";
+import { BookmarkIconOutline, BookmarkIcon } from "@/providers/coreProviders";
 import { useSelector } from "react-redux";
 
 interface InterestedButtonProps {
@@ -25,7 +25,7 @@ const InterestedButton: React.FC<InterestedButtonProps> = ({ id, token }) => {
     return (
         <>
             {interested ?
-                <BookmarkIconSolid onClick={handleToggleInterested} className="h-6 w-6 cursor-pointer text-eggplant dark:text-rose hover:text-gray-600 dark:hover:text-gray-600" />
+                <BookmarkIcon onClick={handleToggleInterested} className="h-6 w-6 cursor-pointer text-eggplant dark:text-rose hover:text-gray-600 dark:hover:text-gray-600" />
                 :
                 <BookmarkIconOutline onClick={handleToggleInterested} className="h-6 w-6 cursor-pointer text-gray-600 hover:text-eggplant dark:hover:text-rose" />
             }
