@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 
 const Profile: React.FC<{ user: User }> = ({ user }) => {
   const token = useSelector((state: RootState) => state.user.jwt) as string;
+  
   const cn =
     "w-full placeholder:opacity-100 !border-eggplant dark:!border-parchment/70 text-deep-sea dark:text-parchment/70";
 
