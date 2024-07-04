@@ -19,6 +19,7 @@ import InitializeInteractions from "../../lib/utils/initializeInteractions";
 import InterestedButton from "./interactions/interestedButton";
 import ThumbsDownComponent from "./interactions/thumbsDown";
 import ThumbsUpComponent from "./interactions/thumbsUp";
+import InitializeBookDetails from "@/lib/utils/initializeBookDetails";
 
 interface SingleBookProps {
   id: number;
@@ -80,6 +81,7 @@ const SingleBook: React.FC<SingleBookProps> = ({ id, book, interactions, tag, to
                     {tag ? <HasReadButton id={id} token={token} /> : <></>}
                   </div>
                   {interactions ? <InitializeInteractions interactions={interactions} /> : <></>}
+                  <InitializeBookDetails bookId={id}/>
                 </ReduxProvider>
               </div>
               {book?.links.map((link) => (

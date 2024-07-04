@@ -12,7 +12,6 @@ const InitializeFromCookies: React.FC = () => {
     const fetchCookies = async () => {
       const res = await fetch('/api/validateToken');
       const { user, jwt } = await res.json();
-      console.log(jwt);
       store.dispatch(setUserDetails(user))
       store.dispatch(setToken(jwt))
     }

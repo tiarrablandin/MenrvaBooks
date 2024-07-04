@@ -248,7 +248,7 @@ export const renderGenreRow = (
 
 		return (
 			<tr key={index} className="text-center">
-				<td className="border-b border-parchment/20 whitespace-nowrap w-min">
+				<td className="border-b border-parchment/20 whitespace-nowrap">
 					{isEditing ? (
 						<div className="w-16 mr-auto ml-16">
 							<form onSubmit={handleSubmit}>
