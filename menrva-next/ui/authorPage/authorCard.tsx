@@ -8,7 +8,7 @@ import ReduxProvider from '@/providers/reduxProvider';
 const AuthorCard: React.FC<{ author: Author, token: string | undefined, isFollowing: boolean }> = ({ author, token, isFollowing }) => {
   return (
     <div>
-      <Card className="h-72 w-full min-w-[40rem] max-w-[40rem] px-4 bg-deep-sea/70 text-onyx/70 dark:text-parchment/70">
+      <Card className="h-72 w-full min-w-[40rem] max-w-[40rem] px-4 bg-deep-sea/70 text-eggplant dark:text-parchment/70">
         <CardHeader
           color="transparent"
           floated={false}
@@ -24,7 +24,7 @@ const AuthorCard: React.FC<{ author: Author, token: string | undefined, isFollow
           <div className="flex w-full flex-col gap-0.5">
             <div className="flex items-center justify-between">
               {/* // * BUG WITH TYPOGRAPHY needs empty/any classname */}
-              <Typography variant='h3' className=''>
+              <Typography variant='h3' className='text-eggplant dark:text-parchment/70'>
                 {author.penName}
               </Typography>
               <div className="flex items-center gap-0">

@@ -63,7 +63,7 @@ create table if not exists tag
 (
     id           int auto_increment
         primary key,
-    name         varchar(50) not null,
+    name         varchar(500) not null,
     date_added   date        null,
     reviewed     tinyint     not null default 0,
     date_updated date        null
@@ -89,7 +89,7 @@ create table if not exists genre
 (
     id           int auto_increment
         primary key,
-    name         varchar(20) not null,
+    name         varchar(200) not null,
     date_added   date        null,
     reviewed     tinyint     not null default 0,
     date_updated date        null
@@ -99,7 +99,7 @@ create table if not exists keyword
 (
     id           int auto_increment
         primary key,
-    name         varchar(20) not null,
+    name         varchar(200) not null,
     date_added   date        null,
     reviewed     tinyint     not null default 0,
     date_updated date        null
@@ -109,7 +109,7 @@ create table if not exists link
 (
     id           int auto_increment
         primary key,
-    name         varchar(20)  not null,
+    name         varchar(200)  not null,
     link         varchar(100) not null,
     date_added   date         null,
     reviewed     tinyint      not null default 0,
@@ -122,7 +122,7 @@ create table if not exists series
 (
     id           int auto_increment
         primary key,
-    name         varchar(100) not null,
+    name         varchar(1000) not null,
     date_added   date         null,
     reviewed     tinyint      not null default 0,
     date_updated date         null
@@ -144,7 +144,7 @@ create table if not exists sub_genre
 (
     id           int auto_increment
         primary key,
-    name         varchar(20) not null,
+    name         varchar(200) not null,
     date_added   date        null,
     reviewed     tinyint     not null default 0,
     date_updated date        null
@@ -154,7 +154,7 @@ create table if not exists subscription
 (
     id           int auto_increment
         primary key,
-    level        varchar(20) not null,
+    level        varchar(200) not null,
     paid         tinyint         not null default 0,
     date_added   date        null,
     date_updated date        null
