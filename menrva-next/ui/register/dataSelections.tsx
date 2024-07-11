@@ -89,17 +89,18 @@ const DataSelections: React.FC = () => {
     });
   };
 
-  return (
-    <div>
-      {Object.keys(data).map((type) => (
-        <div key={type} className="mx-20">
-          <Typography variant="h2" className="mt-4">
-            {dataConfig[type].pageTitle}
-          </Typography>
-          <Typography className="mb-2">{dataConfig[type].description}</Typography>
-          <div className="flex flex-wrap">
-            {data[type] &&
-              data[type].map((item, index) => (
+  {
+    return (
+      <div>
+        {Object.keys(data).map((type) => (
+          <div key={type} className="mx-20">
+            <Typography variant="h2" className="mt-4">
+              {dataConfig[type].pageTitle}
+            </Typography>
+            <Typography className="mb-2">{dataConfig[type].description}</Typography>
+            <div className="flex flex-wrap">
+              {data[type] &&
+                data[type].map((item, index) => (
                   <DataChip
                     key={index}
                     item={item}
@@ -107,13 +108,13 @@ const DataSelections: React.FC = () => {
                     selected={selectedChips[type].has(item.name)}
                     onClick={() => handleChipClick(type, item)}
                   />
-                )
-              )}
+                ))}
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
-  );
+        ))}
+      </div>
+    );
+  }
 };
 
 export default DataSelections;
