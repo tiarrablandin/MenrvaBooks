@@ -21,7 +21,7 @@ const Register = () => {
   const handleNext = () => !isLastStep && setActiveStep((cur) => cur + 1);
   const handlePrev = () => !isFirstStep && setActiveStep((cur) => cur - 1);
 
-// TODO refactor this component to use the new stepper component
+  // TODO refactor this component to use the new stepper component
 
   return (
     <div className="w-full py-4 px-8">
@@ -46,18 +46,24 @@ const Register = () => {
         {!isLastStep ? (
           <Button onClick={handleNext}>Next</Button>
         ) : (
-          ["Basic", "Bookworm"].find(name => name === subscription) ? (
-              // TODO: Add the correct link
-              <Link href="">
-                <Button>Submit</Button>
-              </Link>
-            ) : (
-              <Link href="https://square.link/u/12DC4ZOw">
-                <Button>Submit</Button>
-              </Link>
-            )
-          )
-        }
+          (() => {
+            switch (subscription) {
+              case "Bookworm":
+                return (
+                  <Link href="https://square.link/u/12DC4ZOw">
+                    <Button>Submit</Button>
+                  </Link>
+                );
+                default:
+                  return (
+                  // TODO: Add the correct link
+                  <Link href="userHome">
+                    <Button className="">Submit</Button>
+                  </Link>
+                );
+            }
+          })()
+        )}
       </div>
     </div>
   );

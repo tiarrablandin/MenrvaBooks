@@ -14,22 +14,22 @@ const dataConfig: { [key: string]: DataConfigType } = {
   genres: {
     apiEndpoint: `${process.env.NEXT_PUBLIC_API_URL}/api/genres`,
     pageTitle: "Genres",
-    description: "Select your favorite genres",
+    description: "Select a minimum of 3 genres you like",
   },
   subgenres: {
     apiEndpoint: `${process.env.NEXT_PUBLIC_API_URL}/api/subgenres`,
     pageTitle: "Subgenres",
-    description: "Select your favorite sub-genres",
+    description: "Select at least 3 sub-genres you like",
   },
   keywords: {
     apiEndpoint: `${process.env.NEXT_PUBLIC_API_URL}/api/keywords`,
     pageTitle: "Keywords",
-    description: "Select your favorite keywords",
+    description: "Select at least of 3 keywords",
   },
   tags: {
     apiEndpoint: `${process.env.NEXT_PUBLIC_API_URL}/api/tags`,
     pageTitle: "Community tags",
-    description: "Select your favorite community tags",
+    description: "Select at least 3 community tags you like",
   },
 };
 
@@ -84,11 +84,11 @@ const DataSelections: React.FC<DataSelectionsProps> = ({ type }) => {
   };
 
   return (
-    <div className="mx-20">
+    <div className="mx-20 min-h-[calc(100vh-295px)]">
       <Typography variant="h2" className="mt-4">
         {dataConfig[type].pageTitle}
       </Typography>
-      <Typography className="mb-2">{dataConfig[type].description}</Typography>
+      <Typography className="mb-2 font-medium text-lg">{dataConfig[type].description}</Typography>
       <div className="flex flex-wrap">
         {data &&
           data.map((item, index) => (

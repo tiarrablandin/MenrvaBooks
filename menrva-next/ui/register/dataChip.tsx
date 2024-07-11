@@ -8,7 +8,6 @@ interface DataChipProps {
 }
 
 const DataChip: React.FC<DataChipProps> = ({ item, color, selected, onClick }) => {
-  console.log("Name: " + item.name + " " + selected)
   return (
     <div onClick={onClick}>
       <Chip
