@@ -4,16 +4,25 @@ import { Button, Step, Stepper } from "@/providers/coreProviders";
 import React from "react";
 import DataSelections from "./dataSelections";
 import ProfileInfo from "./profileInfo";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import Confirmation from "./confirmation";
 
-const stepTypes = ["profile", "genres", "subgenres", "keywords", "tags"];
+const stepTypes = ["profile", "genres", "subgenres", "keywords", "tags", "confirmation"];
 
 const Register = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isLastStep, setIsLastStep] = React.useState(false);
   const [isFirstStep, setIsFirstStep] = React.useState(false);
 
+  const searchParams = useSearchParams();
+  const subscription = searchParams.get("subscription");
+
   const handleNext = () => !isLastStep && setActiveStep((cur) => cur + 1);
   const handlePrev = () => !isFirstStep && setActiveStep((cur) => cur - 1);
+
+// TODO refactor this component to use the new stepper component
+
   return (
     <div className="w-full py-4 px-8">
       <Stepper
@@ -27,15 +36,28 @@ const Register = () => {
       </Stepper>
       <div className="mt-8">
         {activeStep === 0 && <ProfileInfo />}
-        {activeStep > 0 && <DataSelections type={stepTypes[activeStep]} />}
+        {activeStep > 0 && activeStep < 5 && <DataSelections type={stepTypes[activeStep]} />}
+        {activeStep === 5 && <Confirmation />}
       </div>
       <div className="mt-16 flex justify-between">
         <Button onClick={handlePrev} disabled={isFirstStep}>
           Prev
         </Button>
-        <Button onClick={handleNext} disabled={isLastStep}>
-          Next
-        </Button>
+        {!isLastStep ? (
+          <Button onClick={handleNext}>Next</Button>
+        ) : (
+          ["Basic", "Bookworm"].find(name => name === subscription) ? (
+              // TODO: Add the correct link
+              <Link href="">
+                <Button>Submit</Button>
+              </Link>
+            ) : (
+              <Link href="https://square.link/u/12DC4ZOw">
+                <Button>Submit</Button>
+              </Link>
+            )
+          )
+        }
       </div>
     </div>
   );
