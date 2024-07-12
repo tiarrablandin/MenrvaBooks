@@ -31,7 +31,7 @@ export function NewComment({ bookId, tag, onNewComment }: { bookId: number; tag:
           onSubmit={handleSubmit}
           className="flex flex-col items-end"
         >
-          <Input variant="static" type="text" name="comment" id="comment" value={comment} onChange={(e) => setComment(e.target.value)}/>
+          <Input variant="static" type="text" name="comment" id="comment" className="text-deep-sea dark:text-parchment/70" value={comment} onChange={(e) => setComment(e.target.value)}/>
           <Button type="submit" className="mt-4 bg-eggplant text-parchment/70" size="sm">
             <p>submit</p>
           </Button>

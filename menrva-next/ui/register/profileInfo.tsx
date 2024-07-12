@@ -167,9 +167,6 @@ const ProfileInfo = () => {
                   className={`${cn}`}
                 />
               </div>
-              <Link href="https://square.link/u/12DC4ZOw">
-                <Button>Pay Here</Button>
-              </Link>
             </div>
           </div>
         </section>
