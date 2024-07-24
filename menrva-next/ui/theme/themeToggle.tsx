@@ -1,5 +1,6 @@
 'use client';
 
+import setMenrvaTheme from '@/lib/actions/setMenrvaTheme';
 import { MoonIcon, SunIcon, Switch } from '@/providers/coreProviders';
 import { useTheme } from 'next-themes';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -33,6 +34,7 @@ const ThemeToggle: React.FC<{}> = ({ }) => {
         // if (themeCookie.theme === undefined) { setThemeCookie('light'); }
       }
       initialized.current = true;
+      setMenrvaTheme(theme ? theme : "light")
       setMounted(true);
     }
   }, [theme]);
@@ -45,6 +47,7 @@ const ThemeToggle: React.FC<{}> = ({ }) => {
     const newTheme = isDark ? 'light' : 'dark';
     setIsDark(!isDark);
     setTheme(newTheme);
+    setMenrvaTheme(newTheme)
     // setThemeCookie(newTheme);
   };
 

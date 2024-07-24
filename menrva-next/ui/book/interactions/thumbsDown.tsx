@@ -2,7 +2,7 @@
 
 import { toggleBookLiked, updateLikeDislike } from "@/lib/store/features/bookSlice";
 import { RootState, useAppDispatch } from "@/lib/store/store";
-import { ThumbDown, ThumbDownAltOutlined } from "@/providers/coreProviders";
+import { HandThumbDownIcon, HandThumbDownIconOutlined, } from "@/providers/coreProviders";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -31,9 +31,9 @@ const ThumbsDownComponent: React.FC<ToggleLikeProps> = ({ id, token, initialDisl
         <>
             <div className="text-2xl font-bold">{dislikes}</div>
             {disliked ?
-                <ThumbDown onClick={handleToggleLike} className="cursor-pointer text-eggplant dark:text-rose hover:text-gray-600 dark:hover:text-gray-600" />
+                <HandThumbDownIcon onClick={handleToggleLike} className="h-6 w-6 cursor-pointer text-eggplant dark:text-rose hover:text-gray-600 dark:hover:text-gray-600" />
                 :
-                <ThumbDownAltOutlined onClick={handleToggleLike} className="cursor-pointer text-gray-600 hover:text-eggplant dark:hover:text-rose" />
+                <HandThumbDownIconOutlined onClick={handleToggleLike} className="h-6 w-6 cursor-pointer text-gray-600 hover:text-eggplant dark:hover:text-rose" />
             }
         </>
     )

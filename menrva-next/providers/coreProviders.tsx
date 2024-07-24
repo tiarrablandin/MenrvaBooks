@@ -16,10 +16,6 @@ export { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export {
   HistoryEduOutlined,
-  ThumbDown,
-  ThumbDownAltOutlined,
-  ThumbUp,
-  ThumbUpAltOutlined,
 } from "@mui/icons-material";
 
 export {
@@ -34,7 +30,8 @@ export {
   CreditCardIcon as CreditCardIconOutline,
   EnvelopeIcon,
   ExclamationCircleIcon,
-  HandThumbUpIcon,
+  HandThumbDownIcon as HandThumbDownIconOutlined,
+  HandThumbUpIcon as HandThumbUpIconOutlined,
   HomeIcon as HomeIconOutline,
   GlobeAltIcon,
   KeyIcon as KeyIconOutline,
@@ -52,14 +49,16 @@ export {
   ArrowLeftIcon,
   ArrowLeftStartOnRectangleIcon, ArrowRightEndOnRectangleIcon, ArrowRightIcon, ArrowUpTrayIcon,
   BellIcon,
-  BookOpenIcon as BookOpenSolid,
-  BookmarkIcon as BookmarkIconSolid,
+  BookOpenIcon,
+  BookmarkIcon,
   CheckCircleIcon,
   ChevronDownIcon,
   Cog6ToothIcon,
   CreditCardIcon,
   EyeIcon,
   EyeSlashIcon,
+  HandThumbDownIcon,
+  HandThumbUpIcon,
   HeartIcon,
   HomeIcon,
   InboxArrowDownIcon,
@@ -102,6 +101,8 @@ export {
   SpeedDialContent,
   SpeedDialAction,
   Spinner,
+  Step,
+  Stepper,
   Switch, Tab,
   TabPanel, Tabs, TabsBody, TabsHeader, Textarea,
   ThemeProvider,

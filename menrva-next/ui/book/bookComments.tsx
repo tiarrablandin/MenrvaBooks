@@ -33,7 +33,7 @@ function ContentCard({ content, date, tag }: ContentCardPropsType) {
           >
             <HeartIcon className="h-4 w-4" />
             243
-            {/* //* NEED TO ADD TABLE FOR COMMENT INTERACTIONS FOR THIS FUNCTIONALITY */}
+            {/* TODO NEED TO ADD TABLE FOR COMMENT INTERACTIONS FOR THIS FUNCTIONALITY */}
           </Button>
         </div>
       </CardBody>
@@ -52,13 +52,13 @@ const BookComments = ({ bookId, initialComments, tag }: { bookId: number, initia
   return (
     <div>
       <section className="mx-auto flex w-full max-w-2xl flex-col px-5 pb-20 pt-10">
-        <div className="my-6 md:my-8 md:text-center">
+        {tag ? <div className="my-6 md:my-8 md:text-center">
           Have something to say about this book?
-        </div>
-        <NewComment bookId={bookId} tag={tag} onNewComment={handleNewComment} />
-        <div className="my-8 md:text-center">
+        </div> : <></>}
+        {tag ? <NewComment bookId={bookId} tag={tag} onNewComment={handleNewComment} /> : <></>}
+        {comments.length > 0 ? <div className="my-8 md:text-center">
           What other readers are saying about this book...
-        </div>
+        </div> : <></>}
         {comments.length > 0 ? (
           <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-1">
             {comments.map((comment, index) => (

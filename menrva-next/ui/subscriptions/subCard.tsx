@@ -49,7 +49,7 @@ const subCard: React.FC<SubCardProps> = ({ header, price, info }) => {
           </ul>
         </CardBody>
         <CardFooter className="flex justify-center mt-6 p-0">
-          <Link href="/register" >
+          <Link href={`/register?subscription=${header}`} >
             <Button
               size="lg"
               className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100 bg-eggplant text-parchment/70"
