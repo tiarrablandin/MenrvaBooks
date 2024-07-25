@@ -45,7 +45,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
     const response = await login(identifier, password);
 
     if (response && response.user) {
-      console.log(response.token);
       router.push(`/userHome/@${identifier}`);
       dispatch(setToken(response.token))
       dispatch(setUserDetails(response.user))
@@ -58,7 +57,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
   };
 
   const handleClose = () => {
-    router.push('/home');
+    router.back();
+    // router.push('/home');
     setIsOpen(false);
   };
 
@@ -138,7 +138,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ }) => {
 
           <div className="mx-auto w-full flex flex-nowrap justify-center py-2">
             <Typography>New to Menrva?</Typography>
-            <Typography className="ml-2 underline underline-offset-1 hover:scale-105" onClick={() => { router.push('/subscriptions'); setIsOpen(false) }}>
+            <Typography className="ml-2 underline underline-offset-1 hover:scale-105 cursor-pointer" onClick={() => { router.push('/subscriptions'); setIsOpen(false) }}>
               Create a free account!
             </Typography>
           </div>

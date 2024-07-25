@@ -1,17 +1,14 @@
 import {
-  IconButton,
-  SpeedDial,
-  SpeedDialHandler,
-  SpeedDialContent,
-  SpeedDialAction,
-  PlusIconOutline,
-  HomeIconOutline,
-  Cog6ToothIconOutline,
-  Square3Stack3DIconOutline,
-  UserGroupIcon,
   BookOpenOutline,
-  ThumbUpAltOutlined,
+  Cog6ToothIconOutline,
   HandThumbUpIcon,
+  HomeIconOutline,
+  IconButton,
+  PlusIconOutline,
+  SpeedDial,
+  SpeedDialAction,
+  SpeedDialContent,
+  SpeedDialHandler
 } from "@/providers/coreProviders";
 import Link from "next/link";
 import React from "react";

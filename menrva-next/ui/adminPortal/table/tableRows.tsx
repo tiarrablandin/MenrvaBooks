@@ -165,8 +165,6 @@ export const renderUserRow = (
 	toggleActive?: (id: number) => void,
 	deleteEntity?: (userId: number) => any,
 ) => {
-	console.log(toggleActive)
-
 	return (
 		<tr key={index} className="text-center">
 			<td className="border-b border-parchment/20 whitespace-nowrap w-min">

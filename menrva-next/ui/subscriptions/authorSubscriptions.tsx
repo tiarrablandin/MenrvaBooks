@@ -25,7 +25,7 @@ const Subscriptions = () => {
           indicatorProps={{ className: " text-parchment/70 bg-eggplant dark:bg-rose/70" }}
         >
           {data.map(({ label, value }) => (
-            <Tab key={value} value={value} className="">
+            <Tab key={value} value={value} className="text-parchment/70">
               {label}
             </Tab>
           ))}

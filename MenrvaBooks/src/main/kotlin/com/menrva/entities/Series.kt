@@ -26,7 +26,11 @@ class Series(
     @ManyToMany(mappedBy = "series")
     var authors: MutableSet<Author> = mutableSetOf(),
     @JsonIgnore
-    @OneToMany(mappedBy = "series")
+    @OneToMany(
+        mappedBy = "series",
+//        cascade = [CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH],
+        cascade = [CascadeType.ALL], orphanRemoval = true
+    )
     var seriesInteractions: MutableSet<SeriesInteraction> = mutableSetOf()
 ) {
     override fun toString(): String {

@@ -34,8 +34,7 @@ create table if not exists author
     reviewed     tinyint      not null default 0,
     date_updated date         null,
     user_id      int          null,
-    FOREIGN KEY (user_id) references user (id)
-
+    FOREIGN KEY (user_id) references user (id) ON DELETE CASCADE
 );
 
 create table if not exists book
@@ -55,8 +54,7 @@ create table if not exists book
     series_id        int          null,
     views	         int	      not null default 0,
     olid             int          null,
-    foreign key (series_id) references series (id)
-
+    foreign key (series_id) references series (id) ON DELETE CASCADE
 );
 
 create table if not exists tag
@@ -67,7 +65,6 @@ create table if not exists tag
     date_added   date        null,
     reviewed     tinyint     not null default 0,
     date_updated date        null
-
 );
 
 create table if not exists comment
@@ -80,9 +77,8 @@ create table if not exists comment
     date_updated date     null,
     user_id      int      not null,
     book_id      int      not null,
-    foreign key (user_id) references user (id),
-    foreign key (book_id) references book (id)
-
+    foreign key (user_id) references user (id) ON DELETE CASCADE,
+    foreign key (book_id) references book (id) ON DELETE CASCADE
 );
 
 create table if not exists genre
@@ -115,7 +111,7 @@ create table if not exists link
     reviewed     tinyint      not null default 0,
     date_updated date         null,
     book_id      int          not null,
-    FOREIGN KEY (book_id) references book (id)
+    FOREIGN KEY (book_id) references book (id) ON DELETE CASCADE
 );
 
 create table if not exists series
@@ -137,7 +133,7 @@ create table if not exists social_media
     date_added   date         null,
     date_updated date         null,
     author_id    int          not null,
-    FOREIGN KEY (author_id) REFERENCES author (id)
+    FOREIGN KEY (author_id) REFERENCES author (id) ON DELETE CASCADE
 );
 
 create table if not exists sub_genre
@@ -177,7 +173,7 @@ create table if not exists user
     avatar	        int 	    not null default 1,
     password_reset_token varchar(1000) null,
     password_reset_token_expiration TIMESTAMP null,
-    FOREIGN KEY (subscription_id) REFERENCES subscription (id)
+    FOREIGN KEY (subscription_id) REFERENCES subscription (id) ON DELETE CASCADE
 );
 
 create table if not exists user_profile
@@ -194,8 +190,8 @@ CREATE TABLE author_has_series
     author_id INT,
     series_id INT,
     PRIMARY KEY (author_id, series_id),
-    FOREIGN KEY (author_id) REFERENCES author (id),
-    FOREIGN KEY (series_id) REFERENCES series (id)
+    FOREIGN KEY (author_id) REFERENCES author (id) ON DELETE CASCADE,
+    FOREIGN KEY (series_id) REFERENCES series (id) ON DELETE CASCADE
 );
 
 CREATE TABLE author_has_book
@@ -203,8 +199,8 @@ CREATE TABLE author_has_book
     author_id INT,
     book_id   INT,
     PRIMARY KEY (author_id, book_id),
-    FOREIGN KEY (author_id) REFERENCES author (id),
-    FOREIGN KEY (book_id) REFERENCES book (id)
+    FOREIGN KEY (author_id) REFERENCES author (id) ON DELETE CASCADE,
+    FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE CASCADE 
 );
 
 CREATE TABLE book_has_genre
@@ -212,8 +208,8 @@ CREATE TABLE book_has_genre
     book_id  INT,
     genre_id INT,
     PRIMARY KEY (book_id, genre_id),
-    FOREIGN KEY (book_id) REFERENCES book (id),
-    FOREIGN KEY (genre_id) REFERENCES genre (id)
+    FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE CASCADE,
+    FOREIGN KEY (genre_id) REFERENCES genre (id) ON DELETE CASCADE
 );
 
 CREATE TABLE book_has_sub_genre
@@ -221,8 +217,8 @@ CREATE TABLE book_has_sub_genre
     book_id      INT,
     sub_genre_id INT,
     PRIMARY KEY (book_id, sub_genre_id),
-    FOREIGN KEY (book_id) REFERENCES book (id),
-    FOREIGN KEY (sub_genre_id) REFERENCES sub_genre (id)
+    FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE CASCADE,
+    FOREIGN KEY (sub_genre_id) REFERENCES sub_genre (id) ON DELETE CASCADE
 );
 
 CREATE TABLE book_has_keyword
@@ -230,8 +226,8 @@ CREATE TABLE book_has_keyword
     book_id    INT,
     keyword_id INT,
     PRIMARY KEY (book_id, keyword_id),
-    FOREIGN KEY (book_id) REFERENCES book (id),
-    FOREIGN KEY (keyword_id) REFERENCES keyword (id)
+    FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE CASCADE,
+    FOREIGN KEY (keyword_id) REFERENCES keyword (id) ON DELETE CASCADE
 );
 
 CREATE TABLE book_interactions
@@ -243,8 +239,8 @@ CREATE TABLE book_interactions
     favorite     int not null default 0,
     like_dislike int not null default 0,
     PRIMARY KEY (book_id, user_id),
-    FOREIGN KEY (book_id) REFERENCES book (id),
-    FOREIGN KEY (user_id) REFERENCES user (id)
+    FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE
 );
 
 CREATE TABLE series_interactions
@@ -255,16 +251,16 @@ CREATE TABLE series_interactions
     favorite    int not null default 0,
     in_progress int not null default 0,
     PRIMARY KEY (series_id, user_id),
-    FOREIGN KEY (series_id) REFERENCES series (id),
-    FOREIGN KEY (user_id) REFERENCES user (id)
+    FOREIGN KEY (series_id) REFERENCES series (id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE
 );
 
 CREATE TABLE user_follows_author
 (
     author_id INT,
     user_id   INT,
-    FOREIGN KEY (author_id) REFERENCES author (id),
-    FOREIGN KEY (user_id) REFERENCES user (id)
+    FOREIGN KEY (author_id) REFERENCES author (id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE
 );
 
 CREATE TABLE book_has_tag
@@ -272,8 +268,8 @@ CREATE TABLE book_has_tag
     book_id INT,
     tag_id  INT,
     PRIMARY KEY (book_id, tag_id),
-    FOREIGN KEY (book_id) REFERENCES book (id),
-    FOREIGN KEY (tag_id) REFERENCES tag (id)
+    FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tag (id) ON DELETE CASCADE
 );
 
 CREATE TABLE genre_has_sub_genre
@@ -281,8 +277,8 @@ CREATE TABLE genre_has_sub_genre
     genre_id     INT,
     sub_genre_id INT,
     PRIMARY KEY (genre_id, sub_genre_id),
-    FOREIGN KEY (genre_id) REFERENCES genre (id),
-    FOREIGN KEY (sub_genre_id) REFERENCES sub_genre (id)
+    FOREIGN KEY (genre_id) REFERENCES genre (id) ON DELETE CASCADE,
+    FOREIGN KEY (sub_genre_id) REFERENCES sub_genre (id) ON DELETE CASCADE
 );
 
 CREATE TABLE user_has_genre
@@ -290,8 +286,8 @@ CREATE TABLE user_has_genre
     user_id  INT,
     genre_id INT,
     PRIMARY KEY (user_id, genre_id),
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (genre_id) REFERENCES genre (id)
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE,
+    FOREIGN KEY (genre_id) REFERENCES genre (id) ON DELETE CASCADE
 );
 
 CREATE TABLE user_has_sub_genre
@@ -299,8 +295,8 @@ CREATE TABLE user_has_sub_genre
     user_id      INT,
     sub_genre_id INT,
     PRIMARY KEY (user_id, sub_genre_id),
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (sub_genre_id) REFERENCES sub_genre (id)
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE,
+    FOREIGN KEY (sub_genre_id) REFERENCES sub_genre (id) ON DELETE CASCADE
 );
 
 CREATE TABLE user_has_keyword
@@ -308,8 +304,8 @@ CREATE TABLE user_has_keyword
     user_id    INT,
     keyword_id INT,
     PRIMARY KEY (user_id, keyword_id),
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (keyword_id) REFERENCES keyword (id)
+    FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE,
+    FOREIGN KEY (keyword_id) REFERENCES keyword (id) ON DELETE CASCADE
 );
 
 -- -----------------------------------------------------

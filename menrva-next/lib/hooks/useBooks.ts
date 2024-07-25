@@ -33,6 +33,7 @@ export function useBooks() {
             }
         })
         const data = await res.json()
+        console.log(data);
         return { deleted: data.deleted }
     }, [dispatch, token])
 

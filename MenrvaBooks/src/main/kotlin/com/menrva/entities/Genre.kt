@@ -19,7 +19,9 @@ class Genre(
     var reviewed: Boolean? = false,
     @JsonIgnore
     @JsonManagedReference
-    @ManyToMany(mappedBy = "genres")
+    @ManyToMany(
+        mappedBy = "genres",
+    )
     var books: Set<Book> = mutableSetOf(),
     @JsonIgnore
     @ManyToMany
@@ -30,7 +32,9 @@ class Genre(
     )
     var subGenres: MutableSet<SubGenre> = mutableSetOf(),
     @JsonIgnore
-    @ManyToMany(mappedBy = "genres")
+    @ManyToMany(
+        mappedBy = "genres",
+    )
     var users: MutableSet<User> = mutableSetOf()
 ) {
 }

@@ -39,11 +39,14 @@ class Author(
     )
     var series: MutableSet<Series> = mutableSetOf(),
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", cascade = [CascadeType.ALL])
     var socialMedia: MutableSet<SocialMedia> = mutableSetOf(),
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "authors")
+    @ManyToMany(
+        mappedBy = "authors",
+        cascade = [CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH]
+    )
     var followers: MutableSet<User> = mutableSetOf(),
 
     @ManyToOne(fetch = FetchType.LAZY)
