@@ -7,6 +7,7 @@ import com.menrva.exceptions.BookNotFoundException
 import com.menrva.repositories.BookJpaRepository
 import com.menrva.repositories.SeriesRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDate
 
 @Service
@@ -63,7 +64,8 @@ class BookService(
 
     fun updateBook(id: Long, bookDto: BookDTO): Book {
         val book = bookRepo.findById(id).orElseThrow { BookNotFoundException("Book not found") }
-        val series = bookDto.series?.id?.let { seriesRepo.findById(it).orElseThrow { RuntimeException("Series not found") } }
+        val series =
+            bookDto.series?.id?.let { seriesRepo.findById(it).orElseThrow { RuntimeException("Series not found") } }
 
         book.title = bookDto.title
         book.description = bookDto.description
@@ -75,7 +77,8 @@ class BookService(
         return bookRepo.save(book)
     }
 
-    fun delete(id: Long): Any {
+    @Transactional
+    fun delete(id: Long): Boolean {
         val book = bookRepo.findById(id).orElseThrow { RuntimeException("Book not found") }
         bookRepo.delete(book)
         return bookRepo.existsById(id)

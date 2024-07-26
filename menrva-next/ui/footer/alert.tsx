@@ -1,6 +1,6 @@
 'use client';
 
-import { Alert, IconButton, ThumbUp, XMarkIcon } from "@/providers/coreProviders";
+import { Alert, IconButton, XMarkIcon } from "@/providers/coreProviders";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -36,7 +36,7 @@ const DefaultAlert = ({ text, defaultIsOpen, className }: { text: string, defaul
                 className={`${className} absolute left-1/2 transform -translate-x-1/2 h-16 w-full max-w-md flex justify-between items-center`}
                 open={isOpen}
                 onClose={onClose}
-                icon={<ThumbUp />}
+                // icon={<ThumbUp />}
                 action={<IconButton variant="text" color='white' onClick={onClose}><XMarkIcon className="w-5 h-5"/></IconButton>}
             >
                 {text}

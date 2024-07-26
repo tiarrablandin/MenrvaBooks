@@ -33,14 +33,18 @@ class Book(
     var dateUpdated: LocalDate? = null,
     @Column(name = "reviewed", nullable = false)
     var reviewed: Boolean? = false,
+
     @JsonBackReference(value = "books")
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(
+        fetch = FetchType.LAZY,
+    )
     @JoinTable(
         name = "book_has_genre",
         joinColumns = [JoinColumn(name = "book_id")],
         inverseJoinColumns = [JoinColumn(name = "genre_id")]
     )
     var genres: MutableSet<Genre> = mutableSetOf(),
+
 //    @JsonBackReference(value = "books")
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
@@ -50,6 +54,7 @@ class Book(
         inverseJoinColumns = [JoinColumn(name = "keyword_id")]
     )
     var keywords: MutableSet<Keyword> = mutableSetOf(),
+
     @JsonIgnore
 //    @JsonBackReference(value = "books")
     @ManyToMany(fetch = FetchType.LAZY)
@@ -59,13 +64,14 @@ class Book(
         inverseJoinColumns = [JoinColumn(name = "tag_id")]
     )
     var tags: MutableSet<Tag> = mutableSetOf(),
+
     @JsonIgnore
 //    @JsonBackReference(value = "books")
-    @ManyToOne(cascade = [CascadeType.MERGE])
+    @ManyToOne
     @JoinColumn(name = "series_id")
     var series: Series? = null,
     @JsonIgnore
-    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER, cascade = [CascadeType.ALL], orphanRemoval = true)
     var bookInteractions: MutableSet<BookInteraction> = mutableSetOf(),
     @JsonIgnore
     @ManyToMany(mappedBy = "books")
@@ -74,10 +80,10 @@ class Book(
     @ManyToMany(mappedBy = "books")
     var subGenres: MutableSet<SubGenre> = mutableSetOf(),
     @JsonIgnore
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = [CascadeType.ALL], orphanRemoval = true)
     var comments: MutableSet<Comment> = mutableSetOf(),
     @JsonIgnore
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = [CascadeType.ALL], orphanRemoval = true)
     var links: MutableSet<Link> = mutableSetOf(),
     @Transient
     var numberOfLikes: Int? = null,

@@ -6,8 +6,8 @@ import ThemeToggle from "@/ui/theme/themeToggle";
 export default function AdminLayout({ children, add, update }: { children: React.ReactNode, add: React.ReactNode, update: React.ReactNode }) {
     return (
         <ReduxProvider>
-            <div className={`flex w-full min-h-screen`}>
-                <div className="absolute right-10 top-10 bg-rose/70 dark:bg-eggplant rounded-full p-1">
+            <div className={`flex w-full min-h-screen overflow-hidden`}>
+                <div className="absolute right-10 top-8 bg-rose/70 dark:bg-eggplant rounded-full p-1">
                     <ThemeToggle />
                 </div>
                 <Sidebar />

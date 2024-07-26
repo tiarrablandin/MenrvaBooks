@@ -37,10 +37,14 @@ class SubGenre(
     var books: MutableSet<Book> = mutableSetOf(),
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "subGenres")
+    @ManyToMany(
+        mappedBy = "subGenres",
+    )
     var genres: MutableSet<Genre> = mutableSetOf(),
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "subGenres")
+    @ManyToMany(
+        mappedBy = "subGenres",
+    )
     var users: MutableSet<User> = mutableSetOf()
 )

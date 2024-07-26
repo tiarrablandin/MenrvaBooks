@@ -40,25 +40,32 @@ class User(
     @Column(name = "password_reset_token_expiration")
     var passwordResetTokenExpiration: LocalDateTime? = null,
     @JsonBackReference(value = "user")
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL])
     var bookInteractions: MutableSet<BookInteraction> = mutableSetOf(),
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @ManyToOne(
+        fetch = FetchType.LAZY,
+        optional = true,
+        cascade = [CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH]
+    )
     @JoinColumn(name = "subscription_id", nullable = true)
     var subscription: Subscription? = null,
     @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = [CascadeType.ALL])
     var userProfile: UserProfile? = null,
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL])
     var comments: MutableSet<Comment> = mutableSetOf(),
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL])
     var seriesInteractions: MutableSet<SeriesInteraction> = mutableSetOf(),
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
+    @OneToMany(
+        mappedBy = "user",
+        cascade = [CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH]
+    )
     var author: MutableSet<Author> = mutableSetOf(),
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(cascade = [CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH])
     @JoinTable(
         name = "user_follows_author",
         joinColumns = [JoinColumn(name = "user_id")],
@@ -66,7 +73,7 @@ class User(
     )
     var authors: MutableSet<Author> = mutableSetOf(),
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(cascade = [CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH])
     @JoinTable(
         name = "user_has_genre",
         joinColumns = [JoinColumn(name = "user_id")],
@@ -74,7 +81,7 @@ class User(
     )
     var genres: MutableSet<Genre> = mutableSetOf(),
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(cascade = [CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH])
     @JoinTable(
         name = "user_has_keyword",
         joinColumns = [JoinColumn(name = "user_id")],
@@ -82,7 +89,7 @@ class User(
     )
     var keywords: MutableSet<Keyword> = mutableSetOf(),
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(cascade = [CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH])
     @JoinTable(
         name = "user_has_sub_genre",
         joinColumns = [JoinColumn(name = "user_id")],
