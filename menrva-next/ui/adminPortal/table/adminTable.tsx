@@ -86,13 +86,13 @@ const AdminTable: React.FC<AdminTableProps> = ({
 
   return (
     <>
-      <Card className={` ${variant === 'small' ? 'h-[85vh] w-[95%] mx-auto my-4 overflow-scroll' : 'h-full w-[calc(100%-2rem)] mx-auto my-4 overflow-scroll'} ${advent.className} text-parchment/70 bg-deep-sea/90 dark:bg-deep-sea/70`}>
+      <Card className={`my-4 ${variant === 'small' ? 'min-h-[85vh] h-full w-[95%] mx-auto overflow-scroll' : 'min-h-[85vh] w-[calc(100%-6rem)] mx-auto overflow-scroll'} ${advent.className} text-parchment/70 bg-deep-sea/90 dark:bg-deep-sea/70`}>
         <CardHeader
           floated={false}
           shadow={false}
-          className={`h-1/6 rounded-none flex flex-nowrap justify-between gap-2 p-2 text-nowrap overflow-x-scroll no-scrollbar ${variant === 'small' ? 'flex-col' : ''} bg-transparent`}
+          className={`h-16 p-8 rounded-none flex flex-nowrap justify-between gap-2 text-nowrap overflow-x-scroll no-scrollbar ${variant === 'small' ? 'flex-col' : ''} bg-transparent`}
         >
-          <div className='flex items-center justify-between gap-4 w-full'>
+          <div className='flex items-center justify-between gap-4 w-full h-full'>
             <div className="flex flex-col">
               <p className="text-3xl text-eggplant dark:text-rose/70">
                 {head}
@@ -133,10 +133,10 @@ const AdminTable: React.FC<AdminTableProps> = ({
             </div>
           </div>
         </CardHeader>
-        <CardBody className="overflow-scroll w-full !p-0 mt-6 h-full text-center">
-          <table className="w-full h-full table-auto">
-            <thead>
-              <tr>
+        <CardBody className="overflow-scroll w-full min-h-[85%] !p-0 text-center mt-4 ">
+          <table className="w-full">
+            <thead className="">
+              <tr className="h-16">
                 {tableHeaders.map((tableHeaders, index) => (
                   <th
                     key={index}
@@ -149,7 +149,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
                 ))}
               </tr>
             </thead>
-            <tbody className="">
+            <tbody className="h-[90%]">
               {filteredData.map((item, index) => renderRow(item, index, reviewedCallback, activeCallback, onDelete))}
               {addingNew && (
                 <tr className="">
@@ -182,7 +182,7 @@ const AdminTable: React.FC<AdminTableProps> = ({
             </tbody>
           </table>
         </CardBody>
-        <CardFooter className={`flex justify-between items-center ${variant === 'small' ? 'scale-[85%]' : ''}`}>{pagination}</CardFooter>
+        <CardFooter className={`flex justify-between items-center absolute bottom-0 w-full ${variant === 'small' ? 'scale-[95%]' : ''}`}>{pagination}</CardFooter>
       </Card>
     </>
   );

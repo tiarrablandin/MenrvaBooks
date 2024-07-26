@@ -24,7 +24,7 @@ interface DynamicTableProps<T> {
 
 const DynamicTable: React.FC<DynamicTableProps<any>> = ({ entityType, variant }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, _setItemsPerPage] = useState(10);
+  const [itemsPerPage, _setItemsPerPage] = useState(entityType === "books" ? 5 : 10);
   const [showUnreviewedOnly, setShowUnreviewedOnly] = useState(false);
   const [showActiveOnly, setShowActiveOnly] = useState(false);
   const { data, fetchData, toggleReviewed, toggleActive, deleteEntity, loading, error } = useEntityHook<any>(entityType);

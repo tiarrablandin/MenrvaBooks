@@ -35,8 +35,8 @@ export const renderBookRow = (
 	deleteEntity?: (bookId: number) => any,
 ) => {
 	return (
-		<tr key={index}>
-			<td className="pl-4 py-1 border-b border-parchment/20 flex justify-center">
+		<tr className="h-12 border-b border-parchment/20" key={index}>
+			<td className="pl-4 h-full py-2  flex justify-center">
 				<Link href={`../book/${book.id}`} className="inline-block">
 					<Image
 						className="rounded-md object-center h-[6rem] w-[4rem] mr-4"
@@ -47,14 +47,14 @@ export const renderBookRow = (
 					/>
 				</Link>
 			</td>
-			<td className="border-b border-parchment/20 whitespace-nowrap w-min">
+			<td className="whitespace-nowrap w-min">
 				<Link href={`../book/${book.id}`} className="inline-block">
 					<p className="hover:underline underline-offset-2 w-min">
 						{book.title}
 					</p>
 				</Link>
 			</td>
-			<td className="border-b border-parchment/20 mr-2">
+			<td className="mr-2">
 				{book.authors[0] ? (
 					<Link href={`../author/${book.authors[0].id}`}>
 						<p className="hover:underline text-center underline-offset-2">
@@ -65,10 +65,10 @@ export const renderBookRow = (
 					""
 				)}
 			</td>
-			<td className="mx-auto text-center pr-2 border-b border-parchment/20">
+			<td className="mx-auto text-center pr-2">
 				<p>{book.dateAdded.toString()}</p>
 			</td>
-			<td className="mx-auto text-center pr-2 border-b border-parchment/20">
+			<td className="mx-auto text-center pr-2">
 				{toggleReviewed && (
 					<Checkbox
 						onChange={() => toggleReviewed(book.id)}
@@ -106,7 +106,7 @@ export const renderAuthorRow = (
 	toggleActive?: (authorId: number) => void,
 	deleteEntity?: (authord: number) => any,
 ) => (
-	<tr key={index}>
+	<tr className="h-12" key={index}>
 		<td className="border-b border-parchment/20 whitespace-nowrap w-min">
 			<Link href={`../author/${author.id}`} className="inline-block">
 				<p className="hover:underline underline-offset-2">
@@ -166,30 +166,30 @@ export const renderUserRow = (
 	deleteEntity?: (userId: number) => any,
 ) => {
 	return (
-		<tr key={index} className="text-center">
-			<td className="border-b border-parchment/20 whitespace-nowrap w-min">
+		<tr className="h-12 border-b border-parchment/20" key={index}>
+			<td className=" whitespace-nowrap w-min">
 				<Link href={`../user/${user.id}`} className="inline-block">
 					<p className="hover:underline underline-offset-2">
 						{user.tag}
 					</p>
 				</Link>
 			</td>
-			<td className="border-b border-parchment/20 whitespace-nowrap">
+			<td className=" whitespace-nowrap">
 				<p className="w-min inline-block">
 					{`${user.firstName} ${user.lastName}`}
 				</p>
 			</td>
-			<td className="border-b border-parchment/20 whitespace-nowrap">
+			<td className=" whitespace-nowrap">
 				<p className="w-min inline-block">
 					{user.email}
 				</p>
 			</td>
-			<td className="border-b border-parchment/20 whitespace-nowrap">
+			<td className=" whitespace-nowrap">
 				<p className="w-min inline-block">
 					{user.subscription.level}
 				</p>
 			</td>
-			<td className="border-b border-parchment/20">
+			<td className="">
 				{user.dateAdded ? <p>{user.dateAdded.toString()}</p> : <></>}
 			</td>
 			<td className="border-b border-parchment/20">
@@ -245,7 +245,7 @@ export const renderGenreRow = (
 		};
 
 		return (
-			<tr key={index} className="text-center">
+			<tr className="h-12 " key={index} >
 				<td className="border-b border-parchment/20 whitespace-nowrap">
 					{isEditing ? (
 						<div className="w-16 mr-auto ml-16">
@@ -321,7 +321,7 @@ export const renderKeywordRow = (
 		};
 
 		return (
-			<tr key={index} className="text-center">
+			<tr className="h-12" key={index} >
 				<td className="border-b border-parchment/20 whitespace-nowrap w-min">
 					{isEditing ? (
 						<div className="w-16 mr-auto ml-16">
@@ -397,7 +397,7 @@ export const renderTagRow = (
 		};
 
 		return (
-			<tr key={index} className="text-center">
+			<tr className="h-12" key={index} >
 				<td className="border-b border-parchment/20 whitespace-nowrap w-min">
 					{isEditing ? (
 						<div className="w-16 mr-auto ml-16">
@@ -457,7 +457,7 @@ export const renderSeriesRow = (
 	toggleActive?: (seriesId: number) => void,
 	deleteEntity?: (seriesId: number) => any,
 ) => (
-	<tr key={index} className="text-center">
+	<tr className="h-12" key={index} >
 		<td className="border-b border-parchment/20 whitespace-nowrap w-min">
 			<Link href={`../series/${series.id}`} className="inline-block">
 				<p className="hover:underline underline-offset-2">
@@ -516,7 +516,7 @@ export const renderCommentRow = (
 ) => {
 	const CommentRow = () => {
 		return (
-			<tr key={index} className="text-center">
+			<tr className="h-12" key={index} >
 				<td className="border-b border-parchment/20 h-8 max-w-36 whitespace-nowrap overflow-ellipsis">
 					<Tooltip content={comment.book.title} placement="top">
 						<Link href={`/book/${comment.book.id}`}>
@@ -593,7 +593,7 @@ export const renderSubgenreRow = (
 		};
 
 		return (
-			<tr key={index} className="text-center">
+			<tr className="h-12" key={index}>
 				<td className="border-b border-parchment/20 whitespace-nowrap w-min">
 					{isEditing ? (
 						<div className="w-16 mr-auto ml-16">

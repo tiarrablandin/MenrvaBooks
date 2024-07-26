@@ -78,11 +78,9 @@ class BookService(
     }
 
     @Transactional
-    fun delete(id: Long): Any {
+    fun delete(id: Long): Boolean {
         val book = bookRepo.findById(id).orElseThrow { RuntimeException("Book not found") }
         bookRepo.delete(book)
-        val exists = bookRepo.existsById(id)
-        println("################### $exists")
-        return exists
+        return bookRepo.existsById(id)
     }
 }
