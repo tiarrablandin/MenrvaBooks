@@ -22,7 +22,7 @@ const AdminSidebar: React.FC = () => {
   return (
     <div className={`h-screen w-14 inline-flex fixed`}>
       {/* container */}
-      <aside className="flex flex-col items-center bg-pink-lavender/50 text shadow h-full">
+      <aside className="flex flex-col items-center bg-chinese-violet/30 text shadow h-full">
         {/* Side Nav Bar */}
         <Link href="/home">
           <div className="h-16 flex justify-center w-full">
@@ -38,7 +38,7 @@ const AdminSidebar: React.FC = () => {
           </div>
         </Link>
 
-        <ul className="text-eggplant dark:text-rose/70 w-full h-96 flex justify-between items-center flex-col mt-1">
+        <ul className="text-eggplant dark:text-rose/85 w-full h-96 flex justify-between items-center flex-col mt-1">
           {[
             { href: "/admin", icon: HomeIconOutline },
             { href: "/admin/books", icon: BookOpenOutline },
@@ -48,11 +48,11 @@ const AdminSidebar: React.FC = () => {
             { href: "/admin/settings", icon: Cog6ToothIconOutline },
             // { href: "/admin/notifications", icon: BellIconOutline }
           ].map(({ href, icon: Icon }) => (
-            <li key={href} className={`h-1/4 flex justify-center items-center w-full ${isActive(href) ? 'bg-eggplant/10 dark:bg-rose/10' : 'hover:bg-eggplant/10 dark:hover:bg-rose/10'}`}>
-              <Link href={href}>
+            <Link key={href} href={href} className="h-1/4 w-full">
+              <li className={`flex justify-center items-center h-full w-full hover:text-parchment/70 ${isActive(href) ? 'bg-eggplant/25 dark:bg-rose/25 text-parchment/70' : 'hover:bg-eggplant/15 dark:hover:bg-rose/15'}`}>
                 <Icon className="h-7 w-7 mx-auto" />
-              </Link>
-            </li>
+              </li>
+            </Link>
           ))}
         </ul>
 

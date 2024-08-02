@@ -18,7 +18,7 @@ const Password: React.FC<{ user: User }> = ({ user }) => {
 
   return (
     <div className="text-deep-sea dark:text-parchment/70">
-      <Button className="mt-6 max-w-fit bg-eggplant dark:bg-rose/70 text-parchment/70" onClick={handlePasswordReset}>
+      <Button className="mt-6 ml-16 max-w-fit bg-eggplant dark:bg-rose/70 text-parchment/70" onClick={handlePasswordReset}>
         Request Password Reset
       </Button>
       <section className="px-8 pl-16 py-12 container mx-auto">

@@ -21,13 +21,13 @@ function useDragScroll() {
         x: e.clientX,
         y: e.clientY,
       };
-  
+
       document.addEventListener('mousemove', mouseMoveHandler);
       document.addEventListener('mouseup', mouseUpHandler);
       setIsDragging(false);
       setIsMoving(false);
     };
-  
+
     const mouseMoveHandler = (e: MouseEvent) => {
       const dx = e.clientX - pos.x;
       const dy = e.clientY - pos.y;
@@ -36,11 +36,11 @@ function useDragScroll() {
         setIsDragging(true);
         setIsMoving(true);
       }
-  
+
       node.scrollTop = pos.top - dy;
       node.scrollLeft = pos.left - dx;
     };
-  
+
     const mouseUpHandler = () => {
       document.removeEventListener('mousemove', mouseMoveHandler);
       document.removeEventListener('mouseup', mouseUpHandler);
@@ -49,9 +49,9 @@ function useDragScroll() {
         setIsMoving(false);
       }
     };
-  
+
     node.addEventListener('mousedown', mouseDownHandler);
-  
+
     return () => {
       node.removeEventListener('mousedown', mouseDownHandler);
       document.removeEventListener('mousemove', mouseMoveHandler);

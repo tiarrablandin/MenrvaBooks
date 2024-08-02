@@ -13,7 +13,7 @@ export default async function Page() {
   const allBooks = await fetchBooks();
 
   return (
-    <main className="w-screen min-h-[calc(100vh-295px)]">
+    <main className="w-screen min-h-[calc(100vh-13.75rem)] h-full">
       <div className="w-screen h-full flex flex-col items-center text-old-lace">
         <div className="w-full">
           <Banner />

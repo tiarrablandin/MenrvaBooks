@@ -5,7 +5,7 @@ import useFetchBooks from "@/lib/hooks/useFetchBooks";
 import useInfiniteScroll from "@/lib/hooks/useInfiniteScroll";
 import { Comic_Neue } from "next/font/google";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { BookResponse } from "../../lib/models/book";
 import BookCard from "./bookCard";
 import BookSkeleton from "./bookSkeleton";
@@ -23,6 +23,7 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks 
   const { books, isLoading } = useFetchBooks(fetchData, defaultBooks);
   const [displayLimit, setDisplayLimit] = useState(13);
   const router = useRouter();
+  const carouselRef = useRef<HTMLDivElement | null>(null);
 
   const increaseLimit = useCallback(() => {
     if (displayLimit < books.length) {
@@ -32,6 +33,27 @@ const BookSlider: React.FC<BookSliderProps> = ({ fetchData, title, defaultBooks 
 
   useInfiniteScroll(ref, books.length, increaseLimit);
 
+  const handleMouseMove = (event: MouseEvent) => {
+    const elements = ref.current?.querySelectorAll('.book-item') || [];
+    const { clientX } = event;
+    const { width, left } = ref.current!.getBoundingClientRect();
+    const percent = (clientX - left) / width;
+    const angle = (percent - 0.5) * 60; // Adjust the multiplier for desired effect
+
+    elements.forEach((element) => {
+      (element as HTMLElement).style.transform = `rotateY(${angle}deg)`;
+    });
+  };
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.addEventListener('mousemove', handleMouseMove);
+
+      return () => {
+        ref.current?.removeEventListener('mousemove', handleMouseMove);
+      };
+    }
+  }, []);
 
   return (
     <>
