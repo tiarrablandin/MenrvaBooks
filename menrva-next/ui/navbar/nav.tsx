@@ -51,12 +51,11 @@ export function NavbarWithSearch({ tag, role, theme, }: { tag: string; role: str
           href="/home"
         >
           <Image
-            className={`w-[4rem] h-[4.5rem] mx-4 transition-transform duration-300 ease-in-out ${isOpen ? "scale-100" : "scale-90"}`}
-            src={theme === "dark" ? "https://i.imgur.com/Co5MVJx.png" : "https://i.imgur.com/RGGXm1T.png"}
-            width={92}
-            height={92}
+            className={`w-[5rem] h-[5.5rem] mx-4 transition-transform duration-300 ease-in-out ${isOpen ? "scale-100" : "scale-90"}`}
+            src="/image2vector-3.svg"
+            width="65"
+            height="60"
             alt="logo"
-            priority
           />
         </Link>
         {/* <div className={`${hovered || open ? 'flex' : 'hidden'} justify-end items-center gap-8 container z-10 overflow-visible`}> */}

@@ -20,13 +20,13 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
   const theme = cookies().get("theme")?.value as string;
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Nav tag={tag} role={role} theme={theme} />
       <div className="relative z-20">
         <UserSpeedDial tag={tag} />
       </div>
-      {children}
+      <main className="flex-grow">{children}</main>
       <Footer />
-    </>
+    </div>
   );
 }
