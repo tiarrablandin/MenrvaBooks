@@ -16,10 +16,10 @@ export default function DashboardLayout({ children, }: { children: React.ReactNo
     const theme = cookies().get('theme')?.value as string;
 
     return (
-        <>
+        <div className="flex flex-col min-h-screen">
             <Nav tag={tag} role={role} theme={theme} />
-            {children}
+            <main className="flex-grow">{children}</main>
             <Footer />
-        </>
+        </div>
     )
 }

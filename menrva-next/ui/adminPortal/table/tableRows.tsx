@@ -166,30 +166,30 @@ export const renderUserRow = (
 	deleteEntity?: (userId: number) => any,
 ) => {
 	return (
-		<tr className="h-12 border-b border-parchment/20" key={index}>
-			<td className=" whitespace-nowrap w-min">
+		<tr className="h-12" key={index}>
+			<td className="border-b border-parchment/20 whitespace-nowrap w-min">
 				<Link href={`../user/${user.id}`} className="inline-block">
 					<p className="hover:underline underline-offset-2">
 						{user.tag}
 					</p>
 				</Link>
 			</td>
-			<td className=" whitespace-nowrap">
+			<td className="border-b border-parchment/20 whitespace-nowrap">
 				<p className="w-min inline-block">
 					{`${user.firstName} ${user.lastName}`}
 				</p>
 			</td>
-			<td className=" whitespace-nowrap">
+			<td className="border-b border-parchment/20 whitespace-nowrap">
 				<p className="w-min inline-block">
 					{user.email}
 				</p>
 			</td>
-			<td className=" whitespace-nowrap">
+			<td className="border-b border-parchment/20 whitespace-nowrap">
 				<p className="w-min inline-block">
 					{user.subscription.level}
 				</p>
 			</td>
-			<td className="">
+			<td className="border-b border-parchment/20">
 				{user.dateAdded ? <p>{user.dateAdded.toString()}</p> : <></>}
 			</td>
 			<td className="border-b border-parchment/20">

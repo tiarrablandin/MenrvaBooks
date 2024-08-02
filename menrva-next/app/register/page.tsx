@@ -1,6 +1,6 @@
 import { Footer } from "@/ui/footer/footer";
 import Nav from "@/ui/navbar/nav";
-import Register from "@/ui/register/register";
+import Register from "@/ui/register/old/register";
 import { cookies } from "next/headers";
 
 export default async function Page() {

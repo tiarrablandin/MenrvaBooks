@@ -63,7 +63,7 @@ const ThemeToggle: React.FC<{}> = ({ }) => {
           className: "mr-3"
         }}
         circleProps={{
-          className: `before:hidden border-none ${mounted ? 'bg-eggplant dark:bg-rose dark:left-1' : 'bg-gray-500 ml-[14px]'}`,
+          className: `before:hidden border-none ${mounted ? 'bg-eggplant dark:bg-rose dark:left-0' : 'bg-gray-500 ml-[14px]'}`,
         }}
         ripple={false}
       />

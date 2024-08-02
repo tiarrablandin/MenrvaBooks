@@ -5,6 +5,7 @@ import bookReducer from './features/bookSlice';
 import commentReducer from './features/commentSlice';
 import genreReducer from './features/genreSlice';
 import keywordReducer from './features/keywordSlice';
+import registerReducer from './features/registerSlice';
 import searchReducer from './features/searchSlice';
 import seriesReducer from './features/seriesSlice';
 import subgenreReducer from './features/subgenreSlice';
@@ -20,6 +21,7 @@ export const makeStore = () => {
       comment: commentReducer,
       genre: genreReducer,
       keyword: keywordReducer,
+      register: registerReducer,
       search: searchReducer,
       series: seriesReducer,
       subgenre: subgenreReducer,

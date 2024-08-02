@@ -11,7 +11,7 @@ import {
 import ReduxProvider from "@/providers/reduxProvider";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   default as AdvancedSearch,
   default as AdvancedSearchComponent,
@@ -20,7 +20,10 @@ import ThemeToggle from "../theme/themeToggle";
 import ProfileMenu from "./profileMenu";
 
 export function NavbarWithSearch({ tag, role, theme, }: { tag: string; role: string; theme: string; }) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [hovered, setHovered] = useState(false);
+
   const handleOpen = () => setOpen((cur) => !cur);
 
   useEffect(() => {
@@ -28,37 +31,42 @@ export function NavbarWithSearch({ tag, role, theme, }: { tag: string; role: str
     window.addEventListener("resize", () => window.innerWidth >= 960 && setOpen(false));
   }, []);
 
+  const handleFocus = () => setFocused(true);
+  const handleBlur = () => setFocused(false);
+
+  const isOpen = hovered || open || focused;
+
   return (
     <Navbar
       shadow={false}
       fullWidth
-      className="border-none bg-rose dark:bg-eggplant p-0.5 relative overflow-visible z-20"
+      className={`transition-all duration-500 ease-in-out ${isOpen ? "bg-rose dark:bg-eggplant" : "bg-parchment dark:bg-onyx"} border-none p-0.5 relative overflow-visible z-20`}
     >
-      <div className="w-full mx-auto flex h-[4.5rem] items-center justify-between overflow-visible">
-        {theme == "dark" ? (
-          <Link href="/home">
-            <Image
-              className="object-center w-[4rem] h-[4.5rem] mx-4"
-              src="https://i.imgur.com/Co5MVJx.png"
-              width={92}
-              height={92}
-              alt="logo"
-              priority
-            />
-          </Link>
-        ) : (
-          <Link href="/home">
-            <Image
-              className="object-center w-[4rem] h-[4.5rem] mx-4"
-              src="https://i.imgur.com/RGGXm1T.png"
-              width={92}
-              height={92}
-              alt="logo"
-              priority
-            />
-          </Link>
-        )}
-        <div className="lg:flex hidden justify-end items-center gap-8 container z-10 overflow-visible">
+      <div
+        className="w-full mx-auto flex h-[4.5rem] items-center justify-between overflow-visible transition-all duration-300 ease-in-out object-center "
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        <Link
+          href="/home"
+        >
+          <Image
+            className={`w-[4rem] h-[4.5rem] mx-4 transition-transform duration-300 ease-in-out ${isOpen ? "scale-100" : "scale-90"}`}
+            src={theme === "dark" ? "https://i.imgur.com/Co5MVJx.png" : "https://i.imgur.com/RGGXm1T.png"}
+            width={92}
+            height={92}
+            alt="logo"
+            priority
+          />
+        </Link>
+        {/* <div className={`${hovered || open ? 'flex' : 'hidden'} justify-end items-center gap-8 container z-10 overflow-visible`}> */}
+        <div
+          className={`transition-opacity duration-500 ${isOpen ? 'flex opacity-100' : 'hidden opacity-0'} justify-end items-center gap-8 container z-10 overflow-visible`}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        >
           <ReduxProvider>
             <div className="w-3/4 py-3 h-16 flex flex-col items-center z-10">
               <AdvancedSearchComponent />
@@ -95,6 +103,7 @@ export function NavbarWithSearch({ tag, role, theme, }: { tag: string; role: str
           )}
         </IconButton>
       </div>
+      {/* below is mobile only */}
       <Collapse
         open={open}
         className={`hidden z-10 ${open ? "overflow-visible" : "overflow-hidden"}`}
